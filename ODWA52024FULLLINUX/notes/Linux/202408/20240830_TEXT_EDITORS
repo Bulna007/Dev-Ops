@@ -1,0 +1,230 @@
+grep:
+1. grep "text" filename
+2. grep -R "text" directory/
+3. grep -i "text" filename
+4. grep -n "text" filename
+5. grep -o "text" filename
+6. grep -w "text" filename
+7. grep -c "text" filename
+8. grep -v "text" filename 
+9. grep -digit "text" filename
+10. grep -Adigit "text" filename
+11. grep -Bdigit "text" filename
+
+regular expression:
+[] = single character match within the group of characters
+[1-10] = single character match within the range specified
+^ = starts with
+$ = ends with
+. = any single character
+* = minimum one and can have repeated pattern
+.* = any characters for any number of times
+\ = escape character
+--------------------------------------------------------------------------------------------------------------------------
+text editors
+
+Text Editors are used for creating new files or modifying existing files or viewing the contents of a file. In Linux operating system there are 2 types of text editors are there
+
+1. gui
+In ubuntu distro, the gedit is the default text editor that will be shipped and can be used for editing/viewing the file contents. In addition we can install any third-party gui text editors in the market like
+	1.1 atom
+	1.2 sublime text editor
+	1.3 vs code
+	etc
+	
+how to install vscode editor?
+1. download the .deb file of the vscode editor to the ~/Downloads directory
+2. cd ~/Downloads
+3. sudo apt update -y
+4. sudo apt install -f ./codeXXXX.deb	
+	
+The same process we can follow installing the atom or any text editor.
+	
+2. non-gui
+Majority of the times linux operating system is being used in headless mode (no gui), hence any of the above gui based text editors will not be available. So linux operating system has provided non-gui text editors to help us in editing or creating or viewing the contents of the files in CLI Mode. 
+There are several non-gui text editors are available aspart of the linux distros. out of various text editors available, there are #2 popular text editors widely used in the linux operating system world (across any distros)
+	1. vi
+	2. nano
+	
+1. vi
+The most popular and default available text editor in majority of the linux distros is "vi" text editor. vi stands for visual editor and a more improved version of the vi editor is vim (stands for vi improved). it has more options than the vi editor.
+	
+vi is the classic text editor and is not much user friendly, so a improved version on top of the vi editor has been built with more options which is "vim" editor and is much user friendly.
+	
+Majority of the linux distros doesnt provide vim editor, rather ships vi editor only. So inorder to use vim editor we need to explicitly install it by using the below command
+
+sudo apt update -y
+sudo apt install -y vim
+
+How to use vi/vim editor?
+In vi or vim editor there are 3 modes are there
+1. command mode
+2. input mode
+3. exit mode
+
+1. command mode
+upon opening the vi or vim text editor, by default it enters into command mode only. Within the command mode any keypress on the keyboard will not key-in the letter into the file, rather would be considered as a command and performs relevant operation on the contents of the file.
+	
+yy = copy the current line
+p = paste 
+o = open an newline below the current cursor position
+
+in this way each letter on the keyboard is associated with an relevant operation and would be carried on the contents of the file when we are in "command-mode".
+At anypoint we can return back to the command mode by pressing "esc" key on the keyboard
+
+2. input mode
+In the input mode we can write the data onto the file by typing the keys on the keyboard. To enter into the input mode we need to press "i" key on the keyboard from command-mode.
+	
+In vim editor it is called "insert" mode. 
+	
+Incase of vi editor:
+when we are in input mode, we cannot move the cursor across the contents of the file by using arrow keys. the arrow keys are also taken as a input and inserts ascii equivalent data for those keys into the file so to move the cursor across the contents of the file, we need to mandatorily goback to command mode and use commands to move the cursor, thus causing a great level of in-convienience to the use and hence considered as non-user friendly editor
+
+Incase of vim editor, even when we are in insert mode, we can still move the cursor across the contents of the file by using the arrow keys
+
+3. exit mode
+after entering the data into file, either we can save the contents of the file or dis-card the changes and can quit from the editor by going into exit mode
+
+To enter into exit mode, we need to goback to command mode by pressing esc key on the keyboard. Then press ":" on the keyboard, thus enters into exit mode
+here we have few options available
+1. w + enter = write/save the content
+2. q + enter = quit
+3. wq+ enter = write and quit
+4. q!+ enter = quit without saving the contents
+
+--------------------------------------------------------------------------------------------------------------------------
+1. we can open the editor with a new file by using
+vi filename
+
+this will creates an blank file under the current working directory. unless we write and quit the file will not appear or saved on the harddisk.
+	
+What are the commands available aspart of the command mode in vi/vim editor?
+1. A = append the data at the end of the current line
+2. a = append the data at the right-side of the cursor position
+3. I = insert the data at the begining of the current line
+4. i = insert the data in the current cursor position
+5. O = open a new line above the current cursor position
+6. o = open a new line below the current cursor position
+7. r = replace a single character at the current cursor position
+8. R = replace the text from the current cursor position
+9. S = replace the current line
+10. yy = yanking (copy the line)
+	  2yy, 3yy, nyy = copy specified number of lines from the current cursor position
+		
+11. p = paste
+12. x = delete a character at the current cursor position
+13. dw = delete a word
+14. dd = delete a line (2dd, 3dd, 4dd, ndd)
+15. u = undo the previous action
+16. b = back to the begining of the current word
+17. w = beginging of the next word
+18. e = end of the current word
+19. :linenumber = jump to the specified line inthe file
+20. G = goto the end of the file
+21. ctrl + f = page forward
+22. ctrl + b = page backward
+
+23. how to search for an text within a file when we are using vi/vim editor?
+1. goto command mode
+2. /phrase + enter = to search for the given text phrase in the file
+upon pressing enter key, it shows the first matching text occurence within the file. To find the next matching press "n" key and to show previous matches press "shift + n"
+--------------------------------------------------------------------------------------------------------------------------
+nano text editor
+
+nano is another text editor that is popularly being used aspart of the linux operating system as an non-gui editor. unlike the vi/vim being programmers editor that needs to memorize lot of commands in using it, nano is an simple text editor that provides easy commands for editing the contents of an text file
+
+nano is not available aspart of all the linux distros by default, we need to explicitly install, but in Ubuntu distro along with vi the nano is also provided by default.
+	
+How to use nano editor?
+1. nano filename
+if there exist already a file with that name, it opens up for editing the file, otherwise creates an blank file for writing.
+	
+2. ctrl + o (enter key) = writes the unsaved changes onto the file
+3. ctrl + x (enter) = quit if there are any unsaved changes it asks for do you want to save or not (y/n)
+4. ctrl + w = search for a word in the file
+5. ctrl + \ = to replace a text phrase with different 
+6. ctrl + k = cut the line
+7. ctrl + u = paste the line
+8. ctrl + c = displays the line number, characters within the file
+9. ctrl + / = goto a specified linenumber
+10. alt + e = redo
+11. alt + u = undo
+12. alt + a = goto selection mode to mark the content
+13. alt + 6 = copy the selected content
+---------------------------------------------------------------------------------------------------------------------------
+
+
+
+	
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

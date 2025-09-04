@@ -1,0 +1,221 @@
+Security Domain
+1. IAM Service
+IAM stands for identity and access management, it is used for delegating the access to the resources/service of an aws account to the other IAM users or resources of the account.
+
+1.1 users
+1.2 groups
+1.3 policies
+1.4 roles
+
+1.1. users
+There are 2 types of users are there in aws cloud for an aws account.
+	1. Root user = owner of the aws account and he has complete access to all the services and resources of the account. by default all the resources provisioned are entitiled for root user account only
+	2. IAM user
+	while working with multiple projects, application or products to manage infrastructure or service requirements in running these projects on aws infrastructure the root account holder might create additional users to delegate access to the individual project representatives in managing their own infrastructure of their project in controlled way through IAM user
+	
+	There are 2 types of access can be granted to IAM user
+		1. api access
+		its an programmatic access in managing the resources of an aws account for which aws generates an api key and secret. using these credentials the user cannot access the console.
+			
+		2. console access
+		the IAM user can login into the cloud console and can manage the resources or services through the console. 
+			
+The IAM users has to provide the account# (which is 12digit number) of the Root user to identify himself he belongs to which root account during the login into cloud console.
+			
+#2. groups
+while adding an IAM user to the aws account, the root user can attach policies to the IAM user granting access to the account resources/services. but if there are many users to whom we want to grant access it would be difficult in managing the permissions and keeping track of which user has been assigned to what policies.
+	
+To avoid the difficulties in managing the IAM users aws has introduced groups. create a group and bind policies to the group. Now while adding user associate the user to a group rather than binding policies directly. so that all the group policies are applicable to the user automatically.
+	
+it would be easy to manage the permissions by modifying the group policies now, rather than managing each user individually.
+	
+Note:- A IAM user can either be associated to a group or individually can be assigned with policies but not both.	A IAM user can be associated to multiple groups as well.
+----------------------------------------------------------------------------------------------policies
+---------
+Policies is a json language provided by aws, which groups multiple permission to be granted on an aws resource/service to an another IAM user or service
+
+There are 1000+ permissions are defined at a very granular/detailed level by aws developers for managing each and every individual resource/service. while creating an aws group/user/role associating the users/groups to these permissions becomes tedious job since we need to browse through the length list of permissions to identify which has to be granted.
+	
+Instead aws has compiled the list of relevant permissions that be granted possible for each resource type and pre-defined with policies. For each resource/service type aws developers has identified the possible types of access and created multiple policies around it for eg.. to an ec2 instance there are multiple policies defined as below.
+	1. AWSEc2FullAccess
+	2. AWSEc2ReadOnlyAccess
+depends on the requirement in granting the access we can choose and attach quickly one or multiple policies to the user or a group.
+	
+There are around 200+ policies defined by aws developers and made it available for usage, now we can quickly add a user/group by choosing any of them
+
+
+These policies are categorized into 3 levels
+1. AWS Managed Policies
+These are the pre-defined policies compiled by the aws developers and made it available for each aws account, so that root users or others can quickly add users/groups by attaching these policies
+
+These policies are created/managed and maintained by the aws itself. for example whenever a new feature in introduced for a service, the aws is going to add a new permission for controlling the feature.
+Now aws takes care of updating their existing policies with the new permission whereever it is applicable and keeps the policies upto the date	
+
+2. Customer Managed Policies
+If the pre-defined policies offered by the aws is not sufficient or doesnt fit to the requirement then customers can build their own policies through policy wizard or buildtool provided by aws and can add permissions to their policy.
+	
+These policies are available to the aws account level only and will not be visible to other aws users. The aws account user is responsible for managing, updating and keeping track of these policies by his own whenever a new permissions are introduced by aws.	
+	
+3. Inline Policies
+These are also same as aws customer managed policies only, but these are defined local to the resource level directly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

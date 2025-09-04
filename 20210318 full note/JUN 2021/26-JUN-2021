@@ -1,0 +1,52 @@
+Symlinks are the pointers to the original file on the linux filesystem
+There are 2 types of symlinks are there
+  1. softlink = a pointer to the original file
+  2. hardlink = a reference to original inode of the file
+---------------------------------------------------------------------------------------------------------
+There are 3 types of software distributions are there in linux
+1. packaged software distribution through repository
+2. packaged software distributed, directly downloadable
+3. binary software distribution, directly downloadable
+
+#3 binary distribution
+The sofware manufacturer vendor will compile the software application to the plaftform executable, but he would not package the software application and ship it to the customer, such distributions are called binary distribution.
+  
+Now end-user cannot user software package managers / installers for installing and running such software, he has to manually take care of the process of installation and configuration of the software.
+  
+The binary distribution software are usually shipped in compressed format as ".tar.gz" for linux. In order to use this binary distribution we need to do the below
+  1. uncompress and unpack, place in a directory on our filesystem
+  2. by reading the documentation of the vendor, identify the entrypoint file we need to execute to run the software
+  3. add the directory of the entrypoint file to the PATH environment variable of linux so that each time we can type the entrypoint as a command without specifying the path. (make it as permanent by adding an entry into bashprofile)
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  

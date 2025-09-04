@@ -1,0 +1,55 @@
+What is an Web Application, what is the purpose of it?
+To distribute information across the world over the WWW (internet), the web application are used. We care webpages with information and publish on the internet, so that people around the world can browse the webpages over http protocol.
+  
+How to write webpages in a web application?
+We need to HTML language to write web pages. HTML stands for Hypertext markup language, it has provided pre-defined tags using which we can format the data and render it as part of web browser. The basic structure of a HTML page is as below.
+  
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>page title</title>
+  </head>
+  <body>
+    actual information to be rendered in the web browser
+  </body>
+</html>
+  
+Now people around the world will access the HTML/webpage using web browser, so that browser will parse the tags and format the data while displaying on the browser window.
+  
+There are 2 types of web applications are there
+1. static web application
+In static web application, the webpages will render always the same data irrespective of the user accessing the pages. In general the static web application contains below resources.
+  1.1 HTML
+  1.2 css
+  1.3 images
+  
+2. dynamic web application
+In a dynamic web application, the application takes the data from user as an input, perform some operation and compute the response based on the user inputs and renders the response differently for different users which is called dynamic webapplication. Dynamic webapplication are built using the below.
+  1.1 HTML
+  1.2 css
+  1.3 images
+  1.4 server-side programming language or ui technology framework
+
+How to host an static web site onto the public world?
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

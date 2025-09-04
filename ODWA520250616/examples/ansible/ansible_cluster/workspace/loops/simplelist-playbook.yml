@@ -1,0 +1,24 @@
+- name: simple list loop
+  hosts: all
+  tasks:
+    - name: install packages
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      become: yes
+      loop:
+        - net-tools
+        - curl
+        - tree
+        - vim
+        - git
+    - name: loop through fruits
+      debug:
+        msg: "{{item}}"    
+      loop:
+        - apple
+        - papaya
+        - banana
+        - grapes
+        - cherries  

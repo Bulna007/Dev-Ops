@@ -1,0 +1,168 @@
+#1 Bios -> Enable virtualization
+#2 I dont see 64-bit operating system option, just close the virtualbox and reopen, if required try to restart then that option will appear. You have to install extension pack
+--------------------------------------------------------------------------------------------------------------
+How to provision an ec2 ubuntu instance on aws cloud platform? (not preferrable)(billing issues)
+aws cloud provider = amazon web service cloud provider, offers different types of cloud services to the customers like
+  1. compute
+  2. networking
+  3. rds services and many more
+
+compute = it offers computing resources to the customers like ec2 instances, load balancers, auto-scaling group and elastic bean stalk etc.
+In short we can say in compute services they provide virtual machines computers to the customer to use them over the internet.
+  
+Networking = it offers network services like routers, firewalls, gateways and public ip address to make these computers accessible over the internet
+
+Relational Database Service = it offers Relational Databases to be used by customers. aws supports lot of database products like
+  - mysql
+  - oracle
+  - ms sql server etc
+-------------------------------------------------------------------------------------------------------------
+To use ubuntu on aws cloud platform we need to create compute instance (ec2) with public ip address (networking)
+
+To use aws cloud platform, we need to have an aws root account. 
+  # goto https://console.aws.amazon.com/console/home and create a new aws account
+    - it asks for email address and password and other information like
+      - address
+      - debit/credit card number
+  just provide all the required details and create account. (dont share the credentails to anyone)
+
+How to create ec2 instances on aws cloud platform?
+--------------------------------------------------
+#1 goto https://console.aws.amazon.com/console/home
+  - signin with the email address and password which you have used while registration.
+  after login you will be taken to management console page.
+  goto right corner and select region as mumbai. (ap-south-1)
+    
+-------------------------------------------------------------------------------------------------------------
+#2 in aws management console page you will see an option menu services
+  click on the services -> you will find compute/ec2 menu option. select it
+  - click on launch ec2 instance
+  - in the next page you will see a checkbox Free tier only select it in left menu and in right side select the ami as Ubuntu Server 20.04 LTS (HVM), SSD Volume Type and click on Select
+  - in the next page select instance type as t2.micro only (free tier) and click on configure instance details
+  - in the next page configure instance details will come
+    - 1 instance
+    - leave network default
+    - availability zone (select in dropdown) ap-south-1a
+    - auto-assign public ip: Enable
+    click on Next: Add Storage
+  - In the next page the default storage will be shown as 8 gb if you want increate to 10 gb other wise leave it.
+  - Add Tags
+    - here give name for your computer Key: Name and value: ubuntuec2
+  - in the next page security group will appear
+    leave everything default and change security group name to : ubuntuec2sg
+    Click on Review and Launch
+  - Then it shows review page click on Launch
+    here it opens a dialog with asking to generate key pair.
+      - choose create new keypair and enter key name and click on dowload keypair. it downloads a .pem file save it under $USER_HOME/.ssh directory. (if you lost the file you cannot login to the computer).
+      if you dont see ".ssh" folder create one manually.
+        
+.pem = is a single file contains both public and private key      
+  
+How to login to ec2 computer
+ssh -i c:\Users\USERNAME\.ssh\ubuntuec2kp.pem ubuntu@public ip
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

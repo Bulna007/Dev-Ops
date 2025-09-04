@@ -1,0 +1,171 @@
+How to non-interactively pass the data as an input to the Shell program?
+We can pass the data as an input to the Shell program non-interactively by passing the data at the time of launching the shell program which are called program arguments as shown below.
+  
+./program.sh 10 20
+Here to the program.sh we are passing 2 program arguments which are 10 and 20. The shell interpreter will takes these 2 arguments and places them in a special variable which starts from $0 to $N where N represents number of arguments we passed.
+  
+How to access these program arguments inside our shell program?
+$0 = Name of program file
+$1 = First argument supplied
+$2 = Second argument supplied
+$N = nth argument supplied
+$# = no of arguments passed to the program
+$@ / $* = will gives us all the arguments we passed to the program
+--------------------------------------------------------------------------------------------------------
+printf
+printf is used for writing the output to the console in a formatter manner.
+  
+Escape characters supported by printf
+1. \\ = displays single \ (because backslash is an escape character)
+
+printf("\n") = "\" is treated as escape character, that means dont print \ rather the next character to the backslash should be interpreted specially. 
+in this case it will prints a new line to the console
+\ = generally a single backslash will take as escape sequence, but if want to print backslash use double \\ to print a single backslash
+
+2. \b = prints an backspace
+3. \n = prints a newline
+4. \r = carriage return (new line)  
+5. \t = horizantal tab
+6. \v = vertical tab
+
+Format specifiers supported by printf
+%d = signed decimal
+%u = unsigned decimal
+%o = octal
+%x, %X = hexa decimal number
+%e, %E = exponential
+%c = single character
+%s = string
+%f = floating point
+--------------------------------------------------------------------------------------------------------
+How to perform arthematic operations in a Shell program?
+By default all the data we use as part of a Shell program will be treated as character data only and will not allows us to apply any arthematic operations on that data.
+  
+by default shell interpreter takes every character we wrote in a shell program and interprets as a command to execute
+
+  
+So to let the shell interpreter perform arthematic operations on the inputs we need to write the arthematic expressions specially. There are 3 ways of representing arthematic expression in Shell program
+
+#1 expr
+To let the shell interpreter execute or perform arthematic operation we can use expr
+expr = is a way through which we tell shell interpreter it is a expression to be evaluated dont try to search for command execution.
+  
+#!/bin/bash
+A=10
+B=20
+SUM=`expr $A + $B`
+echo $SUM
+
+the expr is the old fashioned of writing arthematic expressions, there are other ways to write arthematic expression in shellscripting.
+#2 $(())  
+
+#!/bin/bash
+A=10
+B=20
+SUM=$((A + B)) #easy way of writing arthematic expressions
+
+#3 $[] = the short-end form of writing the arthematic expressions
+instead of using `expr $A + $B` or $((A + B)) we can write $[A + B] easily
+---------------------------------------------------------------------------------------------------------
+1. basic syntax and execution
+2. variables
+3. interactive inputs
+4. non-interative inputs
+5. echo and printf
+6. writing arthematic expressions using expr, $(()) and $[]
+--------------------------------------------------------------------------------------------------------
+Command Substitution:
+If we write a shell command in a shellscript program, the output of the command execution will be directly written onto the console. Instead if we want to write the output of a shell command into a variable we need to use Command Substitution.
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

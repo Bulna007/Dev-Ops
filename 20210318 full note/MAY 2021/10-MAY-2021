@@ -1,0 +1,278 @@
+#1
+how many ways we can compare any 2 given files in linux?
+There are 2 ways 
+  1. cmp = does byte by byte comparision and reports only the first difference in terms of bytes and line 
+  2. diff = unlike cmp diff compares the text files and displays all the mis-matchines line by line at one shot
+    it provides additional information helping/suggetion helping us in matching/making those 2 files identical
+  - provides special characters per each mis-match
+    a = add line
+    c = change line
+    d = delete line
+  - symbox on how to apply the above instructions
+    < = changes to made on left
+    > = changes to the right 
+    2c,2c< = 2nd line change with 2nd line < left side file
+
+#2
+How to count number of words, lines and characters in a give input text (string or a file contents)?
+  
+wc -l = no of lines
+wc -c = no of characters
+wc -w = no of words
+combination of any of the switches
+
+#3
+pipes = pipes are used for joining the linux commands. we can send the output of a command as an input to the other command using pipe (|). Its an powerful feature in liux using which we can create new commands also out of it.
+
+examples:-
+cat filename | wc -l
+who | wc -l
+cat /etc/passwd | wc -l
+--------------------------------------------------------------------------------------------------------
+Redirection
+By default all the linux commands writes the output to the STDOUT and reads the input from STDIN, but if we want to redirect the Input/Output of the linux commands we can use redirection operations
+  1. > = redirecting output (input redirection)
+  2. < = redirecting input (output redirection)
+  
+ls -l = by default it writes the list of files and directories within the current working directory to STDOUT, but it we want to write this output to a file for example then we can use output redirection operator.
+ls -l > files.txt
+
+The different between (|) piple and (<,>) redirection operations is:
+  - in case of (|) pipe the second part we specify should be a another bash command.    
+    for eg..
+      not valid = ls -l | files.txt   =  it executes ls -l sends the output to another command assuming what we have supplied is command which is "files.txt" and bash tries to execute and fails by giving an error
+      valid = ls -l | wc -l = valid since both sides are commands only
+  - in case of (<,>) redirections the input and output should be destinations only (either input source/output destinations) 
+      for eg..
+        cat < file1.txt = cat read the data from file1.txt rather than STDIN and display the output, because cat by default takes the input from STDIN.
+        cat > out.txt = cat read from keyboard (STDIN) and write to the output file out.txt not to STDOUT
+        we can even redirect both input and output
+        cat < file1.txt > file2.txt = here we are asking cat to read the data from file1.txt and write the output to file2.txt (equal to cp command)
+        
+cat file1.txt equal to cat < file1.txt (here < operator is optional)        
+
+ls -l > files.txt = stores the output of ls -l command onto files.txt
+---------------------------------------------------------------------------------------------------------
+find = is a command used for searching the files/folders using their names.
+  
+library
+|-science
+  |-science-engineering.txt
+  |-robotics.txt
+  |-mechanics.txt
+|-history (30 files)
+  |-great-leaders.txt
+  |-freedom-fight.txt
+|-english
+  |-quick-30days-english.txt
+  |-grammer-to-glamer.txt
+|-stories
+  |-dreams.txt
+  |-nothing-real.txt
+  |-become-heroes.txt
+  
+here we have a directory/folder named "library" which has several sub-directories and files inside it. now locating a file or searching a file is difficult job, because we need to navigate each sub-folder using cd and do ls to find the files inside the directory and see the list files whether our file we are looking for exists are not.
+  
+seems to be simple, but with more directories and files locating a file is a tedious job and might have to spend couple of minutes and may fail in locating.
+  
+How to solve the problem of searching the files/folders in linux?
+find = helps us in locating the files on filesystem easily with lot of options. it goes to the directory and sub-directory we gave and searches for files/folders matching with the name given.
+
+#1  
+find directory -name "pattern" -print [by default -print is enabled we dont need to supply]  = find the given file pattern -name "pattern" under the directory "directory" and "-print" print each matching output on a new line
+
+#2 
+find directory -name "pattern" -print0 = this writes the matching output in one single line
+
+#3 find directory -name "pattern" -empty = prints all the matching files which are empty
+
+#4 find directory -name "pattern" -exec command {} \; (important) = -exec : execute the command given on all the matching files returned by the find. here {} = all files. \; = indicates termination of the command
+
+For eg..
+how to remove empty files in a directory?
+In general we need to search for empty files using find
+find directory -name "pattern" -empty
+then we need to run rm command on the above list of output files 
+
+instead of we can use -exec of find
+find library/ -name "*" -empty -exec rm -rf {} \;
+
+sriman@odwa2:~$ find library/ -name "*" -empty
+library/history/great-leaders.txt
+library/science/robots.txt
+
+sriman@odwa2:~$ tree library/
+library/
+├── history
+│   ├── freedom-fight.txt
+│   └── great-leaders.txt
+├── php-in-30days.txt
+├── science
+│   ├── mechanics.txt
+│   ├── robots.txt
+│   └── science-engineering.txt
+└── technologies
+    ├── cgems.txt
+    └── complete-java.txt
+
+3 directories, 8 files
+
+find library/ -name "*" -empty -exec rm {} \;
+
+sriman@odwa2:~$ tree library/
+library/
+├── history
+│   └── freedom-fight.txt
+├── php-in-30days.txt
+├── science
+│   ├── mechanics.txt
+│   └── science-engineering.txt
+└── technologies
+    ├── cgems.txt
+    └── complete-java.txt
+
+3 directories, 6 files
+
+ODWA208052021 = \4-Bq<
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,41 @@
+Database domain
+all the database related services are part of database domain
+
+1. rds (Managed Relational Database Service)	
+2. dynamodb
+3. auroradb
+4. elastic cache
+5. redis
+
+#1. rds (Managed Relational Database Service)	
+is managed service that takes care of managing the popular RDBMS in the market like
+1. oracle
+2. postgress
+3. mysql server
+
+How to provision an mysql server rds instance on aws cloud platform?
+1. multiple subnets
+
+	mysql server
+	sn1-az1 --
+	sn2-az2 -- sngroup
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

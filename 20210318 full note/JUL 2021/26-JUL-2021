@@ -1,0 +1,140 @@
+Functions in shellscripting
+---------------------------
+What are functions in Shellscripting, what is the purpose of them?
+We want to execute a block of code at different places within our program, we cannot use loop control statements here, because loop control statements executes repeatedly a block of code at once place with the program.
+But here we want to execute block of code at different places within our program, then how to accomplish it?
+We can copy paste the block of code at different places in our program whereever we want to execute. but this will put us into maintainability problems because of code is being duplicated all over the program.
+  problems:
+    1. a change in one of the line within the block of code, need to reflected across all the places whereever the block appears, which takes lot of time
+    2. identifying the places where we have written this block of code is very difficult we should go line by line withour program to find the where it has been written
+    3. chances where we might modify only few occurences of the block of code, due to program in-consistency will arise
+    4. as we modify different places, there is a high chance of introducing bugs due to incorrectly changing the code.
+
+program
+//line#1
+printf "%3d" N
+//line#3
+//line#4
+
+line#5
+line#6
+line#7
+
+//line#1
+printf "%2d" N
+//line#3
+//line#4
+
+line#8
+line#9
+line#10
+
+//line#1
+//line#2
+//line#3
+//line#4
+
+From the above we understood, if we write the code multiple times at different places in our programs, we will run into problems as defined above. How to solve this problem?
+Shellscripting has introduced functions to address the above problem.
+
+functions = if we want to execute a block of code at different places within our program, instead of copy/pasting the code we can define the code in a named block and use it whereever we want.
+Functions are used for reusing a block of code at different places within the program.
+
+How to work with functions?
+if we dont want to repeatedly execute any block of code at different places within our program we dont need to use functions. if we want to execute at different places then in your shellscript program we need to write functions.
+
+When we are working with functions, our shell program contains 2 parts.
+1. Main program
+2. function blocks
+
+when we run the shell program, always it begins execution from Main program only. by default function blocks will not be executed. If we call the function block within our main program, then only the function blocks are executed.
+
+syntax:-
+program.sh
+#!/bin/bash
+function functionName() { #will not be executed by default
+  # block of code
+}
+
+#main block of code
+functionName #executes the function block
+--------------------------------------------------------------------------------------------------------
+printfunc.sh
+#!/bin/bash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

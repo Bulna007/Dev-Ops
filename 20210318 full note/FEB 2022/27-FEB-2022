@@ -1,0 +1,71 @@
+How to provision an ec2 instance by creating an vpc and subnet?
+
+#1. project	directory
+ec2vpcsubnet [itax]
+|-main.tf
+
+main.tf
+--------
+terafform {
+	required_providers {
+		aws = {
+			source = "hashicorp/aws"
+		}		
+	}
+}
+provider "aws" {
+	region = "ap-south-1"
+	profile = "default"
+}
+
+resource "aws_vpc" "itaxvpc" {
+	cidr_block ="10.0.0.0/16"
+	tags = {
+		Name = "itaxvpc"
+	}
+}
+resource "aws_subnet" "itaxprivsn" {
+	vpc_id = aws_vpc.itaxvpc.id
+	cidr_block = "10.0.1.0/24"	
+}
+resource "aws_security_group" "sshpubsg" {
+	vpc_id = aws_vpc.itaxvpc.id
+	ingress {
+		from_port = 22
+		to_port = 22
+		protocol = "ssh"
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	egress {
+		from_port = 0
+		to_port = 0
+		protocol = "-1"
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+}
+resource "aws_key_pair" "devopskeypair" {
+	key_nm = "devopskp"
+	public_key = ""
+}
+
+resource "aws_instance" "itaxec2" {	
+	subnet_id = aws_subnet.itaxprivsn.id
+	vpc_security_group_ids = ["aws_security_group.sshpubsg.id"]
+	instance_type = "t2.micro"
+	ami = "ami-029303"
+	key_name = aws_key_pair.devopskeypair.key_nm
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

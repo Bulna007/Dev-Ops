@@ -1,0 +1,98 @@
+Low-level programming language
+-------------------------------
+The operating system provides system routines through which programmers can build software programs that can be executed directly on the operating system of our computer, which are called low-level programming languages.
+  
+advantages:-
+1. These languages are very powerful, through which we can interact and perform hardware level programming as well
+2. The programs written in low level programming languages executes fast
+3. no compilation and no translation required to run these programs
+
+dis-advantages:-
+1. The program written on one platform will not work on others, these are not portable across the operating systems
+2. The programming instructions provided by these languages are not developer friendly, the syntax are bit complex and difficult understand and use it
+
+High-level programming language
+--------------------------------
+The high level programming languages works on top of the operating system of our computer, these languages provides their own instruction set using which programmer has to write the programs.
+  
+The instruction set provided by these languages are english like and easy to understand, the syntaxes in writing the code is developer friendly. So anyone can quickly learn and program using these languages.
+  
+These high level programming languages provides instruction set abstracting the details of interacting with hardware of the computer, so programming these languages are very easy compared with low-level languages.
+  
+We cannot execute the high-level language program directly on the operating system of our computer, we need to translate high-level language instruction set into operating system instruction set through the help of translators or compilers provided by the language.
+  
+The high-level programming languages provides tools like compiler/interpreter, to be used for translation. So we need to install high level programming language software on our machine to get those tools. Programmers has to write the program using high-level programming language instruction set, then compile to platform executable and run it.
+  
+advantages:
+1. Easy to understand and quick to code because of developer friendly syntax
+2. we dont need to know operating system internals or hardware details in writing the programs, the high-level language will provide easy instruction set through which the low-level details are abstracted from the developer, so learing and programming the applications are very easy.
+3. The programs once written can be compiled to different platforms and can be executed easily
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

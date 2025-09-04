@@ -1,0 +1,213 @@
+What is a FileSystem in linux?
+FileSystem is used for storing and organizing the data on the permanent storage device of our computer.
+FileSystem basically suggest 2 data structures in which store the data on the storage devices
+1. File = File is a named memory block in which we hold the address location where our actually information is stored on the storage device of our computer.
+  
+2. Folder = Special Type of File in which we hold the references to File.
+  
+Linux Operating System FileSystem.  
+  - currently the linux operating system during its installation will stores the data in ext4 filesystem format.
+--------------------------------------------------------------------------------------------------------
+Linux FileSystem directories
+The standard directory structure/layout into which the linux operating system writes itself to organize the files are as below.
+  
+/(root)
+|- /bin = all the linux shell command files are stored here (cat, ls, echo)
+|- /boot = boot loaders files to startup the linux operating system on stored here
+|- /dev = all the permanent devices of our linux machine are written as files in /dev directory
+|- /etc = configurations files are written in etc
+|- /home = for each user a home directory will be created by linux under /home/username
+|- /lib = library files will be placed here
+|- /media = media devices are mounted here
+|- /mnt = other network storages devices we plugn into computer are mounted here
+|- /opt = optional user packages are installed here
+|- /proc = process related information will be stored
+|- /root = root user home directory location
+|- /sbin = super user commands (sudo, chmod, chown, apt)
+|- /tmp  = temporary files are kept here
+|- /var = system logs and variable large files are kept under /var directory
+|- /usr = shared programs commonly used by all linux users are kept here
+
+---------------------------------------------------------------------------------------------------------
+About Shell
+-----------
+Shell is an interpreter program that helps the users of the linux machine to interact with the kernal of our operating system. There are different developers has comeup with different types of shell making the poeple experience of talking to kernal differently.
+  
+To use a shell on the linux we need to choose one of it and install on the linux machine. There are 2 major shell types are there in linux
+Bourne Shell => bourne shell will display $ terminal
+C Shell => % in the terminal
+
+The shell are having sub-caregories
+Bourne Shell Types:-
+1. Bourne Shell (sh)
+2. Korn Shell (ksh)
+3. Bourne Again Shell (bash)
+4. POSIX (portable operating system interface) (sh)
+  
+C-Type shell categoties:
+1. C Shell(csh)
+2. TENEX/TOPC (tcsh)
+  
+the majority of linux distributions will come with bourne shell and uses widely bash only.
+
+Shortcuts keys in terminal = please refer the notes.
+--------------------------------------------------------------------------------------------------------
+
+i3/i5/i7 = equivalent of processor in AMD
+ram = 8gb (would request you to upgrade RAM) (16 gb) (6k) (8 gb) (3.5k - 5k)
+
+dell (support) (professional) (inspiron) regular
+i7 / latest generation (10 gen) (7-10 gen)
+no touch screen (waste)  
+no graphics card (multi-media courses)
+
+ram: 4gb / 8gb (cheaper price) (offline upgrade)  (extendable upto 16 gb/32 gb)
+ssd harddisk (recommended) (500 gb) (1 tb price is too high)
+dimensions : 15/17/18 inch 
+  
+
+There are 2 ways   
+1. dual boot (who has limited ram and cpu capacity) (temporary solution)
+2. virtualization software (permanent solution)
+  
+virtual machine software is used for running more than 1 operating system within a computer.
+#1 You need to install oracle virtualbox software on your computer
+https://download.virtualbox.org/virtualbox/6.1.22/VirtualBox-6.1.22-144080-Win.exe
+https://download.virtualbox.org/virtualbox/6.1.22/Oracle_VM_VirtualBox_Extension_Pack-6.1.22.vbox-extpack
+  
+1. install VirtualBox-6.1.22-144080-Win.exe
+2. after installing virtualbox install extension pack software Oracle_VM_VirtualBox_Extension_Pack-6.1.22.vbox-extpack (enable features like shared folders, networking, sound drivers, display drivers)
+  
+check on your bios settings virtualization has been enabled or not. if not check with your laptop model in google/youtube how to enable virtualization at bios level.
+  different laptops has different bios configuraiton and manufacturing vendors provides the details of how to enable.
+    
+#2 download ubuntu ios file from the internet
+https://releases.ubuntu.com/20.04.2.0/ubuntu-20.04.2.0-desktop-amd64.iso?_ga=2.42669100.869193175.1623128268-209080786.1599284640
+https://ubuntu.com/download
+
+iso file = image file which can be installed.
+
+#3 open virtualbox manager
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

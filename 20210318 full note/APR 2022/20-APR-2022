@@ -1,0 +1,160 @@
+How to keep the docker container running?
+apache-tomcat-9.0.50/bin
+|-startup.sh
+
+ENTRYPOINT ["apache-tomcat-9.0.50/bin/startup.sh"]
+CMD [tail -f /dev/null] #dummy instruction to keep the container running
+------------------------------------------------------------------------------------------
+What are the possible states in which a docker container can exists?
+A docker container can exists in 7 different states
+1. created = The container has been created out of an image, but it has not yet started
+2. running = container is up and running and is ready for accessing/usage 
+3. paused = kept temporarily under pause
+4. exited = the container finshed execution successfully and stopped
+5. restarting = container has been stopped and started 
+6. removed = container has been removed
+7. dead = forceful termination of the container indicates dead
+
+HEALTHCHECK directive
+----------------------
+When we run an docker container, the application packaged inside the container will be running and the status of the container is reported as running.
+By looking at the status of the container as "running" we cannot say what is the underlying status of the application packaged inside the container, may be the application that is packaged inside the container may have not started and might has resulted in failure state or due to heavy loads or various reasons the application might go into unresponsive state.
+	
+So just by looking at the docker container status we can not predict or say the state/health of the application
+How to monitor the status/health of the application that is running inside the container?
+To help us in understand the status/health of underlying application packaged and running inside the container the HEALTHCHECK directive has been provided.
+	
+In order to verify whether the application is running or not, we need to frequently access the application and verify the output (success/failure), but hitting the application generates an artificial traffic and slows down the performance of the application
+Instead of it the developers of the application has to expose HealthEndpoint of that application which will takes the request from the user and performs some preliminary checks to determine health of the application and returns success/failure based on which we can know application status
+
+Since we kept the HealthEndpoint to only perform preliminary checks in returning the status there is zero impact on the performance
+
+Now we can monitor easily the containerized application by hitting the healthendpoint exposed by the developers of the application. but keeping track and manually monitoring the containerized application is highly difficult.
+	
+Instead Docker has provided HEALTHCHECK directive upon declaring it with endpoint information and polling duration, the docker daemon repeated polls the healthendpoint and reports the relevant status of the container rather than showing it as running.
+	
+if a docker container has been written with HEALTHCHECK endpoint in Dockerfile, then along with container status as UP it shows whether application running inside it is (healthy/unhealthy)	
+	
+1. HEALTHCHECK [options] CMD [commandToVerifyTheEndpoint]	
+
+options:-
+	1. --interval=DURATION = how frequent intervals at which it has to execute the CMD we supplied to determine the status of the application
+	2. --timeout=ms = how long should we wait for getting a response from the HEALTHCHECK CMD
+	3. --start-period=ms =millisecond to be waited before starting the HEALTHCHECK to allow application to start
+	4. -- retries=N how many retries it has to do before reporting the application failure status
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

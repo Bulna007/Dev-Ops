@@ -1,0 +1,10 @@
+- name: who am i play
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: logged in user
+      shell: whoami
+      register: loggedInUser
+    - name: print user
+      debug:
+        msg: "{{loggedInUser.stdout}}"  

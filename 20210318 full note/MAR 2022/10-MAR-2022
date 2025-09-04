@@ -1,0 +1,163 @@
+fithealth2
+|-terraform
+  |-modules
+		|-services
+			|-network
+				|-subnet
+					|-variables.tf
+					|-main.tf
+					|-outputs.tf
+				|-gateway
+					|-ig
+						|-variables.tf
+						|-main.tf
+						
+					
+	|-global
+	
+fithealth2/terraform/modules/services/network/subnet	
+variables.tf
+---------------
+variable "vpc_id" {
+	type = string
+}
+variable "subnet_cidr" {
+	type = string
+}
+variable "tag_subnet_name" {
+	type = string
+}
+
+main.tf
+-------
+resource "aws_subnet" "fithealthsubnet" {
+	vpc_id = var.vpc_id
+	subnet_cidr = var.subnet_cidr
+	tags = {
+		Name = var.tag_subnet_name
+	}
+}
+
+outputs.tf
+----------
+output "subnet_id" {
+	value = aws_subnet.fithealthsubnet.id
+}
+
+
+fithealth2/terraform/global
+
+variables.tf
+-------------
+variable subnet_cidrs {
+	type = list
+}
+
+inputs.tfvars
+--------------
+subnet_cidrs = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24","10.0.4.0/24","10.0.5.0/24","10.0.6.0/24",]
+
+main.tf
+---------
+provider plugin declaration
+provider declaration
+
+module "fithealthvpc_module" {
+	source = "../modules/services/network/vpc"
+	vpc_cidr = var.vpc_cidr
+}
+
+module "fithealthsubnet_module" {	
+	count = length(var.subnet_cidrs)
+	source ="../modules/services/network/subnet"
+	vpc_id = module.fithealthvpc_module.vpc_id
+	subnet_cidr = element(var.subnet_cidrs, count.index)
+	tag_subnet_name = "fithealthsubnet_${count.index}"
+}
+
+outputs.tf
+output "subnet_cidrs" {
+	value = module.fithealthsubnet_module[*].subnet_id
+}
+
+
+0,1 = ec2 instance = hybrid subnet
+2,3 = rds instance = private subnet
+4,5 = elb = public subnet
+
+
+fithealth2/terraform/modules/services/network/gateway/ig
+variables.tf
+-------------
+variable "subnet_ids" {
+	type = list
+}
+variable "vpc_id" {
+	type = string
+}
+
+main.tf
+---------
+resource "aws_internet_gateway" "fithealthig" {
+	vpc_id = var.vpc_id
+}
+
+resource "aws_route_table" "fithealthigrt" {
+	vpc_id = var.vpc_id
+	route {
+		cidr_block = "0.0.0.0/0"
+		gateway_id = aws_internet_gateway.fithealthig.id
+	}
+}
+resource "aws_route_table_association" "fithealthrtassociation" {
+	count = length(var.subnet_cidrs)
+	route_table_id = aws_route_table.fithealthigrt.id
+	subnet_id = element(var.subnet_cidrs, count.index)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

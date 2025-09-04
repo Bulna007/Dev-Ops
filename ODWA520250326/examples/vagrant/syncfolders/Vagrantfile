@@ -1,0 +1,4 @@
+Vagrant.configure(2) do | config |
+    config.vm.box = "icloudnote/ubuntu"
+    config.vm.synced_folder "/Users/sriman/quickshare", "/external"
+end

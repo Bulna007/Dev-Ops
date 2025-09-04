@@ -1,0 +1,197 @@
+What are the networking modes available in docker?
+There are 5 network modes available in docker
+1. bridge
+2. host
+3. overlay
+4. mcvlan
+5. none
+------------------------------------------------------------------------------------------
+How to host our own docker container registry?
+Docker hub is an public docker container registry available through which we can publish/distribute docker images.
+few of the organizations may not use docker hub as a container registry due to certain restrictions or limitations:
+1. docker hub is an public registry where we dont want to publish a commercial project into an public repository
+2. many organization network policies restricts the workstations to connect to internet due to which we cannot use docker hub as a registry
+3. since docker hub is hosted on public internet, publishing/distributing images consumes huge network bandwidth and slows down the application deployments
+
+due to the above reasons organizations may setup their own private container registries.
+	
+There are organizations who are building container registry software and distributes to the people, so organizations can use these software in hosting their own registries. few are opensource registries and few are commercial
+1. jfrog jcr (opensource with few features only enabled)
+2. nexus container registry (commercial)
+
+#1. jfrog jcr registry
+1. jfrog jcr requires domain name resolution to work
+so to host jcr on a domain name we need to setup virtualhost configuration use apache2 server
+	1.1 install apache2
+		sudo apt update -y
+		sudo apt install -y apache2
+	1.2 enable apache2 modules
+		sudo a2enmod proxy
+		sudo a2enmod proxy_http
+		sudo a2enmod proxy_loadbalancer
+		sudo a2enmod lbmethod_byrequests
+	1.3 virtual host configuration file
+	/etc/apache2/sites-available/jcrhub.conf
+	<VirtualHost *:80>
+		ServerName jcrhub.com
+		ProxyPreserveHost on
+		ProxyPass / http://127.0.0.1:8082/
+		ProxyPassReverse / http://127.0.0.1:8082/		
+	</VirtualHost>
+	1.4 enable the virtualhost configuration
+	sudo a2ensite jcrhub
+	sudo systemctl daemon-reload
+	sudo systemctl restart apache2
+	
+#2 jfrog jcr registry setup
+#1. download from: https://jfrog.com/container-registry/ (jfrog-artifactory-jcr-7.37.14-linux.tar.gz)
+#2. create an directory 
+mkdir -p /u01/middleware
+#3. copy the tar.gz file into /u01/middleware and extract it
+mv ~/Downloads/jfrog-artifactory-jcr-7.37.14-linux.tar.gz /u01/middleware
+cd /u01/middlware
+tar -xzvf jfrog-artifactory-jcr-7.37.14-linux.tar.gz
+
+#4. with default configurations we can launch the jfrog artifactory jcr registry
+goto artifactory-jcr-7.37.14/app/bin
+cd /u01/middlware/artifactory-jcr-7.37.14/app/bin
+./artifactory.sh
+
+The artifactory jcr registry will run by default on 8082 port, that is the reason we configured apache2 virtualhost configuration pointing to http://localhost:8082/
+------------------------------------------------------------------------------------------
+#3 dns hostname configuration on localhost
+sudo vim /etc/hosts
+127.0.0.1  jcrhub.com
+------------------------------------------------------------------------------------------
+How to pull/publish images from our local docker repository?
+	
+pulling images
+-----------------
+docker image pull repositoryServerAddress/repositoryName/image:tag
+docker image pull jcrhub.com/docker/ubuntu:20.04
+
+How to publish the image?
+we need to build an image with tag/name matching with serverAddress/repositoryName/image:tag and then we can publish
+
+docker image build -t jcrhub.com/docker/sailor:1.0 .
+above command build an docker image with tag name as above specified format
+
+docker image publish jcrhub.com/docker/sailor:1.0
+now the above image will be published into jcrhub.com docker container registry server into docker local repository with name as sailor:1.0
+	
+To perform pulling and pushing images into our own organization repository we need authenticate by login to the server
+docker login jcrhub.com
+username: admin
+password: Welcome@1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,33 @@
+---
+- name: add user play
+  hosts: all
+  tasks:
+    - name: create user
+      user:
+        name: bob
+        create_home: yes
+        shell: '/bin/bash'
+        password: '$6$PAA1j2HYUxWh6H6O$sulZAJ7q281zOKWw1RrVSXd.yj15dY5NhA5wccnXUMmNJKMGZH.hYmDww4ZZQs.ncMrunHoIVMxeFPGQW8Eg0.'
+      become: yes
+    - name: promote sudoer
+      lineinfile:
+        path: /etc/sudoers
+        line: 'bob ALL=(ALL) NOPASSWD:ALL'  
+        insertafter: '^root.*'
+        validate: '/usr/sbin/visudo -csf %s'
+      become: yes
+    - name: create ssh dir
+      file:
+        path: /home/bob/.ssh/
+        state: directory
+        owner: bob
+        group: bob
+      become: yes    
+    - name: copy public key
+      copy:
+        src: sshkey
+        dest: /home/bob/.ssh/authorized_keys  
+        owner: bob
+        group: bob
+      become: yes  
+...

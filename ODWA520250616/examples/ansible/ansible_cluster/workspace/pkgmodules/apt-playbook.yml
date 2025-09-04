@@ -1,0 +1,11 @@
+---
+- name: apt play
+  hosts: all
+  tasks:
+    - name: install nettools
+      apt:
+        name: net-tools
+        state: present
+        update_cache: yes
+      become: yes
+...

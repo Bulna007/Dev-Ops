@@ -1,0 +1,82 @@
+What are the Linux Filesystem directory structure?
+The directories that would be created by default as part of the Linux install are.
+/
+|-bin = all the core linux shell commands are placed here
+|-boot = boot loader files
+|-media = media devices like players and usbs are mounted here
+|-mnt = external network drives and hdd are mounted
+|-home = for every linux user a subdirectory with his name will be created here and only has access to this directory contents to the user
+|-lib = all the shareed libraries are placed here
+|-etc = software configuration files are kept in this location
+|-proc = all the running programs information are kept as files in proc
+|-var = system logs and very large object files are placed here
+|-tmp = temporary files
+|-usr = utilities and programs to be shared across the users are kept here
+|-dev = devices are mounted here
+|-root = root user home directory
+|-opt = optional software packages are installed by package managers here
+|-sbin = super user commands are placed here
+------------------------------------------------------------------------------------------------------
+About Shell
+Shell is an interact special interpreter program using which we can easily interact with kernal of our linux operating system.
+  
+Even though we can directly interact with kernal asking to perform some operation, it would be very difficult unless we have strong programming background we can directly use it, so to help the users in easily communicating with Kernal by abstracting the complex Shell is introduced.
+  
+There are many different types of Shell interpreter programs are available, letting us to talk to kernal in different various.
+  Majorly we have 2 types of Shells.
+  1. Bourne shell
+  There are sub-categories of bourne shell
+    1.1 bourne shell (sh)
+    1.2 korn shell (ksh)
+    1.3 bourne again shell (bash)
+    1.4 POSIX (portable operation system interface)
+  
+  2. C Shell
+    There are 2 sub-categories are there
+    1. C Shell
+    2. TENEX/TOPS (tcsh)
+----------------------------------------------------------------------------------------------------
+
+How does the Bash commands looks, what is their syntax?
+  
+syntax:-  
+command [options] [arguments]
+command = is the name of the command like ls, grep, cat, tail etc
+options = additional inputs in customizing the command behaviour/output (optional). options starts with - (hypen)
+arguments = input values passed to the command on who it has perform the operation (optional)
+
+For eg..
+  ls = stands for list files/directories
+
+ls (no options) (no arguments) = list down the files/folders of the current working directory.
+    
+-----------------------------------------------------------------------------------------------------
+How to run bash commands in Linux operating system?
+Linux operating system bydefault works in headless mode (no gui) only launches terminal only. but we have installed Linux desktop additions, GUI comes by default.
+    
+Linux is built by its kernal and rest all are optional 
+  Production Server environment = 
+  GUI is generally used by desktop users in perform daily activies like surfing the internet, checking emails, prepared presentations and notes etc.
+  When we are running the applications in production env, we dont allow anyone to use that machine for general purpose, rather we just let the application program runs infintely until we stop, in such case do we need GUI or just an CUI (Character UserInterface) is sufficient, that is where Linux is at its best, we can choose and install packages we want to run with Kernal and this Flexibility is not available in any other operations systems.
+  Production env Linux became Landmark!
+
+We never use Linux in GUI, we always use CUI interface, thats where bash commands place a crucial role in working on Linux operation environment.
+    
+We need to run the bash commands on Linux Terminal window.
+Tab = for autocompletion of a command/files/directories    
+Control + c = canceling the command exection
+Control + l = clear the screen
+Control + a = beginging of line
+Control + e = moves the cursor to the end of the line
+Control + Left Arrow / Control + Right Arrow = moves backward and forward one word at a time
+Control + u = deletes from the cursor position to the begining of the line    
+Control + k = deletes from the cursor position to the end of the line.
+Control + Shift + C = copy the selected text
+Control + Shift + V = paste the text back
+Up arrow = recall previous command we typed
+Down arrow = moves in forward direction back in recalling the commands.
+Control + R = search in the history of commands we typed
+
+man commandname = For each of the command in linx man pages are documentation helping us to understand command options and argments and how to use the command.
+  you can use up and down arrows to scroll in man page
+  "q" - to quit from man page documentation

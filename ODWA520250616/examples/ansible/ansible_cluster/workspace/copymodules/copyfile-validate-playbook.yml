@@ -1,0 +1,11 @@
+---
+- name: copy and validate play
+  hosts: all
+  tasks:
+    - name: copy and validate
+      copy:
+        src: bobsudoer
+        dest: /etc/sudoers.d/
+        validate: "/usr/sbin/visudo -csf %s"
+      become: yes  
+...

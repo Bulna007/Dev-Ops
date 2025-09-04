@@ -1,0 +1,123 @@
+Readiness Probe and Liveliness Probe
+
+For a pod we can configure readinessProbe and livelinessProbe letting the kubernetes identify when does the pod is available for accessing and determine whether the pod is running or not
+
+Whenever we create an pod object on kubernetes cluster, the controlplane schedules the pod for running, upon bringing up the pod, the kubernetes control plane reports the pod is available for accessing. but the underlying applications running within the pod may not be running and are not accessible, at this time if the pod has been made accessible by the kubernetes the requests that are send by the client would fail. To let the kubernetes identify the application has been ready for usage, our application has to expose readiness endpoint 
+This endpoint has to be configured as part of pod spec letting the kubernetes identify the pod is ready for accessing.
+The readiness check will be done by controlplan at the time of starting up the pod, there after the readiness check will not be performed
+
+livelinessProbe
+upon bringing up the pod, during its execution the application running inside the pod may go unresponsive due to memory or stuck thread issuses or resource availability, at this moment kubernetes will not be able to identify the application in-availability and continue to run the pod. 
+To help the kubernetes identify such failures of the application and terminate the pod the application should expose an healthcheck endpoint that can be periodically polled by kubernetes to monitor the state of the pod application and can be replaced if necessary
+
+urotaxi (java application)
+|- /actuator/health/readiness
+|- /actuator/health/liveness
+
+urotaxi-pod.yaml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: urotaxipod
+	labels:
+		app: urotaxi
+spec:
+	containers:
+		- name: urotaxi
+			image: techsriman/urotax:1.0
+			ports:
+				- name: http
+				  containerPorts: 8080
+					protocol: TCP
+			readinessProbe:
+				httpGet:
+					path: /actuator/health/readiness
+					port: 8080
+				initialDelaySeconds: 10
+				timeoutSeconds: 10
+				failureThreadshold: 3
+			livenessProbe:
+				httpGet:
+					path: /actuator/health/liveness
+					port: 8080
+				initialDelaySeconds: 20
+				timeoutSeconds: 10
+				failureThreadshold: 3
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

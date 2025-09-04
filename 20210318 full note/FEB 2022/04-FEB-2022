@@ -1,0 +1,156 @@
+What is a cloud?
+The cloud computing is about ondemand delivery of computing resources to the world. There are 3 offerings as apart of cloud computing.
+	1. Infrastructure as a Service (IaaS) = computing resources are supplied on demand		
+	2. Platform as a Service (PaaS) = platform software along with computing resources are provided on-demand
+	3. Software as a Service (SaaS) = end-user software applications are provided on-demand
+	
+The cloud provider takes care of managing the lifecycle of these services as below
+1. provision
+2. deprovision
+3. scale up/down
+4. scale out/in
+5. backup/restore
+6. stop/start/restart
+
+How to use the services or resources that are offered by the cloud providers?
+There are various different cloud providers who are going to offer different types of service, more or less all the cloud providers allows the users to consume these services in 4 different ways.
+	1. cloud console = is an web application into which cloud users can login and avail the different services offered the cloud provider
+	
+	2. sdk = stands for software developement kits. The cloud providers provides api for each language using which developers can write programs in interacting with cloud providers in consuming their services programmatically.
+	
+	3. api = these are the HTTP endpoints exposed by the cloud provider allowing the people to access the resources using these endpoints
+	
+	4. cloud cli = command-line interface tools. using the cli tools with simple command interface people can access the cloud resources of their account.
+----------------------------------------------------------------------------------------------
+What are the services offered by the AWS cloud?
+AWS Cloud has provided lot of cloud services, there are about 200+ services are offered. To help us in locating and using these services quickly they grouped these services into domains. There are 7 popular domains are there in AWS Cloud.
+		
+1. Compute
+2. Storage
+3. Database
+4. Networking 
+5. IAM
+6. Messaging
+7. Management
+
+Let us try to understand each of these domains and services offered as part of them
+1. Compute domain
+------------------
+all the computing resources that are required for running the software applications are part of compute domain
+	1.1 ec2 = elastic cloud compute, it a machine installed with operating system provided for usage.
+	1.2 lamda = "server-less" technology wherein we can write small functions and execute them using the lamda infrastructure
+	1.3 elastic beanstalk = There are predefined stack of middleware softwares being listed as part of elastic beanstalk, now users can pick any one of the middleware stack in creating an compute instance, so that aws takes care of installing and configuring the middleware software along with compute
+	1.4 elastic load balancer = distributes the traffic across multiple compute instances
+	1.5 Autoscaling group (asg) = based on rules and threshold values automatically the instances are scaledup/down by the asg service
+	
+2. Storage domain
+-------------------
+All the storage related services in managing and storing the data are grouped under storage domain.
+	1. S3 (Simple Storage Service)
+	S3 is an object storage provided by aws. here objects refers to any files, audios, videos or images which can be stored in S3 storage and can be quickly accessed as well. We group the objects into buckets. we upload objects into buckets where for each object aws provided unique id using which we can access the object from S3 bucket
+	
+	2. AWS Cloud Front
+	Its an content delivery network service which is used for caching static content and distribute across the world. Most likely used as part of web applications to serve static content to the endusers
+	
+	3. Elastic blockstorage =it is an block volume that is attached to ec2 instance and acts as harddisk for the ec2 compute instance
+	
+	4. Glacier = used for storing archival data which will has to be backedup for long duration of time. The ec2 and rds serivces data can be backed up into Glacier service
+	
+	5. Snowball = migrational service which help us in migrating from on-premise or datacenter to aws cloud infrastructure
+	
+	6. Storage Gateway = is an hybrid model of moving our applications incrementally on to the aws cloud.
+		1. EFS
+		2. EVS
+		3. Tapes
+	we can creae EFS gateway where our application will write the data onto EFS gateway which will periodically moves the data onto aws cloud.
+		
+		
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

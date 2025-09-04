@@ -1,0 +1,237 @@
+How to build an application with Maven?
+Maven is a declarative build management tool. The process of building any java application and the build activities that has to be applied will be same across all the projects.
+
+For every java application in order to build it we need
+1. setup classpath
+2. compile the source code
+3. create an war like directory structure
+4. copy the contents of the project into respective directories of war structure
+5. package the application as war
+  
+The steps in building and packaging any java application is same, instead of developer writing the logic in carrying out the above activities maven would take care of performing these activies. we only need to provide information about our project to the maven.
+  
+How does maven knows which files are located at what directories of our project to perform build and packaging tasks on our application?
+  
+Different projects has different directory structure in general, incase if want to build our project using maven, then we need to provide information about the directories of project, which we need to write more configuration and takes time.
+  
+Instead of it maven has introduced Standardized directory structure
+#1 Standardized directory structure
+Across all the java projects we are going to build with maven, maven has introduced standard directory structure to be used in creating the project. So that we dont need to define the directory layout of the project to maven. 
+If we follow standardized directory structure, then maven knows what activities to be applied and where are the files in the project on whom we need apply the build activities so that we can completely avoid writing code in building the project
+
+If we are developing core java application then the directory structure of the projects looks as below.
+[core java]  
+project
+|-src
+  |-main
+    |-java
+    |-resources
+  |-test
+    |-java
+    |-resources
+|-pom.xml
+|-target
+  |-classes
+  
+If we are working on distributed web applications, then the directory structure of the project should look like below.
+  
+[webapplication]  
+project  
+|-src
+  |-main
+    |-java
+    |-resources
+    |-webapp [place all your html, jsp, js, css, images]      
+      |-WEB-INF
+        |-web.xml
+    |-test
+      |-java
+      |-resources
+|-pom.xml
+|-target
+  |-classes
+  
+in addition there are few more directories you can create in your project
+src/main/db = to place database scripts ".sql"
+src/main/it = integration testcases
+src/main/config = for configuration files
+
+There are many advantages we get when we follow standardized directory structure of maven.
+1. The developer/devops engineer has to spend lot of time in understanding the directory structure of the projects while moving across the projects, which will kills the developers/devops engineer productivity in devloping and delivering the application.
+but if we follow standardized directory structure the people can easily work on multiple projects without need to spend time on understanding the directory structure, with no time developer/devops engineer can become productive in working on the project
+
+2. Different IDE supports different project directory structure in building and packaging the project. So when we work with one IDE we cannot switch to another IDE because of change in directory structure of the project. But with maven Standardized directory structure we can work across any IDE of our choice, since every IDE supports Standardized directory structure
+
+3. Since the directory structure is standardized maven can easily identify the files of our project and can perform build / packaging automatically we dont need to declare any information about our project directory structure to Maven
+
+
+How to install maven on ubuntu?
+Maven requires Jdk to work on, by default while installing maven, jdk will be installed as dependency package.
+To use a specific version of java to build your project we need to explicitly install jdk first there after install maven.
+  
+#1. sudo apt update -y
+#2. sudo apt install -y openjdk-11-jdk
+#3. sudo apt install -y maven
+
+we can verify the maven installing is working fine or not using below command
+mvn --version
+---------------------------------------------------------------------------------------------------
+How to create and build an project with maven?
+#1 manually create the directory structure based on the maven standardized directory structure of the project.
+~/javaworkspace:/>  
+billdesk
+|-src
+  |-main
+    |-java
+      |-com
+        |-taj
+          |-runner
+            |-BillDeskLauncher.java
+    |-resources
+|-pom.xml
+
+pom.xml = stands for project object model, in which we are going to define information about our project. we need to define 5 elements in pom.xml at a minimum to make our project build by maven
+
+pom.xml
+--------
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>taj.com</groupId> (organization domain)
+  <artifactId>billdesk</artifactId> (project name)
+  <version>1.0</version>
+  <packaging>jar</packaging>
+</project>
+
+BillDeskLauncher.java
+package com.taj.runner;
+public class BillDeskLauncher {
+  public static void main(String[] args) {
+    System.out.println("Bill Desk application is running!");
+  }
+}
+~/javaworkspace/billdesk:/> mvn clean verify
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

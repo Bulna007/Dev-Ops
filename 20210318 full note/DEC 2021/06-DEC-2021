@@ -1,0 +1,56 @@
+jfrog artifactory oss repository
+any artifactory repositories serves for 3 reasons
+1. to distribute the build artifacts of an application locally between the teams within the organization
+2. to help us in distributing the dependencies across the various stages of ci/cd implementation
+3. proxying the remote repositories like mavencentral, jcentral and bitnary repositories
+
+How many stages in which an artifact can be there?
+There are 4 stages in which an artifact can be there and we use namespace suffix to identify the stage in which artifact is there
+1. snapshot = the artifact has been produced from developer machine
+2. alpha/beta = under the stages of testing and has passed (preliminary testing)
+3. rc = release candidate, qa certification has been finished and scheduled for release
+4. release = publicly available
+
+How do we distribute the above artifacts to the world using repositories?
+In general we create 2 types of repositories
+1. snapshot repositories = snapshot repositories are used for distributing the artifacts under snapshot, alpha/beta, rc
+2. release repositories = artifacts released to public (release)
+	
+How to install and use JFrog artifactory oss?
+-----------------------------------------------
+JFrog artifactory oss repository works only on domain name, it doesnt allows ip:port based urls in serving the artifacts. So to work with jfrog and make it accessible over domain name only we need apache2 server which plays a role of proxy here.
+	
+#1. Install and Configure apache2 server
+1. sudo apt update -y
+2. sudo apt install -y apache2
+
+3. we need to enable proxy modules in apache2 server to forward request to jfrog artifactory
+ - sudo a2enmod proxy
+ - sudo a2enmod proxy_http
+ #- sudo a2enmod proxy_balancer
+ #- sudo a2enmod lbmethod_byrequests
+
+4. 
+ 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

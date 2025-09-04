@@ -1,0 +1,73 @@
+Resource declarations
+Whenever a pod is running on the kubernetes cluster, it is going to consume the cpu/memory during execution. The amount of cpu/memory it consumes depends on various factors
+1. hardware capacity of the machine on which we are running the containerized application
+2. load on the application
+3. payloads with which we access the application
+
+The performance testing team put the application for evaluation and derives bench mark metrics in terms of consumption of cpu/memory for our application
+
+Whenever we created a pod asking the kubernetes controlplane schedule for execution, it determines the workernode on which the pod needs to be executed based on cpu/memory usage of the pod.
+As part of the pod specification, we need to declare the cpu and memory usage the application required based on which the kubernetes control plan can determine the right workernode.
+We need to specify minimum requirement of cpu/memory in pod spec based on which worked node will be choosen for execution. if the application running in the pod is crossing more than the minimum limits we defined, the kubelet process allocates additional resources automatically allowing the application to run if the resources are available on that node.
+	
+given the workernode doesnt have resources that is requested by the pod, then the pod will be terminated and an appropriate workernode will be lookedup for scheduling the pod execution
+
+So we need to declare minimum resources required for running a pod in pod spec.
+sailor-pod.yml
+---------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: sailorpod
+	labels:
+		appName: sailor
+		version: 1.0
+spec:
+	containers:
+		- name: sailor
+			image: techsriman/sailorrepo:2.0
+			ports:
+				- name: http
+					containerPort: 8080
+					protocol: TCP
+			livenessProbe:
+				httpGet:
+					path: /sailor/actuator/liveness
+					port: 8080
+				initialDelaySeconds: 10
+				timeoutSeconds: 10
+				failureThreshold: 3
+			readinessProbe:
+				httpGet:
+					path: /sailor/actuator/readiness
+					port: 8080
+				initialDelaySeconds: 10
+				timeoutSeconds: 5
+				failureThreashold: 3
+			resources:
+				requests:
+					cpu: "500m"
+					memory: "512Mi"	
+				limits:
+					cpu: "1000m"
+					memory: "1024Mi"	
+
+How to expose a pod?
+kubectl expose pod hangoutpod --name hangoutsvc --port 8080 --type=NodePort
+Now we can access the above pod using the workernode ip address:clusterPort
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

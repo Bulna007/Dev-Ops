@@ -1,0 +1,45 @@
+What is cloud?
+Cloud is all about on demand supply of computing resources to the world.
+There provide 3 types of offerings
+1. IaaS = infrastructure as a service, where all the computing resources are provided on-demand to the world along with taking care of lifecycle operations.
+	
+2. PaaS = Platform as a Service, where in along with providing computing resources, that required set of software packages (which are called "platform software") that are needed for running the software applications are also installed and takencare by the cloud provider itself.
+
+The cloud lifecycle operations that we perform on the resources are taken care by the cloud provider along with managing the paas software also.
+
+3. SaaS = Software as a Service.
+The cloud provider along with providing the infrastructure, he takes care of provisioning the software applications	(end user software application) and installing/configuring them on the infra and provides to the customers.
+So that customers are benefited in using them directly without going through the pain of
+1. installing
+2. configuring
+3. administering the infra/software both
+quickly they gain access to the end-user software.
+	
+
+
+Cloud Lifecycle operations
+1. Provision
+2. DeProvision
+3. Scale up/down
+4. Scale in/out
+5. back/restore
+6. start/stop/restart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

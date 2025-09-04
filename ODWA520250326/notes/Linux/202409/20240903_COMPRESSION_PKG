@@ -1,0 +1,207 @@
+Compression and Packaging
+-------------------------
+1. Packaging
+We can package a directory of contents or bunch of files into one single file, so that it will be easily distributable over the network or through email. Packaging doesnt refers to compression, upon packaging the directory of contents or bunch of files, the original size of the contents willnot be reduced.
+
+From this we can understand packaging means we are combining multiple files or directories into one-single file, so that it can be transferred easily.	
+Linux has provided an utility called "tar" used for packaging a directory or bunch of files.
+		
+tar = stands for tape archieve
+options:
+1. -c = create
+2. -v = verbose
+3. -f = filename
+4. -x = extract
+5. -t = table of contents
+
+1. How to package the files using tar?
+when we package the contents of a directory or bunch of files, we generate a packaged file of extension ".tar" indicating it is an packaged file.
+	
+tar -cvf filename.tar directory/
+tar -cvf filename.tar file1 file2 file3
+
+2. How to extract the tar file?
+tar -xvf filename.tar
+
+3. How to see the contents of the tar file?
+tar -tvf filename.tar
+--------------------------------------------------------------------------------------------------------------------------
+2. Compression
+If we want to compress or reduce the size of the contents, then we need to use compression. Linux has provided #2 utilities gzip/gunzip which are used for compression and un-compression of the contents. In Linux we cannot directly compress and un-compress the bunch of files/directory, first we need to package the files/directory into one-single file, then only we can compress the contents of it. 
+	
+Similarly when we uncompress, the contents will not be produced as outcome, rather packaged file will be resulted, then unpack the file to restore the contents back.
+	
+For eg.. if we have a directory images/ with files as below
+1.jpeg
+2.jpeg
+3.jpeg
+4.jpeg
+..
+we cannot compress either directory/files directly, first we need to package them into a tar file, then we need to pass it as an input to the gzip to compress it 
+
+1. package into one-single packaged file
+tar -cvf images.tar images/
+	
+2. compress the contents of the tar file as below
+gzip images.tar
+the gzip compresses the .tar file and generates .tar.gz file onto the filesystem (the original tar will not exists)
+
+how to compress and get the contents back?	
+first uncompress and produce .tar file first from .tar.gz
+
+gunzip images.tar.gz
+this will produce images.tar
+
+tar -xvf images.tar
+will generates images/ directory back
+
+
+From the above we can see that compression is an #2 step process of packaging and compressing or uncompress and unpack. Instead of doing this in #2 step we can perform compression in @1 single step itself using -z option aspart of tar utility as below
+
+tar -czvf filename.tar.gz directory = -z option indicates (zip) compress the contents while packaging
+tar -xzvf filename.tar.gz = uncompress and unpack
+--------------------------------------------------------------------------------------------------------------------------
+tr
+---
+tr is used for performing #3 types of operations on a text content
+1. replace a single character in a given text
+2. we can delete a single character in a given text
+3. we can apply transformations on the entire text content passed as an input
+
+1. replace a single character in a given text
+echo "Linux is great!" | tr "x" "s"
+
+the above tr command replaces "x" letter with "s" letter and generates the Linus is great!. It searches for all the occurences of "x" in the given text and replaces with "s".
+	
+echo "Humpty Dumpty sat on a wall!" | tr "m" "n" = Hunpty Dunpty sat on a wall!
+
+2. delete a single character in a given text
+echo "Good morning!" | tr -d o
+it finds all the "o" in the given text and removes them from it
+
+output: Gd mrning!
+
+3. transform entire text content passed as an input
+There are lot of built-in transformations are availble with tr
+1. :upper:
+2. :lower:
+3. :space:
+4. :digit:
+5. :alnum:
+
+echo "Linux operating system is highly portable" | tr "[:lower:]" "[:upper:]" 
+echo "Math is complex" | tr "[:space:]" _ = Math_is_complex
+echo "Matrix2" | tr "[:digit:]" 3 = Matrix3
+echo "Pa3swor#2" | tr "[:alnum:]" "*" = *********
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

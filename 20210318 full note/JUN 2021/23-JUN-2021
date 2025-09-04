@@ -1,0 +1,128 @@
+What are Environment variables, what is the purpose of them?
+Environment variables are shell or bash variables which are of key/value pair upon creating can be accessed by all the programs that are running on the Shell/Bash, so that we can easily pass the data as an input to the programs through environment variables.
+  
+There are 2 types of environment variables are there 
+  1. System Variables = These are pre-configured variables as part of the linux installation and will be created for each user during bootup or login of the user in the linux machine. Usually these are used by Linux operating system by himself and rarely modified the by user of the Linux.
+    
+  2. User-Defined Variables = These are created by the user byhimself for using those as part of his application program.
+
+What is PATH variable why do we need to use it?    
+When we try to run a program in linux operating system, we need to pass the absolute location/path to the program file where is it placed on the FileSystem in order to run the program. each time specifying the complete location of the file to run the program is very difficult, how to overcome this problem.
+  
+Linux introduced an special environment variable called PATH. which can point to multiple directory locations of the filesystem where the programs the resides.
+  
+For eg.. if we created a linux shell program and placed under ~/accounts/sh/today, we can add ~/accounts/sh directory to the PATH variable, so that we can run today program anywhere just by running the program byname, so that linux operating system searches for the program location/directory based on PATH variable value.
+  
+We can add multiple directory locations to the path, by using separator as ":".
+Note: dont override PATH, if we do that exiting directories will be lost.
+  
+How to setup the PATH variable pointing to our own directory location?
+export PATH=$PATH:~/accounts/sh
+
+By default the PATH variable will be created by linux operating system during the time of login/bootup pointing to default directory location as below.
+  1. /usr/local/bin
+  2. /usr/local/sbin
+  3. /usr/bin
+  4. /usr/sbin
+  5. /bin
+  6. /sbin
+  
+which means if we place any programs within the above directories we dont need to specify the PATH pointing to the program directory as it is already available.
+--------------------------------------------------------------------------------------------------------
+  
+Bash profile
+------------
+The environment variables we create in shell/bash terminal will be temporary and would be erased upon exit, but we want certain environment variables and their values to be available permanently for e.g..
+  
+In our machine we place our application program files under ~/program/sh, everytime while using the machine we want to these programs, so each time upon launching the terminal we need set PATH variable pointing to the directory this becomes tedious job.
+
+How to permanently add the above directory location to the PATH variable so that we can avoid retyping?
+To help us in setting up the Environment variables permanently linux has provided bash profiles.
+  
+The linux has provided various different configuration settings/files in configuring the environment variables permanently, user has to define the environment variables within these configuration files so that while launching the terminal bash takes care of creating them before launching.
+  
+There are 2 types of Shells are there in linux.   
+  1. Interactive Shell = SSH is a protocol for login into a remote linux machine through terminal, so when we login into a remote linux machine through ssh, we get an interactive shell
+  
+  2. Non-Interactive Shell = When a shell doesnt require any human interaction while running the programs those shell are called Non-Iterative, for example we can launch a program in child shell using non-interactive shell.
+    
+  
+There are bunch of configuration files available in linux, in which we can delcare our own environment variables which are executed automatically while launching the bash terminal.
+1. /etc/profile = admin level variables are placed here
+2. ~/.profile = graphical user interface
+3. ~/.bash_profile = non-interactive shell
+4. ~/.bashrc = interactive shell.
+  
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

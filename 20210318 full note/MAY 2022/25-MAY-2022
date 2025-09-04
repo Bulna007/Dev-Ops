@@ -1,0 +1,120 @@
+What are labels and annotations in kubernetes?
+Labels are the key/value pairs we can attach to any kubernetes object we create on the cluster.	These acts as an identifiers in querying and accessing the objects back from the kubernetes.
+	
+We create a Service or DaemonSet or ReplicaSet on a Pod by using Label as an Selector to identify the pods on the cluster
+
+We can attach labels to the pod in 2 ways
+1. we can define labels inside the object spec/manifest
+2. we can add labels to a object during runtime
+
+#1. define labels in a pod spec
+pod.yml
+-------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: sailorpod
+	labels:
+		version: 1.0
+		app: sailor
+spec:
+	containers:
+		- name: sailor
+			image: techsriman/sailorrepo:2.0
+			ports:
+				- name: http
+					containerPort: 8080
+					protocol: TCP
+
+1. How to see the pods along with the labels attached
+kubectl get pods --show-labels
+
+2. How to query the pod of a specific label
+kubectl get pods -l labelKey=labelValue
+
+3. How to attach label to an running pod?
+kubectl label pods podName key=value
+--------------------------------------------------------------------------------------------
+What are annotations?
+annotations are arbitary key-value pair we can attach to any kubernetes object. unlike labels we cannot select/query the objects based on annotations, these doesnt acts as identifiers of the	object
+Those are just meant for attaching documentation to the kubernetes object
+
+we can define annotations as part of the object spec as below:
+pod.yml
+-------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: sailorpod
+	annotations:
+		author: patrik
+		license: GPL
+spec:
+	containers:
+		- name: sailor
+			image: techsriman/sailorrepo:2.0
+			ports:
+				- name: http
+					containerPort: 8080
+					protocol: TCP
+--------------------------------------------------------------------------------------------
+What are ConfigMaps and why do we need to use in Kubernetes?
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

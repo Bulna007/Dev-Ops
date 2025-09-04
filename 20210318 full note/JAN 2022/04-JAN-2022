@@ -1,0 +1,245 @@
+What are ansible adhoc commands, why do we need to use them?
+We run ansible modules in-line quickly using ansible adhoc commands instead of writing playbooks. We use adhoc commands to perform one-time activities quickly to manage the fleet servers.
+	
+ansible [group]	-m [moduleName] -a [arguments]
+ansible all -m ping 
+ansible all -m shell -a "hostname -I"
+-----------------------------------------------------------------------------------------------
+What is ansible inventory file, how to write ansible inventory files?
+The Ansible control node is stateless, it doesnt know the details of the server on the network, so in-order to apply the automations on the group of servers of our network, we need to pass the details of the fleet by writing inventory file
+
+The default inventory file ansible looks for in applying the automations is 
+/etc/ansible/hosts
+here we need to declare the ip address or host names of the computers on whom we want to apply the automations. so upon running an module or playbook ansible will executes the modules all the declared hosts of the /etc/ansible/hosts
+
+Instead of using default ansible inventory file we can create our own inventory file and pass it as an input. For eg.. we can create an inventory file under $USER_HOME/datacenter1-hosts
+
+~/datacenter1-hosts
+--------------------
+192.168.1.42
+192.168.1.43
+	
+ansible all -m ping = by default it goes to /etc/ansible/hosts file searching for host machines, but now we want to use ~/datacenter1-hosts file to apply module execution which can be done by passing inventory file as an input below.
+	
+ansible -i ~/datacenter1-hosts all -m ping
+----------------------------------------------------------------------------------------------
+There are 2 types of ansible inventory files we can create.
+	1. INI format
+	2. YAML format
+
+INI Format
+~/dc1-hosts
+192.168.1.42
+192.168.1.43
+	
+YAML Format
+~/dc1-hosts.yml
+all:
+  hosts:
+		192.168.1.42
+		192.168.1.34
+			
+ansible -i ~/dc1-hosts.yml -m ping
+
+Not everytime we want to apply automation on all the fleet servers, there could be a group of machines alloted to an project for whom we want to apply one type of automation, so if we declare servers information in default inventory file everytime we need to modify the default file, instead create project specific inventory file and use it by using -i option
+
+
+In organization I have 500 servers within which there are 50 servers alloted to a project on whom we want to apply automation? how can we apply automation on 50 servers?
+	
+fithealth2-inventory.yml	
+all:
+ hosts:
+  192.168.1.42
+
+but not all the 50 computers we need to install same software because few servers of the project are used for running database software and few others are used for running web server server and others could be an httpd server for redirection.
+
+To apply similar type of automation on different group of servers we need to again break down the inventory files into sub-inventory files based on the server usage
+fithealth2-dbservers-inventory.yml
+fithealth2-javaservers-inventory.yml
+
+managing inventory of a project by distributing into multiple inventory files is difficult that is where groups are introduced in ansible inventory
+For a project create 1 inventory file only, but declare servers into different groups as below.
+
+~/fithealth2-inventory
+[javaservers]
+192.168.1.42
+192.168.1.43
+	
+[dbservers]	
+192.168.1.44
+192.168.1.45
+	
+ansible -i inventoryfile groupName -m moduleName	
+ansible -i ~/fithealth2-inventory dbservers -m ping
+
+There are 2 default groups on there in every inventory file
+1. all group
+2. ungrouped
+
+ungrouped = all the hosts declared without any group is part of ungrouped
+all = all the hosts in the inventory file will be part of all group
+
+hosts1
+192.168.1.42
+[javaservers]	
+192.168.1.43
+[dbservers]	
+192.168.1.44
+	
+ungrouped	= 192.168.1.42
+all = 192.168.1.42, 192.168.1.43, 192.168.1.44
+	
+How to declare groups in yml file?
+~/hosts1.yml
+all:
+	hosts:
+		192.168.1.42
+	children:
+		javaservers:
+			hosts:
+				192.168.1.43
+				192.168.1.44
+		dbservers:
+			hosts:
+				192.168.1.45
+				192.168.1.46	
+
+In above inventory file we have 4 groups ungrouped, all, javaservers, dbservers
+The groups can be used to better manage the fleet servers of a project for different envionment also.
+	
+fithealth2-hosts
+[devservers]
+192.168.1.42
+[testservers]	
+192.168.1.44
+[prodservers]
+192.168.1.43	
+-----------------------------------------------------------------------------------------------
+we can work with ranges in declare host names of the computers in inventory file
+Let us say we have computers on the network named using some patter as shown below.
+/etc/hosts
+192.168.1.42 js1
+192.168.1.43 js2
+192.168.1.44 js3
+
+192.168.1.45 dbserver1
+192.168.1.46 dbserver2
+
+we can declare above hosts in inventory file using hostnames as well rather than ip addresses
+hosts1
+[javaservers]
+js1
+js2
+js3
+[dbservers]
+dbserver1
+dbserver2
+
+now since all the hostnames are written in a pattern format we can delcare the above hosts in the ini file using ranges
+
+hosts1
+[javaservers]
+js[1:3]
+[dbservers]
+dbserver[1:20]
+
+----------------------------------------------------------------------------------------------
+~/hosts1
+[jservers]
+jserver1 ansible_host=192.168.1.42
+jserver2 ansible_host=192.168.1.43
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

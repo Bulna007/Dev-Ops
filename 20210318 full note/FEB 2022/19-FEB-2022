@@ -1,0 +1,141 @@
+What are aws roles, what is the purpose of them?
+Roles are meant for granting access to the resources of aws to another aws resources
+
+Policy vs Role
+---------------
+#1. policies are binded to an aws users inorder to grant access to the resources or services where in the user who poses the policy can access the resources/services from anywhere
+
+#2. roles unlike policies are not based on users, rather we grant permission to resource like an ec2 instance granting him to access the S3 bucket of the user, here we cannot access the S3 bucket from anywhere apart from the resource to which we granted access
+-----------------------------------------------------------------------------------------------
+Terraform
+----------
+There are lot of cloud providers available in the market like google cloud platform, amazon web services cloud, oracle cloud infrastructure, Microsoft Azure etc. The various different cloud providers offers different type of resources and services enabling us to host our applications on their cloud platforms.
+
+But inorder to deploy or run our applications on cloud platform we need to provision resources/services on that provider, then how to provision these resources/services on a cloud provider?
+
+Every cloud provider offers cloud console web applications using which we can provision the required resources/services. Now the programmer/cloud user has to manually login into the cloud consoles provided by cloud providers and has to provision the resources by filling the forms and wizards etc. Looks like its an manually process and requires human interaction to setup the resources required which has lot of downsides
+	1. take too much amount of time in setting the resources/services required for running our applications
+	2. since it is manually process, always there is a high chances of making mistakes during the provisioning process
+	3. we might have to produce the resources repeatedly for several times resembling different environments which is a duplicate efforts of redoing the same things manually
+	
+Instead of using the cloud consoles of the cloud providers which will be a manually process is there any other way we can create the infrastructure resources/services of a cloud provider?
+Yes every cloud provider offers 
+	1. sdks
+	2. apis
+for helping us in automating the cloud infrastructure aspects of your application
+The providers offers sdks for various different languages like
+	- java cloud sdk
+	- python cloud sdk
+	- scala cloud sdk
+	etc
+and http endpoints as apis which has to be invoked by writing programs in respective languages
+This proves that the above approaches requires strong programming knowledge background and have to implement complex logic in acommplishing the final state of the infrastructure.
+Looks like most of the devops engineers are not programmers, uptaking and implementing the automation through sdks and apis are not easy in addition to them
+	- the efforts required for achieving this automation is quite
+	- testability of the code
+	- the time required for developing the automation code
+	- cost of investment
+are quite high, which makes it an infavourable approach of achieving the automation for deploying an application
+
+To overcome all these challenges the iac tools are introduced.
+iac stands for infrastructure as a code where each resource/service we want to provision is expressed interms of code which can be executed at anypoint of time quickly that produces the necessary infrastructure required for running the application
+
+There are lot of iac tools available in the market
+1. terraform
+2. openstack heat
+3. cloud formation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

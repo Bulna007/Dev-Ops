@@ -1,0 +1,160 @@
+How to install and configure apache2 server?
+--------------------------------------------
+1. 
+sudo apt update -y
+sudo apt install -y apache2
+
+2. need to enable http_proxy modules on the apache2 server to work as a proxy redirector
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod proxy_balancer
+sudo a2enmod lbmethod_byrequests
+
+3. create an virtualhost configuration file in which we can configure for a give server address, forward the request to a backend application as a proxy
+goto /etc/apache2/sites-available
+touch repo.fithealth.conf
+
+repo.fithealth.conf
+---------------------
+<VirtualHost *:80>
+	ServerName www.repo.fithealth.com
+	ProxyPreserveHost on
+	ProxyPass / http://127.0.0.1:9099
+	ProxyPassReverse / http://127.0.0.1:9099
+</VirtualHost
+
+4. sudo a2ensite repo.fithealth.com
+5. sudo systemctl reload apache2
+7. sudo systemctl restart apache2
+--------------------------------------------------------------------------------------------------
+#2 on the host/client computer, map the ip of the apache2 virtual machine with domain name
+/etc/hosts
+192.168.1.12 rep.fithealth.com
+---------------------------------------------------------------------------------------------------
+#3 How to install JFrog artifactory oss repository
+
+1. create an /u01/middleware 
+mkdir -p /u01/middleware
+
+2. jfrog artifactory is shipped as binary distribution, now we need to download jfrog binary distribution zip file and extract into /u01/middleware directory above
+wget https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/jfrog-artifactory-oss/[RELEASE]/jfrog-artifactory-oss-[RELEASE]-linux.tar.gz
+
+3. copy the tar file into /u01/middleware extract it
+/u01/middleware$ gunzip jfrog-artifactory-oss-[RELEASE]-linux.tar.gz
+/u01/middleware$ tar -xvf jfrog-artifactory-oss-[RELEASE]-linux.tar
+/u01/middleware$ rm jfrog-artifactory-oss-[RELEASE]-linux.tar
+
+it will extract the artifactory into below directory 
+artifactory-oss-7.x
+
+4. change the default port numbers on which artifactory software works
+There are 2 parts of artifactory are there
+1. ui = a web console through which we can administer artifactory s/w like creating
+	- local repositories
+	- setting up proxies to remote repository
+	- configuring virtual repositories
+	
+2. endpoints = for distributing depencies through maven build
+both of these are running on 2 ports by default 8081/8082 respectively
+                                                9090/9099
+to change the port on which jfrog is running we need to modify system.yml under directory						artifactory-oss-7.x/var/etc directory. but by default system.yml is not there the jfrog has provided one template file with name system.basic-template.yml
+
+copy the contents of system.basic-template.yml and create system.yml file under $JFROG_HOME/var/etc
+artifactory:
+  port: 8081
+entrypoints:
+	externalPort: 8082
+	
+change both ports to 9091/9099 respectively
+
+3.goto /u01/middleware/artifactory-oss-7.x/app/bin
+./artifactoryctl start/stop 
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

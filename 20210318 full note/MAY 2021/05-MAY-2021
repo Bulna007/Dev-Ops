@@ -1,0 +1,90 @@
+~/accounts/
+  |-2020/
+    |-final.txt
+~/archives
+
+#1
+how to move a file from one location to another?
+mv ~/accounts/2020/final.txt ~/archives 
+
+#2 
+I want to move 2020 directory of above in archives?
+mv ~/accounts/2020 ~/archives
+
+#3 
+I want to rename final.txt to final-2020.txt
+mv ~/accounts/2020/final.txt ~/accounts/2020/final-2020.txt
+
+#4
+I want to rename the 2020 directory to 2020-Q1
+mv ~/accounts/2020 ~/accounts/2020-Q1
+------------------------------------------------------------------------------------------------------
+~/stocks
+  |-available
+    |-johnson-stocklist.txt
+    |-wipro-available.txt
+    |-substocks
+      |-britania.txt      
+  |-outofstock
+    |-product-oos.txt
+
+~/distributor
+  |-todo
+
+#1
+I want to copy products-oos.txt into todo(distributor)
+cp ~/stocks/outofstock/product-oos.txt ~/distributor/todo
+#2
+I want to copy all the available stocks directory files into distributor directory
+cp ~/stocks/available/* ~/distributor
+
+#3 I want to copy the contents of available including their sub-directories also into distributor directory?
+cp -r ~/stocks/available/* ~/distributor
+
+#4 I want to copy available directory itself into distributor
+cp -r ~/stock/available ~/distributor
+------------------------------------------------------------------------------------------------------
+I want to create a file with interactive input?
+cat > filename
+cat takes the input from STDIN(keyboard) and writes the output to filename (output stream)
+------------------------------------------------------------------------------------------------------
+touch filename
+we can see the information about the file using
+stat filename = displays statistic information about a file like blocks, created, modified, changed, owner, inode address
+
+How to use regular expressions in shell commands?
+There are 3 characters are supported by shell commands to be used specially
+
+* = matches any no of characters
+? = match with only one single character
+[] = we can give range of values with which the single character should be matched
+
+~/accounts
+|-ledger
+  |-venkateswara-mills.txt
+  |-visweshwara-textiles.txt
+  |-surya-marine.txt
+  |-santhosh-goods-exports.txt
+  |-aa1.txt
+  |-aa2.txt
+  |-aa23.txt
+  |-aa4.txt
+  |-aab.txt
+  
+~/accounts/ledger$ 
+ls -l
+ls -l v*
+
+ls -l aa?.txt
+ls -l aa[0-9].txt
+
+{} = range of inputs
+we want to execute a command repeatedly with a range of inputs then we use {} brackets
+
+range can be thought as similar to a loop in programming:-
+for i=0;i<10;i++ 
+  touch filename${i}.txt
+  
+touch a{0..9}.txt
+touch daybooks{1..360}.txt
+rm daybooks{1..360}.txt

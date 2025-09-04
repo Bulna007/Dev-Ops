@@ -1,0 +1,167 @@
+Why do we need Software configuration management tools?
+Vagrant is an virtualization workflow automation tool through which we can quickly provision the virtual machine infrastructure through code. Similary on a cloud platform to provision the Infrastructure we can use Terraform. Both Vagrant and Terrform are the iac (Infrastructure as Code) tools through which we can automate the process of creating the Infrastructure
+
+By just having the Infrastructure we cannot run our software applications, we need necessary software packages, libraries to be installed and apply configurations inorder to have the environment ready for deploying the applications.
+    
+How to install the softwaer packages and apply the configurations on the infrastructure being provisioned?
+There are many ways we can install and configure the software packages ontop of the infrastructure
+
+#1. Manually install and configure
+The devops engineer upon provisioning the infrastructure should manually download, install and configure the required software packages , but this approach has several drawbacks/problems:
+1. Installing and configuration the software packages manually is time consuming process. In an organization environment there are fleet of computers on which the ops engineer has to manually install thse softwares and configure them takes huge amount of time 
+
+2. Memoring all the software packages, their versions and dependencies along with configurations to be applied in making the environemnt ready for usage is very difficult
+
+3. Installing/configuring the software packages is an repeatitive process that should be performed on a large fleet of computers, so manually carrying such operations will leads to human errors and delays the availability of the environments in developing/testing or delivering the application
+
+4. Keeping track of what packages/configurations are applied on which machines on a fleet servers is quite hard and difficult to maintain
+
+5. patching and upgrading the existing fleet servers is very difficult and might take lot of time in identifying the right servers to upgrade/patch
+
+From the above we can understand manually installing/configuring the software packages on a fleet servers across the projects/environments may leads to difficults/challnges and might encounter failures that kills lot of time and delays the software development and delivery of the application
+
+So to overcome these above problems in installing/configuring the software packages we need software configuration management automation. Which means instead of we manually taking care of installing/configuring we need to automate the process of carrying these activities.
+    
+There are many ways we can automate the process of installing and configuring the software packages on the Infrastructure:
+
+2. Shellscripting
+Instead of devops engineer manually installing and configuring the software packages on the Infrastructure, he/she can write shellscript program that has necessary instructions in installing/configuring the required packages on the given environment. The devops engineer can quickly run the shellscript program on each machine whereever it is required to installing/configure
+
+There are lot of advantages of using shell scripting over manually installing and configuring the packages as below:
+advantages:
+1. it greatly reduces the time required for installing/configuring the software packages
+2. no need to memorize once written in the form of program
+3. once written can be reused across the environments, across the projects in configuring and installing for similar type of requirements/needs
+4. we can create reproducible environments flawlessly using shellscript automation
+5. patching and upgradation of the software packages can be done quickly by writing migration/upgradation scripts
+
+Looks like shellscripting has almost solved all the problems that we went through in manually installing and configuring the software packages. But there are lot of problems in using shellscripting for achieving software configuration management automation as below.
+    
+drawbacks:
+1. Not everyone is a programmer to build shellscript programs in achieving the software configuration management automation
+2. Not portable across the operating system environments or even across the linux distro
+3. No error handling to rollback the state of the system incase of failure
+4. No logging support
+5. idempotancy is tough to achieve, because we endup in writing complex programming logic in building the shellscript program to achieve idemotancy
+idempotancy = The outcome of performing an operation for 1 or N times will not effect the state of the system.
+---------------------------------------------------------------------------------------------------------------------------------
+3. Python
+Python is an high-level platform independent scripting language. It has rich-set of modules or reusable libraries, that can be used in quickly building software applications using python. Most of the time the programmers never needs to write programming logic from the scratch, rather they can make use of these modules/libraries in quickly building the python programs
+
+It comes with rich support of modules like: os, subprocess, shutil, psutil, fabric etc using them we can simplify the tasks of process monitoring, remote server management, administrative operations etc
+In addition it comes with rich set of features that usually exists with any high-level programming languages like:
+1. Platform portable = the code written using python programming language works across operating system platforms
+2. Rich support of exception/error handling = The programmers can write python programs in keeping in view of error handling support so that incase of failure we can execute alternate code in recovering or rollbacking the system state
+3. logging
+4. due to powerful programming constructs, its easy to achieve idempotancy while building python programs for software configuration management
+
+By considering all of these above aspects, python is being considered as most favorable language for administrative and software configuration management automation
+
+But it has its own dis-advantages too:
+1. should be a python programmer in building the software configuration management scripts
+2. no matter of what best the programming constructs are, still the programmer has to write enough programming logic in accomplishing idempotancy and still remains tough to achieve
+3. We need to endup in writing huge amount of code in achieving idemotancy and takes lot of time and cost in implementing the automation
+4. python doesnt support statement management, it doesn't keeps track of software packages / configurations being applied on what infrastructure
+5. orchestrating the code modules in achieving the automation is very complex
+
+From the above discussion, we can derive the minimal requirements in accomplishing the software configuration management automation as below:
+  1. no complex programming logic to be written in implementing the software configuration management automation
+  2. platform portable
+  3. idempotancy
+  4. logging
+  5. exception/error handling 
+  6. state management to keep track of which fleet machines are installed with what software packages and configurations of which versions
+  7. complex code orchestration should be accomplished easily
+  
+Neither the shellscripting nor the python doesnt provides such capabilities in implementing the software configuration management automation. These technologies can be used for perform small or one-time activities or actions to be applied on a Fleet of servers only.
+  
+To achieve software configuration management automation there are lot of vendors provided different tools in the market few of commercial and others are open source:
+1. Chef
+2. Puppet
+3. Ansible
+4. Saltstack
+etc
+
+These software configuration management automation tools works based on 2 architectures
+1. pull-based architecture
+2. push-based architecture
+
+1. pull-based architecture
+  1. Chef
+  2. Ansible Tower
+  
+2. pushed-based architecture
+  1. Ansible (opensource)
+  2. Ansible Tower (push/pull) (commercial)
+  3. Puppet
+  4. Saltstack
+  
+1. pull-based architecture
+In the pull-based architecture there are #3 components are there
+
+1. Control Node Server
+The Control Node Server (Chef Server) holds the entire information about the Fleet servers in the organization that should be managed. The code modules are stored on the Control Node Server Repository and distributed across the Fleet inorder to execute the automation. It keep track of which code modules are ran on which fleet servers and what is their outcome of execution
+
+2. Fleet Server
+Each Node on the Fleet is called Fleet server, on this the agent software should be installed and configured to talk to the Control Node Server. Upon pushing the code module on to the Control Node Server it stores in the repository. The agent software on these nodes of the fleet periodically polls the control node server asking for any code modules are available for execution. Downloads them onto the Nodes and executes them locally and returns the output of the execution back to the Control Node Server updating their status of execution
+
+3. Workstation
+The devops engineer has to write the code modules on the workstation computer, upon tested he has to pass the code modules for execution onto the Control Node Server through knife CLI tool. While passing the code modules has to specify when and on whom these code modules should be applied. So that Control Node Servers stores them in the repository and distributes when requested for execution.
+  
+Since the Fleet Nodes pull the code modules from the Control Node Server for execution it is called "pull-based architecture".
+  
+Let us understand the advantages/dis-advantages of the pull-based architecture:
+advantages:-
+-------------  
+1. The agent node software with in the Fleet node pulls the code module from the control node server and executes them locally because of this the load on the control node server is very less. This architecture can scale to any size of the Fleet
+
+2. supports parallel execution of the code modules as each agent is responsible for pulling and executing the code modules independently. hence would result in high performance too
+
+3. scheduled execution of the code modules are supported by this architecture
+
+dis-advantages:-
+---------------
+1. If the control node server goes down, the whole fleet would be down (single-point of failure)  
+2. Migrating the Control node server is very difficult, because we need to reconfigure all the fleet servers in the organization inorder to point to the new control node server, this is a very tedious job
+3. Since the control node server holds all the information about the fleet nodes in the organization, if it has been comprised the intruder or hacker gains the access to all the fleets on the network
+4. on each fleet node we need to install the agent software and configure it to talk to the Control Node Server which is going to take lot of time in setting up the infrastructure
+5. The Control Node server should be pre-configured with each node information on the Fleet which is again a time consuming job in configuring and setting up
+6. keeping track of which code modules are executed on which nodes of the fleet and their status is very difficult. we need to constant query the Control Node Server to know the status of an code module execution. In case of failure we need to extract the logs on that specific node of the fleet and troubleshoot to understand the failure which is a complex job
+7. troubleshooting and traiging the node connectivity issues with the control node server is very complex
+8. Delayed updates/automations: The Fleet node must initiate the pull process by themself, which might result in slower propagation of the urgent changes.
+  
+2. push-based architecture
+The software configuration management tools like Ansible/Puppet/Salt stack etc works based on push-based architecture. These has to be installed on central server computer. The devops engineers writes the code modules on the local workstation and uses the central server computer software configuration management tool for executing them on the fleet servers 
+
+1. Control Node Server
+The Control Node Server on which the software configuration management tool that is running is stateless, it dont know any of the information about the fleet nodes on the organization network. It doesnt even keeps track of the information about the state of the fleet servers too like their h/w configuration or software packages installed. 
+This makes us easy in switching the control server/software configuration management server to a new computer as well.
+  
+2. The devops engineer authenticate himself with Control Node Server and passes the code modules along with group/list of servers in the inventoryFile on whom the code module should be executed
+
+3. The Control Node Server connects to each Fleet Node over SSH protocol across the network, copies the code module onto the Fleet node and executes it locally on the machine, captures the output of execution and reports back to the devops engineer
+
+since the code modules are pushed by the control node server and executed on the Fleet nodes, it is called "push-based architecture".
+  
+advantages:-
+  1. since the software configuration management tool that is running on the central server computer is stateless, we can use any other computer to act as control node server to run the automation
+  2. If the control node server has been compromised there is no problem, since it doesnt hold any of the information about the fleet nodes of the organization
+  3. Dont need to install agent software on each node of the fleet, dont need to configure/register the fleet server with the control node server thus making it quick to setup the infrastructure
+  4. on-demand execution of the code modules on the fleet servers is supported, since it is push-based mechanism
+  5. debugging the nodes of the cluster, monitoring them is very easy. Because the control node server itself connects to each node and executes the codemodules, so incase of failure in connection or execution of a codemodule on a node, we can see the error information specific to fleet node instantaneously
+  6. since it is a push-based mechanism we can define the rollout strategy of the code modules
+  
+dis-advantages:-
+  1. The architecture by itself cannot scale to handle large group of fleet servers within the organization
+  2. the more the fleet nodes are the longer it takes to execute/apply the code modules
+  3. scheduled execution of the code modules is not supported
+  
+From the above both pull and push based architectures has their own advantages and dis-advantages, which strategy or model to be choose in implementing the software configuration automation purely depends on the needs and the kind of fleet we have in our organization
+1. Large fleet of servers prefer pull-based architecture, but a one-time complexity in setting up the infrastructure will be a burden
+2. Small to moderate fleet size, we can scale and manage the code automations using push-based architecture, which is simple to setup and quick to use
+
+#
+1. schedules executions = pull-based architecture
+2. on-demand execution with various roll-out strategies = push-based architecture
+
+easy to setup and quick to use = push-based architecture

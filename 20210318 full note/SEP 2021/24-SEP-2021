@@ -1,0 +1,122 @@
+How to register a program as a systemd init service?
+We need to write service unit file describing the details of the program we want to register as Service. The name of the service unit will be usually filename.service and should be placed in one of the below location depends on the type of the service
+/usr/lib/systemd/system (packaged installation service)
+/etc/systemd/system (administrator services)
+  
+What is the structure of unit file definition?
+There are 3 sections are there.
+1. Unit
+Unit section describes the information about the service like
+description, hard dependencies, soft dependencies and order
+  
+2. Service
+commands to run the program like
+ExecStart
+ExecStartPre
+ExecStartPost
+Restart
+Type
+
+The type of the service can be of 5
+  1. Simple
+  2. Forking
+  3. dbus
+  4. oneshot
+  5. notify
+
+3. Install
+how does the service should be installed and run within the system.
+WantedBy=multi-user.target
+
+freemem.service
+----------------
+[Unit]
+Description=free memory monitoring service
+
+[Service]
+Type=simple
+StartExecPre=/home/sriman/freemem/startfreemem.sh
+StartExec=/home/sriman/freemem/freemem.sh
+ExecStop=/home/sriman/freemem/stopfreemem.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+Now we need to enable the above service, to do this we need reload the systemd (deamon) process. Systemd has provided an utility called systemctl.
+Using systemctl commands we can control the systemd init system, it is a super user command available in /sbin directory linux filesystem.
+  
+1. sudo systemctl daemon-reload = will reload the service unit files
+2. sudo systemctl start servicename = to start a service
+3. sudo systemctl stop servicename = to stop a running service
+4. sudo systemctl restart servicename = to restart an existing service
+5. sudo systemctl status servicename = to know the status of an existing service
+6. sudo systemctl disable servicename = to disable a service completely, so that even a restart will not run it
+7. sudo systemctl reenable servicename = to enable the disable service
+---------------------------------------------------------------------------------------------------------
+How to host an static web application using apache2 Httpd server?
+  
+An web application can be classified into 2 types
+1. static web application
+2. dynamic web application
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

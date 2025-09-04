@@ -1,0 +1,173 @@
+Terraform variables
+--------------------
+There are 3 parts in which we can work with variables in Terraform
+1. How to declare variables?
+2. How to refer the variable as part of terraform configuration?
+3. How to pass the values during execution?
+	
+#1. How to declare variables?
+we can declare variables using variable block declaration as part of terraform configuration file
+
+main.tf
+--------
+variable "variableName" {
+	type = ""
+	description = ""
+	default = ""
+}
+
+by default when we declare a variable we can define a default value by which the variable becomes optional, so terraform during execution doesnt prompts for the input for the variable
+
+Types of variables supported by terraform?
+There are 7 data types supported by the terraform
+1. string
+2. list
+3. map
+4. set
+5. bool
+6. number
+7. object
+
+object declaration
+variable "subnet" {
+	type = object({
+		cidr = string
+		name = string
+	})
+}
+
+list declaration
+variable "ports" {
+	type = list
+	default = ["80", "8080", "443"]
+}
+
+map declaration
+variable "tags" {
+	type = map
+	default = {
+		Name = "javaserver"
+		BusinessUnit = "retail"
+	}
+}
+
+it is often recommended to declare variables separately in another terraform configuration file other than main.tf so, that we can quickly identify the list of inputs that are required for running the terraform configuration. usually people writes an another file called variables.tf in which we declare terraform variables
+
+variables.tf
+-------------
+variable "instance_shape" {
+	type = string
+	default = "t2.micro"
+}
+
+#2. How to refer the variables in terraform configuration file?
+we can refer the variables in terraform configuration file using 	var.variableName syntax
+
+main.tf
+--------
+resource "aws_instance" "javaserver" {
+	instance_type = var.instance_shape
+	ami = "ami-293833"
+}
+
+#3. How to pass the values as input while executing/applying the terraform configuration?
+by default terraform prompts for inputs, if we dont assign default values for the variables. if you dont want terraform to prompt for the inputs for those variables, we can pass values at the time of running the terraform configuration, through which we can achieve touchless automation
+
+There are 4 ways we can supply values as input while running the terraform configuration
+#1. using -var switch
+syntax:-
+	terraform apply -var varName=value -var varName=value
+	
+#2. using *.tfvars file
+instead of passing the values for the variables through command-line we can define the values for these variables in tfvars file and pass it as input during execution.
+The recommended filename in which we declare values for the variables is inputs.tfvars
+
+variables.tf
+variable "instance_shape" {
+	type = string
+	default = "t2.micro"
+}
+
+inputs.tfvars
+instance_type=t2.micro
+
+main.tf
+--------
+resource "aws_instance" "javaserver" {
+	instance_type = var.instance_shape
+	ami = "ami-293833"
+}
+
+terraform apply -vars-file=inputs.tfvars
+
+#3. using *.auto.tfvars
+instead of we manually passing the filename as an input while launching the terraform we can create files by following the naming convention as *.auto.tfvars and place under project directory.
+when we launch terraform, it will search for the files with name *.auto.tfvars and picks them up automatically and uses the values of the variables for execution
+
+inputs.auto.tfvars
+instance_type=t2.micro
+
+#4. environment variables
+instead of declaring the values in a variable file we can set the values for the variables through environment variables as well
+we need to follow naming convention while setting the value for a variable as 
+export TF_VAR_variableName = value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

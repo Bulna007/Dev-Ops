@@ -1,0 +1,168 @@
+What is database management system?
+Database management system is a pre-built software system, that takes of storing and accessing the data from underlying permanent storage of our computer.
+  
+advantages:-
+  1. dbms abstracts the complexity in persisting the data on a persistency storage, we only have to talk to database asking for storing/processing the data
+  2. highly secured
+  3. dbms are distributed systems so we can easily scale our applications
+  4. backup and restoring data can be done easily
+  
+Types of databases
+1. Relational database management system
+2. No-Sql, Semi Structured database
+3. Object Storage or Un-Structured database
+---------------------------------------------------------------------------------------------------------
+How to work with rdbms?
+    
+A database can be used by multiple applications in persisting the data, to help us in identifying which tables are used by which application for each application we create a separate schema/database.  
+A Schema contains collection of tables pertaining to an application/group. The standard naming convention in creating the schema is applicationName + db
+
+if we are building an fithealth application we generally create a schema with name fithealthdb and create all the tables of the application fithealthdb only. Within this schema now we create 2 tables 
+1. patient
+2. appointments
+with columns defined.
+  
+The developer is going to define the schema and tables required for the application, since the devops engineer dont know what schema and which tables to be created after installing the database, the developer has to write sql script files and place as part of the project.
+  
+fithealth
+|-src
+|-db
+  |-fithealth-schema.sql  
+|-WebRoot
+  |-WEB-INF
+    |-lib
+|-bin
+|-dist
+
+---------------------------------------------------------------------------------------------------------
+How to install and configure mysql server database on ubuntu?
+#1. sudo apt update -y
+#2 sudo apt install -y msql-server-8.0
+The above software package will install both mysql server and client as well.
+  
+#3 we need to configure the mysql server for accessing by running a tool called mysql_secure_installation
+sudo mysql_secure_installation
+The above tool will configure the access to the mysql server database by asking few questions
+1. Do you want enforce password validation: No
+2. Enter password for root user: root
+  Re-Enter password: root
+3. Remove Anonymous users: Yes
+4. Remove test databases: Yes
+5. Allow Remote Access to the Root Disabled: No
+6. Reload privilege tables: yes
+
+By default mysql server doesnt allow the root user to connect the database server remotely
+The mysql server will runs on localhost as a listen address, which means it doesnt listens for requests coming from outside for connection.
+  
+  
+#5 change the listen address of the mysql server to allow people to connect remotely
+There is a file under
+/etc/mysql/mysql.conf.d/mysqld.conf = mysql server configuration information is placed.
+here go and change the property bind-address
+bind-address=127.0.0.0 (localhost)
+bind-address=0.0.0.0 (global) = ip whitelisting
+
+sudo systemctl restart mysql;
+
+#6
+For our application to access the data from database, we need to always create a new user. so lets to connect to database we installed and create a new user for our application and grant permissions.
+  
+sudo mysql -uroot -proot = mysql is a client tool using which we can connect to mysql server
+create user 'fithealthuser'@'%' identified by 'welcome1';
+we are creating an user with name fithealthuser and allowing him to connect from any location '%'
+  
+grant all priviliges on '*.*' to 'fithealthuser'@'%';
+we are granting all the permissions of all the db objects to fithealthuser
+--------------------------------------------------------------------------------------------------
+#1 connect to mysql server using client
+sudo mysql -uroot -proot
+#1.1 create database fithealthdb;
+
+#2 show databases = displays all the databases on the mysql server
+#3 use databaseName; = switches to that specific database and all the queries are executed on that database only
+#4 show tables; = displays all the tables within the database
+#5 create table tableName(columnName dataType primary key, col2 datatype, col3 type);
+create table patient(patient_no integer primary key, patient_nm varchar(50), mobile_no varchar(14), email_address varchar(50));
+
+#6 insert into patient values('1', 'alex', '093837293','alex@gmail.com');
+#7 select * from patient;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

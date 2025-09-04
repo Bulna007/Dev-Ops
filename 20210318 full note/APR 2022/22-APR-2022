@@ -1,0 +1,182 @@
+directives
+1. parser directives [ESCAPE, SYNTAX]
+2. FROM
+3. ENV
+4. ARG
+5. LABEL
+6. MAINTAINER
+7. COPY
+8. ADD
+9. WORKDIR
+10. VOLUME
+11. EXPOSE
+12. CMD
+13. ENTRYPOINT
+14. RUN
+15. HEALTHCHECK
+---------------------------
+#1. How to override entrypoint instruction?
+#2. How to execute multiple commands upon the lauch of a container?
+#3. How to make an docker container as an infinite container?
+------------------------------------------------------------------------------------------
+docker networking
+-----------------
+The most important aspect of docker is the support networking. it allows a docker container to talk to the host or host to the docker container. in addition an docker container can talk to other docker containers running on the docker engine.
+	
+by providing various different network options docker engine provides us an ability of building applications and containerize them and run in a network of clustered applications
+
+The docker networking works based on network drivers, we can build our own network drivers and plugin onto the docker engine customizing the network options we want to enable
+
+The docker by default supports 5 modes of networking
+1. bridge networking
+2. host
+3. overlay
+4. mcvlan
+5. none
+
+#1. bridge networking
+when we run a docker container without specifying any network option, the default mode of networking with which the docker container will be launched is "bridge".
+
+if we want to isolate our docker container from other containers running on the docker engine, we can create an bridge network, so that the group of containers connected to the same bridge network can communicate with each other by isolating themself from other containers running on the docker engine/host
+
+by default on the docker engine there is a default bridge will be created on the docker engine, so that all the containers that we launch on the docker engine are connected to default bridge, so that each container can talk to other container that is connected to the default bridge thus making them insecure, so avoid using default bridge
+
+There are plenty of advantages of creating our own bridge network in launching the containers rather than using default bridge:
+1. when we run the containers on the default bridge network, one container can access the other container that is connected to the default bridge network only through ip address of the container (dns resolution will not happens on default bridge network)
+we need to run docker container inspect containerName, extract the ip address of the container to access it from another container.
+	
+whereas if we use our own bridge network in running the containers, the dns resolution is supported, so that we dont need to the ip address of the other container to access it rather we can use containerName (as hostname) to access the container of the same bridge.
+	
+2. With default bridge network we cannot attach or detach containers to the bridge
+whereas if we create our own bridge network, we can onfly at runtime can attach containers or detach containers from the bridge network
+
+3. if we use our own user-defined bridge network we can customize the network configurations and ip tables with which we want to host the containers onto the bridge which is not supported by the default brige
+
+How to create our own network bridge?
+1. docker network create bridgeName
+2. docker network rm bridgeName
+3. docker network connect bridgeName containerName
+4. docker network disconnect bridgeName containerName
+
+5. docker network ls = shows all the network adapters available on the docker engine
+
+while launching the docker container we can specify the network option and bridge to be connect as below.
+docker network create bridge1
+docker container run --name java --bridge bridge1 -p 8080:8080 image:tag
+docker container run --name mysql --bridge bridge1 -p 3306:3306 mysql:1.0
+-----------------------------------------------------------------------------------------	
+#2. host
+if we want to run the docker container directly on the host network by removing isolation form the host we can use host network.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

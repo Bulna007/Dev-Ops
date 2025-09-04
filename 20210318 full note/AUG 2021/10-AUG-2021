@@ -1,0 +1,106 @@
+OSI Model Layer = Introduced by ISO, which will enable programs to exchange the data over the network independent of platforms on which the programs are running.
+It has been divided into 7 layers
+1. Application Layer
+2. Presentation Layer
+3. Session Layer
+4. Transport Layer
+5. Network Layer
+6. Datalink Layer
+7. Physical Layer
+
+#1 Application Layer = here it defined Application protocol, helping the application standardized the message structure and semantics over which the application has to exchange the data in understandable format.
+Each application can define their own standards overwhich it want client programs to communicate, so they can be many application protocols specific to application.
+  
+The Internet standard has identified certain applications which are commonly used as part of daily life and standardized protocols for each type of application enabling vendor/platform interoperability.
+
+Web, HTML           = HTTP (80)
+File Transfer       = FTP  (20/21)
+Exchange Email
+                    = SMTP (25)
+                    = POP3 (110)
+                    = IMAP (143)
+Remote Desktop app  = RDP (3389)  
+Secure Shell        = SSH (22)
+
+No 2 computers can exchange the data, we need applications to perform operations. For most common activities there are applications build on standard protocols.
+  If our application works based on HTTP protocol in serving web pages: HTTP Server and HTPP Client prog
+                                    FTP protocol in uploading/downloading files: FTP Server and Client prog
+                                    SMTP,POP3,IMAP, for email exchange: Exchange Server and Mail Client prog
+                                    
+How does the client should access the server program?                                    
+The client always has to build URL in order to access the server program which comprises of the below
+schema://host:port/resource
+http://localhost:8081/application
+--------------------------------------------------------------------------------------------------------
+#2 Presentation Layer [REFER: 10-AUG-2021-PRESENTATION-LAYER IMAGE]
+Application Layer is responsible for structuring/preparing the data based on messaging standards agreed by both the application, but the data is not in a transmittable format.
+Here comes Presentation Layer, it is responsible for presenting the data to lower-level layers allowing it to be transmittable. There are 3 responsibilies carried by Presentation Layer.
+  2.1 Data Conversion
+  2.2 Compression/De-Compression
+  2.3 Encryption/DeCryption
+  
+#3 Session Layer
+End to End application communication will be taken care by Session Layer, it performs 2 responsibilities
+1. Authentication and Authorization
+2. Session Management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

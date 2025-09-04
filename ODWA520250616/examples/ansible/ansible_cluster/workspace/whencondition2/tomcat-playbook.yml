@@ -1,0 +1,17 @@
+- name: when condition play
+  hosts: all
+  tasks:
+    - name: find tomcat directory
+      find:
+        paths: /home/vagrant/
+        patterns: "^apache-tomcat-.*"
+        file_type: directory
+        use_regex: true
+        recurse: true
+      register: tomcatstatus
+    - name: download tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.7/bin/apache-tomcat-11.0.7.tar.gz
+        dest: /home/vagrant/middleware
+        mode: '0544'
+      when: "tomcatstatus.matched | float == 0"  

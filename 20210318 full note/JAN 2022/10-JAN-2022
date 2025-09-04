@@ -1,0 +1,139 @@
+File Category 
+The other important module categories in ansible is File Category where we can find bunch of modules related to file operations like 
+- creating files/folders
+- modifying the ownership and permissions
+- copying
+- inline edit
+even though the above operations can be performed through shell/command module it is not recommended to use them rather use File category modules only for idempotancy
+
+Let us explore modules of the File category
+#1. copy module
+copy module is used for copying the files/folders from ansible control node to the managed nodes of the fleet
+by default it looks for the source file we specified on the FileSytem location of ansible control node and copies to the destination directory of the Managed Node, incase if we have the source file also located on Managed Node itself locally then we can specify remote_src: true indicating the source is also available on the managed node itself.
+	
+copy module configuration options or arguments
+1. copy a file from source to the destination
+copy:
+  src:
+  dest:
+
+2. copy a file from source to destination under a specified owner/group with permission
+copy:
+  src:
+  dest:
+	owner: 'owner'
+	group: 'group'
+	mode: '0777'
+		
+3. validate file before copying to destination
+copy:
+  src: 
+  dest:
+  validate: "/usr/bin/visudo -csf %s"
+
+the other options available are:
+backup: yes/no
+-----------------------------------------------------------------------------------------------
+#2. File module
+File module is used for creating a new file/folder or changing the permissions of an existing file/folder or removing them
+
+#1. create a new file
+file:
+  path:
+  state: touch
+	
+#2. create a directory
+file:
+  path:
+  state: directory
+	
+#3. how to create a symlink file to an existing file
+~/a.txt
+ln -s ~/Desktop/a.txt ~/a.txt
+
+file:
+  src:
+  dest:
+  owner:
+  group:
+  state: link | hard
+	
+note: softlink owner and group is not applicable, only for hardlinks we need owner/group
+
+#4. how to change owner and group and file permissions for an existing file
+existing file = ~/a.txt
+sudo chown bob:bob ~/a.txt
+sudo chmod 755 ~/a.txt
+file:
+  path: ~/a.txt
+	group:
+	owner:
+  mode:  
+
+#5.
+For a file/folder in linux, the linux operating system will not keeps track of the created timestamp, it has 2 timestamps for a file/directory which are
+1. accessed time = when we read/copy/move a file accessed time will be changed
+2. modified time = if we change the contents inside file
+3. change time = when we modify the attributes of the file like owner/group, filename, permissions etc
+
+How to preserve of modify the modification_time and access_time of a file?
+file: 
+  path:
+  mode: 0755
+	modification_time: preserve
+	access_time: preserve
+	
+the possible values for access_time and modification_time is: now or preserve	or set to custom date and time format  '{{ "%Y%m%d%H%M.%S" | strftime(stat_var.stat.atime) }}'
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

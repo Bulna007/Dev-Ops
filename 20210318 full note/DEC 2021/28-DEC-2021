@@ -1,0 +1,96 @@
+How many types of Software Configuration Management Tools are there?
+There are 2 types of Software Configuration Management tools are there
+1. pull-based architecture (or) agent-based architecture
+2. push-based architecture (or) agent-less architecture model
+
+
+#1. pull-based architecture (or) agent-based architecture
+	1.1 The devops engineer is going to write code modules (code automation) on the workstation and passes those to the central server/master node asking him to apply the code modules on the network fleet of servers.
+	1.2 To connect and communicate with master node the devops engineer has to install cli tool on the workstation.
+	1.3 The Master Node or the Central Server acts as a brain of the entire architecture
+		1. it stores the code modules and distributes across all the nodes of the network
+		2. each machine/computer on the network and the configuration information like 
+				- hardware
+				- softwares and their versions
+			 are memorized and stored on Master Node
+		3. The master node keeps track of the information about which code modules are executed on which fleet of computers and on which it is pending and what is their outcome of execution will be managed.
+	1.4 each node on the network should be installed with an agent software
+	1.5 The agent software periodically polls the Master node asking for new code modules to be executed, the master node evaluates the conditions and checks to see whether the node is qualified to execute the code module, if yes then passes the code module to the agent. Now the agent downloads the code module from master node and executes local on the fleet server and passes back the state of execution of the module back to Master Node.
+		
+advantages:-
+	1. as the agents by themself will pull the code modules from the Master Node, and executes on the automation by their own and post the state of the automation back to Master. So here Master is not responsible for executing and tracking on each node, so the Master is not overloaded and the performance of the code modules is consistent and high
+	2. The pull-based architecture can scale in handling large network of computers as well.
+	3. The code modules will be executed on each node of the cluster parallel, so we can achieve highest of level performance in applying automation
+	4. we can schedule the work loads and gets executed within a specific date and time
+	5. we can accomplish an code automation within the stipulated time interval
+dis-advantages:-
+	1. The Master Node is the key or central for the entire architecture, if the master is down the whole fleet is gone, so always we need to keep backup of the master which increases the cost of maintainance
+	2. The ops engineer cannot trigger the automation from anywhere he has to must and should have access to the Master node to trigger automation
+	3. On each computer on the cluster we need to install agent software and configure it to work with master node, so setting up the architecture takes huge amount of time
+	4. The architecture is highly complex to understand
+	5. debugging and identifying the faulty nodes on the cluster is high difficult
+	6. No support of on-demand execution of the automations, need to wait for each agent to trigger based on scheduled-interval
+	7. If the MasterNode has been crashed, to bring up the alternate server, we need to reconfigure the whole fleet of machines pointing to the new server
+	8. less secured, if the master node is comprimised, then the whole fleet will be compromised
+	
+	
+	
+#2. push-based architecture
+	2.1 The devops engineer will write the code modules on the workstation and uses the Control Node server to apply the code modules on the Fleet of servers
+	2.2 The Control Node Server can be any Machine/System that is installed with a special Control Node Software that is distributed by the Software Configuration Management Tool.
+		1. The Control Node Server is completely Stateless, it dont know how many computers are there on the network
+		2. Each computer what is their 
+			- hardware configuration
+			- which softwares of what versions are installed
+		is not know
+		3. To the Control Node Server the devops engineer has to pass the code modules along with inventory file asking the server to execute the code on the list of servers mentioned in the inventory file.
+	2.3 Quickly the Control Node Server will connects to the Fleet servers over SSH protocol and transfers the code modules over the network and executes and captures the result out of execution and displays on the console
+	2.4 Each server on the network doesnt need any agent installation, only the Server needs to be configured with SSH connection allowing the Control Node to the individual server
+		
+	
+advantages:-
+	1. The Control Node Server is completely stateless, no information about any of the fleet servers are stored on Control Node, due to which the ops engineer can use any machine as Control Node to kickoff the automation.
+	2. if Control Node Server has been compromised there is no problem as information about any of the fleet servers are not stored on Control Node and this architecture is highly-secured
+	3. To setup the network cluster, we dont have to install any agent software and configure each of the machines on the network to work with master, so highly simple and easy to use.
+	4. On-Demand execution of the code modules are supported
+	5. debugging the nodes of the cluster and monitoring them is very easy as the Control Node connects and executes the code modules on each server
+	6. we can control the execution behaviour of the code modules on the network cluster for eg.. by instructing the Control Node to execute on a batch of servers sequentially, so that we can achieve rolling updates and zero-downtime patching
+	
+dis-advantages:-
+	1. cannot handle large network of computers, if more the fleet size is the load on the Control Node is high
+	2. The more the fleet is tracking and monitoring the code executions is highly difficult.
+	3. The more the fleet is it takes lot of time to execute the automation
+	4. Scheduled automations are not supported
+It is suitable for handling small or moderate network of computers in managing the software configuration management automations but not ideally recommended for large computer networks.
+	
+There are Software Configuration Management tools available in the market that works based on both the architectures as below.
+	Pull-Based architecture
+		- chef
+		- ansible tower (pull-based architecture) (commercial)
+	Push-based architecture
+		- Ansible
+		- Puppet
+		- Salt Stack
+		
+		
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,73 @@
+How many types of controller managers are there?
+There are 5 types of controller managers are there in kubernetes
+1. replicaSet = ensures desired number of replicas of a pod are running on the cluster
+2. daemonSet = ensures the pod runs on each worker node of the cluster
+3. deploymentSet = takes care of pod upgrades
+4. service = offers the networking aspects of the kubernetes cluster.
+5. job = if we wanted to perform an one-time operation across all the nodes of the cluster we can perform by using the help of job
+
+#2. WorkerNode:
+Workernode is an machine attached to the controlplane or masternode of the kubernetes cluster on which the pods are scheduled to be executed
+Each workernode should be installed with 3 components as part of them
+1. container runtime
+container runtime like a docker has to be installed on the workernode to run containerized applications on the node
+2. kubelet 
+kubelet is a process that runs on each workernode of the cluster, it gathers the information about the pods and their statuses and communicates the information to the controlplane of the cluster. in addition we can think of an kubelet as a endprocess to whom controlplane communicates in scheduling and running the pods on the workernode
+3. kubeproxy
+kubeproxy enables the traffic to the external network for a pod on the cluster
+
+#3.kubectl
+kubectl is an cli tool provided by the kubernetes that enables us to communicate with kubemaster or controlplane in administering, monitoring and managing the kubernetes cluster.
+Through the help of kubectl we can communiate with api manager of the kubernetes cluster and pass instructions asking to perform some operation on the cluster
+
+The kubectl looks for a kubeconfig.yml file under $HOME/.kube/ directory in which the controlplane information is written, by reading the information about the controlplane the kubectl connects and communicates with api manger of the master.
+	
+#4. etcd
+etcd is a key/value pair database where all the objects information that we created on kubernetes cluster will be stored as part of etcd database
+--------------------------------------------------------------------------------------------
+What is a pod?
+A pod is the smallest entity/unit in the kubernetes cluster where one or more containers are executed together inside it.
+
+For eg.. there can be 2 containers who might have dependency on a common resources like networking, storage etc, how can we ensure both of these container applications are using these common resources that there are dependent on?
+These containers might share commmon lifecycle management as well, how do we ensure these 2 containers co-exists with each other and share the common resource dependencies?
+	
+So all the containers running aspart of a pod share network services and resources with each other. The kubernetes takes care of lifecycle management and resource requirements of these containers by running them together inside a pod
+
+A pod may contains altease one container and at max any number of containers packaged and running inside it.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

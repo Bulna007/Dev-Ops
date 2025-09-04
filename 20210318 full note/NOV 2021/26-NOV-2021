@@ -1,0 +1,47 @@
+dependency management
+how to use the depencencies distributed by the third-party organizations or opensource contributes?
+we need to manually manage the dependencies by downloading them from the third-party vendor and add them to the classpath of our application and ship them by packaging as part of our application.
+	
+But there are many challenges in manually managing the dependencies.
+	1. The bandwidth consumption in downloading the dependencies by all the members of the team is very high
+	2. all the members of team are not aware of which dependencies and versions of them are required for building/packaging or running the application
+	3. identifying those dependencies from third-party vendors and downloading them takes lot of time
+	4. authenticity of the libraries are not guaranteed
+	5. there is no control of usage of thrid-party libraries as everyone in the team are allowed to directly download and use them, we landup in such a way different members of the team will use different libraries or versions of them which will result in failure of the application
+	6. unknowingly developers might download licensed versions of the depenencies due to which the organization might land into legal or complaince issues.
+		
+To overcome the above problems, the maven has introduced dependency management.
+#1 repositories
+#2 dependency declaration
+#3 dependency scope
+
+#1 repositories
+There are 3 types of repositories supported by the maven
+	1. maven central repository
+	2. remote repository
+	3. local maven repository
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

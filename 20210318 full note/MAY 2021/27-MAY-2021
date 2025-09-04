@@ -1,0 +1,221 @@
+How to grab the Root access in Linux Operating System?  
+By default a Root user upon launching the terminal will displayed with Normal Shell prompt only he doesnt have Root access for security reason. he cannot execute any of the commands under the /sbin directory. To gain the access as a Root user he has to enter the below command
+sudo su - = will switch the terminal prompt as Root user so that he can perform any of the operations on the Linux system.
+
+sudo su - = prompts for password
+su = switch user, here "-" indicates we want to switch as root user.
+-------------------------------------------------------------------------------------------------------
+In a Linux operating system there can be only 1 Root user allowed, to retain total control of the System with one user, it allows only one Single Root user. All the other users of the Linux operating system are Normal user, he can only access the files/folders of his home directory location and can run the processes of his own.
+
+In practical it will not be possible to manage a corporate environment by retaining the total access of the System with 1 Root user, since linux doesnt permit multiple Root users atleast it should support delegating some of the permissions to other users, this is where sudoers comes into picture.
+  
+sudoers = stands for super user do
+A Normal user of the Linux operating system can be promoted as a sudoer by the Root user. A sudoer can perform the below operations if granted by the Root
+  - he can gain access to the Files/Folders and Processes of other users.
+  - he can execute all the super user commands on the linux system etc.
+  
+but he cannot create a user or modify any of the users of the Linux System.  
+
+How to promote a Normal user as a sudoer?
+There are 2 ways of promoting a Normal user as a sudoer.
+  1. There is a configuration file under /etc/sudoers, now the Root user has to make an entry for the Normal user, he want to promote and grab the sudoers access.
+  2. quickly we an add a user to the sudoer group.
+
+1. configure /etc/sudoers file with an entry for a Normal user to grab sudoers access.
+In this approach we can promote a Single user or group of users to act as sudoers, there are 2 sections in this File.
+  user section
+    if we want to promote a single user a sudoer make an entry here
+  group section
+    if we want to promote a group of users as sudoers make an entry of the group here
+
+
+sudo useradd joe = he has added as a Normal user
+/etc/sudoers
+
+joe ALL=(ALL:ALL) ALL
+ALL=(ALL:ALL) ALL = indicates the delegation or rights the root user is providing to joe
+
+1st ALL = indicates joe can access the machine and can grab sudoers access from any remote computer
+2nd ALL = indicates joe can perform, execute commands onbehalf of any user of the system.
+3rd ALL = indicates joe can perform commands on any group of users.
+4th ALL = he can perform all the above things using all the commands.
+
+similar to user level we can permit group of users to grab sudoers access
+sudo useradd bob
+sudo useradd rick
+sudo useradd rod
+
+in general to grant sudoers access to the above users we need to make 3 entries into sudoers file, instead add them to a group and grant access to the group level rather than individual
+
+sudo groupadd administrators
+sudo usermod -aG administrators bob rick rob = we added bob,rick,rob to administrators group
+
+/etc/sudoers
+%administrators ALL=(ALL:ALL) ALL = here % indicates what we are specifying is a group name.
+      
+-----------------------------------------------------------------------------------------------------
+Even we grant suoders access to a Normal user, when he launches the Terminal, by default he will have access to the Shell as Normal user only which means he cannot super user commands on behalf of any users or any groups. By default he can manage his home directory and process only.
+      
+To execute any super user commands, he need to grab sudoers access by type sudo command
+sudo = execte the supplied command as a sudoer user
+
+sudo apt update -y = apt update is a super user command, since the user has sudoers access you are asking linux to execute the command with sudoer permission using "sudo"
+      
+sriman:sriman$ sudo su -
+root:sriman# 
+
+joe:sriman$ = joe cannot get root access, he is just a sudoer, joe cannot run sudo su - command to act like root.
+root:sriman# == not possible for joe
+Then how can joe run super user commands in linux if he has sudoers access.
+Linux has provided a command "sudo" telling, run all the command with sudoer permission
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+
+
+
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  

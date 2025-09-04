@@ -1,0 +1,252 @@
+linux 
+sudoers
+diskusers = #shellscripting
+ssh command
+basic linux commands
+--------------------------------
+ip address
+router and switch
+ssh tunnel
+ipv4 and ipv6
+------------------------------
+ansible
+dynamic inventoryfile
+inventory file configuration
+ansible vault
+modules
+--------------------------------
+terraform
+state filemanagement
+modules
+tf file with syntax
+variables in terraform
+---------------------------------
+aws
+iam
+|-users
+|-groups
+|-policies (inline)
+storage
+s3
+cloud front
+vpc and networking, subnet
+private instance
+route53
+load balancer (ssl configuration)
+asg
+eks
+codepipeline/codebuild
+database (rds/dynamodb)
+kms
+sqs/sns
+lambda
+glue
+----------------------------------
+docker
+docker image #command
+CMD and ENTRYPOINT
+how to copy a file into running container
+docker image layers
+directives
+volumes (MOUNT / BIND)
+------------------------------------------
+Kubernetes
+types of service
+how to expose your application to the world
+daemonset/statefulset (headless service)
+namespace
+blue/green
+rollout
+readiness/liveness probes
+NodePort/ClusterIp
+port forwarding
+------------------------------------------
+elk
+prometheus
+kibana
+monitoring
+
+helm
+-------------------------------------------
+jenkins
+pipelines
+scripted vs declarative
+tools (global tool configuration)
+plugins
+how to make 2 jenkins communicate with each other on aws (codepipeline)
+jenkins with kubernetes
+-----------------------------------------------------------------------------------
+#5
+3.2
+ci/cd pipeline
+plugins
+git 
+maven
+aws rolebased authorization
+linux command
+- sed
+- awk
+- top
+- directory/file management commands
+- permissions
+cloud watch
+s3 buckets
+--------------------------------------------------------------------------------------------
+ELK
+Elasticsearch
+Logstash
+Kibana
+
+Elasticstack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

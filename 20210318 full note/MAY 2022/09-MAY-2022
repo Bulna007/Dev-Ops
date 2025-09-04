@@ -1,0 +1,82 @@
+CNI
+CNI standards for container network interface is an specification standardized for networking aspects of interconnecting the containers. The CNI has provided libraries and plugins using which we can create our own CNI networking implementations. Kubernetes has an built-in support for CNI Networking
+
+kubernetes has been built on top of CNI networking to ensure the applications that are build and deployed on kubernetes cluster can collaborate and communicate with each other.
+There are lot of kubernetes CNI Implementations are there
+1. calico
+2. canal
+3. flannel
+4. kubenet
+5. weave
+6. aws vpc
+7. kube-router
+
+while installing the kubernetes cluster, before adding the working nodes we need to install/enable CNI networking on the master there after we need to add the worker nodes to the kubernetes cluster.
+-------------------------------------------------------------------------------------------
+How to setup an kubernetes cluster?
+There are multiple technics in setting up an kubernetes cluster
+1. minikube
+minikube setup a kubernetes cluster with one-single node on windows/linux/mac machine that can be used for development/xperimental purpose on a personal computer.
+	
+2. eks
+amazon aws has provided a fully managed elastic kubernetes cluster which can be used for production-usage
+
+3. setting up kubernetes cluster using kubeadm, kubectl tools manually on a local or virtual machine environments
+
+How to setup an kubernetes cluster on local machine using virtual machine environments?
+#1 cluster configuration
+1. Master Node - kubernetes master
+2. Worker Nodes - 2 = kubelet, container runtime, kubeproxy
+3. Workstation = kubectl/JFrog
+
+windows 10
+#1. virtualbox
+#2. vagrant 
+#3. download the Vagrantfile and place it in a directory like
+d:\k8scluster
+
+#4. 
+goto the file directory k8scluster and run 
+vagrant up
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

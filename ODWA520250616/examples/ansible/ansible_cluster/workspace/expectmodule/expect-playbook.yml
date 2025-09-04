@@ -1,0 +1,16 @@
+---
+- name: expect play
+  hosts: all
+  tasks:
+    - name: add numbers      
+      expect:
+        command: /home/vagrant/addNumbers.sh
+        #echo: yes
+        responses:
+          "Enter A: ": 10
+          "Enter B: ": 20
+      register: sum
+    - name: print
+      debug:
+        msg: "Sum : {{sum.stdout}}"      
+...

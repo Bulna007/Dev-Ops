@@ -1,0 +1,52 @@
+Kubernetes is a container cluster manager used for running, monitoring and managing the containerized applications on clustered environment
+
+Majorly kubernetes (k8s) is used for deploying microservices based applications in the market. It will be worth to understand the Microservices applications and their technology from deployment/delivery perspective to understand kubernetes and its real implementation.
+	
+There are 2 architectures are there in building the applications
+1. Monolithic application architecture
+2. Microservices application architecture
+
+#1. Monolithic application architecture
+The enterprise application which consists of several modules/functionalities are built out of an single source code based project and will be build and packaged into single deliverable/deployable artifact is called "Monolithic" application
+
+There are few characteristics of monolithic application are there
+1. The entire enterprise system is build out a single source code base
+2. A team of developers will be working across the functional areas of the project
+3. There is a single source code repository into which the project is managed
+4. The build system will produce a single deployable artifact
+5. The whole application will be deployed and ran on a enterprise application server environment.
+	
+advantages:-
+	1. The entire team knows about the end-end system or application being developed since everyone works on all the functionalities of the project
+	2. easy to build and deploy the application since the whole project is build into a single artifact
+	3. scalability is easy 
+	
+dis-advantages:-
+	1. since it is an very large enterpise system that comprises of several modules, and is built as a single sourcecode project, understanding the whole system is very complex for a developer
+	2. building and deploying the application takes lot of time. since the application has been build into single deployable artifact, the application servers takes lot of time in starting the application.
+	due to the long build and startup times of the project, the developer has to spend lot of time in developing and verifying the application he has developed which kills developers productivity and eventually delays the delivery of the application
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

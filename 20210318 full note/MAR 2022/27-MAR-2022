@@ -1,0 +1,114 @@
+What are docker objects?
+There are 2 docker objects are there
+1. docker images
+2. docker containers
+
+#1. docker image
+docker image is packaged file which containers software application, software packages, instructions along with bins/libs contained inside them which are required for communicating with the docker engine put together is called an "doker image".
+From the docker image the docker engine creates an docker container to run the software application contained in the image in an isolated environment
+
+There are lot of opensource docker images provided by the docker team, partners and people around the world and has published to the docker hub registry.
+	
+if we want to package our s/w application as a docker image we can take any of the existing images in the docker hub registry as base image. There are few images which can considered as base images like
+1. alpine
+2. ubuntu
+etc
+
+There are few characteristics of docker images there
+1. The docker images are read-only
+2. The docker images layered and stackable
+
+#2. The docker images are layered and stackable
+across the images we build, if docker packages the base image into it then per each application the base image will be duplicated which will results in
+1. wasting the harddisk space in creating multiple applications docker images with same base image bits
+2. bandwidth consumption in publishing/distributing the images will be high
+
+to overcome the above problem docker has comeup with layered and stackable images
+
+Whenever we are creating an application as a docker image, in our docker image we refer the existing base image called "goldcopy", which is not packaged or cloned inside our image or not extended, rather in our image we hold the reference of the goldcopy or baseimage only, ontop of it our application bits are placed and packaged.
+	
+#1. docker images are readonly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,176 @@
+How to install ansible on windows 10?
+In windows 10 Windows Subsystem Linux2 is a feature through which we can run Ubuntu on windows 10 operating system on the Hyper-V hypervisor.
+	
+So that we can install Ansible control node on WSL2 and we can create Ansible Managed Nodes on oracle virtualbox so that we can have ansible cluster running.
+	
+1. How to install WSL2?
+1.1 open powershell in windows under administrator rights
+1.2 wsl --install
+1.3 verify wsl2 ubuntu is running on your machine by typing the below command
+	wsl -l -v
+1.4 to turn off the wsl2 ubuntu machine	
+wsl --shutdown
+1.5 to poweron WSL2 machine
+wsl
+
+2. configure WSL2 networking for public access.	
+by default WSL2 creates an virtual either network adapter with nat network as a network mode only enabling one-directional traffic. To enable public access to the WSL2 machine we need to enable port forwarding from the host machine.
+	
+but in the latest version of WSL2 the network traffic is working on bi-directional mode if we enable windows defender firewall, so the above port forwarding is not required.
+	
+How to enable firewall access to access WSL2 machine from public network?	
+1. goto windows defender
+2. click on allow an app or feature through windows defender firewall
+	choose file and printer sharing and check the boxes to allow access
+the above step enables ping access
+3. click on advanced settings
+4. create both inbound/outbound rules
+	1. choose port based rule and enter port 22
+	2. allow connections
+	3. enter rule name click finish
+This will enable bi-directional traffic to WSL2 machine
+
+3. Provision Managed Nodes on Virtualbox
+	1. create 2 virtual machines
+	2. choose the networking mode as bridge network on (wifi adapter)
+	3. choose static ip address
+take the help of vagrant in provisioning the above virtual machines	
+make sure we are able to reach through ping on all the machines of the cluster.
+WSL2->Host Host->WSL2
+WSL2->Guests Guests->WSL2
+
+4. create a new user on all the managed nodes with the same user of WSL2
+5. configure passwordless suoders access to the new user created on managed nodes
+6. generate SSH Key pair on WSL2 machine and copy the public key on both the managed servers
+7. verify the SSH connection from WSL2 machine to both managed servers
+if we are able to SSH the networking has been configured properly
+----------------------------------------------------------------------------------------------
+How to install Ansible on WSL2?
+	
+1. goto WSL2 machine
+2. sudo apt update -y
+3. sudo apt install -y software-properties-common
+4. sudo apt install -y ansible
+----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	
+	
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

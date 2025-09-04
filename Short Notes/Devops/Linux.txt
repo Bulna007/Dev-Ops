@@ -1,0 +1,3048 @@
+Q.) Why do we need a software application, what is the purpose of it?
+Ans: An enterprise business organization to provide their business services or carry out day-to-day business activities in conducting the business requires software. 
+
+If the business organization is carrying out the business services manually without any software, they run into several problems:
+a. The speed at which the business organization provides the business services to their customers would be very slow, thus results in great dis-satisfaction to their customers
+b. Since the business is carried manually, there is a high chance of performing errorneous operations.
+c. Chanes of conducting the fraud would be high.
+d. The man power required in running the business is more, due to which the cost of conducting the business would be high.
+
+To eliminate the problems in manually conducting the business, the software applications are introduced.
+There are lot of advantages of using software in conducting the business as below:
+a. Speed at which we perform the business operation would be very high.
+b. Accuracy in carrying these operation would be very high, there is no chance of mistake or human error.
+c. Eliminates the fraud
+d. Man power needed in conducting the business will be less, due to which the cost of running the business will come down.
+e. The business services are made globally accessible to everyone around the world.
+
+Q.) What is an software application?
+Ans: Software application comprises of bunch/group of programs written with instructions using an programming language like
+a. Java
+b. .Net
+c. Python
+d. PHP
+e. Scala
+f. Ruby
+etc
+Through which we fullfill the needs or requirements of an business organization.
+
+Q.) What are the stages in development and delivery of the software application takes place?
+Ans:
+SDLC(Software Development Lifecycle)
+There are 5 phases in which a software application is being built and delivered:
+
+1. Requirement Gathering & Analysis
+The business analyst understands throughly the requirements of the business organization and writes the business requirement documents and passes it as an input to the IT services development team.
+
+The development team throughly goes through the requirement document, understand and analyze them inorder to build the software.
+
+2. Design
+In this phase, the development team gathers/analyze how the system has to be build based on the analysis they perform previously.
+
+3. Implementation/Coding
+The actual development of the system comprises by choosing an programming language that better suites for the requirements.
+
+4. Testing
+The QA entineers will test and certify the software system that is build is function based on the requirement or not.
+
+5. Delivery/Maintainance
+The support engineering team is responsible for deploying/delivering the application into the production environment and making it alive or accessible to the users of the application around the world.
+
+People:
+1. Product Owner/Business Analyst
+2. Developers
+3. QA Engineers
+4. Support/Operational Engineers
+5. Customer/End-users
+
+Phases:
+1. Requirement Gathering and Analysis
+2. Design
+3. Implementation/Coding
+4. Testing
+5. Delivery
+
+Stages (Delivery) :
+Q.) What are the stages of delivery?
+Ans: There are 3 stages in which application is delivered:
+1. Devlopment Environment
+2. QA Environment
+	2.1. QA Environment
+	2.2. UAT (User Acceptancy Testing)
+	2.3. Stage (Pre-Prod)
+	2.4. Performance/Stress Environment
+3. Production Environment
+-------------------------------------------------
+Q.) What is devops?
+Ans: A change in culture and adoption of new tools and technologies for fast-paced application development and fast-paced application delivery is called "devops".
+
+Note:- Goal: Fast-paced application development and fast-paced application delivery
+
+Q.) Why do we need fast-paced application development and delivery?
+Ans: There are several reasons for an organization to adopt the aspect of fast-paced development and delivery:
+a. To stay ahead of the competitors in the market
+The more we innovate and the faster we deliver, we will be better interms of business than our competitors.
+
+b. To increase the ROI for the customer so that logitivity of the business can be achieved
+When the organization delivers more features quite faster to the market, the customer feels return of investment and continue to stay with the organization, there by which longitivity of the business is guaranteed.
+
+c. To reduce the cost of IT infrastructure and development cost in delivering the system
+If we can develop and deliver the software quickly we can bring down the overall cost of building/maintaining the software applications, so that everyone can adopt right from(enterprise to small-scale businesses) and can use the software.
+-----------------------------------------------
+Q.) What is a Process Model?
+Ans: A Process Model defines flow of activities or actions or standard guidelines or steps that must be followed in building and delivering the software application.
+
+There are various different process models defined by different experts in the market as below:
+1. Waterfall
+2. Iterative/Incremental Model
+3. Spiral
+4. Prototype
+5. Agile Methodologies
+---------------------------------------------------------------
+
+Q.) What is an computer?
+Ans:
+Computer is an electronic device that is used for performing computation operation.
+
+There are 3 main parts are there within it:
+1. Monitor
+2. Keyboard/Mouse
+3. CPU
+
+1. Monitor
+----------
+Monitor is an visual display that acts as an output device, that is used for rendering or displaying the output of an computation operation.
+
+2. Keyboard/Mouse
+-----------------
+These are the input devices through which the end-user is going to pass the input data to the computer asking to perform computation operation.
+
+3. CPU
+------
+CPU stands for "Central Processing Unit". It is the key/core component of the computer.
+
+There are 4 main components are there within the CPU of the computer:
+	3.1. Processor
+	3.2. RAM
+	3.3. Harddisk
+	3.4. Motherboard
+
+3.1. Processor
+--------------
+It is the brain of the computer. It is the core hardware component of the computer that performs arithmetic, comparative/relational and logical operations within the computer system.
+
+Arthematic operations:
+	1. Addition
+	2. Substraction
+	3. Multiplication
+	4. Division
+	5. Modulus
+	
+Relational operations:
+	1. GreatherThan
+	2. LessThan
+	3. GreaterThanOrEqual
+	4. LessThanOrEqual
+	5. EqualTo
+	6. NotEqual
+	
+Logical Operations:
+	1. And
+	2. Or
+	3. Not
+	
+Arthematic operation: 10 + 20 = ?
+Relational operation: age >= 65 (T/F)
+Logical operations: age >12 and age < 20 = (Teen)
+
+3.2. RAM(Random Access Memory)
+------------------------------
+It acts as an primary memory of the computer. It is an volatile memory and all the data that is stored within the RAM will be erased upon restarting the computer.
+The processor fetches the data from the RAM to perform operations and upon completing the operation it deletes/erases the data from the RAM.
+
+Note:- Purpose: All the data that should be used by the processor to perform computation operation will be brought and placed within the RAM, so that the processor can fetch/access the data quickly.
+
+3.3. Harddisk
+-------------
+Harddisk is an permanent storage memory of the computer. The data that is stored within the harddisk of the computer will be permanent and will not be erased even with the restart of the computer.
+
+It is an mechanical device and uses magnetic disks for storing the data. Since it is an mechanical device, reading the data from the harddisk is very slow and will not match will the clock-speed of the processor.
+
+So if the processor is fetching the data from harddisk, since it is very slow, the processor becomes very slow in performing the operation, so always the data is transferred from harddisk to the RAM, so the CPU can quickly read the data from the RAM to perform operation.
+
+3.4. Motherboard
+----------------
+All the hardware units of the computer are inter-connected and comunicated with each other through the help of motherboard of the computer.
+
+Q.) Who and how does the computer perform the computation operation?
+Ans: 
+The processor is the core component that performs the computation operation within the computer. It is an electronic, an electronic device has only 2 states:
+1. On  = Power On
+2. OFF = Power Off
+
+These are represented with 1(On) and 0(Off) respectively. So the only language the processor can understand allowing us to interact with is 1s and 0s only which is called "Machine Level Language".
+
+All the human data is represented in decimal number system base(10), so inorder to pass that as an input to the processor we need to convert the decimal number into binary format. The processor upon computing the data produces binary number which inturn has to be converted into decimal format.
+So there are 2 operations we need to perform always inorder to interact with the processor of the computer.
+a. Binary number -> Decimal number (output) = sum (2^position * bit)
+b. Decimal number -> Binary number (input) = LCM(2)
+
+Example:
+22 + 33
+	
+1. 22     = 10110 
+	  (10)       (2)
+	
+2|22	
+ -----
+2|11 - 0	
+ -------	
+2| 5 - 1
+ -------	
+2| 2 - 1
+ -------
+2| 1 - 0	
+	
+2. 33    = 100001
+	  (10)        (2)
+	
+2|33
+ --------
+2|16 - 1
+ --------
+2| 8 - 0
+ --------
+2| 4 - 0
+ --------
+2| 2 - 0
+ --------
+2| 1 - 0	
+	
+binary addition:
+
+22 =	010110
+33 =	100001
+	   ----------
+	    110111
+	          (2)
+	
+let us convert this binary number into decimal number as below
+
+ 1     1     0       1      1       1
+ *     *     *       *      *       *
+2^5 + 2^4 + 2^3  +  2^2  + 2^1   + 2^0
+--------------------------------------------
+ 32 + 16  +  0   +   4   +  2    +  1 = 55
+---------------------------------------------------------------
+
+1. Machine-Level Language
+-------------------------
+The machine(processor) can only understand the data that is expressed/represented in 1s and 0s only which is called machine-level language.
+
+For humans it is hard to memorize numbers/digits in representing the information, so to overcome this problem in using the computers, the people has introduced Assembly-Level Language.
+
+2. Assembly-Level Language
+--------------------------
+The assembly level language provides instructions expressed in simple english language words which are even called as "keywords" that can be understood by the processor of the computer.
+
+For each type of operation we wanter to perform using the processor, there is an relevant keyword has been defined or standardized
+a. addition = ADD
+b. subtraction = SUB
+c. multiplication = MUL
+d. division = DIV
+e. modulus = MOD
+f. store = STORE
+g. fetching = FETCH
+
+Now humans can easily memorize these keywords and can use for writing instructions, so that it can be passed as an input to the processor of the computer asking to perform operations.
+
+Note:- The assembly-level language instructions differ from processor to the processor(different for different hardware architectures)
+
+Drawbacks:-
+a. Since the keywords or the instructions of the assembly-level language differs from one hardware architectures to another, memorizing them and programming across different processor models is very hard.
+b. The instructions/program we wrote using assembly-level language will not be portable across different processors that makes hard to work with different processors.
+------------------------------------------------
+Q.) What is Operating System?
+Ans: An operating system is a system software that sits between the enduser and the hardware of the computer.
+It provides #2 core features as below:
+a. It ensures the program written by the users are portable across the hardware platform by translating the program instructions into hardware(processor) specific instructions, so that those can be executed on any hardware.
+
+b. Provides sophisticated environment with rich set of tolls and utilities, that helps the enduser to easily iteract with the hardware of the computer.
+
+Note:- The more the hardware platforms or architectures the operating system supports, the more it will be powerful, 
+
+An operating system(OS) is a software that acts as a middleman or a bridge between computer hardware and the computer user. It provides a user interface and controls the computer hardware so that software can function.
+
+Types of Operating System
+1. Desktop Operating System, e.g., Microsoft Windows, macOS and Linux such as Ubuntu.
+2. Server Operating System, e.g., Windows Server, Linux distributions like CentOS, Red Hat Enterprise Linux
+3. Mobile Operating System, e.g., Android, iOS, Windows Mobile
+4. Embedded Operating System used in devices like routers, smart TVs, automobiles, home appliances, etc.
+5. Real-Time Operating System (RTOS) used in critical systems like medical equipments, car ECUs, aerospace, defense, network firewalls, home security system, etc.
+---------------------------------------------------------------
+
+Learning Linux operating system
+1. File and Folders
+2. Install or upgrade softwares
+3. Users, Grant permissions allowing them to access
+4. Programs and manage them
+5. Networking 
+6. Securing Files and Programs
+7. Manage system resources
+8. utility programs
+--------------------------------------------------
+
+Q.) What are linux distros?
+Ans: Different groups of softwares and configurations choices that are maintained by individuals or organizations distributed to the public is called distro.
+
+There are 4 major distributions:
+1. Arch
+2. Debian
+	2.1. Linux mint
+	2.2. Ubuntu
+	2.3. Elementary OS
+	2.4. Kali Linux
+3. Redhat
+	3.1. CentOS
+	3.2. Fedora
+	3.3. Redhat Enterprise Linux
+4. Slackware
+---------------------------------------------------------------
+Q.) What is Linux?
+Ans:
+    > Linux in simple terms, is a free and open-source operating system.
+    > It's similar to Windows and macOS, but it's different in several ways.
+    > Linux is very popular for it's stability, security and flexibility. It can be modified and distributed by anyone which let to many different versions, known as "distributions," and each distributions is tailored for different uses.
+    > It's open-source nature means that a community of developers and users contribute to its development.
+
+Q.) Why learn Linux or its importance?
+Ans:
+    > Widely used in servers and cloud computing
+    > Free software philosophy
+    > Strong command line interface
+    > Faster processing
+    > Enhanced security
+    > Customization because of open-source nature
+    > Community support
+    > Understanding of other operating systems
+    > Career opportunities
+
+Q.) What are the features of Linux operating system?
+Ans: Features of Linux operating system
+1. Portable
+Linux operating system can work on different types of hardware as well as linux kernel supports installation on any kind of hardware platforms.
+
+2. Open Source
+Source code is freely distributed and it is community based development project.
+
+3. Multi-User/Multi-Programming operating system
+It can be used by multiple users at a time and can share the system resources like RAM, CPU,etc.
+Multiple application programss can also run simultaneously or in-parallel as well.
+
+4. Hierarchial File System
+Linux operating system affords a standard file structure in which system files and user files are arranged.
+
+5. Shell
+Linux operating system offers a special interpreter program, that can be used for executing commands on the operating system kernel called "Shell".
+In other words: Shell is an inter-preter program using which we can easily communicate with the kernel of the operating system.
+
+6. Security
+Linux operating system offers user security systems using authentication features like encryption of data, password protection and controlled access to particular files/folders.
+--------------------------------------------------------------
+
+Linux Architecture
+------------------
+1. Hardware Layer
+It consists of all the peripheral devices like(RAM, Processor, Harddisk, etc)
+
+2. Kernel
+It is the core component of the linux operating system, that interacts directly with the hardware of the computer. It provides low-level services to the upper components.
+
+3. Shell
+Shell is an interpreter program, that acts as an interface to the kernel. It hides the complexities of kernel functions from the users. The shell takes the shell commands from the user and executes them on the kernel by invoking kernel functions.
+
+4. Software Tools/Utilities
+These are programs provides the users most of the functionality of an operating system.
+-------------------------------------------------------------
+
+Shell
+-----
+Interacting with the kernel of the linux operating system is very complex, users of the computer should know complex programming instructions provided by the kernel in writing the programs in talking to the kernel of the operating system.
+
+To help the users to easily interact with the linux operating system in using the computer, the shell utility programs are introduced.
+
+Shell is an interpreter program that provides simplified cli command/instructions that can be used by the users of the computer, upon issuing a command to the shell, it takes the command and executes an relevant kernel program to perform appropriate operation, captures the result and returns to us. So that working with linux operating system becomes easy for the users.
+
+Follow:
+Users > Shell commands/instructions > Shell > (Translate) Kernel programs > kernel > hardware
+
+In-short: Shell can be viewed or visualized as interface between the users and kernel of the operating system.
+
+There are lot of shell utilities being developed and provided by various different people or organizations in the market, this means we have many ways (different interfaces) in interacting with the kernel.
+
+Different shells has different capabilities:
+Few shell interpreter programs provide simplified instructions/commands that fullfill the requirements of basic users of the computer, where someothers provides powerful instructions/commands that allows to perform low-level operations on the computer/hardware.
+
+More or less all the shell interpreters works on all the linux distros as shell works on kernel, and more or less across all the distros kernel is same.
+ 
+So based on the purpose or usage of the user of the computer, he/she has to choose an appropriate shell in interacting with kernel of the operating system.
+
+There are 2 major types of shells:
+1. Bourne Shell = If we are using an bourne shell, the $ character is the default prompt.
+2. C Shell = If we using the C shell, % is the default prompt.
+
+1. The bourne shell has sub-categories:
+	1.1. bourne shell (sh)
+	1.2. korn shell (ksh)
+	1.3. bourne again shell (bash)
+	1.4. POSIX(Portable Operating System Interface) shell (sh)
+
+The default and most used shell across the distros is : bash, it is very popular in the market.
+
+Bash Command Structure
+----------------------
+The command is a program or an action we are performing on the underlying operating system of the command.
+
+Structures of the command has 3 parts:
+command [options] [arguments]
+
+Depending on what we are doing, we might have a command or command with options or command with arguments but always the command is mandatory.
+
+For eg..
+command:
+ls = command, that lists files and folders within the current directory.
+
+command with options:
+ls -l = here -l options
+options are always passed to the command by using "-", these options are used for enhancing or changing the behaviour of the command.
+
+command with arguments:
+ls directory/ = here directory/ arguments
+instead of showing files and folders of the current directory, it lists files/folders under the specified directory/ that is passed as an arguments.
+arguments acts as an input to the command, using which it performs the operation
+--------------------------------------------------------------
+
+Q.) What is a Filesystem?
+Ans: Filesystem is an mechanism or a technic used by the operating system of the computer to store, organize and manage the data on the permanent storage device(harddisk) of the computer.
+Different operating system vendors uses different filesystem techniques.
+They allow us to store the data permanently on the storage device of the computer interms of files and folders.
+
+In Windows: It uses
+a. FAT32 (File Allocation Table)
+b. NTFS (New Technology Filesystem)
+
+In Linux: Incase of linux there are various different filesystem techniques are available over the ages, where most of them are old and may not be using and few of them are being used as below:
+a. EXT = old filesystem technique and is no longer being used.
+
+b. EXT2 = allows storing 2TB of data
+
+c. EXT3 = came from EXT2 with upgrades and backward compatibility. But there is a problem with EXT3 filesystem, it doesn't support recovery of disk snapshots. So servers will not use this filesystem.
+
+d. EXT4 = Faster and allows large files with significant speed and it is default filesystem being used upon installing linux operating system on our somputer.
+
+e. JFS = old filesystem techique developed by IBM. It works well with small and big files too, but files are corrupted over the time.
+
+f. XFS = old filesystems works slowly with small files.
+
+g. BTRFS = made by oracle. It is not stable as EXT in some distros, but it has good performance and not longer used in the market.
+
+Note: Out of the above filesystem techniques, the newest and default filesystem technique that is being used aspart of the linux operating system is "EXT4".
+---------------------------------------------------
+
+Linux operating system uses hierarchial filesystem technique in storing and managing the data on the harddisk or storage device of the computer.
+
+Hierarchial
+-----------
+Anything that is expressed/represented in parent/child relationship manner is called "hierarchial" representation. It is inverted tree format.
+
+Hierarchial representation always starts with one single root node that indicates the start.
+A parent can have any number of child nodes, but always a child belongs to one single parent only.
+
+Incase of windows OS, they don't use hierarchial filesystem technique, we have multiple roots of the storage in windows which are called "drives(c:\,d:\,e:\,...)", means each drive is an root. Now user has to navigate through these drives to locate and access the data that are stored on the harddisk.
+
+Unlike windows filesystem, linux OS uses hierarchial filesystem which means always linux has one single root only "/".
+
+Linux Filesystem Directories:
+During the time of installing the linux operating system, it creates standardized directories on the harddisk of the computer to store, organize the files of the operating system and the users.
+
+The linux filesystem being hierarchial will starts with a root represented with "/", and all the files and directories are the children of this root only.
+
+/ (root)
+|-/bin = linux core commands resides under the bin directory (like ls, cd, touch, mkdir, etc)
+|-/boot = boot loader files are placed in the boot directory
+|-/dev = all the physical devices like harddisk, pendrives, usbs, diskdrives are mounted here
+|-/etc = configuration files of the installed software packages are placed here
+|-/home = For each user of the linux OS, linux creates a sub-directory under /home, that acts as an home directory of that user
+|-/lib = library files of the installed software packages are placed here, because libraries are commonly shared across the software packages
+|-/media = all the multi-media devices like music players(ipods), cameras, dvds are mounted and made accessible from here
+|-/mnt = the network drives or network storage devices are mounted here. In few distros we may find usb or dvd also mounted here instead of '/media'
+|-/opt = all the optional software packages are installed and placed here
+|-/proc = everything in linux is a file. The /proc directory holds the information about all the running program on the linux OS
+|-/root = this is the home directory for the root user
+|-/sbin = super(root) user commands are placed here
+|-/tmp = temporary files are placed here
+|-/usr = utilities and files shared between the users are placed here
+|-/var = var stands for variable large object files, this directory holds the system logs and other variable data
+
+Inorder to see the above filesystem directories, upon login to the OS, open terminal and then type below command:
+cd / = navigate or change directory to "/" (root)
+ls -l = list all the files and folders under the current directory in long-listing format.
+
+We can see the files and folders under an given directory using tree command. Tree shows all the directories along with their sub-directories under the specified directory in a tree like structure visually.
+
+By default the tree software package is not available aspart of ubuntu OS, we need to explicitely install it using the below command:
+
+sudo apt update -y
+sudo apt install -y tree = this will install tree command software package.
+
+Note: sudo is used for executing any linux command under root user previlege or permission, so it prompts for root user password.
+
+Using the tree command we can see the directories under "/" by using the below command
+
+cd /
+tree -L 1
+
+Q.) What is a file?
+Ans:
+Internals:
+File is an datastructure in which OS stores the address location of the data where it has been stored on the harddisk of the computer. In addition to this the OS captures few more attributes of information pertaining to the data as well like
+a. Filename
+b. created date
+c. modified date
+d. owner
+etc.
+
+Inorder to access the data that we have stored on the harddisk of the computer, we need to ask the OS to fetch the data from the address location where it is stored, since the address location of the data is stored within the file, we can always ask the OS to refer these addresses stored in the file in fetching and returning the data.
+
+Even though the data is not directly stored within the file, rather file contains address locations where the data is stored, by the way we interact with OS in asking them to store or fetch the data from the file makes us think actually the data is stored within the file itself.
+
+So from logical definition:
+File is an datastructure or physical memory location within the harddisk of the computer in which the data is being stored and accessed.
+
+Q.) How to create an file on the filesystem of the computer?
+Ans:
+Each linux user has their own home directory location for which they have permissions in creating/accessing the files/folders.
+So we need to navigate to the user home directory inorder to create a file
+
+touch filename
+touch is the command used for creating an empty file with no data inside it under the current working directory.
+
+1. How to see the current working directory?
+pwd = print working directory
+
+2. How to print an message onto the terminal window or console or stdout?
+echo "message"
+echo is an bash command used for printing or writing an message on to the terminal
+
+3. How to create an file with data being stored inside it?
+Every linux command when we execute will produce some output, the output that is generated by the program/command will be written directly onto the console(STDOUT). Similary a program/command takes the input data from the keyboard which is referred to as STDIN.
+
+Incase if we want to change the destination to which the program has to write the output other that STDOUT or change the source from which it takes the input other than STDIN, the we need to use redirection operations in linux bash which are ">" and "<".
+
+> = redirection operator for redirecting the output
+< = redirection operator for redirecting the input
+
+echo "good morning" = writes the "good morning" message directly onto the STDOUT, incase if we wish to redirect the output instead of STDOUT to an file then we can use ">" operator here
+
+echo "good morning" > greetings.txt
+
+6. How to see the contents or the data stored inside a file?
+cat filename
+cat command is used for displaying the contents of a file
+
+for eg..
+cat greetings.txt
+
+Q.) What is an folder or a directory?
+Ans: Folder is an special type of file in which we hold the pointers to the other files on the filesystem of the computer. Folder is a way through which we can group or organize the related sets of files together, so that we can access them quickly by navigating into that folder.
+
+In-short: A folder is an collection of related-set of files kept together.
+
+1. How to create a folder or directory?
+mkdir directoryName
+
+mkdir stands for make directory(create directory) with the given directoryName. It creates the empty directory under the current working directory.
+
+Assignment:
+How to create the directory structure with files as below under user home ($HOME) directory?
+$HOME:/>
+todolist
+|-082024 (here)
+	|-librarysubscription.txt
+	|-collegeadmissions.txt
+	|-tripToHomeTown.txt
+|-092024
+	|-chesscompetition.txt
+	|-officetravel.txt
+	|-movies-wishlist.txt
+|-102024
+	|-financial
+		|-new-sb-accounts.txt
+		|-newpolicy.txt
+		|-pay-creditcard-balances.txt
+	|-personal
+		|-vacation-plan.txt
+
+Linux command
+-------------
+#1. cd
+Inorder to switch between the directory of the filesystem we need to use cd bash command.
+
+a. How to change to the specified directory.
+~/> cd directoryName
+
+Note: always by using cd we can change to the directory within the path in which we are in
+
+	d1
+    |	 |    |
+    d2   d3   d4
+    |
+   dc1
+If we are in directory d1, by using cd we can change into one of the child directories of the d1 which are (d2, d3, d4) only.
+
+If we are in d2 directory, we cannot directly jump to d3 directory, we need to navigate to one-level up means parent so that we can goto any of the child of the parent.
+
+b. We can change to the root of the filesystem by using
+~/> cd /
+"/" = always represents root if it is used alone.
+
+Note: Linux filesystem is hierarchial and starts with only one root indicated by "/".
+
+In addition we can use "/" as an separator between the directories as below
+	d1
+	|
+	d2
+	|
+	d3
+We are in d1 and wants to navigate to d3, unless we go into d2 we cannot goto d3. 
+For this one way we can switch to d2, i.e.
+~/d1:/> cd d2
+~/d1/d2:/> cd d3
+we need to run #2 times the cd bash command to switch to d3
+
+Instead of this we can switch to d3 directly at oneshot by specifying the path to the directory d3 by using "/" as an operator as below
+~/d1:/> cd d2/d3 = This means first goto d2 and then after goto d3. We are specifying at one shot by giving the complete path of navigation through "/".
+
+c. How to navigate to the parent directory of the current directory
+> cd ..
+
+d. How to navigate to the home directory location of the user
+~/> cd
+		or
+~/> cd ~ (tidle, character below the esc key on the keyboard)
+
+~ = it always represents the HOME directory of the user
+
+~/> cd $HOME
+$HOME = It is an predefined variable always points to the home directory of the current user.
+
+Note: There is no difference between ~ and $HOME, both are same and it's just a convinience of typing the command.
+
+e. How to navigate back to the directory from where we came
+~/> cd -
+takes back to the previous working directory from where we navigated from
+=========================================================================
+
+#2. ls
+ls bash command is used for listing files and folders of a given directory. By default if no directory has been passed as an input, it shows/lists files and folders of the current working directory.
+There are many forms of "ls":
+
+a. How to see all the files and folders in the current working directory
+~/> ls
+
+b. How to see the files and folders of a specific directory other than the current working directory
+~/> ls directoryPath
+
+for eg..
+~/todolist/102024/finance:/>
+now we want to see files and folders in 082024 directory from here
+
+~/todolist/102024/finance:/>cd ../../082024
+		(OR)
+~/todolist/102024/finance:/>cd ~/todolist/082024
+
+c. How to see the files/folders along with sub-directories of the specified directory respectively?
+~/> ls -R directoryName
+here R stands for recursively
+
+for eg..
+~/>todolist
+   |-082024
+		 (files)
+	 |-092024
+		 (files)
+	 |-102024
+		 |-personal
+		 	(files)
+		 |-finance
+		 	(files)
+	
+~/todolist:/>	ls 
+ls = only shows the files/folders of the current working directory. it doesnt shows the child directories and their sub-directory contents recursively
+but if we wish to see the contents of the current working directory along with child directories recursively we can use
+~/> ls -R /todolist
+
+d. How to list files/folders using ls with no color?
+~/> ls --color=none
+
+Note: ls command by default lists all the files and folders using color coding. If it's an directory, it displays it in blue color and if it's an plain file, it displays in white color. If it's an executable file, then it displays in green color.
+
+e. How to see the long listing of fies and folders using ls?
+~/> ls -l
+displays long list of files and folders with lot of information in tabular format
+FileType Permissions SymLinks owner group size(kb) last modified dat filename/directory
+
+FileType: is the first character in the list that indicates what type it is
+d = directory
+- = regular file
+
+f. How to see the output of ls in human readable format?
+~/> ls -lh
+h = human readable format, that means the size are displayed in kb, mb, gb based on its size.
+=======================
+
+#3. How to know type of a file
+A file can be:
+a. text file
+b. audio
+c. video
+d. image
+e. pdf
+etc
+By looking at the file, how do we determine what type of file it is?
+In general when we are creating the files, we use file extensions to specify what type of file it is by using 3 characters
+Windows OS heavily relies on .3 character extension to identify the file type and associate applications in using that file.
+
+for eg..
+If the filetype is
+i. .jpeg or .png or .gif = windows OS opens the file in Image Viewer Application
+ii. .mkv = opens in video player application
+iii. .txt = opens in notepad or textpad
+
+So from the above, identifying the filetype is very important for an OS to associate a default program in using that file.
+
+But when it comes to linux OS, it doesn't uses the file extensions to determin what type of file it is. So it means we don't have to create files in linux OS with extensions.
+
+Then how does linux OS identifies the type of the file?
+Linux will determine what type of file it is by looking into the contents of the file automatically.
+
+But when it comes to user, if the files are created without extensions, we cannot know by looking at the filename what type of file it is?
+To help us in identifying the type of the file, linux OS bash interpreter has provided "file" command
+
+~/> file filename
+displays the type of the file
+===============================
+
+#4. How to see the details of a file?
+The details of the file means 
+	- author
+	- last modified date
+	- size
+	- permissions
+	- memory address location on the harddisk
+
+> stat filename
+stat stands for statistics, it gives us the statistical information about the file
+==================================
+
+#5. rm
+rm stands for remove and is used for removing/deleting a file from the filesystem.
+Note: Once we remove the file using rm, it is an permanent delete and cannot be restored.
+
+a. How to remove an existing file?
+~/> rm filename
+
+b. How to remove multiple files?
+For eg..
+$HOME
+|-favorites
+|-wishlist
+|-stories
+
+> rm favorites
+> rm wishlist
+> rm stories
+
+Note: all the linux commands takes multiple arguments as inputs, rather then typing 3 times the same rm command, we can pass #3 filenames as input at one shot
+
+~/> rm favorites wishlist stories
+
+c. How to delete a directory?
+There are 2 ways we can delete a folder or a directory
+
+#first approach:  
+~/> rmdir directoryName
+
+rmdir deletes/removes a directory only when the given directory is empty. If the directory is not empty, we should manually go into the directory and remove all the files and sub-directories inside it before deleting the directory.
+
+for eg..
+$HOME
+|-library
+  |-comics
+	|-file.txt
+	|-adventure
+		|-action
+			|-file2.txt
+		|-war
+			|-file3.txt
+
+if we want to delete the directory "library", first we need to delete file2.txt, war, file2.txt, action, adventure, file.txt, comics and then finally library
+Starts with the lowest in the hierarchy to the top, this is safe approach of deleting the directory, because we always knows what we are deleting.
+
+But it is lengthy process and if we have lot of sub-directories with files, we need to navigate all the way down in the tree and delete and takes more time.
+
+Instead we can use #2 approach
+
+#second approach:
+~/> rm -r directoryName
+
+here r stands for recursively delete all the files/folders under the specified directory along with the given directory.
+
+d. How to forcibly delete a file on the filesystem?
+~/> rm -f filename = it won't prompt for confirmation while removing special files.
+===============================
+
+#6. Moving files and folder
+---------------------------
+mv stands for move, it is used for moving a file from one directory to other directory.
+
+$HOME
+|-tourplans
+	|-aug
+		|-trip1.txt
+	|-sep
+		|-trip2.txt
+	|-oct
+		|-trip3.txt
+|-archives
+
+a. How to move a file from one directory location to a different directory location?
+~/> mv sourceFile destinationDirectory
+
+for eg.. move trip1.txt file from /aug directory to /sep directory
+~/tourplans> mv aug/trip1.txt sep/  
+
+b. How to move a directory along with its conents from source to the destination directory?
+~/> mv tourplans/aug archives/
+
+for eg.. move tourplan/aug/ to archives/ directory
+~/> mv tourplan/aug archives/
+
+c. How to move the contents of a directory into another directory?
+Note: Here we don't want to move sep/ directory rather just move the contents of the sep/ directory into archives/
+
+~/> mv tourplans/sep/* archives/
+
+d. How to rename a file or directory?
+Ans: In bash, there is no command for renaming a file or directory. But we can logically rename a file or directory by using "mv" itself.
+
+$HOME
+|-products
+	|-footwear.txt
+	|-kitchen-appliances.txt
+	|-furniture.txt
+
+We want to rename kitchen-appliances.txt to appliances.txt
+~/products> mv kitchen-appliances.txt appliances.txt
+
+If we don't specify the destination directory and gave another filename, it works as rename.
+
+To rename a directory in the mv specify the destination directory as non-existing, so that it consider it as a rename.
+~/> mv products globalProducts
+=======================================
+
+#7. cp
+cp stands for copy used for copying files/folder from one location to the another location or just to duplicate the files or folders by creating one more copy. By using cp, the source/destination files will not be moved(it is not cut/copy), rather it would only copy the existing file into new directory.
+
+$HOME
+|-products
+	|-popular
+		|-mens-fashion.txt
+		|-clothing.txt
+		|-jewellery.txt
+	|-trending
+
+a. How to copy a file from one location to another location?
+Copy clothing.txt from popular/ directory into trending/ directory using cp command
+~/products:/> cp popular/clothing.txt trending/
+
+During the time of copy we can specify a different name with which the file should be copied into the destination directory as below:
+~/products:/> cp popular/mens-fashion.txt trending/mens-apparels.txt
+
+Now the mens-fashion.txt file will be copied into trending/ directory with name mens-apparels.txt
+
+b. How to copy a directory along with its contents into another directory?
+cp only copy the file from one location to another location.
+cp by default doesn't works for directories. If we want to copy the directory and its contents into a different location we need to user -R(recursively) switch.
+
+$HOME
+|-products
+	|-popular
+		|-mens-fashion.txt
+		|-clothing.txt
+		|-jewellery.txt
+	|-trending
+
+warehouse/
+
+We want to copy popular/ directory into warehouse/
+~/products:/> cp -R popular/ warehouse/
+ 
+If we want to just copy the contents of the popular directory into warehouse/
+~/products:/> cp -R popular/* warehouse/
+================================
+
+#8. Redirector operators
+------------------------
+Every bash command takes the input data(if any) from the STDIN(keyboard) and writes/generates the output onto STDOUT(console/monitor). If we want to change the input(STDIN) or output(STDOUT) of the bash commands then we need to use redirector operators.
+
+There are 2 types of redirector operator:
+a. < = input redirector operator, to 'redirect the input for a bash command.
+b. > = output redirector operator, to redirect the output out of a bash command to a different destination other than STDOUT.
+
+a. How to write an output message onto the STDOUT?
+~/> echo "message"
+
+The echo bash command takes an message as an input and writes that to the STDOUT.
+If we want to redirect the output generated by the echo to a different destination other than STDOUT then we can use ">" output redirector operator.
+
+for eg.. If we want to write the output generated by the above echo bash command into a file, then we can use output redirector as below:
+~/> echo "message" > filename
+~/> echo "Good Morning" > greetings
+
+Note: If the output file we specified here is an existing file with data, it will replace the contents of the file with new output that is being generated. Incase if the file we specified doesn't exist, it creates an new file by writing the content.
+
+If we don't want to replace the contents of the existing file rather if we wish to append to the existing data, we need to use ">>" (append operator)
+
+~/> echo " James!!" >> greetings
+
+Now the greetings file will be appended with " James!!"
+
+b. How to create an file with data by reading the data from the STDIN(interactively) from the user?
+Creating a file with data interactively
+~/> cat > filename
+
+Every linux command takes the input from the STDIN and writes the output to STDOUT
+
+cat filename = takes the input from the file we passed and writes the output to STDOUT. Here already input redirection is happening because cat is not taking the data from STDIN, rather it is taking the input from the file we supplied.
+
+cat filename is equal to cat < filename
+From this we can understand, for any command if we are passing argument means we are using input redirection implicitely.
+
+So if we don't supply any filename as an input, the cat takes the input from STDIN and writes the output to STDOUT
+~/> cat
+Now the cursor waits from the input from the keyboard and writes the output to STDOUT until we press ctrl+d, it keeps going.
+
+c. How to copy the contents of one file into another file without using cp?
+~/> cat < file1 > file2
+==================================
+
+#9. Using regular expression within the bash commands
+There are 3 characters we can use as expressions aspart of the bash commands
+1. * = for any character of any match
+2. ? = single character match
+3. [] = given a range of characters within which a single character match
+
+$HOME
+|-products
+	|-lg-32-led-television.txt
+	|-lg-40-led-television.txt
+	|-lg-55-4k-television.txt
+	|-samsung-32-led-television.txt
+	|-samsung-40-qled-television.txt
+	|-samsung-55-qled-television.txt
+	|-lg-75-oled-television.txt
+	|-sony-bravia-32-lcd-television.txt
+	|-boss-speakers.txt
+	|-boss-7.1-home-theater.txt
+	|-hytachi-7.1-home-theater.txt
+	|-sony-5.1-home-theater.txt
+	|-apple-15-pro-mobile.txt
+	|-samsung-S23-ultra-mobile.txt
+	|-google-pixel9-mobile.txt
+	|-playstation5-gaming-console.txt
+	|-xbox-x10-gaming-console.txt
+	|-nintendo-switch-gaming-console.txt
+	|-hp-pavilion-16inch-laptop.txt
+	|-dell-inspiron15-laptop.txt
+	|-apple-macbook15-laptop.txt
+	|-dell-lattitude700-laptop.txt
+	|-acer15-laptop.txt
+	|-ibm-lenovo16-laptop.txt
+
+1. How to see all the list of files and folders within the products/ directory?
+~/> ls -l products/
+
+2. How to see all the files and folders inside the products/ directory manufactured by apple?
+~/> ls apple*
+
+3. How to see all the televisions of led type?
+~/> ls *led*-television.txt
+
+4. Show all the products manufactured by any vendor whose brand name has 2 characters only?
+~/> ls -l ??-*
+
+5. Show all the laptops manufatured by any vendor whose brand name starts with "d" or "h"?
+~/> ls -l [dh]*-laptop.txt
+
+6. Remove all the laptops within the products/ directory?
+~/> rm *-laptop.txt
+
+7. Copy all the sony products into sony/ sub-directory within the products
+~/products:/> mkdir sony
+~/products:/> cp sony* sony/
+
+8. Move all the televisions into televisions/ sub-directory within the products?
+~/products:/> mkdir televisions
+~/products:/> mv *-television.txt television/
+===================
+
+#10. Working with ranges in bash commands
+We want to execute a shell or bash command repeatedly over the range of arguments/inputs then we need to use ranges repeatedly with {}
+
+For eg.. We want to print 1 to 5 numbers onto the console, this can be done by using echo as below
+~/> echo 1
+~/> echo 2
+~/> echo 3
+~/> echo 4
+~/> echo 5
+
+It is time taking and repeatitive in executing the same command only with different input/argument passed. The argument value is taking a range of values from 1 to 5, in this case instead of repeatedly writing the same echo command we can use ranges
+~/> echo {1..10}
+
+We want to create dairy files for all the days within the month.
+For eg.. Aug month has 31 days, we want to create dairy files with dairy-day1.txt dairy-day2.txt dairy-day3.txt .... dairy-day31.txt
+~/> mkdir aug
+~/> cd aug/
+~/aug:/> touch dairy-day1.txt
+~/aug:/> touch dairy-day2.txt
+..
+
+Instead we can directly use ranges as below
+~/aug:/> touch dairy-day{1..31}.txt
+
+1. How to remove the dairy files between 20 to 29 days?
+~/aug:/> rm dairy-day{20..29}.txt
+
+Note: The ranges can be used on alphabets also as below:
+~/> echo {a..z}
+
+Note: There is an difference between [] and {}:
+	[] = group of inputs(choice of inputs) = within the group we are choosing one
+	{} = range of inputs
+============================
+
+#11. Hidden files in linux OS
+In linux OS, if we create a file/folder starting with "." aspart of it, then linux treats the file/folder as hidden and will not be displayed when we use ls command.
+
+~/> touch .passwords 
+As the above file starts with ".", it will be treated as an hidden files
+
+When we use ls command, these 2 files and folders will not be shown. Incase if we want to see these hidden fies, we need to use "-a" switch in ls command (-a stands for all)
+~/> ls -la
+======================================
+
+#12. Working with more
+When we are using linux bash commands, these commands produces the output upon execution, sometimes the output generated by these commands are pretty huge and will not fit onto the screen or terminal buffer and would automatically scrolled up.
+
+Along with this the terminal buffer size is always limited and can hold only few lines of last generated output and previous output would be rolled up(cleared) automatically.
+
+Due to this we will not be able to read easily or scroll-up back into the previous lines of output generated by the bash command. If we want to see all the output of a command and scroll through it line by line, we can use "more" utility with any bash command.
+
+~/> tree /
+Since we ran tree command on "/" root of the filesystem, it generates huge amount of output and auto-scrolls the content, we can use "more" for scrolling through the lines easily
+~/> tree / | more
+
+book.txt = Inside this book.txt file, we have 1000 lines of story or contents, when we use cat command, the output generated by the cat will be rolled-up(cleared) automatically only by showing last few lines of output. We can use "more" here as well for scrolling through the output of cat as below:
+~/> cat book.txt | more
+==============================
+
+#13. How to view content of the file:
+We can view content of the file by using the following commands:
+a. cat
+b. tac
+c. rev
+d. head
+e. tail
+f. more
+g. less
+
+a. View content by using cat:
+-----------------------------
+Note: cat is the word derived from con"cat"enation
+~/> cat < filename
+here < is optional
+~/> cat filename
+
+i. While display data if we want line numbers, we have to use -n option
+~/> cat -n filename
+
+ii. Line numbering skipped for blank lines, then we should use -b option
+~/> cat -b filename
+
+iii. To view multiple file contents simultaneously
+~/> cat file1 file2 file3 file4
+
+Various utilities of cat command
+--------------------------------
+i. Create a new file with some content
+~/> cat > filename
+write date
+ctrl+d -> to save and exit
+
+ii. To append some extra data to an existing file
+~/> cat >> filename
+some more extra data
+ctrl+d -> to save and exit
+
+iii. To view content of the file
+~/> cat < filename
+	or
+~/> cat filename
+
+iv. To copy content of one file to another file
+~/> cat file1 > file2
+
+v. To append one file content to other
+~/> cat file1 >> file2
+
+vi. To copy content of multiple files to a single file
+~/> cat file1 file2 file3 > total
+
+b. tac
+It is the reverse of cat.
+It will display file content in reverse order of lines.
+This is vertical reversal.
+
+~/> tac filename
+
+c. rev
+rev means reversal
+Here each line will be reversed
+It is horizontal reversal
+
+~/> rev filename
+
+d. head
+-------
+To view the specified number of lines from the top of the file.
+
+head is something similar to cat. The "cat" is used for seeing the contents of a file similar to that head is also being used
+
+We have a file with huge content around 1000 lines or more inside it. If we use cat command, it renders all the 1000 lines leaving or taking us to the bottom of the terminal displaying last page of the content only and few times we will not be able to scroll-up due to the terminal buffer size.
+
+i.)
+~/> cat filename = renders the entire content of the file
+
+Instead if we are only interested in top few lines of the files, rather than all the content of the file, we can use "head"
+~/> head filename = only displays the top 10 lines by default as an output
+
+ii.) If we want to see only specific number of lines from the top of the file, then we can use -n option as below
+~/> head -n filename
+
+for eg..If we want to see only top 5 lines, we can use
+~/> head -5 filename
+	OR
+~/> head -n 5 filename
+
+iii.)
+~/> head -n -5 filename
+It will display all the lines from top except last 5 lines
+
+iv.)
+~/> head -c 100 filename
+It will display the first 100 characters of the file.
+In linux every character will take one byte. Hence it will display first 100 bytes of file content.
+
+v.)
+~/> head -c -100 filename
+It will display total content except last 100 bytes of data
+
+e. tail
+-------
+To view file content from the bottom of the file.
+
+tail is also same as cat, means it is also used for seeing the contents of a file. But it is used for seeing only the latest or bottom lines of a file. Usually tail is used for accessing the log files that are generated by the applications.
+i.)
+~/> tail filename = By default shows the bottom 10 lines within a file
+
+~/> tail -n 5 filename
+	OR
+~/> tail -5 filename
+	OR
+~/> tail -n -5 filename
+Above command shows the 5 lines from the bottom of the file.
+
+ii.)
+~/> tail -c 100 filename
+It will display 100 bytes of content from bottom of the file.
+
+iii.)
+tail has another option called -f. -f stands for flow of the file
+
+There are programs that runs longer amount of time and keeps generating the log output and writes on to the log file. If we want to monitor the program execution and see the continuous logg output  generated by the program during its execution, we can use -f option
+
+~/> tail -f out.log
+This will allow us to stream/browse through the live log output generated by the program into the out.log file.
+
+Q.) Write a shell program that generates a bunch of numbers and writes to an log file, so that we can see the live log output using -f option in tail command.
+
+a. Inorder to write the shellscript program we use gedit(like notepad in windows) text editor as below
+~/> gedit printNumbers.sh
+#~/bin/bash
+I=1
+while [ $I -lt 200 ]
+do
+	echo $I >> /tmp/out.log
+	I=$[I+1]
+	sleep 1s
+done
+
+b. grant execute permission to the program
+~/> chmod u+x printNumbers.sh
+
+c. run the program
+~/> ./printNumbers.sh
+
+d. open a new tab in the console and use tail -f to view the live log generated by the program
+~/tem:/> tail -f out.log
+
+Note: head and tail are the most popular and frequently used bash commands in scrolling through the log files while debugging.
+
+Note:
+cat = To show file content as it is
+tac = To show file content in vertical reversal
+rev = To show file content in horizontal reversal
+================================
+
+#14. How to compare the contents of 2 different files?
+There are 2 bash commands for comparing the contents of the files
+a. cmp
+b. diff
+
+a. cmp
+------
+cmp stands for compare, it is used for comparing 2 files byte by byte and output the first difference between the file contents
+
+fruits.txt
+apple
+banana
+papaya
+grapes
+
+fresh-fruits.txt
+apple
+banana
+papaya
+oranges
+grapes
+
+When we use cmp for comparing 2 files, it compares fruits.txt and fresh-fruits.txt byte by byte and shows the first difference between those 2 files
+fruits.txt fresh-fruits.txt differ: 21 byte, line 5
+
+If there is no difference between those 2 files, then it will not show any output.
+
+1. 
+~/> cmp fruits.txt fresh-fuits.txt
+fruits.txt fresh-fruits.txt differ: 21 byte, line 5
+
+2. -b option
+If we use -b option, it shows at what byte the difference has been found in the file
+
+~/> cmp -b fruits.txt fresh-fruits.txt
+fruits.txt fresh-fruits.txt differ: 21 byte, line 5 g ascii code o ascii code
+
+3. -i option
+Ignore the specified number of bytes starting from top in both the files while comparing
+
+~/> cmp -i 18 fruits.txt fresh-fruits.txt
+fruits.txt fresh-fruits.txt differ: 3 byte, line 1
+
+4. -i n1:n2 option
+Ignore starting from the top of the file n1 bytes in first file and n2 bytes in second file and compare
+n1 = ignore n1 bytes in first file
+n2 = ignore n2 bytes in second file
+and begin comparing the files
+
+~/> cmp -i 18:20 fruits.txt fresh-fruits.txt
+
+5. -l option
+List all the difference between both the files
+
+~/> cmp -l fruits.txt fresh-fruits.txt
+byteposition line fruits.txt fresh-fruits.txt
+...
+...
+
+b. diff
+-------
+diff stands for difference, it is used for comparing the contents line by line within the given 2 files. Not only the diff command helps in comparing the contents, it displays recommendations through special symbols indicating how to make the contents of the 2 files identical.
+
+Symbols
+1. a = add
+2. c = change
+3. d = delete
+4. > = refers to the contents of the file2
+5. < = refers to the contents of the file1
+
+1. add recommendation
+
+groceries
+---------
+chanadal
+urdal
+sugar
+
+groceries_mustbuy
+-----------------
+chanadal
+urdal
+sugar
+rice
+
+~/> diff groceries groceries_mustbuy
+3a4
+> rice
+
+After the 3rd line in groceries add the 4th line of groceries_mustbuy and the 4th line is
+> rice
+
+2. change recommendation
+
+products
+--------
+sony 32inch led
+iphone 15 pro
+bose soundbar
+
+warehouse-products
+-------------------
+sony 32inch led
+iphone 15 pro
+sony playstation5
+
+~/> diff products warehouse-products
+3c3
+< bose soundbar
+---------------
+> sony playstation5
+
+Change the 3rd line products with the 3rd line in warehouse-products.
+The line to be changed in left-side file is 'bose soundbar' and the line in the right side id > 'sony playstation5'
+
+3. delete recommendation
+
+fruits
+-------
+grapes
+papaya
+oranges
+banana
+
+fresh-fruits
+------------
+grapes
+papaya
+oranges
+
+~/> diff fruits fresh-fruits.txt
+4d3
+< banana
+
+Delete the 4th line in fruits, so that from the 3rd line onwards both the file becomes identical
+
+4. multiple differences between the files (recommendations)
+
+vegetables
+----------
+brinjal
+tomato
+chillies
+onions
+potatoes
+beetroot
+carrot
+spinach
+oil
+
+shoppinglist
+------------
+brinjal
+tomato
+sugar
+chillies
+onions
+curryleaf
+beetroot
+carrot
+spinach
+
+~/> diff vegetables shoppinglist
+
+a. add recommendation
+2a3
+> sugar
+
+b. change recommendation
+5c5
+< potatoes
+----------
+> curryleaf
+
+c. delete recommendation
+9d8
+< oil
+==================================
+
+#15. man pages
+--------------
+In linux or bash interpreters, every command has plenty of options, it would be practically impossible to memorize all the options of each command to use it. So to help us in quickly browsing through the manual or documentation of a command, linux has provided an utility called "man".
+
+man command
+man stands for manual and provides documentation about the command we asked.
+
+~/> man command
+===================================
+
+#16. wc = word count
+wc is an handy bash utility/command for counting the number of lines, words and characters within the given text file.
+
+~/> wc filename
+By default shows the number of lines, number of words, number of characters and filename.
+If we want we can individually gets the count of each of them using the above described options.
+
+we can use switches in finding the count as below
+-l = To print only number of lines
+-w = To print only number of words
+-c = To print only number of characters
+-lw = To print only number of lines and words
+-lc = To print only number of lines and characters
+-wc = To print only number of words and characters
+-L = To print number of characters present in longest line
+
+We can use wc command for multiple files simultaneously
+~/> wc file1 file2 file3
+
+====================================
+
+#17. How to know the currently logged-in user of the linux operating system?
+Ans:
+~/> whoami 
+=> shows the currently logged-in user of the linux operating system.
+=====================================
+
+#18. How to find all the users who are currently logged-in into the linux operating system?
+Ans:
+Linux is an multi-user operating system, and multiple users can parallely login and can use the operating system of the computer.
+We can find all those list of users using 
+
+~/> who 
+=> shows all the users and TTY of the users there are logged-in
+====================================
+
+#19. 
+Each user who wants to access the linux operating system must and should register by creating an user account. All the users information who are registered with linux will be stored by the operating system aspart of a file.
+
+/etc/passwd
+
+/etc = It is the directory in which installed software package configuration files are stored.
+/etc/passwd = can be accessed by only the super user, so we need to use sudo command while accessing the file contents
+
+~/> sudo cat /etc/passwd
+===================================
+
+#20. How to know the hostname or ip address of the computer?
+
+~/> hostname
+=> It is used for accessing the machine name of the computer.
+
+~/> hostname -I
+=> Displays the ip address of all the network interface cards attached to the computer
+===================================
+
+#21. How to know the os version of the linux kernel?
+~/> uname -r
+=> shows the linux kernel version we are on.
+
+The os name and version of it is stored aspart of /etc/os-release file, we can access this file info using 
+~/> sudo cat /etc/os-release
+
+~/> lsb_release -a
+=> shows the os name and release version
+lsb stands for linux stand base release
+
+~/> hostnamectl
+=> used for querying and changing the hostname and related settings
+=====================================
+
+#22. How do we know which shell interpreter we are using?
+~/> echo $0
+=> shows the name of the shell interpreter we are using.
+=====================================
+
+#23. Working with Pipe operators (Pipes)
+----------------------------------------
+Pipe(|)
+-------
+Pipe is indicated by the symbol "|" and is used for passing the output of an linux command as an input to another linux command.
+~/> command1 | command2
+
+When we join 2 commands with a pipe operator, always the command execution starts with left-most command(here command1), the output that is produced by the command1 will be passed as an input to the command2, performs operation and generates the output onto an STDOUT destination.
+
+In this way we can combine any number of commands together by using pipe(|) operator
+~/> command1 | command2 | command3 ....
+
+Note: Pipes is the most powerful feature of the linux bash interpreter, where we can recreate infinite number of linux command by joining the commands using pipe(|) operator.
+
+1. How many users are currently logged-in into the linux system?
+~/> who | wc -l
+
+Here the "who" returns list of logged-in users that is passed as an input to the "wc" asking to count the number of lines that are there within the output of who.
+
+2. How many user accounts are there within the linux system?
+~/> cat etc/passwd | wc -l
+
+3. How to see only the top 5 files/directories within the given directory?
+~/> ls -l | head -5
+
+4. How to retrieve top 3 eanks within the given files?
+rank
+----
+10
+20
+97
+94
+93
+100
+38
+92
+
+~/> cat rank | sort -gr | head -3
+a. cat = output the contents of the rank file
+b. sort = takes the output of the cat command as an input, does a numeric(-g) sort and writes the output in reverse(-r) order.
+c. head = takes the output of sort as an input and displays the top 3 lines
+
+5. Find the count of word within the 1st line of a file.
+~/>cat book | head -1 | wc -w
+		(OR)
+~/> head -1 book | wc -w
+
+6. Sort and list the files and directories based on the size of the files.
+~/> ls -l | sort -gk 5
+=========================================
+
+#24. find command
+-----------------
+find is one of the powerful command and repeatedly used shell command. It is used for searching the files or folder of the filesystem of the computer matching with the names. By using "find" we can search for files or folders by name including the sub-directories also.
+
+~/movies (10000: collection)
+	|-action
+		|-golden-eye.mkv
+		|-taken
+		|-johnwick
+	|-adventure
+		|-journey
+		|-journey2
+		|-castaway
+		|-indianajones
+	|-comedy
+		|-friends
+		|-deadpool
+		|-badboys
+		|-dumb-and-dumbers
+	|-thriller
+		|-the-mask
+		|-joker
+		|-hush
+		|-aliens
+	|-horror
+		|-anabelle
+		|-nun
+		|-nun2
+		|-conjuring
+		|-exorcist
+		|-evil-dead
+
+We want to find an movie within the movies/ directory or any of the sub-directories, inorder to do this, we need to manually navigate into movies/ directory and all of the sub-directories under it to locate and access an movie we are looking for. But this process of manually looking up/searching through for a movie is time taking process and might endup in failure in locating the file because of human error.
+
+Instead of we manually navigating through the directories for searching the file, we can make use of "find" bash command.
+
+~/> find directory/ -name "filename"
+directory/ = refers to the directory in which we wanted to search for the file with the given name -name "filename".
+
+~/> find movies/ -name "nun"
+
+There are plenty of options in using the find are available
+1. 
+~/> find directory/ -name "pattern"
+It search for the file matching with the filename of the given "pattern" under the specified directory/ including the sub-directories and displays the list of matching filenames along with their path one per each line.
+
+2. 
+~/> find directory/ -name "pattern" -print
+Displays each matching outcome in a new line. (Default option)
+
+3.
+~/> find directory/ -name "pattern" -print0
+Displays all the matching outcomes in one-single line
+
+4.
+~/> find /directory -type f|d -name "pattern"
+-type f = stands for finding only files matching with pattern, ignore the directories
+-type d = only matching directories and ignore the files
+
+5.
+~/> find directory/ =name "pattern" -empty
+Returns all the empty files or folders of the given matching pattern
+
+6. How to search for the files/folder for multi-pattern matching
+List down the file/folder names matching with either pattern1 or pattern2
+
+~/> find directory/ -name "pattern1"
+~/> find directory/ -name "pattern2"
+This will result in 2 list of outputs, rather we want combined output of the files of any matching "pattern1" or "pattern2"
+
+~/> find directory/ -name "pattern1" -o -name "pattern2"
+
+7. How to perform an action or an operation on the outcome of the file command?
+We can use find with -exec option to perform an operation on each outcome returned by the find command
+
+syntax:
+~/> find directory/ -name "pattern" -exec command {} \;
+
+~/> find movies/ -type d -name "a*" -exec ls {} \;
+=================================
+
+#25. grep (content-based searching)
+-----------------------------------
+find is used for searching files/folders matching with their name with given pattern, whereas grep is used for content based searching which means we want to find files(only) whose content is matching with the given phrase or text.
+
+~/ledgers
+	|-customer1-ledger
+	|-customer2-ledger
+	|-customer3-ledger
+	|-customer4-ledger
+	|-customer5-ledger
+
+In each of the ledger files we are storing financial entries of the customers along with their bank accounts. We want to search for the ledger files who holds/carries the financial transaction of a specific bank account no, how can we do this?
+
+We need to goto each customer*-ledger file, open the contents of it, read it to see whether the file contains the bank account no that we are looking for. If there are just 2/3 files, we can quickly look into them by opening each of them, but we have to find over a bunch of files and it would be difficult job and endup in spending huge time and might lead to failure in identifying the files as well.
+
+To help us in quickly searching for the files whose content is matching with given text: grep bash command has been provided.
+
+It is an powerful utility used frequently in searching through the log files for a give "log message" or for an "error".
+
+There are plenty of options are available in grep:
+1. 
+~/> grep "text" filename
+It display all the matching lines of the text specified.
+
+2.
+~/> grep -R "text" directory/
+Search within the given directory including the sub-directories recursively to find the files that contains the "text" content. If found, display the matching lines where the text was found along with filename.
+
+3.
+~/> grep -R -n "text" directory/
+-n print the line number where the text content was found in that file
+
+4. By default grep search for the given text within the file matching with case, if we want to search with ignore case, we can use -i option as below
+
+~/> grep -i "text" filename
+~/> grep -Ri "text" directory/
+
+5.
+~/> grep -w "text" filename
+By default grep performs partial matching and returns the content. Incase if we want to only perform whole word matching then we can use -w option
+
+6.
+~/> grep -o "text" filename
+-o indicates print only the matching words, don't print the matching lines
+
+7.
+~/> grep -c "text" filename
+-c indicates count of matching text within the file
+
+Below options are very useful when we are browsing or accessing the log files for exceptions/errors and information message
+
+8.
+~/> grep -digit "text" filename
+for eg..
+~/> grep -2 "text" filename
+Print along with matching lines, 2 lines above and 2 lines below as well
+
+9.
+~/> grep -Adigit "text" filename
+Print along with matching lines, digit number of lines after the matching line as well
+
+10.
+~/> grep -Bdigit "text" filename
+Print along with matching lines, digit number of lines before the matching line as well
+
+11.
+~/> grep -v "text" filename
+-v stands for inverted match. Print all the lines that doesn't have these matching text
+
+
+grep allows us to use regular expressions also aspart of the text phrases we are searching for, for more complex searches as below:
+1. [] = any one of the single character match within the group
+2. [1-10] = matches one character within the given range of characters
+3. ^ = this pattern must appear at the beginning of the line
+~/> ls -l | grep ^d
+It shows only the directories within the current directory
+
+4. . = matches with any one character
+5. $ = this pattern must match at the end of the line
+~/> ls -l | grep .sh$
+Show only the shell scripting files within the current directory
+
+6. \ = escape character
+7. * = occurence of a pattern zero or once
+8. .* = nothin or any number of matches
+
+Note: List all the contents of a directory other than directories
+~/> ls - l | grep -v ^d
+=====================================
+
+#26. text editors
+-----------------
+Text editors are used for creating new files or modifying existing files or viewing the contents of a file.
+In linux ther are 2 types of text editors:
+1. gui
+In ubuntu distros, the gedit is the default text editor that will be shipped and can be used for editing/viewing the file contents. In addition we can install any third party gui text editors in the market like:
+	1.1. atom
+	1.2. sublime text editor
+	1.3 vs code
+	etc
+
+Q.) How to install vscode editor?
+a. download the .deb file of the vscode editor to the ~/Downloads directory
+b. cd ~/Downloads
+c. sudo apt update -y
+d. sudo apt install -f ./codeXXXX.deb
+
+The same process we can follow installing the atom or any text editor.
+
+2. non-gui
+----------
+Majority of the times linux OS is being used in headless mode(no gui), hence any of the above gui based text editors will not be available. So linux OS has provided non-gui text editors to help us in editing or creating or viewing the contents of the files in CLI mode.
+
+There are several non-gui text editors are available aspart of the linux distros. Out of various text editors avaliable, there are 2 popular text editors widely used in the linux OS(across any distros):
+a. vi
+b. nano
+
+a. vi
+-----
+The most popular and default available text editor in majority of the linux distros is "vi" text editor. vi stands for visual editor and a more improved version of the vi editor is vim(stands for vi improved). vim has more options than the vi editor
+
+vi is the classic text editor and is not much user friendly, so a improved version on top of the vi editor has been built with more options which is "vim" editor and is much user friendly.
+
+Majority of the linux distros doesn't provide vim editor, rather ships vi editor only. So inorder to use vim editor we need to explicitely install it by using the below command
+~/> sudo apt update -y
+~/> sudo apt install -y vim
+
+Q.) How to use vi/vim editor?
+There are 3 modes in vi/vim editor
+1. command mode
+2. input mode
+3. exit mode
+
+1. command mode
+Upon opening the vi or vim editor, by default it enters into the command mode. Within the command mode any keypress on the keyboard will not key-in the letter into the file, rather would be considered as a command and performs relevant operation on the contents of the file.
+
+for eg..
+yy = copy the current line
+p = paste
+o = open an new line below the current cursor position
+
+In this way each letter on the keyboard is associated with an relevant operation and would be carried on the contents of the file when we are in "command-mode".
+At anypoint we can return back to the command mode by pressing "esc" key on the keyboard
+
+2. input mode
+In the input mode we can write the data onto the file by typing the keys on the keyboard. To enter into the input mode we need to press "i" key on the keyboard from the command-mode.
+
+Note: In vim editor, it is called "insert" mode
+
+Incase of vi editor:
+When we are in input mode, we cannot move the cursor across the contents of the file by using the arrow keys. The arrow keys are also taken as an input and inserts ascii equivalent data for those keys into the file, so to move the cursor across the contents of the file, we need to mandatorily go back to command mode and use commands to move cursor, thus causing a great level of in-convenience to the user and hence considered as non-user friendly editor.
+
+Incase of vim editor:
+Even when we are in insert mode, we can still move the cursor across the contents of the file by using the arrow keys.
+
+3. exit mode
+Ater entering the data into the file, either we can save the contents of the file or dis-card the changes and can quit from the editor by going into exit mode.
+
+To enter into exit mode, we need to go back to the command mode by pressing "esc" key on the keyboard. Then press ":" on the keyboard, thus enters into exit mode.
+Here we have few options available:
+a. w + enter = write/save the content
+b. q + enter = quit
+c. wq + enter = write and quit
+d. q! + enter = quit without saving the contents
+
+1. We can open the editor with a new file by using
+~/> vi filename
+
+This will create an blank file under the current working directory, unless we write and quit, the file will not appear or saved on the harddisk.
+
+Q. What are the commands available aspart of the command mode in vi/vim editor?
+1. A = append the data at the end of the current line
+2. a = append the data at the right-side of the cursor position
+3. I = insert the data at the beginning of the current line
+4. i = insert the data at the current cursor position
+5. O = open a new line above the current cursor position
+6. o = open a new line below the current cursor position
+7. r = replace a single character at the current cursor position
+8. R = replace the text from the current cursor position
+9. S = replace the current line
+10. yy = yanking (copy the line)
+	2yy, 3yy, nyy = copy the specified number of lines from the current cursor position
+11. p = paste
+12. x = delete a character at the current cursor position
+13. dw = delete a word
+14. dd = delete a line(2dd, 3dd, ndd)
+15. u = undo the previous action
+16. b = back to the beginning of the current word
+17. w = beginning of the next word
+18. e = end of the current word
+19. :linenumber = jump to the specified line in the file
+20. G = goto the end of the file
+21. ctrl + f = page forward
+22. ctrl + b = page backward
+
+23. How to search for an text within a file when we are using vi/vim editor?
+a. goto command mode
+b. /phrase + enter = to search for the given text phrase in the file upon pressing enter key, it shows the first matching text occurence within the file. To find the next matching press "n" key and to show previous matches press "shift +n". 
+
+2. nano text editor
+nano is another text editor that is popularly being used aspart of the linux OS as an non-gui editor. Unlike the vi/vim being programmers editor that needs to memorize lot of commands in using it, nano is an simple text editor that provides easy commands for editing the contents of an text file.
+
+nano is not available aspart of all the linux distros by default, we need to explicitely install, but in ubuntu distro along with vi, the nano is also provided by default.
+
+Q.) How to use nano editor?
+~/> nano filename
+If there exist already a file with that name, it opens up for editing the file, otherwise creates an blank file for writing.
+
+Q.) What are the commands available aspart of the nano editor?
+1. ctrl + o (enter key) = writes the unsaved changes into the file
+2. ctrl + x (enter key) = quit if there are any unsaved changes it asks for do you want to save or not (y/n)
+3. ctrl + w = search for a word in the file
+4. ctrl + \ = to replace a test phrase with different
+5. ctrl + k = cut the line
+6. ctrl + u = paste the line
+7. ctrl + c = displays the line number, characters with the file
+8. ctrl + / = foto a specified linenumber
+9. alt + e = redo
+10. alt + u = undo
+11. alt + a = goto selection mode to mark the content
+12. alt + 6 = copy the selected content
+===================================================
+
+#27. Compression and Packaging
+------------------------------
+a. Packaging
+We can package a directory of contents or bunch of files into one single file, so that it will be easily distributed over the network or through email. Packaging doesn't refers to compression, upon packaging the directory of contents or bunch of files, the original size of the contents will not be reduced.
+
+From this we can understand packaging means we are combining multiple files or directories into one single file, so that it can be transferred easily. Linux has provided an utility called "tar" used for packaging a directory or bunch of files.
+
+tar = stands for tape archieve
+options:
+1. -c = create
+2. -v = verbose
+3. -f = filename
+4. -x = extract
+5. -t = table of contents
+
+1. How to package the file using tar?
+When we package the contents of a directory or bunch of files, we generate a packaged file of extension ".tar" indicating it is an packaged file.
+
+~/> tar -cvf filename.tar directory/
+~/> tar -cvf filename.tar file1 fie2 file3
+
+2. How to extract the tar file?
+~/> tar -xvf filename.tar
+
+3. How to see the contents of the tar file?
+~/> tar -tvf filename.tar
+------------------------------------------------
+
+b. Compression
+If we want to reduce the size of the contents, then we need to use compression. Linux has provided 2 utilities gzip/gunzip which are used for compression and un-compression of the contents. In linux we cannot directly compress and un-compress the bunch of files/directory, first we need to package the files/directory into one-single file, then only we can compress the contents of it.
+
+Similarly when we uncompress, the contents will not be produced as outcome rather packaged filed will be resulted, then unpack the file to restore the contents back.
+
+For eg.. If we have a directory images/ with files as below
+1.jpeg
+2.jpeg
+3.jpeg
+4.jpeg
+..
+We cannot compress either directory/files directly, first we need to package them into a tar file, then we need to pass it as an input to the gzip to compress it.
+
+a. package into one-single packaged file
+~/> tar -cvf images.tar images/
+
+b. compress the contents of the tar file as below
+~/> gzip images.tar
+
+The gzip compresses the .tar file and generates .tar.gz file onto the filesystem (the original tar will not exists)
+
+How to uncompress and get the contents back?
+first uncompress and produce .tar file first from .tar.gz
+
+~/> gunzip images.tar.gz
+this will produce images.tar
+
+~/> tar -xvf images.tar
+this will generate images/ directory back
+
+From the above we can see that compression is a 2 step process of packaging and compressing or uncompress and unpack. Instead of doing in 2 steps we can perform compression in 1 single step itself using -z option aspart of tar utility as below
+
+~/> tar -czvf filename.tar.gz directory/ = -z option indicates compress(zip) the contents while packaging
+
+~/> tar -xzvf filename.tar.gz = uncompress and unpack
+======================================================
+
+#28. tr
+-------
+tr is used for performing 3 types of operation on a text content
+1. replace a single character in a given text
+2. we can delete a single character in a given text
+3. we can apply transformations on the entire text content passed as an input
+
+a. Replace a single character in a given text
+~/> echo "linux is great" | tr x s
+
+The above tr command replaces "x" letter with "s" letter and generates the "linus is great". It searches for all the occurence of "x" in the given tex and replaces with "s".
+
+b. Delete a single character in a given text
+~/> echo "Good Morning" | tr -d o
+
+It finds all the "o" in the given text and removes them from it.
+output: Gd mrning
+
+c. transform entire text content passed as an input
+There are lot of built-in transformations are available with tr
+a. :upper:
+b. :lower:
+c. :space:
+d. :digit:
+e. :alnum:
+
+~/> echo "Linux OS is highly portable" | tr "[:lower:]" "[:upper:]"
+~/> echo "Math is complex" | tr "[:space:]" _ = Math_is_complex
+~/> echo "Matrix2" | tr "[:digit:]" 3 = Matrix3
+~/> echo "Pa3swor#2" | tr "[:alnum:]" * = *********
+=================================================================
+
+User Management
+---------------
+Linux is an multi-user/multi-programming OS. Multiple users can either parallely or one after the other can use the linux OS computer. Incase if multiple users are parallely using the linux OS computer, the linux shares the physical system resources of the computer across all these users enabling them to use it.
+
+There are 2 type of users in linux OS:
+1. Root user
+2. Normal user
+
+1. Root user
+Root user is the super user of the linux OS machine, and it has un-restricted access to all the services and resources of the linux OS machine. He can control, restrict and access any of the resources of the machine like
+	a. user management = create/add, delete or modify the users and their permissions
+	b. file system management = The root user can see, modify or delete any of the files that belongs to any users of the linux OS machine
+	c. Process management = Can see and control all the processes of any of the users of the linux machine
+	d. System configuration = See and modify the OS configuration/settings
+	e. Hardware/device management = Enabling network adapter, bluetooth, mount/unmount devices, etc. 
+
+During the time of installing the linux OS, it prompts for username and the password. With username and password, the linux will does 2 things:
+a. It creates/setup the root user with the password that we supplied above with always the root user created with username as "root" only.
+b. In addition it creates one more normal user (with elevated sudo access: may not be same across all the distros, but applicable for debian ubuntu) with the username and password we supplied above allowing us to access the linux machine using that user.
+
+Q.) Does the root user is permitted to directly login into the linux OS machine?
+Linux doesn't permits the user to login directly into the OS as "root", as it poses a risk in performing accidental operations that leads to the crash or lost of information/settings within the system.
+
+There could be always a chance where user while performing operation, he/she could accidentally endup in deleting or modifying the system configuration files/settings that leads to crash of the machine. To avoid this the linux doesn't permits the users to login as root, so that the accidental deletions will be aborted with permission denied error by default.
+
+If the user desperately wanted to perform the operation of modifying some OS configuration, then let the user switch to root and carry out the operations.
+
+Q.) How can a normal user of the linux OS can switch as root in performing super user operations/actions?
+~/> su username
+
+su stands for switch user, we can use su to switch to an another user of the linux OS within the bash prompt.
+
+If we want to switch as a root user, we need to use
+~/> su -
+here "-" indicates switch as root user.
+
+Note: Root user is the "super" user of the computer and there can be only one root user per one linux OS machine and the name of the root user is always "root" and the home directory for the root user is /root.
+
+2. Normal user
+The root user can add other users into the linux OS machine, and these users are considered as "normal" users of the linux OS. The normal user will have access to their own home directory only and can create, view or modify the files within their home directory. Even the normal user cannot see the process that are launched by the other users of the linux OS machine.
+
+From the above discussion we went through, we can understand each linux OS user is being kept isolated from other users of the linux apart from "root". This means a file/folder or process that belongs to one linux user cannot be seen/modified/accessed by other users of the linux.
+
+But in a corporate environment, this may not work, because group of employees working within a corporate has to have access to the files/folders that are created by the other users inorder to collaborate and work within the environment.
+
+So the job of granting access permissions letting one user to see/access files/folders to the other users can be done by the owner of file or directory. But managing the access permissions, granting/revoking them to the individual users of the linux OS becomes tedious job, so to help us in granting/revoking the access as file/folder of an user to the other users, linux has introduced groups.
+
+We can create a group and assign users of similar access requirements based on their nature of work and can manage permissions in granting/revoking the access to an file/folder easily.
+	a. developergroup = all the developers can be created under one group
+	b. administrators group
+	etc
+
+So ther are 3 entities in linux OS:
+1. Root User
+2. Normal User
+3. Groups
+
+Q.) What are the attributes of data being attached to a user or a group?
+Root user can create additional users or groups in the linux OS. At the time of creating a user, the linux takes few attributes of data, stores or associates to the user while creating/storing it.
+
+While creating an user:
+Each user is being associated with below attributes:
+a. uid = For each user a unique id is generated and associated with the user.
+b. username = each user is assigned with a unique username that acts as an label for the uid of the user through which we can identify the user quickly.
+c. password = used for authenticating the user inorder to grant access to the machine/operating system.
+d. home directory
+e. shell interpreter
+
+For a group also, few attributes of data associated when we create a group:
+a. gid = group id will be auto-generated and associated for each group we create in linux OS machine.
+b. groupname = each group is being uniquely identified with the given groupname.
+
+Note: The users and the groups information that we have created within the linux OS is stored under
+i.  /etc/passwd = all the users information
+ii. /etc/group  = all the groups of the linux machine
+
+For more important aspects related to "root" user of the linux OS:
+a. There can be only one root user could exist per one linux OS machine and he has total control of all the system resources/services of that linux machine, so everything lies under one place or under one control which is "root".
+
+b. The root user is created during installation of the linux OS itself with the password we supplied during the installation.
+
+c. The root user home directory location is quite different from other users of the linux system
+	The root home directory is : "/root"
+	For all the other linux users the default home directory is "/home/$USER"
+
+d. Always the root user is identified with username as "root" only, and can't be changed.
+
+e. The root user of the linux OS is associated with an id as always "0" only. Whichever the user within the linux OS has uid equals to 0 is identified as "root".
+
+Q.) How to create or add an user into the linux OS?
+Ans: The root user can only add new or other users into the linux OS machine. While adding an user, linux performs few activities automatically as below:
+
+1. The linux OS generates an uid automatically by incrementing last generated uid, it fetches the last generated uid from /etc/passwd, increments and associates to the user it is adding.
+
+2. Every linux user must and should be associated with a group(primary group/default group). For this linux OS, while adding the user it creates an group with the same name of the user.
+While creating this group, it generates gid automatically by fetching last generated gid from /etc/group increments it and associates to the group.
+
+Then associates the user to the group it has created while adding the user.
+
+3. For every user that we create, linux OS will creates an default home directory for the user under /home/$USER.
+
+4. For every user that we create, linux will associates an default shell interpreter for the user (default: /bin/sh)
+
+The root user can only add other users of the linux OS, because all the commands related to user management are part of /sbin directory for which only the root user has access.
+
+There are 2 ways of adding or creating users in linux OS:
+1. useradd
+2. adduser
+
+#1. useradd
+useradd is the core system linux command/utility provided by the linux OS aspart of the bash interpreter. By default when we add an user using useradd, it performs below activities in adding the user:
+a. It creates an group with the username we provided by generating an gid
+b. then it creates an user with the username supplied by generating uid and associates the user to the group(default) created above.
+c. While creating the user, the useradd doesn't prompts for login password for the user, which means the user is created without any password.
+d. The user will not be associated with the home directory
+since the user doesn't have password and an home directory, the user cannot login directly into the system.
+
+#Purpose?
+If we wish to have the user created within the home directory and password and enable him to login and access the machine directly we need to perform few more steps manually as below:
+a. switch to the root user by running sudo su - (prompt: root password)
+b. goto /home directory
+c. create a new home directory under the /home with name as username of the user we added above
+For eg.. if we have created an new user above with username as "jack", then create an home directory for the jack under /home/jack.
+
+~/> mkdir /home/jack
+
+d. now change the group/owner for the newly created directory to jack user and jack group itself
+~/> chmod jack:jack /home/jack
+
+e. reset the password for the user jack
+~/> passwd jack
+It prompts for the new password to be added to the user jack upon completing the above activities manually we should be able to login into the linux system as jack.
+
+Instead of we performing the above seps manually in creating the user, there are few switch(options) provided aspart of the useradd command that we can use in creating the user as below:
+
+-m = indicates create the home directory for the user also(this creating the home directory for the user under /home/$USER)
+
+-d location = if we don't specify the location, the default location will be /home/$USER, but incase if we wish to have a different home directory location other than /home, we can use -d location option
+
+-s shell = the default shell interpreter is /bin/sh, we can change this by using -s option
+
+-p password = creates the user directly with the supplied password
+(but the -p option always treats the password that we supplied as crypt(3) encrypted password with which it creates the user)
+welcome1(encrypted password)
+
+Q.) How to supply encrypted password in creating the user?
+There are #2 options we have:
+#1. create user with useradd without password and then reset the password after creating.
+~/> sudo useradd -m -s /bin/bash jack
+~/> sudo passwd jack #reset
+
+#2 we can generate an encrypted password using openssl passwd command as below
+~/> openssl passwd -6 passwordToEncrypt
+
+this command generates an encrypted password of the given password, then use this encrypted password while adding the user in single quote as shown below:
+~/> useradd -m -s shell -p 'encryptedPassword' username
+
+#2. adduser
+By using useradd, even though we can add a user, it is a little tidious job and should perform few operations manually after creating the user, instead debian(ubuntu) distro has provided an handy utility "adduser"
+
+adduser is also an /sbin(super user) command and requires sudoers access inorder to execute it
+
+~/> sudo adduser username
+~/> sudo adduser matt
+
+upon running the above bash utility, it prompts for bunch of inputs along with password and creates the user into the linux OS machine, it's the most cleanest and quickest way of creating the user.
+
+1. How to know the details of an user we have created or any other user in the linux OS machine?
+We want to know the user information like
+a. uid
+b. gid
+c. primary group
+d. other groups into which the user is associated(part-of)
+
+~/> id
+id represents identity information of an user
+the id command shows the current logged in user information with all the details described above
+
+~/> id username
+here username specific identification information will be shown
+
+2. How to find the groups in which an user is there?
+~/> groups username
+this command shows all the groups in which the user is associated with
+
+if we just use groups without passing username, it shows the groups of the currently logged-in user
+
+3. How to create a new group in the linux OS machine?
+Only the root or sudoer can create a group in linux OS machine
+
+~/> groupadd groupname
+
+for eg.. we can create an devopsgroup using the below command
+~/> groupadd devopsgroup
+
+with this command a new group called "devopsgroup" will be created by associating an auto-generated gid for the group by incrementing the last generated gid + 1 from /etc/group.
+
+4. How to create a new group with specified gid, rather than auto-generated gid?
+~/> groupadd -g gid groupName
+this will create a new group with the supplied gid
+
+5. How to add a new user with a specified/supplied uid instead of auto-generated uid?
+~/> sudo useradd -m -s shell -u uid username
+
+6. How to create a user within an existing group instead of the default group of the user?
+By default useradd creates a new group for the user with groupname as username and associates the user to that usergroup, but if we want a user to be created with primary group as one of the existing group we need to supply gid of the group to which we want the user to be associated at the time of creating the user as below
+
+~/> sudo useradd -m -s /bin/bash -g gid bob
+
+7. How to delete an existing user?
+There are #2 commands to delete an existing user
+a.
+~/> userdel username = core linux system command
+b.
+~/> deluser username = debian(ubuntu) distro command
+
+~/> deluser --remove-home username
+cleans up the home directory along with deleting the user
+both of these are superuser commands and can be used by only root or sudoer
+
+When we execute the above commands in deleting an user:
+a. If the user associated primary group has only the user as a member with no one in that group, then the group is considered as orphan and will be removed.
+
+b. The home directory of the user will not be deleted by default, since the files/folders inside the home directory of the user is being used/accessed by other users of the linux, we should explicitely use --remove-home with deluser to delete the home directory.
+
+8. How to add an group to an existing user?
+We have an existing user associated with an primary group already, now we want to add the user into another group rather than primary group, this can be done using usermod command.
+
+For eg.. we have joe user created in joe group, now we want to add joe into devopsgroup also, this can be done using the below command:
+~/> usermod -aG grp1, grp2, grp3 username
+
+usermod stands for modify the user, here -a stands for add operation/action and G indicates group which means modify the user and add him into Group specified
+
+~/> usermod -aG devopsgroup joe
+
+9. How to rename an existing user?
+~/> usermod -l newusername oldusername
+
+here -l stands for login name of the user, so usermod means modify user login name
+
+10. How to delete an existing group?
+If there are no users associated with the group as primary group, then only we can delete group
+
+~/> groupdel groupname
+
+11. How to change the password of an existing user?
+~/> passwd username
+
+12. How to change the uid of an existing user?
+~/> usermod -u uid username
+
+13. How to reset the groups of the user instead of adding the user into one more group?
+For eg.. joseph is in primary group joseph and in other groups "devopsgroup", "supportgroup". Now we want to reset all the groups of joseph and want to add him into developersgroup, here we don't want primary group to change only instead all the groups we want to reset
+
+~/> usermod -G groupName username
+
+14. How to remove an user from a group?
+~/> gpasswd -d user group = delete the user from the group
+~/> gpasswd -a user group = add the user into the group
+-----------------------
+
+Sudoers
+-------
+1. Root User: Root user has the unrestricted access to all the services and resources of the linux OS. There can be only one root user per one linux OS machine.
+
+Q.) Why there is only one root user is allowed per one linux OS machine?
+Ans: To have the control over the system and its resources with only one user centrally, so that it eliminates the conflicts of interest when we have multiple.
+
+2. Normal User: Any other user other than the root, that is created/added by the root is called an normal user. A normal user has only access to the home directory of his own and can see or manage the processes that are owned by him.
+
+Q.) Within the organization or corporate environment, having only one user can manage in carrying administrative activities for bunch of people or machines?
+Ans: No, it would be very difficult to manage with one root user, as we always have a team of administrators working for handling the administrative activities for all the employees within the organization. In such case we need several root users each per one administrator member within the administration team.
+But this is against the policy of linux OS allowing multiple roots.
+
+To address the problem of having multiple root users with administrative access, the linux OS has introduced "sudoers".
+
+Sudoers stands for "super user do", which are allowed to perform administrative activities or operations by running /sbin commands of the root/super user.
+
+Q.) What is the difference b/w root and sudoer?
+Ans: The root can enforce restrictions on a sudoer by permitting him to perform
+a. specific /sbin commands or super user commands (Command Alias)
+b. on specific group/users only (User Alias)
+c. from an specific source ip address machine only (Host Alias)
+
+Q.) How to elevate a normal user of the linux operating system as sudoer?
+Ans: The root user can promote any other normal user of the linux OS as sudoer. It can be done in #3 ways:
+1. We can make an user as a sudoer through /etc/sudoers (file)
+2. We can make an user as a sudoer through creating a new file entry within /etc/sudoers.d/ (directory)
+3. By adding an user into sudoer group
+
+#1. Through /etc/sudoers (file)
+One way to promote a normal user as sudoer is through /etc/sudoers file. The /etc/sudoers is an special configuration file that is located under /etc directory. Wihin this file the root user has to configure a normal user as an sudoer, this can be done in 2 ways:
+
+Within the /etc/sudoers file there are #2 sections:
+a. users section
+If we want to promote a single user as a sudoer, then we need to configure an entry under users section
+
+b. groups section
+If we want to promote a group of users(consists of several users) as sudoers then we need to configure an entry under groups section.
+
+1. How to promote a single user as sudoer?
+we need to make an configuration entry under users section of the /etc/sudoers file with the below syntax:
+
+username ALL=(ALL:ALL) ALL #root
+
+username = is the name of the linux user we want to promote as sudoer
+ALL = indicates executing an sudo command from which location (here ALL indicates from any location)
+ALL = indicates can execute super user commands on all the users
+ALL = indicates he can execute commands on any group of users
+ALL = indicates any commands on any group of users indicated above
+
+if we grant access for running any commands on any user or group from any where, he is equally same as "root" user.
+
+Q. How to edit the sudoers file?
+By default the sudoers file can be accessed only by the root user and he has read-only access. If we modify the sudoers file in-correctly then all the users losses the sudoers permission
+
+There are 2 ways we can edit the sudoers file
+1. visudo
+visudo is a bash utility provided by the linux that can be used by an root user for editing the sudoers file. When we type visudo on the terminal or bash prompt it directly opens /etc/sudoers file either in nano/vim editor allowing the root to edit the file
+
+upon editing the file, when we save it, the visudo editor performs syntax check or validation on the contents of the file. if there is an syntax error, it will not allow us to save the sudoers file. upon successful validation only it permits us to save the sudoers file
+
+2. using an temporary file approach
+Instead of we directly modifying the original sudoers file, we create a temporary copy of the /etc/sudoers file, modify the contents of the temporary file, validate and replace with the original
+
+#1 create a clone copy of the sudoers file
+sudo cp /etc/sudoers /etc/sudoers.tmp
+
+#2. grant write permission to the temporary file
+sudo chmod u+w /etc/sudoers.tmp
+
+#3. edit the temporary file by adding an new entry as required
+sudo vim /etc/sudoers.tmp
+
+#4 check the changes we made are valid or not valid using visudo as below
+visudo -cf /etc/sudoers.tmp
+
+#5. if the validation is success, then we can override the sudoers file with sudoers.tmp file
+chmod u-w /etc/sudoers.tmp
+mv /etc/sudoers.tmp /etc/sudoers
+
+2. group section
+-----------------
+we can promote a linux group of users as sudoers easily rather than promoting individual users by adding an group entry in the /etc/sudoers file under group section as below
+
+For eg.. if we have #10 system administrators working in the company/organization and has linux user accounts created for them. instead of promoting each system administrator as sudoer, we can create a sysadm group, add #10 users into the sysadm group
+and then promote sysadm group of users as sudoers by making an entry under group section of /etc/sudoers file
+
+%groupName ALL=(ALL:ALL) ALL
+% = here % indicates its not an username, it is a group name to linux operating system
+
+#3. /etc/sudoers.d directory
+There is an @includedir entry inside the /etc/sudoers file, the includes /etc/sudoers.d directory. The @includedir entry means, all the files that are placed inside the /etc/sudoers.d/ directory, their file entries are included inside the /etc/sudoers file
+
+For example we want to promote james normal user as sudoer one way we can promote james as a sudoer is
+1. modify the /etc/sudoers file, and add an entry for james
+
+instead of modifying the /etc/sudoers file we can use /etc/sudoers.d directory approach as below
+
+#2
+2.1 create a new file under /etc/sudoers.d directory, for eg.. with a name as username itself "james"
+sudo touch /etc/sudoers.d/james
+
+in this way per each user we want to promote as sudoer we can create one new file under /etc/sudoers.d directory
+
+2.2 now into this file make an entry for promoting james as an sudoer
+sudo vim /etc/sudoers.d/james
+
+james ALL=(ALL:ALL) ALL
+:wq
+
+With this james becomes sudoer. At later point of time we want to drop james as sudoer, the only thing we need to do is remove the james file from /etc/sudoers.d/ dir rather than editing the /etc/sudoers file
+
+This approach is quite easy in promoting users as sudoers, rather than editing the /etc/sudoers file
+
+Passwordless sudoers
+--------------------
+Once the root user elevated a normal user as sudoer permitting the user to execute superuser commands on behalf of any user or group.
+The sudoer has login into the linux operating system machine using the password, then user use sudo command for executing any of the superuser commands on the terminal
+~/> sudo command -options args
+
+1. Upon using the sudo, the sudoer will be prompted for password to authenticate(as a security measure)
+2. But if we observe already the sudoer has authenticated and granted access to the linux operating system machine, so again prompting for password while using sudo is a bit annoying.
+
+Especially when we are implementing automation in deploying, installing, configuring the applications/systems through automation process.
+Repeatedly prompting for the password of the sudoer while using the sudo commands makes it difficult.
+
+Q. How to avoid repeatedly being prompted for password while using sudo command?
+Ans: Passwordless sudoers access configuration is introduced to avoid repeatedly being prompted for password while using sudo commands.
+
+While the root user elevating the normal user as sudoer, he can configure the user to execute the sudo commands without prompting for password as below:
+/etc/sudoers or /etc/sudoers.d/
+username	ALL=(ALL:ALL) NOPASSWD:ALL
+
+How to fix the errors in sudoers file?
+(safety)	
+Incase if we have modified or corrupted the sudoers file by making wrong entry syntactically, everyone losses the sudoers access and will not be able to execute any superuser commands on the machine. How can we fix such error in sudoers file?
+	
+There is an utility "pkexec" that is used for running any linux command as an another user, if we have not specified the username of the user onbehalf of whom we want to execute the command, it by default executes under root user permission
+
+pk stands for polkit, it provides an organized way for non-privileged process to communicate with priviliged ones
+
+Now we can edit the sudoers file using
+pkexec visudo /etc/sudoers
+
+now it prompts for root user password, upon providing will gain access to sudoers file for modification.
+
+Q. How to enforce restrictions while elevating an normal user as sudoer?
+Before understanding how to enforce restrictions on a sudoer, let us explore few things around sudo command:
+1. How does an sudoer can execute super user commands?
+by using sudo
+
+sudo command
+upon using sudo, the linux operating system prompts for sudoer password: *****, after authenticating the user, it executes the super user command onbehalf of "root"
+	
+Note: By default: sudo command executes an bash command on-behalf of the root user only
+
+2. How can a sudoer can execute a linux command onbehalf of any other user of Linux operating system?
+~/> sudo -u username command
+Login as sudoer/root user and try to run below command on behalf of other user
+~/> sudo -u username touch filename
+- permissions	owner		group
+				username	username
+
+3. How can a sudoer can execute a linux command onbehalf of any group?
+~/> sudo -g groupname command
+
+~/> sudo -g groupname touch filename
+- permission	owner			group
+				loggedinuser	groupname
+
+Enforcing restrictions on a sudoer:
+To enforce restrictions on sudoers permitting them to perform sudo operations we need to use aliases:
+(or)
+using aliases we can enforce restrictions on a sudoer
+
+There are 4 types of aliases are there
+1. user_alias  
+2. runas_alias
+3. host_alias
+4. cmnd_alias
+
+4. Cmnd_Alias
+using Cmnd_Alias we can enforce restriction on a sudoer, defining which bash commands can be executed by the sudoer as a root using (sudo) command
+
+#CMD ALIAS
+Cmnd_Alias BASIC_ADMIN_CMDS=/usr/bin/ls,/usr/bin/touch,/usr/bin/apt,/usr/bin/useradd
+
+steve ALL=(ALL:ALL) BASIC_ADMIN_CMDS
+
+1. User Alias
+If we want to promote a specific list of users as sudoers with restrictions enforced on them we have #4 options
+
+1. /etc/sudoers (user section)
+per each user make an entry in the usersection of the /etc/sudoers file, configured with restrictions interms of Aliases. but this results in duplicate entries per each user
+
+2. /etc/sudoers (group section)
+we can group all the users whom we want to promote as sudoers with restriction into one group, and promote the group of users as sudoers with restrictions
+
+%groupname ALL=(ALL:ALL) ADMN_CMNDS
+
+here these users we want to promote as sudoers are not related and we dont want to group them, so this is not an feasible option
+
+3. /etc/sudoers.d/ directory
+per each user create a new file inside the /etc/sudoers.d/ directory with username, making entry to promote the user as sudoer with restrictions. But this will also results into duplicate configuration across the user sudoer files
+
+4. promote the user as sudoer by adding them into sudoers or adm group. but in this case we cannot enforce restrictions
+
+so how to promote a specific list of users as sudoers by enforcing restrictions?
+We can make use of User_Alias
+
+User_Alias = is used for creating a Alias with specific list of users, we want to promote as sudoers with restrictions and use the alias to promote them as below
+
+User_Alias SUPPORT_USERS=bob,joe,mark
+
+#promote User_Alias of users as sudoers:
+SUPPORT_USERS ALL=(ALL:ALL) ALL
+
+here we are promoting all the SUPPORT_USERS alias of users as sudoers at one shot.
+
+#2. Runas Alias
+If we want to restrict sudoer to perform sudo operations onbehalf of a specific user/group only then we need to use Runas_Alias
+
+For eg.. we want to promote steve as a sudoer, granting him to execute sudo operations only on glen or supportgroup of users only, we can do this using Runas_Alias
+
+Runas_Alias DAYTON_OFC_USERS=joe,jack,glen,mark,%daytonsupportgroup
+
+steve ALL=(DAYTON_OFC_USERS) ALL
+
+Now steve is allowed to perform sudo operations for only the DAYTON_OFC_USERS (joe,jack,glen,mark and daytonsupportgroup users)					 
+
+#4. Host Alias
+We can grant an sudoer to execute sudo operations if the user is connected through a specific host machine only
+Host_Alias ORG_HOSTS=192.168.10.11,192.168.10.13
+user ORG_HOSTS=(ALL:ALL) ALL
+
+syntax:-
+User_Alias Host_Alias=Runas_Alias Cmnd_Alias
+-------------------------------------------------------------------------------------------------
+
+File permissions
+-----------------
+Granting access to a File or Folder of a user to other users of the Linux operating system means, granting permissions on the File or Folder allowing them to perform operations on them.
+	
+There are #3 types of permissions we can grant on a File or Folder 
+1. read
+2. write
+3. execute
+
+These permissions on a File means:
+1. read = we can view the contents of the file. 
+2. write = modify the contents of the file
+3. execute = if it is an program file we can run the program
+
+Folder means:
+1. read = we can list the contents of the folder using ls
+2. write = we can create new files/folders or delete existing files or folders inside the directory
+3. execute = we can cd into that directory
+
+These permissions are represented using symbols.
+	1. read = r
+	2. write = w
+	3. execute = x
+	if the user is not entitiled with a permission indicated with -
+		
+These permissions can be granted for a File or Folder to:
+1. owner
+2. group
+3. others
+
+by default when a File or Folder is created by a user
+1. the user who has created the File/folder will become the owner of the File or Folder
+2. The primary group of the owner will be tagged as File/Folder group
+3. the rest of the users who is not owner and not part of the File/Folder group are considered as others.
+	
+We can control access to a File or Folder by granting (read,write,execute) permissions to these people (owner,group,others).
+
+Q. How to change the permissions of a File or Folder?
+Ans: A File or a Folder is created always with a default permissions assigned by the Linux operating system based on umask value. Later on the owner or root (sudoer) can change the permissions of a File/Folder.
+	
+There are #2 ways we can change the permissions of a File or Folder:
+1. symbolic notation
+2. octal notation
+
+The linux has provided an bash utility called chmod which stands for "change mode of access". This command supports both symbolic and octal notation of changing the permissions for a file or folder
+
+2. octal notation
+In octal notation, the three permissions (read, write, execute) has been assigned with weights (number) as below
+
+read(r)       = 4
+write(w)      = 2
+execute(x)    = 1	
+no permission = 0	
+a zero indicates no permission, so total it makes to:8 which is why named as octal notation. We can use chmod command for changing the permissions for a File/folder as below
+
+chmod ownerweightgroupweightotherweight filename
+chmod 640 expenses.txt
+based on the permission we want to assign for a owner, group or others sum the weights of the permissions each per individual and set the permission
+
+chmod 340 expenses.txt
+owner: -wx
+group: r--
+others: ---
+	
+using octal notation we cannot add or remove a permission for a owner,group or others specifically we need to always reset the permissions for all the people while using octal notation
+
+Few points to remember:
+1. always while using octal notation we need to set the permissions for all the #3 levels (owner, group, others)
+2. octal notation will reset the existing permissions on a File/Folder with new permissions we passed	
+
+#2. symbolic notation
+For setting the permissions for a File/Folder in symbolic notation chmod has provided pre-defined symbols indicating permissions, levels and operators
+
+permissions:
+read    = r
+write   = w
+execute = x
+
+levels:
+owner  = u
+group  = g
+others = o
+
+operators:
+add permission    = +
+revoke permission = -
+reset permission  = =
+	
+Incase of symbolic notation
+1. we can add,remove or reset permissions to a specific level (owner, group, others) on a File/Folder
+2. We dont need to always reset the permission to change
+
+syntax:
+chmod leveloperatorpermission,leveloperatorpermission,leveloperatorpermission file/folder
+
+For eg we want to 
+chmod u+rw expenses.txt = grant rw permission to the owner of the file
+chmod u+x expenses.txt  = grant or add execute permission to the owner
+
+chmod g=r expenses.txt = reset the permissions for the file group grant only read
+
+chmod u+rw,g=r,o=r expenses.txt
+
+it seems like symbolic notation is very flexible when compared with octal, but in realtime people use octal notation because without caring about what the currents permissions, I always can reset with whichever we want.
+	
+We can recursively change the permissions of all the files and sub-directories including the directory by using -r option as below
+~/> chmod -r permissions file/folde
+
+Q.
+1. How to change the file group of an existing file?
+2. How to change the owner of an existing file?
+
+We can use a bash utility chown stands for “change owner”.
+syntax:
+~/> chown user:group filename/folder
+
+~/> owner: mike  group: healthsciencegroup
+finance/
+	|-expenses.txt 
+	|-cashbook.txt
+	|-ledger.txt
+	
+~/> chown -R user:group directory/
+this reset the ownership of the directory including all the sub-directories and files inside it recursively	
+
+umask
+-----
+Q. How does the default permissions to a File/Folder will be assigned by the Linux operating system at the time of creating them?
+The linux operating system computes the default permissions for a File or Folder using umask.
+
+Default max permissions
+a. For a file is 666, because linux don't want to have execute permissions on a file by default due to security reasons.
+b. For a folder is 777, because execute permission on a folder is cd(change directory).
+
+Note: The umask variable value of a user is being used to derive the default permission that is assigned to a file or folder as below:
+
+a. For a normal user umask value is 0002
+For a file
+max permissions  :	666
+normal user umask: 0002
+				   ----
+				   0664 = -rw-rw-r--
+
+For a folder
+max permissions  :	777
+normal user umask: 0002
+				   ----
+				   0775 = -rwxrwxr-x
+Note: the first 0 in the umask indicates the number is an octal number
+
+b. For a root user, umask value is 0022
+For a file
+max permissions  :	666
+normal user umask: 0022
+				   ----
+				   0644 = -rw-r--r--
+
+For a folder
+max permissions  :	777
+normal user umask: 0022
+				   ----
+				   0755 = -rwxr-xr-x
+
+we can change the default permissions being assigned to a File or Folder by changing the umask variable value of a user using the below command
+~/> umask 0ownergroupother
+
+Note: When we change the umask variable value for a user, it will be temporary and upon restart or logout/login into the terminal the operating system will reset the umask variable value of the user to default.
+	
+How to make a permanent change of umask variable value for an user?
+To permanently make a change in umask variable value we need to add an entry into ~/.bashrc file 
+
+~/> vim ~/.bashrc
+goto the end of the file and an entry as below
+
+umask 0026
+then write and quit
+
+Q. How to know the umask value of a user?
+~/> umask
+used for printing the default umask value of a user.
+-------------------------------------------------------------------
+
+DPKG (Debain Packaging tool)
+----------------------------
+How many ways of distributing the software packages are there?
+There are 3 ways the software packages are distributed aspart of the linux operating system
+1. Repository-based packaged software distribution
+	1.1 distro repositories (marketplace)
+	Categories: Main, Universe, Restricted, Multiverse
+	
+	1.2 vendor repositories
+		1.2.1 vendor registries/repositories needs to be registered/add into the Linux operating system 
+		(under: /etc/apt/sources.list or /etc/apt/sources.list.d/)
+			- manually
+			- apt-add-repository
+			
+  1.3 to secure the communication between the linux operating system and repositories, gpg keys are used
+		- download the public gpg keys of the vendors and add them into linux operating system under keyrings. Along with that we need to tag this gpg key while adding the repository
+		
+	1.4 apt tool for managing the packaged softwares that are distributed through repositories
+	
+2. direct downloadable software packages
+	1. dpkg
+	2. apt install -f
+	
+3. ppa repositories
+------------------
+
+1. packaged software through repository based distribution
+package repositories are published with software packages from various different sources
+1. distro vendors 
+2. third-party vendors or opensource software contributors
+3. individual or small-scale commercial software vendors
+
+In addition these repositories can be classified into #2 types
+1. distro repositories
+2. third-party vendor repositories
+
+as there are many different sources and types of software packages being published into the repository like
+1. distro packages  = trusted / certified by the distro vendor itself
+2. opensource software contributor published an software package = no guarantee
+3. third-party commercial software vendor published an software package = restricted usage
+since all of these packages are published into same repository, differentiating and identifying them is difficult. So to help us in identifying and differentiating these packages inthe repository, categories in package repositories are introduced.
+	
+There are #4 categories are there in package repositories
+1. main          
+canonical or opensource software packages that are verified by the distro vendor are published under main category
+
+2. universe
+community maintained software packages are distributed as universe category
+
+3. restricted
+proprietary vendor software packages like device drivers etc are distributed under restricted category
+
+4. multiverse
+licensed / legal restricted software packaged are distributed under multiverse category
+
+Q. How to install the software packages on ubuntu operating system?
+Ubuntu has provided #2 tools for installing the software packages
+1. apt
+apt stands for "advanced packaging tool", it is an package manager that helps us in browsing, searching, downloading, installing and upgrading the software packages from the ubuntu repository. 
+The apt not only downloads and install the software packages, along with that it identifies the dependent software packages, downloads and install them automatically.
+
+2. dpkg
+dpkg stands for "debain packaging tool" and it is an installer. unlike apt, the dpkg will not download the software package from the repository and it will not resolve the dependencies or downloads and installs the dpeendent software libraries or packages.
+	
+so if we have downloaded an software package (.deb) locally on our computer, then we can quickly install it using dpkg
+
+Q. How to install a software package using apt tool?
+apt is an package manager tool, that helps us in downloading, browsing, installing, and upgrading the software packages from ubuntu repository onto an ubuntu operating system machine.
+	
+#1.
+How does the apt tool knows the location or information about the software package repositories it has to talk to, so that it can connect, browse, search and download the software packages from?
+	
+The information about the software package repositories are stored in the linux operating system under /etc/apt/sources.list file. If we want we can add our own repository by adding an entry in the /etc/apt/sources.list file 
+(or)
+there is a directory /etc/apt/sources.d.list which is similar to "sudoers.d directory". In this directory we can create one file per one repository we want to register. In that file we can add the information/address of the repository along with gpg keys 
+
+By adding a new file per repository under /etc/apt/sources.d.list directory it makes us easily manage the repositories. We can quickly add, remove  repositories individually than modifying the sources.list file
+
+The syntax of adding a new repository information into the sources.list or sources.list.d directory is as below.
+deb repositoryURL version category
+for eg..
+	
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ jammy main universe
+
+How to add the repository information into the sources.list file?
+There are #2 ways we can add repository information into the sources.list file
+1. manually add the repository into /etc/apt/sources.list file or create a new file with repository entry under /etc/apt/sources.list.d/ directory
+2. the ubuntu/debain has provided an utility or tool "apt-add-repository" 
+	
+1. manually add the repository information into /etc/apt/sources.list
+we can use any text editor of our choice like vim or nano for adding an repository into /etc/apt/sources.list by following the syntax format explained above. We should be careful in editing the file, otherwise will results in corrupted state
+
+2. use apt-add-repository tool
+instead of modifying the /etc/apt/sources.list file manually that could results in syntactic errors, the ubuntu has provided easy tool called "apt-add-repository". it takes repositoryURL as input and adds the entries into sources.list file automatically
+
+Securing repository communication
+----------------------------------
+To ensure all the communication that takes place between the ubuntu operating system package manager tool and repository being secured the end-to-end encryption needs to takes place, for this ubuntu uses gpg keys
+
+gpg keys (GNU privacy guard) an implementation of public key cryptography (standard operations for encryption keys)
+	
+every repository vendor provides an public singing keys that should be used for communicating with that repository. Before communicating with an repository we need to download and add the gpg keys into the repository store of the operating system, so that pat tools uses these gpg keys in communicating with repository securely
+
+1. How to download the gpg key from a vendor?
+wget gpgKeyURL
+this will download the gpg key and store it as a keyfile on our local machine
+
+2. How to add the key into the keystore of the operating system?
+sudo apt-key add keyfile (deprecated)
+
+upon adding the key to the keystore, we can add the repository into the /etc/apt/sources.list file using apt-add-repository tool
+
+Then before using apt tool for browsing, installing/upgrading the software packages we need to run
+sudo apt update (command)
+	
+to download the repositories indexes and caches them locally onto the operating system.
+--------------------------------------------------------------------------------------------------------------------------
+How to add google linux apt repository?
+1. download and add the gpg key into the keystore
+
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+
+2. 
+2.1 
+sudo apt-add-repository http://dl.google.com/linux/chrome/deb/
+
+or
+
+2.2
+sudo vim /etc/apt/sources.list
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ jammy main
+
+or
+
+2.3
+sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ jammy main" >> /etc/apt/sources.list
+
+To verify the apt google repository is added or not just run
+sudo apt update -y 
+
+this should cache the google repository index along with default distro repositories
+--------------------------------------------------------------------------------------------------------------------------
+In newer versions of ubuntu, the gpg keys should be installed as below.
+
+#1 install the necessary utilities for downloading and installing gpg keys
+sudo apt install wget gpg
+
+wget = downloading the file from remote server
+gpg = utility to convert the .asc into binary gpg format
+
+#2. download the key onto the local filesystem
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+
+#3. install the gpg key into keyrings directory
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+
+#4. add the repository info into /etc/apt/sources.list or /etc/apt/sources.list.d/ directory as below
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+
+#5 remove the locally downloaded key file for install
+rm packages.microsoft.gpg
+-------------------------------------------------------------------------------------------------------------------------------------
+How to use apt tool for installing, searching, browsing, upgrading, uninstalling the software packages on the ubuntu machine?
+There are bunch of commands provided aspart of the apt tool for performing software package management as below:
+
+1. sudo apt update -y 
+updates the local repository cache with new entries from the remote repository (refreshes the repository cache index)
+
+2. sudo apt install packageName 
+to install a specified software package onto the machine we use apt install, it ask confirmation before installing. If you want an non-interactive installation we need to use -y option
+
+3. sudo apt upgrade
+it checks for the newer version of installed software packages on the machine. if there are available then upgrades all of them to the latest versions available
+
+4. sudo apt search packageName
+we can search for specific software package using apt search
+	
+5. sudo apt list --upgradable
+shows the list of software packages for which the latest verions are available to upgrad
+
+6. sudo apt upgrade packageName
+will upgrade the specified package to the latest available
+	
+7. sudo apt remove packageName
+will uninstall the software package from the machine.  The remove will not cleans up any configuration files associated with that software package during un-installation
+	
+8. sudo apt purge packageName
+is same as apt remove, along with uninstalling the software package, it cleans up the configuration files associated withit
+
+9. sudo apt autoremove 
+if there are any unused software packages or libraries exists on the machine will be identified and removed automatically
+-------------------------------------------------------------------
+
+#2. direct downloadable packaged software distribution
+There are few vendors upon building the software applications, packages them into distro standard packaging format and distribute by themself through vendor websites. There could be several reasons behind distributing the software packages directly.
+	
+1. the vendor or software by itself could be very popular and want to distribute it through their official website
+2. these software packages might have restricted licensing/fee, unless being signed up the vendor dont want these packages to be used
+3. for a vendor to distribute a software package the distro package repository, it might take some time. ubuntu/distro vendor takes sometime to verify, validate a software package before publishing it onto the repository, this delays the process of distributing the software package by the vendor. so the vendor might choose the option of distributing the software directly through vendor website along with package repository (even though incase of opensource software)
+	
+To install such directly downloadable packaged software ubuntu operating system has provided dpkg.
+dpkg is an software installer, it is not an package manager. It means it doesnt download the software packages like apt or resolves the dependencies while installing an software package. If the dependent software package is not available, the installation will fail, so we need to identify the dependent software packages download/install them manually before installing the software package while using dpkg.
+	
+But apt is an intelligent tool that will identify the dependent software packages and installs them automatically before installing the requested software package
+	
+note: apt tool internally uses dpkg only to install the software package
+	
+How to install a software package using dpkg tool?
+1. sudo dpkg -i package.deb = install the supplied software package
+2. sudo dpkg -l = list all the softwaer packages installed on the machine
+3. sudo dpkg -s packageName = show the details of the software package specified along with its status indicating whether it is installed or not
+4. sudo dpkg -c package.deb = shows the contents of the software package provided
+5. sudo dpkg --unpack package.deb = unpacks the software package
+6. sudo dpkg -r packageName = uninstall the software package from the machine
+7. sudo dpkg -p packageName = purge the software package (this is similar to apt purge, removes the related configuration files) 
+8. sudo dpkg -l packageName = shows all the software packages matching with the given name along with their installed status
+
+while installing a software package through dpkg, if the installation has been broken because of dependent softwares are not available we can fix it by running the below command
+sudo apt --fix-broken install
+
+note:
+instead of using dpkg to install the downloaded software package .deb file, we can use apt tool itself. Incase if we install the downloaded software package through apt, it resolves the dependencies automatically while installing the software
+
+sudo apt install -f location.deb
+
+dpkg = debain packaging tool
+----------------------------------------------------------
+
+#3. ppa repositories
+ppa stands for "personal package archives". The software manufacturer vendors can publish or distribute their software packages which are under alpha/beta or early release software through ppa repositories.
+	
+The ubuntu has provided an launchpad tool: https://launchpad.net/ubuntu. Here anyone can register and create their own repository and publish their software packages to the world
+
+1. How to install the software packages from the ppa repositories?
+We need to add the ppa repository into the /etc/apt/sources.list file as a ppa repository by using the below command
+
+sudo apt-add-repository ppa:repositoryName
+
+after adding the repository we can use apt tool for searching and installing the software package on to the ubuntu operating system machine.
+----------------------------------------------------------------
+
+#4 binary software distribution
+To understand and use a binary distribution software, we need to know environment variables
+
+Environment Variables
+---------------------
+What are variables, what is purpose of them?
+Variables are placeholders in which we can store values 
+                or 
+named memory locations in which we can store values	
+So that we can refer the values within the program using their variable names we have assigned to them.
+	
+In a program if we are using any values directly those are called literals or constants. always avoid using literals or constants in a program directly.
+	
+calculator.sh
+--------------
+#!/bin/bash
+SUM=$[ 10 + 20 ]
+SUB=$[ 20 - 10 ]	
+MUL=$[ 10 * 20 ]
+DIV=$[ 20 / 10 ]	
+
+echo "SUM : $SUM"
+echo "SUB : $SUB"	
+echo "MUL : $MUL"	
+echo "DIV : $DIV"	
+	
+sudo chmod u+x calculator.sh
+./calculator.sh (to run the shellscript program)
+	
+In the above program we are using literal or constants 10 & 20 in performing the arthematic operations. Incase if we want to change the 10 & 20 values with a different values like 40 & 50 we need to rewrite the whole program. The logic in performing the operations seems to be same, but the values with which we want to carry the operation is changing, for which we need to modify all the lines of code in changing values, this incurrs several problems as described
+
+1. The values gets duplicated across all multiple places within the program, so that in-future to modify the values we need to go through each line in the program and replace them carefully, that takes lot of time
+2. there is a chance where we might miss changing the values at few places that results in in-consistency or incorrect outcome being computed
+So from the above we can understand the code is not maintainable.
+	
+To overcome the above problems we can use variables. Variables are the placeholders in which we can store the values we want to use aspart of our program. Within the program instead of using values(literals) refer variables in using the values. so that in-future if we want to change the values, instead of modifying all the lines of code, change the values we assigned for the variable, hence the code becomes easily maintainable.
+	
+calculator.sh
+-------------
+#!/bin/bash
+A=10
+B=20
+SUM=$[ A + B ]	
+SUB=$[ B - A ]
+MUL=$[ A * B ]
+DIV=$[ B / A ]
+	
+echo "SUM : $SUM"
+echo "SUB : $SUB"	
+echo "MUL : $MUL"	
+echo "DIV : $DIV"	
+	
+Now in the above program if we want to change the values of 10 & 20 to 40 & 50, all that we need to do is, just assign different values to A & B variables, we don't need to modify all the lines of the code as we did earlier.
+
+scope of variables
+------------------
+If we define a variable within a program, the variable exists/visible/accessible within the same program only and it will not be available in another program.
+	
+in-short: the scope of the variable defined is local to the program only
+
+prog1.sh
+---------
+#!/bin/bash
+A=10
+echo "A : $A"
+	
+chmod u+x prog1.sh
+./prog1.sh
+	
+The variables are created during the execution of the program and will be destroyed at the end of the program. So that "A" variable will not be visible or accessible to any other program even though it is running on same machine
+	
+prog2.sh
+--------
+#!/bin/bash
+echo "A : $A"
+
+How to define a variable, that is globally accessible across all the programs that are running on the operating system of the computer?
+To make the variable accessible globally across all the programs running on the operating system of the computer, create the variable at the operating system scope, so that it is accessible to all the programs running on the operating system.
+These variables that are created at operating system level are called "env variables" and those are accessible across all the programs irrespective of the programming language in which the programs are build
+1. java program
+2. shellscript program
+3. python program
+etc
+
+There are #2 types of env variables are there
+1. system variables
+These are the predefined or built-in variables created by the operating system and it is using these variables for some special purpose.	
+
+2. user-defined variables
+These are the variables created by the user/programmer, so that the variables can be globally used across all the programs that are running on the computer
+
+#2. user-defined variables
+The user-defined variables are created by the user/programmer of the computer, so that he can use the value of the variable across all the programs running on the operating system.
+	
+How to declare or create a user-defined variable?
+we can create or declare an user-defined environment variable on a Bash terminal as below
+1. export VARIABLE_NM=VALUE (bash)
+2. setenv VARIABLE_NM VALUE (sh)
+	
+upon creating the variable we can access the value inside the variable using $VARIABLE_NM
+
+#1. System variables
+System variables are the built-in or pre-defined variables defined by the operating system itself, that has attached with pre-defined meaning or purpose
+
+There are lot of pre-defined or built-in variables are created by the operating system few of them are as below:
+1. HOME = points to the user-home directory location of the logged-in user
+2. HOSTNAME = holds the machine or computer name
+3. USER = logged-in user name
+4. SHELL = shell the user is in
+5. LOGNAME = logged-in user name
+
+among the above, there is another special variable called "PATH", that is used by the linux operating system itself in resolving the location of the programs to launch or execute them.
+	
+note: The environment variables in Linux operating system are case-sensitive unlike windows.
+-----------------------------------------------------------------------------------------------------------------------------
+PATH variables
+--------------
+system variables (env variables) are the env variables defined by the operating system with default values, so that it can use these variable values in performing operation. such type of system variable defined by the operating system is PATH variable
+
+PATH is an system (env) variables defined with directory locations of the programs, that operating system uses in locating and running the programs on the machine.
+	
+PATH is an pre-defined env variable that is created by the operating system pointing to default directory locations as below
+1. /bin
+2. /sbin
+3. /usr/bin
+4. /usr/sbin
+5. /usr/local/bin
+6. /usr/local/sbin
+
+since the PATH has been configured by the linux operating system pointing to the pre-defined linux filesystem directories, we are able to run all the linux commands/shell utilities without specifying the location of the program/command files
+
+We can point PATH env variable to multiple directory locations of the Filesystem by separting with ":" colon for eg..
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+When we are configuring the PATH env variable with our own directory location we should not override the existing PATH value. always we need to append our directory location to the existing PATH env value, otherwise the default linux operating system commands will not work.
+	
+For eg.. let us assume we have an program as below
+
+~/jobs
+  |-bill
+	  |-generate_bill.sh
+		
+if we want to set the PATH pointing to the directory location of the generate_bill.sh we should do this as below
+export PATH=$PATH:~/jobs/bill
+------------------------------------------------------------------------------------------------------------------------------
+How to make environment variables permanent on the machine?
+The environment variables we create on the bash/shell terminal are local to the terminal session and when we close the termainal all the user-defined env variables will be destroyed and will not available in a new terminal session
+
+To make these environment variables permanent linux operating system has introduced "profiles".
+	
+We can image "profiles" as similar to what we have in mobile phones. A mobile user can create multiple profiles like
+1. office
+2. home
+3. silience
+etc
+
+each profile is configured with settings, features like
+1. ringtones
+2. wallpapers
+3. colors/themes
+4. fonts
+etc
+
+use can choose and switch between different profiles while using the mobile, so that the settings that are configured within the profile will be applied
+
+similar to the above, in linux operating system every user can configure his own profile which means the settings or configurations with which he wanted to boot the linux operating system or terminal session for the user. There are lot of settings/configurations available aspart of the linux operating system, an user is allowed to customize the way he wanted to boot/launch the terminal.
+	
+There are multiple ways we can login/launch the linux operating system and the bash terminal as below
+1. gui/non-gui login
+2. remote login
+
+based on the way we launched the terminal, we want to configure or apply different settings/configurations to the terminal. so to handle this linux has provided bunch of configuration files through which we can enable different configurations
+
+1. /etc/profile = The root or super user of the linux operating system can configure the settings here and will be applied to all the linux users of the computer and requires a restart when there is a change.
+2. ~/.bash_profile = The settings/configurations placed here will be applied only for interactive shells only and executed only for the user under which we configured
+3. ~/.profile = in the absence of ~/.bash_profile, then this file will be applied
+4. ~/.bash_login = will be applied for interactive logins, only when we dont have ~/.bash_profile
+5. ~/.bashrc = non-interactive terminals the bashrc settings are applied
+
+interactive shell 
+while launching the shell, the user will be prompted with username/password to grab the access to the machine, then it is called "interactive-shell"
+	
+non-interactive shell
+within an existing shell, we launch new shell, then it is called "non-interactive"
+-------------------------------------------------------------------------------------------------------------------------------
+Binary Software distribution
+
+Java is an programming language software that is distributed in #2 ways
+1. repository based packaged distribution
+2. direct downloadable binary distribution
+

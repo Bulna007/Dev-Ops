@@ -1,0 +1,14 @@
+How to setup ubuntu linux compute instance on aws cloud platform?
+	
+1. we need to create an aws account
+Free-Tier [12 months]: aws.amazon.com/free
+
+Ec2 instance: a new computer is created on aws cloud, and connect from local machine to that computer over the network.	
+750 hours (free usage) per month: upto 12 Months
+shape: t3.micro, t2.micro (free) (Linux)
+	
+	
+goto console.aws.amazon.com
+click on create new aws account.
+	
+	

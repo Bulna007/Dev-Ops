@@ -1,0 +1,12 @@
+- name: lineinfile add line play
+  hosts: all
+  tasks:
+    - name: copy
+      copy:
+        src: sshd.conf
+        dest: /home/vagrant/
+    - name: add line
+      lineinfile:
+        path: /home/vagrant/sshd.conf
+        line: 'StrictModes Yes'    
+        insertafter: 'PermitEmptyPassword.*'

@@ -1,0 +1,14 @@
+- name: loop index
+  hosts: all
+  tasks:
+    - name: print loop index
+      debug:
+        msg: "Product: {{item}} at position: {{index}}"
+      loop:
+        - mobile
+        - wallet
+        - tie
+        - shoes
+        - belt
+      loop_control:
+        index_var: index

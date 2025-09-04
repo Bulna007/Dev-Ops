@@ -1,0 +1,114 @@
+DPKG (Debain Packaging tool)
+----------------------------
+How many ways the software packages are distributed?
+1. repository based packaged software distribution
+2. direct downloadable packaged software distribution
+3. binary distribution
+
+#2. direct downloadable packaged software distribution
+There are few vendors upon building the software applications, packages them into distro standard packaging format and distribute by themself through vendor websites. There could be several reasons behind distributing the software packages directly.
+	
+1. the vendor or software by itself could be very popular and want to distribute it through their official website
+2. these software packages might have restricted licensing/fee, unless being signed up the vendor dont want these packages to be used
+3. for a vendor to distribute a software package the distro package repository, it might take some time. ubuntu/distro vendor takes sometime to verify, validate a software package before publishing it onto the repository, this delays the process of distributing the software package by the vendor. so the vendor might choose the option of distributing the software directly through vendor website along with package repository (even though incase of opensource software)
+	
+To install such directly downloadable packaged software ubuntu operating system has provided dpkg.
+dpkg is an software installer, it is not an package manager. It means it doesnt download the software packages like apt or resolves the dependencies while installing an software package. If the dependent software package is not available, the installation will fail, so we need to identify the dependent software packages download/install them manually before installing the software package while using dpkg.
+	
+But apt is an intelligent tool that will identify the dependent software packages and installs them automatically before installing the requested software package
+	
+note: apt tool internally uses dpkg only to install the software package
+	
+How to install a software package using dpkg tool?
+1. sudo dpkg -i package.deb = install the supplied software package
+2. sudo dpkg -l = list all the softwaer packages installed on the machine
+3. sudo dpkg -s packageName = show the details of the software package specified along with its status indicating whether it is installed or not
+4. sudo dpkg -c package.deb = shows the contents of the software package provided
+5. sudo dpkg --unpack package.deb = unpacks the software package
+6. sudo dpkg -r packageName = uninstall the software package from the machine
+7. sudo dpkg -p packageName = purge the software package (this is similar to apt purge, removes the related configuration files) 
+8. sudo dpkg -l packageName = shows all the software packages matching with the given name along with their installed status
+
+while installing a software package through dpkg, if the installation has been broken because of dependent softwares are not available we can fix it by running the below command
+sudo apt --fix-broken install
+
+note:
+instead of using dpkg to install the downloaded software package .deb file, we can use apt tool itself. Incase if we install the downloaded software package through apt, it resolves the dependencies automatically while installing the software
+
+sudo apt install -f location.deb
+
+	
+	
+dpkg = debain packaging tool
+
+1. sudo dpkg -i file.deb
+2. sudo dpkg -r packageName
+3. sudo dpkg -p packageName
+
+4. sudo dpkg -l 
+5. sudo dpkg -s packageName
+
+6. sudo dpkg -c package.deb
+7. sudo dpkg --unpack package.deb
+
+8. sudo dpkg -l packageName
+
+sudo apt install -f ./package.deb
+
+	
+	
+	
+	
+m3 chipset (macbook)	(arm64) = mac operating system = .dmg          m2/m1/m3
+linux operating system = macbook (m3 chipset) = (virtual machine) = arm.deb
+
+windows = .exe
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

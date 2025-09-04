@@ -1,0 +1,140 @@
+1. nacl rules
+nacl is a firewall that is setup at the subnet level and is used for controlling or enforcing the traffic restrictions on the resources of a subnet
+nacl rules are stateless which means a request and response will be treated differently for each ingress rule to allow response back from the resource to external network we need to add egress rule also
+
+2. security groups
+we can enforce traffic restrictions at the resource level rather than at subnet level using security groups
+------------------------------------------------------------------------------------------------
+compute domain
+--------------
+1. ec2 
+its a machine that is provisioned and managed by the aws cloud platform on their infrastructure.
+advantage:
+1. all the lifecycle operations on the instance are taken care by aws
+2. we can take the advantage of aws network and security
+	
+inorder to create an ec2 instance we need to pass several inputs to the aws cloud platform asking to provision the instance as per our requiement as below
+1. goto aws ec2 dashboard and choose launch instances
+2. choose the ami
+ami = amazon machine image 	
+which is an pre-built image that comprises of operating system software, utility programs and few other configurations that makes the machine usable
+during the time of provisioning the ec2 instance we need choose the ami with which the instance should be provisioned so that aws will create the ec2 instance with that ami.
+	
+There are 4 different types of amis are available
+1. amazon pre-built AMI
+2. third-party organizations / partner AMIs associated amazon
+3. community built AMIs which are published by individual or organization but not associated with amazon
+4. user ami = individual users can create their own amis can place at account level for reuse
+
+Not all the AMI are open source, most of them are chargeable and should refer to pricing before using them
+we choose show free-tier checkbox to view only free AMIs available
+
+#3. select the shape 
+the amazon has pre-based shapes of the machines with fixed cpu, ram and storage which can be choosen for creating the ec2 instance. if not we can customize the machine shape with which we can provision
+t2.micro = free rest of all the shapes are chargeable
+
+#4. choose the networking
+	1. pick the vpc
+	2. subnet
+	3. enable public ip
+and leave rest of the options to the default and click on next
+
+#5. storage
+the default storage available is 8gb if we want to we can increase
+
+#6. add tags
+identifiable key value pairs
+
+#7. security group
+we want the machine to ssh from the external network so add security group with rule as 
+SSH 22 0.0.0.0/0 allow
+
+#8. generate ssh key pair (.pem)
+The .pem contains both public/private key which can be used for accessing the machine
+
+#9. review and click on finish to launch the instance
+
+
+if we want to use the ec2 instance from external network place it in public subnet only.
+The database has to kept under private subnet
+
+if your application is backed by an lbr then place
+	1. ec2 in private subnet
+	2. rds in private subnet
+	3. lbr on public subnet
+	4. to install and configure the application us jumpbox on public subnet
+-----------------------------------------------------------------------------------------------
+The aws by default generates ".pem" file which contains both public/private keys and can be used in linux based environments directly
+if we want to ssh using putty then we need ".pub" and ".ppk" files seperately, then we need to use puttygen for generating public/private keys from given pem file.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

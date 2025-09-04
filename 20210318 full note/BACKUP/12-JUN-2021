@@ -1,0 +1,105 @@
+Find = Searching the files and folders by using their name.
+
+#1 find directory -name "filename pattern" -print [by default print is enabled] = Search for a file within the given directory name and display matching filenames in each line (-print)
+
+#2 find directory -name "filepattern" -print0 = display all matching files in 1 single line
+#3 find directory -name "filepattern" -empty = display matching files if those are empty
+#4 find directory -name "filepattern" -exec command {} \; = on all the matching files execute this command.
+#5 find directory -name "filepattern" -perm octal = give me list of files whose name matching and file permission as well.
+--------------------------------------------------------------------------------------------------------
+grep
+grep is used for text content search in a file.
+For example we want to find all the files who has a word called "Venkateswara Rice Mill" in a accounts folder.
+  
+accounts (folder)
+01-JUN-2021
+02-JUN-2021
+We can search for the files based on content matching not by filenames.
+  
+
+#1 grep "text" filename = display all matching lines of the text in that file
+#2 grep -R "text" directory\ = search for all the files ina directory who has matching text and display
+#3 grep -iR "text" directory = ignore case while searching
+#4 grep -n "txt" filename = display matching line numbers also.
+#5 grep -w "text" filename = display by matching whole word not partial
+#6 grep -o "text" filename = display only matching words.
+#7 grep -c "text" filename = number of matching occurences of the word  
+#8 grep -digit "text" filename = display number of lines around the matching line
+#9 grep -v "text" filename  = display lines which doesnt have these words.
+-------------------------------------------------------------------------------------------------------
+In linux similar to nodepad in windows we have vi editor to open existing files and modify it. vi is a terminal based editor not a gui tool.
+  
+vi is older editor and next version of vi is vim (vi improved). by default linux ubuntu comes with vi we will not have vim availble. So we need to install.
+  sudo apt -y install vim
+  
+vi/vim editor has 3 modes of working
+#1 command mode
+  every key press will be treated as a command to perform operation on that file. when we open vi editor the default mode is command mode only. if we want to return back to command mode anytime press (esc)
+    
+  
+#2 input/insert mode
+  every key press will be inserted as a character into the file, to enter into input mode we need to press "i" symbol on the keyboard
+  
+#3 exit mode
+  to exit from vi editor we nee to goto command mode first and press ":" to enter into exit mode
+  esc +
+    :q = quit
+    :q! = dont save changes and quit
+    :w = write
+    :wq = write and quit
+    
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

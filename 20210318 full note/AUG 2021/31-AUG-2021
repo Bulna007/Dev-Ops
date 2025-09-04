@@ -1,0 +1,110 @@
+What is ip address, why do we need it?
+ip stands for internet protocol address, used for identifying and communicating with a computer on a network. ip address is a logical address that will be assigned to the computer upon connecting to the network.
+  
+There are 2 types of ip address are there
+1. ipv4 = it is of 32-bit in length and can accomodate a max of 4.2 billion computers on the network
+2. ipv6 = 128-bit length which is written in hexa-decimal format and can accomodate 2^(128)-2, where we never run out of ip range
+
+ipv4:
+The 32-bit ip address has been broken down into 4 octets each of 8-bits in length separated by "." period between, to support hierarchial addressing model. So we group related computers into one network and manage separately from others. From this we can understand an ip address comprises of 2 types of addresses.
+  1. network address = few bits/octets are assigned within an ip address as a network address, to identify the related group of computers as one network.
+  2. host address = the unique/sequential numbers assigned to the computers within the network address to locate it uniquely is called host address.
+  
+In 4 octets if we assign 3 octets as network address and 1 octet as host address how many hosts can be there within a network.
+  2^8 = 256 hosts can be there in a network
+  2^8 (256) * 256 * 256 = networks can be created using 3 octets
+  
+In our organization we want to create 3 different group of networks like
+  - Financial department = one network
+  - Hr department = another network
+  - Employee = separate network
+So that we can restrict/impose traffic restrictions to the group of people working. For eg..
+  Finance department = should not be allowed to access public internet websites, because of confidentiality
+  Finance and HR can allow to access Employee data 
+  Employee = can have limited time in accessing internet, with restrictions enforced.
+To help us in managing the hosts of different departments we need to break ip address into 3 networks using hierarchial model.
+  
+192.168.1.      (1-255)  = Finanace
+192.168.2.      (1-255)  = HR
+192.168.3.      (1-255)  = Employee (3000)
+----------      -------
+Network address  host address
+
+How many hosts can be part of one network?
+it depends on how many bits we allocated for network address and host address. For eg if we allocate 3 octets for network address, the in each network we can have only 255 hosts only. Lets say we have 3000 employees working within our organization, where we want to interconnect all their computers as into one network, then allocate 2 octets for network address and 2 octets for host address.  
+So that we can create 65k networks and in each network we can have 65k hosts approx.
+  
+Now we can understand depends on the size of the network we need to allocate host/network bits in an ip address.
+Given an ip address how can we identify what is the network address and what is the host address to route the data packet to the right computer of a network.
+192.168.1.2 = network address here and host address?
+by looking at ip we cannot identify because the bit allocation is not fixed. To overcome this problem ip address classes are introduced.
+
+Classful ip addressing
+The internet protocol standard has introduced ip classification to help us in identifying which bits are allocated to network address and which bits are allocated to host address.
+There are 5 classes of ip address are there which are A, B, C ,D and E.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  

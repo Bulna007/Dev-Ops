@@ -1,0 +1,164 @@
+How can we compare iac automation tools with configuration management tools?
+Many of the Software Configuration Management tools supports provisioning the infrastructure or cloud resources for eg.. ansible has provided modules to support provisioning of resources across various cloud platforms. similarly there are other few iac tools that support installations/configurations of software packages.	
+There is a thin line between these 2 tools, let us explore what are their differences:
+
+
+Note:- we dont need to use software configuration management tools when we are using server templating tools like docker or packer etc.
+	
+The decision of choosing between iac tools and software configuration management tools has to be made very wisely:
+
+#1. mutable vs immutable infrastructure
+mutable = "something that can be changeable"
+immutable = "cannot be changed"	
+	
+Most of the software configuration management tools like ansible supports mutable infrastructure which means, after provisioning the infrastructure through ansible modules, if we modify any changes in the code and re-apply, ansible tries to modify the existing infrastructure state to new based on changes we made
+
+whereas when it comes to iac tools like terraform, after provisioning the infrastructure if we modify the code and try to re-apply, the iac tools destroys the existing resources and tries to recreate them with new code we passed. which is reffered as "immutable"
+	
+when we are using scm tools in provisioning the infrastructure we achieve to the final state of the system by evolving over the time through making code changes by keeping in view of current infrastructure state, due to which the code we baked may not work as not all the env will be on the same state.
+where as iac always assume the state of the infrastructure as zero and provision the resources by which we can achieve highest level of consistency
+
+#2. Procedural vs Declarative Programming
+Software configuration management tools are procedural, which means we need to write the code/program to achieve the desired system state 
+For eg.. we have written a playbook that provision an ec2 instance as below.
+
+tasks:
+	name: provision ec2
+	amazon.aws.ec2:
+    key_name: mykey
+    instance_type: t2.micro
+    image: ami-123456
+    wait: yes
+    group: webserver
+    count: 3
+    vpc_subnet_id: subnet-29e63245
+    assign_public_ip: yes
+		
+with the above playbook configuration ansible provisions 3 ec2 instances of t2.micro shape on aws. Now instead of 3 we wanted 10 ec2 instances, at this moment we might be thinking of quickly going to the above playbook and modify instance count: 3 to count: 10 and re-apply changes
+
+This would result in total : 13 instances, so the software configuration management tools cannot keep track of the existing state of the infrastructure, so programmer has to manually identify the existing instances and should compute how many are required to achieve the desired system state and has to configure accordingly
+
+where as if we use iac tools for provisioning the infrastructure, iac tools keep tracks of the current state of the infrastructure locally so that when we make the changes in the infrastructure code, it tries to compare the latest state of the infrastructure with code changes we made to identify what best it can do to bring the system to the desired state
+
+resource "aws_ec2_instance.js" {
+	ami: ami-3893
+	instance_type: t2.micro
+	count: 3
+}
+
+The above terraform configuration creates 3 ec2 instances on the aws cloud provider. now if we want 10 instances, we dont need to find how many existing instances are there and how many we need to provisioning additional to get 10 instances, rather simply go and modify the count as : 10
+	
+resource "aws_ec2_instance.js" {
+	ami: ami-3893
+	instance_type: t2.micro
+	count: 10
+}
+
+Now when we apply the above terraform configuration, the terraform queries the existing state of the infrastructure and determines what has to be done to achieve the final system state and applies relevant changes in bringing the total number of instances to 10
+	
+	
+#3. Master vs Masterless
+We have Master and Slave architecture, where all the manifest are uploaded to the the master node and slaves pull the manifest periodically and apply on the infrastructure
+	1. Extra infrastructure cost in maintaining the Master node
+	2. We need a dedicated machine and for HA we need a backup instance through which we can restore the master when there is crash
+	3. Migrating master is an pain point
+	4. less secured, we need to open all the the ports allowing the slaves to connect to the master which brings up security breach
+	
+#4. Agent and Agentless
+On each node of the infrastructure we need an agent software to allow him to connect to the master node and pull manifest to apply
+	1. how to install these agents across all the nodes of the infrastructure, again we need another software configuration management process
+	2. upgrading an agent software is a pain point
+	3. troubleshooting the infrastructure is difficult
+	
+From the above we can clearly understand it is recommended to use infrastructure as code tools than software configuration management tools
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

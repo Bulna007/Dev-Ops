@@ -1,0 +1,107 @@
+What is virtualization, what is the purpose of it?
+Virtualization is a technic or a mechanism through which we can run multiple parallel isolated environments on a single machine through the help of using Hypervisor Software.
+	
+There are many reasons for which we want to run multiple parallel isolated environments on a single computer
+1. We can effectively utilize the underlying hardware resources of a computer by running multiple parallel environments on a single machine
+2. We can reduce the cost of infrastructure in building, deploying and delivering the software applications by reusing the same computer in running multiple applications
+
+Virtualization works on a software called "Hypervisor", which is responsible for talking to the host operating system of the computer in sharing the physical system resources of the machine to multiple virtual machines running on the top of hypervisor
+
+What is Containerization?
+Containerization is a technology through which we can package software application and its dependent libraries together and can run within a container which is isolated from other software application that are running on the same computer is called "Containerization"	
+	
+In case of containerization the software programs are packaged with libraries and binaries through which they communicate within the containerization tool which inturn takes care of communicating with the host operating system for sharing the physical hardware resources of the computer to multiple containers running on the same environment
+
+Looks like both these technologies helps in running software applications isolated from each other on a single computer, then which one should be used one, what are the advantages and dis-advantages of each of them with others?
+
+Virtualization
+advantages:-
+1. each virtual machine can run their own operating system independent of the host operating system of the computer, so that we can easily deploy and run software applications on different operating system environments
+2. we can software applications which requires dedicated operating system of their own by creating virtual machine and installing the operating system on the vm separately
+3. all the virtual machines are isolated from each other and runs independent of the host operating system thus enabling highest level of security, if the host has been comprised also still the guest machines are not impacted as each vm runs on a dedicated os
+4. more suitable for deploying and running applications that are long-running processes
+
+dis-advantages:-
+1. each of the virtual machines are installed with their independent operating system of their own, thus making these virtual machines heavy weight and consumes lot of system resources in running the software applications
+2. since the virtual machines are heavy weight those are huge in size in diskspace and are not portable to be carried across the environments easily
+3. it is difficult to achieve CI/CD through virtualization as these virtual machine images are not easy to carry across the environments
+4. we cannot effectively utilize the computing resources of the underlying computer, since each virtual machine consumes huge amount of resources of the computer
+5. as each virtual machines runs with a full blow operating system of their own, importing the virtual machine and starting the applications inside them takes lot of time due to which we cannot quickly achieve scalability
+
+From the above we can understand virtualization is suitable for
+	1. creating and providing dedicated computer environments that can be used by different people isolated from another, for eg.. a cloud provider can effectively use virtualization techinic in sharing the underlying hardware resources of a computer in creating dedicated environments for multiple users
+	2. In an organization the administrators can create multiple virtual machine environments to provide independent teams dedicated environments for developing, deploying and testing their software applications individually by lowering the cost of infrastructure 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,5 @@
+---
+- name: quickeats play
+  hosts: all
+  roles:
+    - webhosting

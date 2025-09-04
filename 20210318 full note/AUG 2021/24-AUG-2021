@@ -1,0 +1,78 @@
+Router:-
+Router is used for inter-connecting multiple networks together. unlike bridge a router has more number of ports so that we can multiple networks together and its an intelligent device that only forwards the traffic to the corresponding network only. It works at network layer and identifies the network address to which datapacket has to be sent to based on ip address.
+
+The advantage of using routers is, the user can configure routing rules within routing tables through which we can restrict or control the network traffic between the computes of the network.
+-------------------------------------------------------------------------------------------------------
+Firewall
+Firewall is used for controlling or restriction or monitoring the network traffic patterns on a computer. It keeps track of the programs and the ports there are opening on a computer or a network. help us in making decision of should a program be allowed or not in running on a port.
+  
+There are 2 types of firewall are there 
+1. Hardware firewall = These are special network devices equipped with firewall software installed with them and attached to the network, so that every network traffic will pass through the firewall controlling and securing the network. we can manage large group of computers on a network centrally by installing a hardware firewall on the network.
+
+2. Software firewall = The software firewalls are inbuilt programs that are shipped most of the time by the operating system, which can be used for controlling the network traffic. These works local to the computer on which those are installed.
+------------------------------------------------------------------------------------------------------
+#7. Modem
+Modem is a device which is capable of performing modulation and demodulation. help us in connecting the computers over the dial-up networks.
+-----------------------------------------------------------------------------------------------------  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

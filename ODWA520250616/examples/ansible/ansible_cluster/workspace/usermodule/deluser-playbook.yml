@@ -1,0 +1,9 @@
+- name: del user play
+  hosts: all
+  tasks:
+    - name: del user
+      user: 
+        name: bob
+        remove: yes
+        state: absent
+      become: yes

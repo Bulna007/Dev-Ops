@@ -1,0 +1,137 @@
+Firewall
+---------
+Firewall is used for monitoring and enforcing traffic restrictions on a computer or a group of computers connected to the network.
+  
+Firewall can be either a hardware or a Software device. In general hardware firewalls will be installed on network and used for monitoring or controlling the traffic of the network, where as a software firewall is also called "Host Firewall" is used for monitoring and controlling the network traffic to that machine only.
+  
+Ubuntu distribution by default comeups with firewall sofware package installed through iptables. configuring and using the iptables required great level of knowledge on networking and protocols due to which most of the people find it difficult to work with iptables. So to overcome the problem ubuntu has provided a software package called ufw.
+  
+ufw stands for uncomplicated firewall, which acts as an interface for manging the iptables of the ubuntu firewall.
+  
+From ubuntu-18.0 version, the ufw package is default available, incase if we are using older version of the ubuntu we can install it using the below command
+sudo apt install -y ufw
+
+#1 ufw by default is disabled, so no network traffic restrictions will be applied. If we want to enforce traffic restrictions we need to enable it.
+sudo ufw enable
+
+We can enforce 3 levels of traffic restrictions using firewall
+1. source ip address allow/denie
+2. program port can be allowed/denied
+3. protocol 
+
+when we enable ufw, the default traffic restrictions enfored are
+allow all the outgoing traffic and deny all the incomming network traffic to the computer.
+  
+#2 how to see the traffic restrictions enfored 
+sudo ufw status verbose = prints all the traffic rules applied
+
+#3 how to allow/deny a traffic to the machine from a specific source ip of the machine
+sudo ufw allow/deny from ipaddress
+sudo ufw allow from 192.168.1.10  
+  
+#4 how to allow/deny network traffic of a specific protocol requests
+sudo ufw allow/deny protocol
+sudo ufw allow http
+
+#5 how to allow/deny network traffic on a specific port no
+sudo ufw allow/deny portno
+sudo ufw allow 80
+  
+#6 how to allow/deny network traffic  to range of port nos
+sudo ufw allow 9001:9099/tcp
+
+#7 how to allow traffic restrictions from a specific source ip of a port
+sudo ufw allow from ipaddress to any port
+
+#8 how to delete a traffic restriction
+List down the rules based on rule no
+sudo ufw status numbered
+
+Then identify the ruleno you want to delete from the list
+sudo ufw delete ruleno
+---------------------------------------------------------------------------------------------------------
+SSH 
+---
+SSH stands for Secure Shell, its a protocol through which we can access the remote shell of a linux machine securely.
+  
+Why do we need to remotely access a computer/machine?
+In an organization they could be lot of computers which has to be managed by administrator. if administrator has to install/upgrade software packages or apply patches or do some maintainace activities like cleanup, backup/restore etc he has to move across all the computers of the organization physically which is a challenging job, instead of it if we can gain the access to the remote computer over the network, he can use his workstation to connect to all the machines of the organization over the network and manage them easily thus saves lot of time and efforts as well. That is where we need remote access to a computer over network.
+  
+Telnet is one of the tool available for connecting to the remote linux machine and manage. while using telnet to access the remote computers, the data transfer that takes place between the 2 computers is not secured, so any intruder can steal the messages exchanged between those 2 computers, to over  the above problem SSH is introduced.
+  
+SSH is an protocol or technic through which we can access the remote computers over the network securely, so that the end-end data transfer between those 2 computers are encrypted, no intruder can steal and understand the information being exchanged by these 2 computers. Through SSH we get the access to shell of the remote computer, there by which we can issue linux command and execute on the remote computer directly and tranfer response and display in the client computer. Using SSH we can execute linux commands on remote computer in perform software package installations, upgradtions and system configures remote.  
+SSH is not an gui interface based on access, its a text-based console access of the remote computer.
+  
+How does SSH secures the communication between client and host computer?
+SSH uses encryption technics to secure the data transfer that takes place between the 2 computers. encryption is a mechanism through which we secure the data that is being transmitted or exchanged between 2 parties.
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,207 @@
+Linux is defined by its "Kernal". Kernal help us in interacting with the underlying hardware of the computer.
+
+GNU Project Linux = where the open source software contributed, started producing software libraries/utilities for Linux operating system, that can be installed on Linux Kernal to make the Linux more developer/user friendly
+  1. desktop
+  2. essential utility programs like text editors, browsers, media players etc
+  3. File Explorer
+  4. Network interfaces
+  
+How does a user has to use linux operating system?
+Install kernal ontop of it install utilities to make it easy to use, but to do this process it is complex job and should be a program to install and configure. To overcome this problem different people/organizations started build packaged linux operating system which comes with everthing called distro.
+
+There are 4 major linux distributions are available
+1. Arch
+2. Debain
+3. Redhat
+4. Slackware
+
+There are 2 popular linux distros are available.
+each of them has provided flavours of linux
+1. debain 
+  1.1 linux mint
+  1.2 ubuntu
+  1.3 elementary os
+  1.4 kali linux
+  
+2. Redhat
+  2.1 CentOS
+  2.2 Fedora
+  2.3 Redhat Enterprise Linux (commercial)
+-------------------------------------------------------------------------------------------------------
+Across these distributions the underlying kernal is same. only the software utilities that are packaged on top of the kernal and distribtued will be different.
+
+What are the Features of Linux operating system.
+1. Portable = portable to be installed and used on various different types of hardware platforms.
+2. OpenSource = Free distributed and free modifiable
+3. Multi-User/Multi Programming = Multiple users can user the linux machine at the same time and can share underlying hardware resources of the computer like cpu, ram, memory etc.
+4. Hierarchial Filesystem
+5. Shell = A software utility or an interpreter program through which we can communicate with kernal of the computer.
+6. Security = authentication, and file based permissions
+
+Linux Architecture
+1. Hardware = to the bottom of a computer
+2. kernal = to communicate with the hardware of the computer
+3. shell = interpreter program to allow us to talk to kernal
+4. software utilities build on top of kernal = grep, vi, nano, ls, cat etc
+
+--------------------------------------------------------------------------------------------------------
+Linux FileSystem
+----------------
+Filesystem is a technic through which we can store and organize the data on the harddisk of the computer.
+The basic building blocks of storing the data on the harddisk of the computer is
+
+1. File = DataStructure in which we keep hold of the memory locations of the harddisk where the actual data is resided.
+
+2. Folder = A special type of File in which we store the pointers to the other Files/Folders of the computer. It helps us in group related information so that we can navigate and access easily.
+
+Every operating system has their own Filesystem technic of storing and organizing the data on a harddisk.
+Windows:- FAT = File Allocation Table
+          NTFS = New Technology File System
+          
+Linux:- ext4 = extension 4 (default filesystem)
+few of the old filesystem technics linux use to support:-
+Ext
+Ext2
+Ext3
+JFS
+XFS
+BTRFS
+---------------------------------------------------------------------------------------------------------
+Fileystem Hierarchy in Linux
+By default when we install linux operating system on our computer, it will gets installed on to harddisk of the computer by creating standard directory layout.
+
+standard directory structure
+/
+|-mnt
+|-opt
+|-etc
+|-tmp
+|-var
+|-proc
+|-bin
+|-sbin
+|-media
+|-home
+|-dev
+|-lib
+|-root
+|-usr
+|-boot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

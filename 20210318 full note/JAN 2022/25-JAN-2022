@@ -1,0 +1,196 @@
+Ansible Jinja2 Templates
+--------------------------
+Jinja2 Templates is a powerful python module that is used for creating dynamic output from an templates files.
+	
+In a program sometimes we want to generate an output/configuration file wherein most of the content of the configuration file will be static with few fields of information changing. If we write the program to generate the whole text of content of the by replacing the dynamic fields we run into several problems
+1. The program becomes bulgier with programming logic and output generation logic
+2. it becomes complex to understand application logic since the lines of code is huge
+3. each time when we want to change the out format, we need unnecessarily modify the program which might effect other parts of the code and run into bugs
+
+Instead of generating the text of output within the program use Templating technology.
+In templating we create a template file defined with static content and placeholders that has to be substituted by the programs to produce different output.
+
+Now in the program we write the logic for substituting the placeholders with actual values rather than generating the whole output makes the program easily maintainable.	
+	
+marks.txt
+10,daniel,35,45,60,76,56
+12,paul,45,35,56,75,45
+14,george,35,67,87,90,78
+	
+generate-report-card.sh 10 12 14 15 27
+#!/bin/bash
+ROLL_NOS=$@
+for ROLL_NO in $ROLL_NOS
+loop
+	MARKS=$(grep "^$ROLL_NO")
+	M1=$(echo $MARKS | cut -d "," -f3)
+	M2=$(echo $MARKS | cut -d "," -f4)
+	M3=$(echo $MARKS | cut -d "," -f5)
+	M4=$(echo $MARKS | cut -d "," -f6)
+	M5=$(echo $MARKS | cut -d "," -f7)	
+	SUM=$[M1+M2+M3+M4+M5]
+	AVG=$[SUM/5]
+	if [ $AVG -gt 60 ]; then
+		GRADE="A"
+	elif [ $AVG -gt 50 ]; then
+		GRADE="B"
+	elif [ $AVG -gt 35 ]; then
+		GRADE = "C"
+	else
+		GRADE="F"
+	fi
+	cp reportcard-template.txt ~/reportcard-$ROLL_NO.txt	
+	sed -i 's/[AVG]/$AVG' reportcard-$ROLLNO.txt
+	sed -i 's/[GRADE]/$GRADE' reportcard-$ROLLNO.txt	
+end
+	
+
+reportcard-template.txt
+Dear ward,
+You have secured a percentage: [AVG] in the academic year: 2021-22
+for subjects $[SUBJECTS] and your grade is: [GRADE]
+-----------------------------------------------------------------------------------------------
+
+#1. write the template file with placeholders
+#2 In the program we need to write the code for
+	1. computation logic 
+	2. then write substitution logic for generate the output through template files
+Here in the program we need to write lot of lines of code to perform the substition logic instead of it python has provided a module called jinja2 template module using which we can substitute and generate the output easily
+
+How to write jinja2 template?
+#1 write template file
+within the template file write placeholders which are provided by the jinja2 engine
+{%for mark in marks}
+{{mark}}
+{%endfor%}
+we can use jinja2 codeblocks for generating the out in the required format in the template file itself instead of writing in our program, that keeps our program clean from content generation logic
+
+#2 within our program
+1. write the programming logic in computing the data
+2. pass the data to jinja2 module asking it apply on template file
+
+now the process of identifying the tokens and substituting them with the actual values are taken care by jinja2 itself and it becomes easy to produce content out of templates.
+----------------------------------------------------------------------------------------------
+Ansible has an great integration with jinja2 templates, there is an template module provided as part of ansible which can be used for generating the output content out of template files.
+	
+In Ansible while working with playbook automations we might have to generate configuration files pertaining to different fleet servers by substituting the few values specific to the environment, which can be done easily using jinja2 template module
+
+
+index.html.j2
+<html>
+	<head></head>
+	<body>
+		Hi {{ansible_host}},
+		Welcome to jinja2 template.
+	</body>
+</html>
+
+---
+- name: jinja2 template
+	vars:
+		person: george
+	hosts: all
+	tasks:
+		- name: substitute
+			template: 
+				src: index.html.j2
+				dest: ~/index.html
+...				
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	

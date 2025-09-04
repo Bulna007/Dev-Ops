@@ -1,0 +1,143 @@
+find
+find is used for searching for files and folders within the given directory matching with the pattern provided.
+	
+1. find directory/ -name "pattern"
+2. find directory/ -name "pattern" -print (default)
+3. find directory/ -name "pattern" -print0
+4. find directory/ -name "pattern" -empty
+5. find directory/ -type f|d -name "pattern"
+6. find directory/ -name "pattern1"	-o -name "pattern2"
+7. find directory/ -name "pattern" -exec command {} \;
+--------------------------------------------------------------------------------------------------------------------------
+	
+grep (content-based searching)
+------------------------------
+find is used for searching for files/folders matching with their name with given pattern, whereas grep is used for content based searching which means we want to find files(only) whose content is matching with given phrase or text
+
+~/ledgers
+	|-customer1-ledger
+	|-customer2-ledger
+	|-customer3-ledger
+	|-customer4-ledger
+	|-customer5-ledger
+	
+in each the ledger files we are storing financial entries of the customers along with their bank accounts. we want to search for the ledger files who holds/carries the financial transactions of a specific bank account no, how can we do this?
+	
+we need to goto each customer*-ledger file, open the contents of it, read to see whether the file contains the bank account no we are looking for. if there are just 2/3 files we can quickly look into them by opening each of them, but we have to find over a bunch of files, it would be very difficult job and endup in spending huge time and might lead to failure in identifying the files as well.
+	
+To help us in quickly searching for the files whose content is matching with given text: grep bash command has been provided.
+	
+It is an powerful utility used very frequently in searching through the log files for a given "log message" or "for an error".
+	
+There are plenty of options are available in grep:
+1. grep "text" filename = it displays all the matching lines of the text specified.
+	
+2. grep -R "text" directory/
+search within the given directory including the sub-directories recursively to find the files that contains the "text" content. If found display the matching lines where the text was found along with filename.
+	
+3. grep -R -n "text" directory/
+-n print the line number where the text content was found in that file
+
+4. by default grep search for the given text within the file matching with case, if we want to search with ignore case we can use -i switch or option as below
+
+grep -i "text" filename
+grep -Ri "text" directory/
+	
+5. 	grep -w "text" filename 
+by default grep performs partial matching and returns the content. Incase if we wanted to only perform whole word matching then use -w
+
+6. grep -o "text" filename
+-o indicates print only the matching words, dont print the matching lines
+
+7. grep -c "text" filename
+-c = indicates count of matching text within the file
+
+Below options are very useful when we are browsing or accessing log files for exceptions/errors and information messages.
+
+8. grep -digit "text" filename
+for eg.. grep -2 "text" filename
+print along with matching lines, 2 lines above and 2 lines below as well
+
+9. grep -Adigit "text" filename
+print along with matching lines, digit number of lines after the matching line as well
+
+10. grep -Bdigit "text" filename
+print along with matching lines, digit number of lines before the matching line as well
+
+11. grep -v "text" filename
+-v = stands for inverted match. print all the lines that doesnt have these matching text
+
+grep allows us to use regular expressions also aspart of the text phrase we are searching for, for more complex searches as below:
+1. [] = any one of the single character match within the group
+2. [1-10] = matches one character within the given range of characters
+
+3. ^ = this pattern must appear at the begining of the line
+ls -l | grep ^d = show me only the directories within the current directory
+
+4. . = matches with any one character
+
+5. $ = this pattern must match at the end of the line
+ls -l | grep .sh$ = show me only the shellscripting files within the current directory
+
+6. \ = escape character
+
+7. * = occurence of a pattern zero or once
+8. .* = nothing or any number of matches
+
+1. list all the contents of a directory other than directories
+ls -l | grep -v ^d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

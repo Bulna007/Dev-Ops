@@ -1,0 +1,115 @@
+Privilege escalation
+---------------------
+#1. How ansible control node connects to the Fleet?
+Ansible control node will connects to the managed nodes/fleet servers by default with the logged-in user using which we are running the playbook/adhoc command.
+For eg.. if we are logged-in as an ansible user on Control Node Server and if we run a playbook or a module, ansible control node will ssh into Managed Node as Ansible user only.
+	
+How to change user with which ansible should SSH onto the Machine?
+we can configure ansible_user pre-defined variable at the host/group level within inventory file.
+
+How does the tasks/modules of the playbook are executed on the Managed Nodes?
+The tasks/modules of the playbook are executed by taking the owner as ssh user (here: ansible) and executes without sudo permission by default.
+	
+If we want to execute a module/task or a playbook onbehalf of a different user than ssh user or we want execute a task/module with suodoer permissions then we need to use priviliege escalation attributes in ansible.
+	
+#1	
+become:	yes 
+execute the task/module using sudoer permission (sudo)
+	
+#2 become_user: user
+- name: task1
+  module:
+    args:
+  become_user: bob	
+now the above task1 will be executed by switching to "bob" user
+
+#3 become_method: sudo
+
+we can enable them either at individual task level, playbook level or at inventory level by defining them as host/group level variables
+
+- name: escalation playbook
+	hosts: all
+	vars:
+		become_user: bob		
+		become_method: su
+	tasks:
+		- name: task1
+			module:
+				args
+		- name: task2
+			module:
+				args:
+now all the tasks within the playbook are executed onbehalf of bob user above
+-----------------------------------------------------------------------------------------------
+Ansible Roles
+-------------
+How to reuse a playbook automation inside the another playbook?
+Ansible has provided an module called import_playbook: using which we can import one playbook tasks in another and execute them together
+
+jdk-playbook.yml
+---
+- name: jdk installation playbook
+	hosts: all
+	tasks:
+		- name: install jdk
+			apt:
+				name: "{{jdk_package_nm}}"
+				update_cache: yes
+				state: present
+			become: yes
+--------------------------------------------
+apachetomcat-playbook.yml
+---
+- import_playbook: jdk-playbook.yml
+	vars:
+		jdk_package_nm: openjdk-11-jdk		
+- name: apache tomcat install/configure playbook
+	hosts: all	
+	tasks: 
+		- name: install tomcat
+			get_url: url
+				path: ~/middleware
+				
+From the above we can understand we reuse playbooks inside another playbooks using import_playbook module that should be used at the top of the playbook
+
+#1 customer relationship management project
+jdk-playbook.yml
+apachetomcat-playbook.yml
+mysql-server-playbook.yml
+In an automation along with playbooks we might have other dependends also
+variables, files/folders, templates, modules etc
+crms-playbook.yml
+
+#2 hungry jacks
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

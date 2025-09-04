@@ -1,0 +1,204 @@
+How to enforce restrictions while elevating an normal user as sudoer?
+
+Before understanding how to enforce restrictions on a sudoer, let us explore few things around sudo command:
+1. How does an sudoer can execute super user commands?
+by using sudo
+
+sudo command
+upon using sudo, the linux operating system prompts for sudoer password: *****, after authenticating the user, it executes the super user command onbehalf of "root"
+	
+by default: sudo command executes an bash command on-behalf of the root user only
+
+2. How can a sudoer can execute a linux command onbehalf of any other user of Linux operating system?
+sudo -u username command
+
+3. How can a sudoer can execute a linux command onbehalf of any group?
+sudo -g groupname command
+
+Enforcing restrictions on a sudoer:
+To enforce restrictions on sudoers permitting them to perform sudo operations we need to use aliases:
+(or)
+using aliases we can enforce restrictions on a sudoer
+
+There are 4 types of aliases are there
+1. user_alias  
+2. runas_alias
+3. host_alias
+4. cmnd_alias
+
+4. Cmnd_Alias
+using Cmnd_Alias we can enforce restriction on a sudoer, defining which bash commands can be executed by the sudoer as a root using (sudo) command
+
+#CMD ALIAS
+Cmnd_Alias BASIC_ADMIN_CMDS=/usr/bin/ls,/usr/bin/touch,/usr/bin/apt,/usr/bin/useradd
+
+steve ALL=(ALL:ALL) BASIC_ADMIN_CMDS
+
+1. User Alias
+If we want to promote a specific list of users as sudoers with restrictions enforced on them we have #4 options
+
+1. /etc/sudoers (user section)
+per each user make an entry in the usersection of the /etc/sudoers file, configured with restrictions interms of Aliases. but this results in duplicate entries per each user
+
+2. /etc/sudoers (group section)
+we can group all the users whom we want to promote as sudoers with restriction into one group, and promote the group of users as sudoers with restrictions
+
+%groupname ALL=(ALL:ALL) ADMN_CMNDS
+
+here these users we want to promote as sudoers are not related and we dont want to group them, so this is not an feasible option
+
+3. /etc/sudoers.d/ directory
+per each user create a new file inside the /etc/sudoers.d/ directory with username, making entry to promote the user as sudoer with restrictions. But this will also results into duplicate configuration across the user sudoer files
+
+4. promote the user as sudoer by adding them into sudoers or adm group. but in this case we cannot enforce restrictions
+
+so how to promote a specific list of users as sudoers by enforcing restrictions?
+We can make use of User_Alias
+
+User_Alias = is used for creating a Alias with specific list of users, we want to promote as sudoers with restrictions and use the alias to promote them as below
+
+User_Alias SUPPORT_USERS=bob,joe,mark
+
+#promote User_Alias of users as sudoers:
+SUPPORT_USERS ALL=(ALL:ALL) ALL
+
+here we are promoting all the SUPPORT_USERS alias of users as sudoers at one shot.
+	
+	
+#2. Runas Alias
+If we want to restrict sudoer to perform sudo operations onbehalf of a specific user/group only then we need to use Runas_Alias
+
+For eg.. we want to promote steve as a sudoer, granting him to execute sudo operations only on glen or supportgroup of users only, we can do this using Runas_Alias
+
+Runas_Alias DAYTON_OFC_USERS=joe,jack,glen,mark,%daytonsupportgroup
+
+steve ALL=(DAYTON_OFC_USERS) ALL
+           
+Now steve is allowed to perform sudo operations for only the DAYTON_OFC_USERS (joe,jack,glen,mark and daytonsupportgroup users)					 
+	
+
+#4. Host Alias
+We can grant an sudoer to execute sudo operations if the user is connected through a specific host machine only
+Host_Alias ORG_HOSTS=192.168.10.11,192.168.10.13
+user ORG_HOSTS=(ALL:ALL) ALL
+
+syntax:-
+User_Alias Host_Alias=Runas_Alias Cmnd_Alias
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

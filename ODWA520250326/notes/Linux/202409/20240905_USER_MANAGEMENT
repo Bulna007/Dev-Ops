@@ -1,0 +1,62 @@
+user management
+----------------
+Linux is an multi-user / multi-programming operating system. Multiple users can either parallely or one after the other can use the Linux operating system computer. Incase if multiple users are parallely using the Linux operating system computer, the Linux shares the physical system resources of the computer across all these users enabling them to use it.
+	
+There are #2 types of users are there in Linux operating system
+1. Root user
+2. Normal user
+
+1. Root user
+A Root user has un-restricted access to all the services and resources of the Linux operating system machine. He can control, restrict and access any of the resources of the machine like
+	1. user management = create/add, delete or modify the users of the Linux operating system machine
+	2. file-system management = The root user can see, modify or delete any of the files that belongs to any users of the Linux operating system machine
+	3. Process Management = can see and controll all the processes of any of users of the Linux machine
+	4. System Configurations = see and modify the operating system configurations/settings
+	5. Hardware/device management = enabling network adapter, bluetooth, mount/unmount devices etc	
+He is the "super" user of the computer, and there will be only one root user per one Linux operating system machine. 
+	
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

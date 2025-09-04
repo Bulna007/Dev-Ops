@@ -1,0 +1,202 @@
+What is a process?
+Program under execution is called a "Process", process is a way through which operating system will keeps track of the programs which are under execution.
+  
+How to see the process that are running on the Linux?
+top = table of process
+USER  PID  PR  NICE  S  VIRMEM   SHRDMEM   RESMEM  CPU   TIME + COMMAND
+
+A process can be in any of the below states
+1. D = Daemon process
+2. S  = Sleeping
+3. R = Running
+4. I = idle
+5. T = traced / terminated
+6. Z = zoombie
+
+What is priority of a process?
+based on the priority of a process, the linux operating system is going allocate the cpu for that process. There are 2 types of process are there
+1. System process
+These are lauched during the linux bootup and are created by the linux operating system to run necessary services.
+  network service
+  firewall service
+  systemd service
+    
+2. User Process
+These process are created the linux operating system when a user submits a program for execution.
+  
+The priority of a process can be anywhere between 0 - 139, out of which a system process space = 0 -99 and a user process priority space = 100 - 139
+  
+Linux user will not be allowed/cannot modify the priority of a process directly, which might result in a negative effect of crashing the system.
+  
+Linux user can modify the priority of a process in a controller way through NICE value.
+---------------------------------------------------------------------------------------------------------  
+What is NICE value, what is the purpose of it?
+through NICE value a user can change the priority of a process.
+NICE value can range between = -20 = to = 19. and based on the nice value the PR (priority) of a process is computed by linux as below.
+  PR = 20 + NICE_VALUE
+  
+The lowest the NICE value means more priority, the highest the NICE has less priority process.
+Can we change the NICE value of a process?
+Yes we can increase a NICE but to decrease NICE value you have to be an sudoer.
+  
+There are 2 ways we assign the nice value
+#1 while launching the program itself we can specify the nice value
+nice -n number command/program
+
+#2 if there exists already a program running we need take the pid and renice it
+renice -n number pid
+--------------------------------------------------------------------------------------------------------
+
+How to see the process that are running on the linux?  
+top = is a live command which will running and more used for monitoring the process.
+  
+To find process status within a give interval of time, as of now what process are running, want to know the list of them go for ps.  
+ps = process status
+ps -au = -a stands for all the process of all the TTY, -u = username
+ps -x = only current running process of the user
+ps -ef = -e = everyones or all the user process and BSD Format
+ps -eo pid,ppid,ni,command = -e = everone process / -o stands for display these columns only as an output
+
+How to kill a linux process?
+#1 we need to find the pid of the process either through top or ps (recommended)
+  
+kill pid
+kill -9 pid (dont wait for the process terminate forcefully)
+--------------------------------------------------------------------------------------------------------
+How many types of process are there in Linux?
+There are 2 types of process are there
+  1. foreground process
+  2. background process
+
+#1 foreground process
+These are the process that will be attached tty (terminal) during execution and will unblock the terminal only after its completion to let the user interact with the program.
+When do we use foreground process?
+In general if there is a program, that requires user input during its execution then such process should be lauched as foreground process, so that process can collect the data from the user.
+  
+cal.sh
+#!/bin/bash
+read -p "a : " A
+read -p "b : " B
+SUM=$[A+B]
+echo "SUM : $SUM"
+  
+above program requires A and B value as input, to ensure the program can talk to the user in collecting the data we need to lauch the process as foreground.
+by default every process we launch on TTY are foreground process only.
+  
+#2 background process
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

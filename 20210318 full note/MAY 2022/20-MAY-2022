@@ -1,0 +1,43 @@
+How to work with running an pod on kubernetes cluster using imperative configurtion objects?
+write the pod spec (yaml file) describing the information about the container application we want to run on the cluster
+pod manifest:
+
+apache2-pod.yml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: apache2pod
+spec:
+	containers:
+		- name: apache2
+			image: ubuntu/apache2:2.0.28beta
+			ports:
+				- name: http
+					containerPort: 80
+					protocol: TCP
+					
+kubectl create -f apache2-pod.yml
+--------------------------------------------------------------------------------------------
+sailor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

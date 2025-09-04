@@ -1,0 +1,105 @@
+Application protocol:
+Any 2 network applications wants to exchange the data over the network, they need to define standard message structure and semantics, so that those 2 applications can follow those rules in exchanging the data in an understandable format which is called "application protocol".
+  
+In the internet world, there are lot of applications being used to carry our daily activities like
+1. browsing web 
+HTTP protocol is the internet standard protocol used for browsing the web pages over the world wide web.
+(Hyper text transfer protocol)
+
+2. exchanging emails
+There are multiple protocols available for exchanging the emails between the client and server
+smtp = simple mail transfer protocol (initial protocol with less features)
+pop3 = post office protocol
+imap = internet mail access protocol (advanced)
+
+3. file transfer (ftp) = for exchanging files between client computer and server computer
+ftp = file transfer protocol
+
+4. remote desktop = to connect another computer over a network connection
+(rdp) = remote desktop protocol
+
+
+For each of these application types to ensure vendor/platform interoperability there are pre-defined application protocols defined for each of these applications
+For each the server programs that works on these standard protocols there are pre-defined port nos fixed to facilitate users to access the programs from client without using the port no
+
+FTP: 20/21
+SSH: 22
+SMTP: 25
+HTTP: 80
+HTTPS: 443
+POP3: 110
+IMAP: 143
+RDP: 3389
+---------------------------------------------------------------------------------------------------------
+Any 2 programs want to communicate over the network they need standard application protocol (message structure and semantics). We can classify these 2 programs into server and client program
+server program: runs on a port number
+client program: connects to the server by specifying ip:port 
+  
+  
+Different programs wants to exchange different data and has different operations to be performed, so every 2 programs should define their own application protocol to communicate.
+There most commonly used applications are there in internet world, for them the standard application protocols are defined to achieve interoperability.
+  Web Browsing (HTTP) (default: 80)
+  Exchaning Email:
+    SMTP: 25
+    POP3: 110
+    IMAP: 143
+  File Transfer (FTP) (default: 20/21)    
+  Remote Desktop (RDP) (default: 3389)    
+
+If client wants to talk to the server program it has to use URL format which contains
+schema://ip:port/resource
+
+schema: protocol to be used for communicating, so that client program by looking at schema will create messages based on the protocol and send it to the server.
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

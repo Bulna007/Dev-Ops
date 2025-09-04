@@ -1,0 +1,231 @@
+if-else condition
+If there are only 2 possible outcomes of a expression, rather than writing multiple if conditions in executing the statements,we can use if-else construct, where if the if condition failed without evaluating the one more condition the else will gets executed.
+  
+syntax:-  
+if [ condition ]  
+then
+  # statements
+else
+  # statements
+fi
+
+eg..
+  1. biggest of 2 numbers
+  2. even or odd number
+  3. a given number is positive or negative number
+  
+if-elif-else ladder
+-------------------
+if we have bunch of possible outcomes which are mutually exclusive, where upon evaluating a condition it results in one of the possible outcomes only. Then to execute statements based on the outcome we use if-elif-else ladder.
+
+wap to find biggest of 3 numbers.
+  
+bigIn3N.sh
+#!/bin/bash
+read -p "A :" A
+read -p "B :" B
+read -p "C :" C
+
+if [ $A -gt $B -a $A -gt $C ]
+then
+  echo "$A is biggest number"
+fi
+
+if [ $B -gt $A -a $B -gt $C ]
+then
+  echo "$B is biggest number"
+fi
+
+if [ $C -gt $A -a $C -gt $B ]
+then
+  echo "$C is biggest number"
+fi
+The above code will work but is in-efficient, because when $A has been identified as biggest number there is no chance of B or C to be big again, so unecessary we are checking conditions to find B or C big which is never going to happen
+
+
+
+if [ $A -gt $B -a $A -gt $C ]
+then
+  echo "$A is biggest number"
+elif [ $B -gt $A -a $B -gt $C ]
+then 
+  echo "$B is biggest number"
+else 
+  echo "$C is biggest number"
+fi
+
+0 - 50           = 3.85
+51 - 150 (100)   = 4.58
+151 - 300 (150)  = 6.50
+> 300            = 7.89
+  
+wap program based on the above slab to calculate the electricity bill.
+  
+75
+50 * 3.85 + (75-50) * 4.58 = BILL AMOUNT
+
+  
+electricityBill.sh
+#!/bin/bash
+read -p "Units:" UNITS_CONSUMED
+BILL_AMOUNT=0
+
+if [ $UNITS_CONSUMED -le 50 ]; then
+  BILL_AMOUNT=$(echo "$UNITS_CONSUMED * 3.85" | bc)
+elif [ $UNITS_CONSUMED -le 150 ]; then
+  BILL_AMOUNT=$(echo "(50*3.85) + ($UNITS_CONSUMED - 50) * 4.58" | bc)
+elif [ $UNITS_CONSUMED -le 300 ]; then
+  BILL_AMOUNT=$(echo "(50*3.85) + (100) * 4.58 + ($UNITS_CONSUMED-150) * 6.50" | bc)
+else
+  BILL_AMOUNT=$(echo "(50*3.85) + (100*4.58) + (150*6.50)  + ($UNITS_CONSUMED-300) * 7.89" | bc)
+fi  
+
+echo "Bill Amount: $BILL_AMOUNT"
+-------------------------------------------------------------------------------------------------------
+case = it is also an conditional control statement similar to if only, based on the matching outcome we want to execute a bunch of statements, then we got for case of if condition.
+  
+In case of if condition we can do any comparision using relational operators where as while using case we can only pick the exact match.
+  
+evaluate expression = based on the truthness we execute code
+if [ expression ] (expression can be written with any relational operator resulting true/false)
+then
+fi
+
+case [ expression ] [ only the expression is equal to ]
+1)
+2)
+esac
+
+if your expression matchines with a range of values we should use if condition. if the expression matches with one single value then use case condition.
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

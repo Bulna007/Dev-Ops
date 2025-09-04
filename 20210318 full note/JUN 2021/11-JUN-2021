@@ -1,0 +1,131 @@
+How do we terminate an running program or a process within Linux?
+kill pid
+kill -9 pid
+
+How many ways we can run or launch a process in Linux?
+There are 2 ways we can trigger or run a program in Linux.
+  1. Foreground process
+  2. Background process
+
+1. Foreground process = A foreground process will always be attached to the Terminal (TTY) blocking TTY. and allows the user to interact with the program in passing the inputs to the program, the output of the program will written directly onto STDOUT (TTY) or Console. 
+From the above we can understand if a program requires user interaction/input we should run the program as a foreground process. Anytime we can terminate the execution of a foreground process by using ctrl + c on keyboard.
+  
+2. Background process = There are few programs which doesnt require user interaction/input, usually these programs runs for long time would terminate only when stop them or shutdown the system.
+For eg.. mail server programs, dns server, application servers, web servers
+
+Since these program doesnt require any user interaction and run for long time, running them as a foreground process is of no use apart from blocking terminal to make it run. Due to this we unnecessary have 2 process running for that program
+  1. program itself
+  2. terminal process
+instead we can have this program execute in background.
+  
+How to run a program as a background process?
+./poller.sh = by default launch as foreground process if want it to run in background append & at the last
+
+./poller.sh & = immediately the program would be disconnected from the terminal and will not send the output to the STDOUT. if we close the terminal also the program will not exit since it is running in background.
+  
+How to capture the output the program is generating?
+we have to redirect the output of the program by writing into a file using nohup command.
+nohup is an utility that helps us in capturing the output of a background process and writes to an default file called nohup.out.
+  
+nohup ./poller.sh &
+  
+nohup is used redirecting the STDOUT of a program to a file.
+nohup ./poller.sh &
+nohup ./poller.sh > poller.out &
+  
+--------------------------------------------------------------------------------------------------------
+Package Managers
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

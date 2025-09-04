@@ -1,0 +1,45 @@
+install-mysql.sh
+#!/bin/bash
+
+IS_MYSQL_INSTALLED=0
+function checkMySqlServerInstalledStatus() {
+	MYSQL_STATUS=$(dpkg -s mysql-server-8.0)
+	if [[ $MYSQL_STATUS == *"install ok installed"* ]]; then
+		IS_MYSQL_INSTALLED=1
+	fi
+}
+
+function checkAndInstallDebConfUtils() {
+	DEB_CONF_STATUS=$(dpkg -s debconf-utils)
+	if [[ $DEB_CONF_STATUS ==  *"install ok installed"* ]]; then
+		echo "INFO: debconfi-utils package already installed, so skipping.."
+	else
+		sudo apt install -y debconf-utils
+	fi
+}
+
+function installMySqlServer() {
+	checkAndInstallDebConfUtils
+	echo "mysql-server-8.0 mysql-server/root_password password root" | sudo debfconf-set-selections
+	echo "mysql-server-8.0 mysql-server/root_password_again password root" | sudo debfconf-set-selections
+	export DEBAIN_FRONTEND="noninteractive"
+	sudo apt install -y mysql-server-8.0
+}
+
+#main block
+sudo apt update -y
+checkMySqlServerInstalledStatus
+if [ $IS_MYSQL_INSTALLED -eq 0 ]; then
+	# install mysql server	
+	installMySqlServer
+	
+else
+	echo "INFO: mysql server 8.0 is already installed, so ignoring..."
+fi
+
+
+
+
+
+
+

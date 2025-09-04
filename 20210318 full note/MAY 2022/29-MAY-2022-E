@@ -1,0 +1,128 @@
+Persistent Volume and Persistent Volume Claim
+----------------------------------------------
+Persistence volumes is a storage that is defined on a kubernetes cluster and the it is created by the kubernetes administrator
+
+Persistent volume claim = is a request for that storage to be consumed by the devops engineer that can be consumed as part of the pod
+
+There are few attributes we can attach to the persistent volume:
+1. storageClassName
+it talks about the type of storage we wanted to create on the cluster
+2. accessMode:
+ReadOnly = only pods can read the data from this volume
+ReadWriteOnce = only one pod/user can write/read at one time
+ReadWriteMultiple = multiple pod/user can read/write at the same time
+
+3. capacity:
+size of the storage volume
+
+roadster-pv.yaml
+-----------------
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+	name: roadsterpv
+spec:
+	storageClassname: roadsterstorageclass
+	capacity:
+		storage: 2Gi
+	accessMode:
+		- ReadWriteMultiple
+	hostPath:
+		path: /u01/data
+		
+roadster-pvc.yaml
+------------------
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+	name: roadsterpvc
+spec:
+	storageClassName: roadsterstorageclass
+	accessModes:
+		- ReadWriteOnce
+	resources:
+		requests:
+			storage: 1Gi
+			
+roadster-pod.yaml
+-----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: roadsterpod
+	labels:
+		app: roadster
+spec:
+	containers:
+		- name: roadster
+			image: techsriman/roadster:2.0
+			ports:
+				- name: http
+					containerPort: 8082
+					protocol: TCP
+			volumeMounts:
+				- name: roadstervolume
+					mountPath: /u01/mysql					
+	volumes:
+		- name: roadstervolume
+			persistentVolumeClaim:
+				claimName: roadsterpvc
+					
+					
+					
+					
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

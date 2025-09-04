@@ -1,0 +1,49 @@
+Linux Filesystem
+----------------
+File system is a mechanism or a technic used for organizing and storing the data on the harddisk or storage device of the computer. Operating systems uses File system technic in storing/managing the data on the harddisk of the computer. Every operating system vendor comes up with their own Filesystem machanism on storing the data.
+	
+For example:
+1. Windows operating system: it uses FAT32 or NTFS Filesystem
+
+2. Linux operating system also has their own Filesystem technics:
+1. EXT  = old filesystem technic and is not longer being used
+2. EXT2 = allows storing 2 terrabytes of data
+3. EXT3 = came from EXT2 with upgrades and backward compatibility. But there is a problem with EXT3 Filesystem, it doesnt support recovery of disk snapshots. So servers will not use this Filesystem
+4. EXT4 = Faster and allows large files with significant speed and it is default Filesystem being used upon installing linux operating system on our computer
+5. JFS  = old filesystem technic developed by IBM. It works well with small and big files too. but files are corrupted over the time.
+6. XFS = old filesystems works slowly with small files
+7. BTRFS = made by oracle. it is not stable as EXT in some distros, but it has good performance and not longer used in the market
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

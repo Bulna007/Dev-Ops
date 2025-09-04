@@ -1,0 +1,127 @@
+Ansible Magic variables or gather_facts
+----------------------------------------
+Ansible during the playbook execution will try to gather the environment information of the Fleet server on which it is going to execute the Playbook by running python scripts and cache the machine configuration in the Ansible control node until the playbook completes execution.
+	
+The json output that is gathered by the ansible control node can be referred as variables in playbook declarations so that ansible control node substitute with appropriate values during execution helping us to use the environment information
+
+Ansible control node runs a "setup" module on each fleet server before running a playbook
+using adhoc command:-
+ansible -i hosts group -m setup
+
+How to tell the ansible not to gather the facts during playbook execution?
+---
+- name: no facts
+	hosts: all
+	gather_facts: no
+	tasks:
+		- name: debug
+			debug:
+				msg: "no facts"
+...
+					
+How to refer the facts variables in side the playbook?
+There are 2 syntaxes of referring these variables
+1. "{{ansible_facts['json_property']}}"
+2. "{{ansible_facts.jsonProperty}}"					
+-----------------------------------------------------------------------------------------------
+1. changed_when and failed_when
+2. ansible vault
+3. ansible conditions and loops
+4. ansible roles
+5. jinja2
+6. handlers
+7. controlling the playbook execution
+-----------------------------------------------------------------------------------------------
+1. changed_when and failed_when
+Ansible control node upon executing a module on the Fleet server, will tries to gather the exit code or outcome of the module to identify whether the task has changed the state of the server or failed
+
+Sometimes we dont want to mark the status of an task as changed or failed based on exitcode/rc of a module, rather we want to evaluate the condition based on the outcome of the module execution to mask it as failed or changed that is where ansible has provided failed_when and changed_when conditional statements to customize the behaviour of making the status of the task.
+
+For eg.. 
+when we execute a shell command if it returns 0, the ansible marks the task as "changed"	and if the shell command returns non-zero outcome, then it marks as "failed". But we want to grab the outcome of the command and evaluate to mark it as failed/changed it can be done through failed_when and changed_when
+
+
+install-mysql.playbook
+---
+- name: install mysql
+	hosts: all
+	tasks: 
+		- name: check disk space
+			shell: "df -h /dev/sda1 | grep -v Filesystem | awk '{print $4}' | cut -d 'G' -f1"
+			register: diskspace
+			failed_when: "diskspace.stdout | float < 8"
+		- name: install mysql server
+			apt:
+				name: mysql-server-8.0
+				update_cache: yes
+			become: yes
+			
+In the above task "check disk space", once the shell module completed the execution of shell command supplied successfully it marks the task/module as success and continues to execute "install mysql server" task.
+but we want to mark "check disk space" task as success only when the diskspace of the fleet server is more than 8Gb, so we want to change the definition of success/failure rather than default behaviour of ansible
+----------------------------------------------------------------------------------------------
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+	
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

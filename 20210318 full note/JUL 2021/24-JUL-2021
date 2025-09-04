@@ -1,0 +1,127 @@
+Wap to find the biggest number in the given array.
+bigNumberInArray.sh
+#!/bin/bash
+read -p "Numbers: " -a NUMBERS
+BIG_N=0
+LEN=${#NUMBERS[@]}
+  
+10 12 45  23  12 78 10
+  
+for((I=0;I<$LEN);I++))
+do
+  if[ ${NUMBERS[I]} -gt $BIG_N ]; then
+    BIG_N=${NUMBERS[I]}
+  fi  
+done
+
+echo "$BIG_N BIGGEST NUMBER IN ARRAY ${NUMBERS[@]}" 
+--------------------------------------------------------------------------------------------------------
+Wap to sum all the numbers in a array.
+#!/bin/bash
+read -p "Numbers:" -a NUMBERS
+SUM=0
+for N in ${NUMBERS[@]}
+do
+  SUM=$[SUM + N]
+done
+
+echo "sum of elements is $SUM"
+--------------------------------------------------------------------------------------------------------
+Find the duplicate elements in the array
+#!/bin/bash
+read -p "NUMBERS: " -a NUMBERS
+declare -a DUP_NUMBERS
+DUP_INDEX=0
+  
+LEN=${#NUMBERS[@]}  
+
+for((I=0;I<LEN-1;i++)) 
+do
+  C=${NUMBERS[I]} #this value we should compare with all the elements in array I+1
+  for((J=I+1;J<LEN;J++)) 
+  do
+    if [ $C -eq $NUMBERS[J] ]; then
+      DUP_NUMBERS[DUP_INDEX]=$C
+      DUP_INDEX=$[DUP_INDEX + 1]
+      unset ${NUMBERS[J]}
+      LEN=$[LEN-1]
+      J=$[J-1]
+    fi
+  done 
+done
+echo "duplicate elements found: ${DUP_NUMBERS[@]}"
+  
+NUMBERS: 23 45 67 87 10 67 12
+DUP_NUMBERS=[23 45 45]  
+DUP_INDEX=3
+LEN=7
+  
+I=2
+C=45
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

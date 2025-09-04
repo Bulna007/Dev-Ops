@@ -1,0 +1,57 @@
+How does data transfer takes place between the computers across the network?
+As we discussed earlier the programs running across the 2 machines are going to exchange the data, not the hardware devices. In order to exchange the data over the network, we cannot carry symbolic/character representation of the data over the network, because hardware/physical devices are only capable of representing or carrying the data interms of on/off (which is represented as 0/1).
+  
+Now in order to transfer the data over the network, we need to convert the data into the format of 0/1 then only it can be tranfered over the physical communication channel.
+  
+How to convert symbolic representation of data into binary representation?
+Unless we represent a Symbol or a Character in decimal number, we cannot convert into binary format, the process of converting the Symbol/Character into binary format is called "Encoding".
+The receiver upon recieving the binary number, he should convert the binary to decimal and derive the character/symbol  back from the decimal number, which is called "Decoding"
+  
+If "Encoding" and "Decoding" to take place in the proper way both the parties has to use same decimal representation of the Symbol/Character. So to help in exchanging the data based on the common Symbol-decimal notation, CharSet Encoding Standards are introduced.
+  
+What are CharSet Encoding Standards?
+To help the application programs in encoding/decoding the data while storing/transferring data across the network in a standard Symbol chart, the CharSet encoding standards are introduced. The CharSet encoding standards assign for each character a corresponding decimal value, which has to be followed by both the parties inorder to exchange the data. There are lot of CharSet Encoding standards are available
+1. ASCII
+2. UTF-8
+3. UTF-16
+4. UNICODE
+5. ISO-9001
+
+Why do we need multiple CharSet Encoding Standards, why cant we have one single CharSet standard that supports all the symbols?
+ASCII CharSet encoding standard has provided decimal numbers for all the characters of English Language, Numbers and special characters. it has assigned a numeric value for each character ranging from 0 - 127  
+
+A minimum number of bits required for representing character in ASCII = 1
+  maximum number of bits required = 8  
+  
+(ASCII)  
+SBI0143 -> decimal->binary
+01010011010000100100100100110000001100010011010000110011
+  
+If we want to support more symbols/characters of more languages we need more decimal range 0 - 65535
+utf-16
+  
+based on the language we want to use in storing/transferring the data always choose appropriate charset encoding standard, choosing an inappropriate encoding standard leads to wastage of memory and increases more transfer time of data.
+For eg.. if we are using english language only, use ASCII or utf-8 standard where each character takes only 8 bit representation, instead of choosing others.
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

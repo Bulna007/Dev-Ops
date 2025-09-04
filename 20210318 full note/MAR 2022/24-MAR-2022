@@ -1,0 +1,53 @@
+How does docker containers are isolated from each other while running on the same operating system?
+There are 3 major features of linux operating system are there while enables isolating a container from another
+#1. linux namespaces
+namespaces helps in isolating a container from another container running on the same machine. each docker container runs out of its own namespace and can access the resources that are allocated to that namespace only.
+Below are the namespaces supported by linux to keep containers isolated
+1. pid
+2. net
+3. uts
+4. mts
+5. ipc
+
+#2. Control Groups (cgroups)
+helps in sharing the resources of the machine and limiting their usage across the containers
+
+#3. Union Filesystem
+docker images are packaged based on union filesystem to keep them light weight
+------------------------------------------------------------------------------------------
+Docker Architecture
+--------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

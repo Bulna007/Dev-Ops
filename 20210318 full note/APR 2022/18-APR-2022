@@ -1,0 +1,236 @@
+CMD directive
+only CMD without ENTRYPOINT
+----------------------------
+CMD directive is used for making an docker container executable, it the default instruction with which the docker container beings its execution.
+	
+CMD can be written in 3 forms
+#1. CMD ["command", "param1", "param2"] = execute form (no shell)
+#2. CMD ["param1", "param2"] = used along with ENTRYPOINT
+#3. CMD command param1 param2 = shell-form
+
+Notable points:-
+	1. CMD is used for making an container executable and is the default instruction with which the docker containers runs (in the absence of ENTRYPOINT)
+	2. We can write multiple CMD directives within a Dockerfile but only the last directive/instruction will be executed by ignoring others
+	3. We can override the default command we wrote in CMD while launching the container
+	4. Within a CMD only we can write one command, but incase if we want to execute multiple commands as part of the CMD we have 2 options
+		4.1 write all the commands in a shellscript file and run the shellscript as part of the CMD directive
+		CMD ["./run.sh"]
+		4.2 while using shell-form we can concatenate multiple commands using && or ;
+		CMD command1 && command2 (or)
+		CMD command1;command2
+------------------------------------------------------------------------------------------
+ENTRYPOINT
+ENTRYPOINT directive is also used for making an docker container executable. when we run the docker container, the container executes from ENTRYPOINT directive instruction only.
+	
+The major difference between ENTRYPOINT and CMD is incase of CMD it can be overriden while launching the container, but whereas an ENTRYPOINT instruction cannot be overridden while launching the container
+
+CMD and ENTRYPOINT together
+---------------------------
+In a Dockerfile we can write both CMD and ENTRYPOINT together, there are 2 options of writing them in Dockerfile
+
+1. CMD before ENTRYPOINT
+-------------------------
+in case if we have written CMD before ENTRYPOINT the docker engine ignores the CMD and only execute ENTRYPOINT only
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+CMD ["echo", "CMD instruction here!"]
+ENTRYPOINT ["echo", "ENTRYPOINT instruction here!"]
+
+	
+docker image build -t cmdep:1.0 .
+docker container run cmdep:1.0
+	
+2. CMD after ENTRYPOINT
+-------------------------
+if we write CMD after ENTRYPOINT instruction in the Dockerfile, if we are using execute form only then CMD acts as parameters to the ENTRYPOINT instruction
+
+Dockerfile
+-----------
+FORM ubuntu:20.04
+ENTRYPOINT [ls]
+CMD[-l]
+
+------------------------------------------------------------------------------------------
+How to execute an docker container interactively while using ENTRYPOINT in the Dockerfile?
+java program that prints the n number of even numbers as an output.
+	
+evengenerator
+|-src
+	|-main
+		|-java
+			|-com.evengenerator.bean
+				|-NumberGenerator.java
+		|-resources
+	|-Dockerfile	
+	|-sh
+		|-launch.sh
+|-pom.xml
+
+package com.evengenerator.bean;
+public class NumberGenerator {
+	public static void main(String[] args) {
+		int n = 0;
+		int i =0;
+		int index = 2;
+		n = Integer.parseInt(System.getProperty("N"));
+		
+		while(i<=n) {
+			if(index % 2 == 0){
+				sop(index);
+				i++;
+			}
+			index++;
+		}
+		sop("bye!")
+	}
+}
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ENV JAVA_HOME=/u01/middleware/jdk-11
+ENV PATH=$PATH:$JAVA_HOME/bin
+
+RUN mkdir -p /u01/middleware
+RUN mkdir -p /u01/applications
+
+WORKDIR /u01/middleware
+ADD http://jdk/download/binary .
+RUN jar -xzvf openjdk-11-jdk.tar.gz
+RUN rm -rf openjdk-11-jdk.tar.gz
+
+WORKDIR /u01/applications
+COPY target/evengenerator.jar .
+ENTRYPOINT ["java", "-cp", "./evengenerator.jar", "com.evengenerator.bean.NumberGenerator"]
+
+docker image build -t eg:1.0 .
+docker container run -it -e N=10 eg:1.0 bash
+in the above line we are overriding the ENTRYPOINT instruction while launching the container which will be ignored and only the java program will be executed
+
+
+launch.sh
+----------
+#!/bin/bash
+set -e
+nohup java -cp evengenerator.jar com.evengenerator.bean.NumberGenerator &
+exec $@
+	
+	
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ENV JAVA_HOME=/u01/middleware/jdk-11
+ENV PATH=$PATH:$JAVA_HOME/bin
+
+RUN mkdir -p /u01/middleware
+RUN mkdir -p /u01/applications
+
+WORKDIR /u01/middleware
+ADD http://jdk/download/binary .
+RUN jar -xzvf openjdk-11-jdk.tar.gz
+RUN rm -rf openjdk-11-jdk.tar.gz
+
+WORKDIR /u01/applications
+COPY target/evengenerator.jar .
+COPY sh/launch.sh .
+RUN chmod u+x sh/launch.sh
+
+ENTRYPOINT ["sh/launch.sh"]	
+
+docker container run -it -e N=10 eg:1.0 bash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

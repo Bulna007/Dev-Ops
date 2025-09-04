@@ -1,0 +1,142 @@
+What is Apache Maven, why do we need to use it?
+Apache Maven is java application build tool, that takes care building and packaging an java application.
+  
+The developer upon delivery the code through scm repository like git, the devops engineer is responsible for building, packaging and deploying the application onto the target enviroment. There are lot of challenges in performing the build and packaging an java application manually by devops engineer as below:
+1. devops engineer is not an java developer, he dont know the process of compiling and packaging an java application, so manually performing this process makes him feel very complicated.
+2. There are lot of steps involved in building and packaging an application, which takes too much amount of time in conducting, which will kills the productivity of development/delivery process of the application.
+3. Performing the building and packging the application is a repeatitive process that has to be perform by the devops engineer at various stages of the application like during qa/prod deployment etc. since it is an repeatitive process there is a high chance of conducting mistake or error in performing manually, which will leads to redo the things from scratch which will waste lot of time.
+4. Many of the times the devops engineer has to modify the application configuration in facilitating the deployment, but the devops engineer dont know the file formats and how to modify the application configuration, due to which he might perform a mistake while modifying the configuration which leads to failure in executing the application
+5. If the process of building the application has been changed, adopting the new steps/process becomes very difficult for the devops engineer.
+  
+Building an application is an repeatitive process, where any number of times we conduct the build, the steps involved in perform the build is same for a project, In such a case instead of we manually perform each step in building the project we can automate the above process by writing the code and executing the code repeatedly. That is where build tools comes into picture.
+  
+Build Tools are used for automating the process of building/packaging an application, so that user dont need to conduct these activities manually.
+  
+The developer of the application knows the process of building and deploying an application, so he should be responsible in automating the process of building an application using an build tool. The developer writes the build/packaging logic for an application and delivers to the entire team, anyone can build an application by executing the code.
+  
+There are lot of build tools are available in the market like
+1. Ant
+2. Maven
+3. Gradle
+Maven is a very popular build tool and widely used in the market in building/packaging an java application.
+  
+Maven is an declarative build management tool, the process of building and packaging any java application would be same, instead of developer writing the instructions or code in performing these activities maven can takecare of itself in doing these.
+  
+But we need to provide the information about our project to the maven helping him in understanding like
+1. what type of project (jar/war)?
+2. what are the jar dependencies required?
+etc
+
+by reading the information about the project, maven itself can perform the building/packaging activities of our project.
+So we need to write 0 lines of code in building a project using maven, we only need to provide configuration information about our project so it is called declarative build management tool.
+  
+#1 Standardized directory structure
+Each project that we build with maven should be created following the standard directory layout that is defined by the maven. So that maven knows the details of the project like which files are in which location of the project, so that it can automatically conduct the build steps/activities on the contents of the project.
+There are many advantages of following standardized directory structure:
+1. we dont need to define the directory structure or layout about our project to maven, which reduces lot of configuration
+2. developer can easily work on any java project, because all the projects are having same directory structure.
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  

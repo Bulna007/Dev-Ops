@@ -1,0 +1,13 @@
+- name: install java17
+  hosts: all
+  tasks:
+    - name: check sys
+      shell: "df /dev/sda1 | grep -v Filesystem | awk '{print $4}'"
+      register: diskspace
+      failed_when: "diskspace.stdout | float < 21474836480"
+    - name: install java17
+      apt:
+        name: openjdk-17-jdk
+        state: present
+        update_cache: yes
+      become: yes  

@@ -1,0 +1,212 @@
+To overcome the drawbacks in manually performing the installlations and configurations of software, we can automate the process through various technics
+
+#1 shellscript
+The devops engineer can write touchless or non-interactive installation and configuration scripts using shellscript programming to achieve automation of installations and configurations.
+There are lot of advantages:
+	1. saves lot of time
+	2. dont need to memorize lot of steps in installing and configuration the software which makes easier to achieve desired system state
+	3. no human errors, so finally we can reproduce repeatable infrastructure
+	4. upgradations and patches can be taken care easily
+
+looks like shellscripting has resolved many of the drawbacks with manually process, but it has its own drawbacks as well
+drawbacks:-
+	1. Should have strong programming knowledge background inorder to write shellscript programming. but many of the existing ops engineers or devops engineer are non-programmers where they felt very complex in learning and programming through shellscripting which is biggest limitation
+	2. Shellscripting is platform specific, it only works on linux platform only, if we want to achieve automation on multiple platforms the shellscript is not a solution.
+	along with the platform dependency, it only works on a specific distro for whom we have written and will not be portable on another linux distro. this making it very complicated and highly redundant in achieving the portablity across the distros and platforms
+	3. No logging capabilities are there in shellscripting. programmer has to rely on echo statements to track the outcome of execution which makes it quite complex to debug script executions.
+	4. achieving the idempotancy is very complex or tough. we need to write lot of code and conditional checks to verify the system is in desired state are not before applying the automations
+	5. No exception handling support. while executing the shellscript automation code, if there is an failure encountered during the execution of the script, the script will abnormally terminate without giving us a chance of rollback the system to previous state or either handle to failure, which is a biggest drawback in shellscript
+	
+From the above we can understand shellscripting is not a ideal solution for achieving the software configuration management automation, it lacks many of the features that exists in most of the programming languages to use it and program it sophisticatedly
+
+When should we use shellscript?
+There are simple automations that seems to be spanning of couple of lines of code and has to be executed once after discarding, then we can use shellscripting to quickly achieve it.
+
+The alternate to the shellscripting in achieving software configuration management automation is python.
+	
+#2. Python
+Phython is an Platform independent scripting language with server-side capabilities. It has rich set of opensource modules/libraries where programmer never need to write code by himself for accomplishing something, people can quickly reuse these libraries in producing the working model of the software program, thus making it ideal choice for programming.
+
+Python is heavily used in writing administrative scripts to configure and manage server-side softwares. Servers has provided phython api/sdk using which we can automate the configurations that has to be done typically on the servers.
+	For eg.. to configure a datasource on weblogic server, one can write phython script connecting to weblogic server and create it automatically.
+	
+There are plenty of advantages of using phython language in achieving automations:
+advantages:-
+1. its a complete programming language with full-suite of features which can be taken as a benefit in achieving software configuration automations.
+2. There are lot of opensource modules are available using them we can quickly achieve automations
+3. in-built logging support
+4. designed to work with error handling
+5. The code written in Phython works on any platform, but programmer has to write little more code to ensure the script works across the platform
+
+dis-advantages:-
+	1. very very complex to program, unless you are a programmer you cannot use python language
+	2. achieving idempotancy is still a complicated job
+	3. orchestrating the several code automations is high complex
+
+From the above we can understand achieving software configuration management automation through python seems to complex job and costly as well. it is ideally suitable for server-side administrations only.
+	
+From the all of the discussions we went through, we can find ourself either a shellscript or python is not an ideal solution for achieving software configuration management automation we need an alternate tools/technics in accomplishing it that is where software configuration management tools are introduced like
+	1. Ansible
+	2. Chef
+	3. Puppet
+	4. Salt Stack
+	
+---------------------------------------------------------------------------------------------	
+
+There are programming languages like Python and Ruby which are better suitable for achieving software configuration management automations, but they have lot of limitations
+	1. truely need to be a programmer (no choice)
+	2. need to write complex logic in performing the automations
+	3. huge amount of lines of code has to be written to bring the system into desired state, which takes lot of time and further increases the time for delivering the software
+	4. testability of the automation scripts requires more time
+	5. acheiving portability is high difficult
+	
+That is where tools like Ansible, Puppet, Chef and Salt are frameworks built ontop of Python and Ruby languages which provides simple interfaces or apis through which we can achieve automations quickly.
+goals of software configuration management tools:
+	1. simple to program (necessarily not required to be a programmer to work on them)
+	2. no complex logics to perform automation
+	3. simple routines through which we achieve desired system state in an idempotent way
+	idempotancy is core principle on which the software configuration management tools are built
+	for eg. we write ansible playbook with apt module as below
+	apt:
+		name: mysql-server-8.0
+		state: present
+		update_cache: yes
+	the above ansible code will verifies already the mysql server 8 version is available or not on the machine where we are running and simple ignores execution if present.
+	4. testing and ceritifying these script automations are really simple, because we are reusing the code modules which are pre-tested
+	
+	pkg:
+		name: mysql-server-8.0
+		state: present
+		update_cache: yes
+		
+	we dont need to perform
+		- platform portability testing
+		- idempotancy testing
+	we just need to verify the code module produced using these tools works fine or not to ceritify their usage
+	5. most of these software configuration management tools are being designed keeping the view of platform portability.
+			
+How does these software configuration managements tools works?
+The software configuration management tools works based on 2 architectural models
+	1. pull based architectures
+	2. push based architectures
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	

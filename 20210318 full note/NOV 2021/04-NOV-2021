@@ -1,0 +1,135 @@
+How to create an vagrant machine?
+1. create a project directory
+2. create a vagrant machine configuration file with name Vagrantfile
+3. write the machine declaration within the configuration file
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "hashicorp/precise64"
+end
+
+vagrant cli commands
+1. vagrant init (or) vagrant init box (or) vagrant init -f vboxname
+2. vagrant up
+3. vagrant ssh
+4. vagrant halt
+5. vagrant reload
+6. vagrant suspend
+7. vagrant resume
+8. vagrant status
+9. vagrant global-status
+10. vagrant destroy
+---------------------------------------------------------------------------------------------------------
+What will happens we we boot the vagrant machine for the first-time?
+or
+How does the vagrant machine will be started?
+1. downloads the vagrant boxfile from vagrant cloud and places it under the $VAGRANT_HOME/.vagrant.d/boxes
+Vagrant boxfile = Vagrant boxfile is not an virtual machine image, it is a template file from which we can create vagrant machine image. If we want to create 10 virtual machines we dont have to download 10 vagrant boxfiles, rather the contents of vagrant box file will be imported in creating 10 virtual machine images, so that booting up the virtual machine is quick.
+  
+Vagrantbox = a template preinstalled with operating system, software packages and other utilities that can be imported in creating an virtual disk image.
+
+Vagrantbox files are created by hashicorp and has been distributed through vagrant cloud, for each hypervisor provider there is an vagrant box file published.
+  virtualbox = hashicorp/precise64
+  hyper-v = trusty/ubuntu14
+
+creating an virtual disk image from an iso and installing the software packages and tools takes lot of time in provisioning an virtual machine. So vagrant comes up with vagrant boxfiles which are prepackaged templates can be used for quickly creating virtual machines
+
+From the above we understood, when we run vagrant up for the first-time the vagrant engine checks for the vbox file under $VAGRANT_HOME/vagrant.d/boxes for the file, if it is not available goes and downloads the vagrant boxfile from vagrant cloud places it under the above directory specified, so that is can reuse/import the same boxfile in creating multiple virtual machine.
+  
+#2 import the boxfile into the project directory
+Vagrant creates an separate virtual disk image (vdi) by importing vagrant boxfile which it has downloaded above. It keeps the vdi file created for each project under the location ~/Virtualbox Vms/
+The Vagrantbox file is a compressed file, it will be extracted into an virtual machine image file under the directory ~/Virtual Vms/ and then imported as a disk image
+
+#3 booting up the virtual machine
+In the project directory where we created Vagrantfile, inside that directory vagrant will create .vagrant folder. In this folder vagrant will store the box metadata information. while vagrant is creating an virtual machine to identify and manage the virtual machine it generates an unique id for every machine along with that it creates an metadata file under .vagrant directory in which it stores information about the vagrant machine like
+  1. what is the virtual machine image to be used in bringing up the machine
+  2. networking configuration
+  3. sync folders
+  4. vagrant machine name
+  etc
+By default while provisioning an vagrant machine, vagrant will setup the networking as NAT with port forwarding on 22 port.
+In addition to the above it generates public/private key and seeds the public key onto the virtual machine and stores the public/private key under .vagrant directory, so that when we issue vagrant ssh, the command internally picks the public/private key in connecting to the machine over ssh
+
+
+What are the stages in which a vagrant machine can exists?
+1. Not Created = The Vagrant machine has not yet created, which means in our project directory there is no .vagrant folder so that vagrant will show the status as machine not created
+
+2. Running = The vagrant machine is booted up and running. the .vagrant directory is created with appropriate metadata associating the vagrant machine to the underlying machine image file
+
+3. Poweroff = The vagrant machine is halted or stopped
+
+4. Saved = The current state of the virtual machine will be written onto a disk file of the host computer and machine will be stopped. when we bring up the machine again, the state of the virtual machine will be restored from the saved state file including the running programs
+
+5. Aborted = if we kill the vagrant machine while running forcibily by pressing ctrl+c then machine will be moved to aborted state.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

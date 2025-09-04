@@ -1,0 +1,133 @@
+case conditional control statement
+case is also similar to if condition control statement, where we want to execute a block of statements based on the conditional evaluation to true/false.
+  
+In a if statement we write conditions using any of the relational operators like greaterthan or lessthan etc. whereas in a case control statement it works only with equal to relation, it picks the exact match and executes the block of statements.
+  
+syntax:-
+case $INPUT in
+1)
+  #statements
+  ;;
+2)
+  #statements
+  ;;
+3)
+  #statements
+  ;;
+*)
+  #statements
+esac
+  
+There are 2 advantages of using case when compared with if-condition:-
+  1. readability of code is improved while using case condition.
+  2. Irrespective of the input only it takes one lookup only to identify the block of code to be executed while using case, so results in better performance when compared with if-condition
+  
+When to use if and case?
+  if   = we have to build conditions based on range of values, then use if condition
+  case = the expression will be evaluated based on equality then go for case condition
+  
+  
+Breakfast
+1. Idly = 20
+2. Poori = 30
+3. Dosa = 32
+4. Poha = 23
+5. Smosa = 10
+6. Pav Bhaji = 50
+7. Jalebi = 10
+8. Pongal = 35
+    
+enter breakfast you want: idly
+quantity: 2
+bill amount: 20 * 2 = 40
+
+bill.sh  
+--------------
+#!/bin/bash
+echo "1. Idly"
+echo "2. Dosa"  
+echo "3. Poori"
+  
+read -p "enter menu no:" ITEM_NO
+read -p "quantity:" QUANTITY
+
+case $ITEM_NO in
+1)
+  AMOUNT = $[20 \* $QUANTITY]
+  ;;
+2)
+  AMOUNT = $[32 \* $QUANTITY]
+  ;;
+3)
+  AMOUNT=$[30 \* $QUANTITY]
+  ;;
+*)
+  echo "Please enter right item no"
+esac
+echo "bill amount : $AMOUNT"
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,197 @@
+Control Statements are used for controlling the flow of execution of the program.
+  
+How many types of Control Statements are there?
+There are 2 types of Control Statements are there
+1. Conditional Control Statement
+Based on conditional expression, we control the execution of a block of code
+  1.1 if
+  1.2 case
+
+2. Loop Control Statment
+    
+we want to execute a block of code repetetively for n number of times in a place within our program, one way we can execute the block of code n times is by writing it n number of times in our program.
+  
+For eg.. Good Morning message 3 times  
+#!/bin/bash
+echo "Good Morning"
+echo "Good Morning"
+echo "Good Morning"  
+    
+but the above approach has problems like the code has been duplicated into several lines so that we run into maintainance problems like
+1. if we want to change the code, we need to modify all the references/occurrences of the code we have written repeatedly, which is time consuming process
+2. there is chance while modifying we might broke the code or introduce bugs by modifying in-correctly
+3. we might mis modfying few lines of occurences due to which the program will not work as expected and requires debugging the program.
+  
+How to avoid the above problems and execute the code repeatedly at a place within our program, thats where loop control statements are introduced.
+There are 3 types of loop control statements are there
+1. while
+2. for
+3. until
+
+#1. while loop
+while loop statement is used for executing a block of code repeatedly while the given condition is true.
+syntax:-
+  while [ condition/expression ]
+  do
+    #block of code    
+  done
+
+#1 wap program 2 print a given input message for n number of times
+if we want to repeatedly execute a block of code for n number of times we need to maintain couter variable to keep track of how many times we execute the block.
+  
+#!/bin/bash
+I=1 #counter variable intialization
+while [ $I -le 10 ] # counter condition
+do
+  # block of code
+  echo "Good Morning"
+  
+  I=$[I+1]  # counter increment
+done
+
+
+  
+#2 wap to print 1 - n numbers
+read -p "N:" N
+I=1
+while [ $I -le $N ]
+do
+  echo "$I "
+  I=$[I+1]
+done
+
+#wap to print N mulitiplication table for upto 10 multipliers
+N=2
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+2 * 6 = 12
+2 * 7 = 14
+2 * 8 = 16
+2 * 9 = 18
+2 * 10 = 20
+
+#!/bin/bash
+read -p "Table:" N
+I=1
+while [ $I -le 10 ]  
+do
+  MUL=$[N * I]
+  printf "%d * %d = %2d" $N $I $MUL
+  I=$[I+1]
+done
+
+#wap to print even numbers between 1 - N
+N%2 = 0 even number
+N%2 != 0 odd number
+N is divisible by 2 even otherwise odd
+
+N=10
+1 2 3 4 5 6 7 8 9 10
+Go through 1 to 10 numbers and for each number check wether is is even or not, if yes print it.
+  
+read -p "N:" N
+I=1
+while [ $I -le $N ]
+do
+  REM=$[I%2]
+  if [ $REM -eq 0 ]
+  then
+    echo "$I "
+  fi
+  I=$[I+1]
+done
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

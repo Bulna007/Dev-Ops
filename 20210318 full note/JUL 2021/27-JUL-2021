@@ -1,0 +1,156 @@
+Functions in Shellscripting
+What are functions, why do we need to use them?
+If we want to execute a block code at different places within our shell program, instead of writing the same code at all the places whereever we want to execute, we can place the block of code in a named-block called "function" and use it.
+
+Function is a block of code, that can be reused at different places within a shellscript program, so that we can avoid duplicating the code in all the places whereever we want to execute.
+
+How to write functions?
+While working with functions our shellscript program contains 2 parts
+  1. function part
+  2. main part 
+  
+function: are written as part of the shellprogram only, but will not be executed directly unless we call them in a main block of program
+main block/part: If we write instructions/code without wrapping in a function then it is main block, The actual execution of the program will begin from main block only.
+
+How to define a function in shell program?
+syntax:-
+function functionName() {
+  #block of code to be executed
+}
+
+How to invoke/call a function?
+Within the main block whereever we want to execute the function, refer the function with name
+#!/bin/bash
+#main block of code
+functionName
+
+#1 wap to demonstrate the basic syntax of working with function
+basicfn.sh
+#!/bin/bash
+function printFn() { #caller
+  echo "hurray! function is working!"
+}
+#main block
+echo "main block begined executed"
+printFn #invoked/called function (callee)
+echo "end of main block"
+
+How does flow of execution will work in functions?
+1. always the shell program begins execution from main-block
+2. within the main-block when we call the function for eg.. printFn (above), then the control flow of execution will be transfered to the function block and begins execution
+3. once the printFn function block completed execution, automatically control flow comes back to the nextline of the function call in main block and continues to execute.
+
+
+Here the main block is called "callee", since he is calling the function and the function we are calling within the main block is called "caller", as we called him
+--------------------------------------------------------------------------------------------------------
+How to work with parameters in function?
+
+addFn.sh
+#!/bin/bash
+function add() {
+  A=10
+  B=20
+  SUM=$[A+B]
+  echo "SUM: $SUM"
+}
+#main block
+add
+add
+
+we want to reuse the logic written as part of the function, by calling the function at several places within our program. always we dont want the function logic to be executed with fixed set of values, rather at different places of our program, we have different data upon which we want to perform or execute the logic, otherwise functions is of minimal/no use if they always perform operation with same data.
+
+In the above program add method always adds 10, 20 only, whereever we call, but at different places in our program, we have different A & B values on which add function should perform operation, how can we achieve it?
+That is where shellscript supports allowing parameters to be passed as part of a function.
+
+if function has been written to perform operation with same values, then we cannot reuse the function at different places with different values as input, so reusability has been broken.
+
+addFnArgs.sh
+#!/bin/bash
+function add() { #we dont need to declare arguments in function declaration
+  A=$1
+  B=$2
+  SUM=$[A+B]
+  echo $SUM
+}
+
+#main block
+add 10 20 #function call with parameters
+add 50 60 #function call with parameters
+-------------------------------------------------------------------------------------------------------
+Scope of variables in shell program
+by default when we declare a variable within main block, then variable scope is global, and will be accessible at all the places within the program.
+
+note:
+tip:
+1. it is bad programming practise in referring global variables inside a function, because we cannot reuse the function with different values unless we modify the global variables
+
+2. avoid declaring global variables within the function to understand easily the program execution
+
+#!/bin/bash
+function f1() {
+  echo "Hey! Me global, anywhere I can live A:$A"
+  B=30 #even this variable also becomes global variable only
+  local C=40 # now c becomes local variable and is accessible within the function and will die at the end            of the function
+}
+
+#main block
+A=10 #global variables we can use anywhere within shellscript program
+echo "Hey! Even myself global rey, any where you can access B: $B"
+f1
+echo "C : $C" #will not work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

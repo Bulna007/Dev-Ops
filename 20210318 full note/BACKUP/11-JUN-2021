@@ -1,0 +1,96 @@
+How many ways we can compare any 2 give files in linux?
+There are 2 ways we can compare files in linux
+  1. cmp = does only a byte by byte comparision and displays only the first difference between the files only.  
+  2. diff = used for comparing 2 different text files and displays all the mis-matches within those 2 files at one shot
+  In addition to display the differences between files, it will provide suggestions on what can be done to make those 2 files identical.
+  For each line where these is a different it will shows special symbols in instructing us on how to make those 2 file same.
+    a = add line
+    c = change line
+    d = delete line
+  and adjacent to the above characters, it displays symbols indicating from where to where actions should be performed
+  < = changes made to left
+  > = apply the changes to right side file
+  2c,2c< = 2 nd line change with 2line of leftside
+  
+Pipes (|) and Redirections (><)
+    
+Pipes:-
+The power of linux operating system lines in joining one linux command output as an input to the another linux command through which we have infinite possibilities of executing or creating new commands from exiting commongs.    
+
+In-Short:- pipes are used for joining the commands
+
+In linux every command will takes the input from STDIN and writes the output to STDOUT. But sometimes we want to redirect/pass the output of a program/command as an input to another command instead of from STDIN
+
+wc -l fruits.txt
+diff fruits.txt fresh-fruits.txt | wc -l
+who | wc -l = shows number of users logged in currently in linux
+ps -ef | wc -l = no of process that are currently running
+users | wc -w = number of users logged in linux
+
+redirection operators
+---------------------
+There are 2 types of redirection operators are there
+> = output redirection operator
+< = input redirection operator
+redirection operators are used for changing the default read and write of a command.
+echo "hi" > filename
+
+cat < story.txt = we are asking cat to take the data from story.txt rather than STDIN and write to STDOUT
+cat < story.txt > newstory.txt = we are copying the content of one file into another without cp
+------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+

@@ -1,0 +1,78 @@
+How many types of processes are there in Linux?
+There are 2 types of processes are there
+1. Foreground process
+A program/process launched by the user interactively, which takes input data from the user during execution and produces intermediate or final result upon completion to the user directly. In general foreground processes are short-lived programs upon execution will complete within stipulated amount of time and produces the result.
+The terminal/user would be blocked until the completion of the program.  
+  
+2. Background process
+If we have program which doesnt require any user-interaction, these programs are usually long-running jobs which dont take any input from user during execution and doesnt directly provide output to the user directly, then running these programs as a foreground process is of no use apart from block terminal process. Instead we launch such programs as background process.  
+in-short:-background process is a program that runs for long amount of time without user interaction.
+  
+There are certain programs which are non-interactive and are going to perform mandatory services like
+1. mounting network drives
+2. loading the network adapters
+3. periodically taking the backup of the application directories etc
+and if these fail to run, some of the functionalities of our application/System will be lost.
+  
+if we are running mandatory system services as background processes there are certain limitations are there
+1. the background process will not be started automatically, upon booting the machine the user has to manually kickoff the program to run. since it is mandatory service, if we forget to run upon booting the machine there is always a chance of lose of functionality
+
+2. we should monitor the program periodically to ensure it is running, in case crash the functionality will be lost, so we should ensure and restart the program when it got terminated which is difficult job
+
+3. to manage the program like stop/restart we should know the pid of the program which will keep on changing everytime when we launch it.
+  
+How can we manage/monitor such mandatory system services of our system/application?
+To address the above problem there is software package utility called Systemd tool has been introduced, this can be installed on various different linux distro's which helps us in managing the background processes easily.
+In ubuntu distro the systemd tool is pre-installed and is available for usage.
+The systemd is an tool or utility the help us in managing the background process easily. Now we need to provide the information about our programs as a Unit definition to the systemd process. So that systemd takes care of managing your program by running it as part of Ubuntu Service.
+  
+The systemd has provided handful of commands or utilities in managing your services/process like
+stop, start, restart, status, reload, disable, enable etc.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,211 @@
+What is function, why do we need to use it?
+Functions are named code-blocks written in a shellscript program, which can be reused at various different places within our program to repeatedly execute the block.
+  
+syntax:-
+function functionName() {
+  #code block
+}
+
+There are 2 parts of the program will exists while working with functions.
+1. function blocks = will not be executed by default, unless we call the function
+2. main block = the program execution always begins with main block of code
+
+
+How does the flow of execution of the program will works while using functions?
+1. always the code begins execution from main block
+2. within the main block if we call the function referring its name, the control flow will be transfered to function, and will begins execution of the function
+3. after completing the execution of the function, the control flow will be transfered back to next line of code after the function call in main block.
+
+What are function arguments, what is the purpose of them?
+instead of writing a function that computes or performs the operation on fixed values hardcoded inside it, we can pass data as parameters while calling the function, so that we can execute/reuse the function at various different places within our program by passing different values as input.
+
+function add() {
+  A=10
+  B=20
+  SUM=$[A+B]
+  echo "SUM: $SUM"
+}
+The above function always performs addition of 10 and 20 only, which we cannot use at different places in our program if we want to add any other 2 numbers.
+point to remember:- because of the values are fixed, we cannot reuse at different places with different values
+
+always recommended to design a function that takes arguments as inputs and compute/perform operation
+#!/bin/bash
+function add() {
+  A=$1
+  B=$2
+  SUM=$[A+B]
+  echo "SUM: $SUM"
+}
+#main block
+add 10 20
+--------------------------------------------------------------------------------------------------------
+Scopes of Variables
+There are 2 scopes of variables exists in shell program
+1. global variables
+These are the variables visible and accessible to the entire shell program. 
+
+How to declare?
+By default when we define a variable VAR_NM=VALUE, the it becomes global variable, irrespective of the place where we declared it.
+
+recommendation:- 
+dont declare global variables in shell program and use them inside the function, always functions should be passed with arg values using which it should perform the operation.
+
+2. local variables
+by default when we declare variable inside the function it becomes global variable only. but it is recommended to declare local variables within the function to easily understand the code-block of execution
+if we want to declare variables within a function use local VAR_NM=VALUE, so that the scope of the variable is inside the function only.
+note: local keyword can be used only inside the function.
+--------------------------------------------------------------------------------------------------------
+Exit code in Linux
+--------------------
+whenever we execute any command/program on shell interpreter, by default the at the end of execution the program/command returns exit code to the operating system indicating the status of the completion as either success/failure.
+
+the exit code: 0 indicates successful completion and terminated normally
+non-zero exit code: indicates failure of execution and terminated
+
+based on this exit code, operating system keeps track of the processes that are executing and improves the user experience in using the machine.
+
+How to capture the exitcode of a program after completed execution?
+The exitcode of the program will be stored by linux in a special variable $?, it will be overwritten always by the last executed program. we can see the exit code by accessing the variable.
+--------------------------------------------------------------------------------------------------------
+return values in shellscript functions
+
+when we call a function with arguments, it is going to perform the operation and computes the output. The output that is calculated by function should not always be used by the function itself.
+We want the function computed output to be used in other parts of the program as an input to perform further operation.
+
+function f1() {
+  // do operation calculate the output
+}
+#main block
+f1
+take the output of the above f1 function and perform someother operation in main block
+
+From the above we can understand, we can achieve high amount of reusability:
+  1. when we can pass arguments 
+  2. if we can collect output of the function in our program  
+Now functions will be good source of intermediate logic
+
+From the above we can understand function should take arguments, perform operation and return the outcome of execution to the callee, so that he can use it as input.
+
+In shellscript a function cannot return a return value, that is a limitation with shellscript functions. How to overcome this problem, we need to rely on global variables.
+
+#!/bin/bash
+function totalMarks() {
+  local MARK1=$1
+  local MARK2=$2
+  local MARK3=$3
+  local SUM=$[MARK1+MARK2+MARK3]
+  TOTAL_MARKS=$SUM
+}
+#main block
+TOTAL_MARKS=0 #use global variables to return the computed value of a function, we cannot return returnValues in functions.
+M1=45
+M2=60
+M3=64
+totalMarks $M1 $M2 $M3
+#here we want to calculate average of three subjects
+AVG=$[TOTAL_MARKS/3]
+echo "Total marks: $TOTAL_MARKS, AVG: $AVG"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

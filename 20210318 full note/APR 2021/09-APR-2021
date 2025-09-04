@@ -1,0 +1,193 @@
+unit testing = the develper after completing the development will perform testing on the code he has written, the processing of testing the code written by the developer is called "Unit Testing".
+  
+goals of unit testing (or) what we want to achieve by conducting unit testing?
+By performing unit testing of the code we certify the code is working without errors and it is ready for qa engineers to test the application. The actual functionality of the application is being tested by the qa engineers only
+
+if unit testing is conducted by the developer manually since it is a repeated process that should be perform for every code change the developer makes, it takes lot of time to perform unit testing and delays the deliverability of the application.
+  
+addprogram            
+------------
+read n1
+read n2
+sum = n1 + n2
+print sum
+
+run the above program and pass inputs and verify the output produced by the program is correct or not. We can say the program is working properly only when we tested with all the combination of inputs.
+  
+We should plan for what combinations we want to test, which is called test plan contains testcases
+for example we derived 10 testcases (test possibilities)
+  -5 tests passed
+  -6th test failed = identify the reason and fix the code
+Now rerun all the testcases from starting till end again. That is how unit testing takes lot of time during development
+
+So devops recommends us to go for unit testing automation.
+  
+addProgram            
+------------
+read n1
+read n2
+sum = n1 + n2
+print sum
+
+testAddProgram 
+n1=10
+n2=20
+sum = call addProgram with n1 n2
+sum == 30 - passed otherwise failed
+
+Write for each testcase we want to exected 1 program - if we have 10 testcases write 10 Testcase programs
+Run 10 Test programs, then it produces the output indicating pass/fail
+
+To perform unit testing through test programs is very quick and takes less time, but writing the test programs takes lot of time. To reduce the time and help us in writing test programs we have software libraries are there
+  1. junit
+  2. testNG
+  3. pyTest
+  4. selenium
+  5. web driver
+  6. Google Robot's framework for python code
+These are called unittesting automation libraries helps us in writing test programs quickly  
+
+Once we certify the code changes we made are working properly by running test programs of our code, again we need to perform unit testing for the entire project by running all the test programs of the project.
+
+Each time before delivering the code to qa engineers we need to run the full test programs of whole project and ensure no test cases is failing and then deliver the code to qa. 
+Looks like if we have repeatedly run all the test programs of our project and generate report and verify is going to take lot of time when performing this manually.
+
+The process of executing all the unit test programs/cases and verifying the system before deliverring the code to qa is called "Continous Integration". Achieving ci manually is going to take lot of time that is where we have tools in the market.
+  
+1. Jenkins
+2. Hudson
+3. Anthril Pro
+4. Bamboo
+
+The ci tools will pull the code from scm repository and runs the unit test programs on the whole project and generate a test report so that we can decide whether we should deliver the code to qa for testing or not
+-------------------------------------------------------------------------------------------------------------
+We should use build tools for delivering the application
+  - ant
+  - maven
+  - gradle
+  preferrably we use maven or gradle only
+------------------------------------------------------------------------------------------------------------
+#2 qa stage of application development and delivery lifecycle
+
+qa to conduct the testing of the system/application he requires qa environment.
+  #1 qa environment should be same as production environment to ensure the code that is tested by qa works guaranteed on production
+  
+
+  How to setup production like environment on qa for testing?
+  *This job is carried by ops engineer in setting up qa environment for facilitating the testing
+    1. manually provisioning the infrastructure is going to take lot of time (could be in days as well)
+    2. there is a chance of comitting human mistakes while creating the infrastructure manually
+    3. its a repeatitive process that should be carried everytime when the developers delivered the code
+    
+That is where use infrastructure automation tools and software configuration management automation tools
+  - infrastructure automation tools like
+    - terraform
+    - openstack heat
+    - cloud formation
+    
+  - software configuration management tools like
+    - ansible
+    - puppet
+    - chef
+    - salt
+------------------------------------------------------------------------------------------------------------    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+How to deploy a multi-tier application?
+
+How to run the urotaxi application?
+urotaxi
+|-src
+	|-main
+		|-java			
+		|-resources
+			|-application.yml
+		|-db
+			|-urotaxidb.sql (database tables script)
+|-pom.xml
+|-README.md
+
+#1. build the java project by going to the project directory as below
+mvn clean verify
+
+#2. before running the application we need to run the mysql database server
+#3. setup the database schema with tables by running urotaxi/src/main/db/urotaxidb.sql file on the database server (one-time only)
+
+#4. install jdk 11
+#5. set the below properties as env variables with appropriate values
+
+to run the above application we need to pass the properties as an input populated with values pointing to database server
+
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+				
+#6. run the java application using 
+java -jar urotaxi-1.0.jar
+------------------------------------------------------------------------------------------
+#1. create an bridge network
+docker network create urotaxinetwork
+
+#2. create an docker volume to mount it onto the database container
+docker volume create mysqlvol
+
+
+#3. mysql server database docker image
+docker run --name mysqldb -e MYSQL_ROOT_PASSWORD=welcome1 --network urotaxinetwork -d --mount type=volume;source=mysqlvol;target=/var/lib/mysql  mysql:latest
+	
+#4. goto mysqlserver container and run urotaxidb.sql for creating tables
+[short-cut] docker container exec mysql mysql -uroot -pwelcome1 < urotaxidb.sql
+(or)
+docker cp urotaxidb.sql mysql:/home/root
+docker container exec -it mysql bash
+root# mysql -uroot -pwelcome1 < urotaxidb.sql
+------------------------------------------------------------------------------------------
+#5 docker image with java application
+Dockerfile
+----------
+FROM ubuntu:20.04
+RUN apt update -y
+RUN apt install -y openjdk-11-jdk
+RUN apt install -y curl
+RUN mkdir -p /u01/applications
+WORKDIR /u01/applications
+COPY target/urotaxi-1.0.jar .
+HEALTHCHECK --interval=30s --start-period=3s --timeout=30s --retries=3 CMD curl -f http://localhost:8080/actuator/health || exit 1
+ENTRYPOINT [java -jar urotaxi-1.0.jar]
+
+docker image build -t urotaxi:1.0 .
+
+#6 launch the container
+variables.env
+-------------
+spring.datasource.url=jdbc:mysql://mysqldb:3306/urotaxidb
+spring.datasource.username=root
+spring.datasource.password=welcome1
+
+docker container run --name urotaxi --network urotaxinetwork --env-file=variables.env -p 8080:8080 -d urotax:1.0
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

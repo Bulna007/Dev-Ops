@@ -1,0 +1,183 @@
+There are 2 types of Software Configuration Management Tools are there
+1. pull-based architecture model
+	chef
+	ansible tower
+	
+2. push-based architecture model
+	ansible
+	puppet
+	salt stack
+-----------------------------------------------------------------------------------------------
+What is the architechture of Ansible and what are the terminology Ansible uses?
+Ansible is a Software Configuration Management Automation tool that is designed to work based on Push-based model.
+
+#1. Ansible modules
+The ansible modules are code blocks that are pre-defined or written the by the ansible programmers in python language and distributed to us. all of the code modules provided by ansible are designed keeping in view of idempotancy principle.
+These modules take the data as an input performs the operation/action on the server on whom we executed and produces the output.
+for eg.. ansible has provided apt module which takes care of installing or updating the software. to the apt module we need to pass the input as "packageName", "update/new" etc
+apt:
+	name: openjdk-11-jdk
+	state: present
+	update_cache: yes
+here name, state, update_cache are inputs we are passing to apt module for performing the action
+
+
+The devops engineer has to ask ansible control node server to execute a ansible module on the fleet servers
+
+#2. Ansible control node
+Ansible Control Node is a computer/server on whom we installed Ansible software. we need to pass the ansible modules to Control Node Server asking him to execute on Fleet
+
+There are few unique features of control node server as described:
+1. The control node server is completely state-less, it doesnt know any of the fleet servers information 
+2. Any node on which we installed ansible software can act as an Control Node Server
+3. Ansible Control Node Server will transfers the ansible modules to the Fleet servers over ssh communication executes them on Nodes of the Fleet and transfers the results back to Control Node and display them as an output.
+4. Ansible has provided CLI commands using which we issue instructions asking Control Node to perform operations
+
+A ansible module performs an unit of operation/task for example
+	1. cp = copies file/directory from one location to another
+	2. apt = installs the specified software package
+	3. curl = executes http communication/operation
+	3. file = performing file operations like create, delete, modify etc
+in this way for each operation ansible has provided ansible modules which are in 1000s in numbers and we can explore through ansible module documentation
+
+To perform an automation we have to execute a series of ansible modules on the fleet for eg.. to install tomcat server we might have to execute multiple modules in a sequential manner like
+	curl
+	tar
+	file
+	cp
+now we need to pass each module to the control node with argments/parameters/input for these modules to control node asking to execute on the fleet, now based on the output of executing a module we need to trigger another module execution
+
+looks like running each module and extracting the output and passing it as an input to next module one after the another one is a tedious job and requires interaction in accomplishing the automation instead the we can write the ansible modules we want to execute on the fleet and can pass them as an input one shot by writing in playbooks.
+	
+#3. Playbook
+instead of executing each module one after the another manually, we can orchestrate the module executions by declaring them in a ansible playbook. now pass the playbook as an input to the control node server, which parses the delcarations and executes them by transfering the ansible modules onto fleet in defined order
+
+#4 Managed Node
+The machine on whom we want to execute the ansible module to bring to a desired state is called Node or a computer on the network
+	1. A node should be configured over ssh protocol and should be on the same network of the Control Node to be connected
+	2. A node should be installed with Python software to have the code module execute on them
+	
+#5. inventory file
+the control node server is stateless, it dont know the information about any of the computers on the network, so the devops engineer has to list down all the computers on which the control node has to execute the playbook by writing an ansible inventory file.
+	
+The inventory file is written with ip address or host names of the computers which is passed as an input to control node server along with playbook asking to execute the playbook modules on these list/group of computers.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

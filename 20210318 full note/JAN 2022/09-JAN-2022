@@ -1,0 +1,458 @@
+1. How does ansible playbooks are executed on the fleet servers?
+Whenever we passes the playbook as an input to the ansible control node	asking to execute the tasks/modules of the playbook on the fleet, it picks the task1 within the playbook and executes on all the serves on fleet sequentially, once the task1 execution completed it picks the task2 from the playbook and executes on all the servers of the fleet.
+By this we can understand ansible follows "sequential execution strategy" by default	
+
+during the time of executing a task if there was a failured encountered while executing a task on a server of the fleet all the subsequent task executions on the node/server will be skipped and marks the node as ignored.
+	
+2. What is the output of executing an ansible playbook?
+The ansible control node server produces status for each task executions within a playbook to indicate the status of task execution on each managed node of the fleet.
+The possible status of a task execution on the managed node of the fleet are 5
+	1. ok(n)           = for how many task exections, the control node is able to successfully connect to the managed node
+	2. changed(n)      = indicates how many tasks of the playbook execution has changed the state of the managed node
+	3. unreachable(n)  = how many tasks executes of the playbook failed due to failure in connection to the node
+	4. failure(n)      = how many tasks of the playbook failed in execution on the node
+	5. skipped(n)      = how many tasks where skipped on the node due to unmatched conditions
+----------------------------------------------------------------------------------------------
+3. Ansible modules
+--------------------
+The Ansible modules are the basic building blocks of the ansible system. Each module performs an operation/action on the managed node of the ansible cluster. A module takes inputs as arguments and produces the output in json format indicating the status of action being performed on the node.
+	
+Ansible developer community has developed lot of ansible modules and distributed as apart of the ansible distribution which are called built-in modules of the ansible. In addition to the build-in modules there are other developer communities and third-party companies are writing the anisble modules and shipping them as part of ansible repository because of popularity of ansible.
+	
+For eg.. there are lot of third-party module contributors are there 
+1. amazon aws cloud infrastructure
+2. vmware
+
+From the above we can understand the ansible modules are unending list of modules available, identifying from a huge list of modules one we require and using them is very difficult so ansible has organized these modules in categories or groups
+1. identity modules
+2. packaging modules
+3. remote management modules
+4. file modules
+
+we can browse and find all the modules and their document based on category in the below link
+https://docs.ansible.com/ansible/2.9/modules/list_of_files_modules.html
+
+as there are lot of modules in ansible, we cannot memorize all of those modules and their configuration options to use them, so the best of way of using the modules is browsing through documentation, apart from the frequently used modules of ansible
+
+The anible has provided a tool/cli called ansible-doc through which we can access the documentation of a ansible module.
+	
+ansible-doc -l = list down all the modules that are shipped as part of current distribution
+ansible-doc moduleName = shows the documentation of a specific module
+-----------------------------------------------------------------------------------------------
+
+4.Let us understand/explore most frequently used ansible modules:-
+-----------------------------------------------------------------
+#1. Command Category/Group
+Under the Commands category/group we have 2 most popular and important ansible modules are there called
+1. command
+2. shell
+
+these 2 modules are used for executing linux commands on the managed nodes. looks like we can perform any kind of automation on the managed servers of the ansible cluster using these 2 modules and we dont need any other ansible modules at all, but it is recommended to choose an appropriate module always to perform desired action, because these 2 modules doesnt works based on idempotancy principle.
+	
+The command and shell module which simply transfers or executes the command supplied without verifying the state of the node on which it is applying, so we cannot achieve idempotancy
+
+Both command and shell modules are used for executing the linux commands on the ansible fleet, they why do we need to 2 modules for the same operation?
+command module doesnt uses linux shell capabilities in executing an command on the node, rather it directly runs the command we passed on kernal itself, so lot of options that are available through shell are not supported by the command module like
+pipes (|), redirections (<|>) will not work
+
+whereas if we use shell module in executing a linux command, it by default uses /bin/sh shell for executing linux commands so all the features of shell can be used while using shell module like pipes, redirections etc
+
+Let us explore each of these modules with their arguments allowed
+
+1. Command Category
+
+
+command module
+---------------
+#1. executes the command provided
+command: command to execute
+
+#2. executes the command changing to the directory specified
+command: command to be executed
+  args:
+   chdir: directory
+	 
+#3. executes a command if if the specified file is not available on the destination
+command: command
+  args:
+   creates: path of the file
+	 
+#4. list of commands
+command:
+  argv:
+   - command1
+	 - command2
+
+commands-playbook.yml
+------------------------
+- name: command module playbook
+  hosts: all
+	tasks:
+	  - name: create file
+	    command: touch empty.txt
+		- name: create a file under a specified directory
+			command: touch team1.txt
+			args:
+				chdir: /home/ansible/teams
+		- name: execute the command if the given file is not there
+			command: touch rules.txt
+			args:
+				creates: /home/ansible/teams/rules.txt
+				chdir: /home/ansible/teams								
+		- name: execute a command with list of arguments
+		  command: 
+        argv:
+          - touch
+					- a.txt
+					- b.txt
+					- c.txt					
+...		 
+----------------------------------------------------------------------------------------------
+shell module
+-------------
+
+#1. execute the command 
+shell: echo "Good Morning!" > greetings.txt
+
+#2. execute the command by switching to a directory
+shell: echo "good morning!" > greetings.txt
+args:
+  chdir: /home/ansible/messages
+	
+#3. execute the command if the given file/folder is not there
+shell: echo "will not execute" > nofile.txt
+args:
+ chdir: /home/ansible/messages
+ creates: greetings.txt
+
+#4. execute the command if the give file/folder is there
+shell: program1.sh
+args:
+ chdir: /home/ansible
+ removes: program1.sh
+ 
+/home/ansible/
+today.sh = this shellscript produces date output to a date.txt file
+if date.txt doesnt exists then only execute today.sh
+-----------------------------------------------------------------------------------------------
+expect module
+--------------
+
+expect is used for executing an command/shellscript which requires interactive input non-interactively
+
+add.sh
+#!/bin/bash
+read -p "enter a" A
+read -p "enter b" B
+SUM=$[A+B]
+echo "SUM : $SUM"
+	
+syntax:
+expect:
+  command: shellscript or shellcommand
+	chdir: /home/ansible/sh
+	echo: true
+	responses:
+		"enter a": 10
+		"enter b": 20
+-----------------------------------------------------------------------------------------------
+2. Packaging category
+
+2.1 operating system package managers
+---------------------------------------			
+The ansible packaging category has provided modules related software package installations and managing
+			
+For each of the operating systems the package manages are different, lets say
+if it is debain distro the package manager is = apt
+         redhat distro                        = yum
+				 mac                                  = homebrew
+so to help in installing the software packages on different distros of the linux ansible has provided platform/distro specific package installer modules as below
+	debain = apt
+	redhad = yum
+	mac    = homebrew 
+	
+we can use each of the packaging modules specific to distro provided by ansible, but the problem is playbook becomes specific to distro and doesnt works on other distros of the linux. but the advantage of using distro specific packaging modules is we can take the full power of platform/distro specific packaging module capabilities
+
+apt = debain
+apt module = the apt module has all the options that are available as part apt package manager
+
+to overcome the problem with distro specific packaging module, ansible has provided another generic module called "package"
+
+apt module options	
+#1 install a specific software package
+
+apt:
+  name: package
+	state: [present, latest, absent]
+  update_cache: yes
+	
+name = indicates name of the package to be installed/updated/removed
+state = can take 3 values
+1. present = the package specified should be available on fleet (dont care about version)
+2. latest = ensure the package version available is latest on the fleet
+3. absent = if present will uninstall
+update_cache: yes/no = for reloading the entries from ubuntu repository during install
+autoremove: yes = if the package is not being used will be removed
+autoclean: yes/no = removes the local repository cached package files which no longer required
+deb = install a local deb file
+purge: true = cleanup the configuration files of the package, used along with state=absent
+
+#1. uninstall or purge a software package
+apt:
+  name: curl
+	state: absent
+	purge: true
+
+#2. install the latest version of the software package
+apt:
+  name: openjdk-11-jdk
+	state: latest
+	update_cache: true
+		
+#3. remove unwanted packages on the machine
+apt:
+  autoremove: true
+
+#4. remove the locally cached package files from machine
+apt:
+  autoclean: yes
+	
+#5. install multiple software packages
+apt:
+  name:
+   - curl
+	 - tree
+	 - net-tools
+	update_cache: yes 
+-----------------------------------------------------------------------------------------------instead of using apt module, we can use package which is a generic packaging module for installing the software on any distro
+
+package:
+  name: packageName
+	state: [present, latest, absent]
+	use: auto
+	
+2.2 language package managers
+-------------------------------
+There are languages which provides their own language installers for installing and adding modules of that language
+for eg..
+1. Python has comeup with pip installer that takes of installing python language and adding python libraries into existing python install
+2. npm = node js
+3. bundler = ruby gem
+4. maven_artifact = downloading maven dependencies
+
+maven_artifact module options
+maven_artifact:
+  group_id:
+  artifact_id:
+  version:
+  dest: path
+	
+the packaging modules we discussed above requires password less sudoers access for the user on whom we are running automation, because these modules requires to grab sudo access to perform software installations.
+	
+1. So we need to configure the user on whom we are running playbook execution with passwordless sudoers access if not the module execution prompts for password interactively (given if the user has sudoers access)	
+
+ansible by default executes every module without sudo permission/privilege but inorder to execute package managers we need to ansible to execute with sudo permission by using become: yes at the task level
+saying while executing the module of this task use sudo permission
+
+- name: install curl
+  apt: 
+    name: curl
+	  state: present
+  become: yes
+
+sudo apt install -y curl	
+-----------------------------------------------------------------------------------------------
+File Category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+		 
+
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

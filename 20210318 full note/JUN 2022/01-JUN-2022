@@ -1,0 +1,9 @@
+Deployment
+------------
+Deployment is another way of deploying containerized application on the kubernetes cluster. Through deployment controller any changes to the pod template can be rolledout in a controlled way.
+	
+To expose the pod/service/deployment over the cluster we can use port-forwarded on kubernetes.
+kubectl port-forward pod/podName sourcePort:targetPort
+kubectl port-forward deployment/deployment sourceport:targetport
+
+

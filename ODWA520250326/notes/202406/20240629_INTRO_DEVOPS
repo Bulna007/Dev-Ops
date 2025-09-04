@@ -1,0 +1,267 @@
+Introduction to devops
+-----------------------
+
+Why do we need a Software Application, What is the purpose of it?
+An Enterprise business organization to provide their business services or carry out day-to-day business activities in conducting the business requires software. If the business organization is carrying out the business services manually without any software they run into several problems:
+
+1. The speed at which the business organization provides business services to their customers would be very slow, thus results in great dis-satisfaction to their customers
+2. since the business is carried manually, there is a high chance of performing errorneous operations.
+3. chances of conducting the fraud would be high
+4. the man power required in running the business is more, due to which the cost of conducting the business would be high
+
+To eliminate the problems in manually conducting the business, the software applications are introduced. There are lot of advantages of using software in conducting the business as below:
+
+1. speed at which we perform the business operation would be very high
+2. accuraccy in carrying these operations would be very high, there is no chance of mistake or human error
+3. eliminates the fraud
+4. man power needed in conducting the business will be less, due to which the cost of running the business will come down.
+5. the business services are made globally accessible to everyone around the world.
+	
+What is an Software Application?
+Software Application comprises of bunch/group of programs written with instructions using an programming language like
+1. java
+2. .net
+3. python
+4. php
+5. scala
+6. ruby
+etc
+through which we fulfil the needs or requirements of an business organization
+
+What are the stages in development and delivery of the software application takes place?
+Software development lifecycle cycle (SDLC)
+There are 5 phases in which a software application is being built and delivered
+1. Requirement Gathering & Analysis
+The business analyst understands throughly the requirements of the business organization, and writes the business requirement document and passes it as an input to the IT Services development team.
+	
+The development team throughly goes through the requirement document, understand and analyze them inorder to build the software
+
+2. Design
+In this phase, the development team gathers/analyze how the system has to be build based on the analysis they perform previously 
+
+3. Implementation/Coding
+The actual development the system comprises by choosing a programming language that better suites for the requirements
+
+4. Testing
+The qa engineers will test and certify the software system that is build is functional based on the requirement or not
+
+5. Delivery/Maintainance
+The support engineering team is responsible for deploying/delivering the application into the production environment and making it alive or accessible to the users of the application around the world.
+	
+People:
+1. Product Owner / Business Analyst
+2. Developers
+3. QA Engineers
+4. Support/Operational Engineers
+5. Customers / End-users
+
+Phases:
+1. Requirement Gathering and Analysis
+2. Design
+3. Implementation/Coding
+4. Testing
+5. Delivery
+--------------------------------------------------------------------------------------------------------------------------
+
+Software Application
+Bunch/Group of programs written with instructions using an programming language, to fulfill the requirements of an business system is called "Software Application"
+	
+People:
+1. Product owner / business analyst
+2. Developers
+3. QA Engineers
+4. Support or operational engineers
+5. Enduser / customer
+
+Phases of development (SDLC):
+1. Requirement Gathering and Analysis
+2. Design
+3. Implementation/Coding
+4. Testing
+5. Release & Maintainance
+
+Stages (delivery):
+What are the stages of delivery?
+There are 3 stages in which application is delivered:
+1. development environment
+2. qa environment 
+	2.1 qa environment
+	2.2 uat  (uat = user acceptancy testing)
+	2.3 stage (pre-prod)
+	2.4 performance/stress environment
+3. production environments
+-------------------------------------------------------------------------------------------------------------------------
+What is devops?
+A change in culture and adoption of new tools and technologies, in fast-paced application development and fast-paced application delivery of the application is called "Devops".
+	
+	
+goal: fast-paced application development and fast-paced application delivery	
+quickly development and more frequently deliver
+Why do we need to quickly develop and deliver the system/software application?
+	
+1. To stay ahead of the competitors in the market
+The more we innovate and the faster we deliver we will be better interms of business than our competitors. 	
+2. To increase Return of Investment (ROI) for the customers, that helps for the longitivity of the business
+3. We want to lower IT Infrastructure and development cost
+--------------------------------------------------------------------------------------------------------------------------
+What is a Process Model?
+A Process Models defines flow of activities or actions or standard guidlines or steps that must be followed in building and delivering the software application. There are various different process models defined by different experts in the market as below
+
+1. Waterfall
+2. Iterative / Incremental Model
+3. Spiral
+4. Prototype
+5. Agile Methodologies
+
+
+change in culture and adoption of new tools and technologies for fast-paced application development and fast-paced application delivery is called "devops"
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

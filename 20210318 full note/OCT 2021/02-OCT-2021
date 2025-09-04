@@ -1,0 +1,73 @@
+SSH
+---
+SSH stands for Secure Shell, it is an protocol that can be used for accessing the shell of a remote linux machine securely over the network.
+
+Why do we need to remote access to a Machine?
+If there are large network of computers within an organization, managing them by reaching physical each machine is going to take lot of time, instead if we can gain remote access to machine, it saves lot of time interms logistics in managing the machine.
+
+Through SSH we can gain the access to the Shell of an remote linux machine, so that we can perform various different operations like software package installations/upgradations, applying patches and performing maintainance activities like backup/restore etc. 
+
+There is an another methodology in connecting to the remote computer, which is telnet. Telnet is not secured and the communication or data exchange between client/host computer will takes place in plain text value so that any intruder can read the information being exchanged between the parties, so it is not secured.
+
+Alternate to Telnet has been introduced which is SSH. SSH ensures the communication or data exchange between the host/client are secured completely through encryption technic.
+  
+Encryption is a technic through which we transform the original data into another format, so that anyone during receives/sees the data cannot understand the data. only the intended receiver only can decrypt the data and read the original information, so that data is high secured.
+  
+Encryption works based on encryption key, there are lot of key generation algorithms are there like RSA, SHA, blowfish, DSA, AES etc through which we can generate an encryption key using which we can encrypt the data and exchange it securely
+
+The process of converting the data into another format which other people cannot understand is called "Cryptograpic" technic. Encryption is one of the cryptographic technic for securing the data.
+  
+SSH uses cryptographic technics to secure the data. SSH uses 3 types of encryption technics for securing the data over the communication
+1. symmetric encryption
+2. asymmetric encryption
+3. hashing
+
+#1. Symmetric encryption = A single key will be used by both the parties in encrypting and decrypting the data, which is called "Symmetric encryption". This technic of exchaging the data remains secure util the key is kept private, but if someone steals the key not only the parties the intruder also can decrypt the data.
+  
+To exchange the key with reciever we need to transmit the key over the network, there is high chance someone might steal key over transmission and poses a security breach.
+  
+  
+#2. Asymmetric encryption
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+Why does Software Configuration Management Tools are introduced, what are the benefits of using them?
+The Software Configuration Management tools acts as frameworks or libraries	which works on top a programming language like python or ruby etc. These help us in achieving software configuration automations quite easily.
+advantages:
+1. when we are programming through programming languages, we need to endup in writing lot of lines of code which makes complex to achieve automation and takes lot of time. instead use software configuration management tools which provides simple routines/modules that can configured or programmed quickly to achieve desired system state easily which saves lot of time as well.
+2. when we achieve software configuration automations through programming languages like python or ruby, certifying your code through testing process takes lot of time as well. because it has to cerified at multiple level
+	1. various different platforms
+	2. idempotancy testing
+instead of it if we use software configuration management tools in performing the automation, the code once written will works across the platforms and are even idempotant as well, we dont need to spend too much on testing and cerifying the automation.
+3. these tools are designed by keeping idempotancy in mind, so we dont need to write complex conditions in achieving idempotancy
+4. most of the software configuration management tools support portability, we even get benefited out of using them
+----------------------------------------------------------------------------------------------
+There are several Software Configuration Management Tools are available like
+1. Ansible
+2. Chef
+3. Puppet
+4. Salt Stack
+
+The Software Configuration Management Tools works on 2 architectures
+1. Pull-based architectures
+2. Push-based architectures
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

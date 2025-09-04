@@ -1,0 +1,179 @@
+Ansible variables
+------------------
+What are variables, what is the purpose of them?
+Variables are placeholders in which we can store values. Instead of hardcoding the literals in a program, we can refer the variables in using the values to perform operations. So each time when we want to change the values, we can modify the variable value being assigned instead of changing the entire program, hence the programs becomes maintainable
+
+In the context of ansible:
+We write playbooks for perform software configuration automation. The modules declared within the playbooks takes input arguments to perform operation and produces the output as json. Instead of hardcoding the module inputs inside the playbook, we can pass the values as input through variables, so each time we want to change the values instead of modifying the playbook we can supply different values for those variables in running the playbook
+
+There are various different levels at which we can define variables in ansible:
+1. ansible built-in variables (pre-defined variables) = ansible_user, ansible_private_ssh_key_file, ansible_host etc
+2. Inventory variables
+  1. global variables
+  2. host-level variables
+  3. group-level variables
+3. Playbook variables
+4. vars_files in playbook
+5. register variables
+6. ansible facts or magic variables in ansible
+
+out of the above 6, the ansible built-in variables and inventory variables are explored earlier, let us understand the rest of the variables
+----------------------------------------------------------------------------------------------------------------------------------
+How to pass the dynamic values as input to the playbooks while running?
+We can create playbooks by referring variables inside them, and can supply values for those variables dynamically while launching the playbooks. There are 3 ways we can supply values for the variables while running the playbook
+1. vars_files
+2. --extra-vars
+3. variable declarations inside the playbook
+
+1. --extra-vars
+While running the playbook we can pass dynamic values as input to the variables defined inside the playbook by using command-line argument --extra-vars as below
+
+newfile-playbook.yml
+---
+- name: create file play
+  hosts: all
+  tasks:
+    - name: create file
+      file:
+        path: "{{filename}}"
+        state: touch  
+...
+
+Within the playbook, the variables values are referred using {{variableName}}, now we can supply value for that variable while running the playbook using --extra-vars as below
+
+syntax:-
+  ansible-playbook -i inventoryFile --extra-vars var1=val1 --extra-vars var2=val2 playbook.yml
+  
+ansible-playbook -i hosts --extra-vars filename=/home/vagrant/product.txt newfile-playbook.yml
+
+2. declare local variables in playbook
+local variables in playbook is similar to declaring variables in a program, so we can reuse the values by referring the variables across different modules within the playbook
+
+installpkg-playbook.yml
+- name: pkg play
+  hosts: all
+  vars:
+    packageName: openjdk-17-jdk
+    update_cache: yes
+  tasks:
+    - name: install software
+      apt:
+        name: "{{packageName}}"
+        state: present
+        update_cache: "{{update_cache}}"
+      become: yes
+      
+most of the time update_cache remains to be yes, only the packageName to be installed will be changing. So instead of modifying the playbook for changing the packageName value we can supply the packageName while launching the playbook using --extra-vars overriding the playbook variable value defined
+
+3. vars_files
+We can pass variable values dynamically while running the playbooks by using --extra-vars but there are lot of problems in using this approach
+  1. the command goes quite lengthy if there are more variables declared in the playbook 
+  2. there is always a chance we might endup in typing the command wrong, and results in failure in running the playbook since there are lot of variables to be supplied with values while launching the playbook
+  3. memorizing the variableNames in supplying the values is difficult while launching
+  
+To overcome these problems in dynamically passing values for the variables, the vars_file has been introduced.
+define all the variables with values in varsity YAML file. Inside the playbook refer this YAML file as vars_file. So each time when we are running the playbook we can modify the variable values inside the vars file with which we can launch the playbook
+
+copyfile-playbook.yml
+- name: copy play
+  hosts: all
+  vars_files:
+    - copyvars.yml
+  tasks:
+    - name: copy file
+      copy:
+        src: "{{source_file}}"
+        dest: "{{dest_dir}}"
+        owner: "{{owner}}"  
+        group: "{{group}}"
+        mode: "{{mode}}"  
+      become: yes
+      
+  
+copyvars.yml
+source_file: demo.txt
+dest_dir: /home/vagrant
+owner: vagrant
+group: vagrant
+mode: 0544
+----------------------------------------------------------------------------------------------------------------------------------
+6. register variables
+register variables are used for capturing the output of execution of a module, so that we can pass that as an input to the another module within the playbook. register variables are dynamic variables  that are created by the control node server during the execution of the playbook
+
+The register variables are even used for debugging the playbook execution, we can capture the interim output of execution of a playbook modules and print them
+
+Let us write a playbook that executes an shell command, captures the output of executing the command and print it.
+  
+registervars-playbook.yml
+---
+- name: who logged-in playbook
+  hosts: all
+  tasks:
+    - name: who logged in
+      shell: whoami
+      register: loggedInUser
+    - name: print user
+      debug:
+        msg: "{{loggedInUser}}"
+...
+-----------------------------------------------------------------------------------------------------------------------------------
+7. ansible magic variables or ansible facts
+--------------------------------------------
+How does an ansible control node server executes the playbooks on the cluster?
+When we pass the playbook for execution, the ansible controlnode server will perform the below activities in executing:
+  1. The playbook will be validated to verify whether it is syntactically correct or not and all the module declarations are valid or invalid. If there is an error found, then control nodeserver immediately returns an error without executing the modules of the playbook
+  
+  2. If the playbook is valid, the control server picks each module from top to the bottom, transfers it over to the managed nodes over ssh connection by replacing the variables with values defined and executes on each managed node one by one
+  
+  3. Then the output of executing the module on the managed node will be transfered back to the control node server by deleting the module it has copied during execution
+  
+Many of the times we want to know the environment information of the managed nodes inorder to execute the modules like hardware configuration, networking or operating system information of the managed node.
+For eg.. to install mysql-server-8.0 software on the machine, the machine should meet the minimal system requirements like cpu, ram and storage capacity. So while executing the modules on the managed node we want to check whether it qualifies the requirements or not, otherwise we want to skip the execution of the playbook or module
+
+From this we can understand we need to apply conditional logic before applying the modules of the playbook on the managed node, that requires system information about the managed node.
+  
+The control node server is responsible for gathering the information about the managed nodes before executing the playbooks and should make this information available for playbook execution  
+
+How does the control node server gather the environment information of the managed nodes and make it available for playbook execution?
+upon passing the playbook for execution, the control node server post completion of the validation of the playbook, runs an implicit module called "gather_facts" as a first task within the playbook and the output generated by this module will be stored and make available for playbook execution. The "gather_facts" is an python module/script that is written by ansible developers and would execute by default on each managed node before executing any of the tasks written in the playbook
+
+Ansible control node server = is stateless!
+  
+These facts variables works same as ansible variables and we can refer them inside the plybook modules like any other variables we use in playbook, since we didnt declared these variables rather these variables are populated or published and made available for playbook execution automatically, these are caleld "Magic variables"  
+  
+Note:
+For a manged node to execute the modules we dont need python to be installed, but for executing gather_facts module we need python to be installed on all the managed nodes
+
+The gather_facts module takes considerable amount of time in gathering the environment information of each managed node, incase if we dont need environment information about the managed nodes we can turn-off the gather_facts module so that it improves the performance of executing the playbook
+
+- name: playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: task1
+      debug:
+        msg: no gather facts
+        
+we can run the gather_facts module using ansible adhoc command as below
+ansible all -i inventoryFile -m gather_facts
+
+The above gather_facts module returns json output containing the information of each managed node of the with hardware, network interfaces, ip addresses and operating ssytem related information
+
+We can use this json info within the playbook modules by using 1 of the 2 syntaxes as variables
+
+1. {{ansible_facts.ansible_default_ipv4.address}}
+2. {{ansible_facts.ansible_default_ipv4[address]}}
+  
+here ansible_facts is not mandatory to be used as prefix, while referring to the variables
+1. {{ansible_default_ipv4.address}}
+2. {{ansible_default_ipv4[address]}}
+
+Let us write a playbook in printing the free memory on the managed nodes of the cluster?
+free-mem-playbook.yml
+- name: free memory play
+  hosts: all
+  tasks:
+    - name: free memory
+      debug:
+        msg: "{{ansible_memory_mb.real.free}}"
+-----------------------------------------------------------------------------------------------------------------------------------

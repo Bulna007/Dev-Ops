@@ -1,0 +1,81 @@
+Ansible - Software configuration management tool
+-------------------------------------------------
+What is Vagrant, why do we need to use it?
+Vagrant is an virtualization workflow automation tool. using vagrant we can provision virtual machine infrastructure (hardware of the computer) through code. So it is called "iac" tool which stands for infrastructure as code
+
+
+using vagrant we can build/setup the development environments quickly so that developers can jump start in working on the projects. 
+Along with that we can use Vagrant as part of CI Pipeline automation to quickly delivery the application to qa as well.
+
+Vagrant helps us in building the infrastructure which means we can have the machines to run the applications. But on top of the machines we need softwares and tools installed to run the project, but vagrant doesnt help us in installing/configuring the softwares on the machine then how can we accomplish the software installations and configurations to run our project
+#1. manually
+provision the infrastructure through vagrant, after the machines are up, let the ops/devops engineer manually connect to the machines and install and configure the required software inorder to deploy and execute the applications. But having these installed and configured manually has lot of drawbacks and challenges as described below.
+	1.1 manually installing the required software and configuring them takes lot of time and the physical presence of the engineer is must to carryout the operation
+	1.2 There are bunch of software packages needs to be installed. most of them has typical configurations in customizing their execution. memorizing all of those software packages and thier configurations are high complex 
+	1.3 the process of setting up the software packages and configuring them is not an one-time activity, and it is an repeated activity that has to be carried several times, so there is a high chance of conducting mistake and achieve highest level of accuracy in manually performing the operations is impossible. which will waste lot of time
+	1.4 There are large array of network of computers in the real production env on which we need to carryout the software package installations and configurations manually performing these operations smees to be quite impossible
+	1.5 Memorizing which group of computers has been installed with what software packages and keeping track of them is highly difficult
+	1.6 perform upgradations and applying patches requires identifying the computers of the network is very difficult. which means which servers are running with what verions and upgrading them is an challenging task
+	
+How to overcome all of the above problems in managing the installation of software packages and configuring them?
+That is where we need automation in carrying software configuration management
+
+What is software configuration management?
+Installation of software packages and configuring them on the environment for usage.
+	
+How to automate the process of software configuration management?
+There are several solutions are there
+#1. Shellscripting
+There are several technics of achieving software configuration management automation are available out of which one the technic is shellscripting
+The devops engineer can write the code in automating the process installation and configuration of the packages so that we gain several benefits
+	1. the time required for installing and configuring the software packages is very less
+	2. we dont need to memorize the installation and configurations of bunch of softwares, once programmed can be executed repeatedly
+	3. we can achieve highest level of accuracy and can get reproducible environments without fail.
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

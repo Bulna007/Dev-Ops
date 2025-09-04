@@ -1,0 +1,14 @@
+---
+- name: lineinfile play
+  hosts: all
+  tasks:
+    - name: copy mysqld conf
+      copy:
+        src: mysqld.conf
+        dest: /home/vagrant/
+    - name: change bind address
+      lineinfile:
+        path: /home/vagrant/mysqld.conf
+        regexp: '^MYSQL_BIND_ADDRESS=.*'
+        line: 'MYSQL_BIND_ADDRESS=0.0.0.0'
+...

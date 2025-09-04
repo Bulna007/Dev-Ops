@@ -1,0 +1,80 @@
+IAC stands for infrastructure as a code, the infrastructure requirements of our application are expressed interms of code and will be executed to produce the infrastructure. There are lot of iac tools are available in the market like
+1. terraform
+2. openstack heat
+3. cloud formation
+
+What are the benefits of using iac tools?	
+The applications that adopts iac tools for provisioning the infrastructure has an better rate delivery of the application when compared with others since the efforts of managing the infrastructure is very less.
+There are lot of advantages of adopting iac tools for provisioning infrastructure
+1. self-service
+Most of the time the application developer is deployed/released in production environment manually. There are a small team of ops engineers who are responsible for building the necessary infrastructure  to delivery the application. For each code deployment the developers wants to delivery they need to reach to operation engineering team to setup required infrastructure, so here if the development team groups in large number since the ops engineering team is small it becomes a huge bottleneck for releasing the application.
+	
+Instead of we manually taking care of releasing the application, if we can adopt iac automation the development team by themself can delivery the application straight from development to delivery which will improve deliveribility of the application.
+	
+2. Documentation
+If we express the infrastructure of our application interms of code through iac tools, it acts an good documentation in understanding the infrastructure, so if an existing ops engineer has been replaced by a new one, with no time the new ops engineer will be able to become productive by using the source of documentation as iac code
+
+3. Version control
+As we express the infrastructure interms of code and we version it by storing in source control system, its acts an very good reference in understanding how does the state of the infrastructure has been evolved over the time.
+	
+at somepoint if we want to rollback to the previous state we can easily by revoking the changes through the help of version system.
+	
+4. Speed and Safety	
+While setting up the infrastructure manually there is always a high chance where we might commit some error while creating. instead if we use iac in setting up the infrastructure since it is pre-tested before execution on the actual environments, there is no chance something might go wrong due to which we landup into wrong state.
+repeatable reproducible environments can be created quickly using iac adoption
+
+5. Validation
+as we expressed in the infrastructure in code, we can always share the infrastructure to the peers and get it reviewed along with that we can test by executing it and verify/validate the final which is an advantage of using iac
+
+6. Reusability
+we can write iac code as libraries/reusable modules, now while working on infrastructure automation we can import existing code libraries in creating the infrastructure code for our application, through which we can speedily produce the iac code
+
+7. Collaboration and Sharing
+as we represented infrastructure as code, we can push the code into scm repositories and can quickly get it shared to the other members of the team to re-created the infrastructure or modify the existing code collaboratively
+
+
+Configuration Management Tools vs Infrastructure Automation Tool
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

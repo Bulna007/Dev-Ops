@@ -1,0 +1,48 @@
+Operating System
+operating system provides system routines through which we can achieve portability in interacting with different vendor hardwares of the computer.
+
+Low-level programming language
+------------------------------
+An operating system also provides its own instruction set using which we can build software program and perform operations on the computer, which are called low-level programming language. The instruction set provided by the operating system are very powerful through which we can directly interact with hardware of the computer. When we write our programs using low-level language instruction set these programs can be directly executed on the operating system.
+
+advantages:-
+1. These are directly operating system executables, which doesnt require any compilation as an intermediatory.
+2. These are fast in execution as those are directly executed by operating system itself
+3. These languages are very powerful as those provides instruction set through which we can directly interact with hardware of our computer.
+  
+dis-advantages:-
+1. The program written for on operating system will not work on other because we are writing the programs using operating system specific instruction set.
+2. The instruction set provided by the operating system are not developer friendly, most of the time those are complex interms of sytaxes and difficult to debug and understand.
+  
+To overcome the above programs in building software programs, the high level programming languages are introduced.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  

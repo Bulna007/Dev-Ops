@@ -1,0 +1,42 @@
+#4 Transport Layer 
+1. Segmentation = it breaks the data into smaller chunks and attaches the port no of the receiver(server) program and sequence no to re-construct the message at the receiver side. The process of binding portno along with sequenceno to a data packet together is called a segment
+  
+2. Flow Control = It slows down the sender in transmitting the bits of data where the reciever is running on low internet speed.
+
+3. Error Control = the sender while sending the data would add checksum bits helping in detecting the bad/corrupted data at the receiver side and allows to re-transmit the lost packets
+
+#5 Network Layer = Responsible for transferring the data from one computer network to other network computer. Router devices operate at the network layer.
+There are 3 responsibilities performed by Network Layer
+1. Logical Addressing = It takes the segment from transport layer and binds the ip address of the source and destination computer, which is called "ip packet" or "data packet".
+2. Routing = Routing is the technic of moving the data packet from one network computer to the other computer of another network. Routing will be perform based on the following
+    2.1 picks the receiver or destination computer ip address
+    2.2 Router will computers the network address of the other computer
+    2.3 based on the network address the data packet will be moved to the appropriate router/gatway of the other network.
+  
+3. Path Determination = There are multiple intermediatries between the source and the destination, the network layer identifies the shortest path through which data packet has to moved to get it received quickly at the destination computer.
+  
+There are 2 protocols that works at network layer
+tcp/ip = Transmission control protocol (feedback to the sender) (reliability)
+udp = User Datagram protocol (no feedback) (faster transfer speeds can be achieved)
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

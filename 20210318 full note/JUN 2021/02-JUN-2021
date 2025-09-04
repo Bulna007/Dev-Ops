@@ -1,0 +1,176 @@
+Linux is an Multi-User Operating System, by default when a user creates an File/Folder the other users of the Linux will not be able to access. If anyone can access another other users File/Folders then there is no need of Multiple Users in Linux. 
+We can create one user and can give the credentials to all.
+  
+When linux permits multiple users to use a machine its responsibility to ensure it provide security in allowing the users to access the Files/Folders of others. For this Linux has comeup with File Permissions.
+  
+We can apply File permissions on 3 levels of users in linux.
+  1. owner
+  2. group
+  3. others
+
+How many types of permissions we can grant for a File?
+  1. read = r
+  2. write = w
+  3. execute = x
+  
+We can give 3 permissions for 3 levels of users.
+owner group others
+rwx   rwx   rwx
+
+When a user has created a file/folder the File/Folder will be associated to that user a owner and the primary group of the user as File/Folder group.
+Now the owner can give File/Folder permissions to the owner, group and others.
+by default for a File with what permissions will be created?
+  rw-rw-r-- = file
+default permissions for a folder?
+  rwxrwxr-x = folder
+
+When a user is creating an File/Folder in linux, user dont need to specify the permissions. linux will assign default permissions for a File/Folder while creating by taking from umask value.
+---------------------------------------------------------------------------------------------------------
+
+joe@sriman$ touch products
+with the above command "products" file will be created with default file permissions as rw-rw-r-- which indicates
+owner = read/write
+group = read/write
+others= read
+
+Can we change the default permissions associated with a File/Folder, when we need different?
+We can change the default permissions of a File/Folder using chmod command
+
+chmod = its a linux shell command, stands for change mode of access. using this command we can change the access mode of a File or Folder in linux
+the owner of the file/folder can change = by default owner is allowed to change
+apart from owners = sudoers are allowed.
+
+chmod supports 2 notations of working with chaning the File/Folder permissions.
+  1. octal notation
+    For each file permission a weighted number has been given indicating that permission.
+    READ    =  r  =  4
+    WRITE   =  w  =  2
+    EXECUTE =  x  =  1
+  ------------------------------
+                     (0-7) = (8)
+  -------------------------------
+  owner group others
+  5     4     4
+  7     6     4
+  7     4     0
+  we need to give 3 column value indicating 1st = owner 2 place = group 3rd place = others
+  joe@sriman$ touch products
+  rw-rw-r--
+  664
+  
+  syntax:
+  -----------
+  chmod 764 products
+  chmod 777 products
+  
+  always 3 column numbers are mandatory, even we want to change permissions for a group also
+  
+  chmod 764 products = here we want to issue owner = execute permission but group,others we want default permission, even then also we need to pass permissions for group/others while chaning
+    
+  2. symbolic notation
+  
+  
+
+users/groups:-
+joe, bob = pg: devops 
+blake = pg: blake, othergroups: devops
+
+mike = pg: mike
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+students dedication and response in the class (giving answers)
+continues practise
+  
+  
+  
+  

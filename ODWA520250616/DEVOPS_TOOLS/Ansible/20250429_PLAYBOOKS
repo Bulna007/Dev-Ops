@@ -1,0 +1,791 @@
+Playbook
+---------
+Basic building block in ansible is an "module". It is written in python language that is designated to perform one operation. To accomplish an software configuration management automation on the managed nodes of the cluster we need to execute several modules in specific sequence order. The modules should be passed with input data and the output produced by these modules should be passed as input to the another or based on the output we might need to decide what module should be executed next, this process is called orchestration.
+    
+So executing these modules in specific sequence order and orchestrating their inputs and outputs seems to be tedious job, requires lot of time and should memorize in conducting the automation. In addition, we might need to perform the same software configuration management across various different envs which is highly impossible to produce the reproducible environments
+
+To help us in easily accomplishing the software configuration automation, the ansible has introdued "playbooks". The ansible developers or devops engineers will declare all the modules that should be executed or applied on the managed nodes to achieve the desired state of the system in the playbooks and pass these playbooks as input to the ansible control node.
+    
+since these playbook module declarations should be read by the control node server, it has to be written in structured format with semantics defined aspart of it, then only ansible control node server can parse and understand the modules that should be executed.
+    
+In order to have these playbooks being parsed and interpreted, these playbooks should be written in YAML format only. The structure and schema of this playbook YAML file has been defined by ansible.
+    
+For one automation to be applied/accomplished on the managed nodes is called one "play". In a playbook we can define multiple plays. Each play represents a group of modules/tasks that should be executed on the managed nodes to achieve the desired state of the system.
+    
+For a project we might want to perform multiple automations in-order to install or deploy the application. For example we want to install and configure
+    1. jdk17 + tomcat11 server
+    2. mysql8 database server
+    
+These 2 automations can be defined in 2 ways:
+1. we can write them as 2 plays within one single playbook
+2. we can write these 2 automations aspart of the 2 different playbooks
+
+How does the playbook looks like?
+    (or)
+syntax of writing a playbook
+
+The playbooks should be written in YAML File format and can have the extension as ".yml" or ".yaml". The syntax and structure of writing the playbook file is as below:
+
+playbook.yml
+---------------
+---
+- name: play1
+  hosts: groupName
+  tasks:
+    - name: task1
+      module:
+        arg1: arg1value
+        arg2: arg2value
+    - name: task2
+      module:
+        arg1: arg1value
+        arg2: arg2value
+- name: play2
+  hosts: groupName
+  tasks:
+    - name: task1
+      module:
+        arg: argValue
+    - name: task2
+      module:
+        arg: argValue
+...
+    
+A task represents a named execution of a module, through the task we can control the execution of the module as well. By looking at the taskName we can easily understand why are we executing the module for. So a play contains multiple tasks, where in each task is wrapped with module declaration that should be executed inorder to achieve the desired state of the system.
+    
+Let us write a playbook that demonstrates the syntax of writing it:
+debug-playbook.yml
+------------------
+---
+- name: debugging play
+  hosts: all
+  tasks:
+    - name: debug task
+      debug:
+        msg: Welcome to Ansible playbooks!
+...
+
+To run the playbook, ansible has provided an CLI command "ansible-playbook" as below
+ansible-playbook [-i inventoryFile] playbook.yml
+-----------------------------------------------------------------------------------------------------------------------------
+How does the ansible playbooks are executed on the managed nodes of the ansible cluster?
+The playbooks tasks are executed by default from top to the bottom order in which those are declared within the playbook. Each task will be applied sequentially on all the managed nodes of the fleet and then moves to the next task.
+          
+By default fork = 5 configured in ansible.cfg file
+
+The fork property indicates how many managed nodes in parallel a task should be executed on the cluster. Task1 would be applied on 5 managed nodes in parallel and goes onto the next 5 nodes until all the nodes in the cluster are finished, there by moving to the Task2.
+          
+During the execution of a task, if the control node has encountered failure on one node, it marks the node as ignored/omitted and continues to apply the remaining tasks on all the other nodes of the cluster
+----------------------------------------------------------------------------------------------------------------------------
+How does the ansible output the execution of a Playbook and What are the possible statuses in which a task execution is reported?
+The Ansible control node server displays the status of each task execution for all the managed nodes on the cluster task by task.
+  
+There are 7 possible statuses in which a task can be there and it is reported by ansible control node server per each managed node during execution. At the end a summary of total tasks executed per each managed node along with their possible status will be displayed as a PLAY RECAP 
+
+1. ok (n)          = for how many task executions, the control node server is able to connect to the managed node
+2. changed (n)     = indicates how many tasks of the playbook execution has changed the state of the managed node
+3. unreachable (n) = how many tasks executions of the playbook, the control server failed in connecting with the managed node
+4. failure (n)     = how many task executions of the playbook are resulted in failure of execution
+5. skipped (n)     = how many task executions are omitted on the managed node due to the previous task failures on that managed node
+6. rescued (n)     = how many rescued tasks are executed on that managed node
+7. ignored (n)     = ignored the task execution because of unmatched condition
+
+PLAY [debugplay] ***************************************************************************************************************************
+TASK [debug task] **************************************************************************************************************************
+ok: [192.168.10.12] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+ok: [192.168.10.13] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+ok: [192.168.10.14] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+ok: [192.168.10.15] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+
+TASK [ping] ********************************************************************************************************************************
+ok: [192.168.10.12]
+ok: [192.168.10.13]
+ok: [192.168.10.14]
+ok: [192.168.10.15]
+
+PLAY RECAP *********************************************************************************************************************************
+192.168.10.12              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.10.13              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.10.14              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.10.15              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+------------------------------------------------------------------------------------------------------------------------------
+Ansible modules
+---------------
+An Ansible module represents a unit of work that should be applied on managed nodes to accomplish a task or operation. Ansible modules are written in python language, they take data as input, perform operation and produces the output in json format. The output produced by these modules contains status of the action/operation that has been performed on the managed node
+
+Ansible developers has provided lot of modules and distributed them aspart of the ansible distribution, these modules distributed by ansible itself are called "build-in" modules. In addition there are lot of third-parties and opensource contributors has developed and distributed the ansible modules through ansible repositories.
+  
+Since ansible is very popular software configuration management tool many vendors wants to provide their integrations with ansible like
+1. aws cloudplatform
+2. vmware 
+etc
+
+From this we can understand there are un-ending list of modules are available aspart of the ansible distributions. searching and identifying an module seems to be very difficult since there are lot of modules are there. To help us in easily locating these modules ansible has grouped related modules into categories. Looking through these categories will help us in quickly identifying the modules. Few of the module categories are:
+1. file modules
+2. identity modules
+3. remote management modules
+4. database modules
+etc
+
+We can browse the modules list by category using: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+
+The ansible has provided an CLI tool "ansible-doc" that can be used for browsing the documentation of any module in ansible
+
+ansible-doc -l = list down all the modules that are shipped aspart of ansible distribution
+ansible-doc moduleName = shows the document of the module
+------------------------------------------------------------------------------------------------------------------------------
+Let us explore few popular ansible modules based on module categories.
+  
+#1. Commands modules:
+Under the Commands category there are #2 modules that are very popular.
+  1. Command
+  2. Shell
+  
+The Shell/Command modules are used for executing any Linux command on the managed nodes of the cluster. The control node server simply connects to the managed nodes over the SSH and transfers the commands and executes them on the remote machine, the output of executing the command will be returned back
+
+Looks like we can perform any automation by using these 2 modules in ansible, but it is not recommended to use these modules for performing software configuration automation, because these modules doesnt support idempotancy.
+  
+Both Command & Shell modules are used for executing the Linux shell commands on the managed nodes of the cluster, but there is subtle difference between them
+
+1. Command module = it doesn't uses the shell capabilities while executing the shell commands on the managed nodes, so we cannot use features like pipes (|) and redirectors (> ,  < , >>, <<)
+  
+2. Shell module = By default it uses the /bin/sh for executing the Linux commands, so we can use pipes (|) and redirectors
+
+1. Command module
+------------------
+used for executing an Linux command
+
+1.1 execute a command
+syntax:-
+command: commandToExecute
+
+for example:
+command: echo "hi"
+  
+1.2 execute a given command by changing into directory specified
+command : commandToExecute
+  args:
+    chdir: directory
+    
+1.3 execute the given command only when the specified file or directory does not exists under the given path
+
+command: commandToExecute
+args:
+  creates: pathToFile
+    
+for eg..
+command: touch ~/ticket.txt
+args:
+  creates: ~/ticket.txt
+  
+2. shell module
+----------------
+shell is also used for executing linux commands on the managed nodes of the cluster and uses shell interpreter that comes with the capabilities like pipes and redirectors
+
+2.1 shell module with linux command
+shell : commandToExecute
+
+2.2 shell module to execute a linux command by switching to the specified directory
+shell: commandToExecute
+args:
+  chdir: directory
+  
+2.3 shell module with creates option, which means execute the linux command only when the given specified file doesnt exsists
+shell: commandToExecute
+args:
+  creates: pathtoFile
+  
+2.4 shell module with remove option, means if the given file exists then only execute the linux command
+shell: commandToExecute
+args:
+  removes: pathToFile
+-----------------------------------------------------------------------------------------------------------------------------------
+expect shell utility
+--------------------
+expect is used for executing an interactive shell program non-interactively, so that we can easily achieve touchless automation
+There are #3 major utilities are there that has to be used in implementing expect
+1. spawn = is used for spawning/running an interactive script that requires input
+2. expect = is used to match the statement for which the script is waiting for interactive input
+3. send = command to pass the actual value to the script
+
+addNumbers.sh
+--------------
+#!/bin/bash
+read -p "Enter A: " A
+read -p "Enter B: " B
+SUM=$(A+B)
+echo "SUM : $SUM"
+
+chmod u+x addNumbers.sh
+./addNumbers.sh
+
+Enter A: 10  
+Enter B: 20
+SUM: 30
+  
+auto-addNumbers.sh
+-------------------
+#!/usr/bin/expect -f 
+set timeout -1
+spawn ./addNumber.sh
+expect -exact "Enter A: "
+send -- "10\r"
+expect -exact "Enter B: "  
+send -- "20\r"
+expect eof
+
+now auto-addNumbers.sh will take care of running the addNumbers.sh silently (touchless). By default aspart of the ubuntu distribution, the expect utility is not available, we need to install it through package manager
+
+sudo apt update -y
+sudo apt install -y expect
+-----------------------------------------------------------------------------------------------------------------------------------
+3. expect module
+expect module is used for executing an shell-script or a shell command non-interactively
+aspart of the software configuration automation, within a playbook we might want to execute a shellscript program. The shellscript program might be taking input data interactively, so that the execution of the playbook will be blocked and there is not to continue execution since we cannot supply the input values.
+  
+So to execute such shellscript programs non-interactively within the ansible playbook, the expect module has been provided by ansible.
+  
+syntax:
+- name: task
+  expect:
+    command: shellscript program or shell command
+    chdir: directory
+    echo: true
+    responses:
+      "response1" : val1
+      "response2" : val2
+
+addNumbers-playbook.yml
+------------------------
+---
+- name: expect play
+  hosts: all
+  tasks:
+    - name: add numbers
+      expect:
+        command: ./addNumbers.sh
+        echo: true
+        responses:
+          "Enter A: " : 10
+          "Enter B: " : 20
+      register: sum
+    - name: print sum
+      debug:
+        msg: "{{sum}}"
+...
+-----------------------------------------------------------------------------------------------------------------------------------
+#3. File Category
+The File category related modules are used for performing various different file operations like
+1. copy
+2. create, delete (file/directory)
+3. change permissions/ownership (file/directory)  
+4. inline edit
+
+even though we can perform these operations using shell/command module it is not recommended as those are non-idempotant. where as the File category modules are designed keeping in view of idempotancy.
+  
+1. copy module
+copy module is used for copying an file/directory from the local filesystem of the control node server onto any of the managed nodes of the cluster. Incase if we want to do a local copy, which means the source file we want to copy is on managed node itself and want to copy to a different directory then we can use a property remote_src: true, this attribute/property indicates the file is already available on managed node
+
+1.1 copy file from source to the destination directory?
+- name: copy
+  copy:
+    src: filename
+    dest: directoryLocation
+    
+1.2 copy the file/folder from source location to destination with given file permission/ownership
+- name: copy
+  copy:
+    src: file
+    dest: directoryLocation
+    owner: 'owner'
+    group: 'group'
+    mode: 777
+      
+1.3 we can enforce validation constraint while copying the file from source to the destination location
+- name: copy
+  copy:
+    src: file
+    dest: destinationLocation
+    validation: "/usr/bin/visudo -csf %s"
+
+we can use the validation when we are copying an sudoers file. let us copy a sudoers file from control node server to the managed node under /etc/sudoers.d/ directory
+
+alex
+----
+alex ALL=(ALL:ALL) ALL
+
+- name: copy alex sudoers file by validating
+  copy:
+    src: alex
+    dest: /etc/sudoers.d/
+    validation: "/usr/bin/visudo -csf %s"
+  become: yes 
+----------------------------------------------------------------------------------------------------------------------------------
+#2. file module
+File module is used for creating new or deleting an file/directory or change the permissions of an existing file/directory.
+  
+1. create a new file
+- name: task
+  file:
+    path: file
+    state: touch
+    
+this creates an empty file on the managed nodes of the cluster
+
+2. create a new directory
+- name: task
+  file:
+    path: directory
+    state: directory
+    
+3. How to create an symlink file to an existing file
+We can create symlinks pointing to the existing file/directory on the File system using file module itself. There are 2 types of symlinks are there
+  1. softlink
+  2. hardlink
+  
+- name: task
+  file:
+    src: sourceFile
+    dest: destinationDirectory | symlinkFileName
+    owner: 'owner'
+    group: 'group'
+    state: link | hard
+    
+link = creates an softlink
+hard = creates an hardlink
+note: while creating an softlink, the group and owner is not applicable. Only applicable when we are creating hardlinks
+
+4. How to change the owner/group of an existing file
+- name: task
+  file:
+    src: fileorDirToBeModified
+    group: 'group'
+    owner: 'owner'
+    mode: 'permissions'
+  
+during the change in group or owner or permissions, the linux operating system marks the file as accessed and modified by updating the modificationTime and accessedTime of the file. We can preserve the modificationTime and accessedTime of a file too as below.
+      
+5. How to preserve the modificationTime and accessTime of a File?
+1. accessTime = read/copy/move operations on file/directory, the access will be changed by the Linux operating system
+2. modifiedTime = modify the contents of the file, then modified time will be changed
+3. changeTime = when we change the attributes of the file like owner, group, permissions etc then changeTime will be modified
+4. birthTime = birthTime will not be modified and only be set at the time of creating the file/directory
+
+so we can preserve the accessTime, modifiedTime  using attributes as below
+
+- name: task
+  file:
+    src: fileToBeModified
+    group: 'group'
+    owner: 'owner'
+    mode: 'permissions'
+    modification_time: preserve
+    access_time: preserve
+    
+The possible values we can write for access_time and modification_time is:
+1. now
+2. preserve
+3. set, incase of set we can set a custom date and time format as '{{%Y%m%d%H%M.%S}}'
+----------------------------------------------------------------------------------------------------------------------------------
+8. lineinfile module
+If we want to edit or modify a single-line in an existing file we can use lineinfile module. it is similar to sed in linux shellcommand
+
+We want to replace a line based on matching expression as below
+/etc/mysql/mysqld.conf
+MYSQL_BIND_ADDRESS=127.0.0.1
+  
+sed -i 's/^MYSQL_BIND_ADDRESS=.*/MYSQL_BIND_ADDRESS=0.0.0.0/g' /etc/mysql/mysqld.conf
+
+syntax:
+lineinfile:
+  path: locationofFileToEdit
+  regexp: 'searchExp'
+  line: 'replacedContent'  
+    
+- name: replace bind address
+  lineinfile:
+    path: /etc/mysql/mysqld.conf
+    regexp: '^MYSQL_BIND_ADDRESS=*'
+    line: 'MYSQL_BIND_ADDRESS=0.0.0.0'  
+      
+2. We can use lineinfile module to add or remove a line before or after the matching expression 
+
+/etc/ssh/sshd.conf
+PermitEmptyPassword no
+ChallengeResponseAuthentication no
+
+We want to add a new line after PermitEmptyPassword no with new line as PasswordAuthentication yes
+The resulted file should look as below
+  
+/etc/ssh/sshd.conf
+PermitEmptyPassword no
+PasswordAuthentication yes
+ChallengeResponseAuthentication no  
+
+- name: add new line
+  lineinfile:
+    path: /etc/ssh/sshd.conf
+    line: 'PasswordAuthencation yes'
+    insertafter: '^PermitEmptyPassword.*'
+----------------------------------------------------------------------------------------------------------------------------------
+4. Package management category
+Each Linux distro has their own separate package managers provided for installing and configuring the software packages on their distro operating systems 
+1. debain = apt
+2. redhat = yum
+3. arch = pacman
+
+The Ansible has provided several modules under package management category for installing/upgrading the software packages across the distros of Linux
+1. debain = apt module
+2. redhat = yum module
+3. arch = pacman module
+4. mac = homebrew module
+
+We can use distro specific package manager modules in our playbooks for installing, upgrading or removing the software packages, but the problem is the playbooks becomes distro specific and will not be portable across the linux operating system distributions. But the advantage is we can use the full capabilities of the specific distro package manager
+
+To overcome the dis-advantage with portability, ansible has provided a generic package managed module called "package", that can be used for installing, upgrading the software packages across any linux distros
+
+
+1. apt module
+apt module has all the options related to installing, upgrading, removing the software packages equalTo the apt tool of the debian distro.
+  
+#1. install a specific software package
+- name: task
+  apt:
+    name: packageName
+    state: [present|latest|absent]
+    update_cache: yes | no
+    
+1. present = the specified software package is installed and made available on the managed nodes of the cluster. It doesnt look for whether it is latest or not
+2. latest = ensure the latest version of the specified software package is installed on the fleet servers. If we have old version installed, then it will upgrade
+3. absent = if present it will remove/uninstall
+
+update_cache: yes | no = reload / refresh the ubuntu repository cache before installing|upgrading|uninstalling the software
+autoremove = yes | no = If the packages are not being used, it will remove
+autoclean  = yes | no = removes the local repository cached packaged files which are not longer required
+deb = install the software package from local .deb file
+purge = true | false = cleanup the configuration files along with software packaged bits, and this option should be used with state: absent
+
+#2. How to uninstall the software package?
+- name: task
+  apt:
+    name: packageName
+    state: absent
+    purge: true
+      
+#3. How to install the latest version of the software package?
+- name: task
+  apt:
+    name: packageName
+    state: latest
+    update_cache: yes
+    
+#4. remove un-used or un-wanted software packages
+- name: task
+  apt:
+    autoremove: yes
+    
+#5. remove unwanted packages on local repo?
+      
+- name: task
+  apt:
+    autoclean: yes
+
+#6. How to install multiple software packages?
+- name: task
+  apt:
+    name:
+      - package1
+      - package2
+      - package3
+    state: present
+    update_cache: yes
+  become: yes  
+ 
+Instead of using distro specific package manager we can use generic package management module "package"
+syntax:
+- name: task
+  package:
+    name: packageName
+    state: [present|latest|absent]
+    use: auto
+    
+The package module underlying goes to the distro specific package manager for installing, upgrading or removing the software package. Here use: auto indicates pick automatically the distro specific package manager
+
+privilege escalation
+---------------------
+become: yes
+become_user: root
+become_method: sudo
+become_flags: allow additional options for privilege escalations
+
+1. How does ansible control node server connects/ssh onto the managed nodes?
+The control node server by default ssh onto the managed node using the user with which we are running ansible or ansible-playbook commands on the control node server. Incase if we want to change the user onbehalf of whom we want to ssh onto the managed node we can specify the user using ansible_user built variable in the inventory file
+
+hosts
+------
+192.168.10.12 ansible_ssh_private_key_file=~/ansiblekey ansible_user=ubuntu
+
+2. How does ansible executes the ansible modules on the managed node?
+While running any of the modules on the managed nodes, the ansible control node server executes them on-behalf of the ssh user through which it has ssh onto the managed without any sudoer permission.  
+  
+But for few of the modules like
+  1. package managers
+  2. user management modules
+  3. system modules
+  4. service modules
+we need sudoer permission to execute them on the managed nodes
+
+So to let the control node server run such modules with sudoer permission:
+  1. we need to configure the ssh user with passwordless sudoers access on all the managed nodes
+  2. we need tell the control node server to use privilege escalation while executing that module 
+  
+become: yes = Enables privilege escalation (Linux: sudo)
+become_user: username = specifies the user to switch to
+become_method: sudo = defines the method user (for eg.. sudo, su, doas)
+-----------------------------------------------------------------------------------------------------------------------------------
+System Category
+----------------
+The operating system related modules are provided aspart of the System Category modules
+
+#1. user module
+adding/modifying and removing the Linux users can be done through user module
+
+1.1 add a new user with specific uid and gid
+- name: task
+  user:
+    name: username
+    uid: id
+    gid: id
+  become: yes
+
+1.2 add a user with default shell
+- name: task
+  user:
+    name: username
+    uid: id
+    gid: id
+    shell: /bin/bash
+    
+1.3 add a user with home directory
+- name: task
+  user:
+    name: username
+    uid: id
+    gid: id
+    create_home: yes|no
+    password: login_password
+    
+more options while creating the user as below:
+generate_ssh_key: true | false
+remove: yes = removes the existing user we specified should be used with state: absent
+- name: task
+  user:
+    name: username
+    state: absent
+    remove: yes
+  become: yes
+  
+Let us try adding a new Linux user with Passwordless sudoers access
+In Linux shell:
+1. add/create user in linux
+sudo useradd -m -p md5hashpassword -s /bin/bash -uid 1003 -gid 1003 username
+
+2. to make the user sudoer
+goto /etc/sudoers
+username ALL=(ALL) NOPASSWD:ALL
+
+How can we accomplishing using ansible playbook?
+1. add/create user in linux = use user module
+2. edit sudoers file = lineinfile module
+
+adduser-playbook.yml
+---------------------
+---
+- name: add user play
+  hosts: all
+  tasks:
+    - name: add user
+      user: 
+        name: bob
+        password: welcome1
+        create_home: yes
+        shell: /bin/bash
+      become: yes
+    - name: promote user as sudoer
+      lineinfile:
+        path: /etc/sudoers
+        line: 'bob ALL=(ALL) NOPASSWD:ALL'
+        insertAfter: '^root.*'  
+        validate: '/usr/sbin/visudo -csf %s'  
+...
+----------------------------------------------------------------------------------------------------------------------------------
+2. service module
+The service module is used for stop, start, restart and reload an initd system service on the Linux operating system
+
+1. start/stop/restart/reload an service
+- name: task
+  service:
+    name: serviceName
+    state: started|stopped|restarted|reloaded
+    
+2. enabling an service
+- name: task
+  service:
+    name: serviceName
+    enabled: yes | no
+    
+3. get_url module
+download files from HTTP, HTTPS or FTP sources
+
+1. download an file to a specified destination direction
+- name: task
+  get_url:
+    url: "http://..."
+    dest: "path"
+    mode: '0644'  
+      
+2. authenticate and download
+
+- name: task
+  get_url:
+    url: "http://..."
+    dest: "path"
+    mode: '0544'  
+    username: 'username'
+    password: 'password'
+      
+4. unarchive module
+module to extract a .tar.gz file 
+
+- name: task
+  unarchive:
+    src: "path"
+    dest: "destPath"  
+    remote_src: yes
+    
+
+How to register an shell program as service using playbook?
+Control Node Service
+
+memmonitor.sh
+--------------
+while [ true ]
+do
+  FREE_MEM=$(free -h | grep Mem: | awk '{print $4}')
+  echo "Free Memory : $FREE_MEM" >> /tmp/mem.log
+  sleep 30s
+done
+
+memmonitor.service
+-------------------
+[Unit]
+Description=Memory monitoring service
+After=network.target
+
+[Service]
+ExecStart=/home/vagrant/memmonitor.sh
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+
+memmonitor-playbook.yml
+-----------------------
+- name: service play
+  hosts: all
+  tasks:
+    - name: copy memory monitoring shellscript
+      copy:
+        src: "memmonitor.sh"
+        dest: "/home/vagrant/"
+        mode: '0544'  
+    - name: copy memory monitoring service unit file
+      copy:
+        src: "memmonitor.service"
+        dest: "/etc/systemd/system"
+      become: yes
+    - name: daemon reload
+      service:
+        name: memmonitor
+        state: reloaded
+      become: yes
+    - name: enable memory montoring service
+      service:
+        name: memmonitor
+        enabled: yes
+      become: yes
+-----------------------------------------------------------------------------------------------------------------------------------
+Database Category
+Under the Database category, several modules are provided for managing the databases like
+1. creating an schema/database
+2. creating or removing an user from the database
+etc
+
+pre-requisite:
+Before using mysql database modules of Ansible, we need to do below operations:
+1. We need to have mysql server installed on the managed nodes of the cluster 
+2. Should have python installed on managed nodes
+3. python3-pymysql package should be installed
+
+1. How to create an database on remote mysql server host?
+- name: create database
+  mysql_db:
+    name: databasename
+    state: present
+    
+2. How to add an user to the mysql server database?
+- name: add mysql user
+  mysql_user:
+    name: mysqluser
+    password: password
+    state: present
+    priv: "*.*:ALL"
+    login_user: root
+    login_password: rootPassword
+    
+here: login_user & login_password should be supplied so that mysql_user module can connect to the remote sql server database and create new user provided.
+----------------------------------------------------------------------------------------------------------------------------------
+Install mysql server on managed nodes  
+#1.
+  sudo apt update -y
+  sudo apt install -y mysql-server-8.0
+  
+#2. 
+  sudo mysql -uroot
+  alter user 'root'@'localhost' identified with mysql_native_password by 'root';
+
+#3
+  sudo mysql_secure_installation
+  
+#4 
+  /etc/mysql/mysql.conf.d/mysqld.conf
+  bind-address=0.0.0.0
+  
+Install Python and pythonmysql packages
+by default ubuntu comes with Python3 installed, we can verify using
+python3 --version
+
+now install pip3
+sudo apt install python3-pip
+
+after installing the pipe3 install pymysql package using below command
+sudo apt install python3-pymysql
+----------------------------------------------------------------------------------------------------------------------------------
+ansible variables, using in playbook (register)
+jinja2 template
+ansible vault
+when changed
+when failed
+ansible roles
+control statements
+loops
+handlers

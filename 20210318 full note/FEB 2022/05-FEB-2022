@@ -1,0 +1,164 @@
+There are 7 domains into which aws services are categorized into
+1. compute 
+2. storage
+3. database
+4. iam
+5. networking
+6. management tools
+7. messaging
+
+#1. compute
+all the computing related resources/services are offfered in this domain.
+	1.1 ec2 = compute instance
+	1.2 lambda = server-less technology where we bind a function to be executed by aws cloud 
+	1.3 elastic beanstalk (ebs) = pre-defined middleware stack
+	1.4 elastic load balancer (elb) = distribute network traffic across the application instances
+	1.5 auto-scaling group (asg) = based on threshold values automatically scaleup the application instances
+	
+#2. storage
+all the storage related services are offered as part of the storage domain
+	2.1 S3 (simple storage service) = object storage
+	2.2 CloudFront = Content Delivery Network service, to cache and distribute static content of an application
+	2.3 Glacier = Storing archival data that has to be backed-up for longer time at cheap cost
+	2.4 Snowball = to migrate the application/data from on-premise/datacenter to aws cloud
+	2.5 Elastic Block Storage (EBS) = acts an harddisk for the ec2 instance, we can extend the storage capacity of an ec2 instance by attaching an additional block volume
+	2.6 Storage gateway = Migrational Service in which we can move an application running on on-premise into AWS Cloud Infrastructure in Phases
+	
+#3. database 
+The database related services are offered in this domain
+	3.1 rds = relational data service
+	rds is not an database of amazon, rather is a managed service that takes care manage the popular database products like (oracle, postgress sql and mysql server) on aws cloud infrastructure.
+	3.2 aurora db = auroradb is an amazon owned database product where amazon has modified the mysql server database and optimized to be 5x faster than the mysql server and provided it as part aws infrastructure
+	3.3 dynamodb = no-sql database offered by aws cloud platform, which allows us to store data in database tables interms of keys/values
+	3.4 elastic cache = its an distributed cache service offered by aws cloud provider
+	3.5 Redshift = data warehouse service for generatic analytics and data reporting
+#4. Networking
+Networking domain offers various different networking related services like private network, security and access controls restrictions
+	4.1 vpc = virtual private network used for creating isolated network of resources
+	4.2 direct connect = a leased line to the aws resources
+	4.3 route53 = its an dns service offered by aws to associate domain names to the aws resources in hosting the applications
+	
+#5. IAM (Identity and Access Management)
+IAM domain is used delegating the access to aws cloud services/resources to the other aws users and services.
+	1. users
+	2. groups
+	3. policy
+	4. roles
+	5. KMS
+		
+#6. Management Tools
+These services helps us in monitoring/managing the aws resources/services
+	6.1 cloud watch = ec2 monitoring tool helps us looking a logs and permits to setup alarms through which we can recieve notifications based on threshold values
+	6.2 cloud trail = logging service for api requests
+	6.3 Cloud Formation = Templatized Service, that helps in creating cloned environments on aws infrastructure
+	6.4 CLI = alternate to aws console
+	6.5 OpsWork = Its an configuration management tool that works with popular configuration management libraries like puppet, chef etc and configures aws resources
+	6.6 Trusted Advisor = Billing and Recommendations
+	
+#7. Messaging
+All the messaging related services are part of this domain
+	7.1 SQS
+	7.2 SNS
+	7.3 SES 
+	
+#8. Developer Services
+	8.1 CodeCommit
+	8.2 CodeBuild
+	8.3 CodeArtifact
+	8.4 CodeDeploy
+	8.5 CodePipeline
+-----------------------------------------------------------------------------------------------
+1. compute [ec2, elb]
+2. database [rds]
+3. networking [vpc, subnet, internet gateway, security group, nacl rules]
+4. storage [s3]
+5. iam [users, groups, policies, roles]
+-----------------------------------------------------------------------------------------------
+AWS Architecture
+-----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

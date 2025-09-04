@@ -1,0 +1,102 @@
+How many software package manager tools are available in Ubuntu?
+There are 2 software package manager tools are available.
+  1. dpkg = stands for debain package manager, it is an software package installer that installs the .deb files that are on your filesystem of the Linux.
+    - The dpkg cannot search, download the software packages from the repository
+    - dpkg cannot resolve and install dependency softwares of a sofware package
+        
+  2. apt = advanced package tool, which is a complete package manager takes care of downloading and installing the software packages on linux.
+    - it internally uses dpkg for installation
+    - it can resolve and install dependent libraries as well.
+      
+dpkg -i softwarefile.deb
+dpkg -r packageName
+dpkg -l = list of packages 
+dpkg -l packageName = shows the package availability along with status
+dpkg -p packageName = is same as remove but removes the sofware configuration files of the package
+dpkg -c package.deb = shows the contents of the software package (.deb contents)      
+dpkg -s packageName = status of the package (installed/ not installed)
+dpkg -unpack packageName.deb  = unpack the contents of the .deb file
+---------------------------------------------------------------------------------------------------------
+PPA Repositories
+----------------
+A PPA Stands for Personal Package Archive is an sofware package repository that can be used for upgrade or install packages from unofficial sources. An individual can develop/produce a software package and can publish/distribute to the world through ppa repositories of the ubuntu.
+  
+These are not verified officially by the ubuntu and should be used at the own discretion of the user. ppa is hosted on canonicals servers and is served through ubuntu launchpad. Users dont need their own software package repositories to distribute their own softare.
+  
+how to add a ppa repository?
+sudo add-apt-repository ppa:name
+sudo add-apt-repository --remove ppa:name
+
+
+How many types of repositories are there supported by ubuntu?
+There are 3 types of repositories are supported by the ubuntu
+  1. official distro repositories
+  2. organization/enterprise software package repositories (gpg keys)
+  3. ubuntu ppa:repository for distributing individual software packages
+  
+How to manage package repositories of linux/ubuntu?
+3 ways
+#1 directly go and make an entry into /etc/apt/sources.list or /etc/apt/sources.list.d/
+#2 add official/organization repository 
+  sudo add apt-key keyfile
+  sudo add-apt-repository repositoryUrl
+#3 add ppa repositories
+  sudo add-apt-repository ppa:name
+  
+How to install / manage softare packages on ubuntu?
+There are 2 ways are there
+1. dpkg
+2. apt
+-------------------------------------------------------------------------------------------------------
+How many ways the software packages are distributed to the world in general?
+There are 3 ways a software packages are distributed to the world.
+  1. through repository distribution (openjdk, nettool, tree, vim)
+  2. direct downloadable and installable software packages (atom)
+  3. binary distribution
+  
+before proceeding to binary software distribution, lets explore environment variables in linux operating system
+What are environment variables?
+The programs requires data as an input while running, there are few inputs that are common across multiple programs, which can shared or passed as an input by declaring them at the shell level which are called "Shell Variables"   or "Environment Variables".
+  
+usuall the shell variables are local to the shell level, if we close and reopen the shell those variables will not exists.
+  
+How to create an environment variable?
+export variableName=variableValue = usually VARIABLE_NM are defined in capital letters as per convention
+
+How to access the value of a variable?
+we need to use $variableName notation to access the value, otherwise variable name is treated as text of characters.
+
+There are 2 types of environment variables are there
+1. System variables = pre-configured variables that comes as part of linux installation. These variables will be created by the linux operating system during the system bootup and generally will not be maintained or modified or used by user of the operating system, rather operating system itself will use them.
+  
+2. User-Defined variables = variables created by the user for using them as part of his programs as described earlier.
+  
+  
+  
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    

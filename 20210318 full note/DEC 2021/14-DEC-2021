@@ -1,0 +1,55 @@
+fithealth
+|-src
+	|-main
+		|-java
+		|-resources
+			|-db.properties
+		|-db
+			|-dbschema.sql [to create database schema/tables during the setup process]
+		|-sh
+		|-config			
+			|-tomcat-server.service			
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+|-Vagrantfile				
+|-pom.xml
+
+javaserver (autostart="false")
+|-forwarded_port
+	80, 8080
+dbserver
+artifactoryserver
+
+private network between all the three
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

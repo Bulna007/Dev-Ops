@@ -1,0 +1,218 @@
+1. Command Substitutions
+If we want to capture the output of executing an shell command in a variable then we need to Command Substitution.
+VARIABLE=$(command)  
+  
+2. expr operators on String
+we can use expr for performing operations on String data as well.
+  - length = `expr length "$VAR"`
+  - substr = `expr substr $VAR BEGIN_INDEX LENGTH`
+  - compare operator `expr "$STR1" : "$STR2"` = return no of characters match if both are matched or else returns 0
+--------------------------------------------------------------------------------------------------------
+operators in Shellscript
+operators are the symbols to which the shell interpreter assigns special means towards them, so that when they appear as part of the program, rather than interpreting them as characters it performs the pre-defined operation assigned to that symbol.
+    
+If the language has not provided operators, then the only operation we can perform in a program of that langauge is read/write the data. If we have to perform computation operation within the programs, we need the language to provide operators.
+    
+There are 5 types of operators are supported by Shellscript.
+1. Arthematic operators
+2. Relational operators
+3. Logical operators
+4. String operators
+5. File operators
+
+
+#1 Arthematic operators
+used for performing mathematical operations on the numeric data. 
+  +  = addition
+  -  = substraction
+  \* = * is usually treated as any match character in shellscript, so to indicate here * as multiplication we need to use \*
+  / = division
+  % = modulus = always returns the reminder out of the division. (Integer division with a reminder)
+  
+#2 Relational operators
+used for comparing any given 2 inputs and derives the relationship between them.
+For eg.. any given 2 numbers we can derive or compare as Number1 greater than Number2 or Number1 is equal Number2 we can determine by using Relational operators.
+  
+Integer relational operators are:
+-gt = greater than
+-lt = less than
+-ge = greater than or equal to
+-le = less than or equal to
+-eq = equal to
+-ne = not equal to
+with these operators we can compare any given 2 integers we can find the relationship between them. always the relational operators will return true/false as outcome.
+
+#3 Logical operators:
+we can combine 2 or more relational expressions and evaluate together using logical operators
+-a = and
+-o = or
+! = not
+The logical operators also evaluates the expression to true/false only, but based on output of individual relational expression the logic operators computes the truthness of the output.
+
+RE1 COMBINE THEM USING LOGICAL OPERATOR RE2
+
+AND TABLE
+RE1  RE2
+T    T   = T
+T    F   = F
+F    T   = F
+F    F   = F
+
+
+carprice 
+2 lacs - 5 lacs = budget
+5 - 8 = mid range
+9 - 24 = high end
+24 = luxury cars
+
+10000
+       F                   T            = F
+price -ge 200000 -a price -le 500000
+  echo budget
+  
+price -gt 500000 -a price -le 800000
+  echo "mid range"
+
+
+OR TABLE
+RE1   RE2
+T     T   = T
+T     F   = T
+F     T   = T
+F     F   = F
+
+OCCUPATION = Farming, Paultry, Fisheries, GoldSmith, Pottery
+Loans
+
+occupation = "Farming" -o occupation = "Paultry" -o occupation = "Fisheries"
+  echo "congrations take 1 lakh free dont payback"
+occupation = "GoldSmith"  -o occupation = "Pottery"
+  echo "congratulations take 50k dont payback"
+occupation = "software engineer"
+  echo "congratulations you pay 5 lacs to us"
+
+! Not operator
+RE
+T = F
+F = T
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

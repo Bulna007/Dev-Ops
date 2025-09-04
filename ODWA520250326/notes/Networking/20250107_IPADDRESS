@@ -1,0 +1,474 @@
+ip address
+----------
+#1 Types of addresses
+-----------------------
+There are 2 types of addresses are there for each computer
+1. mac address
+mac stands for "media access control" address which is also called as "physical address" or "permanent address" that is created by the nic card manufacturer and assigned to the nic card of the computer which usually cannot be changed.
+	
+always a computer with an nic card plugged-in has mac address irrespective of whether it is connected to the network or not.
+	
+The mac address is 12 characters in length of hexa decimal number ranging from (0-9 and A-F [16 digits]). The mac address is written as 2 characters of 6 pairs separated by either : or - or none
+for eg.. f9:db:7e:34:71:bc
+
+
+2. ip address
+ip stands for "internet protocol" address which is also called as "logical address", used for identifying/locating the computer uniquely on a network. since it is an identification for a computer on the network, it will be generated and assigned to the computer only when it is connected to the network.
+	
+ip address = an identification number for a computer on a network
+	
+	
+How many mac addresses and ip address can be there for a computer?
+depends on the number of network interface cards attached to the computer.
+per each network interface card = we have one mac address, and when it is plugged-in into the network, an ip address will be assigned, so if we have #2 network interface cards for the computer, then #2 mac addresses will be there and if both nics are plugged-in, then we have #2 ip addresses
+
+
+#2 How does the data will be transferred on a network?
+By default when a computer puts data on the network, it goes to all the other computers that are connected to that network. so if we wish to send the data to a specific computer on the network, we need unique identity of the computer which is "ip address"
+	
+How does a computer is assigned with an ip address?
+There are #2 ways a computer is assigned with an ip address
+1. static ip configuration
+2. dynamic ip configuration
+
+
+1. static ip configuration
+By default when a computer is plugged-in to a network (switch/router), it will not be part of the network, the network administrator has to manually register the device onto the network by configuring the ip address for the computer on that network.
+	
+For this the network administrator has to goto the network adapter/interface card properties and configure ipv4 properties as 
+	1. ip address      = ip address to be assigned to the computer
+	2. subnet mask     = classifying the ip class of the address
+	3. default gateway = ip address of the switch/router to which the computer is plugged-in / connected
+	4. preferred dns server = primary dns server to perform domain name resolution
+	5. alternate dns server = alternate dns server to reach incase primary dns is down.
+		
+upon configuring these properties for the network adapter of the computer, the computer is registered to the network.  These ip addresses that are configured or assigning manually to each computer within the network are "static ip or fixed ip", because these ip address will not be changed over the period of time and persisted even a restart of the computer.
+
+since the ip address of the machines are pre-configured and well-known, we can always access the machines on the network with their well-known ip addresses directly.
+	
+This approach of assigning the ip is done in a small group of computer network that comprises 10-20 computers, the network administrator would configure the ip address for each computer on the network manually.
+	
+2. dynamic ip configuration
+Here a dhcp server will be used in assigning the ip address to the computers on the network. Whenever a computer has been plugged-in to the network it goes through the DORA process
+
+1. discover
+2. offer
+3. request
+4. acknowledge
+in grabbing an ip address from dhcp server and register onto the networ dynamically.
+
+These ip address are generated based on leased strategy and will be renewed periodically by the dhcp server, and hence these are temporary ip address unlike the static ip address explained above.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+There are 2 versions of ip address are there
+1. ipv4 address = ipv4 address is 32-bit in length
+2. ipv6 address = ipv6 address is 128-bit in length
+
+by using ipv4 addressing version of 32-bit in length we can connect 4.1 billion computers on the network assigning the unique numbers for all the computers. Everything that is connected to the network must and should have an ip address assigned to inorder to uniquely identify it like
+1. computer
+2. laptop
+3. mobile
+4. printer
+5. smart device
+6. scanner
+7. fax 
+8. television
+9. smart switch
+10. smart bulb
+11. refrigerator
+12. smart watch
+13. microwave ownen, dishwasher, vaccum cleaner 
+14. smart fan
+15. router
+16. switch
+etc
+
+from the above we can understand, as everything that is connected to a network should be assigned with an ip address, there is a chance we might quickly run out of ip address that can generated using ipv4 addressing schema.
+	
+So to overcome this problem in running out of ip addresses, ipv6 addressing schema has been introduced. The ipv6 addressing schema is of 128 bit in length  and is represented using hexa decimal numbers of 0 - 9, A B C D E F allowing more number of computers to be connected onto the network. withan 128-bit length looks like we never run out of ip addresses.
+	
+Right now all the network devices supports both ipv4 and ipv6 addresing schema, and people are actively using ipv4 addressing model.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+ipv4 addressing model
+----------------------
+ipv4 address is 32-bit in length which is represented as 2^32 possibilities from which we can derive numbers from 0 - 4,294,967,295 (4.1 billion). So from this we can understand we can assign uniquely numbers from 0 - 4,294,967,295 to the computers that are connected to the network.
+	
+The ip addressing schema has been designed to be "hierarchial" in nature.
+	
+What is hierarchial?
+Hierarchial representation means, anything that is expressed or represented as an parent/child relationship form is called "hierarchial" representation or notation. It is an inverted tree representation
+
+                     grandfather
+										   (rick)
+										     |
+                   ---------------
+									 |              |
+	                son           daughter
+							  (martin)        (miki)
+                   |              |
+	             ----------      -----------
+	            |         |         |
+	          grandson  grandson granddaughter
+						(paul)    (jason)   (maria)
+	
+	
+In hierarchial representation, they have
+	1. only one root at the top
+	2. a parent can have any number of children
+	3. but a child can have only one parent
+	
+The hierarchial representations are the way through which we express or represent relationship between the things or data etc
+
+	
+Why ip address is designed to be hierarchial in nature?
+If ip address is designed to be sequential (flat) rather than hierarchial, then each computer that is connected to the network will be given a sequence or serial number, then we cannot identify the related group of computers within a network and we cannot manage them. 
+	
+For eg.. within an organization we might have several departments like
+1. hr
+2. finance
+3. administrator
+4. employees
+all these are working under the organization but within different groups and are part of an network. Now we want to enforce traffic restrictions on who can access what computers on the network as below
+	1. administrators can access all the computers on the network
+	2. hr and finance teams can access employees computers, but cannot access administrator or either of the others
+	3. employees cannot access any other computer on the network
+	
+In the above case if we have assigned ip addresses to the computers as sequence numbers we cannot identify which computer belongs to which group (hr, finance, administrator, employees) and cannot enforce traffic restrictions controlling the traffic between them. So to help us in grouping the computers within a network, the ip addressing has been designed to be hierarchial as below
+
+                                  192 (organization)(oracle)
+	                                 | 
+	                          ---------------------------------
+	                           |                              |
+	                          168 (hyderabad)               169 (mumbai)
+	                           |
+	                  --------------------------         --------------------------
+	                  |         |       |      |         |         |       |      |
+	                 10(hr)  11(fin)  12(adm) 13(emp)    10(hr)  11(fin)  12(adm) 13(emp)
+	                 |          |      |       |          |        |       |      |
+	                1 2 3    1 2 3    1 2 3  1 2 3       1 2 3    1 2 3    1 2 3  1 2 3
+	                                 
+	
+	
+192.168.10.1 = oracle -> hyderabad -> hr department -> 1 (computer)
+	
+Now using hierarchial addressing model we can easily identify computers belongs to which group of network and can enforce traffic restrictions on a group/network of computers from other network computers easily.
+	
+For eg.. 
+Router: 192.168.*.* <-> 192.169.*.* (deny) = No computers of hyderabad branch and banglore branch can access each other
+Router: 192.168.12.* > 192.168.*.* (allow) = all the 12.* admin network computers can access all the computers within 192.168.*.* hyderabad office
+
+From this we can easily understand, ip address is meant for grouping or breaking computer networks into smaller smaller sub networks.
+	
+The main difference between ip address and mac address is
+1. ip address = is hierarchial using which we can locate a computer belongs to which network within a larger network
+2. mac address = unlike ip, the mac address is flat and doesnt allows us to group computers within a network, rather it is unique and using that we can easily identify a computer within the network
+
+
+The 32-bit length ip address has been broken down into 4 equal octets. So the ip address has 4 8-bit portions. Within 8 bits we represent a max of 255 decimal number, so the typical range of ip address we can have of 32-bit in length of 4 parts of 8 octets is
+min: 0.0.0.0
+max: 255.255.255.255
+	
+	
+ip address is designed to be hierarchial so that we can represent sub-networks within an network and can control flow of traffic between the computers across the networks
+There are #2 types of address are there within ip
+1. network address
+2. host address
+
+32-bit ip has been divided into 4 octets each of 8 bit in size. The number of network bits and hosts bits assigned within an ip address is derived based on the ipv4 classes. 
+There are 5 classes of ip addresses are there A, B, C ,D and E. Based on the first octet value we can identify an ip address belongs to which class
+	
+FIRST OCTET     CLASS    NETWORK     HOST
+1 - 126          A         8 bits    24 bits
+128 - 191        B        16 bits    16 bits
+192 - 223        C        24 bits     8 bits
+224 - 239        D        multicasting and there is no bit classification
+240 - 254        E        reserved and experimental usage
+
+0 = gateway 
+127.*.*.* = loop back ip
+255.*.*.* = broadcast
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+subnet mask
+Subnet mask is used for computing the network address and host address from an given ip address. This will be used by the routers in routing the data packet to the right network of computers. The subnet mask is pre-fixed for each ip class and should be configured by the networ administrator for all the devices on the network based on ip class being used within the network
+	
+class A = 255.0.0.0
+class B = 255.255.0.0
+class C = 255.255.255.0
+	
+The gateway upon recieving the ip packet, it will compute the network address from the destination ip address within the network packet. For this it performs an bit wise AND operation on ip / subnet mask
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+CIDR [Class-less inter-domain routing]
+What is CIDR, why CIDR has been introduced?
+	
+Within an given ip address, we have #2 types of addresses are there
+1. network address
+2. host address
+
+To identify within the given ip address, which bits are for network address and host address, the IP CLASS (classful ipaddressing) is introduced. There are 5 classes of ip address are there
+
+Class A = 8  bits network, 24 bits host
+Class B = 16 bits network, 16 bits host
+Class C = 24 bits network,  8 bits host
+
+In this way the octets are evenly distributed based on the ip classes. Because of the octets being evenly distributed based on ip classes we run into problems or limitations. let us try to understand.
+	
+Problem:
+We want to setup a network of 1500 computers into one network. for this we cannot use Class C because it has only 8 bits given for host address, which that we can only represent 255 hosts within the network
+
+So we need to choose Class B ip address, where 16 bits are given to network and 16 bits are assigned to host address. With 16 bits of host address we can connect 65535 computers in a network. This will fullfil the number of hosts we want to inter-connect in a network
+
+But our requirement is to have 1500 hosts per each network and want to setup 75000 networks. So by choosing Class B ip address we cannot accomodate 75000 networks as we have only 16 bits for network address
+
+But if we look at closely for setting up 1500 hosts in one network we only need 11 bits. But by choosing Class B we allocated 16 bits for host address where 5 bits are being wasted
+So if we can break down the network bits and hosts bits based on our requirement rather than even octets lets say
+ 21 bits for network and 11 bits for host we can accomodate 75000 networks with each having 1500 hosts
+ 
+To help us in distributing the network and host bits unevenly the CIDR (class-less inter-domain routing )  has been introduced. Which means there are no ip classes and the routing will not be done based on ip-classes.
+	 
+
+since there are no ip classes, by looking at an ip address we cannot identify the network/host bits within an ip address, for this the CIDR notation has been introduced in representing an ip address
+
+CIDR notation of ip address: 192.168.11.25/23 
+here /23 indicates	the number of bits given to the network address within an given ip
+
+By looking at the CIDR notation we should be able to compute
+1. Subnet mask
+2. Network address
+3. Host Address
+4. Total Number of Hosts in the network
+5. Min ip and Max Ip
+6. Broadcast Ip 
+
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

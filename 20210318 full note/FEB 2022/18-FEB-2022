@@ -1,0 +1,148 @@
+S3
+---
+S3 stands for simple storage service, which is an object storage database used for storing any type of objects. Let the object be a pdf, xls, ppt, audio, video or images etc these can be stored and accessed from anywhere using S3 storage
+
+S3 allows us to create buckets into which we can store related group of objects together. we can have better access management of all the objects by placing the objects in a bucket.
+	
+By default when we create a bucket, the public access to the bucket and objects are disabled. we can enable access to the bucket and the objects in 2 ways
+	1. acls
+	2. policies
+the acls or policies we applied on the bucket/object will be effective only when we enable public access on the bucket
+
+#1. acl
+access control list is an old/deprecated mechanism of grant access to the aws buckets and objects and aws itself does not recommend us to use it. by default when we create an aws bucket the acls are disabled, so during the time of creating the bucket we need to enable acls for usage ontop of public access.
+	
+once we enable acls and create the bucket, we need to goto permissions tab of the bucket and its objects to enable public access on the bucket and individual objects, unlike policies when it comes acls there are limited permissions are available. 
+There are 2 levels of permissions we can configure 
+1. bucket
+2. object 
+
+There are 2 types of permissions available
+1. READ
+2. WRITE
+
+We can attach these permissions to 4 different parties
+1. owner
+2. authenticated users
+3. anonymous
+4. cloudwatch/trail for logs
+
+In block public access we need to enable the access to the bucket and their objects by enabling acls
+----------------------------------------------------------------------------------------------
+policies
+Instead of using acls we can attach policies both at bucket level and invidiual object level to grant access. it is recommended to use policies rather than acls for granting permissions.
+	
+policies has more better options are available in controlling the bucket/object access when compared with acls.
+	
+The policies we attach at bucket/object level directly are called resource level policies and these are applicable only to that bucket/object scope only.
+-----------------------------------------------------------------------------------------------
+Roles
+-----
+policies are the means through which we can grant access to another iam or aws account users in enabling the access to the aws resources/services
+                                            (or)
+policies are binded to the users permitting/granting them to access an resource/service of the aws
+
+Roles are meant for granting access to an aws resource/service to access another aws resource or service of the account.
+	
+How to create a Role?
+1. From IAM Service we choose Role and create it
+2. while creating the role we need to specify what resource and actions are allowed as part of the role.
+3. we dont define a principle here, since it is not user based access
+
+Now attach this role to a resource for eg.. ec2 instance granting him to access the other resource.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

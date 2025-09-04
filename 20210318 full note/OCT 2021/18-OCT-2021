@@ -1,0 +1,39 @@
+What is a jar packaging, why do we need to use it?
+Jar stands for java archive, jar is an standard java zip format. the java compiler and java interpreter can directly read the .class files packaged in the jar without the need of unzipping.
+  
+There are 2 usages of jar file
+1. jar as a library distribution
+2. jar as an application
+
+#1. jar as a library distribution
+The opensource contributors or third-party companies can produce reusable java code and distribute to the market by packaging them within the jar file.
+Now application developers can build quickly the software applications by downloading the jar distributions and adding them to the classpath of our application, so that we can reuse the clases/code provided by the others.
+  
+How to create a Jar file?
+jar -cvf jarFileName -C directory .
+---------------------------------------------------------------------------------------------------------
+#2 jar as an application
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

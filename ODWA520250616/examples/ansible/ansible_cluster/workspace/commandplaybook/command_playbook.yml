@@ -1,0 +1,15 @@
+---
+- name: command play
+  hosts: all
+  tasks:
+    - name: echo task
+      command: echo "hi"
+    - name: change to directory
+      command: touch readme.txt
+      args:
+        chdir: /tmp  
+    - name: execute command if the path doesnt exist
+      command: touch ~/bucketlist.txt
+      args:
+        creates: ~/bucketlist.txt    
+...

@@ -1,0 +1,37 @@
+What is devops?
+Develop and Delivery your software applications quickly. 
+
+How to develop and delivery quickly?
+To develop and delivery software applications quickly change the culture of working and adopt new tools and technologies so that you develop and delivery software applications quickly.
+
+How does software applications are developed and delivered, who are the people involved in devloping and delivering, if we understand the existing system and process, we can easily understand devops and what are the changing it is telling.
+
+What is the Software application development and delivery lifecycle?
+Following are the development and delivery stages of an application.
+1. Based on the requirements of the business owner developer will develop the software application 
+2. Quality assurance Engineers verify the software system built and certify it for production
+3. Operation Engineers takes the responsibility of making the software application accessible publicly
+
+Who are the people involved?
+1. Developer
+2. Quality Assurance Engineer
+3. Ops Engineer
+
+What are the duties and responsibilities of these people?
+#1. Developer responsibilities
+A software application begins with its First-Stage development.
+A team of developers would contribute for the development phase of our application. The developers develop the software application under development environment.
+
+What is a development environment?
+A machine alloted to the developer, on which he install required set of softwares and tools that are necessary for developing the application is called "Development Environment".
+
+
+
+What is a process model?
+Process model defines standard steps and procedures that can adopted for developing a software application, so that the application can build and delivered successfully. There are experts in the industry who has lot of experience in developing and delivering the software applications, based on their experience they comeup with their own process models defining steps and procedures so that people can follow.
+There are several process models are there
+  1. waterfall 
+  2. iterative/incremental model 
+  3. prototype model
+  4. spiral model
+  5. agile scrum methodology

@@ -1,0 +1,323 @@
+tech.sriman@gmail.com
+
+DevOps with Aws
+----------------
+
+Pre-requisite:-
+You should be a basic user of the computer, no need of any programming language or tools of a computer. Its an Entry level course
+
+Who can learn devops?
+- Freshers = Yes openings for freshers are available
+- System Administrator | Database Administrator | Network Engineer | Support Engineer
+- Non IT gradute | IT graduate
+- Engineering Non IT  
+- Testing Engineer
+- Developer
+- Front developer
+
+I want to change the current working domain, can i learn devops always "Yes"
+-------------------------------------------------------------------------------------------------------------
+Course Contents
+1. Introduction to devops and lifecycle - 5 days
+
+-------------------------------------------------------------------------------- outside the devops
+2. Linux operating system - [2 months - 2 Months 10 days]
+  - File Management
+  - User Management
+  - Process Management
+  - Software Installation and Configurations
+  - Networking
+3. Linux Shellscripting (very hands-on knowledge required [automation])
+---------------------------------------------------------------------------------
+4. Networking [10 - 15 days]
+  - protocols (osi model | http | ftp)
+  - topologies
+  - network devices
+  - ip addressing
+  - cidr notation and subnet mask
+--------------------------------------------------------------------------------------------  
+5. ssh protocol    [3 - 4 days]
+   linux service
+-------------------------------------------------------------------------------------------
+6. java language basics (.net|python|java) (no programming) [5 - 7 days]
+    - java platform introduction
+    - how applications are compiled, packaged and executed on java platform
+    - application servers
+    - deployment
+-------------------------------------------------------------------------------------------------
+7. scrum agile methodology [2/3 days]
+8. maven java build tool   [3  - 5 days]
+9. git source code management repository [3 - 5 days]
+10. jfrog artifactory (publishing and distributing artifacts) [2-3 days]
+----------------------------------------------------------------------------------------------------
+11. Virtualization Technology 
+  - What is virtualization, how can we use it.
+  - Oracle Virtualbox networking
+  ------------------------------------------ 4 days
+  - Vagrant             - 10 - 15 days
+    - networking
+    - sync_folders
+    - providers
+    - provisioners
+    - box files
+    - configuring ssh
+    -----------------------------------------  4 days
+  - we see one end-to-end ci/cd using the above concepts (devops)
+------------------------------------------------------------------------------------------------------------ 12. Ansible     - [15 - 20 days]
+What are software configuration management tools? Why do we need to use them
+compare Chef | Puppet | Ansible and understand difference between them
+- What is Ansible, why do we use it
+- Ansible architecture
+- Yaml basic
+- Playbooks
+- Modules
+  - ping
+  - debug
+  - file
+  - shell
+  - command
+  - package
+  - apt
+  - lineinedit
+  - service
+- working with variables (6 ways)  
+- control statements in ansible
+- jinja2 templates
+- ansible facts
+- inventory
+------------------------------------------------------------------------------------------------------------
+13. Introduction to Cloud Computing [2 - 3 days]
+  - iaas, paas, saas
+
+Aws Cloud (developer | engineer) - [5 - 7 days]
+* = only covered
+
+There are total 7 domains
+*1. compute 
+*2. storage
+*3. database
+*4. networking
+5. management tools
+*6. security
+7. messaging
+
+In devops we are going to learn the below domains only
+1. compute
+  *1. ec2 
+  -2. elastic beanstalk
+  -3. lamda
+  *4. elastic loadbalancer
+  *5. asg
+2. storage
+  *1. s3
+  -2. cloud front
+  *3. elastic block storage  
+  -4. glacier
+  -5. snowball
+  -6. storage gateway  
+3. database
+  *1. rds
+  -2. aurora
+  -3. dynamo db
+  -4. elastic cache
+  -5. redshift (dataware housing)
+4. networking
+  - vpc, subnet (public|private) , security groups, nacl, internet gateways, regions, availability domains
+5. security
+  - i am
+    - users, groups, permissions
+    - roles
+-------------------------------------------------------------------------------------------------------------
+14. Terraform (popular) (AWS) [ 7 - 10 days ]
+Cloud Infrastructure automation tool (iac)
+- HCL Language
+- different terraform resources
+- depenencies
+- input|output variables
+- hcl machine state information
+- modules
+-----------------------------------------------------------------------------------------------------------
+15. Docker [ 15 - 20 days]
+What Containerization?
+Docker architecture
+Docker containers commands
+docker image commands
+docker hub | registry
+docker networking
+docker storage model
+----------------------------------------------------------------------------------------------------------
+16. Kubernetes (K8S) [ 7 - 10 days]
+Architecture
+Controllers
+Manifests
+Pod
+Networking
+Rolling updates
+----------------------------------------------------------------------------------------------------------
+17. Jenkins [4 - 7 days]
+  - free style
+  - plugin (git|maven|docker)
+  - pipelines (declarative | groovy)
+  - bake docker image and publish to docker repository
+  
+18. Nagios (1 day)
+19. Cloud Watch (1 day)
+----------------------------------------------------------------------------------------------------------
+Duration: 5 Months | 6 Months (no rush)
+Notes: on weekly basis the full notes will be delivered to you.
+Live classroom examples
+
+Recordings and Videos (lazy)
+- No recordings, No youtube, 
+- No recordings from students side is allowed. If found will cancel your admission without fee refund.
+
+www.leawy.com = they post questions and get replies from others students and from me.
+Fees: 12k
+
+Timings: 9:30 am - 10:30 am (1 hours)
+Monday - Saturday (sometimes Sunday)
+The class timings will be changed after 1 month / 45 days = 8:15 am - 9:30 am (1:15 hours)
+
+Machine Configurations
+i3 - (recent generations)
+i5
+i7
+amd
+----------------------------
+8 gb ram (sufficient) (16 gb good)
+-----------------------------
+windows 10/7 recommended
+-----------------------------
+40 gb - disk space
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

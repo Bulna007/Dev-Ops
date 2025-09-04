@@ -1,0 +1,65 @@
+There are 7 network devices are there
+1. Repeater
+2. Hub
+3. Switch
+4. Bridge
+5. Router
+6. Firewall
+7. Modem
+
+6. Firewall
+For securing our network traffic we use firewall. It can be used for restricting and monitoring network traffic at different levels like
+- protocol
+- port
+- application level
+
+7. Modem
+Modulation and De-Modulation of signals from analog to digital will be done through modem, usually used while connecting over dail-up network
+-----------------------------------------------------------------------------------------------------
+ip addressing
+---------------
+ip standards for internet protocol address, for each computer connected over the network we need ip address to identify and communicate over the network.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

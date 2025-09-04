@@ -1,0 +1,84 @@
+Using regular expressions within the bash commands
+There are 3 characters we can use as expressions aspart of bash commands
+1. * = for any character of any number match
+2. ? = single character match
+3. [] = given a range of characters within which a single character match
+
+$HOME
+|-products
+	|-lg-32-led-television.txt
+	|-lg-40-led-television.txt
+	|-lg-55-4k-television.txt
+	|-samsung-32-led-television.txt
+	|-samsung-40-qled-television.txt
+	|-samsung-55-qled-television.txt
+	|-lg-75-oled-television.txt
+	|-sony-bravia-32-lcd-television.txt
+	|-boss-speakers.txt
+	|-boss-7.1-home-theater.txt
+	|-hytachi-7.1-home-theater.txt
+	|-sony-5.1-home-theater.txt
+	|-apple-15-pro-mobile.txt
+	|-samsung-S23-ultra-mobile.txt
+	|-google-pixel9-mobile.txt
+	|-playstation5-gaming-console.txt
+	|-xbox-x10-gaming-console.txt
+	|-nintendo-switch-gaming-console.txt
+	|-hp-pavilion-16inch-laptop.txt
+	|-dell-inspiron15-laptop.txt
+	|-apple-macbook15-laptop.txt
+	|-dell-lattitude700-laptop.txt
+	|-acer15-laptop.txt
+	|-ibm-lenovo16-laptop.txt
+	
+	
+1. How to see all the list of files and folders within the products/ directory?
+ls -l products/
+		
+2. How to see all the files and folders inside the product/ directory manufactured by apple?
+ls apple*		
+		
+3. How to see all the televisions of led type?
+ls -l *led*-television.txt
+
+4. Show all the products manufactured by any vendor whose brand name has "2" characters only?		
+ls -l ??-*		
+
+5. show me all the laptops that are manufactured by vendors whose name starts with "d" or "h"?
+ls -l [hd]*-laptops.txt
+
+6. remove all the laptops within the products/ directory?
+rm *-laptop.txt
+
+7. copy all sony products into sony/ sub-directory within the products?
+~/products:/> mkdir sony
+~/products:/> cp sony* sony/
+	
+8. move all the televisions into televisions/ sub-directory within the products?
+~/products:/> mkdir televisions
+~/products:/> mv *-television.txt television/
+--------------------------------------------------------------------------------------------------------------------------
+
+
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+

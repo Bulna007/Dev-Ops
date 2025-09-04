@@ -1,0 +1,155 @@
+How does linux operating system distribute software packages so that endusers can install them as part of their machine?
+Linux being an open source operating system platform, anyone around the world can contribute in building opensource software applications that runs on linux operating system.
+How does the endusers knows about the software packages which are being developed by the people around the world?
+To distribute and make those open source software packages, linux has comeup withan idea of software repositories. The endusers can browse through the software repositories in searching for the software packages and can download and install them on their machines. Similarly the open source software contributors can produce their software packages into software repositories.
+  
+Every linux distro has setup their own repositories in distributing their software packages run on their operating system. For eg..
+  ubuntu has their own ubuntu repository
+  redhat enterprise linux has their own software repository called rhel repository
+  
+Now people can browse the compatible software packages by going through the respective distro repositories.
+  
+
+Some Enterprises may setup their own software repositories to distribute their software packages produces directly to their customers rather than publishing into distro repositories which are called "enterprise repositories"   or "private repositories".
+  
+So broadly we can classify a software package repositories into 2 types
+  1. public/distro repositories
+  2. individual organizations may have their own repositories (enterprise repos) to distribute their software packages
+  
+Where there are lot of software packages are published and distributed through software repositories, how do we identify them and use it?
+To identify the software packages are open source, restricted or licensed, the repositories are further classified into 4 types
+  Main       = canonical distribution / open source
+  Universe   = community maintained / free distributed / open source
+  Restricted = device driver software / proprietary to the vendor
+  Multiverse = packages with copy rights and legal restrictions
+  
+Summary:-
+Each distro has provided their own software package formats, tools and repositories
+
+
+distro     package format      package manager     repository
+--------------------------------------------------------------
+ubuntu     .deb                apt/dpkg            ubuntu.repo
+redhat     .rpm                yum/rpm             redhat repo
+arc                            pacman
+fedora     .dnf                dnf
+---------------------------------------------------------------------------------------------------------
+How to install the software packages in ubuntu?
+ubuntu has provided an tool called "apt" for browsing, downloading and installing software packages from ubuntu software repositories.
+  
+apt stands for advanced packaging tool which will connect to software repositories and browse in downloading and installing. apt can browse through ubuntu repositories and enterprise/corporate repositories in browsing, downloading and installing the software packages.
+  
+How does the apt tool knows where are the enterprise software repositories to browse?
+By default apt tool is configured to browse/install the software packages from ubuntu repository, in addition if we want apt tool to browse/install from enterprise/corporate repositories we need to add repository URL to apt tool.
+  
+where does repository urls are stored in ubuntu?
+/etc/apt/source.list
+/etc/apt/sources.list.d/google.list (google repository url)
+
+we can add repository url into source.list file or we can create a separate .list file with url and sources.list.d directory as well. apt tool will look into all the repositories provided to identify and install the software.
+
+the repository urls are added in the below format
+deb  repo url  versionname categories
+deb  http:/repo.ubuntu.org/ focal main restricted
+
+How to add software package repositories of enteripse into this file?
+There are 2 ways to do this
+  1. we can edit the file manually and add the repository url
+  2. ubuntu has provided an utility called apt-add-repository to add an external repository source.list file.
+
+  
+Now after adding the repository into the /etc/ap/sources.list we can browse and install software packages from ubuntu also and external repositories as well, apt automatically searching in the entire sources.list  
+after adding the repository to the apt sources.list file we need to cache the repository index so that searching and installing the software becomes quick.
+  
+sudo apt update = sync the repository index into ubuntu local cache. 
+sudo apt upgrade = by default upgrades all the software packages install on your computer to their latest version.
+sudo apt install packagename
+sudo apt search packagename
+sudo apt remove packagename
+sudo apt list --upgradable
+sudo apt purge packagename
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  

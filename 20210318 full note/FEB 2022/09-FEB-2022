@@ -1,0 +1,42 @@
+provision an ec2 instance on private subnet
+-> public subnet ec2 -> private subnet ec2 
+    (temporary) ========> setup
+		jumpbox/
+		bastion host
+		
+hdapvpc 
+route table (main) (default) (all the subnets within the vpc)
+172.10.0.0/16     vpc
+
+subnets: none
+all the subnets of the vpc are by default associated to Main Route Table
+
+internet gateway route table (create new) [specific subnet to external network]
+hdapigroutetable
+associate: hdappubsn1
+route:
+0.0.0.0/0  ig
+
+
+scp -i identifyFile sourceFile username@ip:/path
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

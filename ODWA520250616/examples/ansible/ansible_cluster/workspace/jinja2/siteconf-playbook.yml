@@ -1,0 +1,10 @@
+- name: jinja2 play
+  hosts: all
+  vars:
+    DOMAIN_NM: quickeats.com
+    SITE_DIR: quickeats
+  tasks:
+    - name: generate site configuration
+      template:
+        src: site.conf.j2
+        dest: site.conf

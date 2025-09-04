@@ -1,0 +1,76 @@
+There are 3 way we can pass the configmap as an input to the pod
+1. environment variables/command-line arguments
+2. we can configmap with configuration files as volume mounts in podspec
+3. we can access the configmap using api in the applications
+
+2. How to pass the configmap with configuration files as volumes in podspec?
+
+roadster-configmap.yml
+-----------------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+	name: roadsterplacesconfigmap
+data:
+	places.properties |
+		Hyderabad=Madhapur
+		Chennai=Mahabalipuram
+		Banglore=MG Road
+		Delhi=Caunat Place
+		Pune=Wakad
+
+roadster-pod.yml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: roadsterpod
+	labels:
+		app: roadster
+spec:
+	containers:
+		- name: roadster
+			image: techsriman/roadster:2.0
+			ports:
+				- name: http
+					containerPort: 8082
+					protocol: TCP
+			volumeMounts:
+				- name: roadstervolume
+					mountPath: /config
+					readonly: true
+	volumes:
+		- name: roadstervolume
+			configMap:
+				name: roadsterplacesconfigmap
+				items:
+					- key: places.properties
+						path: "places.properties"
+
+we defined a volume with name roadstervolume that contains configMap properties. now we are mounting this volume into the container under the path /config
+
+ConfigSecrets
+PersistenceVolume/Claims
+DaemonSet
+DeploymentSet
+ReplicaSet
+Service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

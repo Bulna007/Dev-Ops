@@ -1,0 +1,175 @@
+What is Vagrant boxfiles?
+Vagrant boxfiles are templates which are compressed with virtual disk image containing operating system,  prepackaged softwares and configurations which can be quickly imported and can create vagrant machine instead of setting up from iso.
+  
+There are lot of vagrant boxfiles published as part of vagrant cloud by various different vbox providers like
+  1. Hashicorp = published official vagrant boxes support multiple hypervisor providers
+  2. Third-party organizations
+  3. OpenSource Contributors = Anyone around the world can bake their own box files and publish to the vagrant cloud
+  
+While creating an Vagrant machine we can use any of the boxfiles available as part of Vagrant cloud in importing and creating the Virtual Machine.
+  
+Instead of importing an vagrant boxfile provided by others, sometimes we might have to create our own vagrant boxfile in setting up the Vagrant Machine
+---------------------------------------------------------------------------------------------------------
+Why do we need to create our own Vagrant boxfile?
+#1
+When we are working on project development, if we create Vagrant machine by using the pre-defined boxfiles provided by the other, it only contains operating system, software utilities and configurations. but to run the project we need additional software packages to be installed and configured, this job has to be done by the developer manually in creating the env. It takes lot of time in setting up the env. The same virtual machine env should be distributed and setup across the developers machine where distributing disk images are not easy due to their huge size.
+  
+#2 In an corporate/organization due to legal and security restrictions we are not allowed to use the third-party published software libraries/vbox images due to which we might have to setup our own box files from scratch.
+---------------------------------------------------------------------------------------------------------
+How to create our own Vagrant boxfile?
+There are 2 ways in creating an Vagrant boxfile.
+1. create an vagrantbox from baseboxes of vagrant
+Provision an vagrant machine from Vagrant basebox files. This will bootup the Vagrant Machine with operating system, basic set of sofware utilities and configurations required to run a machine using Vagarnt. Now ontop of it install the Software packages and configure them which are required for your project. Then export the virtual machine image we created as Vagrant boxfile
+
+2. creating an vagrant boxfile from the scratch.
+In this approach we will not use existing vagrant boxfiles rather we create virtual machine manually from an iso. so we need install all the necessary software utilities and configurations required to make the virtual machine work with vagrant. Then ontop of it install the software packages and configurations required to run your project. Then export the virtual machine disk image as vagrant boxfile
+
+In the approach #1 above we are have lot of challenges involved in creating the boxfile even though it is the quickest and easiest approach.
+  1. In an organization it may not be feasible to create vagrant boxfiles by reusing the exiting baseboxes due to legal and licensing terms
+  2. We cannot trust the exiting vagrant boxfiles in recreating new boxfiles as there is no authority in certifying the boxfiles produced
+  3. There could be organization policy enforcing you to use proprietary software of that organization only in such case we cannot reuse the baseboxes of vagrant
+  
+Due to the above reasons in an organization we have to create vagrant boxfiles from the scratch.
+--------------------------------------------------------------------------------------------------------- 
+How to setup an vagrant boxfiles from the scratch?
+1. Create an virtual machine in virtualbox
+goto virtual machine settings and make the below changes
+  1.1 disable audio and usb access [for security reason]
+  1.2 increase the processor allocation from 1 to 3/4
+  1.3 Configure NAT Network with port forwarding from host: 2222 to guest: 22
+2. start the virtual machine
+  2.2 Now virtualbox prompts for iso image for installing the operating system. provider ubuntu-20.04.02.iso file as an input and start installing the operating system
+  2.3 during the installation it ask us for configuring root username/password. provide the username and password as vagrant/vagrant, because vagrant will ssh into the virtualmachine using vagrant user  
+  
+3. Install guest additions on the virtual machine we created, because without guest addition features like shared folders, networking modes will not work. then reboot virtual machine
+
+4. update ubuntu repository cache
+sudo apt update -y
+
+5. install open ssh server
+sudo apt install -y openssh-server
+
+6. Configure SSH access to the Vagrant user
+create a file ~/.ssh/authorized_keys under vagrant user home directory
+now take vagrant insecured public key and copy into authorized_keys file above
+
+7. enable ssh access without password authentication by modifying sshd_config file
+goto /etc/ssh/sshd_config
+PasswordAuthentication no
+restart ssh server = systemctl restart ssh
+
+8. Configure Passwordless Sudoers access
+There are 2 ways to do this
+  8.1 add the user into /etc/sudoers file
+  vagrant ALL=(ALL) NOPASSWD:ALL
+  8.2 there is an directory called /etc/sudoers.d
+  under that directory we can create a sudoers file of our own with entries of the users
+  /etc/sudoers.d/vagrant
+  vagrant ALL=(ALL) NOPASSWD:ALL
+  
+Now shutdown your virtualmachine and package as vboxfile using vagrant package command.
+  
+vagrant package --base virtualmachinename
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

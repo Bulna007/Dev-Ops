@@ -1,0 +1,613 @@
+Q.) What is vagrant, what is the purpose of it?
+Ans: Vagrant is an virtualization workflow automation tool that helps in quickly provisioning the virtual machines on an underlying hypervisor platform.
+
+To setup an virtual machine we need to perform lot of activities like
+1. We need to install the hypervisor software on the workstations of each member(dev/qa) in the team.
+2. On one of the developer/devops engineer machine we need to setup the development environment by creating the virtual machine manually. In order to create the virtual machine manually we need to perform lot of steps as below:
+	2.1. Download the iso image of the relevant os we want to use for setting up the dev/qa env.
+	2.2. Create the virtual machine by using the respective hypervisor software with appropriate configuration like
+		a. cpu
+		b. ram
+		c. storage
+		d. networking mode (network adapter configuration)
+		e. shared folders
+3. Install the os on the vm we have created above
+4. Download the required software packages or libraries that are required to be installed aspart of the target env inorder to develop/run the software application.
+5. Install and configure these packages/libraries on the virtual machine environment.
+6. Export the virtual machine as an vdi disk image file and distriute it across all the members of the team
+
+Then the machine can be used by the developer or qa for developing/testing the application. The whole process described above should be repeated or followed by everyone in the team in setting up the virtual machine environment inorder to work on the project/application that has lot of drawbacks:
+1. Since everyone in the team has to go through the whole process of creating the virtual machine, it results in huge amount of wastage in time in creating the env.
+2. Debugging and troubleshooting the problems while setting up the env would leads to more wastage of time.
+
+To overcome the above problems in manually creating the virtual machines across all the members of team, we can export the virtual machine we have setup on one machine into an virtual machine image file and can transfer it to the other computers and import in quickly creating the virtual machine, thus saves lot of time and eliminates all the above problems.
+
+But using this technic of importing and creating an virtual machine also has lot of problems:
+1. Creating the VM manually is a laborious process and involves several steps that needs to be performed in a specific sequential order inorder to setup the virtual machine env, thus it takes huge amount of time.
+2. OS and software upgrades, patches released enforces us to recreate the virtual machine env from the scratch which involves huge amount of time in creating the vdi image files and redistrubuting.
+3. The process of setting up the vm is not one-time job, it is an repeatitive task/job that needs to be performed whenever there is a change in infra(OS) or software packages or tools and their versions, while setting up the vm there is always a chance of performing an human error that leads to incorrect environment and forces us to scrap and recreate the vm from scratch that results in huge amount of time waste.
+4. Not everyone in the team is aware of virtualization/hypervisor technology, they may not know the process of importing the vdi disk image files in creating the virtual machine locally on their workstation, thus making it difficult to adopt by the team.
+
+Even though using virtualization has many benefits, inorder to create the virtual machine and setup the required environment itself seems to be very challenging that makes using virtualization very complex. So to overcome these problems in creating the virtual machines we need sophisticated tools that helps us in creating the virtual machines quickly that is where vagrant comes into picture. 
+----------------------------------------------------------------------------------
+	
+Vagrant Architecture
+---------------------
+There are 5 major components are there in vagrant
+1. Vagrant engine
+2. Vagrant CLI
+3. Vagrant Cloud
+4. Vagrant Manifest File
+4. Vagrant Box File
+
+1. Vagrant engine
+Vagrant engine takes the vagrant file as an input, understands/interprets the machine definition information that is configured aspart of the file and goes to the underlying hypervisor provider asking him to provision the virtual machine.
+	
+The vagrant engine can support multiple hypervisor providers like oracle virtualbox, vmware fusion, hyperv etc. Irrespective of the underlying hypervisor provider we are using the process of creating the virtual machines is same, so we dont need to endup in learning each hypervisor provider and their specific way of creating/configuring and using the virtual machines
+
+2. Vagrant CLI
+Vagrant CLI is an command-line interface through which we can interact with the vagrant engine asking him to provision, manage the virtual machines on an underlying hypervisor provider. It has provided predefined cli commands through which we can quickly interact in managing the machines
+
+3. Vagrant Cloud
+Vagrant cloud is the place where all the vagrant boxfiles are placed and distributed across. The vagrant engine quickly downloads the vagrant boxfiles in provisioning the virtual machines from the vagrant cloud
+
+4. Vagrant File
+Vagrant file is the machine configuration file in which the ops engineers define the information about the virtual machine to be provisioned by the vagrant engine
+
+5. Vagrant Boxfile
+The vagrant boxfiles are pre-packaged and compressed virtual disk image template files that contains operating systems, software tools/packages and configurations that can be quickly imported in creating the virtual machines.
+-----------------------------------------------------------------------------------------------------------------------------------
+
+How to install the vagrant?
+Before installing the vagrant, we need to have an Hypervisor provider installed on the host machine. The default hypervisor provider that vagrant uses in creating the virtual machine is "oracle virtualbox", which is the most popular opensource hypervisor provider in the market.
+	
+1. Install oracle virtualbox
+2. Install oracle virtualbox extension pack (extension pack is mandatory for features like networking, sync folders etc)
+3. download the vagrant binary from https://developer.hashicorp.com/vagrant as an "vagrant.msi" or "vagrant.dmg" etc and double click to install
+
+upon installing the vagrant goto the terminal and type
+vagrant -v
+
+How to create an virtual machine using vagrant?
+To create an virtual machine using vagrant we need to write vagrant configuration file in a directory. The directory in which we create vagrant configuration file is called vagrant project directory. The purpose of creating an virtual machine is for running/deploying or developing an project. So it would be best practise to create vagrant configuration file inside the project directory for which we are creating the machine for.
+	
+For eg.. if we are working on java project, the project directory structure looks as below:
+project (directory)
+|-src
+  |-main
+		|-java
+		|-resources
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+|-pom.xml
+|-[vagrant configuration file]
+
+How to create an vagrant configuration file?
+The vagrant configuration file must and should be written with filename as "Vagrantfile" only and must and should be kept under a directory only. In this file we need to define the machine configuration information using which we want vagrant to create an virtual machine.
+	
+The vagrant configuration file should be written in ruby language. Ruby is an programming language, to work with vagrant we dont need to learn ruby programming language, because we are not going to write programming instructions in creating an virtual machine rather we use ruby only for defining the machine configuration with which we want vagrant to create the virtual machine.
+	
+Ruby language supports DSL Language (Domain-specific language) which is english like language in easily writing the configuration information.
+
+How to create a vagrant file and provision the virtual machine?
+1. create a project directory
+$HOME/labs/vagrant:/>
+|-firstvagrant
+	|-Vagrantfile
+	
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+	
+end
+
+The vagrant configuration file begins with a config object block declaration. Here we are creating an vagrant configuration object in which we populate the machine configuration information. The vagrant reads the configuration that is binded inside the object in creating the virtual machine.
+	
+Vagrant.configure(2) = The vagrant configuration version we are using in creating the machine configuration is version: 2
+
+Into the config object the only required configuration we need to populate or specify is vm.box = populated with vboxfile that should be used in creating/provisioning the virtual machine
+
+Vagrant.configure(2) do | config |
+	config.vm.box = "bento/ubuntu-20.04"
+end
+
+after creating the Vagrantfile to bring up the virtual machine we need to navigate to the vagrant project directory in the terminal (command-line) and run vagrant up
+
+Instead of we writing the vagrant file from the scratch, we can quickly generate the machine configuration file using vagrant init command. It will generate a Vagrantfile with default configurations (template file) which can be quickly edited based on our machine requirements in creating/provisioning the machine
+
+1. create a project directory
+2. goto the project
+3. run vagrant init command, generates an template Vagrantfile with default configuration
+4. open the generated file, edit it based on the requirement and run vagrant up to creating/start the machine
+-----------------------------------------------------------------------------------------
+How does vagrant brings up an virtual machine?
+What are the activities that are taken place when we run vagrant up for the first-time?
+
+When we run vagrant up from the vagrant project directory first time, the vagrant performs several activities in provisioning and bringing up the virtual machine as described below
+For eg..
+~/vagrant
+|-basicvagrant
+	|-Vagrantfile
+	
+~/vagrant/basicvagrant$/> vagrant up
+
+1. The vagrant engine goes to the Vagrantfile and picks the specified config.vm.box="" property boxfile name and goes to the vagrant cloud and downloads the vagrant boxfile and places on the host machine
+If we are creating 5 vagrant machines with boxfile as bento/ubuntu-24.04, the vagrant downloads the boxfile from vagrant cloud and places it under $VAGRANT_HOME/.vagrant.d/boxes directory and imports the same boxfile in creating the virtual disk image files for each virtual machine
+
+So from the above we can understand, vagrant downloads the vagrant boxfile only once and stores it on the local harddisk of the host machine, imports or copies the contents of the boxfile in creating the virtual harddisk files inorder to create the virtual machines on the host
+
+2. import the boxfile in creating the virtual machine
+Vagrant creates an separate vdi file per each virtual machine by importing the vagrant boxfile which it has downloaded above. It places the vdi file of each virtual machine under ~/Virtualbox Vms/
+	
+3. booting up machine
+When we run the vagrant up inside the project directory for the first-time. The vagrant creates an .vagrant directory inside the project directory. Inside the .vagrant directory it stores the metadata information about the virtual machine that is being created. For each virtual machine while creating vagrant assigns an unique id that is being used for identifying the vagrant machine. In addition lot of information pertaining to the machine is stored inside this .vagrant directory like
+	1. virtual harddisk (vdi) file location
+	2. network configuration
+	3. ssh keys for authentication and accessing the virtual machine
+	4. sync folder information
+	5. machine name
+	etc
+
+By default vagrant provisions the virtual machine with default networking mode as NAT with port forwarded as 22 port. In addition it generates public/private key and seeds the public key into the virtual machine for the linux user vagrant and stores the private key under the project directory inside .vagrant directory.
+	
+when we run vagrant ssh, it internally runs ssh client utility by picking up the private key from .vagrant directory and ssh onto the virtual machine on 22 port through port forwarding as below.
+
+ssh -i .vagrant/ssh/private_key vagrant@localhost
+
+What are the Vagrant CLI commands available in provisioning and managing the virtual machine using vagrant?
+1. vagrant init = creates an Vagrantfile with default machine configuration (template file)
+2. vagrant up = brings up the virtual machine
+3. vagrant ssh = ssh into the virtual machine
+4. vagrant halt = shutdowns the virtual machine
+5. vagrant status = tells the status of the virtual machine
+6. vagrant suspend = saves the current state of the virtual machine and poweroff, when we reboot/resume the virtual machine will be started back by restoring the programs that are running during poweroff
+7. vagrant resume = boots back the virtual machine to the saved state
+8. vagrant reload = restart
+9. vagrant destroy = will stops and deletes the virtual machine including the vdi file (harddisk file)
+all the above commands must and should be executed within the vagrant project directory only to manage that vagrant machine.
+	
+global command:
+vagrant global-status = we can run this command anywhere from terminal, that shows statuses of all the vagrant machines on that host computer
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Features of Vagrant
+There are 6 features of vagrant are there
+1. Networking
+2. Sync Folders
+3. Vagrant boxfiles
+4. Provider customizations
+5. Provisioners
+6. Multi-machine vagrant
+
+1. sync folder
+We can mount one of the directory of the host machine onto an specific location of the guest machine by using sync folders. For eg.. on the host machine we might have an directory under d:\share which we wanted to mount onto the guest machine under the path /external this can be done through the help of sync folders
+
+Most of the popular hypervisor providers supports sync folders or shared folders feature, but while setting up the virtual machine using the hypervisor provider we need to manually configure it and the process of configuring these shared folders differs from one hypervisor provider to another.
+	
+instead vagrant has provided an standardized way of declaring the synced folders aspart of the Vagrantfile, so that it works with underlying hypervisor providers in mounting the shared directory.
+	
+note: by default vagrant configures the vagrant project directory as an sync/shared folder and mounts it on to the virtual machine under /vagrant directory, so that we can access all the files/folders under project directory inside the guest machine
+
+For eg.. we are provisioning the virtual machine for running an java project as below
+d:\work:/>
+	|-healthcare
+		|-src
+			|-main
+				|-java
+				|-resources
+		|-pom.xml
+		|-Vagrantfile
+		
+Then this healthcare/ project directory will be mounted onto the vm/guest machine as a shared folder under the path /vagrant. If we want to have additional folders to be mounted as shared folders inside the guest machine then we can define synced_folder configuration as below
+
+Vagrantfile
+-----------
+Vagrant.configure(2) do | config |
+	config.vm.box = "bento/ubuntu-24.04"
+	config.vm.synced_folder "d:\\vagrant\\share", "/external"
+end
+
+vagrant up
+-------------------------------------------------------------------------------------------------------------------------------------
+Vagrant Networking
+------------------
+Every Virtual Machine requires networking capabilities, so that the applications that are running within virtual machine can be accessible from the host or external network, similarly the application within the virtual machine can access the external network as well.
+	
+The Hypervisor providers should support virtual networking through virtual (software) network adapters that must be attached to the virtual machine during the time of provisioning inorder to connect them to the network.	In addition every hypervisor provider should provide networking modes through which we can control how we wanted the virtual machine to be connected over the network
+
+The oracle virtualbox hypervisor supports 7 networking modes:
+1. Not Attached
+2. NAT
+3. NAT Network
+4. Host-only Network adapter
+5. Bridge
+6. Internal Network
+7. Generic Driver
+
+The devops engineer should choose an appropriate networking mode while configuring and provisioning the virtual machine with the underlying hypervisor provider based on the way he/she wanted to connect to the virtual machine to the network.
+	
+When we are working with vagrant, we need to define the networking mode we want to use in provisioning the virtual machine aspart of Vagrantfile, so that vagrant takes care of interacting with the underlying hypervisor provider in provisioning the virtual machine with appropriate networking mode
+
+different hypervisor providers offers different networking modes, if vagrant enforces the devops engineers in writing hypervisor provider specific networking modes aspart of the Vagrantfile we run into #2 problems
+1. The Vagrant machine configuration file will be tightly coupled with underlying hypervisor provider, switching from one provider to another requires an rewrite of the configuration
+2. By enforcing us to write hypervisor specific networking mode, vagrant expects us to have knowledge on the underlying hypervisor inorder to provision the virtual machine, that makes it complex to work with various different hypervisor providers
+
+So to overcome the above challenges, vagrant has provided its own networking modes that are supported/generic enough across all the hypervisor providers. The vagrant provider networking modes are mapped onto the underlying hypervisor provider network modes internally by the vagrant. Now we need to write vagrant networking modes in Vagrantfile, so that it takes care of mapping this with the underlying hypervisor networking mode while provisioning the virtual machine, so that the configuration file is portable across the hypervisor providers.
+	
+Vagrant supports 3 types of networking configurations/modes:
+1. forwarded_port  = NAT with port forwarding (virtualbox)
+2. private network = Internal network (virtualbox)
+3. public network  = bridge network (virtualbox)
+	
+#1. forwarded_port
+It is a nat network with port forwarding configured in virtualbox
+purpose:
+during the development we want to setup server environment within the virtual machine, we can deploy and run the software application and make it accessible from the HOST machine using NAT with port forwarding. So that we can access the application from the host in a controlled/secured way for testing and certifying the application
+
+#2. private network
+private network is mapped to the internal network mode on the virtualbox hypervisor provider. All the virtual machines connected to the same private network can communicate with each other. No one else can communicate with them.	
+purpose:
+When we are deploying the multi-tier applications we can run application on one virtual machine and database on another virtual machine. Here only the vms should be able to communicate with each other, either the host/external network should not have access to any of these vms this can be achieved using private network.
+	
+#3 public network
+The public network in vagrant is mapped to bridge network in the virtualbox hypervisor provider. The public network is an open network that allows access to the virtual machine from anywhere. It is less secured and should not be used in production environment.
+purpose:
+during the developement we can use this without bothering about the security and can have more flexibility and connectivity options to the vms
+
+How to configure these networking modes in Vagrantfile?
+In Vagrantfile along with vbox name that should be used in provisioning the virtual machine we should specify appropriate networking mode using which we wanted vagrant to provision the machine.
+
+By default, vagrant provisions the virtual machine attached with an network adapter with networking mode as "NAT", configured with port forwarding of Host port: 2222 forwarded to guest of : 22 enabling SSH access to the virtual machine from the Host computer. This is mandatory and cannot be changed otherwise the virtual machine cannot be accessible from the HOST computer
+
+In addition we can configure more network modes that attached more network adapters enabling the virtual machine to be accessible based on our requirement.
+	
+syntax:
+Vagrantfile
+-----------
+Vagrant.configure(2) do | config |
+	config.vm.box = "bento/ubuntu-24.04"
+	config.vm.synced_folder "sourceDirectoryLocation", "destinationPath"
+	
+	config.vm.network "network mode" [more configuration operations based on the network mode we have choosen]
+	for eg.. 
+		1. forwarded_port we need to specify host and guest port
+		2. public network we need to specify the host network adapter we want to bridge
+		3. private network we need to tell the network_name, so that all the virtual machines connected to the same network can communicate with each other
+end
+
+#1. forwarded port
+syntax:-
+	
+config.vm.network "forwarded_port", guest: guestPort, host: hostPort
+
+Let us install apache2 web server on the guest machine, upon installing it will be configured as systemd initd service. The server will be running on http/80 port number. Now we can access the apache2 server running on http/80 portno on the guest from the host machine by configuring port forwarding using forwarded_port network configuration
+
+Apache2 server Installation:
+sudo apt update -y
+sudo apt install -y apache2
+
+sudo systemctl status apache2
+
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+	config.vm.box = "icloudnote/ubuntu"
+	config.vm.network "forwarded_port", guest: 80, host: 8080
+end
+
+2. public network
+There are multiple configuration options are available:
+1. default network adapter 
+2. static ip
+3. bridge a physical network adapter specified
+
+2.1. default network adapter
+In this configuration the ip address of the virtual machine is generated dynamically and default network adapter of the host machine will be used for establishing bridge network
+
+config.vm.network "public_network"
+	
+2.2. static ip configuration
+instead of assigning an dynamic ip address, we can specify the static ip address to be assigned to the virtual machine. here also we are using default network adapter of the host machine to bridge
+note: the static ip we specify should be within the network range of physical network adapter we are bridging
+
+config.vm.network "public_network", ip: "192.168.1.223"
+
+2.3. specific network adapter of the host machine to be bridge
+here we can specify which network adapter of the host machine should be used while creating the bridge network.
+	
+config.vm.network "public_network", ip: "192.168.1.223", bridge: ["Wireless Network adapter"]	
+note: the static ip we specify should be within the network range of physical network adapter we are bridging
+
+3. private network
+There are 3 configuration options are available in configuring the private network
+
+3.1 DHCP Enabled
+By enabling the dhcp server the ip addresses of all the virtual machines are generated automatically that are connected to the same private network 
+
+config.vm.network "private_network", type: "dhcp"
+	
+3.2 static ip address binding
+Instead of enabling the dhcp option, we can configure an fixed ip address to each virtual machine that is attached to the private_network so that during the reboots also the machine ip addresses will not change. This will helps us in building the application that points or access the database servers running on the another virtual machine using fixed ip address
+
+Virtual Machine#1 (java application machine)
+config.vm.network "private_network", ip: "192.168.10.11"
+	
+Virtual Machine#1 (database server machine)	
+config.vm.network "private_network", ip: "192.168.10.12"
+	
+3.3 define a private network to which the machines are connected 
+
+Virtual Machine#1 (java application machine)
+config.vm.network "private_network", ip: "192.168.10.11", virtualbox_intnet: "network1"
+	
+Virtual Machine#1 (database server machine)	
+config.vm.network "private_network", ip: "192.168.10.12", virtualbox_intnet: "network1"
+------------------------------------------------------------------------------------------------------------------------------------
+
+How does vagrant ssh works?
+For any machine inorder to ssh we need:
+1. openssh server should be installed and running (initd service)
+2. /etc/ssh/sshd_config disable passwordAuthentication: No
+3. generate public/private key. associate the public key to one of the Linux user allowing the users to ssh onto the machine onbehalf of that user
+4. to permit performing administrative related operations we need to make the linux user as password-less sudoer
+
+Then on the client machine we need to have ssh client-utility installed and need to have private key for authenticating and access the linux machine over ssh
+ssh -i privateKeyFile username@ip
+
+When we provision a vagrant machine we are able to ssh onto the vagrant provisioned virtual machine, but we have not
+1. installed openssh server
+2. created any linux user, associated with public key
+3. configured password-less sudoers access
+Then how are we able to SSH onto the Vagrant machine?
+	
+Because:
+Vagrant uses vagrant boxfiles in provisioning the virtual machine, these vagrant boxfiles are prepackaged templates that are pre-installed with
+	1. operating system
+	2. pre-configured with linux operating system user: vagrant identified with password: vagrant
+	3. promoted as sudoer with password-less access
+	4. pre-installed with openssh-server
+	5. seeded with default public/private keys to facilitate ssh access on the first boot
+	6. pre-configured with network mode: NAT with port forwarding as guest: 22, host: 2222
+then exported as vagrant boxfile and provided to us
+
+So that when vagrant is creating the virtual machine by importing the vagrant boxfile, these machines are booted with default configurations. If we observe vagrant boxfiles are pre-backed with default public/private keys hence making them insecure. So while starting the virtual machine for the first-time, it generates an new pair pub/priv key, stores the private key into the .vagrant project directory and connects to the virtual machine with default private key and replaces the default public key of the vagrant user with the newly generated public key and starts the virtual machine
+
+When we type vagrant ssh, this command internally goes to .vagrant directory of the project in which we ran this command and picks up the private keyfile and ssh onto the virtual machine through the help of port_forwarding configured as 2222 -> 22
+	
+ssh -i .vagrant/privateKeyFile -P 2222 vagrant@127.0.0.1
+-------------------------------------------------------------------------------------------------------------------------------------
+How to work with different hypervisor providers in vagrant?
+Vagrant supports provisioning the virtual machines with most of the popular hypervisor providers like: virtualbox, hyperv, vmware (fusion/desktop/enterprise) etc. By default it supports oracle virtualbox hypervisor provider, but inorder to work with any other hypervisor provider we need to download the vagrant hypervisor provider plugin and install to enable using it
+
+https://developer.hashicorp.com/vagrant/docs/providers/vmware/installation
+
+If we install along with oracle virtualbox any other hypervisor provider on the machine like vmware fusion etc, still vagrant uses virtualbox provider only for provisioning the virtual machine ignoring the others.
+
+How to change the default hypervisor provider in provisioning the virtual machine?
+There are 2 ways we can change the default provider
+1. global configuration
+we can change the default hypervisor provider at the host-level by using an environment variable 
+set VAGRANT_DEFAULT_PROVIDER=vmware_fusion
+
+so every virtual machine that is provisioned using vagrant will use the hypervisor provider as vmware_fusion
+
+2. specific virtual machine configuration
+Instead of changing globally we can change the hypervisor for a specific virtual machine by passing --provider=providerName
+
+vagrant up --provider=vmware_fusion
+
+note: once the vagrant has provisioned an virtual machine with an hypervisor provider, we cannot change the machine to a different provider, we need to destroy and recreate to switch
+------------------------------------------------------------------------------------------------------------------------------------
+How to customize the vagrant machine based on the provider?
+Vagrant supports provisioning the virtual machines with various different hypervisor providers like
+1. oracle virtualbox
+2. microsoft hyper-v
+3. vmware fusion/desktop/enterprise
+etc
+
+Each of these hypervisor providers might have configurations specific to them and might differ with other providers. So if we write provider specific configurations in the Vagrantfile to provision the virtual machine, then we will run into problems
+	1. To work with different hypervisor providers with provider specific configurations we need to write multiple vagrant configuration files, because one vagrantfile will not be portable across the hypervisor providers
+	2. most of the configuration across the Vagrantfiles of these different providers has same configuration which leads to duplication of machine configuration
+	3. maintainance of multiple copies of the same configuration with little provider specific configuration differents is highly difficult.
+	
+To overcome these problems in adding provider specific configurations in Vagrant files, vagrant has introduced provider customizations. Using provider customizations we can write multiple hypervisor provider specific configurations in one single Vagrantfile itself by using provider blocks.
+	
+So during the time of provisioning the virtual machine, vagrant picks the provider specific configurations blocks based on the underlying hypervisor on which it is provisioning the machine ignoring the others. this avoids writing multiple Vagrantfiles for each provider and avoids duplication
+
+Incase of oracle virtualbox it allows the below customizations in provisioning the virtual machines:
+	1. cpu
+	2. ram
+	3. virtual machine name
+	4. gui (headless/background) or (interactive mode)
+	5. modify cpu cap execution
+	
+Lets us explore how to use these customizations:
+
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+	#global configurations, that should be applied irrespective of hypervisor provider
+	config.vm.box="bento/ubuntu-24.04"
+	config.vm.network "public_network", ip: "192.168.10.11"
+		
+	config.vm.provider "virtualbox" do | vb |
+		vb.cpus=4
+		vb.memory=1048
+		vb.gui=true
+		vb.name="javaserver"
+		vb.customize ["modifyvm", :id, "--cpu-execution-cap", "50"]
+		vb.customize ["modifyvm", :id, "--vram", "512"]
+	end
+end
+
+VBoxManage is an command-line interface tool provided by oracle virtualbox using which we can customize or configure an virtual machine properties. 
+VBoxManage modifyvm machineName --settings value
+VBoxManage modifyvm machineName --cpu-execution-cap 50
+-------------------------------------------------------------------------------------------------------------------------------------
+vagrant provisioners
+--------------------
+Baking the vagrant machine from an base vagrant boxfile will only brings up operating system only. the necessary software packages, libraries and configurations that are required for using the environment will be missing.
+	
+For this the devops engineer has to manually install and configure them upon the first-boot of the virtual machine, it is an laborious process and error prone too. More over the virtual machine environments needs to be setup for several times when there is upgrade or patch of a new software is available
+
+Instead of setting up the virtual machine manually the ops engineer can write automation scripts(like shellscript, ansible, python, puppet, etc) for installing and configuring the packages and libraries. 
+
+But the problem is upon first-boot of the virtual machine, the ops engineers or users has to manually run them ontop of the virtual machine that involves a bit of complexity like
+	1. how many scripts
+	2. in which order they need to be executed
+	3. commands in running them based on that technology
+we cannot expect everyone who is using the virtual machine environment to have these details in configuring the environment, so vagrant has provided provisioners through which we can define the automation scripts that needs to be executed during the first-boot of the vagrant machine aspart of the vagrant machine configuration file itself.
+	
+All that it takes to have the virtual machine environment ready for usage is "vagrant up", the users dont need to have knowledge about how to provision and what automation scripts needs be executed to have the environment
+
+Provisioners are the way through which we can plugin the automation scripts to the vagrant, asking him to execute them on the first-boot of the vagrant machine, so that the environment is ready for usage
+
+There are various different software configuration management tools are available in writing the automation scripts for installing/configuring the software packages like
+	1. shellscripting
+	2. python
+	3. ansible
+	4. chef
+	5. puppet
+	etc
+To execute these automation scripts of different technologies vagrant has provided multiple types of provisioners like
+	1. shell provisioner
+	2. file provisioner (used for copying the files from host machine to guest)
+	3. ansible provisioner
+	4. puppet provisioner
+	etc
+	
+There are 2 ways of configuring the provisioners in Vagrantfile are available:
+1. inline provisioners
+2. block provisioners
+
+#1. inline provisioners
+syntax:
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+	config.vm.box="icloudnote/ubuntu"
+	config.vm.provision "provisionername", type: "shell/file/ansible", inline: "command"
+end
+
+For eg.. we want to install jdk17 during the time of provisioning the virtual machine, it can be done by configuring an shell inline provisioner as below
+
+config.vm.provision "install jdk17", type: "shell", inline: "sudo apt install -y openjdk-17-jdk"
+	
+#2. declare provisioner with provisioner name
+config.vm.provision "type", inline: ""
+for eg.. config.vm.provision "shell", inline: "sudo apt install -y openjdk-17-jdk"	
+	
+#3. declaring block provisioner
+
+config.vm.provision "type" do | prov |
+	prov.inline="command1"
+	prov.inline="command2"
+end
+	
+#4. declare automation code in external file and configure it as an input to the provisioner
+automation.sh
+--------------
+instructions for installing the software packages and configuring them
+
+config.vm.provision "provisionerName", type: "type", path: "locationofTheFile"
+	or
+we can configure it as part of block provisioner as well
+
+config.vm.provision "type" do | prov |
+	prov.path="pathToFile"
+end
+
+Note: Incase if we are writing automation instructions in a File (shellscript) and the provisioner should execute it for installation and configuration. 
+
+#5. multi-line script:
+config.vm.provision "net-tools", type: "shell", inline: <<-SCRIPT
+        sudo apt update -y
+        sudo apt install -y net-tools
+    SCRIPT
+
+When does the provisioners would be executed?
+By default the provisioners will be executed only in the first-time booting the vagrant machine and in sub-sequent restarts/bootups the provisioners will not be executed. But if we want provisioners to be executed even after the first-boot we can trigger in #2 ways
+1. through command-line switch
+2. through configuration
+
+#1. command-line switch
+vagrant up = first-boot only the provisioners will be executed	
+vagrant up --no-provision = even the first-boot also the provisioners will be skipped
+vagrant up --provision = during the bootup always the provisioners will be executed
+
+#2. through configuration approach
+In Vagrantfile while defining the provisioners we can specify the behavior of how the provisioners has to be executed by writing an attribute "run" that takes 3 possible values
+1. always = every reload/restart of the virtual machine the provisioner will be executed
+2. once = only first-boot the provisioner will be executed (default) [ we can override this using command-line options]
+3. never = never execte (temporarily disabled)
+	
+#3. we can specify a specific provisioner to be executed rather than all while launching the virtual machine using provisioner name as below
+
+Vagrantfile
+------------
+config.vm.provision "provisioner1", type: "shell", inline: "command1"
+config.vm.provision "provisioner2", type: "shell", inline: "command2"
+
+vagrant up --provision-with=provisioner2
+
+#4. File provisioner
+The file provisioner is used for copying the files from the host machine to the guest machine, it is used for copying automation scripts on to the virtual machine before those are used in executing aspart of an provisioner
+
+config.vm.provision "copyFiles", type: "file", source: "sourceFile", destination: "destinationLocationOnGuestMachine"
+-------------------------------------------------------------------------------------------------------------------------------------
+Multi-machine vagrant
+---------------------
+When we are working on multi-tier applications we need to run database server on one virtual machine and java/python/ruby application on another virtual machine, so that each of them has their own dedicated system resources alloted with which they run independently. So for this we need to provision 2 different vagrant machines. To provision 2 vagrant machines we need to write 2 Vagrantfile's describing the machine configurations
+	
+There are few challenges in writing multiple configuration files for running vagrant machines related to same project:
+1. Since these are related to same project, we need to always start and stop them together, for which we need goto individual vagrant project directories to start & stop always which is a tedious job
+2. The order in which these machines should be started is fixed always. For eg.. always an database server should be started first and after that the java/python/ruby application machine should started following the success of the first one. This has to be manually managed by the devops engineer in memorizing the order inorder to launch the application
+3. Most of the configuration across these machines will be same and hence gets duplicated across the vagrant files we define
+
+Instead of writing multiple vagrant files in configuring and managing the vagrant machines of related project, we can define multiple machine configurations in one-single Vagrantfile itself by using multi-machine vagrant configuration feature
+
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+	/*global configuration we can write here. For eg.. we want to apply a 
+	common network configuration or provisioner we can define here that 
+	would be applied for all the machines we defined inside this Vagrantfile*/
+	
+	config.vm.network "networking mode"
+	config.vm.provision "provisionerName", type: "shell", inline: "command"
+		
+	#machine blocks
+	config.vm.define "databaseserver" do | db |
+		db.vm.box="icloudnote/ubuntu"
+		db.vm.network "private_network", ip: "192.168.10.11"
+			
+		db.vm.provider "virtualbox" do | vbdb |
+			vbdb.name="databaseserver"
+			vbdb.cpus=2
+			vbdb.memory=1024
+		end
+	end
+	
+	config.vm.define "javaserver" do | javaserver |
+		javaserver.vm.box="icloudnote/ubuntu"
+		javaserver.vm.network "private_network", ip: "192.168.10.12"
+		javaserver.vm.network "forwarded_port", host: 8080, guest: 8080
+			
+		javaserver.vm.provider "virtualbox" do | vbj |
+			vbj.name="javaserver"
+			vbj.cpus=2
+			vbj.memory=1024
+		end
+	end
+		
+end
+	
+vagrant up = This will start both the virtual machines in the order of declaration
+vagrant up machineName = will only start that specific machine
+
+vagrant halt = will stop all the machines
+vagrant halt machineName = only that machine specified will be stopped
+-------------------------------------------------------------------------------------------------------------------------------------
+1. hosting an static website using apache2 = #2 days
+2. e2e automation in hosting the static web application (touchless) (shellscripting/vagrant) = #2 days

@@ -1,0 +1,125 @@
+Vagrant supports 3 networking modes
+1. forwarded_port
+2. private_network
+3. public_network
+
+#2 private_network
+private network mode in vagrant configures host-only network adapter on the underlying virtualbox hypervisor. We have 3 configuration options available in private_network
+  2.1 config.vm.network "private_network", type: "dhcp" = we are enabling dhcp server to generate and auto assign ip address to all the machines connected to the same network adapter
+  2.2 config.vm.network "private_network", ip: "192.168.10.2" = we are assigning manual the static ip address to the vm, helpful in testing the applications 
+  2.3 
+    machine #1
+    config.vm.network "private_network", virtualbox_intnet: "network1", type: "dhcp" (or) ip: "192.168.1.23"
+      
+    machine #2
+    config.vm.network "private_network", virtualbox_intnet: "network1", type: "dhcp" (or) ip: "192.168.1.24"  
+helpful for deploying multi-tier applications and static ips helps us in automating the deployment of the application for testing process 
+
+#3. public_network
+The public_network in vagrant is configured as a bridge network on the underlying virtualbox hypervisor provider. the machines connected to the public_network are open to everyone, it is not recommended to use public_network for production application deployments. for local development process we can use public_network.
+  
+How to configure the public_network?
+  
+#1 the default network adapter will be used as a bridge  
+Vagrant.configure(2) do | config |
+  config.vm.box = "basebox"
+  config.vm.network "public_network"
+end  
+
+#2 static ip
+Vagrant.configure(2) do | config |
+  config.vm.box = "basebox"
+config.vm.network "public_network", ip: "192.168.1.26"
+end
+  
+#3 we can specify the physical network adapter of the host whom we want to use it as a bridge.
+Vagrant.configure(2) do | config |
+  config.vm.box="basebox"
+  config.vm.network "public_network", bridge: ["Killer Wireless-n/a/ac 1535 Wireless Network Adapter"]
+end  
+we can find the physical network adapters available on the windows host using ipconfig /all. now copy the name of the physical network adapter whom you want to bridge and place name here  
+--------------------------------------------------------------------------------------------------------
+What is vagrant ssh?
+  
+Vagrant during the time of provisioning  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

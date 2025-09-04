@@ -1,0 +1,124 @@
+ODWA231052021 = 9A+bzp
+ODWA222052021 = gUw]2v
+
+8:15 am regular batch the topic covered till now
+-------------------------------------------------------------------------------------------------------
+1. Introduction to devops and ci/cd pipeline
+2. Tools to be used for implementing devops process in a software application development and delivery
+
+(independent topics)
+
+3. Introduction to Linux operating system
+4. File Management commands
+5. User Management commands (you are here)
+---------------------------------------------------------------------------------------------------------
+What is Devops?
+Usually the time required for developing software applications are very high in industry. 
+  
+For eg.. a typical application to be developed and delivered to the customer at an average of 6 months - 1 year it will takes.
+Looks like the time required for developing and delivery a software applications is taking lot of time due to which many problems will creep up.
+  - due to long duration of developer/delivery the manufacturing cost of the software is huge.
+  - we are out of market competition
+  - customer loose Return of Investment.
+
+From the above we can understand we want to build faster applications and delivery quickly to the market otherwise a company will be out of the race/game.
+  
+That is where devops comes into picture
+
+devops helps in achieving fast paced application developed and quick delivery, if the organization is adopting devops.
+  
+How does devops helps us in building and delivering applications quickly?
+  - change the way people are working in the company
+    3 - teams | 1 project
+    developers "(develop)"               |
+    qa         "(test)"                  | -- 1 single team together then efficiency of work will improve
+    production engineers "(deliver)"     |      (devops team)
+    
+- adopt new tools and technologies
+  shellscripting  terraform         jenkins     git
+  ansible         cloud platform    maven       sonarcube
+  puppet          docker            junit       nagios
+  chef            kubernetes        vagrant     jfrog artifactory/repository
+---------------------------------------------------------------------------------------------------------
+
+What is Linux?
+Linux is an operating system.
+  
+What is an operating system, what does it do? where will it be there in a computer system?  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+

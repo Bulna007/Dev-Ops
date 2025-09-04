@@ -1,0 +1,126 @@
+How many types of subnets are there?
+There are 3 types of subnets:
+1. private subnet
+by default when we create a subnet within vpv it is private subnet and the resource of the private subnet are not accessible from the external network
+
+2. public subnet
+if we attach internet gateway to the subnet of the vpc then it is called public subnet, the resource of the public subnet can be accessed from external network as well
+
+3. hybrid subnet
+if we attach nat gateway to the subnet of the vpc then it is called Hybrid subnet. Here the traffic flow to the external network is of one dimension only. The resources of the subnet can access the external network resources (which is outbound traffic is allowed), but the external network resources cannot access the resources of the subnet (inbound is blocked)
+	
+Route Table	
+-------------
+To route the traffic across the subnets of the vpc and even to the external network we need to create a route within the Route Table by associating subnets of the vpc to the route table.
+	
+by default a main route table per vpc will be created by the aws with a default routing as 
+cidr of the vpc and target-> vpc indicating all the resources of subnets of the vpc can communicate with each other
+-----------------------------------------------------------------------------------------------
+NACL Rules
+-----------
+NACL stands for network access control list it is used for enforcing traffic restrictions on the resources of the subnet. nacl is stateless and we need to configure both ingress and egress rules to permit/deny the network traffic
+
+For each subnet we create a nacl rule will be setup by the aws by default allowing all the traffic to the subnet both in-bound/out-bound as well. we need tweak the nacl rules properly based on the applications we are running.
+-----------------------------------------------------------------------------------------------
+Security Groups
+---------------
+security groups are used for enforcing traffic restrictions on the individual resource level rather than the subnet level
+
+for each resource we can create a security group defining the traffic restrictions for the source. The security group contains 2 parts
+in-bound and out-bound rules
+
+inbound rules
+http  80  ::0/0  allow (both request/response)
+
+outbound rule
+tcp/ip  1521  202.231.23.2  allow (directly request from resource to external network)
+
+	
+inbound rules = are used for handling the requests that originates from external network resources
+outbound rules = are used for handling the requests that originated from resource to the external network
+
+These inbound and outbound rules are prioritized based on order and starts from higest number to the lowest
+for eg.. we configured an in-bound rule as below.
+	
+rule#   protocol    port    destination cidr   action	
+100  	  any         any     ::0/0              deny
+1       http        80      ::0/0              allow
+	
+here the rule# 100 will be applied first which blocks all the network traffic there after the rule# 1 will be applied thus by allowing traffic over http port 80 from anywhere
+-----------------------------------------------------------------------------------------------
+Compute Domain
+----------------
+All the computing resources/services are provided as part of compute domain
+1. ec2*
+2. elastic beanstalk
+3. lamdba
+4. autoscaling group
+5 elastic load balancer (elb)*
+	
+1. ec2 (elastic compute cloud)
+-------------------------------	
+ec2 is an compute instance which is equal to any computer system/machine we use for running our application but which is hosted and managed by the aws cloud platform. The advantage we gain here is
+	1. aws cloud platform takes care of lifecycle management of the instance
+	2. we can take the advantage of aws networking to enforce security on the instance
+	
+How to launch ec2 instances on aws cloud platform?
+by default when we create an aws account, for all of the regions of the user account aws will setup an default vpc with subnets. and these subnets are public subnets associated with internet gateaway configured to allow all the network traffic and is provided for experimental sake.
+	
+The default vpc and subnet provided by aws should not be used for hosting our application resources as there are no traffic restrictions being enforce we need to setup our own vpc/subnets strategically based on the requirements of our application.
+	
+So before hosting an ec2 instance, we need to create our own vpc/subnets depends on the way we want our resource to be exposed, there by we can launch ec2 instance within a subnet of a vpc
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

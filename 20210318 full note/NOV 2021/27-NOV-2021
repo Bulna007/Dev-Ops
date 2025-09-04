@@ -1,0 +1,133 @@
+dependency management
+instead of we managing the dependency manually, maven takes care of managing the dependencies for us through
+1. repositories
+2. dependency declaration
+3. dependency scopes
+
+How many types of repositories are there?
+There are 3 types of repositories are there
+1. maven central repository
+2. remote repository
+3. local repository
+
+#1. maven central repository
+The 3rd party organizations and open source software contributors distribute their libraries to the world by publishing them into maven central repository, it acts as an marketplace in distributing the artifacts across the world.
+	
+since there are many people/organizations contributing and publishing their artifacts, discovering and identifying the dependencies of different organizations becomes difficult, in order to help us in uniquely identifying an artifact in maven central repository it has introduced gav coordinates
+
+groupId = organization/productname/individual to whom the artifact belongs to
+artifactId = library or project name
+version = version no of the artifact, so that we have older and newer versions available to consume without overriding
+
+dependency declaration
+Now to use dependencies to build and package the project, developer has to download the dependencies from maven central repository instead of going to each vendor website. but the problem is how does all the developers of the team knows every dependency and version required for building/packaging the project. here identifying the dependencies for a project takes lot of time
+
+To help us in distributing the dependency information required for building/packaging the application maven has provided dependency declaration.
+write all the dependencies that are required for your project along with their version no in pom.xml under dependencies section.
+	
+pom.xml
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>tajhotels.com</groupId>
+	<artifactId>billdesk</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
+	<dependencies>
+		<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>4.0.1</version>
+				<scope>provided</scope>
+		</dependency>
+		<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>8.0.27</version>
+		</dependency>
+	</dependencies>
+</project>
+	
+when we declare the dependencies in the pom.xml, the maven during the time of building the project will read pom.xml identify which dependencies are required and connect to maven central repository and downloads the dependencies automatically, so manually managing the dependencies are not required.
+	
+
+#2. local maven repository
+For each project during the building instead of maven downloading the dependencies from central maven repository because
+	1. it waste bandwith of the internet in downloading the same dependencies across the projects
+	2. keeps multiple copies of the dependencies on the machine waste hdd space
+it will creates a local maven repository (default location)	 under $HOME/.m2 directory, when we run the maven build on our machine first-time.
+	
+There after it downloads all the dependencies across any projects when we build and keep them in local maven repository and refer the same copy of the artifacts across the projects in building the projects.
+advantages:-
+	1. avoids bandwidth consumption of internet in redownloading the same dependencies across the projects
+	2. only 1 copy of artifact will stored on the machine and reused for all the projects which saves storage space
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

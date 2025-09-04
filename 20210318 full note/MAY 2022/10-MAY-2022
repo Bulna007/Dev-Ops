@@ -1,0 +1,371 @@
+How to setup an kubernetes cluster?
+#1. install virtualbox and extension pack on the windows10 machine
+#2. install vagrant on windows10 machine
+#3. create an Vagrantfile with 4 node multi-node vagrant file
+	1. one node for kubernetes master
+	2. two nodes for worker nodes
+	3. one node for jfrog container registry
+d:\kubecluster:/>
+
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+    config.vm.define "kmaster" do | kmaster |
+        kmaster.vm.box = "ubuntu/focal64"
+        kmaster.vm.network "private_network", ip: "192.168.20.10"        
+        kmaster.vm.hostname ="kmaster"
+        kmaster.vm.provider "virtualbox" do | vb |
+            vb.cpus=3
+            vb.memory=3072
+            vb.name="kmaster"
+        end
+    end
+    %w{wnode1 wnode2}.each_with_index do | nodename, index |
+        config.vm.define nodename do | node |
+            node.vm.box = "ubuntu/focal64"
+            node.vm.hostname = nodename
+            node.vm.network "private_network", ip: "192.168.20.#{index+11}"
+            node.vm.provider "virtualbox" do | vb |
+                vb.cpus = 2
+                vb.memory = 1024
+                vb.name = nodename
+            end
+        end
+    end
+		config.vm.define "jcrnode" do | jcrnode |
+        jcrnode.vm.box = "ubuntu/focal64"
+        jcrnode.vm.network "private_network", ip: "192.168.20.13" 
+				jcrnode.vm.network "forwarded_port", guest: 8082, host: 8082
+        jcrnode.vm.hostname ="jcrnode.com"
+        jcrnode.vm.provider "virtualbox" do | vb |
+            vb.cpus=2
+            vb.memory=1024
+            vb.name="jcrnode"
+        end
+    end
+end
+
+#4. goto the d:\kubecluster:/> and run below command
+vagrant up
+brings up all the 4 machines
+--------------------------------------------------------------------------------------------
+ssh into all the machines using
+vagrant ssh machinename
+--------------------------------------------------------------------------------------------
+#1. bridge traffic to iptables is enabled
+add the below entries into the file: /etc/ufw/sysctl.conf
+
+sudo vim /etc/ufw/sysctl.conf
+net/bridge/bridge-nf-call-ip6tables = 1
+net/bridge/bridge-nf-call-iptables = 1
+net/bridge/bridge-nf-call-arptables = 1
+
+#2. modify /etc/hosts file on all the nodes and make an entry of 4 notes with their ip address and node name
+sudo vim /etc/hosts
+
+192.168.20.10  kmaster
+192.168.20.11  wnode1
+192.168.20.12  wnode2
+192.168.20.13  jcrnode.com
+
+in addition to the above in each node we need to add nodename.local entry of that relevant node for routing kube-proxy traffic to the services of the cluster
+
+kmaster node
+192.168.20.10  kmaster kmaster.local
+
+wnode1 node
+192.168.20.11  wnode1 wnode1.local
+
+wnode2 node
+192.168.20.12  wnode2 wnode2.local
+--------------------------------------------------------------------------------------------
+
+#4. 
+sudo apt -y update
+sudo apt -y upgrade
+
+
+#5. enable eithernet bridge tables
+sudo apt install -y ebtables ethtool
+--------------------------------------------------------------------------------------------
+#6 Install docker on all the machines (apart from jcrnode)
+	
+1. install pre-requisite software for installing the docker 
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+2. Then add the GPG key for the official docker repository to our system.
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+3. Add the docker repository to the apt sources:
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+4. update the package database with the newly added docker repo
+sudo apt -y update
+
+5. install docker packages
+sudo apt install -y docker-ce
+
+6.
+sudo usermod -aG docker $USER
+
+7. exit from kmaster and restart all the virtual machines
+exit
+vagrant reload
+and again ssh onto all the machines
+
+#4 enable external dns (all nodes including jcrnode)
+sudo vim /etc/systemd/resolved.conf
+DNS=8.8.8.8 = google dns
+sudo service systemd-resolved restart
+
+#5.
+sudo vi /etc/docker/daemon.json
+
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ]
+}
+sudo systemctl restart docker
+sudo systemctl status docker
+
+#remove config.toml from containerd directory 
+sudo rm /etc/containerd/config.toml
+sudo systemctl restart containerd
+
+--------------------------------------------------------------------------------------------
+#1 run on all the nodes except jcrnode
+add gpg key to enable kubernetes repositories to be added to ubuntu for installing kubernetes.
+be in root user and run the below 2 commands
+sudo su - = switch to root user
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+#2. 
+sudo apt -y update
+
+#3 install kubectl, kubeadm, kubelet process  (run on all the nodes except jcrnode)
+sudo apt install -y kubelet kubeadm kubectl
+
+#### end of docker ######
+--------------------------------------------------------------------------------------------
+#1
+Let us setup kubernetes master/controlplane only on kmaster node only by running the below command.
+kubeadm init = command creates/installs kubernetes master on the node we ran.
+sudo kubeadm init --apiserver-advertise-address=192.168.20.10 --pod-network-cidr=10.244.0.0/16
+
+The above commands creates kubernetes master/control plane and generates a kube config file with the configuration information of the cluster. So that the kubectl uses the configuration in connecting to the cluster
+
+The pod cidr is the ip address range we specified to the kubernetes master, asking to generate ip address within the CIDR range for the pods of the cluster.
+	
+The masternode and the workernodes of the cluster are on a different network from the pod network, so that we cannot access the pods that are running on the cluster from any of the master/worker nodes and those are completely isolated from the world.
+	
+but a pod can communicate with another pod since those are all part of the same network.
+	
+The cidr range of the pod network is /16 since most of the CNI implementations supports /16 as network range only
+
+In one kubernetes cluster we can add 5000 workernodes and in production deployment it is recommended to have a minimum 5 worker nodes for a kubernetes cluster. Within the cluster of 5000 workernodes we can create upto 150000 pods on the cluster
+
+In an on-premise environment (physical machine setup) we need to start with minimum 5 workernodes
+but in an aws eks cluster we can configure the node pool size to start with a minimum = 2 and a maximum = 10
+So EKS configures the kubernetes cluster initially with 2 worknodes and based on the demand it automatically scales up a max of 10 workernodes as specified.
+	
+upon running kubeadm init command it generates an file called /etc/kubernetes/admin.conf which contains the information about the kubernetes cluster
+
+The kubectl looks for only $HOME/.kube/config file for connecting to the kubernetes cluster so we need to create .kube/config file with the information from admin.conf file
+
+When we run kubeadm init command it generates 2 things
+1. kubeadm join command with ca-has allowing us to join worker nodes with the master
+2. commands for copying admin.conf file into $HOME/.kube/conf file as below.
+	
+The above command generates an ca-hash with kubeadm join command, copy and save the command aside. it should be executed only after applying pod network.
+kubeadm join 192.168.20.10:6443 --token 5nosl5.0poqh3fwq62o2j61 \
+        --discovery-token-ca-cert-hash sha256:55493de1ebb54aec3e5830432699a4f7a40651969007e9a6a9927aa72ca35861
+				
+
+#2. Setup the kubeconfig file,to let the kubelet connect to the kubernetes cluster.
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+#####################
+dont join worker nodes with the master by running kubeadm join command until we configure cni networking on the master node
+########################
+copy the kubeadm join command so that after configuring the cni networking, we can use the command for joining the workernodes to the cluster
+-------------------------------------------------------------------------------------------
+The kubeadm join command generated sha ca certificate and hash will be expired within 1 to 1 1/2 hour for security reason
+to regenerate in adding the workernodes to the master we need to use the below command on the master
+kubeadm token create --print-join-command
+
+we can see existing tokens that are generated in kubernetes master using
+kubeadm token list
+------------------------------------------------------------------------------------------
+
+#3 download flannel network yaml file
+curl https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml  -o kube-flannel.yml
+
+vim kube-flannel.yml
+kubectl create -f kube-flannel.yml
+
+
+sudo apt install etcd-client
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+
+************************ at the last install multicaste package on all the nodes ***********
+sudo apt install -y avahi-daemon libnss-mdns
+
+
+kubectl get pods -o wide --all-namespaces
+NAMESPACE     NAME                              READY   STATUS    RESTARTS   AGE    IP              NODE      NOMINATED NODE   READINESS GATES
+kube-system   coredns-6d4b75cb6d-2w4m5          1/1     Running   0          17m    10.244.0.3      kmaster   <none>           <none>
+kube-system   coredns-6d4b75cb6d-q42dr          1/1     Running   0          17m    10.244.0.2      kmaster   <none>           <none>
+kube-system   etcd-kmaster                      1/1     Running   0          17m    192.168.20.10   kmaster   <none>           <none>
+kube-system   kube-apiserver-kmaster            1/1     Running   0          17m    192.168.20.10   kmaster   <none>           <none>
+kube-system   kube-controller-manager-kmaster   1/1     Running   0          17m    192.168.20.10   kmaster   <none>           <none>
+kube-system   kube-flannel-ds-r68xb             1/1     Running   0          110s   192.168.20.10   kmaster   <none>           <none>
+kube-system   kube-proxy-4v4hw                  1/1     Running   0          17m    192.168.20.10   kmaster   <none>           <none>
+kube-system   kube-scheduler-kmaster            1/1     Running   0          17m    192.168.20.10   kmaster   <none>           <none>
+--------------------------------------------------------------------------------------------
+Now let us setup worker node
+#1. change the ip address of workernode /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+sudo vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+"Environment KUBELET_EXTRA_ARGS=--node-ip=192.168.20.12"
+
+#2. join the each worker node to master
+
+sudo kubeadm join 192.168.20.10:6443 --token 5nosl5.0poqh3fwq62o2j61 \
+        --discovery-token-ca-cert-hash sha256:55493de1ebb54aec3e5830432699a4f7a40651969007e9a6a9927aa72ca35861
+
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+
+************************ at the last install multicaste package on all the nodes ***************
+sudo apt install -y avahi-daemon libnss-mdns
+--------------------------------------------------------------------------------------------
+by default the pods are not scheduled on master node, if we want the pods to run on the master node as well by treating master as workernode then we need to taint the master.
+	
+
+--------------------------------------------------------------------------------------------
+#1. jfrog jcr registry
+1. jfrog jcr requires domain name resolution to work
+so to host jcr on a domain name we need to setup virtualhost configuration use apache2 server
+	1.1 install apache2
+		sudo apt update -y
+		sudo apt install -y apache2
+	1.2 enable apache2 modules
+		sudo a2enmod proxy
+		sudo a2enmod proxy_http
+		sudo a2enmod proxy_loadbalancer
+		sudo a2enmod lbmethod_byrequests
+	1.3 virtual host configuration file
+	/etc/apache2/sites-available/jcrhub.conf
+	<VirtualHost *:80>
+		ServerName jcrnode.com
+		ProxyPreserveHost on
+		ProxyPass / http://127.0.0.1:8082/
+		ProxyPassReverse / http://127.0.0.1:8082/		
+	</VirtualHost>
+	1.4 enable the virtualhost configuration
+	sudo a2ensite jcrhub
+	sudo systemctl daemon-reload
+	sudo systemctl restart apache2
+	
+#2 jfrog jcr registry setup
+#1. download from: https://jfrog.com/container-registry/ (jfrog-artifactory-jcr-7.37.14-linux.tar.gz)
+#2. create an directory 
+mkdir -p /u01/middleware
+#3. copy the tar.gz file into /u01/middleware and extract it
+mv ~/Downloads/jfrog-artifactory-jcr-7.37.14-linux.tar.gz /u01/middleware
+cd /u01/middlware
+tar -xzvf jfrog-artifactory-jcr-7.37.14-linux.tar.gz
+
+#4. with default configurations we can launch the jfrog artifactory jcr registry
+goto artifactory-jcr-7.37.14/app/bin
+cd /u01/middlware/artifactory-jcr-7.37.14/app/bin
+./artifactory.sh
+
+The artifactory jcr registry will run by default on 8082 port, that is the reason we configured apache2 virtualhost configuration pointing to http://localhost:8082/
+------------------------------------------------------------------------------------------
+#3 dns hostname configuration on localhost
+goto C:\Windows\System32\drivers\etc and add hosts file below entry
+192.168.20.13  jcrnode.com	
+
+
+
+by default the docker uses htttps for connecting to the docker container registry, so we need to modify daemon.json to ignore https, add this configuration in all the 3 nodes
+
+
+sudo vi /etc/docker/daemon.json
+{
+  "insecure-registries" : ["jcrnode.com"]
+}
+sudo systemctl restart docker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

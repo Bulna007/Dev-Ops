@@ -1,0 +1,237 @@
+What are the Filesystem technics support by the Linux operating system?
+1. EXT
+2. EXT2
+3. EXT3
+4. EXT4 = is the default Filesystem with which Linux operating system will be installed now. it is very fast FileSystem and with significant speed we can access the Files on File Systems. It supports huge storage capacity as well. Data Recovery is supported
+5. JFS
+6. XFS
+7. Btrfs
+
+All the other Filesystems are previous generations/old and are not currently under use.
+The Linux Filesystem technics are designed to be hierarchial.
+  
+What is Hierarchial datastructure means?  
+Anything that is represented in the form of parent/child relationship is called Hierarchial datastructure, looks like inverted tree.
+There are few notable things about hierarchial structures.
+  1. Hierarchial structures always starts with one single "/" root.
+  2. All the data represented in Hierarchial structure in a tree format are called Nodes
+      Node can be of Multiple Types, so when it comes to Filesystem a Node can either 
+      - Folder = contains children as either Folders or Files
+      - File = are leaf nodes, they dont have further children
+  3. A Node can have any number of children, but a Node can have only one parent.
+What is the use of Hierarchial datastructures?
+Using hierarchial datastructures we can group related elements together and can manage them easily like
+  - traversing
+  - searching
+  - finding
+  - modifying
+becomes very easily.
+
+Due to the above reason the Linux Filesystems are designed as Hierarchial in nature, to easy handle operations.
+-----------------------------------------------------------------------------------------------------
+Linux Filesystem directory structure
+------------------------------------
+During the installation of Linux operating system, it formats the storage device and initializes the EXT4 Filesystem on that storage device. 
+
+Linux while installing it copies various operation system files onto Filesystem of the storage device. as part of the copy they could be different types of files like shell command, libraries, super user commands, devices etc, so all of these files to differentiate and locate them easily it places or organizes into different directories.
+  
+So from the above we can understand, linux creates a standard directory structure in organizing the Files of the Operation System and user Files as well. 
+What are the directory structures that are created by Linux operating system during install?
+
+"/" - is the root/parent of the Filesystem
+|-1. bin     = core commands of linux are placed here (shell command cat/sh/ls)
+|-2. boot    = boot loader files are located
+|-3. dev     = all the external devices are mounted like usb and dvd
+|-4. etc     = The installed Software packages related configuration files are kept in this directory
+|-5. home    = For each linux user there is a home directory created under /home/$USER, he has only access to the contents of his home directory only (by default)
+|-6. lib     = libraries of installed software packages are placed here, so that these can be shared across
+|-7. media   = all the media devices like musicplayers, usb sticks etc are mounted here
+|-8. mnt     = external storage devices like network drives, mount volumes are mounted here
+|-9. opt     = optional software packages are located under /opt directory (package managers)
+|-10.proc    = Linux treats everything as a file, Even a program under execution which is called process is also represented as a file in Linux operating system, to keep track of its running information. and all these process files are stored/kept in /proc
+|-11.root    = root user home directory
+|-12.sbin    = super user bin directory, here all the commands that can be executed by super user are available.  
+|-13.tmp     = /tmp contains all the temporary files which will be automatically deleted for every system reboot
+|-14.usr     = the utilities are files that has to be shared across the users of the linux are placed in usr.
+|-15.var     = system logs and variable data files are kept here
+
+Note:- you might find additional directories if you see in your linux install, this differs based on the linux distro you are using.
+-----------------------------------------------------------------------------------------------------
+  
+Kernal is the low-level component of the Linux operating system, it directly interacts with the hardware devices of our computer in carrying out the operations. To perform any operation looks like we have to speak with kernal, but interacting with kernal is not easy, we should have programming knowledge background to understand.
+  
+So to rescue us from the above problem working with Kernal, Shell (utility program) is introduced.
+Shell provides commands (short-commands) using which we can pass instructions to the Kernal of the Linux asking him to carry some operations.
+There are different types of Shell programs (or) interpretors are available. Majorly we have 2 types
+1. bourne shell = every linux install comes with bourne shell by default.
+2. c shell
+
+The difference between the above shells are the commands they offer.
+Why do we need different types of shells?
+as these shells offers different style of interacting with Kernal, its the user preference in choosing their style of interaction. similar to watching picture in different televisions.
+
+Bourne shell = is used by majority of the public in the market as those are simple/easy in nature
+C Shell = usually preferred by the people who has C Programming language background , and those found to be complex for non-programmers.
+  
+There are sub-categories for each of these shells
+Bourne Shell
+  - bourne shell (sh)
+  - korn shell (ksh)
+  - bourne again shell (bash) (widely used in linux)
+  - posix (portable operating system interface)
+C-Shell
+  - C Shell (csh)
+  - TENEX / TOPS Cshell (tcsh)
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,80 @@
+How does software is distributed in Linux operating System?
+A software is distributed in linux operating system in 3 ways
+#1 packaged software through repository
+#2 packaged software, direct downloadable
+#3 binary distribution, direct downloadable
+
+what binary distribution software?
+The software application/program that is compiled to run on a platform, but has not packaged, so we cannot install the software through package managers or installers.
+
+Then how to run the binary distribution software on our machine?
+The binary distribution software is shipped to the enduser in a compressed format usually for linux platform it is "tar.gz". along with that we need to read the instruction or documentation to identify the entrypoint program to launch or run the software application/program.
+From the above we can understand we need to perform multiple steps in getting an binary software packaged to be used on a machine.
+#1 always it is recommended to run any software application under an non root/sudoer users to ensure security aspects of the system.  
+The best practise people follows while running the software applications on the linux env is they create a dedicated user in linux under whom the software applications/programs are executed.
+
+1.1 sudo useradd appuser (run software packages under this user)
+1.2 create an directory and give permissions only to the user level as below
+  sudo mkdir -p /u01/app
+  sudo chown -R appuser:appuser /u01
+  sudo chmod -R 755 /u01
+  
+1.3 sudo su appuser = switch to the appuser to install and run the software
+1.4 mkdir /u01/app/jdk-11 = for each software create a separate directory to run the software from that directory
+1.5 goto jdk-11 directory and run wget downloadUrl
+
+1.6 uncompress and extract it
+gunzip package.tar.gz
+tar -xvf package.tar
+
+1.7 cleanup the downloaded .tar file
+1.8 identify the directory where your binary executable programs are there to launch your software.
+1.9 configure/set PATH variable pointing to the directory location and run directly the program to launch
+1.10 To make the PATH permanent add it in ~/.bashrc
+--------------------------------------------------------------------------------------------------------
+we are setting up the PATH in ~/.bashrc, the PATH we applied only works for that user only.
+For eg.. in above case we have modified ~/.bashrc of sriman user, so only sriman can run the commands directly. 
+  
+How to make the binary software being used by all the users of the linux?
+PATH is a pre-configured variable available for all the users of the linux with default value as
+1. /bin
+2. /sbin
+-------------------------- preinstalled directories which be created through linux install where linux shell utilities goes here
+
+3. /usr/bin = binaries
+4. /usr/sbin = super user binaries
+
+
+5. /usr/local/bin
+6. /usr/local/sbin
+---------------------- for each user local bin/sbin will be created  
+  
+
+
+
+/usr/bin/shout
+sriman~$ shout
+joe~$ shout
+bob~$ shout
+
+/u01/app/jdk-11/bin
+/usr/bin/jdk11 -> /u01/app/jdk-11/bin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

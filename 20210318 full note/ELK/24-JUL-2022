@@ -1,0 +1,18 @@
+elk
+1. elastic search = clustered search indexing
+2. logstash = logstash is an agent that aggregates, filters and push the logs to the elastic search
+3. kibana = analytics dashboard, using which we can search and generate data views in browsing, or viewing the log files.
+	
+badeal = end to end delivery management system
+	 badeal platform 	
+		|- merchants
+		|- partnerstore (marketplace)
+		|- corporate delivery services
+		
+#microservice modules (backend service)
+1. merchant-delivery-mgmt-service
+2. partner-store-service
+3. corporate-deliver-service
+4. user-mgmt-service
+
+5. badeal-customer (webapplication)

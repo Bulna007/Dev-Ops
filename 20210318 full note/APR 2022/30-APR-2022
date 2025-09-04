@@ -1,0 +1,63 @@
+Monolithic application architecture
+An enterprise application comprises of various different functionalities, which is built out of single source code (project) and is build into a single deployable artifact is called "Monolithic application"
+	
+advantages:-
+	1. everyone in the project knows all the modules of the system there are working on, since the entire system is built out of single source
+	2. build and deployment of the application is easy
+	3. scaling the application is easy
+	
+dis-advantages:-
+	1. As the whole system has been built out of a single source, it will be very difficult/complex for the developers to understand the entire system
+	2. As the project is build out of a single source, building and deploying the application takes lot of time, due to which the developers productivity in building and delivering the application will be impacted
+	3. Overloaded ide (integrated development environments) as the whole application has been built into single project
+	4. since the application takes startup and deployment time in running the application these are ideally not suitable for ci/cd implementation
+	5. Release management is very difficult, each module cannot be released independent of other modules of the system. even though a module has been completed development/testing, it has to wait for other features of other modules to be completed to deliver into the production
+	6. patching and upgradations are going to be very difficult as we cannot upgrade or patch a specific module, rather whole application redeployment is required will effect the availability of the system
+	7. Monolithic applications supports only horizantal scaling where the entire system needs to be scaled and veritical scaling is not supported due to which the cost of scaling the application is very high
+	
+To overcome the problems with monolithic application architecture microservices architecture based application development has been introduced.
+		
+------------------------------------------------------------------------------------------Microservice architecture
+-------------------------
+The enterprise system comprises of lot of functionalities, which are broken down into smaller services which are loosely coupled and independently deployable artifacts that are distributed and executed independently 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

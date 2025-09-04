@@ -1,0 +1,217 @@
+What is YAML?
+YAML stands for Yet another markup language which is a data representation standard language used for storing, writing and representing the data similar to Xml and Json.
+	
+What are the datatypes supported by YAML?
+YAML supports 3 different datatypes
+1. string = by default any text of information we write in yaml is treated as String, and we dont have to sourround them in double quotes even they have spaces
+2. number = any sequence of digits we write is considered as numbers
+3. boolean = true, false, yes, no all are permitted values for a boolean
+
+YAML supports 2 types of data structures
+1. LIST
+2. MAP
+
+#1. LIST
+List in YAML is also called as sequences and a list of values are represented through - (dash) and has to be intended at the same level to be considered as one list
+
+products.yaml
+- television
+- refregirator
+- washing machine
+- mobile
+
+#2. MAP
+MAP in YAML is also called as "dictionaries" or "associated arrays" which are nothing but key/value pairs of data representing an object or an entity. The key or the value dont need to be sourrounded with double quotes and should be separated by ":" colon and space
+
+product.yaml
+-----------------
+productNo: 9398
+productName: led 32 inch samsung tv
+description: 32 inch full hd smart samsung television
+price: 32000
+	
+	
+An YAML file should start with --- and end with ... indicating the begin of the YAML document and end of the YAML document, we can write multiple YAML documents in a single YAML file by using "---" and "..."
+YAML files can be stored with either an extension of ".yml"	or ".yaml"
+-----------------------------------------------------------------------------------------------represent the information about an cricket tournament which got teams and the list players who are participating in the match.
+	
+a team should be represented with the below details
+- teamName, country, rank, captain, coach
+- addition for each player we should represent below details
+- playerName, rank, format
+
+tournament.yml
+---------------
+- teamName: australia team
+  country: australia
+	rank: 3
+	captain: warner
+	coach: finch
+	players:
+    - playerName: steve
+		  rank: 15
+			format: batsman
+		- playerName: mark
+		  rank: 23
+			format: keeper
+- teamName: indian team
+  country: India
+	rank: 1
+	captain: kohli
+	coach: ravisastri
+	players:
+    - playerName: rahul
+		  rank: 10
+			format: keeper
+		- playerName: virat
+		  rank: 2
+			format: batsman
+----------------------------------------------------------------------------------------------
+write the yaml file to represent information about projects developed in an organization and their team members
+1. each project should have below information
+projectName, businessUnit, clientName, duration and technologies used in the project, along with members of the project
+2. each member should have the below details
+memberName, experience, designation
+
+projects.yml
+-------------
+---
+- projectName: bfs
+  duration: 12 months
+	client: american express
+	businessUnit: banking
+	technologies:
+    - java
+		- spring framework
+		- spring boot
+		- microservices
+	members:
+    - memberName: ashok
+		  experience: 5
+			designation: team member
+		- memberName: raju
+		  experience: 3
+			designation: team member
+- projectName: claims processing
+  duration: 9 months
+	client: athena
+	businessUnit: healthcare
+	technologies:
+    - angular
+		- spring framework
+		- boot
+		- microservices
+	members:
+    - memberName: paul
+		  experience: 7
+			designation: team member
+		- memberName: steve
+		  experience: 13
+			designation: team leader
+...
+-----------------------------------------------------------------------------------------------
+Playbook
+playbooks in ansible are written in yaml format in which ansible developers declare ansible modules to achieve the desired system state of the ansible fleet servers
+
+#1. every playbook can contain multiple plays as part of it, representing different automations we want to apply on different group of machines.
+For eg we can define a play in a playbook to install jdk software package on javaserver group and another play to install db2 database on dbserver group machines.				
+We dont have to really write 2 different playbooks to achieve this				
+
+
+
+ping.yml
+---
+- name: play1
+  hosts: group1
+	tasks:
+    - name: taskName
+		  module:
+       arg: value
+			 arg: value
+- name: play2
+  hosts: group2
+	tasks:
+   - name: taskName
+	   module:
+      arg: value
+			arg: value
+...
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

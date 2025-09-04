@@ -1,0 +1,51 @@
+What is a database management system?
+database management system is pre-built software application that takes of storing and accessing the data from the permanent storage device of our computer.
+  
+In the application program we dont have to write the code for storing or accessing the data on the physical storage of our computer, all the complexities in managing and storing the data on underlying storage is abstracted from us by database management system.
+
+So in our programs we need to write the logic for talking to dbms system in order to store or access, thus the application development becomes very easy and fast as well.
+---------------------------------------------------------------------------------------------------------
+There are different types of databases are there
+1. Relational Database Mnaagement Systems
+2. No-Sql or Semi-Structured Database
+3. Object Storage or Un-Structured Database
+
+We are going to use Relational database management system for storing and accessing business data in our application. There are lot of relational database management system softwares are available in the market provided by different vendors, few of the most popular are as below.
+  1. mysql server
+  2. oracle
+  3. db2
+  4. postgress sql
+  5. ms sql server
+  6. mariadb
+  7. sybase
+
+we are going to use mysql server database for our demonstration.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,45 @@
+How to install mysql server on ubuntu?
+#1 sudo apt update -y
+#2 sudo apt install mysql-server-8.0
+with this both server/client tools are installed, but the sql database is not configured for access
+
+#3 sudo mysql_secure_installation
+this will configure the database server for accessing
+
+#4 change the bind-address in /etc/mysql.conf.d/mysqld.conf
+bind-address=0.0.0.0
+making mysql server listen for external traffic
+
+#5 sudo systemctl restart mysql
+
+#6
+connect to mysqlserver and create new user
+sudo mysql -uroot -proot
+create user 'fithealthuser'@'%' identified by 'welcome1';
+grant all privileges on *.* to 'fithealthuser'@'%';
+flush privileges;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

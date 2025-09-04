@@ -1,0 +1,192 @@
+#2 run ubuntu on virtual machine
+use oracle virtualbox software for creating and running virtual machines on our computer.
+What are virtual machines?
+
+In general on a computer system, we can run one single environment only like a windows operating system or Linux operation system etc, but if we want to run multiple different environment isolated from other parallely then we use Virtualization Technology.
+
+To use virtualization technology we need Hypervisor software provider, there are lot of vendors/software companies provides Hypervisor software
+  1. oracle virtualbox
+  2. Microsoft Hyper-V
+  3. VMWare
+  4. Parallels
+
+The most popular and opensource Virtualization Tool available is oracle virtualbox, so we are going to use Oracle Virtualbox for running ubuntu inside our host computer.
+Now download and install oracle virtualbox software, there are 2 parts of it.
+  1.  6.1.20 platform packages (1)
+  2.  6.1.20 Oracle VM VirtualBox Extension Pack (2)
+
+Create a new virtual machine
+  #1 choose ram
+    8 gb ram = 3/4 gb to your ubutnu guest machine
+    4 gb ram = 1.5 gb only (very slow)
+    16 gb ram = 6/8 gb to your ubuntu guest machine
+
+  #2 create harddisk image file of min 15 gb and max 20 gb, preferrably on non c:\ drive
+  
+  #3 start the machine, it ask for bootable image, give ubuntu-20.04.2.0-desktop-amd64.iso from choose option and install the operating system following the Installation wizard.
+------------------------------------------------------------------------------------------------------------
+#3 option of using linux computer is going on cloud (aws)
+
+aws (amazon web service) cloud is provider for infrastructure, we can barrow 
+  - computers (ec2)
+  - network devices
+  - storage and all other physical resources required for us to use.
+    
+ec2 = elastic compute cloud2 = its a virtualmachine computer created for us by aws and allows us to access over the network. From our host computer we need to connect to aws ec2 instance computer with an internet line then only the machine is accessible.
+
+aws cloud offers free-tier services for 1 year, but there are lot of aws services are there all of them will not be provided for you freely, the moment you use, you will billed and auto debit from your bank account happens end of the billing cycle.
+  
+There are only few free-tier services are there for eg..
+  ec2 instance = t2.micro (shape/machine size) = 750 hours free
+  s3 storage bucket = 1 gb
+  Elastic Public ip address is chargeable.
+
+How to create ec2 instance on aws?
+#1 You need to create an aws administrator account, with email address and password. make sure the email address and password is highly confidential (please dont dis-close to any one). 
+
+#2 while you setup an aws account, it ask for debit/credit details and a 1 rupee will deducted to verify your card and they will return the money back in 2/3 days.
+
+goto  
+https://signin.aws.amazon.com.
+Login into aws root account will takes you to aws cloud console page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

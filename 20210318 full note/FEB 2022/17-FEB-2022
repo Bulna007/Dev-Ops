@@ -1,0 +1,116 @@
+Storage domain
+---------------
+1. S3 (simple storage service)
+2. EFS 
+3. EBS
+4. Cloud Front
+5. Glacier
+6. Storage gateway
+7. Snowball
+
+#1. S3 (Simple Storage service)
+S3 stands for simple storage service, which is an object storage database in which we can store objects of data. Here the object refers to anything like an document, pdf, audio, video or image files etc
+S3 is an global service that is accessible to any resource irrespective of the region or vpc we create it under.
+
+In S3 we organize and store the data in buckets, buckets are group/collection objects that can be stored together and manage them easily, every object we want to store inside the S3 should be kept inside a bucket, and each object will be assigned with an id with which the object can be identified and accessed from S3 bucket
+
+By default when we store objects within the S3 bucket, the public access to these objects are blocked. by default block all public access on the objects of the bucket is enabled so that no one can access the objects directly without authentication
+
+The objects can be accessed only by its owner only and none of the other users cannot access the objects of the bucket, (here comes owner should authenticate himself to access the objects within the S3 bucket)
+	
+To enable access to the objects of this bucket to other users or anonymous there are 2 ways of granting permissions
+	1. through policies
+	2. through acl (access control list) (disabled)	
+These can be applied at bucket level or on each individual object also.
+	
+#1. acl (access control list)	
+acl are the old fashioned technic of granting the access to the buckets/objects of the aws S3 storage. we can consider acls as almost deprecated and aws doesnt recommends us to use acls for protecting or managing the access to the objects.
+	
+Through acls we can control the accessibility of the objects of a bucket or specific object and grant permissions like
+bucket   read write = in case of read we can list down objects inside the bucket and write means we can add/create/upload new objects into the bucket
+
+object   read/write = we can read existing object or modify/delete it
+
+Now we can assign these permissions on object/bucket also to 4 different types of users.
+	                              bucket             object
+owner:                          read/write         read/write
+other iam account users:        read               read
+other aws root account users    read               read
+anonymous                       read               read
+
+when the block all public access is enabled, none of the acls or policies configured to the bucket are applicable. To apply the acls or policies we configured for the bucket we need to enable public access. but by enabling public access there is a chance of security breach.
+So we can controllable allow public access to the objects of the bucket by using 4 options under it.
+2 options are for acl and 2 other options are available for policy grants
+	1. Block public access to buckets and objects granted through new access control lists
+	2. Block public access to buckets and objects granted through any access control lists (ACLs)
+	3. Block public access to buckets and objects granted through new public bucket or access point policies
+	4. Block public and cross-account access to buckets and objects through any public bucket or access point policies
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

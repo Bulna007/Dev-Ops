@@ -1,0 +1,185 @@
+What are archetypes?
+archetypes are pre-built project templates provided by the maven developers and 3rd parties also, ew can quickly create maven projects using the archetypes. the archetypes are associated with gav cooridinates, we can search and locate them from maven central repository, download and use them.
+	
+instead we downloading and using them manually we can use archetype plugin provided by maven.
+mvn archetype:generate -DgroupId=<groupid> -DartifactId=<artifactid> -Dversion=<projectversion> -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-(quickstart/webapp) -DarchetypeVersion=1.4
+	
+What are plugins in maven?
+Plugins are java components which contains logic for performing an build activity in maven. For most of the common build activities maven has provided the default plugins and are configured to be executed by default like
+maven-compiler-plugin
+maven-resource-plugin
+maven-war-plugin
+maven-jar-plugin
+maven-sure-fire-plugin
+etc
+
+For default build of an application we dont have to write any plugins or configure them, maven does by default.
+	
+if we want to perform any additional activity in the build process we may have to search for 3rd vendor plugins or write our own plugin and configure the plugin info in pom.xml letting maven to understand and execute.
+	
+The plugins are also published as part of maven central repository and even those also has gav coordinates. how to configure a plugin in pom.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId/>
+	<artifactId/>
+	<version/>
+	<packaging>jar</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId/>
+			<artifactId/>
+			<version/>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId/>
+				<artifactId/>
+				<version/>
+				<!-- additional configuration required -->
+			</plugin>
+		</plugins>
+	</build>
+</project>
+----------------------------------------------------------------------------------------------------Maven buildlifecycle
+Maven real strength is build abstraction which is accomplished through maven build lifecycle. To build an project, we need to execute certain sequence of steps/build activities which are common for every java project.
+	
+These steps that has to be performed commonly for every project are standardized and defined as lifecycle in maven. Each lifecycle has been defined with Phases. Each Phase is associated with Plugins and their gols to be executed.	
+There are 3 maven build lifecyles are there	
+1. default lifecycle
+2. site lifecycle
+3. clean lifecycle
+
+Each of these lifecycles has phases
+#1 default lifecycle has 7 phases
+	1.1 validate = validates whether project is correct or not and all the configuration is available
+	1.2 compile = compiles the source code			
+	1.3 test = execute test cases
+	1.4 package = package the application in jar/war/ear
+	1.5 verify = run checks on the results to like (integration test-cases) to verify project is meeting quality criteria or not
+	1.6 install = installs the project into local maven repository
+	1.7 deploy = copies the final package into remote repository for sharing the artifact with other people in the team or organization
+
+Each phase is associated with plugins and their goals so when we ask maven to perform a build by specifying the phase of the lifecycle it executes all the phases from top to bottom order and executes each plugin associated to that phase to perform build process.
+		
+1. validate
+		|-validate plugin
+2. compile
+		|-compiler plugin
+		|-resource plugin
+3. test
+		|-surefire-plugin
+4. package
+		|-jar-plugin/war-plugin/ear-plugin
+5. verify
+		|-verify plugin
+6. install
+		|-install plugin
+7. deploy
+		|-deploy plugin
+		
+#2 site lifecycle
+only 1 phase
+site phase
+|-site plugin
+used for generating documentation for a project
+
+#3 clean lifecycle
+1 phase = clean phase
+|-1 plugin = clean plugin
+removes target directory of our project
+clean lifecycle
+|-clean phase
+	|-clean plugin
+	
+mvn clean package site
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

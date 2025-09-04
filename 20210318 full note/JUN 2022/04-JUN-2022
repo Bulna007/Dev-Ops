@@ -1,0 +1,124 @@
+Service
+
+Service is used for networking the pods that are running on the kubernetes cluster. by default the pods created within the cluster are not accessible to the other pods on the cluster. To make a pod exposed to the other pods or external network we need to use Service
+
+There are 5 types of services are supported by Kubernetes
+1. ClusterIP
+2. Headless
+3. NodePort
+4. Load Balancer
+5. Ingress
+
+1. ClusterIP
+The ClusterIP service is the default service in the kubernetes cluster. if we create a service without specifying a type, by default kubernetes creates it as an cluster ip service.
+It is used for making the pods accessing within the cluster. The ClusterIp service is not meant for exposing the pods to the external network
+
+2. NodePort
+------------------------------------------------------------------------------------------
+ibanking-pod.yaml
+------------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: ibanking-pod
+	labels:
+		app: ibanking
+		version: "1.0"
+spec
+	container
+		- name: ibankingcontainer
+			image: techsriman/ibanking:2.0
+			ports:
+				- name: ibankingport
+					containerPort: 8080
+					protocol: TCP
+
+
+ibanking-service.yaml
+apiVersion: v1
+kind: Service
+ClusterIP: none
+metadata:
+	name: ibankingservice
+spec:
+	selector:
+		matchLabels:
+			app: ibanking
+			version: "1.0"
+	port:
+		protocol: TCP
+		port: 8081
+		targetPort: 8080
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

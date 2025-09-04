@@ -1,0 +1,111 @@
+Why do we need to use Containerization technology, what are the advantages of it?
+There are 2 main reasons why we use containerization technology
+1. through containerization technology we abstract the delivery of an software application.  The developer upon building the software application, he package the sofware application with corresponding libraries and instructions to run it in containerized image and delivers it. 
+The devops engineer or qa or enduser irrespective of the technology application is build, they can quickly run the software application out of the containerized image we delivered.
+So using the containerization technology we standarized the workflow of deliverying and running an sofware applications
+as the container images are light weight we can achieve ci/cd easily
+
+2. The containers are light weight and are packaged with only bins/libs, so with low utilization resources we can run the containers on a machine 
+------------------------------------------------------------------------------------------
+There are lot of containerization technology supported tools are there in the market like.
+	1. docker
+	2. redhat openshift
+	3. mesosphere
+	4. Microsoft Container
+
+out of the above the most popular is "docker".
+	
+docker = is a word that is derived from dock-worker, dock worker is a job of a person who loads containers and unloads the containers in a ship, from where it has been named  as "docker".
+	
+docker is a tool through which we can implement containerization technology where we can package software applications into docker images and ship them. people can run applications packaged in docker isolated from other as containers.
+	
+docker workflow:
+develop -> package ->ship
+develop -> build -> package -> release
+------------------------------------------------------------------------------------------
+How does the containers are kept isolated from each other and are running on the same machine?
+To make these containers work on the same machine isolated from each other there are lot of enhancements and features to be added as part of the linux operating system. To make the containerization work, there are many software gaints especially the Google LLC has contributed greatly in required features to the linux operating system to make these containers run isolated from each other.
+	
+#1 Linux namespaces
+The docker containers works on the concept of linux namespaces to isolate one container from another. The docker container will be executed within the namespace and limited to access the resources allocated to the namespace only, through which we can run multiple containers isolated from each other.
+	
+Docker uses the below namespaces of the linux to run containers isolated
+1. pid = runs the container in a separate process namespace
+2. net = network namespace managing the network interfaces
+3. ipc = inter-process communication namespace
+4. mnt = filesystem mounts
+5. uts = unix timesharing
+
+#2. Control Groups (cgroups)
+docker engine uses cgroups of the linux operating system in sharing the physical resources of the computer and limiting their usage by the containers
+
+#3. Union FileSystem
+docker container images are packaged and assembled based on union filesystem technic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

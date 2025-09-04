@@ -1,0 +1,366 @@
+Working with variables in Ansible
+---------------------------------
+
+Variables are the placeholders in which we can store the data, so that instead of using the literals we can refer variables in accessing the values which improves the readability and maintainability of the application.
+	
+In general while working on programming languages we use variables to hold the literal values using which we can build application logic, but why in ansible we need variables?
+	
+In ansible we use configuration information to configure the software packages of the fleet server, these configuration values we use will change from environment to environment or application to application, each time when there is a change we need to modify the playbook to perform automation with modified configuration values.
+Instead of this we can build the playbook around the variables to perform automation we can change or pass quickly the values for variables in performing the automation with different configuration values, so variables will help us in achieving automation through clean maintainance 
+
+There are 7 different types of variables supported by Ansible
+1. ansible variables
+2. inventory variables
+3. playbook variables
+4. var_files 
+5. vars from command-line
+6. register variables
+7. gather_facts, magic variables of ansible
+
+#1. Ansible Variables
+----------------------
+All the global settings of the ansible control node is stored at /etc/ansible/ansible.cfg with their default values, if we want to change the behaviour of the ansible control node we can always can go and modify the values for settings defined in configuraiton file.
+	
+For eg.. the default inventory file location where ansible will looks for while executing an module/playbook is /etc/ansible/hosts which is defined in /etc/ansible/ansible.cfg as a property called
+inventoryFile=/etc/ansible/hosts
+if we want to change the default inventory file it looks for modify the ansible.cfg file property value.
+similary the default ssh port over which the control node connects to the fleet is defined by a property remote_port=22. if our fleet servers are configured on a different port than the default we can modify the remote_port property in ansible.cfg instructing the control node to connect on different port as well
+
+When we modify any of the global properties defined in ansible.cfg, it effects the entire ansible cluster. In addition to the global properties, the ansible has defined build-in variables or ansible variables using which can be used for overriding few of the global properties of ansible.cfg, while applying an playbook automation
+
+There are lot of ansible pre-defined variables are available as below
+1. ansible_connection
+the possible values of ansible_connection is local/ssh, and the default value if not defined is ssh. if we are running the playbook/module on the local system on which control node is installed then we need to specify the ansible_connection=local to let the control node execute playbook directly without over an ssh connection
+
+2. ansible_ssh_port
+the ssh port using which it connects to the fleet server
+
+3. ansible_user
+by default ansible executes the playbook on the remote host based on ssh user, if we want the ansible control node to execute the module/playbook onbehalf of a different user other than ssh user the configure ansible_user
+
+4. ansible_private_ssh_key_file
+by default ansible looks for the key file under ~/.ssh/id_rsa|.pub. if we have saved an ssh keyfile with a different name/location we need specify the key file to be used using this property
+
+5. ansible_host
+we can define an alias name for each host and specify the ip address of the machine using ansible_host in inventory
+javaserver1 ansible_host=192.168.10.12
+	(alias)          (ip)(hostname)
+	
+6. ansible_ssh_password
+ssh password can be configured in case if we want password based authentication in connect to the fleet servers
+
+Instead of modifying the global settings to change the behaviour of control node we can configure these ansible variables as well.
+The ansible variables can be configured at 2 different levels in ansible inventory file
+1. host variables
+2. group variables
+
+#1. host variables
+we can define variables at the host declaration level in inventory file which are used only during the executing an module or a playbook on that host
+
+hosts
+-------
+java_server1 ansible_host=192.168.10.12
+by default when we configure an host in inventory file, the first entry would be consider as ip/host to connect, but to let the ansible understand it as an alias name and define the host/ip address for that we use ansible_host variable beside the host declaration
+
+hosts:
+java_server1 ansible_host=192.168.10.12 ansible_port=23 ansible_connection=ssh
+db_server1 ansible_host=192.168.10.13	ansible_port=25 ansible_connection=local
+
+(or)
+192.168.10.12 ansible_port=24 ansible_connection=ssh
+192.168.10.13 ansible_port=25 ansible_connection=ssh
+
+hosts.yml
+all:
+  hosts:
+    192:168.10.12:
+			ansible_port: 23
+			ansible_connection: local
+		192.168.10.13:
+			ansible_port: 24
+			ansible_connection: local
+
+#2 we can attach the ansible variables even at group level also in case if we want to apply to a group of machines as shown below
+
+hosts
+------
+javaserver1 ansible_port=23 ansible_ssh_private_key_file=~/.ssh/javaserver.pub
+javaserver2 ansible_port=23 ansible_ssh_private_key_file=~/.ssh/javaserver.pub
+dbserver1 ansible_port=24
+dbserver2 ansible_port=24
+	
+in the above inventory file for a group of machines the variable values are same, if we define ansible variables for individual host then the values are getting duplicated due to which we need to spend more time in writing the inventory file and maintainability becomes difficult
+
+instead we can define group level variables
+hosts
+------
+[javaserver]
+192.168.10.12
+192.168.10.13
+	
+[dbserver]	
+192.168.10.14
+192.168.10.15
+	
+[javaserver:vars]	
+ansible_ssh_port=23
+ansible_ssh_private_key_file=~/.ssh/javaserver.pub
+
+[dbserver:vars]
+ansible_ssh_port=24
+	
+user-defined variables
+-----------------------
+In addition to the ansible variables (whose purpose is to change behaviour of control node in connecting to fleet while executing module/playbook), the developer can also declare or define their own variables, which can passed as input to the playbook executions to perform automation
+
+For eg.. while installating an mysql server database we want to add an user to the database which can be done using mysql_user module.
+The mysql_user modules takes username, passowrd, and privileges with which user should be added, if we hardcode these inputs/parameters of the module in playbook shown below, if we want to change the any of these input values like dbusername, password or privileges again we need to modify the playbook instead of it, we can define them as part of variables and use variables instead of values in module parameters.	
+	
+mysql-server-install-playbook.yml
+- name: install mysqlserver
+  apt:
+		name: mysql-server-8.0
+		update_cache: true
+		state: present	
+	become: yes
+- name: create mysql db user
+  mysql_user:
+		name: airtelcare
+		priv: "*.*:ALL"
+		hosts_all: yes
+		login_password: "welcome1"
+		state: present
+		
+we can define user defined variables at host level or group level in an inventory file similar to ansible variables
+[javaserver]
+javaserver1 ansible_host=192.168.10.12 tomcat_port=8081
+[dbserver]			
+192.168.10.13 ansible_ssh_port=24 mysql_db_user=appuser mysql_db_user_password=welcome1
+
+to differentiate the ansible variables from user-defined variables the ansible named all of its variables to start with "ansible_". in the above inventory file we defined host level variables and attached both ansible variables also and user-defined variables as well
+ansible control node uses these variables while connecting and executing and user-defined variables will be used inside the playbook by the developer in passing the values to the modules.
+	
+How to access the variables values inside the playbook?
+we need to use "{{variableName}}"	 notation in referring the variable value inside playbook
+- name: create mysql db user
+  mysql_user:
+		name: "{{mysql_db_user}}"
+		priv: "*.*:ALL"
+		hosts_all: yes
+		login_password: "{{mysql_db_user_password}}"
+		state: present
+----------------------------------------------------------------------------------------------	
+How to connect to the fleet server onbehalf of a different ssh user?	
+---------------------------------------------------------------------	
+controlnode
+#1 vagrant user
+1.1 generated ssh key pair using ssh-keygen
+1.2 to connect as vagrant user to the managed node copy public key to managed server authorized_keys
+now verify in control node under vagrant user are you able to connect to fleet server via ssh command
+vagrant@ubuntu: ssh -i ~/.ssh/id_rsa vagrant@ipaddress
+
+#2 now we are logged in to the control node as ansible user, so by default control node uses ansible user and ansible ssh keys to connect to fleet
+if we want to connect to the remote host as vagrant user with vagrant ssh keys then?
+2.1 copy vagrant pub/private key into ansible/.ssh directory
+2.2 chown to ansible user 
+-rw------- 1 ansible ansible 2610 Jan 13 03:28 vagrant_id_rsa
+-rw-r--r-- 1 ansible ansible  574 Jan 13 03:28 vagrant_id_rsa.pub
+
+now in hosts file we need to configure fr that host as below
+hosts
+------
+192.168.10.12 ansible_user=vagrant ansible_private_key_file=~/.ssh/vagrant_id_rsa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

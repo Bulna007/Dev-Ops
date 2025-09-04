@@ -1,0 +1,97 @@
+What is docker architecture?
+There are 3 parts in docker architecture
+1. docker engine
+docker engine is the main component that takes care of running docker containers from an docker image
+
+There are 3 main components are there within the docker engine
+	1.1 docker daemon
+	1.2 containerd
+	1.3 runc
+
+2. docker cli 
+docker cli stands for docker command-line interface, which is provided as part of the docker install. which has handful commands that allows the users to communicate with docker engine in managing images/containers
+
+3. docker container registry
+docker container registry is a repository where docker images are published and distributed across the environments/world
+The docker has provided a "http://hub.docker.com" docker registry in which people around the world build their own docker images publishes and distributes to the world
+
+
+oci specification
+------------------
+open container initiative specification
+
+it has standardized the 
+#1 oci images = standardized the way images has to be build
+#2 oci runtime = standardized the way containers are spawned and managed on the underlying operating system
+
+#1.1 docker daemon
+docker daemon is an http endpoints through which the docker engine is exposed to the users. the users can interact with the docker engine by using docker cli, so that the cli will sends the commands over the network using http protocol and communicate with docker daemon
+The docker daemon based on instruction received will ask containerd to perform appropriate operation
+	
+#1.2 containerd
+containerd = is a component build by docker team, which takes care of building images, pulling images from container registry, convert docker images into oci image format and passes it as an input to the runc for running a docker container
+
+#1.3 runc = is an low-level component that interacts with the underlying operating system of our computer in creating/destroying/managing the containers based on the oci image specification
+------------------------------------------------------------------------------------------
+What are the docker objects?
+There are 2 docker objects are there
+1. docker images
+2. docker containers
+
+#1. docker image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

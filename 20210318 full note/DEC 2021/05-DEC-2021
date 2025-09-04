@@ -1,0 +1,108 @@
+Artifactory Repository
+Artifactory repositories are used for distributing the artifacts through various stages of develop to delivery in facilitating the ci/cd process
+
+There are many 3rd party vendors providing artifactory softwares, few are commercial and others are opensource like
+1. nexus repository (commercial)
+2. jfrog platform (commercial)	
+	
+jfrog platform
+JFrog platform is a full suite comes with rich set of features as below.
+	1. dependency management through different types of repositories (jar/war/ear)
+	2. container registry for distributing container images (docker images)
+	3. release management pipelines
+	4. security scanner
+	5. distribution
+	
+different organizations requires different tool set based on their application nature and release process, jfrog even offers the above tools individually also
+
+jfrog artifactory (commercial)
+used for publishing the application build artifacts (maven, gradle), along with jfrog artifactory they provide community edition of artifactory jfrog artifactory oss where in it supports proxying few central servers (jcentral, maven central, bitnary)	
+	
+jfrog container registry (opensource)	
+- container images of the organization can be distributed locally across
+
+
+How to work with JFrog Artifactory (OSS)
+The JFrog artifact supports 3 types of repositories 
+1. Local Repository = publishing the build artifacts of a project locally, so that it can be distributed across the teams or through different stages of ci/cd pipeline
+
+2. Remote Repository = These are used for proxying the central repositories
+		- which central repositories should be proxied
+		- what stages of artiacts (snapshots, alpha, beta, rc, release)
+		- inclusion
+		- exclusion
+		
+3. Virtual Repository = combination of both local and remote repository, so that we we are doing a maven build the virtual repository redirects to remote repostiory for pulling the dependencies/artifacts and when publish the artifacts it talks to local repository.
+	
+A dependency or an artifact can be in 4 stages
+1. snapshot
+2. alpha/beta
+3. rc (release candiate)
+4. release
+
+To publish and distribute artifacts at different stages of our development and release process we create 2 types repositories
+- snapshot repositories
+	- snapshot
+	- alpha
+	- beta
+	- rc
+	are published to snapshot repositories
+	
+- release repositories
+	- finally released artifacts are published into release repositories using label (release)
+		
+jfrog artifactory oss
+- artifactory repositories
+	- snap repository
+	- release repository
+	---------------------------- local repository
+	                             remote repository
+															 virtual repository
+- plugin repositories
+	-snap repository
+	-release repository
+	---------------------------- local repository
+	                             remote repository
+															 virtual repository
+	
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

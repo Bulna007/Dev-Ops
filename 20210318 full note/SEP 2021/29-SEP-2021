@@ -1,0 +1,69 @@
+How to host a static website using httpd apache2 server?
+
+#1 we need a server machine. 
+  if it is a virtual machine, we need to configure networking mode as NAT + Port Forwarding
+
+#2. Install apache2 server
+sudo apt update
+sudo apt install -y apache2
+
+during the installation of the apache2 it will be registered as systemd service automatically.
+The default location the apache2 server will be installed on ubuntu
+/etc/apache2
+|-sites-available
+|-sites-enabled
+|-conf
+
+#3. copy the static website root into server machine
+The standard directory we place the webroot of the application is /var/www.
+/var/www
+|-ninestars
+|-groovin
+
+both the projects are delivered by developers through git repository, so we need to clone both the repositories. 
+    git clone -b master gitRepoUrl
+    
+#4. change the permission of the website root and child directory files to 755
+#5. create virtual host configuration file under /etc/apache2/sites-available to map the domainname of the server to the DocumentRoot directory of the website.
+as we have 2 domains name we need to write 2 virtual host configuration files
+/etc/apache2/sites-available
+|-ninestars.conf
+|-groovin.conf
+
+http://ninestars/index.html
+
+ninestars.conf
+---------------
+<VirtualHost *:80>
+  ServerName ninestar
+  DocumentRoot /var/www/ninestars
+</VirtualHost>
+    
+    
+groovin.conf
+------------
+<VirtualHost *:80>
+  ServerName groovin
+  DocumentRoot /var/www/groovin
+</VirtualHost>
+
+#6. we need to enable both the virtual hosts configurations
+sudo a2ensite ninestar
+sudo a2ensite groovin
+
+#7 sudo systemctl reload apache2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,295 @@
+touch filename
+
+echo "message"
+echo "data" > filename
+
+cat > filename  
+cat = take user input from keyboard and print onto console
+
+cd directoryName
+cd ~ (or) cd = home directory
+cd - = goback to previous directory where i navigate from
+cd .. = goto parent directory
+
+pwd = print working directory
+
+mkdir directoryName/
+mkdir -p dir1/dir2 = create directory along with path
+
+ls
+ls -l
+ls -a
+
+rmdir directoryName/ = directory should be empty
+rm filename
+rm -r directoryName = recursively remove directory and sub-directories inside it
+
+cp filename directoryName/
+cp -r dir1/ dir2/
+  
+mv file1 newFileName
+mv dir1 newDirectoryName
+
+mv filename existingDirectoryName/
+mv dirName existingDirectoryName/
+---------------------------------------------------------------------------------------------------------
+We can identify the type of a file based on extension of the file (.xxx). in linux filetype is not identified through extension, which means fileextension is optional.
+Linux will identify the type of the file based on the contents of the File rather than through extension.
+
+But from user perspective he dont know what type of file it is since there is no extension. so how to find the type of the file in linux.
+  
+file filename = displays the contents or type of the file.
+file poller.sh 
+poller.sh: Bourne-Again shell script, ASCII text executable
+
+To see the statistic information associated to a file we can use 
+stat filename
+
+displays underlying storage information about the file along with user, modified time etc.
+---------------------------------------------------------------------------------------------------------
+Regular expressions in Shell Commands?
+
+* = matches any no of characters
+? = matches only one character
+[] = we can give range of values for a single character
+
+Range of inputs on which the command should be executed
+{} = execute the command with the specified input range of values
+
+touch a1
+touch a2
+touch a3
+touch a4
+touch a10
+
+touch a1 a2 a3 a4 a5 a6 a7 a8 a9 a10
+touch a{1..10}.txt
+--------------------------------------------------------------------------------------------------------
+tr = is used for deleting or replacing or transformation a give input string
+deleting or replacing works only on single character
+transformation is applied for the whole string
+
+pipe operator (|) used for passing one command output to another command as input
+
+Transformation
+---------------
+echo "Good Morning" | tr "[:lower:]" "[:upper:]"
+echo "Good Morning" | tr "[a-z]" "[A-Z]"
+echo "Good Morning" | tr "[:space:]" -
+  
+Replace
+--------
+echo "Good Morning" | tr G X 
+
+Delete
+echo "Good Morning" | tr -d o
+-------------------------------------------------------------------------------------------------------
+If the file is very big we cannot see the whole contents of file rather we would want to only top few lines or bottom few lines of the file, so we can use head/tail
+
+head filename = top 10 lines
+head -n filename = display -n lines we given
+
+tail filename = last 10 lines of the file
+tail -n filename = display n lines from bottom of the file
+
+tail -f filename = for live files generating data, we can monitor flow along with file using -f
+-f = show me the inflow of the file without stopping
+
+
+I want to see the file through scrolling its contents
+cat filename | more
+---------------------------------------------------------------------------------------------------------
+wc = counting the number of words in the given text
+wc -l = lines
+wc -c = characters
+wc -w = words
+
+cat history.txt | wc -l
+cat history.txt | wc -c
+cat history.txt | wc -w
+
+-------------------------------------------------------------------------------------------------------
+grep
+find
+cmp
+diff
+pipes and redirectors
+
+vi
+nano
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

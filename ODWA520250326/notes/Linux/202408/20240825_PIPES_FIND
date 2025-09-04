@@ -1,0 +1,165 @@
+1. wc  = word count
+2. man = manual pages
+3. /etc/passwd = list of user accounts of the linux system
+4. whoami = current logged-in user
+5. who = all the users currently logged-in to the system
+6. hostname (or) hostname -I = to know the name of the machine and its ip address
+7. os version & name
+	1. uname -r
+	2. lsb_release -a
+	3. cat /etc/os-release
+	4. hostnamectl
+8. echo $0 = shell we are currently using
+--------------------------------------------------------------------------------------------------------------------------
+Working with Pipe operators (Pipes)
+-----------------------------------
+Pipe(|)	
+
+< & > = redirector operators. These are used for redirecting the output/input of an linux command from an different source or different destination other than STDIN and STDOUT respectively.
+
+pipe is indicated by the symbol | is used for passing the output of an linux command as an input to another linux command. 
+command1 | command2
+
+when we join #2 commands with a pipe operator, always the command execution starts with left-most command (here command1), the output that is produced by the command1 will be passed as an input to the command2, performs operation and generates the output onto an STDOUT destination
+
+In this way we can combine any number of commands together by using | operator
+command1 | command2 | command3 | command4 ......
+	
+pipes is the most powerful feature of the linux bash interpreter, where we can recreate infinite number of linux command by joining the the commands using | operator.
+	
+	
+1. How many users are currently logged-in into the Linux system?
+who | wc -l
+
+here the who returns list of logged-in users that is passed as an input to the wc asking him to count the number lines that are there within the output of who
+
+2. how many user accounts are there within the linux system?
+cat /etc/passwd | wc -l
+
+3. How to see only the top 5 files/directories within the given directory?
+ls -l | head -5	
+	
+4. How to retrieve top 3 ranks within the given file?
+rank
+-----
+10
+20
+97
+94
+93
+100
+38
+92
+
+cat rank | sort -gr | head -3
+1. cat = output the contents of the rank file 
+2. sort = takes the output of the cat command as an input, does a nuemaric sort (-g) and writes the output in reverse order (-r) 
+3. head takes the output of sort as an input and displays only top 3 lines
+
+5. Find the count of words within the 1st line of a File
+story
+------
+Have you sailed to the island of Bum Bum Ba Loo?
+It’s something that all great explorers must do
+Ten years ago, I set off with my crew
+In search of the island of Bum Bum Ba Loo
+The waves on the sea made me wish that I flew
+To get to that island of Bum Bum Ba Loo
+
+head -1 story |wc -w
+
+6. Sort and List the Files and Directories based on the Size of the Files?
+ls -l = shows all the files and folders within the current directory along with their size
+sort -g = nuemaric sort -k based on specific column within the input
+
+ls -l | sort -gk 5
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

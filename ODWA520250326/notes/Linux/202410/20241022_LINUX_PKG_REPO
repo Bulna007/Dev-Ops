@@ -1,0 +1,374 @@
+How many ways of distributing the software packages are there?
+There are 3 ways the software packages are distributed aspart of the linux operating system
+1. packaged software through repository based distribution
+2. directly-downlodable packaged software distribution
+3. binary distribution
+
+1. packaged software through repository based distribution
+package repositories are published with software packages from various different sources
+1. distro vendors 
+2. third-party vendors or opensource software contributors
+3. individual or small-scale commercial software vendors
+
+
+In addition these repositories can be classified into #2 types
+1. distro repositories
+2. third-party vendor repositories
+
+as there are many different sources and types of software packages being published into the repository like
+1. distro packages  = trusted / certified by the distro vendor itself
+2. opensource software contributor published an software package = no guarantee
+3. third-party commercial software vendor published an software package = restricted usage
+since all of these packages are published into same repository, differentiating and identifying them is difficult. So to help us in identifying and differentiating these packages inthe repository, categories in package repositories are introduced.
+	
+There are #4 categories are there in package repositories
+1. main          
+canonical or opensource software packages that are verified by the distro vendor are published under main category
+
+2. universe
+community maintained software packages are distributed as universe category
+
+3. restricted
+proprietary vendor software packages like device drivers etc are distributed under restricted category
+
+4. multiverse
+licensed / legal restricted software packaged are distributed under multiverse category
+-------------------------------------------------------------------------------------------------------------------------
+How to install the software packages on ubuntu operating system?
+Ubuntu has provided #2 tools for installing the software packages
+1. apt
+apt stands for "advanced packaging tool", it is an package manager that helps us in browsing, searching, downloading, installing and upgrading the software packages from the ubuntu repository. 
+The api not only downloads and install the software packages, along with that it identifies the dependent software packages, downloads and install them automatically.
+	
+
+2. dpkg
+dpkg stands for "debain packaging tool" and it is an installer. unlike apt, the dpkg will not download the software package from the repository and it will not resolve the dependencies or downloads and installs the dpeendent software libraries or packages.
+	
+so if we have downloaded an software package (.deb) locally on our computer, then we can quickly install it using dpkg
+--------------------------------------------------------------------------------------------------------------------------
+How to install a software package using apt tool?
+apt is an package manager tool, that helps us in downloading, browsing, installing, and upgrading the software packages from ubuntu repository onto an ubuntu operating system machine.
+	
+#1.
+How does the apt tool knows the location or information about the software package repositories it has to talk to, so that it can connect, browse, search and download the software packages from?
+	
+The information about the software package repositories are stored in the linux operating system under /etc/apt/sources.list file. If we want we can add our own repository by adding an entry in the /etc/apt/sources.list file 
+(or)
+there is a directory /etc/apt/sources.d.list which is similar to "sudoers.d directory". In this directory we can create one file per one repository we want to register. In that file we can add the information/address of the repository along with gpg keys 
+
+By adding a new file per repository under /etc/apt/sources.d.list directory it makes us easily manage the repositories. We can quickly add, remove  repositories individually than modifying the sources.list file
+
+
+The syntax of adding a new repository information into the sources.list or sources.list.d directory is as below.
+deb repositoryURL version category
+for eg..
+	
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ jammy main universe
+
+
+How to add the repository information into the sources.list file?
+There are #2 ways we can add repository information into the sources.list file
+1. manually add the repository into /etc/apt/sources.list file or create a new file with repository entry under /etc/apt/sources.list.d/ directory
+2. the ubuntu/debain has provided an utility or tool "apt-add-repository" 
+	
+1. manually add the repository information into /etc/apt/sources.list
+we can use any text editor of our choice like vim or nano for adding an repository into /etc/apt/sources.list by following the syntax format explained above. We should be careful in editing the file, otherwise will results in corrupted state
+
+2. use apt-add-repository tool
+instead of modifying the /etc/apt/sources.list file manually that could results in syntactic errors, the ubuntu has provided easy tool called "apt-add-repository". it takes repositoryURL as input and adds the entries into sources.list file automatically
+
+Securing repository communication
+----------------------------------
+To ensure all the communication that takes place between the ubuntu operating system package manager tool and repository being secured the end-to-end encryption needs to takes place, for this ubuntu uses gpg keys
+
+gpg keys (GNU privacy guard) an implementation of public key cryptography (standard operations for encryption keys)
+	
+every repository vendor provides an public singing keys that should be used for communicating with that repository. Before communicating with an repository we need to download and add the gpg keys into the repository store of the operating system, so that pat tools uses these gpg keys in communicating with repository securely
+
+
+1. How to download the gpg key from a vendor?
+wget gpgKeyURL
+this will download the gpg key and store it as a keyfile on our local machine
+
+2. How to add the key into the keystore of the operating system?
+sudo apt-key add keyfile (deprecated)
+
+upon adding the key to the keystore, we can add the repository into the /etc/apt/sources.list file using apt-add-repository tool
+
+Then before using apt tool for browsing, installing/upgrading the software packages we need to run
+sudo apt update (command)
+	
+to download the repositories indexes and caches them locally onto the operating system.
+--------------------------------------------------------------------------------------------------------------------------
+How to add google linux apt repository?
+1. download and add the gpg key into the keystore
+
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+
+
+2. 
+2.1 
+sudo apt-add-repository http://dl.google.com/linux/chrome/deb/
+
+or
+
+2.2
+sudo vim /etc/apt/sources.list
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ jammy main
+
+or
+
+2.3
+sudo echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ jammy main" >> /etc/apt/sources.list
+
+To verify the apt google repository is added or not just run
+sudo apt update -y 
+
+this should cache the google repository index along with default distro repositories
+--------------------------------------------------------------------------------------------------------------------------
+In newer versions of ubuntu, the gpg keys should be installed as below.
+
+#1 install the necessary utilities for downloading and installing gpg keys
+sudo apt install wget gpg
+
+wget = downloading the file from remote server
+gpg = utility to convert the .asc into binary gpg format
+
+#2. download the key onto the local filesystem
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+
+#3. install the gpg key into keyrings directory
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+
+#4. add the repository info into /etc/apt/sources.list or /etc/apt/sources.list.d/ directory as below
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+
+#5 remove the locally downloaded key file for install
+rm packages.microsoft.gpg
+-------------------------------------------------------------------------------------------------------------------------------------
+How to use apt tool for installing, searching, browsing, upgrading, uninstalling the software packages on the ubuntu machine?
+There are bunch of commands provided aspart of the apt tool for performing software package management as below:
+
+1. sudo apt update -y 
+updates the local repository cache with new entries from the remote repository (refreshes the repository cache index)
+
+2. sudo apt install packageName 
+to install a specified software package onto the machine we use apt install, it ask confirmation before installing. If you want an non-interactive installation we need to use -y option
+
+3. sudo apt upgrade
+it checks for the newer version of installed software packages on the machine. if there are available then upgrades all of them to the latest versions available
+
+4. sudo apt search packageName
+we can search for specific software package using apt search
+	
+5. sudo apt list --upgradable
+shows the list of software packages for which the latest verions are available to upgraded 
+
+6. sudo apt upgrade packageName
+will upgrade the specified package to the latest available
+	
+7. sudo apt remove packageName
+will uninstall the software package from the machine.  The remove will not cleans up any configuration files associated with that software package during un-installation
+	
+8. sudo apt purge packageName
+is same as apt remove, along with uninstalling the software package, it cleans up the configuration files associated withit
+
+9. sudo apt autoremove 
+if there are any unused software packages or libraries exists on the machine will be identified and removed automatically
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

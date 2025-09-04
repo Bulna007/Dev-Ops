@@ -1,0 +1,143 @@
+parser directives
+-----------------
+parser directives are special instructions written as part of Dockerfile, will be interpreted by the docker engine specially, these directives looks comments only but has special meaning attached
+There are 2 parser directives are there
+1. SYNTAX
+importing other Dockerfile directives into our Dockerfile while building the image. We can add new frontends/new directives in enhancing the build features 
+# syntax docker/Dockerfile:experiment
+
+2. ESCAPE
+assigning a different escape character than the regular "\" to ensure it works across all the platforms
+# escape=`
+
+by default parser directives will not be interpreted by the docker engine we need to use new backend called "buildkit". how to use buildkit backend?
+export DOCKER_BUILDKIT=1
+-----------------------------------------------------------------------------------------
+#1. FROM baseImage
+always while building an docker image of our own we need to extend our image from one of the base images so that the underlying libraries/binaries required for communicating with docker engine will be available into our image
+FROM is an directive through which we tell docker engine to extend our image on top of base image
+
+syntax:-
+FROM --platform=platformName image:tag
+here platform is optional to be used
+
+FROM --platform=linux/arm64 ubuntu:20.04
+if we dont specify the platform in FROM it takes the platform based on the environment on which we are building the image
+
+The provider/author who publishes the base images might have backed to work on multiple platforms like windows/amd64 and linux/amd64. for both the images the name of the image will be same, he differentiates these images by binding platform while publishing images into docker registry
+
+So, while pulling the image from docker container registry, the containerd will identifies the host machine platform on which we are creating the container or pulling the image based on that it appropriately pulls the right platform image from the registry
+
+if we want a specific platform image to be used irrespective of host, then we can pass --platform flag
+
+FROM [--platform=platform] image:tag
+
+note:-
+always an Dockerfile must and should be started with the begining line as FROM only and can have optionally parser directives (in exceptional case)	
+------------------------------------------------------------------------------------------
+#2. ENV
+ENV is a directive used for defining environment variables to be passed while building the image, so that those variables are available while executing the container.
+	
+For eg during the time of backing the image we might install some software packages like
+jdk, tomcat or maven etc
+unless we configure PATH environment variable pointing to the directory locations of these softwares, we cannot run them directly
+
+So ENV is a directive through which we define static environment variables to be included as part of the image during build
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ENV JAVA_HOME=/u01/middleware/openjdk-11-jdk
+ENV TOMCAT_HOME=/u01/middleware/apache-tomcat-9.50.1
+
+in the above docker file we are defining 2 environment variables with default values assigned. instead of hardcoding the ENV variables in the Dockerfile we can pass them as an input while building the docker image
+
+docker image build -t image:tag --env-file=variables.env
+
+variables.env
+---------------
+JAVA_HOME=/u01/middleware/openjdk-11-jdk
+TOMCAT_HOME=/u01/middleware/apache-tomcat-9.50.1
+------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

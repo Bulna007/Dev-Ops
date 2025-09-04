@@ -1,0 +1,275 @@
+What is hosting an application?
+Process through which we make an application accessible to the world is called "Hosting"
+	
+How to host an application?
+There are multiple options are available in hosting an application
+1. In-House or On-Premise hosting
+In our own infrastructure we are going to execute/expose the applications to the public world.
+dis-advantage:-
+	1. The investment cost in setting up the infrastructure is quite high
+	2. The ongoing maintainance cost of running the application on the in-house infrastructure is very high as we need
+		2.1 24x7 backup
+		2.2 physical real-estate cost of buildings
+		2.3 network devices and maintainance
+		2.4 administrators, network administrators and support engineers to monitor and maintain
+		
+in-house hosting environments are only suitable for enterprise large organizations which does the business at a large-scale only. 
+
+2. Hosting providers
+The Hosting providers takes care of procuring the infrastructure and setting up the environment by themself. they provide shared hosting spaces to the customers/people around the world who requires an environment for hosting their applications.
+	
+as same physical/computing resources of the computer are shared across many people by providing isolated environments, the cost factor will greatly comes down for hosting an application
+
+dis-advantage:-
+	1. limited computing capacity environments only
+	2. not suitable for running enterprise applications
+	3. no security
+	4. cannot setup a private group of computers for dedicated usage of running the applications
+
+3. Datacenters
+There are people who preprocure and setup the infrastructure and networking in providing the infra/computing the services to the world which are called datacenters.
+		
+These are located in huge buildings setup with thousands of computers over the network and are made readily available for usage.
+	
+The main difference between hosting providers and datacenters is the data centers provides the dedicated machines to the clients rather than providing shared hosting spaces.
+	
+The machine allocated is private to the client/customer who is using and has a complete freedom of what he wanted to install/run on it.
+	
+These datacenters provides bare metal machines installed only with operating system software only and the client is responsible for installing their own licensed software for running their application.
+	
+	advantages:-
+		1. dedicated server, so no security concerns
+		2. huge computing capacity so that we can run enterprise large applications as well
+		3. not limited by technology, since we can install our own software packages and can upgrade any time
+		4. can built-up an private network of computers so that we can scale the applications easily
+		5. no worries on maintainance of infrastructure as it is taken care by datacenter
+		6. since administrating and networking the computers are taken care by the datacenter itself we only just need an support engineer who manages the deployment and monitoring aspects of the application thus further lowers the maintainance cost of running the application
+		
+	dis-advantage:-
+		1. as the datacenter preprocures the physical hardware computers, these are of fixed in-shape and cannot be customized to our application requirement. fixed-shape
+		2. when a machine has been requested, the data center might take long time may interms of days or sometimes in weeks to setup and provide us the environment.
+		3. if there is an in-availability of the machine we will kept under waiting queue util the infra is available
+		4. since there is no support of on-demand supply of the machines, we need to study business trends and analysis to identify the requirements of the hardware/computers up ahead and pre-procure them from datacenter even though we dont use them throughout the time, which is a huge lose of money. Unnecessary upfront reservation
+		5. The machines are not allocated for short intervals, we need to procure the machines for a minimum duration of time may be in weeks/months usually
+		6. The day from which the machine has been allocated, the cost will be applied even though we dont use it, may be software installations and configurations might take couple of weeks and during this time we barely use the machine and that accumulates the usage cost as well.
+		There is no pay-per usage model
+-----------------------------------------------------------------------------------------------
+1. fixed shape
+2. upfront reservation
+3. long waiting queues
+4. on-demand supply is not supported
+5. fixed duration of intervals allocation
+6. pay-per usage is not supported
+
+To overcome all the above problems cloud platforms are innovated.
+The cloud providers are going to offer 3 types of services
+1. iaas = infrastructure as a service
+2. paas = platform as a service
+3. saas = software as a service
+
+depends on the cloud provider to provider they might offer all the 3 services or could be few of them as well.
+
+1. iaas (computing)
+infrastructure as a service
+To run the software applications we need physical or computing resources like
+	1. machines
+	2. networking
+	3. firewalls
+	4. routers
+etc
+These physical hardware devices are supplied by the cloud provider on-demand, there are no restriction over providing/using these resources.
+	1. we can procure machine of any shape based on our application requirement
+	2. on-demand supply of resources instantly
+	3. no committed duration of usage, we can use for couple of minutes/seconds and can terminate them
+	4. pay-per usage model, pay for what you have used
+	5. setup your own private network of computers for dedicated usage and scalability
+	
+So the cloud providers uses virtualization technology in provisioning and providing the computing resources to the world, so that they provide flexibility in using their services
+
+since these computing resources are allocated for dedicated usage, we have full control on
+1. installing our own software packages and upgradation of the packages
+2. supports enterprise application deployments
+3. full control on using the machine, can stop/start/restart anytime
+
+The 2 more important features of the cloud providers are 
+1. scaleup/down
+2. scaleout/in
+	
+1. scaleup/down = we can increase the computing capacity of a computer/resource without destroying and recreating it like increase ram or cpu or storage of the computer whenever necessary which is called "scaleup"	and we can even scaledown by reducing the capacity whenever we dont need it. which is referred as "vertial scaling"
+	
+2. scaleout/scalein
+we can add more machines to the network cluster if the machines are not sufficients for running our application and can release them at any time.
+	
+In addition the maintainance aspects of these resources are taken care by cloud provider like
+1. backup of the storage
+2. restore in case of crash
+3. 24x7 availability of the resources
+
+So the possible supported operations by a cloud provider are
+1. provision 
+2. deprovision
+3. start/stop/restart
+4. scaleup/scaledown
+5. scaleout/scalein
+6. backup
+7. restore
+which are called cloud lifecycle operations.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+

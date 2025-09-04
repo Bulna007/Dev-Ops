@@ -1,0 +1,114 @@
+AWS Architecture
+-----------------
+
+1. Regions
+-----------
+AWS Cloud infrastructure has been spread across various geographic location which are called regions. Rightnow there are 22 regions over which aws cloud is offering their services.
+A Region is a country or a geographic location where aws operates in providing the servies. The aws user has to select a region in which he wanted to create resources.
+
+The users has to choose the region based on the customers and traffic sources where the users are going to access their application from, the closest the region is the low latency in accessing the aws services to their customers.
+
+
+#2. Availability Zones (AZ)
+-----------------------
+Availability zones in-short referred as AZ are the various different data centers aws operates within an region. Each region has atleast 2 Availability zones. The Availability Zones are provided by aws to offer high availability services to their customers.
+
+For eg. when we are creating an ec2 or rds instance, it is recommended to create 2 instances atleast on 2 availability zones, so that if one AZ goes down you have the resource running on another AZ can server the services.
+
+All the resources across the availability zones of a region can communicate with each other, aws inter-connects all the AZs of an region with a dedicated high-speed internet connection where in we dont see any network latency interms of communication between the resources.
+
+By default the resources across the regions cannot communicate with each other, only the resources within the region across the AZs can communicate with each other.
+-----------------------------------------------------------------------------------------------
+
+#1 Networking domain
+---------------------
+The networking related services are offered as part of network domain
+
+1. vpc (virtual private cloud)
+-------------------------------
+by default when we create a resource under a region, the resources of a region can access all the other resources across the availability zone of the region, given if those resources belongs to same aws account.
+
+So we can control the accessibility and visibility of these resources within a region using the help of vpc. vpc stands for virtual private cloud network, which is an isolated network of resources within an aws account.
+A vpc spans across all the availability zones of a region and the resources of one vpc cannot access the resources of another vpc, which resources across the vpcs are isolated from each other.
+
+By group the resources across the vpcs we can easily apply security, accessibility restrictions on the group of resources.
+
+How do we use vpc?
+Usually vpcs are created at various different levels for eg.
+1. we can create vpc per application to isolate one application resources not to access the resources of another application.
+2. we can create vpcs per departments within a company to isolate applications of a department from another applications of another departments
+3. we can create vpcs per environment for eg testvpc, developmentvpc, prodvpc
+
+vpc are created:
+1. per account level per region of an account
+2. vpc of a region spreads across all the availability zones of the region
+3. per aws account we are allowed to create max 5 vpc only (soft limit)
+4. by default a resource of one vpc cannot talk to other resources of another vpc. we need to establish communication across the vpcs through vpc peering.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

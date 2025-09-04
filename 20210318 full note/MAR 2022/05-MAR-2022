@@ -1,0 +1,197 @@
+What are output variables how to use them?
+Terraform output variables are similar to function return values, upon executing a function by passing inputs get the return value as an output, similar when we execute a terraform resource the output of the resource can be capture into an terraform output variable, so that it can be passed as an input to another resource
+
+we declare terraform output variables in *.tf files, and the standard practise is to keep them in outputs.tf file and output variables declare using output block
+
+output "variable" {
+	value = expression
+	description = ""
+	sensitive = true/false
+}
+----------------------------------------------------------------------------------------------------
+What are provisioners?
+Terraform is an iac tool which is used for provisioning infrastructure but inorder to use the environment provisioned we need software packages to be installed and configured.
+To install software packages and configure them we have software configuration management tools like ansible, chef, puppet and salt.
+	
+We have 2 options to execute them
+1. apply these software configuration management scripts on the provisioned infrastructure to bring the system to the desired state
+2. use custom images
+
+#2. use custom images
+we can provision the infrastructure and install, configure softwares required on the environment manually and export the env as machine images, so that those can be imported directly in creating the resources quickly
+it has its own challenges:-
+	1. manually backing the machine images takes lot of time
+	2. patching, upgrades are difficult to manage
+	
+#1 use software configuration management tools
+Instead of relying on machine images use software configuration management tools for installing and configuring the software.
+After provisioning the infrastructure apply the software configuration management scripts manually on the provisioned environment, but there are few difficulties in this approach
+1. after provisioning the environment, we need to manually run the software management configuration scripts so it should be applied for each environment we provisioned which is an time-taking task and should track on whom we have applied and not
+2. Not always the developer/devops engineer will provision the environment there are qa and other folks also need to provision the environment for testing, but there are not aware of which software configuration management scripts has to be triggered or applied on the target environment and the order of execution
+3. apart from developer or devops engineer the other people dont know the syntax of applying them and find it difficult
+
+To automate the end-to-end process of provisioning and configuring the environment terraform has introduced provisioners. 
+	
+Provisioners:
+Terraform takes care of executing the software configuration management scripts automatically upon provisioning an resource so that devops engineer dont have to lauch or trigger these scripts manually by using provisioners
+
+There are 3 types of provisioners are there
+1. file provisioner
+2. local-exec provisioner
+3. remote-exec provisioner
+
+#1. file provisioner
+used for copying the files on the terraform control node to the remote resource using file provisioners.
+	
+#2. local-exec provisioner
+runs the local script on the terraform control node
+
+#3. remote-exec provisioner
+copies the software configuration management scripts onto the provisioned environment and executes the local to that environment
+
+
+We can execute the provisioners at 2 levels
+1. local to the resource level
+2. global 
+
+provisioners are used for applying software configuration management scripts on the provisioned environment or a resource so those are always attached and executed at the resource level.
+
+#1. provisioners to the local resource level
+upon attaching an provisioner to a resource, terraform executes the provisioner script post completion of provisioning the resource immediately
+
+#2. global provisioners
+if we want to execute a provisioner after provisioning a group of resources this can be achieved using global provisioner
+In generall we cannot write a provisioner without a resource, but if we want to execute a provisioner globally without any resource it is not possible, so terraform has provided a special resource called "null_resource" on which we can configure a provisioner
+
+#1. file provisioner
+installjdk.sh
+sudo apt update -y
+sudo apt-install -y openjdk-11-jdk
+
+main.tf
+terraform {
+	required_providers {
+		aws = {
+			source = "hashicorp/aws"
+		}
+	}
+}
+provider "aws" {
+	region = "ap-south-1"
+	profile = "default"
+}
+resource "aws_instance" "ec2" {
+	instance_type = "t2.micro"
+	ami = "ami-93833"
+	
+	connection {
+		type = "ssh"
+		host = self.public_ip
+		user = "ubuntu"
+		private_key_file = "~/.ssh/terraform"
+	}
+	
+	provisioner "file" {
+		source = "installjdk.sh"
+		destination = "/tmp/installjdk.sh"
+	}
+	
+	provisioner "remote-exec" {
+		inline = {
+			"chmod u+x /tmp/installjdk.sh",
+			"bash /tmp/installjdk.sh"
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

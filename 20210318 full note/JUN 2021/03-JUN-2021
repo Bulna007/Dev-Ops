@@ -1,0 +1,69 @@
+When we schedule a pod for execution with a Kubernetes cluster, below are the lifecycle status in which a pod could exists
+PENDING = POD has been accepted by the kubernetes system.
+  
+RUNNING = Whenever we placed a request for creating a pod through pod spec/imperative commands, the kubernetes schedule identifies the node and schedule for pod creation and execution. once the pod has been created, alteast one of the container in pod has been started/readiness probe on the pod has been successful, the pod will be marked as Running status.
+  
+SUCCEEDED = All the containers with the pod has been existed with exit code zero, then the pod is marked successful completion.
+
+FAILED = All the containers in pod has been exited, but alteast one of the container has exited with non-zero exit code, then the pod is marked as Failed.
+
+CRASHLOOKBACKOFF = backoff indicates no more it is going to schedule the pod, because loop/repeatedly the pod is being crashed.
+  
+TERMINATING = when submit a request for deleting pod then the pod will marked as Terminating.
+---------------------------------------------------------------------------------------------------------
+Labels and Annotations in kubernetes
+Labels are key/value pairs that are attached to kubernetes objects, such as pods. labels are used to specify identification information to an object that are meaningful and relevant to the users. by attaching labels to the pod, there is no impact on the runtime behaviour of the pod.
+  
+Lables can be attached to the objects at the time of creating them or can be modified at any time after creating also.
+There are 2 ways we can bind lables in kubernetes
+1. during the time of creation by declaring them in Resource spec
+2. at anypoint after creation we can attach labels to the running object as well.
+  
+Each object can be attached with any no of key/value label pair, but the keys should be unique.
+  
+healthcare-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: healthcare-pod
+  labels:
+    environment: production
+    version: 1.0
+    app: healthcare
+spec:
+  containers:
+    - image: healthcare:1.0
+      name: healthcare
+      ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+          
+      
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

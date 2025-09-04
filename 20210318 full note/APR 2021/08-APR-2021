@@ -1,0 +1,117 @@
+scrum = develop and deliver the software application in sprints, a sprint is of 2 - 4 weeks in duration. 
+within the spring we need to perform development, testing and delivery/demo activities, within this short duration of time performing all of these activities across all the user stories of the sprint is highly difficult unless we adopt devops process and tools, that where devops compliments scrum methodology.
+
+The developer has to choose a source code management repository tool for collaborative and distribution of source code across the members of the team.
+  Git is recommended as a standard source code management repository tool as it facilitates individual feature development and delivery process
+-------------------------------------------------------------------------------------------------------------
+The developer upon completing the development, he should perform unit testing to certify the code he has written is working properly without errors and is in testable state before delivering it to the quality assurance engineer
+
+unit testing = it is the process of executing/running the program/source code with pre-defined inputs and verify the outcome of the program is matching with what we have expected. Developer has to perform the unit testing of the program manually by running the code with inputs and verify it is producing expected output or not  
+Developer conducting the unit testing of the code manually to cerify it is working properly takes lot of time and delays the delivery of the application to the qa
+Instead of this devops highly encourages to perform unit testing through automation frameworks/tools which are called unit test automation tools. 
+  There are lot of unit test automation tools are there
+    1. Junit
+    2. TestNG
+    3. Selenium
+    4. Web Driver etc
+  
+
+jenkins - is an continous integration, continous deployment and continous delivery tool that helps us in implementing ci/cd process for an application
+
+continous integration = the developer upon completing the code and push the code into repository + a series of unit testcases will be executed on the code immediately to verify the quality of the code (continous integration)
+  
+we can achieve continous integration by taking the help of jenkins tool. in jenkins we write program to pull the code from git repository and execute all the test code and generate the report automatically, so that developer can quickly run jenkins after pushing the code
+
+-> write the code -> push to git
+                      |-jenkins -> pull the code from git -> and executes all our unit test programs to cerify our code
+                      continuous integration pipeline
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

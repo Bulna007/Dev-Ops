@@ -1,0 +1,79 @@
+operational engineers
+----------------------
+operational engineers are responsible for performing various different activities throughout the development to delivery of the application.
+- during the development, an operational engineer will setup development environment for developers
+- during the phase of testing, operation engineers are responsible for provisioning/creating infrastructure and softwares/tools for testing the application by settingup qa environment
+- during the production, the ownership delivering the application and make it publicly accessible should be carried by the operational engineer.
+Mostly they work in cross-functional teams
+
+What are the duties of the operational engineers?
+1. operational engineers will collect meaningful information from development team and business team in identify the hardware requirements, softwares and tools required for running the application at various different stages of the application.
+2. based on the information, procure the necessary hardware, networking devices. create/provision infrastructure and install necessary softwares and tools like
+  - based on hardware configuration procure necessary hardware devices
+  - networking requirements
+  - provision infrastructure with networking
+  - firewall and router configuration to avoid security breach
+  - install and configure softwares and tools required for running the application
+    - programing langauges
+    - database servers
+    - application servers
+    - database schema scripts
+3. build the application using build tools
+4. deploy and run the application on the provisioned environment
+5. verify the application and monitor
+-------------------------------------------------------------------------------------------------------------
+The current development and delivery model doesnt support fast-paced application development and delivery, there are lot of problems with this development-delivery lifecycle.
+    
+    
+problems:-
+#1 The development, qa and operational engineers are working in 3 seperate teams dis-jointly even though all of them are working for single project and for one single goal, due to this many problems emerges
+  1.1 lack of co-ordination and gaps in communication between these teams will relatively slows down the development and delivery aspects of the application
+  1.2 due to these communication gap and lack of coordination chances of failues in delivery is high
+  1.3 the more the failures are the blame games starts between the teams, that brings down motivation and morals of the team members
+  1.4 people look for individual success rather than the whole success
+  1.5 gurus emerges into the teams, who will control every aspect of the project lifecycle.
+    
+How to overcome the above problems?
+Let them people work as one single team, which is devops team, in which all the three groups of people work as one.
+In this we have developers, quality assurance engineers and operational engineers working under one umberella. From the day#1 of the project all the people are involved right from development to delivery as all works together there is no communication gap and lack of coordination. this results in better delivery of the application
+
+Devops:- all about fast-paced application development and delivery.
+  
+How to speed up the development and delivery aspects?
+change in culture and adoption of latest tools and technologies in development and delivery of the application is all about devops.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

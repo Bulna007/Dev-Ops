@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.referencedLibraries": [
+        "WebContent/WEB-INF/lib/jakarta.servlet-api-6.1.0.jar",
+        "WebContent/WEB-INF/lib/jakarta.servlet.jsp-api-4.0.0.jar"
+    ]
+}

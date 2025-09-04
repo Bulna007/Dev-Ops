@@ -1,0 +1,281 @@
+if-else condition
+
+wap to find biggest number of given 2 numbers
+
+bigNumber.sh
+read -p "A:" A
+read -p "B:" B
+
+if [ $A -gt $B ]
+then
+  echo "$A is big"
+fi
+
+if [ $B -gt $A ]
+then
+  echo "$B is big"
+fi
+
+In the above program out of 2 given numbers if first if-condition fails which means A is not bigger than B then which one is bigger? obviously B is bigger.
+So, why do we need to make another if-condition to check B is big or not, if fails abvoiusly other is true.
+  
+Writing 2 if conditions is not required and incurr cpu time in evaluating the 2nd condition instead we can use else.
+  
+bigNumber.sh
+read -p "A:" A
+read -p "B:" B
+
+if [ $A -gt $B ]
+then
+  echo "$A is big"
+else
+  echo "$B is big"
+fi
+if the 1st condition failed automatically else block will be executed without any conditional evaluation.
+  
+  
+wap to find the given number is even or odd number?
+  
+2 = even number = because it is divisible by 2 and remainder is zero
+5 = odd number? = non-divisible by 2 and always returns remainer as non-zero (1)
+  
+So to find given N is even or odd number we should divide it by 2 and get the remainder and check remainder is zero or non-zero. If zero = even otherwise odd number
+How to get remainer out of division in shellscript = % (modulus)
+  
+evenOrOdd.sh
+-------------
+read -p "N:" N
+REM=$((N%2))
+  
+if [ $REM -eq 0 ]  
+then
+  echo "$N is even"
+else # no need of if condition here, because the remainer is not zero, it is odd
+  echo "$N is odd"
+fi
+
+From the above we can understand use if-else condition wherever applicable rather than writing multiple if conditions.
+---------------------------------------------------------------------------------------------------------
+How to work with floating points in Shellscript?
+Shellscript is a low-level language that is provided by Shell interpreter using which we can manage/administer the Resources of the Linux computer system, most it is used for accomplishing the automation of several tasks that we conduct in maintaining an linux operating system computer.
+  
+It is not a high-level programming language targeted to build software applications in perform mathematical calculations, so shellscript doesnt handle float point values.
+building an arthematic expression with floating point values results in an error.  
+  
+To help us in working with floating point expressions there is a shell utility called "bc", stands for basic calculator.
+bc takes the inputs with operator and perform the operation on floating point values and gives the outcome.
+  
+bc always takes an expression as an input perform the operation and gives the result.
+  
+add2FPNumbers.sh
+-----------------
+read -p "A:" A
+read -p "B:" B
+SUM = $(echo "$A+$B" | bc)
+echo "SUM: $SUM"  
+---------------------------------------------------------------------------------------------------------
+if-elif-else ladder
+
+if expression1 == true
+  do this
+fi
+
+if expression2 == true
+  do this
+fi
+
+if expression3 == true
+  do this
+fi
+we have array of expressions in which only 1 of the expression will be true and rest of all the expressions will evaluate to false. these are mutually exclusive expressions where 1 becomes true rest will be false.
+    
+in evaluating such expressions and performing operations based on multiple if-condition statements will result in evaluating all the expressions of the program even at anytime one only will pass
+
+if [ $AGE -le 3 ]
+then 
+  do this
+fi
+
+if [ $AGE -ge 4 -a $AGE -le 12 ]
+then 
+  do this
+fi
+
+if [ $AGE -ge 13 -a $AGE -le 19 ]
+then 
+  do this
+fi
+
+In the above program AGE can be evaluated to true only for one expression, in worest case if the first if-condition becomes true unnecessarily we endup in check next 2 conditions also even though they result in false.
+  
+How to solve this problem and optimize our code using if-elif-else ladder.
+syntax:-
+  if [ condition ]
+  then
+    # statements
+  elif [ condition ]
+  then
+    #statements
+  else
+    # statements
+  fi
+here if the 1st condition passed rest of the elif and else will be skipped and only if block will be executed. If none of the if and elif passed finally the last else will be executed.
+
+UNITS_CONSUMED=200  
+  
+UNIT = 
+  50 =  (4.50)  
+  > 51 - 150 (100 UNITS) = 5.30
+  > 151 - 300 (150 UNITS) = 7.80
+  > 300 = (8.50) flat
+  
+190 UNITS
+50 * 4.50 + (100 * 5.30) + 40 * 7.80 =   
+wap program to calculate the total bill amount to be paid by the user based on the UNITS_CONSUMED.
+  
+electricityBill.sh
+------------------
+read -p "Units Consumed:" $UNITS_CONSUMED
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

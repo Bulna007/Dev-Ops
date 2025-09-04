@@ -1,0 +1,202 @@
+1. How to know the details of a file like author, physical address location on the harddisk, permissions etc?
+stat filename
+
+2. How to remove a file from the Filesystem?
+rm filename
+
+3. How to forcibily delete a file on the Filesystem?
+rm -f filename = it wont prompt for confirmation while removing special files
+
+4. How to delete an directory?
+There are 2 ways we can delete an directory in Linux operating system
+1. rmdir
+
+rmdir directoryName
+inorder to delete an directory using rmdir, the directory should be empty, otherwise we need to manually go into the directory and sub-directories and delete all of them before we delete the parent
+
+2. rm -r directory = -r stands for recursively
+--------------------------------------------------------------------------------------------------------------------------
+1. How to move a file from one directory location to a different directory location?
+	
+mv sourceFile destinationDir	
+
+2. How to move a directory along with its contents from source to the destination location?
+mv sourceDir destinationDir
+
+$HOME
+|-tourplans
+	|-aug
+		|-trip1.txt
+	|-sep
+		|-trip2.txt
+	|-oct
+		|-trip3.txt
+|-archives
+
+move tourplans/aug/ directory to archives/ directory
+~/> mv tourplans/aug archives/
+	
+3. How to move the contents of a directory into another directory?
+$HOME
+|-tourplans
+	|-aug
+		|-trip1.txt
+	|-sep
+		|-action
+			|-trip2.txt
+		|-adventure
+			|-trip3.txt
+	|-oct
+		|-trip3.txt
+|-archives
+	
+here we dont want to move sep/ directory rather just move the contents of the sep/ directory into archives
+mv "tourplans/sep/*" archives
+--------------------------------------------------------------------------------------------------------------------------
+
+3. How to rename a file or directory?
+In bash, there is no command for renaming a file or directory. But we can logically rename a file or directory by using mv itself
+
+$HOME
+|-products
+	|-footwear.txt
+	|-kitchen-appliances.txt
+	|-furniture.txt
+	
+we want to rename kitchen-appliances.txt to appliances.txt
+~/products:/> mv kitchen-appliances.txt appliances.txt
+if we dont specify the destination directory and gave another filename, it works as rename
+
+To rename a directory in the mv specify the destination directory as non-existing, so that it consider it as a rename.
+mv products globalProducts
+--------------------------------------------------------------------------------------------------------------------------
+All about copy files/folders
+
+cp stands for copy used for copying files/folders from one location to the another location or just to duplicate the files or folders by creating one more copy. By using cp the source/destination files will not be moved (it is not cut/copy). rather it would only copy the existing file into new directory
+
+1. How to copy a file from one location to another location?
+$HOME
+|-products
+	|-popular
+		|-mens-fashion.txt
+		|-clothing.txt
+		|-jewellery.txt
+	|-trending
+	
+let us copy clothing.txt from popular/ directory into trending/ directory using cp command
+~/products:/> cp popular/clothing.txt trending/
+	
+during the time of copy we can specify a different name with which the file should be copied into the destination directory as below
+
+~/products:/>cp popular/mens-fashion.txt trending/mens-apparels.txt
+now the mens-fashion.txt file will be copied into trending/ directory with name mens-apparels.txt
+
+2. How to copy a directory along with its contents into another directory?
+cp only copy the file from one location to another location. cp by default doesnt works for directories. If we want to copy the directory and its contents into a different location we need to use -R switch (recursively)	
+	
+$HOME
+|-products
+	|-popular
+		|-mens-fashion.txt
+		|-clothing.txt
+		|-jewellery.txt
+	|-trending
+
+warehouse/
+	
+we want to copy popular/ directory into warehouse/
+~/products:/> cp -R popular/ warehouse/
+	
+if we want to just copy the contents of the popular directory into warehouse
+~/products:/> cp -R popular/* warehouse/
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

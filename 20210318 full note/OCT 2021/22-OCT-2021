@@ -1,0 +1,71 @@
+How to install apache-tomcat10?
+#1 install openjdk11
+sudo apt update -y
+sudo apt install -y openjdk-11-jdk
+
+#2 create tomcatuser to run tomcat server on that user
+sudo useradd tomcatuser
+sudo mkdir /u01/middleware
+sudo chown -R tomcatuser:tomcatuser /u01
+
+sudo su tomcatuser
+cd /u01/middleware
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.12/bin/apache-tomcat-10.0.12.tar.gz
+
+gunzip apache-tomcat-10.0.12.tar.gz
+tar -xvf apache-tomcat-10.0.12.tar
+rm apache-tomcat-10.0.12.tar
+
+
+#3 export the apache tomcat bin to path through basrc
+vim ~/.bashrc
+if [ -d /u01/middleware/apache-tomcat-10.0.12 ]; then
+  export PATH=$PATH:apache-tomcat-10.0.12/bin
+fi
+---------------------------------------------------------------------------------------------------------
+~/javaworkspace/
+    airtelcare
+    |-src
+      |-com.airtelcare.request
+        |-NewDTHRequest.java
+    |-WebRoot
+      |-new-connection-request.jsp
+      |-request-details.jsp
+      |-WEB-INF
+        |-lib
+          |-servlet-api.jar
+          |-jsp-api.jar
+    |-bin    
+    |-dist
+    
+sudo cp /u01/middleware/apache-tomcat-10.0.12/lib/servlet-api.jar ~/javaworkspace/airtelcare/WebRoot/WEB-INF/lib        
+sudo cp /u01/middleware/apache-tomcat-10.0.12/lib/jsp-api.jar ~/javaworkspace/airtelcare/WebRoot/WEB-INF/lib    
+sudo chown sriman:sriman ~/javaworkspace/airtelcare/WebRoot/WEB-INF/lib/*.jar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

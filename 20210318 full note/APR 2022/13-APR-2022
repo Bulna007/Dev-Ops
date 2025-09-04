@@ -1,0 +1,136 @@
+docker
+-------
+         jar                 jdk                cmd
+---------------------  -----------------     -----------
+packaging application, software packages and instructions in running the application along 
+      baseimage
+     ---------
+with libs/bins inside an image, so that it can be executed within a container by isolating it from other applications on that environment
+
+develop -> package -> deliver
+
+delivery abstraction, where the enduser dont need to know how to run the application, what dependent software packages/libraries are required or how to run the application also, just by understanding dockerworkflow and docker cli he can launch/run any application out of a container
+-----------------------------------------------------------------------------------------
+#8. ADD directive
+ADD is similar to COPY directive only, but the only difference between the ADD and COPY is
+	COPY: only copies the files from docker build context to the image
+but ADD can
+	1. copy files from docker build context to the image and
+	2. it download the files from remote system based on URL and can add into the docker image as well
+
+Dockerfile
+------------
+FROM ubuntu:20.04
+ENV JAVA_HOME=/u01/middlware/jdk-11
+ENV PATH=$PATH:$JAVA_HOME/bin
+	
+RUN mkdir -p /u01/middleware/	
+RUN mkdir -p /u01/applications/
+	
+ADD https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz	/u01/middleware/
+
+RUN tar -xvf /u01/middleware/openjdk-11+28_linux-x64_bin.tar.gz -C /u01/middleware/
+RUN rm /u01/middleware/openjdk-11+28_linux-x64_bin.tar.gz
+
+COPY target/tokengenerator-1.0.jar /u01/applications/
+CMD java -cp /u01/applications/tokengenerator-1.0.jar com.tg.service.TokenGeneratorService
+------------------------------------------------------------------------------------------
+
+#9. WORKDIR directive
+-----------------------
+The COPY, ADD, CMD, ENTRYPOINT, RUN directives works based relative from WORKDIR location
+
+if we dont specify a WORKDIR location in the Dockerfile, the docker engine by default creates the WORKDIR location "/" (depends on image) and executes the commands
+
+it is always recommended to set WORKDIR location using which we need to apply the COPY, RUN, ENTRYPOINT, CMD, ADD directives rather than specifying the full directory path, so that our Dockerfile becomes easily maintainable
+
+WORKDIR /u01/middleware
+ADD https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz	.
+RUN tar -xvf openjdk-11+28_linux-x64_bin.tar.gz	
+RUN rm openjdk-11+28_linux-x64_bin.tar.gz
+
+in the above Dockerfile ADD, RUN directives runs relative from /u01/middlware
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

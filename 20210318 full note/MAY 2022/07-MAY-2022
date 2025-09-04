@@ -1,0 +1,69 @@
+what is a workernode?
+workernode is a machine attached to the kubernetes master/cluster on which the pods are scheduled to be executed.
+A workernode in kubernetes cluster can be either an physical machine/virtualmachine/cloud compute machine that can be configured to be attached to the kubernetes cluster.
+Each workernode should be installed with 3 components aspart of them
+1. container runtime
+2. kubelet
+3. kubeproxy
+kubeproxy acts as a proxy server on the kubernetes cluster enable pods communication with the external network.
+	
+kubectl
+kubectl is an cli tool that has to be installed on the workstation of the engineer, through which we can schedule, monitor and manage the kubernetes objects on the cluster
+The kubectl looks into kubeconfig file which will be by default located under
+$HOME/.kube/kubectl
+
+etcd
+its an key/value pair based database in which the all the kubernetes cluster objects information is being stored
+--------------------------------------------------------------------------------------------
+what is a pod?	
+pod is the smallest unit within the kubernetes cluster where one or more containers are wrapped inside it and executed together. 
+A pod may contain one or more containers, which might have a common lifecycle management and may share resources across them like
+	1. network = both the containers wanted to be on the same network namespace, to communicate with each other through "localhost"
+	2. storage = want to share the persistence volumes in accessing the underlying storage
+	3. configuration = may share application configuration in common
+keeping these containers together within pod, makes easy to manage those containers together.
+	
+Kubernetes is a declarative cluster container manager tool, here we dont specify what has to be done or how to run an containerized application to the kubernetes. rather we declare information about the contaierized application and the configuration with which the container has to be executed on the cluster.
+The kubernetes will reads that configuration we provided and makes an best effort in running the container application across the nodes of the cluster.
+
+The configuration information describing the details of containerized application we write is called "manifest" and is written in YAML format
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

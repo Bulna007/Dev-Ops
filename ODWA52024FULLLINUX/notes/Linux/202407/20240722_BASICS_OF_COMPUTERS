@@ -1,0 +1,58 @@
+There are 3 main components of the computer:
+1. Monitor        = output device
+2. Keyboard/Mouse = input devices
+3. Cpu     
+	1. processor    = brain of the computer, the perform computation operations like
+		1.1 Arthematic operations  (add, substract, multiplication, division, modulus)
+		1.2 Relational operations  (greatherThan, lessThan, greaterThanEqual, lessThanEqual, EqualTo, notEqualTo)
+		1.3 Logical operations     (and, or , not)
+	
+2. ram          (random access memory) = it is the primary memory of the computer and it is volatile in nature. The data we stored in the ram will be erased upon restarting the computer.
+purpose: all the data that should be used by the processor to perform computation operation will be brought and placed within the RAM, so that the processor can fetch/access the data quickly
+	
+3. harddisk     = permanent storage memory of the computer. It is an mechanical device and will be very slow in storing/fetching the data. once the data is stored in harddisk, it will be permanent and would survive even the restart of the computer until we explicitly delete the data
+
+4. motherboard  = all the parts of the computer are inter-connected with each other through the help of motherboard of the computer.
+--------------------------------------------------------------------------------------------------------------------------
+Who and how does the computers perform the computation operation?
+The processor is the core component that performs the computation operation within the computer. It is an electronic device, an electronic device has only 2 states
+1. on  = power on
+2. off = power off
+
+these are represented with 1 (on) and 0 (off) respectively. any operation we want to perform should be represented or presented to the processor interms of 1s and 0s only which is called "Machine Language".
+	
+previously we learnt processor performs arthematic, relational and logical operations, let us say we wanted to add #2 numbers, how can we pass the numbers asking processor to perform the operations?
+	
+From the above we can understand processor always can understand "Machine language"	only (something that is expressed interms of 1s and 0s)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

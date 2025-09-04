@@ -1,0 +1,30 @@
+What are CharSet encoding standards, what is the purpose of it?
+CharSet encoding standards are the Symbol charts where they provide for each Symbol/Character a decimal number, so that while storing the data or transferring the data over the network, computer programs can use these CharSet standards in convert data into binary representation.
+
+Why do we need Multiple CharSet encoding standards?  
+There are multiple CharSet encoding standards are available, to support different languages around the world. If we have single CharSet encoding standards, then the more bits required for representing a every character which increases the memory consumption and transfers rates over the network. So to effective utilize the memory and bandwidth capacity there are multiple CharSet standards are introduced. Depends on the language in which we want to represent the data for storing or exchanging, choose the appropriate CharSet encoding standard that results in minimal bit representation of character.
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

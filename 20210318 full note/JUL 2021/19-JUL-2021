@@ -1,0 +1,83 @@
+Loop control statements
+There are 3 types of loop control statements are available in Shellscript
+1. while
+2. for
+3. until
+
+#2 FOR Loop
+The FOR loop is also an Loop control statement only, it is also used for executing a block of code repeatedly at a certain place in our program. But it is a different way of achieving the same.
+  
+There are 2 forms of FOR loop are there
+  1. FOR loop is majorly used for iterating over a fixed list of values without specifying couter, condition and incrementation in our loop
+  2. we can equally specify couter, condition and incrementation but all at one place unlike while loop.
+
+#1. Fixed list of values overwhich we want to iterate using FOR loop
+syntax
+for i in 1 2 3 4 5 6 7
+do
+  echo $i
+done
+
+#2 
+wap allowing the user to pass N numbers non-interactively and print the sum of all the numbers.
+./nisumn.sh 10 4 2 19
+  
+nisumn.sh
+#!/bin/bash
+SUM=0
+FOR I in $*
+do
+  SUM=$[SUM + I]
+done
+echo "sum : $SUM"
+------------------------------------------------------------------------------------------------------
+#3
+wap that takes directory name as an input and list down all the files in that directory along with their disk size
+
+./lsf.sh /home/sriman/stories
+
+lsf.sh
+#!/bin/bash
+NARGS=$#
+
+if [ NARGS -ne 1 ]; then
+  echo "ERROR: directory name is required!"
+  exit 1 // terminate
+fi
+DIR=$1
+for F in $DIR
+do
+  if [ -f $F ]; then
+    echo $F
+  fi
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

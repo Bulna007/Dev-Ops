@@ -1,0 +1,98 @@
+What is a systemd init service what is the purpose of it?
+systemd init is a utility software using which we can run a software program as a managed service. The systemd takes care of running the program during the boot up and monitors and restarts in case of crash etc.
+  
+There are 2 parts of working with systemd init.
+  1. registering a program as a service
+  2. monitoring and controlling the service using systemd commands
+  
+How many types of services are there?
+There are 2 types of services are there
+1. Services provided by the packaged installations
+2. System administrator service
+
+How to register a program as a Service with Systemd init?
+If systemd has to manage or control our program like start, stop, restart etc we need to describe or provide information about our program to systemd by writing an service unit file.
+
+We need to write the Service unit file based on the standard format provided by systemd and should place in designated location, so that systemd can pickup the file and can read and manage the program as service.
+  
+There are 2 locations under which the service unit file exists.
+1. /usr/lib/systemd/system = packaged installations
+2. /etc/systemd/system = administrator services
+
+Format of writing service unit file:
+Every Service unit file is named with a standard convention of filename.service and it has to be defined with 3 sections
+1. Unit
+we describe the information about the service and their hard and soft dependencies.
+Description = "documentation or information while accessing the service"  
+After = after which service, this service has to run (order)
+Requires = To install and run the service what other services are required (mandatory)
+Wants = nice to have these services to run the current service (soft dependency)  
+  
+2. Service
+commands for starting, stoping and restarting along with that type of the service
+ExecStartPre=any other command to be executed before executing ExecStart
+ExecStart=command
+ExecStartPost=after starting the service, any other command to be executed
+Restart=always
+ExecStop=command to be executed to stop the service
+Type
+  The service can be of 5 types
+  1. simple = ExecStart
+  2. forking = forking is a technic of launching a program out of another program execution where the second program executes as a separate process independent of the first program. Now systemd upon lauching our service by executing ExecStart, our program/command will lauch another process by forking which is managed as a service    
+  3. oneshot = executes only once and terminate
+  4. dbus = runs a program as a daemon with name
+  5. notify = notifies other service to start
+
+3. Install
+How does the service should be installed 
+WantedBy=multi-user.target
+multi-user.target = it has to be registered and started during boot of the operating system.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+

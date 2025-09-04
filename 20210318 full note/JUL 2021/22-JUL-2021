@@ -1,0 +1,163 @@
+What are Arrays? why do we need to use them?
+arrays:- arrays are variables in which we store similar type of values.
+why?:- we can apply the same logic to those group of values easily by looping through the values instead of duplicating the code referring different variables names
+
+Problems without using arrays:-
+without using arrays, if we want to store similar type of values and want to apply processing we run into several problems.
+1. too many number of variable declarations makes you code difficult to understand
+2. the code will be duplicated in referring different variables in apply same processing.
+3. chances of referring variables wrongly in our program, which leads to bugs or errorneous output.
+  
+Now we want to install 5 software packages in our program, by keeping them in 5 variables we need to duplicate the code for installing 5 packages by writing 5 lines as shown below.  
+
+#!/bin/bash
+PKG1="net-tools"
+PKG2="vim"
+PKG3="tree"
+PKG4="openjdk-11-jdk"
+PKG5="maven"
+  
+sudo apt update -y
+sudo apt install -y PKG1
+sudo apt install -y PKG2
+sudo apt install -y PKG3
+sudo apt install -y PKG4
+sudo apt install -y PKG5
+
+Instead of declaring 5 variables you hold the values in a array and loop through the values and apply the same processing shown below.
+  
+#!/bin/bash
+PKGS = ("net-tools", "vim", "tree", "openjdk-11-jdk", "maven")
+  
+I=0
+while [ I -lt 5 ]
+do
+  sudo apt install -y $PKGS[I]
+done
+---------------------------------------------------------------------------------------------------------
+How to declare/create arrays in shellscript program?
+There are multiple ways we can declare arrays in a shellscript program
+
+#1 
+ARRAYNAME=(ELEM1 ELEM2 ELEM3)
+
+#2
+declare -a ARRAYNAME = -a stands for create the variable as an array
+Now the above ARRAY is delcare as empty array, now we can populate values into the array using index
+ARRAYNAME[INDEX]=value
+
+#3 we can interactively read the values and can place them in an array
+read -a ARRAYNAME
+now when we enter multiple values with spaces separated all of those values are stored in the ARRAY
+
+when we declare and store values in the array, those values are stored adjacently (sequentially), so that we can access the values through index.
+Index always starts with 0 and ends depending on the number of elements we are storing in the array.
+  
+How to access the values from the ARRAY variable?
+${ARRAYNAME[INDEX]}  
+
+programs:
+#1 wap program to read N numbers from user and print in reverse order of input
+
+#!/bin/bash
+delare -a NUMBERS
+read -p "N:" N
+I=0
+while [ $I -lt N ]  
+do 
+  read -p "NUMBER" T
+  NUMBERS[$I]=T
+  I=$[I+1]
+done
+  
+I=$[N-1]
+until [ $I -lt 0 ]
+do
+  echo ${NUMBERS[I]}
+  I=$[I-1]
+done
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

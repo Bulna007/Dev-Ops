@@ -1,0 +1,280 @@
+ENV directive
+--------------
+ENV directive is used for defining environment variables within the Dockerfile which is included during the time of building image and is accessible at the runtime while the container is running
+
+How to declare environment variables in Dockerfile?
+ENV variableName=value
+
+How many ways we can work with environment variables?
+There are 2 ways we can work with environment variable in docker.
+1. build time variables
+2. runtime variables
+
+#1. build-time variables
+These are variables defined as part of the Dockerfile and are included during the build and are available at runtime as well. We define these variables for holding static information about the environment or application we are running inside the container
+
+#2. runtime variables
+These are variables passed as an input while running/launching the container. These are the dynamic values passed as an input to the containerized application which are going to differ from env to env
+
+Why do we need to pass environment variables at runtime?
+If we have defined them statically within the image during build time, whenever these values has to be changed based on env, we need modify the Dockerfile and rebuild the image, since these value are dynamic and change over the time, it is recommended to pass them as runtime values while launching the container to avoid rebuilding the image.
+	
+How to pass the environment variables as an input at runtime?
+There are 2 ways we can pass environment variables as input
+#1. using -e switch
+docker container run -e var=val -e var=val image:tag
+
+#2 using variables file
+create an variables file in which define environment variables you want to pass at the time of launching the container
+variables.env
+var=val
+var=val
+
+docker container run --env-file=variables.env image:tag
+------------------------------------------------------------------------------------------
+#3. ARG directive
+ARG directive is used for passing arguments at the time of building the image. The ARG that we defined are available only during image build time and are not accessible at the runtime within the container
+
+For eg.. let us take a Dockerfile to demonstrate
+Dockerfile
+-----------
+FROM ubuntu:20.04
+RUN apt install -y openjdk-11-jdk
+
+docker image build -t java:1.0 .
+	
+In the above Dockerfile we are installing openjdk-11-jdk with which we are building the image. later on if we want to upgrade to jdk 12 again we need to modify the Dockerfile and rebuild the image
+
+is there a way we can parameterize the inputs to the Dockerfile while building the image, so that we can avoid changing the Dockerfile and rebuild the image by passing different values?
+
+	
+Team#1 = is looking for a dockerimage backed with jdk 11
+Dockerfile
+-----------
+From ubuntu:20.04
+RUN apt install -y openjdk-11-jdk
+
+Team#2 = is looking for a dockerimage with jdk12
+Dockerfile
+-----------
+From ubuntu:20.04
+RUN apt install -y openjdk-12-jdk
+
+we avoid creating multiple dockerfiles in the above context if we can parameterize the builds
+
+ARG directive is used for parameterizing the docker builds
+
+How to define the ARG in the Dockerfile?
+we can define	ARG in the Dockerfile as 
+ARG Name=Value
+
+at the time of declaring the ARG is Dockerfile we can assign default value, so that we can build the docker image without passing the value
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ARG JDK_PKG_NM=openjdk-11-jdk
+RUN apt install -y $JDK_PKG_NM
+
+we can use the ARG defined the file in 2 notations
+1. $ARG_NM
+2. ${ARG_NM}
+
+if we define an ARG in Dockerfile without assigning default value then at the time of building the image we need to pass the values for the argument mandatorily as below.
+	
+Dockerfile
+----------
+FROM ubuntu:20.04
+ARG JDK_PKG_NM
+RUN apt install -y $JDK_PKG_NM
+
+docker image build -t java:1.0 . = gives error that JDK_PKG_NM is required
+How to pass the value for the ARG during the build time
+
+docker image build -t java:1.0 --build-arg JDK_PKG_NM=openjdk-11-jdk .
+	
+ARG before FROM directive
+---------------------------
+The only directive that is allowed before the FROM directive as part of Dockerfile is ARG, so that we can parameterize the base image name within the Dockerfile
+
+
+Dockerfile
+-----------
+ARG BASE_IMG_NM
+ARG TAG_NM
+FROM $BASE_IMG_NM:$TAG_NM
+
+The ARG we defined before the FROM directive will not be accessible after the FROM, and has to be purposefully used for parameterizing the FROM only
+
+docker image build -t image:tag --build-arg BASE_IMG_NM=ubuntu --build-arg TAG_NM=20.04 .
+------------------------------------------------------------------------------------------
+How to pass the values dynamically at the time of building the image and using them at runtime?
+	
+ENV
+env is used for defining environment variables
+	# env variables cannot be passed as an input during image building process, those has to be defined in Dockerfile itself with values (only static variables)	
+	# env variables can be passed at runtime while launching the container
+	
+ARG
+using arg directive we can pass dynamic input for image building process
+
+we want to pass input dynamically at the time of building the image and should be accessible while running the container?
+	
+We can take the dynamic input at build time using ARG and set it as an ENV inside the dockerfile
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ARG APP_NM #dynamic input for building the image
+ENV APPLICATION_NM=${APP_NM}
+------------------------------------------------------------------------------------------
+#4. LABEL directive
+LABEL is an directive used for defining key=value pair in Dockerfile which is used for documentation of the image
+
+Dockerfile
+----------
+FROM ubuntu:20.04
+LABEL AUTHOR=greg
+LABEL IMAGE_VERSION=1.0
+LABEL LICENSE=apache license 2.0
+	
+docker image build -t label:1.0 .
+docker image inspect label:1.0
+-----------------------------------------------------------------------------------------	
+#5. MAINTAINER
+MAINTAINER is an another directive used for defining the author of the image, and is deprecated and no more in used in favour of LABEL
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+MAINTAINER greg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

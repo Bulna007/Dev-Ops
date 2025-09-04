@@ -1,0 +1,35 @@
+CIDR Notation
+CIDR Stands for Class-less inter-domain routing. with a ip classification there is no flexibility of allocating network and host bits based on our requirement, due to fixed allocation schema few bits are being left as unused.
+  
+To overcome the problem CIDR notation has been introduced. While working with CIDR notation the ip address is always represented with ip/networkbits pattern as shown below.
+  
+192.168.45.32/22 = here the notation indicates how many bits are allocated to network address. Now we need derive the network address and host address by computing the Subnet mask.
+------------------------------------------------------------------------------------------------------ 
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

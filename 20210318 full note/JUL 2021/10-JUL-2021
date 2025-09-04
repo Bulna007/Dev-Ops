@@ -1,0 +1,368 @@
+What are operators, what is the purpose of them?
+operators are the symbols to which shell interpreter has assigned special meaning towards them, upon they appear in the program, shell interpreter performs pre-defined operation.
+  
+There are 5 types of operators are there
+1. Arthematic operators
+2. Relational operators
+3. Logical operators
+4. String operators
+5. File operators
+
+#1 Arthematic operators
+Those are used for performing mathematical calculators on the operands/inputs
++ = addition
+- = substraction
+/ = division
+% = modulus (remainder after division)
+\* = multiplication
+
+#2 Relational operators
+These are also called as comparator operators, where 2 different inputs can be compared for deriving the relationship between them such as
+both are equal
+or op1 is greater than op2
+etc
+The outcome of the relational operators are always true/false. Below are the relational operators we can apply on numbers only.
+  1. -gt
+  2. -lt
+  3. -ge
+  4. -le
+  5. -eq
+  6. -ne
+  
+#3 logical operators
+For joining and evaluating 2 or more relational expressions together we use logical operators
+-a = and
+-o = or
+! = not
+
+Truth table -a (and) operator
+T T = T
+T F = F
+F T = F
+F F = F
+
+Truth table -o (or) operator
+T T = T
+T F = T
+F T = T
+F F = F
+
+Truth table ! (not) operator
+T = F
+F = T
+
+#4 String operators
+> = greater than
+< = less than
+>= = greater than equal to
+<= = less than or equal to
+-z = is zero length
+-n = non-zero
+
+#5 File operators
+-e = is file/directory exists
+-s = size of the file is greater than 0 (zero)
+-c = character special file
+-f = regular file
+-d = directory
+-r = read permission
+-w = write permission
+-x = execute permission
+-o = owner file
+-of = older than f1 and f2
+-nf = new than f1 and f2
+---------------------------------------------------------------------------------------------------------
+Control Statements
+By default the statements in the shell program executed line by line sequential from top of the program till the bottom. If we want to change the flow of execution of the statements in the shell program we need to use "Control Statements"  
+  
+Control Statements are the special instruction set provided by Shell interpreter by using them we can modify the flow of execution of statements in Shell program  
+
+There are 2 types of Control Statements are there
+1. Conditional Control Statements
+  Based on the truthness of the condition evaluated we decide the statements to be executed or not.
+2. Loop Control Statements
+  If we want to repeatedly execute 1 or more statements in a program for n number of times then we use loop control statements.
+    
+#1 Conditional Control Statements
+Based on a condition we want to execute the statements in the shell program, this can be made possible through Conditional Control Statements.
+There are 2 types of Conditional Control Statements
+1.1 IF
+2.1 CASE
+
+#1.1 IF condition statement
+IF is conditional control statement that execute one or more statements based on the truthness of the expression supplied.
+For eg.. if the expression/condition provided is evaluated to True then the statements within the IF condition will execute otherwise will not execute. So the only operators which can compare and evaluate to true/false is Relational operators so we build expressions in IF condition using relational operators only.
+  
+syntax:-
+
+if [ condition ] # if block
+then
+  statement1
+  statement2
+  statement3
+fi
+
+statement4 #executes irrespective of if condition
+
+if and fi indicates a block of statements that has to be executed based on the truthness of condition.
+  
+#wap for printing big number out of given 2 numbers (interactive inputs)
+bigNumbers.sh
+read -p "A:" A
+read -p "B:" B
+
+if [ $A -gt $B ]
+then
+  echo "$A is big" // how to execute this line based on condition
+fi
+  
+if [ $B -gt $A ]  
+then  
+  echo "$B is big"  
+fi
+
+if [ $A -eq $B ]
+then
+  echo "both are same"
+fi
+
+#wap take age as an input and print the person is infant, kid, teenager, adult, senior
+infant = 0 - 3
+kid = 4 - 12
+teenager = 13 - 19
+adult = 20 - 45
+senior = >45
+  
+printAgeGroup.sh
+read -p "Age:" AGE
+if [ $AGE -le 3 ]
+then
+  echo "You are a infant"
+fi
+
+if [ $AGE -ge 4 -a $AGE -le 12 ]
+then
+  echo "You are a Kid"
+fi
+  
+if [ $AGE -ge 13 -a $AGE -le 19 ]  
+then
+  echo "You are in teenage"  
+fi
+
+if [ $AGE -ge 20 -a $AGE -le 45 ]
+then
+  echo "You are adult"
+fi
+
+if [ $AGE -gt 45 ]
+then
+  echo "senior"
+fi
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+

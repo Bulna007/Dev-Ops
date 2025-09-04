@@ -1,0 +1,100 @@
+How many types of provisioners are supported by Vagrant?
+There are multiple types of provisioners supported by Vagrant
+1. shell
+2. file
+3. chef
+4. docker
+5. puppet
+6. ansible
+7. salt
+
+file provisioner
+-----------------
+File provisioner is used for copying the files/upload a file or a directory from the host to the guest machine.
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64"
+  config.vm.provision "deployWar", type: "file", source: "~/work/fithealth/target/fithealth.war", destination: "/u01/middleware/apache-tomcat-10.02/webapps"
+end
+--------------------------------------------------------------------------------------------------
+Multi-Machine Vagrant Configuration
+In a multi-tier application deployments we are going to run our application across multiple machines. We run java application on a Java Server Virtual Machine and Database on MySqlServer Virtual Machine separately.
+    
+To bring 2 machines for running a project we usually have to write 2 vagrant configuration files which has few problems
+  1. more number of vagrant configuration files to be managed
+  2. To bring up the project the user dont know machine dependencies and in which order those has to booted up
+  
+Instead of it we can define all the machine configurations pertaining to a project along with the dependency order in one single vagrant configuration file. So that when we start the machines using vagrant up all the vms defined in the configuration file will be booted automatically based on machine configuration we wrote.  
+So the workflow management of bringing up the machines of a project becomes very easy.
+  
+How to configure multiple machines in a Vagrantfile?
+
+Vagrant.configure(2) do | config |
+  #global provisioner will be executed for all the machines
+  config.vm.provision "shell", inline: ""
+  config.vm.define "database", primary: true do | dbconfig |
+    dbconfig.vm.box = "ubuntu/focal64"
+    dbconfig.vm.network "private_network", ip: "192.168.10.23", virtualbox_intnet: "fhnw"
+    dbconfig.vm.provider "virtualbox" do | vb |
+      vb.memory = 1024
+      vb.cpus = 2
+    end
+  end  
+  config.vm.define "javaserver", autostart: false do | javaconfig |
+    javaconfig.vm.box = "ubuntu/focal64"
+    javaconfig.vm.network "private_network", ip: "192.168.10.24", virtualbox_intnet: "fhnw"
+    javaconfig.vm.provision "shell", inline: ""  
+  end
+end
+  
+How to boot up the machine?
+vagrant up = will bring all the machines in machine declaration order
+vagrant up machineName = will bringup only that machineName machine only
+
+vagrant halt = will stop all the servers
+vagrant halt machineName
+
+vagrant ssh = will not work, we need to tell the machine name into which we want to ssh
+vagrant ssh machineName
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

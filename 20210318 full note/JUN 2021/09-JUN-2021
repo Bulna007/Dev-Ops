@@ -1,0 +1,193 @@
+What is a program?
+Program is a File on the FileSystem, containers set of executable instructions, that can be passed as an input to the underlying operating system to execute.
+  
+What is the job of an operating system while running the programs?
+Operating System not only translates and passes the program to the underlying hardware of the computer. it is even responsible for
+  - allocating the resources required for the program to complete its execution
+  - monitors
+  - manages the programs
+  
+How does an operating system would keep track of this information in managing the program to complete its execution?
+Whenever we submit a program for execution, operating system to keep track of its runtime information it creates an pcb (process control block) which carries the information about the program that is under execution, linux we call it as "Process".
+  
+Process = is a program currently under execution which carries the runtime information about the program like
+  - owner the process
+  - reference to the program which is under execution
+  - hardware resources under use
+  - swap
+  - shared memory
+  etc
+
+How do we identify a process and manage it in linux?
+For each process that linux creates representing a program execution it allocates an unique number which is called "pid". using the pid we can manage the process like
+  - change the priority of the process
+  - stop the currrent process etc
+  
+
+How can we get the information about what process are currently running on the linux machine?
+we can use top
+we can get the same output of top using htop, by default htop is not available, we need to install the shell utility
+sudo apt install htop
+
+top will draws a table on the screen showing the current process running as below.
+USER  PID   PR  NICE   S  VIRMEM   RESMEM   SHRMEM   CPU   TIME+COMMANDS
+
+What are the possible status in which a process can exists?
+There are total 6 different statuses in which a process can exist.
+  1. D = daemon
+  2. S = sleeping
+  3. R = running
+  4. I = idle
+  5. T = trace or terminated
+  6. z = zoombie (completed, but the pcb is not removed)
+
+  
+PR = priority of a process
+An operating system will allocates the cpu to the process for execution. In our cpu if we have 8 cores means we have 8 processors which can run 8 programs parallely, so we dont need any cpu management here. Lets say we have more number of processes for execution than the number of processors we have, then operating system should allocate the cpu to all the process using some cpu scheduling algorithms.
+  
+If operating system does allocate cpu to all process of the computer, then most of the process will be kept in idle state waiting for the other process to be completed, by which the end-users experience of using the computer will be spoiled.
+  
+To avoid this operating system should allocate the cpu to all programs based on various different algorithms.
+  - round robin / time sharing
+  - priority based scheduling
+  - Shortest Job First
+
+Linux operating system is also no execuse from the above job of allocating cpu, it takes care of allocating the cpu to the process and manages the program to be executed. by default it allocates the cpu in an hybrid model which is time sharing + priority based scheduling.
+
+Linux will allocates the cpu for a process in a time-sharing and would consider even the priority of the process as well to decide how much time a process should be allocated the cpu.
+  
+  
+In top command we see PR (priority) which will be used by linux to allocate the percentage of cpu for a process. PR is value that belongs to process space and user cannot modify the PR value of the process directly.
+A priority of a process can range between the value of 0 - 139, where the system process would be ranging the priority between 0 - 99 and for all the user process the priority will be 100 - 139. The low the PR value of a process indicates more priority for the process
+
+The linux user is not allowed to directly modify the priority of a process, since there is a possibility of negative affect out of it. Instead of it linux permits the users to change the PR value of a process in a controlled way through NICE value of a process.
+  
+NICE value = nice value is a user-space value where a user can modify it. through nice value a user can modify the priority of a process. The nice value range is -20 to +19 where 
+  -20 = highest,
+  0 default
+  +19 = lowest 
+the PR of a process will be computed based on nice value as below.
+    PR = 20 + NICE_VALUE
+
+NICE_VALUE = 0 (default)
+    PR = 20 + 0 = 20
+NICE_VALUE = -15
+    PR = 20 + (-15) = 5
+    
+From the above we can understand never a user process can enter into System Process PR space.
+---------------------------------------------------------------------------------------------------------
+By default when we run a process, it would be created with default nice value as "0". if we want we can lauch a process with a nice value as well as shown below.
+note:- only a negative nice value can be set by a sudoers
+
+nice -n nicevalue command
+renice -n nicevalue pid
+
+
+    
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  

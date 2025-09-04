@@ -1,0 +1,106 @@
+Apache2 Server is an httpd server that allows us to host multiple static websites on a single host computer through virtual host configuration.
+  
+1. we have 2 static websites developed by the developers 
+  1.1 ninestars = https://github.com/techsriman/ninestars
+  1.2 groovin = https://github.com/techsriman/groovin
+
+2. we need to have a server (guest) machine (oracle virtualbox) configured with network mode as 
+NAT with port forwarding (8088 -> 80)
+  
+3. To publish and make the webpages of the website accessible across the network we need web server or httpd server. So we use apache2 server for hosting. So, we need to install apache2 server
+sudo apt update
+sudo apt install apache2
+
+what is the location where apache2 server will be installed?
+The default location where apache2 server is installed is under /etc/apache2. There are several sub directories are there under /etc/apache2 as below.
+  
+/etc/apache2
+|-sites-available = the virtual host configurations are written and placed in sites-available directory  
+|-sites-enabled = holds the list of sites currently enabled as part apache2
+|-conf = apache2 server configuration
+
+note:-
+when we install apache2 server, by default it is registered as systemd service in ubuntu.
+  
+4. copy the source code of your static websites onto the Server machine.
+The general directory where most of the static websites are hosted from is by default /var/www, here /var stands for variable large files and www indicates websites.
+So place both your website source code under /var/www
+/var/www
+    |-ninestars
+      |-assets
+        |-img
+        |-css
+        |-js
+      |-index.html      
+    |-groovin
+      |-assets
+        |-img
+        |-css
+        |-js
+      |-index.html    
+5. change the permission of the 2 website folders to 755 so that only owner can modify others can only see and execute
+
+6. Now create 2 virtual host configurations in publishing both the websites to the users under /etc/apache2/sites-available
+|-etc/apache2/sites-available
+  |-ninestars.conf
+  |-groovin.conf
+  
+ninestars.conf
+--------------
+<VirtualHost *:80>
+  ServerName ninestars
+  DocumentRoot /var/www/ninestars
+</VirtualHost>
+
+groovin.conf
+<VirtualHost *:80>
+  ServerName groovin
+  DocumentRoot /var/www/groovin
+</VirtualHost>
+
+7. we need to enable both the sites in apache2 server, for this apache2 has provided an utility called a2en = apache2 enable
+a2ensite sitename
+sudo a2ensite ninestars
+sudo a2ensite groovin
+
+8. sudo systemctl reload apache2
+
+9. goto your hosted environment (windows).
+open c:\Windows\System32/drivers/etc/hosts
+make 2 entries with local domainname pointing to ip address of localmachine
+
+c:\Windows\System32/drivers/etc/hosts
+127.0.0.1   ninestars
+127.0.0.1   groovin
+
+http://ninestars:8088/index.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

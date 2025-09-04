@@ -1,0 +1,140 @@
+How to install mysql server database on ubuntu operating system machine?
+mysql server is distribtued as an packaged distribution aspart of the ubuntu repositories, so we can use apt tool for installing the mysql server.
+    
+1.
+sudo apt update -y
+sudo apt install -y mysql-server-8.0
+    
+The mysql server will be installed with client utilities as well, so we can connect to the mysql server instance using mysql> cli too. The apt package manager during the installation of the mysql server it will configure as initd service, we can check the status of the mysql server using
+
+sudo systemctl status mysql
+
+2. 
+By default mysql server will be installed with default user as "root" and password as no password, so we need to change or reset the password of root user as below
+sudo mysql -uroot
+alter user 'root'@'localhost' identified with mysql_native_password by 'newPassword';
+
+3. mysql secure installation (optional)
+The mysql_secure_installation is an utility shipped by the mysql server install itself in securing the mysql server instance we installed. When we run the mysql_secure_installation utility, it prompts for bunch questions in configuring the server instance
+
+sudo mysql_secure_installation
+The above utility prompts questions for configuring the mysql server as below:
+1. Do you want to enforce password validation: no
+2. Do you want to change the root user password: no
+3. Remove Anonymous users: Yes
+4. Remote test databases: Yes
+5. Allow remote access to the root disabled: yes
+6. Reload privileges tables: Yes
+
+4. 
+By default mysql server will not be accessible over the network remotely, due to security reasons. But we want the application running on a different computer should be able to access the database server over the network. For this we need to open the mysql server to listen for remote traffic along with that we need to create an new user granting permissions to access the database and objects from a remote machine
+
+For this we need to do 2 things
+1. listen address
+2. new user
+
+4.1 mysql server is installed and configured to listen for bind-address: 127.0.0.1 only. so the database cannot accept any request for connecting to it from remote computer. This configure should be changed to allow server accepting the remote request, for this we need to edit mysqld.conf file as below
+
+/etc/mysql/mysql.conf.d/mysqld.conf file
+bind-address=0.0.0.0
+sudo systemctl restart mysql
+
+4.2 root user cannot be granted remote access, so for each application to access the mysql server database remotely we need to create an dedicated mysql server user for that application granting remote access as below
+
+mysql -uroot -proot
+mysql/> create user 'username'@'%' identified by 'password';
+mysql/> grant all privileges on *.* to 'username'@'%';
+exit
+
+Now we can login to the mysql server instance using the newly created user from anywhere across the network by using mysql-client utility.
+    
+To install mysql-client tool we need to use the below command:
+sudo apt install -y mysql-client-8.0
+----------------------------------------------------------------------------------------------------------------------------------------------------
+database/schema: ngconnectdb
+Table: connect_request
+columns: request_no  customer_nm  mobile_nbr  email_address  subject   message
+
+ngconnect-schema.sql
+---------------------
+create database ngconnectdb;
+use ngconnectdb;
+create table connect_request(request_no int primary key, customer_nm varchar(50), mobile_nbr varchar(13), email_address varchar(50), subject varchar(100), message varchar(500));
+
+db.properties
+-------------
+driverClassName=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://localhost:3306/ngconnectdb
+username=root
+password=root
+
+
+ngconnect
+|-src
+  |-main
+    |-java
+    |-resources
+      |-db.properties
+    |-db
+      |-ngconnect-schema.sql
+    |-webapp
+      |-ng-connect.jsp
+      |-connect-enquiry-info.jsp
+      |-WEB-INF
+|-pom.xml (dependencies)
+|-target
+  |-classes
+  
+mysql -h192.168.50.10 -ungconnectuser -pngdbpwd@1 < src/main/db/ngschema.sql        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

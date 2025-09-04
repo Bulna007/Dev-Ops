@@ -1,0 +1,163 @@
+ENV
+----
+ENV is a directive that is used for defining environment variables, are included into the image at the time of building the image and available during the time of running the container.
+	
+ENV directive is used for declaring the static environment variables pointing to the immutable content of the image like
+setting path pointing to jdk, tomcat, maven etc which are backed as part of the image itself and will not change
+
+Dockerfile
+----------
+FROM ubuntu:20.04
+ENV JDK_HOME=/u01/softwares/java/openjdk-11-jdk
+ENV APP_NAME=nextgensecure
+ENV APP_VERSION=1.0
+	
+In addition we can pass environment variables at the time of running the container as well, which are dynamic inputs that will be used by the containerized application running inside the container.
+For eg an application requires an database details as an input to perform operation, having these values seeded during the image building process requires rebuilding the image everytime there is a change in database configuration as below.
+
+
+
+class ConnectionManger {
+	public Connection getConnection() {
+		Class.forName(System.getProperty("db.driverClassname"));
+		Connection con = DriverManager.getConnection(System.getProperty("db.url"), System.getProperty("db.username"), System.getProperty("db.password"));
+		return con;
+	}
+}
+
+Dockerfile
+----------
+ENV db.driverClassname=com.mysql.cj.jdbc.Driver
+ENV db.url=jdbc:mysql://192.168.0.1:3306/db
+ENV db.username=root
+ENV db.password=root
+
+since these values will change from environment to environment, instead of defining these environment values as part of the image, we can pass these values during the time of running the container
+
+docker container run -e VAR1=VAL1 -e VAR2=VAL2 -e VAR3=VAL3 image:tag
+variables.env
+db.driverClassname=
+db.url=
+db.username=
+db.password=
+	
+docker container run image:tag --env-file=variables.env
+
+How many ways we can pass ENV variables in docker
+There are 2 ways are there
+1. we can define them as part of the image and will be included inside the image during the build and is available while running the container
+recommended: if these environment variables are static in nature
+
+2. while running the container we can pass environment variables as an input
+recommended: if these values are dynamic and are going to change under different environments
+
+we can override the environment variables we defined as part of the image by passing them while launching the container
+------------------------------------------------------------------------------------------
+#3. ARG directive
+------------------
+ARG is an directive used for passing arguments while building the image. We can parameterize the docker image build process through ARG 
+The ARG we passed are only available within Dockerfile only and are not accessible during the runtime while running the container
+
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ARG JDK_PKG_NM
+RUN apt install -y $JDK_PKG_NM
+
+
+docker image build -t app:1.0 --build-arg JDK_PKG_NM=openjdk-11-jdk .
+	
+ARG = build-time inputs in parameterizing the docker image builds
+ENV = can be used both during image build also and at runtime also
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

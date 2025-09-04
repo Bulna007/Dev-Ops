@@ -1,0 +1,158 @@
+What is devops is all about?
+devops is about fast-paced application development and delivery.
+
+benefits:-
+1. we are always ahead of competitors
+2. high customer ROI (return of investment), this lead to more customer satisfaction and builds trust towards our services
+3. brings down the overall cost of development and delivery of the application
+
+How to improve development and delivery speed?
+1. change in culture = work as one team called "DevOps" Team
+2. adopt new tools and technologies while developing and delivering the application
+  - every stage of the development delivery there are modern tools to be used for improving the speed.
+
+developer:-
+  1. understand requirements
+  2. choose a programming language that better suites the nature of the application we are developing
+  3. setup the development environment and install required set of software tools and libraries like
+    - programming langauges
+    - database servers
+    - db schema scripts
+    - application servers
+  [change required]  
+  In general either a developer by himself on his local development environment or an ops engineer would manually configure and install the software on the development machine
+  - Installation and configuration of sofware tools manually are going to take lot of time and even error prone as well, this takes for each developer of the team nearly 5 - 10 days of time depends on the size and complexity of the project.
+    The job of installation and configuration is not one-time per a developer, repeatedly during the time of working on the project due to various reason we might have re-install and configure the softwares.
+    This loosely a great amount of time and contributes significantly to the overall cost of software manufacturing and delivery
+  How can we avoid this problem?
+    Now the devops engineer has to employ new tools and technologies to overcome the above problems.
+      1. use virtualization technology for creating multiple parallel independent development environments so that developer can work across multiple projects of different environments by creating multiple virtual machines on the same computer
+      2. we can setup or create these virtual machines by using iac (infrastructure automation tool) tools like vagrant
+      3. we can use software configuration management tools like
+        - ansible
+        - puppet
+        - chef
+      for installation and configuration of the software tools and libraries
+      
+By using the above tools and technologies we can have a development environment ready for a developer in couple of minutes
+-------------------------------------------------------------------------------------------------------------
+4. Choose a process model for developing and delivery the software application
+There are lot of process models available in the market
+  - waterfall
+  - interative/incremental process model
+  - prototype
+  - spiral
+  - agile methodologies
+
+use one of the agile methodology based process model only. many of the people chooses scrum as a process model.
+What is scrum how do we develop and delivery a software application while using scrum model?
+
+scrum works on a principle called "fast-fail".
+develop only a part of the system where a failure can be tolerable and can get quickly away from it and can plan for next
+
+The later we encounter the failure the damage is going to be very high. early detection of the failure lowers risk and manages the cost of deliverying the application.
+
+sprint (2 - 4 weeks of duration) = time period in which we are working on a tasks. Each sprint is of fixed duration and same across the project
+in this way we build/develop the projects over multiple sprints
+
+product owner (business owner)
+  = defines the requirements of the project/product we have to develop
+
+sprint planning = pick the requirements that they can delivery within that sprint, a member can pick one requirement or multiple depends on the size. The requirements that are committed to be delivered as part of the sprint are called "User Stories".  
+  developer 
+  qa engineers
+  devops engineers
+  
+  within the sprint a user story should be developed/tested/ready for demo to product owner
+  product owner review the feature we built and say approved/rejected
+  if rejected, delete the code and start working on it in next sprint
+  if approved merge the code into final system and start working on next user story
+
+scrum master = he monitors and manages the scrum team
+
+3 people
+ - product owner
+ - scrum team/members
+ - scrum master
+how do we develop the project?
+In sprints
+  |-user stories = developers/qa/devops engineers
+  |-developed/tested/demoed
+-------------------------------------------------------------------------------------------------------------
+5. During development we need to use lot of tools for facilitating the development.
+  5.1 use source code repository management tool
+  using source code repository management tool we can do collaborative application development between the members of the team
+  There are many source code management repository tool softwares are available
+    1. wincvs
+    2. vss
+    3. svn
+    4. pvcs
+    5. perforce
+    6. git (only)
+out of the above tools use git repository system only, because it supports agile based development methdology
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

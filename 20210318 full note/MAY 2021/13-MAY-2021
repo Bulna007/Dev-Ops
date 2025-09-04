@@ -1,0 +1,114 @@
+#1 search for a phrase or text in an given input file
+grep "text" filename
+
+#2 search for directories and subdirectories to find the input phrase
+grep -R "text" directory\
+
+#3 find the lines where the whole word is matching and print those lines
+grep -w "phrase" filename
+
+#4 output only the matching words rather than lines
+grep -o "phrase" filename
+
+#5 ignore case while matching the phrase
+grep -i "phrase" filename
+
+#6 give me the lines which are not matching with input phrase
+grep -v "phrase" filename
+
+#7 get me the count of matching phrase in the given file
+grep -c "phrase" filename
+
+#8 print the line numbers where phrase was found, along with lines in output
+grep -n "phrase" filename
+
+In grep along with text/phrase matches in place of it we can use regular expressions also for matching phrase with file contents
+
+[] = any one of the characters
+[l-u] = matches any one of the range characters
+^ = this pattern must appear at the begining of the line
+$ = this pattern must appear at the end of each line
+. = matches any one character
+\ = escape character
+* = zero or more occurrences 
+.* = nothing or any number of characters
+
+story.txt
+Once upon a time, there lived a shepherd boy who was bored watching his flock of sheep on the hill. To amuse himself, he shouted, Wolf! Wolf! The sheep are being chased by the wolf! The villagers came running to help the boy and save the sheep. They found nothing and the boy just laughed looking at their angry faces.
+
+grep "boy" story.txt = print all the lines where if the word contains boy
+grep "b*" story.txt = print all the lines if the word contains b
+
+transaction
+CR 93839304 90390 01-MAR-2021 AXIS00282
+DR 93838444 1000 01-MAR-2021  AXIS002838
+DR 09039233 3000 01-MAR-2021  ICIC0293934
+CR 82627387 1278 01-MAR-2021  AXIS03938
+CR 72673733 9383 01-MAR-2021  ICIC028273
+
+grep "^CR" transaction = prints only the lines begining with CR
+grep "ICICBANK$" transaction = prints only the lines ending with ICICIBANK
+
+grep "ICIC[2-3][2-3][2-3][2-3][2-3][2-3]$" filename = wrong
+
+branch-transaction.txt
+cr 02903833 agarwal brothers  23000  icic098989
+dr 82873983 joy steels        21222  axis030309
+cr 93893983 anand industries  87383  icic029093
+cr 03839303 jyothi textiles   03839  icic0b9837
+dr 93839392 muthoot loans     98393  axis0a9393
+dr 93839392 muthoot loans     98393  icic1
+
+grep "icic[0-9]$" branch-transaction.txt = display all lines ending with icici(1) with single digit of 0-9 
+grep "icic[0-9]*$" branch-transaction.txt = here [0-9] this expression can occur multiple times there
+
+grep "^cr.*icic[0-9]*$" branch-transaction.txt = begin with cr end with icic[of any numbers] display only those lines
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

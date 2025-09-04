@@ -1,0 +1,114 @@
+package managers
+How does linux operating system distributes the software packages?
+through software repositories
+
+every distro has their own repository to distribute their software packages, in addition an enterprise also can host their own software packages within their repositories.
+  broadly we have 2 types of repositories
+    1. distro managed
+    2. enterprises
+    
+in each repository there are 4 categories of softwares distributed 
+  1. Main        = canonical softwares / free and open source
+  2. Universe    = community developed and destributed open source
+  3. Restricted  = device driver softwares of the specific hardware
+  4. Multiverse  = software distributed under lincensing and legal conditions
+  
+looks like browsing, downloading and installing these software packages are tedious job so we need package management tools 
+ubuntu has provided apt package manager tool that takes care of browing, download and installing the software from an repository.
+  
+How does apt tool knows the details of the software repositories?
+all the repositories information are being stored in /etc/apt/sources.list or as a .list file under /etc/apt/sources.list.d directory. apt tool will look into sources.list file to identify the software package repositories to browse, download and install the software.
+  
+How does the file looks like?
+deb repositoryUrl focal Main Universe
+
+How to add our own repository into the sources.list?
+There are 2 ways are there
+  1. manually add an entry into /etc/apt/sources.list or create a file with .list extension that holds repository information and place it under /etc/apt/sources.list.d
+  2. use shell utility apt-add-repository
+  
+every repository has public signing key will be there first we need to download the signing key add the to apt-key 
+1. wget keyurl
+2. sudo apt-key add keyfilename
+
+now make an entry into /etc/apt/sources.list manually
+deb http://nginx.org/packages/ubuntu focal nginx
+
+or we can use apt-add-repository command as shown below
+sudo apt-add-repository repositoryUrl
+-------------------------------------------------------------------------------------------------------
+apt stands for advanced packaging tool help us in browsing, downloading and installing the software.
+
+apt update = refreshing the cache (this rebuilds the index of the repository)
+apt install packageName
+apt upgrade = upgrade all the older versions of the packages to the latest
+apt search packageName = search for the packages
+apt remove packageName = just uninstall but doesnt cleanup the files of the software
+apt purge packageName = uninstall the software and remove files related to that software
+apt list --upgradable = give me list of software packages installed on the machine which are available for upgrade.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

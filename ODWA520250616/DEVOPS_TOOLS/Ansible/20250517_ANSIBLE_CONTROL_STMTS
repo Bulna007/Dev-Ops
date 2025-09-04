@@ -1,0 +1,183 @@
+Ansible control statements
+--------------------------
+When we pass the playbook for execution to the control node server, it executes each task of the playbook from top to the bottom sequentially. But sometimes we want to control the flow of execution of the tasks within the playbook like
+    1. based on a condition we want to execute a task or skip
+    2. and similarly sometimes we want to execute a task repeatedly for certain number of times or until a condition is met
+This can be done using ansible control statements
+
+There are 2 types of control statements are there
+1. when
+2. loop
+
+1. when control statement
+--------------------------
+Based on the condition being met, we want to execute a task of a playbook or want to skip, this can be done using when conditional statement. 
+        
+Ansible modules are the python programs, that carries a specific task or operation in achieving/accomplishing the defined state. The Task comes with programming constructs like conditional statements, loops that defines or controls the module execution.
+        
+Let us explore an example to understand how when condition works
+
+
+installnginx-playbook.yml
+---------------------------
+---
+- name: install nginx play
+  hosts: all
+  tasks:
+    - name: install nginx(ubuntu)
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      becomes: yes
+      when: ansible_facts['os_family'] == "Debian" and ansible_facts['memtotal_mb'] > 1000
+    - name: install nginx(redhat)
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
+      become: yes
+      when: ansible_facts['os_family'] == "RedHat"
+        
+#2. download tomcat server conditionally
+
+- name: when condition play
+  hosts: all
+  tasks:
+    - name: find tomcat directory
+      find:
+        paths: /home/vagrant/
+        patterns: "^apache-tomcat-.*"
+        file_type: directory
+        use_regex: true
+        recurse: true
+      register: tomcatstatus
+    - name: download tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.7/bin/apache-tomcat-11.0.7.tar.gz
+        dest: /home/vagrant/middleware
+        mode: '0544'
+      when: "tomcatstatus.matched | float == 0"  
+-----------------------------------------------------------------------------------------------------------------------------------
+Loop control statements
+------------------------
+Loop control statements are used for repeatedly executing an ansible task over a fixed set of items or resources or until an condition has been met
+There are 5 types of loop control statements are there in Ansible:
+
+#1. loop over simple list of values
+We can loop through a list of values, where each value in the list is an item, that acts as input in executing the task/module
+For eg.. 
+We want to install bunch of software packages within a playbook like net-tools, tree, curl, vim, git etc. For this we need to write 5 tasks in the ansible playbook for each package as an input
+
+- name: install pkgs play
+  hosts: all
+  tasks:
+    - name: install net-tools
+      apt: 
+        name: net-tools
+        state: present
+        update_cache: yes
+      become: true
+    - name: install curl
+      apt: 
+        name: curl
+        state: present
+        update_cache: yes
+      become: true
+    - name: install tree
+      apt: 
+        name: tree
+        state: present
+        update_cache: yes
+      become: true
+        
+In the above playbook for each task only the packageName over which the module being execute is changed, rest of all the configurations with which the module should be executed is same, so this leads to duplication of tasks in playbook. we can rewrite the playbook using loop over simple list of values as below
+
+- name: simple list play
+  hosts: all
+  tasks:
+    - name: install packages
+      apt:
+        name: {{item}}
+        state: present
+        update_cache: yes
+      become: yes
+      loop:
+        - net-tools
+        - curl
+        - tree
+        - vim
+        - git
+        
+2. loop over hashes
+
+- name: create multiple linux users
+  hosts: all
+  tasks:
+    - name: create user
+      user:
+        name: "{{item.name}}"
+        state: present
+        create_home: "{{item.create_home}}"
+        shell: "{{item.shell}}"
+        password: "{{item.password}}"
+        uid: "{{item.uid}}"
+        group: "{{item.gid}}"
+      become: yes
+      loop:
+        - {name: "bob", create_home: "yes", shell: "/bin/bash", password: "$6$JxM/jDwQh6TscLQy$aNP4Cf3F0lSwvDpuhZEqcl3dCIvsebNuECtRcopRcmnZunNc.sOMhLXQUovg.YbP4mAaK4uLPFtSDmBBspaTp1", uid: "1005", gid: "1005"}
+        - {name: "joe", create_home: "yes", shell: "/bin/bash", password: "$6$JxM/jDwQh6TscLQy$aNP4Cf3F0lSwvDpuhZEqcl3dCIvsebNuECtRcopRcmnZunNc.sOMhLXQUovg.YbP4mAaK4uLPFtSDmBBspaTp1", uid: "1006", gid: "1006"}
+      loop_control:
+        label: "{{item.name}}"
+
+loop_control: label will help in displaying username aspart of the log rather than entire dictionary
+
+3. Loop through index variables
+We can track the index position within the loop
+
+- name: loop index
+  hosts: all
+  tasks:
+    - name: print loop index
+      debug: 
+        msg: "Product: {{item}} at Position: {{index}}"
+      loop:
+        - mobile
+        - watch
+        - belt
+        - tie
+        - shoes
+      loop_control:
+        index_var: index
+        
+        
+4. Loop through register variables
+For eg.. we have a file "products.txt" with below contents
+products.txt
+airpods pro2
+ipad11
+iphone16 pro
+beats studio headphones
+iwatch10
+airtag
+
+Within the above given file we want to search for a product and print all the products found 
+
+findprod-playbook.yml
+---
+- name: find products
+  hosts: all
+  tasks:
+    - name: copy products
+      copy:
+        src: products.txt
+        dest: /tmp
+    - name: search product
+      shell: grep "{{search}}" /tmp/products.txt
+      register: productsList
+    - name: print matching products
+      debug:
+        msg: "{{item}}"
+      loop: "{{productsList.stdout_lines}}"    
+
+5. loop until the condition has been met

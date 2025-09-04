@@ -1,0 +1,75 @@
+Microservices architecture
+---------------------------
+The enterprise application comprises of several functionalities/features as part of it. These are broken down into smaller indepenent deployable applications and loosely coupled applications which are "microservices"	
+	
+Characteristics:-	
+1. Each microservice application has its own project source code, which can be build independent of other modules/services of the system
+2. Each microservice application has its own source code repository 
+3. Each microservice has their own database schema into which the persistence operation will be performed
+4. Each microservice application can be build and deployed on its own server runtime
+5. Each microservice is build by an team independent from other team
+
+advantages:-
+1. each microservice is built on its own source code project, by an independent team of developers, so each developer can understand easily the microservice he is working on
+2. since the enterprise system has been broken down into several smaller microservice applications, building and deployment of these applications takes very less time, so that developers can save lot of time in deploying and verifying their changes
+3. each microservice is built into its own sourcecode, so the ides are not overloaded
+4. each microservice is deployed on its container/server so server startup will be very fast due to which we can implement ci/cd easily
+5. since each module/service is built by an independent team of developers out of their own source code, release management becomes very easy. each team can  plan their delierables and release them independent of others without any impact.
+6. patching and upgradations are easy and we dont need to bring down the whole system
+7. microservices supports vertical scaling, where in only that relevant module can be scaled independent of others
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

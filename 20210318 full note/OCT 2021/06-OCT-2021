@@ -1,0 +1,48 @@
+How to enable SSH access to an Machine?
+  
+Server Machine
+#1. Install SSH Server
+sudo apt update
+sudo apt install -y openssh-server
+
+#2.
+SSH Server during the install will create an ssh server settings configuration file under the path
+/etc/ssh/sshd_config
+
+#3 generate public and private keypair (workstation)
+There are 2 ways
+1. puttygen windows
+2. ssh-keygen linux tool (generates the pub/private key under ~/.ssh with names id_rsa.pub and id_rsa.ppk)
+
+place both pub/ppk file under user home directory or its sub directories only incase of windows (due to security restrictions)
+In case of Linux machine you can place the keys anywhere (still recommended userhome directory only), but the permissions for keys should be 600
+  
+#4 copy the public key onto the SSH Server into ~/.ssh/authorized_keys
+for the user whom we want to enable ssh access
+There are 2 ways in copying the keys
+1. scp command
+2. ssh-copy-id
+
+#5 disable passwordAuthentication in sshd_config file
+#6 ssh to the machine
+There are 2 ways
+putty:-
+ssh client:-
+ssh user@ipaddress
+ssh -p port user@ipaddress
+ssh -p port -i location public keyfile user@ipaddress
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

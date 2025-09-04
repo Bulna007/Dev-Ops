@@ -1,0 +1,87 @@
+What is ip address, why do we need to use it?
+ip address stands for Internet protocol address which is used for identifying a computer over the network in order to communicate with it.
+  
+There are 2 types of addresses are there within an ip address.
+  1. Network address
+  2. Host address
+because of its hierarchial distribution
+Given an ip address how can we identify what is the network address and host address within that network?
+By default we cannot identify which bits/octets are allocated for network and host, so to help us in distingushing ip classes are introduced.
+Ip address are classified into 5 groups as A, B, C, D and E. given an ip address we need to identify which class it belongs to and based on which we need to derive number of network and host bits by using which we can compute network address and host address.
+  
+To determine the ip address falls into which class we need to see higher 3 bits in the first octet.
+First Octet
+0   - 126      -         CLASS A      -  Network bits: 8    and host bits: 24
+128 - 191      -         CLASS B      -  Network bits: 16   and host bits: 16
+192 - 223      -         CLASS C      -  Network bits: 24   and host bits: 8
+224 - 239      -         CLASS D      -  no bit allocations, used for multicasting
+240 - 255      -         CLASS E      -  experimental and reserved for future usage
+
+127.* = loopback ip address, a host can reach by itself by using the first-octet value as 127.
+8 bits are allocated to host address means we can have only (2^8) - 2 address only. 2^8 = 256 - 2 = 254 host address are available, because
+1. always the starting host is allocated to network/router
+2. the higher number 255 is used as broadcast address
+
+broadcast? = if a computer within a network want to send the data to all the other computers of the same network then it is called broadcasting.
+in every class if we use highest value for host bits then the ip will become broadcast ip.
+For eg.. in Class C address the broadcast ip address will be (192-223).x.x.255
+
+Class D = Multicast, which means if we want to send the data to all the computers of all the networks we are connected with then we use multicast ip range.
+
+How to identify the network and host address from an given ip address?
+To help us in quickly computing these the subnet mask has been introduced routers will use subnet mask in deriving the host and network addresses from the given ip.
+  
+Subnet mask 
+Class A: 11111111.00000000.00000000.00000000
+Class B: 11111111.11111111.00000000.00000000
+Class C: 11111111.11111111.11111111.00000000
+substitute the Subnet mask based on the class of the ip and do a AND operation with ip address and subnet mask to derive the network address and host address.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  

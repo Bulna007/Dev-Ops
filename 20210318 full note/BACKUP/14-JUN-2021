@@ -1,0 +1,145 @@
+vim is an terminal/console based text file editor. we can use it for opening an existing text file for edit or we can create/write into a new text file also.
+
+There are 3 modes are there in vim editor
+1. command mode
+every keypress on the keyboard will perform an action on the text file. the default mode in which vim editor opens is command only. if we want to return to command mode anytime we need to use (esc) key on the keyboard.
+  
+What are the supported keypress as commands in command mode
+a = append data to the right of the cursor position
+A = append to the end of the current line
+o = open a new line below the cursor position
+O = open a new line above the cursor position
+i = insert the data to left of the current cursor position
+I = insert the data to the begining of the line
+r = replacing a character
+R = replace from current cursor position
+S = replace entire line
+yy = yanking (copy a line)
+n(yy) = 2yy, 3yy = copy 2 lines, copy 3 lines
+p = paste the line
+x = delete single character
+dw = delete word
+dd = delete line
+u = undo the previous transaction
+b = back to the begining of the word
+w = forward to the begining of the next word
+e = end of the current word
+:n = takes to the n line of the file from beginging
+G = goto the last line of the file
+ctrl + f = page forward
+ctrl + b = page backward
+
+
+2. input mode
+every keypress on the keyboard will insert the respective character into the file.to input the data into the file, first we need to enter into input mode by pressing (i) the keyboard in command mode.
+    
+3. exit mode
+to quit from the ide we need to enter into exit mode. 
+to enter into exit mode we need first come to command mode by pressing (esc) key on keyboard. then type : symbol along with character
+  :q (enter) = quit the file (pending changes are there it will not allow to quit)
+  :q! (enter) = quit without saving the file changes
+  :w (enter) save the changes made in the file
+  :wq (enter) save the changes and quit from file/editor
+  
+  /pattern (enter) = search the matching word
+  press n = to show next match
+  press shift + n = show previous match
+  
+  :set number = display line numbers
+---------------------------------------------------------------------------------------------------------
+vim seems to complex to use because of commands we need to memorize, instead a simple notepad like editor called nano is available.
+---------------------------------------------------------------------------------------------------------
+packaging and compressing files in linux
+
+packaging = is to combile group of files and folders into one single file, so that we can distribute the file easily.
+linux has provided tar tool for packaging files, it will not compress contents.
+tar -cvf filename.tar directory
+tar -cvf filename.tar file1 file2 file3 directory/
+  
+tar -xvf filename.tar = will extract the contents of the existing tar file
+
+-c = create
+-v = versbose, tell me what are you doing
+-f = filename
+-x = extract
+
+compression = we can compress only a tar file in linux, linux doesnt support direct compression. package a file/folder into tar then compress it.
+tar -cvf fruits.tar fruits.txt marketfruits.txt fresh-fruits.txt
+
+gzip is an utility for zipping a tar file in linux
+gzip fruits.tar = fruits.tar.gz
+
+(*.tar.gz) = is called native zip file of the linux operating system.
+  
+gunzip = is used for unzip a tar.gz which produces tar file back.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

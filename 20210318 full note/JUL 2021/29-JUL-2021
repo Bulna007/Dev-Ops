@@ -1,0 +1,173 @@
+What are functions, why do we need to use it?
+functions are named reusable code blocks that can be used at different places within a shell program.
+
+To make functions high reusable, we need to always design the functions as below.
+1. always pass the arguments to the functions avoid using global variables in referring the data within the funtion.
+2. let the function return the returnValue after completing the operation.
+
+How to return returnValue from function?
+A function after performing the operation, if it returns the returnValue to the callee, the callee can take that data as an input to perform someother operation, so that we can improve reusability of the functions.
+
+but in shellscript a function cannot return a returnValue, the only way to return the value computed inside the function is through global variables.
+
+return statement inside function:-
+---------------------------------
+At the end of the function block, we can write a return statement to return the exit code of the function, which is of integer type only where
+ zero means = success and 
+ non-zero = failure
+The callee can identify the function has completed execution successfully or not based on the exit code returned by the function.
+
+return = statement will takes the control out of the function, by stopping other lines code to be executed.
+
+#!/bin/bash
+#global variable
+RET_NUM_TYPE="NONE"
+
+function checkEvenOrOdd() {
+  local N_ARGS=$#
+  
+  if [ $N_ARGS -ne 1 ]; then
+    return 100 // stop executing by returning the exit code
+  fi
+  
+  #here
+  local NUMBER_TYPE="NONE"  
+  local N=$1
+  
+  if [ $N % 2 -eq 0 ]; then
+    NUMBER_TYPE="EVEN"
+  else
+    NUMBER_TYPE="ODD"
+  fi
+  #assign to global variable to return to main block
+  RET_NUM_TYPE=$NUMBER_TYPE
+  return 0
+}
+
+# main block
+read -p "N: " NUM
+checkEvenOrOdd $NUM
+EXITCODE=$?
+if [ $EXITCODE -eq 0 ]; then
+  echo "Number Type: $RET_NUM_TYPE"
+else
+  echo "argument is missing"
+fi
+
+-------------------------------------------------------------------------------------------------------
+ARRAY OF NUMBERS
+SUM ALL THE PRIME NUMBERS IN THE ARRAY AND RETURN
+
+11 24 37 48 16 10
+11, 37 = 48
+
+#!/bin/bash
+RET_PRIME_NUM=0
+RET_SUM_OF_PRIMES=0
+
+function checkPrime() {
+  local N_ARGS=$#
+  if [ $N_ARGS -ne 1 ]; then
+    return 100
+  fi
+  local N=$1
+  local PRIME=1
+  
+  for((I=2;I<$N/2;I++))
+  do
+    REM=$[N%I]
+    if [ $REM -eq 0 ]; then
+      PRIME=0
+      break
+    fi
+  done
+  RET_PRIME_NUM=$PRIME
+  return 0
+}
+
+function sumOfPrimes() {
+  local N_ARGS=$#
+  if [ $N_ARGS -le 0 ]; then
+    return 100
+  fi
+  local NUMBERS=$@
+  local SUM=0
+  
+  for I in $NUMBERS
+  do
+    checkPrime $I
+    EXITCODE=$?
+    if [ $EXITCODE -eq 0 -a $RET_PRIME_NUM -eq 1]; then
+      SUM=$[SUM+I]    
+    fi    
+  done
+  RET_SUM_OF_PRIME=$SUM  
+  return 0
+}
+#main block
+read -p "NUMBERS: " -a NUMS
+sumOfPrimes $NUMS
+EC=$?
+if [ EC -eq 0 ]; then
+  echo "SUM OF PRIME NUMBERS : $RET_SUM_OF_PRIME FROM ARRAY ${NUMS[@]}"
+else
+  echo "ERROR: failed in computing sum"
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

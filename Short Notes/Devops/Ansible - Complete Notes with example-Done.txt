@@ -1,0 +1,2301 @@
+Virtualization
+--------------
+Virtualization is a technology through which we can create/setup multiple parallel isolated environments on one single machine.
+
+Vagrant
+-------
+Vagrant is an iac(infrastructure as code) automation tool used for setting up virtual machine infrastructure through code.
+
+Terraform
+---------
+Terraform is an iac(infrastructure as code) automation tool used for quickly creating cloud infrastructure resources.
+
+Note: Both Vagrant and Terraform are the iac(Infrastructure as Code) tools through which we can automate the process of creating the Infrastructure.
+
+Q. Why do we need Software configuration management tools?
+Ans: By just having the Infrastructure we cannot run our software applications, we need necessary software packages, libraries to be installed and apply configurations inorder to have the environment ready for deploying the applications.
+    
+Q. How to install the software packages and apply the configurations on the infrastructure being provisioned?
+There are many ways we can install and configure the software packages ontop of the infrastructure
+
+#1. Manually install and configure
+The devops engineer upon provisioning the infrastructure should manually download, install and configure the required software packages , but this approach has several drawbacks/problems:
+
+1.1. Installing/configuring the software packages is an repeatitive process that should be performed on a large fleet of computers, so manually carrying such operations takes huge amount of time and it might leads to human errors and delays the availability of the environments in developing/testing or delivering the application.
+
+1.2. Memorizing all the software packages, their versions and dependencies along with configurations to be applied in making the environemnt ready for usage is very difficult
+
+1.3. Keeping track of what packages/configurations are applied on which machines on a fleet servers is quite hard and difficult to maintain
+
+1.4. patching and upgrading the existing fleet servers is very difficult and might take lot of time in identifying the right servers to upgrade/patch
+
+From the above we can understand manually installing/configuring the software packages on a fleet servers across the projects/environments may leads to difficulties/challenges and might encounter failures that kills lot of time and delays the software development and delivery of the application
+
+So to overcome these above problems in installing/configuring the software packages we need software configuration management automation. Which means instead of we manually taking care of installing/configuring we need to automate the process of carrying these activities.
+    
+There are many ways we can automate the process of installing and configuring the software packages on the Infrastructure:
+----------------------------------------------------------------
+#2. Shellscripting
+A shellscripting is a file in which bunch of shell/bash commands are written that has necessary instructions in installing/configuring the required software packages. We can quickly run the shellscript program on each machine whereever it is required to install/configure.
+
+There are lot of advantages of using shell scripting over manually installing and configuring the packages as below:
+advantages:
+1. it greatly reduces the time required for installing/configuring the software packages
+5. no need to memorize once written in the form of program
+3. once written can be reused across the environments, across the projects in configuring and installing for similar type of requirements/needs
+4. we can create reproducible environments flawlessly using shellscript automation
+2. patching and upgradation of the software packages can be done quickly by writing migration/upgradation scripts
+
+Looks like shellscripting has almost solved all the problems that we went through in manually installing and configuring the software packages. But there are lot of problems in using shellscripting for achieving software configuration management automation as below.
+    
+drawbacks:
+1. Not everyone is a programmer to build shellscript programs in achieving the software configuration management automation
+2. Not portable across the operating system environments or even across the linux distro
+3. No error handling to rollback the state of the system incase of failure
+4. No logging support
+5. idempotancy is tough to achieve, because we endup in writing complex programming logic in building the shellscript program to achieve idemotancy
+idempotancy = The outcome of performing an operation for 1 or N times will not effect the state of the system.
+----------------------------------------------------------------
+#3. Python
+Python is an high-level platform independent scripting language. It has rich-set of modules or reusable libraries, that can be used in quickly building software applications using python. Most of the time the programmers never needs to write programming logic from the scratch, rather they can make use of these modules/libraries in quickly building the python programs
+
+It comes with rich support of modules like: os, subprocess, shutil, psutil, fabric etc using them we can simplify the tasks of process monitoring, remote server management, administrative operations etc
+In addition it comes with rich set of features that usually exists with any high-level programming languages like:
+1. Platform portable = the code written using python programming language works across operating system platforms
+2. Rich support of exception/error handling = The programmers can write python programs, keeping in view of error handling support so that incase of failure we can execute alternate code in recovering or rollbacking the system state
+3. logging
+4. due to powerful programming constructs, its easy to achieve idempotancy while building python programs for software configuration management
+
+By considering all of these above aspects, python is being considered as most favorable language for administrative and software configuration management automation
+
+But it has its own dis-advantages too:
+1. should be a python programmer in building the software configuration management scripts
+2. no matter of what best the programming constructs are, still the programmer has to write enough programming logic in accomplishing idempotancy and still remains tough to achieve
+3. We need to endup in writing huge amount of code in achieving idempotancy and takes lot of time and cost in implementing the automation
+4. python doesnt support state management, it doesn't keeps track of software packages / configurations being applied on what infrastructure
+5. orchestrating the code modules in achieving the automation is very complex
+
+From the above discussion, we can derive the minimal requirements in accomplishing the software configuration management automation as below:
+  1. no complex programming logic to be written in implementing the software configuration management automation
+  2. platform portable
+  3. idempotancy
+  4. logging
+  5. exception/error handling 
+  6. state management to keep track of which fleet machines are installed with what software packages and configurations of which versions
+  7. complex code orchestration should be accomplished easily
+  
+Neither the shellscripting nor the python doesn't provides such capabilities in implementing the software configuration management automation. These technologies can be used for performing small or one-time activities or actions to be applied on a Fleet of servers only.
+---------------------------------------------------------------
+
+To achieve software configuration management automation there are lot of vendors provided different tools in the market few of them are commercial and others are open source:
+1. Chef
+2. Puppet
+3. Ansible
+4. Saltstack
+etc
+
+These software configuration management automation tools works based on 2 architectures
+1. pull-based architecture
+2. push-based architecture
+
+1. pull-based architecture
+  1. Chef
+  2. Ansible Tower
+  
+2. pushed-based architecture
+  1. Ansible (opensource)
+  2. Ansible Tower (push/pull) (commercial)
+  3. Puppet
+  4. Saltstack
+  
+1. pull-based architecture
+--------------------------
+In the pull-based architecture there are #3 components are there
+
+1. Control Node Server
+The Control Node Server (Chef Server) holds the entire information about the Fleet servers in the organization that should be managed. The code modules are stored on the Control Node Server Repository and distributed across the Fleet inorder to execute the automation. It keeps track of which code modules ran on which fleet servers and what is their outcome of execution.
+
+2. Fleet Server
+Each Node on the Fleet is called Fleet server, on this the agent software should be installed and configured to talk to the Control Node Server. Upon pushing the code module on to the Control Node Server it stores in the repository. The agent software on these nodes of the fleet periodically polls the control node server asking for any code modules are available for execution. Downloads them onto the Nodes and executes them locally and returns the output of execution back to the Control Node Server updating their status of execution
+
+3. Workstation
+The devops engineer has to write the code modules on the workstation computer, upon testing he has to pass the code modules for execution onto the Control Node Server through knife CLI tool. While passing the code modules has to specify when and on whom these code modules should be applied. So that Control Node Servers stores them in the repository and distributes when requested for execution.
+  
+Since the Fleet Nodes pull the code modules from the Control Node Server for execution it is called "pull-based architecture".
+  
+Let us understand the advantages/dis-advantages of the pull-based architecture:
+advantages:-
+-------------  
+1. The agent node software with in the Fleet node pulls the code module from the control node server and executes them locally because of this the load on the control node server is very less. This architecture can scale to any size of the Fleet
+2. supports parallel execution of the code modules as each agent is responsible for pulling and executing the code modules independently. hence would result in high performance too
+3. scheduled execution of the code modules are supported by this architecture
+
+dis-advantages:-
+---------------
+1. If the control node server goes down, the whole fleet would be down (single-point of failure). 
+2. Migrating the Control node server is very difficult, because we need to reconfigure all the fleet servers in the organization inorder to point to the new control node server, this is a very tedious job.
+3. Since the control node server holds all the information about the fleet nodes in the organization, if it has been compromised by the intruder or hacker gains the access to all the fleets on the network.
+4. On each fleet node we need to install the agent software and configure it to talk to the Control Node Server which is going to take lot of time in setting up the infrastructure.
+5. The Control Node server should be pre-configured with each node information on the Fleet which is again a time consuming job in configuring and setting up.
+6. Keeping track of which code modules are executed on which nodes of the fleet and their status is very difficult. we need to constantly monitor the Control Node Server to know the status of a code module execution. In case of failure we need to extract the logs on that specific node of the fleet and troubleshoot to understand the failure which is a complex job.
+7. Troubleshooting and triaging the node connectivity issues with the control node server is very complex.
+8. Delayed updates/automations: The Fleet node must initiate the pull process by themself, which might result in slower propagation of the urgent changes.
+
+2. push-based architecture
+--------------------------
+The software configuration management tools like Ansible/Puppet/Salt stack etc works based on push-based architecture. These has to be installed on central server computer. The devops engineers writes the code modules on the local workstation and uses the central server computer software configuration management tool for executing them on the fleet servers 
+
+1. Control Node Server
+The Control Node Server on which the software configuration management tool that is running is stateless, it dont know any of the information about the fleet nodes on the organization network. It doesnt even keeps track of the information about the state of the fleet servers too like their h/w configuration or software packages installed. 
+This makes us easy in switching the control server/software configuration management server to a new computer as well.
+  
+2. The devops engineer authenticate himself with Control Node Server and passes the code modules along with group/list of servers in the inventoryFile on whom the code module should be executed
+
+3. The Control Node Server connects to each Fleet Node over SSH protocol across the network, copies the code module onto the Fleet node and executes it locally on the machine, captures the output of execution and reports back to the devops engineer
+
+since the code modules are pushed by the control node server and executed on the Fleet nodes, it is called "push-based architecture".
+  
+advantages:-
+  1. since the software configuration management tool that is running on the central server computer is stateless, we can use any other computer to act as control node server to run the automation
+  2. If the control node server has been compromised there is no problem, since it doesnt hold any of the information about the fleet nodes of the organization
+  3. Don't need to install agent software on each node of the fleet, don't need to configure/register the fleet server with the control node server thus making it quick to setup the infrastructure
+  4. on-demand execution of the code modules on the fleet servers is supported, since it is push-based mechanism
+  5. debugging the nodes of the cluster, monitoring them is very easy. Because the control node server itself connects to each node and executes the codemodules, so incase of failure in connection or execution of a codemodule on a node, we can see the error information specific to fleet node instantaneously
+  6. since it is a push-based mechanism we can define the rollout strategy of the code modules
+  
+dis-advantages:-
+  1. The architecture by itself cannot scale to handle large group of fleet servers within the organization
+  2. the more the fleet nodes are the longer it takes to execute/apply the code modules
+  3. scheduled execution of the code modules is not supported
+  
+From the above both pull and push based architectures has their own advantages and dis-advantages, which strategy or model to be choose in implementing the software configuration automation purely depends on the needs and the kind of fleet we have in our organization
+1. Large fleet of servers prefer pull-based architecture, but a one-time complexity in setting up the infrastructure will be a burden
+2. Small to moderate fleet size, we can scale and manage the code automations using push-based architecture, which is simple to setup and quick to use
+
+Note:
+-----
+1. schedules executions = pull-based architecture
+2. on-demand execution with various roll-out strategies = push-based architecture
+
+easy to setup and quick to use = push-based architecture
+----------------------------------------------------------------
+Ansible 
+-------
+Ansible is an software configuration management automation tool that works based on push-based architecture using which we can run code modules on the infrastructure for installing/configuring the software packages on the Fleet servers within the organization. 
+
+Ansible architecture
+--------------------
+There are 5 core components are there in Ansible
+1. Ansible modules
+2. Ansible Control Node Server [Master]
+3. Ansible Managed Nodes
+4. Ansible Playbooks
+5. Inventory File
+
+1. Ansible modules
+------------------
+Ansible modules are reusable code-blocks/functions that are written in python programming language by the Ansible developers and distributed them aspart of the ansible installation. These ansible modules are pre-coded to perform a task or operation and are written to enforce the idempotancy principle.
+
+These modules takes data as input, performs the operation and returns the output of executing the task on the machine. For eg.. an apt module takes software package name as input, installs and return the output indicating the status of the execution like
+    1. installed ok (changed)
+    2. no change
+    3. failed
+
+2. Ansible Control Node Server
+------------------------------
+The Ansible control node server is the engine of the Ansible architecture, any machine that is installed with Ansible software can be called as Ansible control node server. The Ansible control node server takes playbook/module and inventoryFile as an input, then pushes/copies these modules onto the Managed Node of the Fleet and executes each module locally on the Fleet node. Captures the output of execution back interms of JSON format and displays the outcome to the Ansible user
+    1. The ControlNode server is stateless, because of this we can use any machine which is installed with Ansible software as an Control node Server
+    2. The Control Node Server communicates with the Fleet or Managed nodes over the network through SSH protocol, so each node must and should be configured with SSH access
+    3. Ansible has provided CLI tool through which devops engineer can communicate with Ansible control node server asking to execute the playbooks or code modules
+    
+3. Ansible Managed nodes
+------------------------
+Ansible Managed node is a server or a computer within the organization on whom we wanted to install/configure the software packages/libraries inorder to host/deploy the software application.
+    1. on each ansible managed node we need to install openssh server and should configure key-based authentication for SSH into the machine.
+    2. Install python on each managed node (most of the Linux distributions comes with Python by default)
+    3. The Linux user across all the managed nodes should be configured with passwordless sudoers access
+
+4. Ansible Playbook
+-------------------
+For achieving desired state of the system, we might need to install/configure bunch of software packages and configurations on the Managed nodes of the Fleet. So that we can deploy/run the software applications
+
+We can install/configure the software packages through ansible by executing the ansible modules on each managed node of the cluster using the Control Node Server. But to achieve the desired state of the system, we might need to execute bunch of ansible modules in a specific sequence order. 
+Each module should be executed by passing the relevant data as input, gather the output of execution and might need to pass it as input to another module asking for performing the operation. This way of executing each module in specific order by taking one module output as input to another module in accomplishing the task is called "orchestration"
+    
+but running each modules in specific order and orchestrating them is very difficult and time consuming job. Instead of we manually running, the devops engineer can orchestrate these modules by declaring them aspart of the Ansible playbook.
+    
+A playbook is an YAML file in which ansible developer declares the ansbile modules that has to be executed in specific order with their inputs. Now pass this playbook as input to Ansible Control Node Server, so that it parses the playbook and executes each module in specified order on the managed nodes of the fleet to achieve desired state of the system.
+    
+5. Inventory File
+-----------------
+The Control Node server is stateless, it doesnt hold any of the information about the managed nodes within the ansible cluster. The ansible developer has to write an Inventory File declaring or listing all the managed nodes on whom we want to apply playbooks/ansible modules to achieve the desired state.
+    
+Now along with passing playbooks, we need to pass InventoryFile also as input to the Control Node Server asking him to execute the ansible modules on the managed nodes of the Fleet that are specified in the Inventory File.
+-----------------------------------------------------------------
+How to test the ansible cluster setup?
+1. we can ssh into each of the machines from the host using below command
+~/ansible_cluster:/>vagrant ssh ansible_controlnode
+    
+2. how to ssh onto the managed nodes from control node server?
+2.1 ssh into control node server from the host: vagrant ssh ansible_controlnode    
+we can check whether the managed nodes are accessible over the network or not by using ping of each managed node as below
+ping 192.168.10.12, 192.168.10.13
+    
+we can ssh from control node server to managed nodes using
+ssh -i ~/.ssh/ansiblekey vagrant@192.168.10.12
+ssh -i ~/.ssh/ansiblekey vagrant@192.168.10.13
+    
+To verify ansible control node (ansible engine) is able to ssh and execute the ansible modules on the managed node or not we need to do the below things:
+Let us execute a ping module on each managed node to verify the connectivity
+
+#1. 
+ansible control node server by default uses id_rsa as the private keyfile under ~/.ssh/ directory to connect to the managed nodes for executing the modules/playbook. But we have created the ssh key with filename as ansiblekey (private key) | ansiblekey.pub (public key). So we need to tell the ansible control node server to use the ansiblekey as private keyfile to ssh onto the managed nodes by defining it aspart of the inventory file as below
+
+~/ansible_connect
+hosts [inventory]
+------------------
+192.168.10.12 ansible_ssh_private_key_file=~/.ssh/ansiblekey
+192.168.10.13 ansible_ssh_private_key_file=~/.ssh/ansiblekey
+
+#2. to check whether the control node server is able to ssh and execute the ansible modules or not, let us use ansible adhoc command to ping all the managed nodes as below
+
+~/ansible_connect$> ansible all -i hosts -m ping
+
+-i = inventory file passed as input
+-m = module we want to execute
+    
+The ansible controlnode server should be able to ping all the managed nodes and should return pong! response    
+-----------------------------------------------------------------
+Ansible Configuration
+---------------------
+During the time of installing the ansible on the machine, it creates a directory under /etc with name "ansible", in which it places all the ansible related configurations inside it.
+    
+Within the /etc/ansible directory, there is an central configuration file located inside it called "/etc/ansible/ansible.cfg". It is the central configuration file in which most of the ansible related settings/configurations are being placed 
+
+Note: in the latest version of ansible, it comes with default installation of configurations without the "ansible.cfg" file, but if we want to change/tweak the default configurations of the ansible we can write one ansible.cfg under the /etc/ansible/ directory explicitly.
+    
+Even we can generate the sample configuration file using:
+ansible-config init --disabled > ansible.cfg
+
+This file can be placed in several different locations as
+  1. current directory
+  2. $HOME/ansible.cfg 
+  3. /etc/ansible/ansible.cfg (global)
+
+Let us explore few of the configurations available:
+1. Ansible controlnode server ssh to the managed nodes on port no: 22 by default. if we want to change the default port using which control node server connects/ssh to the managed nodes we can configure/change the property in ansible.cfg file as below
+
+remote_port=22 , change it to 2222 so that control node server ssh to the managed nodes with 2222 port.
+  
+2. ansible control node server by default runs an ansible playbook/module on the managed nodes in parallel upto 5 by default. we can modify the parallel node execution by using the property: forks
+forks=5
+    
+3. We can change the default private key file being used for ssh into managed nodes from id_rsa to a different file by using the property private_key_file as below
+private_key_file=~/.ssh/ansiblekey
+
+4. To run an ansible module or playbook we need to pass the inventoryFile as an input to the ansible control node server. By default ansible control node server looks for the inventory file under /etc/ansible/hosts if we dont supply one explicitly.
+we can always pass an inventoryFile explicit using -i option 
+
+we can change the default inventory file by modifying the property in ansible.cfg as below
+inventory=/etc/ansible/myhosts
+
+From the above we can understand, if we want to modify any of the configurations of ansible control server globally, we can use /etc/ansible/ansible.cfg file.
+  
+For our cluster we can specify the default configurations in : /etc/ansible/ansible.cfg
+[defaults]
+private_key_file=~/.ssh/ansiblekey
+--------------------------------------------------------------
+How do we work with Ansible?
+refer to the pdf for details
+-----------------------------------------------------------------
+From the above we understood ansible uses imperative programming model in accomplishing the software configuration management automation. which means we dont have to write programming instructions, rather we define what we want to accomplish, rather than how to achieve it.
+  
+The ansible developers has to write playbooks declaring or defining the modules to be executed in achieving the final or desired state of the system. These playbooks should be written in YAML language.
+----------------------------------------------------------------
+What is an Ansible inventory file, how to write an ansible inventory file?
+The Ansible control node server is stateless, it does not hold any information pertaining to the managed nodes of the ansible cluster. so, inorder to apply the code automation like executing a module or playbook on the nodes of the cluster, the devops engineer has to provide the list of managed nodes on the cluster by writing inventory file.
+The default inventory file that ansible control node server looks at is /etc/ansible/hosts file. In this file we need to declare the list of hosts/managed nodes of the cluster on whom we want to apply the modules/playbooks. The ansible control node server inorder to execute the modules/playbooks will look into this file for identifying the nodes of the cluster
+
+Instead of using default inventoryFile, we can create our own inventoryFile with list of managed nodes and pass it as an input to the control node server using -i switch while running the playbook/module as below:
+syntax:-
+ansible [group] -i inventoryFile -m module -a args
+
+There are 2 forms of writing an inventoryFile are there
+1. INI format
+2. YAML format
+
+1. INI
+INI file is an plain text file used for configuration purposes. The name comes from "initialization" or often used for initialization settings for an software application. These files holds the information in key=value pair format
+In the hosts INI file we can declare each host/managed node in a new line as shown below
+
+$HOME/hosts
+-------------
+192.168.10.12
+192.168.10.13
+    
+ansible all -i $HOME/hosts -m ping
+
+2. YAML 
+$HOME/hosts.yml
+----------------
+all:
+  hosts:
+    192.168.10.11:
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+    192.168.10.12:
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+
+		(or)
+
+all:
+  hosts:
+    javaserver1:
+      ansible_host: 192.168.10.12
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+    javaserver2:
+      ansible_host: 192.168.10.13
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+
+ansible all -i $HOME/hosts.yml -m ping
+
+In an organization there can be lot of machines assigned to different projects, always we dont want to apply the modules or playbooks across all the servers in the organization. so instead of using default inventory file it is recommended to use project specific inventory file and pass -i switch passing the inventoryFile in executing the modules/playbooks
+
+As per the above recommendation, for each project we need to have project specific inventory declared with managed nodes related to that project. But having an project specific inventory file may not be helpful, because all the servers alloted to the project may not be same, different managed nodes are installed with different software utilities and packages. So we need to run different code modules on different groups of nodes in the cluster.
+
+To apply automation on subset of nodes, we can define groups, where we can group similar type of machines so that we can apply code automation easily.
+There are 2 default groups are there in the inventoryFile
+1. all group
+2. ungrouped
+
+1. all group = all the hosts declared in the inventoryFile are part of all group
+2. ungrouped = If there is any node/host that is not part of any group, then it is assigned to ungrouped.
+  
+How to declare groups in inventoryFile?
+$USER_HOME/hosts
+192.168.10.11
+[dbservers]  
+192.168.10.12
+192.168.10.13
+[javaservers]  
+192.168.10.14
+192.168.10.15  
+
+In the above hosts file we have 5 nodes and 4 are groups
+1. all group which has all the nodes defined in the inventory file
+2. ungrouped = we have only 1 node: 192.168.10.11
+and rest of all are part of dbservers group and javaservers group 
+
+YAML:
+-----
+all:
+  hosts:
+    192.168.10.12:
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+  children:
+    dbservers:
+      hosts:
+        192.168.10.13:
+          ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+    javaservers:
+      hosts:
+        192.168.10.14:
+          ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+        192.168.10.15:
+          ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+-----------------------------------------------------------------
+Inventory File Variables
+------------------------
+Variables acts as placeholders or reserved/named memory locations in which we can store values and refer them through the variableName. By using variables we can easily maintain the program, incase if we need to change the value being used in the program we don't need to change all the places where we are using the value instead we can change the value assigned to the variable to quickly get that reflected everywhere.
+  
+We can define variables and attach to either host, group or global level within the inventoryFile. These variables acts as input while executing playbook/module on the managed nodes of the cluster. So we can avoid hardcoding the values inside the playbook and run the playbook by passing different values from these variables.
+  
+There are 3 levels at which we can define variables in inventory file:
+1. global variables
+These are the variables that will be passed to all the modules/playbooks that are executed against the all hosts/groups defined in the inventoryFile
+  
+2. host-level variables
+These variables are defined/attached specific to the host only. So that these variables will act as input to the playbook/module while it is running on the specific host only. ideally configuration values, labels that classified the machine/usage are defined as host-level variables
+
+3. group-level variables
+Group level variables are defined for a group of hosts whose values are common for the entire group
+
+There are 2 types of variables are there in ansible
+1. ansible pre-defined variables
+2. custom/user-defined variables
+
+1. ansible pre-defined variables
+These variables are the ones for which ansible has attached pre-defined meaning to them. Through these variables we change the behavior of the control node server and how it has to connect to the managed nodes or how it has to execute the playbook or modules on the managed nodes of the cluster. All these pre-defined variables are prefixed with "ansible_"
+1. ansible_host
+2. ansible_port
+3. ansible_user
+4. ansible_password
+5. ansible_ssh_private_key_file
+6. ansible_become
+7. ansible_become_user
+8. ansible_become_password
+9. ansible_shell_type
+
+2. user-defined variables
+In addition to the pre-defined variables we can define our own variables attached with values within the inventoryFile, so that these variables will be passed as input while executing the playbooks or modules on the nodes of the cluster
+
+How to declare these variables?
+1. INI
+1.1 host-level variables
+hosts
+-----
+192.168.10.12 variableName=value1 variableName=value2
+
+1.2 group-level variables
+[dbservers]
+192.168.10.12
+192.168.10.13
+
+[dbservers:vars]
+variableName=value
+variableName=value
+
+1.3 global variables
+[all:vars]
+variable1=value1
+variable2=value2
+
+2. YAML
+1. global, host-level & group-level variables
+
+all:
+  hosts:
+    192.168.10.12:
+      variableName: value
+      variableName: value
+  vars:
+    variableName: value
+  children:
+    dbservers:
+      hosts:
+        192.168.10.13:
+          variableName: value
+      vars:
+        variableName: value
+        variableName: value
+----------------------------------------------------------------  
+Ansible host aliases
+--------------------
+In addition to the host addresses/ip addresses, we can assign an alias name to each host defined in the inventory file, that makes it more readable and easy to debug.
+
+hosts
+-----
+dbServer ansible_host=192.168.10.12
+javaServer ansible_host=192.168.10.13        
+
+debug module:
+To explore the variables in inventory file we can use debug module for printing the variable values while executing on the ansible nodes. its similar to echo command.
+
+ansible all -m debug -a "msg='good morning'"
+
+hosts
+------
+[all:vars]
+project_name=netsecure_banking
+
+[all]
+javaServer1 ansible_host=192.168.10.12 ansible_ssh_private_key_file=~/.ssh/ansiblekey software_version=java17
+
+[dbServers]
+dbServer1 ansible_host=192.168.10.13 ansible_ssh_private_key_file=~/.ssh/ansiblekey software_version=mysql8
+dbServer2 ansible_host=192.168.10.14 ansible_ssh_private_key_file=~/.ssh/ansiblekey
+
+[dbServers:vars]
+software_version=oracle19c
+
+ansible all -i hosts -m debug -a "msg='software version: {{ software_version }} , project: {{ project_name }}'" 
+
+hosts.yml
+---
+all:
+  hosts:
+    javaServer1:
+      ansible_host: 192.168.10.12
+      software_version: jdk17
+  vars:
+    project_name: netbanking
+  children:
+    dbServers:
+      hosts:
+        dbServer1:
+          ansible_host: 192.168.10.13
+          software_version: mysql18
+        dbServer2:
+          ansible_host: 192.168.10.14
+      vars:
+        software_version: oracle19c
+...
+----------------------------------------------------------------
+Host Ranges
+-----------
+In an organization we might have lot of hosts with similar host patterns either with a specific naming convention or ip address range. To avoid adding each host in the inventoryFile manually we can use host patterns/ranges
+
+For eg.. we have java servers starting for ip address: 192.168.10.12 to 192.168.10.25. Instead of defining 14 managed nodes with same duplicate configuration defined in the inventory file we can make use host ranges as below
+
+hosts
+------
+[javaServers]
+javaServers[1:13:1] 192.168.10.[12:25:1] ansible_ssh_private_key_file=~/.ssh/ansiblekey
+
+hosts.yml
+---
+all:
+  hosts:
+    192.168.10.[12:25:1]:
+      ansible_ssh_private_key_file=~/.ssh/ansiblekey
+---------------------------------------------------------
+Playbook
+--------
+Basic building block in ansible is an "module". It is written in python language that is designated to perform one operation. To accomplish an software configuration management automation on the managed nodes of the cluster we need to execute several modules in specific sequence order. The modules should be passed with input data and the output produced by these modules should be passed as input to the another or based on the output we might need to decide what module should be executed next, this process is called orchestration.
+    
+So executing these modules in specific sequence order and orchestrating their inputs and outputs seems to be tedious job, requires lot of time and should memorize in conducting the automation. In addition, we might need to perform the same software configuration management across various different envs which is highly impossible to produce the reproducible environments
+
+To help us in easily accomplishing the software configuration automation, the ansible has introdued "playbooks". The ansible developers or devops engineers will declare all the modules that should be executed or applied on the managed nodes to achieve the desired state of the system in the playbooks and pass these playbooks as input to the ansible control node.
+    
+since these playbook module declarations should be read by the control node server, it has to be written in structured format with semantics defined aspart of it, then only ansible control node server can parse and understand the modules that should be executed.
+    
+In order to have these playbooks being parsed and interpreted, these playbooks should be written in YAML format only. The structure and schema of this playbook YAML file has been defined by ansible.
+    
+For one automation to be applied/accomplished on the managed nodes is called one "play". In a playbook we can define multiple plays. Each play represents a group of modules/tasks that should be executed on the managed nodes to achieve the desired state of the system.
+    
+For a project we might want to perform multiple automations in-order to install or deploy the application. For example we want to install and configure
+    1. jdk17 + tomcat11 server
+    2. mysql8 database server
+These 2 automations can be defined in 2 ways:
+1. we can write them as 2 plays within one single playbook
+2. we can write these 2 automations aspart of the 2 different playbooks
+
+Q. How does the playbook looks like?
+    		(or)
+syntax of writing a playbook:
+The playbooks should be written in YAML File format and can have the extension as ".yml" or ".yaml". The syntax and structure of writing the playbook file is as below:
+playbook.yml
+------------
+---
+- name: play1
+  hosts: groupName
+  tasks:
+    - name: task1
+      module:
+        arg1: arg1value
+		arg2: arg2value
+- name: play2
+  hosts: groupName
+  tasks:
+    - name: task1
+      module:
+		arg: argValue
+    - name: task2
+      module:
+		arg: argValue
+...
+
+A task represents a named execution of a module, through the task we can control the execution of the module as well. By looking at the taskName we can easily understand why are we executing the module for. So a play contains multiple tasks, where in each task is wrapped with module declaration that should be executed inorder to achieve the desired state of the system.
+
+Let us write a playbook that demonstrates the syntax of writing it:
+debug-playbook.yml
+------------------
+---
+- name: debug play
+  hosts: all
+  tasks:
+    - name: debug tasks
+      debug:
+		msg: welcome to ansible playbook
+...
+
+To run the playbook, ansible has provided an CLI command "ansible-playbook" as below:
+ansible-playbook [-i inventoryFile] debug-playbook.yml
+
+Q. How does the ansible playbooks are executed on the managed nodes of the ansible cluster?
+The playbook tasks are executed by default from top to the bottom order in which those are declared within the playbook. Each task will be applied sequentially on all the managed nodes of the fleet and then moved to the next task.
+
+By default fork = 5 configured in ansible.cfg file.
+
+The fork property indicates how many managed nodes in parallel a task should be executed on the cluster. Task1 would be applied on 5 managed nodes in parallel and goes onto the next 5 nodes until all the nodes in the cluster are finished, there by moving to the task2.
+
+During the execution of a task, if the control node has encountered failure on the node, it marks the node as ignored/omitted and continues to apply the remaining tasks on all the other nodes of the cluster.
+
+Q. How does the ansible output the execution of a playbook and what are the possible statuses in which a task execution is reported?
+The ansible control node server displays the status of each task execution for all the managed nodes on the cluster task by task.
+
+There are 7 possible statuses in which a task can be there and it is reported by ansible control node server per each managed node during execution. At the end a summary of total tasks executed per each managed node along with their possible status will be displayed as a PLAY RECAP:
+1. ok (n)			= for how many task executions, the control node server is able to connect to the managed node.
+2. changed (n)	 	= indicates how many tasks of the playbook execution has changed the state of the managed node.
+3. unreachable (n)	= how many tasks executions of the playbook, the control node server failed in connecting with the managed node.
+4. failed (n)		= how may tasks executions of the playbook are resulted in failure of execution.
+5. skipped (n)		= how many tasks executions are omitted on the managed nodes due to the previous task failures on that managed node.
+6. rescued (n)		= how many rescued tasks are executed on that managed node.
+7. ignored (n)		= ignored the task execution because of unmatched condition.
+
+PLAY [debugplay] ***************************************************************************************************************************
+TASK [debug task] **************************************************************************************************************************
+ok: [192.168.10.12] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+ok: [192.168.10.13] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+ok: [192.168.10.14] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+ok: [192.168.10.15] => {
+    "msg": "Welcome to Ansible playbooks!"
+}
+
+TASK [ping] ********************************************************************************************************************************
+ok: [192.168.10.12]
+ok: [192.168.10.13]
+ok: [192.168.10.14]
+ok: [192.168.10.15]
+
+PLAY RECAP *********************************************************************************************************************************
+192.168.10.12              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.10.13              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.10.14              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.10.15              : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+----------------------------------------------------------------
+
+Ansible Modules
+---------------
+An Ansible module represents a unit of work that should be applied on managed nodes to accomplish a task or operation. Ansible modules are written in python language, they take data as input, perform operation and produces the output in json format. The output produced by these modules contains status of the action/operation that has been performed on the managed node
+
+Ansible developers has provided lot of modules and distributed them aspart of the ansible distribution, these modules distributed by ansible itself are called "built-in" modules. In addition there are lot of third-parties and opensource contributors has developed and distributed the ansible modules through ansible repositories.
+  
+Since ansible is very popular software configuration management tool many vendors wants to provide their integrations with ansible like
+1. aws cloudplatform
+2. vmware 
+etc
+
+From this we can understand there are un-ending list of modules are available aspart of the ansible distributions. searching and identifying an module seems to be very difficult since there are lot of modules are there. To help us in easily locating these modules ansible has grouped related modules into categories. Looking through these categories will help us in quickly identifying the modules. Few of the module categories are:
+1. file modules
+2. identity modules
+3. remote management modules
+4. database modules
+etc
+We can browse the modules list by category using: https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+
+The ansible has provided an CLI tool "ansible-doc" that can be used for browsing the documentation of any module in ansible
+
+ansible-doc -l = list down all the modules that are shipped aspart of ansible distribution
+ansible-doc moduleName = shows the document of the module
+--------------------------------------------------------
+Let us explore few popular ansible modules based on module categories.
+1. Command modules:
+Under the commad module category, there are #2 modules that are very popular
+1.1. Command
+1.2. Shell
+
+The shell/command modules are used for executing any linux command on the managed nodes of the cluster. The control node server simply connects to the managed nodes over the ssh and transfers the commands and executes them on the remote machine, the output of executing the command will be returned back.
+
+Looks like we can perform any automation by using these 2 modules in ansible, but it is not recommended to use these modules for performing software configuration automation, because these modules doesn't support idempotency.
+
+Both command and shell modules are used for executing the linux shell commands on the managed nodes of the cluster, but there is subtle difference between them.
+
+1. Command module: It doesn't uses the shell capabilities while executing the shell commands on the managed nodes, so we cannot use features like pipes(|) and redirectors(>, <, >>, <<).
+
+Examples:
+1.1. execute a command
+syntax:
+command: commandToExecute
+
+command: echo "Hey"
+
+1.2. execute a given command by changing into directory specified
+syntax:
+command: commandToExecute
+args:
+  chdir: directoryName
+
+1.3. execute the given command only when the specified file or directory doesn't exists
+syntax:
+command: commandToExecute
+args:
+  creates: pathToFile
+
+command: touch ~/tickets.txt
+args:
+  creates: ~/tickets.txt
+
+2. Shell module: Shell is also used for executing the linux commands on the managed nodes of the cluster and by default it uses the shell interpreter(/bin/sh) that comes with the capabilities like pipes and redirectors.
+Example:
+2.1. shell module with linux command
+syntax:
+shell: commandToExecute
+
+2.2. shell module to execute a linux command by switching to the specified directory
+syntax:
+shell: commandToExecute
+args:
+  chdir: directory
+
+2.3. shell module with create option, which means execute the linux command only when the given specified file doesn't exists
+syntax:
+shell: commandToExecute
+args:
+  creates: pathToFile
+
+2.4. shell module with remove option, means if the given file exists then only execute the linux command
+syntax:
+shell: commandToExecute
+args:
+  removes: pathToFile
+
+expect shell utility
+--------------------
+expect is used for executing an interactive shell program non-interactively, so that we can easily achieve touchless automation.
+There are #3 major utilities that has to be used in implementing expect:
+1. spawn: is used for spawning/running an interactive script that requires input.
+2. expect: is used to match the statement for which the script is waiting for iteractive iput.
+3. send: is used to pass the actual value to the script.
+
+Example:
+addNumbers.sh
+-------------
+#!/bin/bash
+read -p "enter a: " A
+read -p "enter b: " B
+SUM=$[A+B]
+echo "SUM: $SUM"
+
+change the file permission to make it executable: chmod u+x addNumbers.sh
+run the shell program: ./addNumbers.sh
+
+enter a: 10
+enter b: 20
+SUM: 30
+
+auto-addNumbers.sh
+------------------
+#!/usr/bin/expect -f
+set timeout -1
+spawn ./addNumbers.sh
+expect -exact "enter a: "
+send -- "10\r"
+expect -exact "enter b: "
+send -- "20\r"
+expect eof
+
+now auto-addNumbers.sh will take care of running the addNumbers.sh silently (touchless). By default aspart of the ubuntu distribution, the expect utility is not available, we need to install it through package manager.
+~/> sudo apt update -y
+~/> sudo apt install -y expect
+
+Expect Module
+-------------
+Expect module is used for executing an shell-script or a shell command non-interactively aspart of the software configuration automation, within a playbook we might want to execute a shellscript program. The shellscript program might be taking input data interactively, so that the execution of the playbook will be blocked and there is no way to continue execution since we cannot supply the input values.
+
+So to execute such shellscript non-interactively within the ansible playbook, the expect module has been provided by ansible.
+syntax:
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      expect:
+        command: shellscript program/shell command
+    	chdir: directory
+		echo: true
+		responses:
+		  "response1": val1
+	      "response2": val2
+	  register: sum
+    
+addNumbers-playbook.yml
+-----------------------
+---
+- name: expect play
+  hosts: all
+  tasks:
+    - name: add-numbers tasks
+      expect:
+        command: /vagrant/addNumbers.sh
+		echo: true
+		responses:
+		  "enter a: ": 10
+		  "enter b: ": 20
+      register: sum
+    - name: print sum
+      debug:
+		d:
+		msg: "{{sum}}"
+...
+    
+File Category
+------------- 
+The file category modules are used for performing various different file operations like:
+a. copy
+b. create, delete(file/directory)
+c. change permissions/ownership(file/directory)
+d. inline edit
+
+Even though we can perform these operations using shell/command module, but it is not recommended as those are non-idempotent, where as the file category modules are designed keeping in view of idempotancy.    
+    
+1. copy module
+--------------
+Copy module is used for copying an file/directory from the local filesystem of the control node server onto any of the managed nodes of the cluster.
+Incase if we want to do a local copy, which means the source file to copy is on managed node itself and want to copy to a different directory then we can use a property:
+remote_src: true
+this attribute/property indicates the file is already available on managed node.
+
+1.1. copy file from source to the destination directory
+- name: copy
+  copy:
+    src: filename
+    dest: directoryLocation
+
+1.2. copy the file/folder from source location to destination with given file permission/ownership
+- name: copy
+  copy:
+    src: filename
+    dest: directoryLocation
+    owner: 'ownername'
+    group: 'groupname'
+    mode: '0777'
+
+1.3. we can enforce validation constraint while copying the file from source to the destination location
+- name: copy
+  copy:
+    src: filename
+    dest: destinationLocation
+    validation: "/usr/bin/visudo -csf %s"
+
+We can use the validation when we are copying an sudoers file.
+Let us copy a sudoers file from control node server to the managed node under /etc/sudoers.d/ directory
+alex
+----
+alex ALL=(ALL:ALL) ALL
+
+- name: copy alex sudoers file by validating
+  copy:
+    src: alex
+    dest: /etc/sudoers.d
+    validation: "/usr/bin/visudo -csf %s"
+  become: yes
+
+File Module
+-----------
+File module is used for creating new or deleting an file/directory or change the permissions of an existing file/directory.
+
+1. create a new file
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      file:
+        path: file
+		state: touch
+
+this creates an empty file on the managed nodes of the cluster.
+
+2. create a new directory
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      file:
+	    path: directory
+		state: directory
+
+3. How to create an symlink file to an existing file
+We can create symlinks pointing to the existing file/directory on the file system using file module itself.
+There are 2 types of symlinks are there
+a. softlink
+b. hardlink
+
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      file:
+		src: sourcefile
+		dest: destinationDirectory | symlinkFileName
+		owner: 'owner'
+		group: 'group'
+		state: link | hard
+
+link = creates an softlink
+hard = creates an hardlink
+Note: While creating an softlink, the group and owner is not applicable. Only applicable when we are creating hardlinks.
+
+4. How to change the owner/group of an existing file
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      file:
+		path: fileorDirToBeModified
+		group: 'group'
+		owner: 'owner'
+		mode: 'permissions'
+
+during the change in group or owner or permission, the linux os marks the file as accessed and modified by updating the modificationtime and accesstime of the file. We can preserve the modification and accessedtime of a file too as below
+
+5. How to preserve the modificationtime and accesstime of a file?
+a. accessTime = read/copy/move operations on file/directory, the access will be changed by the linux os
+b. modifiedTime = modify the contents of the file, then modified time will be changed
+c. changeTime = when we change the attributes of the file like owner, group, permissions, etc then changeTime will be modified
+d. birthTime = birthTime will not be modified and only be set at the time of creating the file/directory
+
+so we can pereserve the accessTime, modifiedTime using the below attributes:
+
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      file:
+		path: fileToBeModified
+		group: 'group'
+		owner: 'owner'
+		mode: 'permissions'
+		modification_time: preserve
+		access_time: preserve
+
+The possible values we can write for access_time and modification_time is:
+a. now
+b. preserve
+c. set, in case of set we can set a custom date and time format as '{{%Y%m%d%H%M%S}}'
+
+Lineinfile module
+-----------------
+If we want to edit or modify a single-line in an existing file we can use lineinfile module. It is similar to sed in linux shell command.
+
+1. We want to replace a line based on matching expression as below:
+/etc/mysql/mysqld.cof
+MYSQL_BIND_ADDRESS=127.0.0.1
+
+sed -i 's/^MYSQL_BIND_ADDRESS=.*/MYSQL_BIND_ADDRESS=0.0.0.0/g' /etc/mysql/mysqld.conf
+
+syntax:
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      lineinfile:
+		path: locationofFileToEdit
+		regexp: 'searchExp'
+		line: 'replaceContent'
+
+- name: play
+  hosts: all
+  tasks:
+    - name: replace bind address
+      lineinfile:
+		path: /etc/mysql/mysqld.conf
+		regexp: '^MYSQL_BIND_ADDRESS=*'
+		line: 'MYSQL_BIND_ADDRESS=0.0.0.0/g'
+
+2. We can use lineinfile module to add or remove a line before or after the matching expression
+/etc/ssh/sshd.conf
+PermitEmptyPassword no
+ChallengeResponseAuthentication no
+
+we want to add a new line after PermitEmptyPassword no with new line as
+PasswordAuthentication yes
+
+the resulted file should look as below
+/etc/ssh/sshd.conf
+PermitEmptyPassword no
+PasswordAuthentication yes
+ChallengeResponseAuthentication no
+
+- name: play
+  hosts: all
+  tasks:
+    - name: add new line task
+      lineinfile:
+		path: /etc/ssh/sshd.conf
+		line: 'PasswordAuthentication yes'
+		insertafter: '^PermitEmptyPassword.*'
+
+Package Management Category
+---------------------------
+Each linux distros has their own seperate package managers provided for installing and configuring the software packages on their distro operating systems
+a. debian = apt
+b. redhat = yum
+c. arch = pacman
+
+The ansible has provided several modules under package management category for installing/upgrading the software packages across the distros of linux
+a. debian = apt module
+b. redhat = yum module
+c. arch = pacman module
+d. mac = homebrew module
+
+We can use distro specific package manager modules in our playbooks for installing, upgrading or removing the software packages, but the problem is the playbook becomes distro specific and will not be portable across the linux operating system distributions. But the advantage is we can use the full capabilities of the specific distro package manager.
+
+To overcome the dis-advantage with portability, ansible has provided a generic package manager module called "package", that can be used for installing, upgrading the software packages across any linux distros. 
+
+1. apt module
+apt module has all the options related to installing, upgrading, removing the software packages similar to the apt tool of the debian distro.
+
+a. install a specific software package
+- name: play
+  hosts: all
+  tasks:
+    - name: tasks
+      apt:
+		name: packageName
+		state: [present|latest|absent]
+		update_cache: yes|no
+
+1. present = the specified software package is installed and made available on the managed nodes of the cluster. It doesn't look for whether it is latest or not.
+2. latest = ensure the latest version of the specified software package is installed on the fleet servers. If we have old version installed, then it will upgrade.
+3. absent = if present it will remove/uninstall  
+
+update_cache: yes | no = reload/refresh the ubuntu repository cache before installing|upgrading|uninstalling the software.
+
+autoremove: yes | no = if the packages are not being used, it will remove
+
+autoclean: yes | no = removes the local repository cached packaged files which are no longer required
+
+deb = install the software package from local .deb file
+
+purge: true | false = cleanup the configuration files along with the software packaged bits, and this option should be used with state: absent
+
+2. How to uninstall the software package?
+- name: play
+  hosts: all
+  tasks:
+    - name: uninstall s/w pkg tasks
+      apt:
+		name: packageName
+		state: absent
+		purge: true
+
+3. How to install the latest version of the software package?
+- name: play
+  hosts: all
+  tasks:
+    - name: install latest version task
+      apt:
+		name: packageName
+		state: latest
+		update_cache: yes
+
+4. remove un-used or un-wanted software packages
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      apt:
+		autoremove: yes
+
+5. remove unwanted packages on local repo?
+- name: play
+  hosts: all
+  tasks:      
+    - name: task
+      apt:
+    	autoclean: yes
+
+6. How to install multiple software packages?
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      apt:
+    	name:
+      	  - package1
+          - package2
+      	  - package3
+    	state: present
+    	update_cache: yes
+      become: yes 
+
+Instead of using distro specific package manager we can use generic package management module "package"
+
+syntax:
+- name: play
+  hosts: all
+  tasks:
+    - name: task
+      package
+		name: packageName
+		state: [present|latest|absent]
+		use: auto
+
+The package module goes to the distro specific package manager for installing, upgrading or removing the software package.
+Here use: auto indicates pick distro specific package manager automatically.
+
+privilege escalation
+--------------------
+become: yes
+become_user: root
+become_method: sudo
+become_flags: allow additional options for privilege escalations
+---------------------------------------
+
+System Category
+----------------
+The operating system related modules are provided aspart of the System Category modules
+
+#1. user module
+adding/modifying and removing the Linux users can be done through user module
+
+1.1 add a new user with specific uid and gid
+- name: task
+  user:
+    name: username
+    uid: id
+    group: groupName(already present on the node)
+  become: yes
+
+1.2 add a user with default shell
+- name: task
+  user:
+    name: username
+    uid: id
+    groups: groupName1,groupName2(already preset on the node)
+    shell: /bin/bash
+  become: yes
+    
+1.3 add a user with home directory
+- name: task
+  user:
+    name: username
+    uid: id
+    group: groupName
+    create_home: yes|no
+    password: login_password
+    
+more options while creating the user as below:
+generate_ssh_key: true | false
+remove: yes = removes the existing user we specified should be used with state: absent
+- name: task
+  user:
+    name: username
+    state: absent
+    remove: yes
+  become: yes
+  
+Let us try adding a new Linux user with Passwordless sudoers access
+In Linux shell:
+1. add/create user in linux
+sudo useradd -m -p md5hashpassword -s /bin/bash -u 1003 -g 1003 username
+
+2. to make the user sudoer
+goto /etc/sudoers
+username ALL=(ALL) NOPASSWD:ALL
+
+How can we accomplish using ansible playbook?
+1. add/create user in linux = use user module
+2. edit sudoers file = lineinfile module
+
+adduser-playbook.yml
+---------------------
+---
+- name: add user play
+  hosts: all
+  become: yes
+  tasks:
+    - name: add user
+      user: 
+        name: bob
+        password: welcome1
+        create_home: yes
+        shell: /bin/bash
+    - name: promote user as sudoer
+      lineinfile:
+        path: /etc/sudoers
+        line: 'bob ALL=(ALL:ALL) NOPASSWD:ALL'
+        insertAfter: '^root.*'  
+        validate: '/usr/sbin/visudo -csf %s'  
+...
+
+2. service module
+The service module is used for stop, start, restart and reload an initd system service on the Linux operating system
+
+1. start/stop/restart/reload an service
+- name: task
+  service:
+    name: serviceName
+    state: started|stopped|restarted|reloaded
+    
+2. enabling an service
+- name: task
+  service:
+    name: serviceName
+    enabled: yes | no
+
+How to register an shell program as service using playbook?
+Control Node Service
+
+memmonitor.sh
+--------------
+while [ true ]
+do
+  FREE_MEM=$(free -h | grep Mem: | awk '{print $4}')
+  echo "Free Memory : $FREE_MEM" >> /tmp/mem.log
+  sleep 30s
+done
+
+memmonitor.service
+-------------------
+[Unit]
+Description=Memory monitoring service
+After=network.target
+
+[Service]
+ExecStart=/home/vagrant/memmonitor.sh
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+
+memmonitor-playbook.yml
+-----------------------
+- name: service play
+  hosts: all
+  tasks:
+    - name: copy memory monitoring shellscript
+      copy:
+        src: "memmonitor.sh"
+        dest: "/home/vagrant/"
+        mode: '0544'  
+    - name: copy memory monitoring service unit file
+      copy:
+        src: "memmonitor.service"
+        dest: "/etc/systemd/system"
+      become: yes
+    - name: daemon reload
+      service:
+        name: memmonitor
+        state: reloaded
+      become: yes
+    - name: enable memory montoring service
+      service:
+        name: memmonitor
+        enabled: yes
+      become: yes
+
+3. get_url module
+download files from HTTP, HTTPS or FTP sources
+
+1. download an file to a specified destination directory
+syntax:
+- name: task
+  get_url:
+    url: 'http://...'
+    dest: 'path'
+    mode: '0644'  
+
+2. authenticate and download
+- name: task
+  get_url:
+    url: "http://..."
+    dest: "path"
+    mode: '0544'  
+    username: 'username'
+    password: 'password'
+      
+4. unarchive module
+module to extract a .tar.gz file 
+- name: task
+  unarchive:
+    src: "path"
+    dest: "destPath"  
+    remote_src: yes
+-----------------------------------------------------------------------------------------------------------------------------------
+Database Category
+Under the Database category, several modules are provided for managing the databases like
+1. creating an schema/database
+2. creating or removing an user from the database
+etc
+
+pre-requisite:
+Before using mysql database modules of Ansible, we need to do below operations:
+1. We need to have mysql server installed on the managed nodes of the cluster 
+2. Should have python installed on managed nodes
+3. python3-pymysql package should be installed
+
+1. How to create an database on remote mysql server host?
+- name: create database
+  mysql_db:
+    name: databasename
+    state: present
+    
+2. How to add an user to the mysql server database?
+- name: add mysql user
+  mysql_user:
+    name: mysqluser
+    password: password
+    state: present
+    priv: "*.*:ALL"
+    login_user: root
+    login_password: rootPassword
+    
+here: login_user & login_password should be supplied so that mysql_user module can connect to the remote sql server database and create new user provided.
+----------------------------------------------------------------------------------------------------------------------------------
+Install mysql server on managed nodes  
+#1.
+  sudo apt update -y
+  sudo apt install -y mysql-server-8.0
+  
+#2. 
+  sudo mysql -uroot
+  alter user 'root'@'localhost' identified with mysql_native_password by 'root';
+
+#3
+  sudo mysql_secure_installation
+  
+#4 
+  /etc/mysql/mysql.conf.d/mysqld.cnf
+  bind-address=0.0.0.0
+  
+Install Python and pythonmysql packages
+by default ubuntu comes with Python3 installed, we can verify using
+python3 --version
+
+now install pip3
+sudo apt install python3-pip
+
+after installing the pipe3 install pymysql package using below command
+sudo apt install python3-pymysql
+--------------------------------------------------------------------------------------------
+Q. How does ansible control node server connects/ssh onto the managed nodes?
+The control node server by default ssh onto the managed node using the user with which we are running ansible or ansible-playbook commands on the control node server. Incase if we want to change the user on behalf of whom we want to ssh onto the managed node we can specify the user using ansible_user built in variable in the inventory file.
+
+hosts
+-----
+192.168.10.12 ansible_ssh_private_key_file=~/ansiblekey ansible_user=ubuntu
+
+Q. How does ansible executes the ansible modules on the managed node?
+While running any of the modules on the managed nodes, the ansible control node server executes them on-behalf of the ssh user through which it has ssh onto the managed node without any sudoer permission.
+But for few of the modules like
+a. package managers
+b. user management modules
+c. system modules
+d. service modules
+we need sudoer permission to execute them on the managed nodes
+
+So to let the control node server run such modules with sudoer permission:
+a. we need to configure the ssh user with passwordless sudoers access on all the managed nodes.
+b. we need to tell the control node server to use privilege escalation while executing that module.
+
+become: yes = enables privilege escalation (Linux: sudo)
+become_user: username = specifies the user to switch to
+become_method: sudo = defines the method user (eg: sudo, su, doas)
+
+Ansible variables
+------------------
+What are variables, what is the purpose of them?
+Variables are placeholders in which we can store values. Instead of hardcoding the literals in a program, we can refer the variables in using the values to perform operations. So each time when we want to change the values, we can modify the variable value being assigned instead of changing the entire program, hence the programs becomes maintainable
+
+In the context of ansible:
+We write playbooks for performing software configuration automation. The modules declared within the playbooks takes input arguments to perform operation and produces the output as json. Instead of hardcoding the module inputs inside the playbook, we can pass the values as input through variables, so each time we want to change the values instead of modifying the playbook we can supply different values for those variables in running the playbook
+
+There are various different levels at which we can define variables in ansible:
+1. ansible built-in variables (pre-defined variables) = ansible_user, ansible_ssh_private_key_file, ansible_host etc
+2. Inventory variables
+  1. global variables
+  2. host-level variables
+  3. group-level variables
+3. Playbook variables
+4. vars_files in playbook
+5. register variables
+6. ansible facts or magic variables in ansible
+
+out of the above 6, the ansible built-in variables and inventory variables are explored earlier, let us understand the rest of the variables:
+
+How to pass the dynamic values as input to the playbooks while running?
+We can create playbooks by referring variables inside them, and can supply values for those variables dynamically while launching the playbooks. There are 3 ways we can supply values for the variables while running the playbook
+1. vars_files
+2. --extra-vars
+3. variable declarations inside the playbook
+
+1. --extra-vars
+While running the playbook we can pass dynamic values as input to the variables defined inside the playbook by using command-line argument --extra-vars as below
+
+newfile-playbook.yml
+---
+- name: create file play
+  hosts: all
+  tasks:
+    - name: create file
+      file:
+        path: '{{filename}}'
+        state: touch  
+...
+
+Within the playbook, the variables values are referred using {{variableName}}, now we can supply value for that variable while running the playbook using --extra-vars as below
+
+syntax:-
+ansible-playbook -i inventoryFile --extra-vars var1=val1 --extra-vars var2=val2 playbook.yml
+  
+ansible-playbook -i hosts --extra-vars filename=/home/vagrant/product.txt newfile-playbook.yml
+
+2. declare local variables in playbook
+local variables in playbook is similar to declaring variables in a program, so we can reuse the values by referring the variables across different modules within the playbook
+
+installpkg-playbook.yml
+- name: pkg play
+  hosts: all
+  vars:
+    packageName: openjdk-17-jdk
+    update_cache: yes
+  tasks:
+    - name: install software
+      apt:
+        name: "{{packageName}}"
+        state: present
+        update_cache: "{{update_cache}}"
+      become: yes
+      
+most of the time update_cache remains to be yes, only the packageName to be installed will be changing. So instead of modifying the playbook for changing the packageName value we can supply the packageName while launching the playbook using --extra-vars overriding the playbook variable value defined
+
+3. vars_files
+We can pass variable values dynamically while running the playbooks by using --extra-vars but there are lot of problems in using this approach
+  1. the command goes quite lengthy if there are more variables declared in the playbook 
+  2. there is always a chance we might endup in typing the wrong command, and results in failure in running the playbook since there are lot of variables to be supplied with values while launching the playbook
+  3. memorizing the variableNames in supplying the values is difficult while launching
+  
+To overcome these problems in dynamically passing values for the variables, the vars_file has been introduced.
+define all the variables with values in varsity YAML file. Inside the playbook refer this YAML file as vars_file. So each time when we are running the playbook we can modify the variable values inside the vars file with which we can launch the playbook
+
+copyfile-playbook.yml
+- name: copy play
+  hosts: all
+  vars_files:
+    - copyvars.yml
+  tasks:
+    - name: copy file
+      copy:
+        src: "{{source_file}}"
+        dest: "{{dest_dir}}"
+        owner: "{{owner}}"  
+        group: "{{group}}"
+        mode: "{{mode}}"  
+      become: yes
+
+copyvars.yml
+source_file: demo.txt
+dest_dir: /home/vagrant
+owner: vagrant
+group: vagrant
+mode: 0544
+
+6. register variables
+---------------------
+register variables are used for capturing the output of execution of a module, so that we can pass that as an input to the another module within the playbook. register variables are dynamic variables that are created by the control node server during the execution of the playbook.
+
+The register variables are even used for debugging the playbook execution, we can capture the interim output of execution of a playbook modules and print them
+
+Let us write a playbook that executes an shell command, captures the output of executing the command and print it.
+  
+registervars-playbook.yml
+---
+- name: who logged-in playbook
+  hosts: all
+  tasks:
+    - name: who logged in
+      shell: whoami
+      register: loggedInUser
+    - name: print user
+      debug:
+        msg: "{{loggedInUser}}"
+...
+
+7. ansible magic variables or ansible facts
+--------------------------------------------
+How does an ansible control node server executes the playbooks on the cluster?
+When we pass the playbook for execution, the ansible controlnode server will perform the below activities in executing:
+  1. The playbook will be validated to verify whether it is syntactically correct or not and all the module declarations are valid or invalid. If there is an error found, then control node server immediately returns an error without executing the modules of the playbook
+  
+  2. If the playbook is valid, the control node server picks each module from top to the bottom, transfers it over to the managed nodes over ssh connection by replacing the variables with values defined and executes on each managed node one by one
+  
+  3. Then the output of executing the module on the managed node will be transfered back to the control node server by deleting the module it has copied during execution
+  
+Many of the times we want to know the environment information of the managed nodes inorder to execute the modules like hardware configuration, networking or operating system information of the managed node.
+For eg.. to install mysql-server-8.0 software on the machine, the machine should meet the minimal system requirements like cpu, ram and storage capacity. So while executing the modules on the managed node we want to check whether it qualifies the requirements or not, otherwise we want to skip the execution of the playbook or module
+
+From this we can understand we need to apply conditional logic before applying the modules of the playbook on the managed node, that requires system information about the managed node.
+  
+The control node server is responsible for gathering the information about the managed nodes before executing the playbooks and should make this information available for playbook execution  
+
+Q. How does the control node server gather the environment information of the managed nodes and make it available for playbook execution?
+upon passing the playbook for execution, the control node server post completion of the validation of the playbook, runs an implicit module called "gather_facts" as a first task within the playbook and the output generated by this module will be stored and make available for playbook execution. The "gather_facts" is an python module/script that is written by ansible developers and would execute by default on each managed node before executing any of the tasks written in the playbook
+
+Ansible control node server = is stateless!
+  
+These facts variables works same as ansible variables and we can refer them inside the plybook modules like any other variables we use in playbook, since we didn't declare these variables rather these variables are populated or published and made available for playbook execution automatically, these are caleld "Magic variables"  
+  
+Note: For a manged node to execute the modules we don't need python to be installed, but for executing gather_facts module we need python to be installed on all the managed nodes
+
+The gather_facts module takes considerable amount of time in gathering the environment information of each managed node, incase if we dont need environment information about the managed nodes we can turn-off the gather_facts module so that it improves the performance of executing the playbook
+
+- name: playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: task1
+      debug:
+        msg: no gather facts
+        
+we can run the gather_facts module using ansible adhoc command as below
+ansible all -i inventoryFile -m gather_facts
+
+The above gather_facts module returns json output containing the information of each managed node with hardware, network interfaces, ip addresses and operating system related information
+
+We can use this json info within the playbook modules by using 1 of the 2 syntaxes as variables
+
+1. {{ansible_facts.ansible_default_ipv4.address}}
+2. {{ansible_facts.ansible_default_ipv4[address]}}
+  
+here ansible_facts is not mandatory to be used as prefix, while referring to the variables
+1. {{ansible_default_ipv4.address}}
+2. {{ansible_default_ipv4[address]}}
+
+Let us write a playbook in printing the free memory on the managed nodes of the cluster?
+free-mem-playbook.yml
+- name: free memory play
+  hosts: all
+  tasks:
+    - name: free memory
+      debug:
+        msg: "{{ansible_memory_mb.real.free}}"
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Changed_When and Failed_When
+----------------------------
+The Ansible control node server upon executing the modules on the managed node, it gathers the output of execution and reports the status of execution as one of the below statuses per each module
+1. ok
+2. changed
+3. failed
+4. skipped
+5. ignored
+6. unreachable
+7. rescued
+
+The ansible controlnode server derives the module has affected/changed the state of the managed node or not by looking at the exitcode of the module execution.
+If the exitcode of the module execution has resulted as "0" then ansible control node server reports the status as changed and anything that is non-zero would mark the module as "failed" execution
+
+Sometimes we don't want to mark the status of a module being reported as changed or failed based on the exitcode, rather we want to evaluate a condition based on that outcome of execution to determine whether it has changed or failed. This can be done using changed_when and failed_when
+
+For eg..
+When we execute a shell or command module, upon executing the shell command we passed, it always returns the exitcode as "0" indicating the success of execution of the command we supplied, this marks the module as "changed" by the control node server. If the command we supplied returns an non-zero exitcode, then ansible controlnode server marks the module as failed. This is the default behavior for any module
+
+We want to change the above behavior of reporting the status of the execution, by using changed_when and failed_when
+
+Let us take an usecase to understand:
+We want to install an software package like openjdk-17 or mysql-server-8.0 or apache tomcat 11, but before installing any of these packages we want to check whether the managed node qualifies for minimal system requirements in running the sofware. If the managed node doesnt qualify the minimal requirement we wanted to fail the playbook execution
+
+#1. failed_when:
+Let us understand how to implement using failed_when in playbook:
+To install openjdk-17-jdk software package, the minimal system requirement is: storage 5 gb
+
+- name: install java17 play
+  hosts: all
+  tasks:
+    - name: check sys req
+      shell: "df /dev/sda1 | grep -v Filesystem | awk '{print $4}'"
+      register: diskspace
+      failed_when: "diskspace.stdout | float < 21474836480"        
+    - name: install java17
+      apt:
+       name: openjdk-17-jdk
+       state: present
+       update_cache: yes
+      become: yes
+      
+
+#2. changed_when:
+apache-tomcat-11.1.23
+  |-bin
+    |-startup.sh
+    |-shutdown.sh
+    |-catalina.sh
+  |-lib
+  |-webapps
+  
+~/middleware/apache-tomcat-11.1.23/bin/catalina.sh run
+"Address already in use"
+
+- name: start tomcat
+  shell: "~/middleware/apache-tomcat-11.0.7/bin/catalina.sh run 2>&1 | grep java.net.BindException"
+  register: tomcatstatus
+  changed_when: "'Address already in use' not in tomcatstatus.stdout"
+------------------------------------------------------------------------------------------------------------------------
+Ansible control statements
+--------------------------
+When we pass the playbook for execution to the control node server, it executes each task of the playbook from top to the bottom sequentially. But sometimes we want to control the flow of execution of the tasks within the playbook like
+    1. based on a condition we want to execute a task or skip
+    2. and similarly sometimes we want to execute a task repeatedly for certain number of times or until a condition is met
+This can be done using ansible control statements
+
+There are 2 types of control statements are there
+1. when
+2. loop
+
+1. when control statement
+--------------------------
+Based on the condition being met, we want to execute a task of a playbook or want to skip, this can be done using when conditional statement. 
+Ansible modules are the python programs, that carries a specific task or operation in achieving/accomplishing the defined state. The Task comes with programming constructs like conditional statements, loops that defines or controls the module execution.
+
+Let us explore an example to understand how when condition works
+installnginx-playbook.yml
+---------------------------
+---
+- name: install nginx play
+  hosts: all
+  tasks:
+    - name: install nginx(ubuntu)
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      becomes: yes
+      when: ansible_facts['os_family'] == "Debian" and ansible_facts['memtotal_mb'] > 1000
+    - name: install nginx(redhat)
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
+      become: yes
+      when: ansible_facts['os_family'] == "RedHat"
+        
+#2. download tomcat server conditionally
+- name: when condition play
+  hosts: all
+  tasks:
+    - name: find tomcat directory
+      find:
+        paths: /home/vagrant/
+        patterns: "^apache-tomcat-.*"
+        file_type: directory
+        use_regex: true
+        recurse: true
+      register: tomcatstatus
+    - name: download tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.7/bin/apache-tomcat-11.0.7.tar.gz
+        dest: /home/vagrant/middleware
+        mode: '0544'
+      when: "tomcatstatus.matched | float == 0"  
+
+2. Loop control statements
+--------------------------
+Loop control statements are used for repeatedly executing an ansible task over a fixed set of items or resources or until an condition has been met
+There are 5 types of loop control statements are there in Ansible:
+
+#1. loop over simple list of values
+We can loop through a list of values, where each value in the list is an item, that acts as an input in executing the task/module
+For eg.. We want to install bunch of software packages within a playbook like net-tools, tree, curl, vim, git etc. For this we need to write 5 tasks in the ansible playbook for each package as an input
+
+- name: install pkgs play
+  hosts: all
+  tasks:
+    - name: install net-tools
+      apt: 
+        name: net-tools
+        state: present
+        update_cache: yes
+      become: true
+    - name: install curl
+      apt: 
+        name: curl
+        state: present
+        update_cache: yes
+      become: true
+    - name: install tree
+      apt: 
+        name: tree
+        state: present
+        update_cache: yes
+      become: true
+
+In the above playbook for each task only the packageName over which the module being execute is changed, rest of all the configurations with which the module should be executed is same, so this leads to duplication of tasks in playbook. we can rewrite the playbook using loop over simple list of values as below
+- name: simple list play
+  hosts: all
+  tasks:
+    - name: install packages
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      become: yes
+      loop:
+        - net-tools
+        - curl
+        - tree
+        - vim
+        - git
+		
+2. loop over hashes
+- name: create multiple linux users
+  hosts: all
+  tasks:
+    - name: create user
+      user:
+        name: "{{item.name}}"
+        state: present
+        create_home: "{{item.create_home}}"
+        shell: "{{item.shell}}"
+        password: "{{item.password}}"
+        uid: "{{item.uid}}"
+      become: yes
+      loop:
+        - {name: "bob", create_home: "yes", shell: "/bin/bash", password: "$6$JxM/jDwQh6TscLQy$aNP4Cf3F0lSwvDpuhZEqcl3dCIvsebNuECtRcopRcmnZunNc.sOMhLXQUovg.YbP4mAaK4uLPFtSDmBBspaTp1", uid: "1005", gid: "1005"}
+        - {name: "joe", create_home: "yes", shell: "/bin/bash", password: "$6$JxM/jDwQh6TscLQy$aNP4Cf3F0lSwvDpuhZEqcl3dCIvsebNuECtRcopRcmnZunNc.sOMhLXQUovg.YbP4mAaK4uLPFtSDmBBspaTp1", uid: "1006", gid: "1006"}
+      loop_control:
+        label: "{{item.name}}"
+
+loop_control: label will help in displaying username aspart of the log rather than entire dictionary
+
+3. Loop through index variables
+We can track the index position within the loop
+- name: loop index
+  hosts: all
+  tasks:
+    - name: print loop index
+      debug: 
+        msg: "Product: {{item}} at Position: {{index}}"
+      loop:
+        - mobile
+        - watch
+        - belt
+        - tie
+        - shoes
+      loop_control:
+        index_var: index
+
+4. Loop through register variables
+For eg.. we have a file "products.txt" with below contents
+products.txt
+airpods pro2
+ipad11
+iphone16 pro
+beats studio headphones
+iwatch10
+airtag
+
+Within the above given file we want to search for a product and print all the products found 
+
+findprod-playbook.yml
+---
+- name: find products
+  hosts: all
+  tasks:
+    - name: copy products
+      copy:
+        src: products.txt
+        dest: /tmp
+    - name: search product
+      shell: grep "{{search}}" /tmp/products.txt
+      register: productsList
+    - name: print matching products
+      debug:
+        msg: "{{item}}"
+      loop: "{{productsList.stdout_lines}}"    
+
+5. loop until the condition has been met
+
+tomcat.service
+--------------
+[Unit]
+Description=Apache Tomcat 11
+After=network.target
+
+[Service]
+Environment=CATALINA_HOME=/home/vagrant/middleware/apache-tomcat-11.0.7
+Environment=CATALINA_BASE=/home/vagrant/middleware/apache-tomcat-11.0.7
+ExecStart=/home/vagrant/middleware/apache-tomcat-11.0.7/bin/startup.sh
+ExecStop=/home/vagrant/middleware/apache-tomcat-11.0.7/bin/shutdown.sh
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+
+loopuntil-playbook.yml
+----------------------
+- name: loop until
+  hosts: all
+  tasks:
+    - name: create middleware dir
+      file:
+        path: ~/middleware/
+        state: directory
+        mode: "0777"
+        owner: "vagrant"
+        group: "vagrant"
+    - name: install jdk17
+      apt:
+        name: "openjdk-17-jdk"    
+        state: present
+        update_cache: yes
+      become: yes
+    - name: download tomcat11
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.7/bin/apache-tomcat-11.0.7.tar.gz
+        dest: ~/middleware/
+        owner: "vagrant"
+        group: "vagrant"
+    - name: unarchive tomcat11
+      unarchive:
+        src: ~/middleware/apache-tomcat-11.0.7.tar.gz
+        dest: ~/middleware
+        remote_src: yes
+        mode: "0777"
+        owner: "vagrant"
+        group: "vagrant"
+    - name: delete tomcat tar file
+      file:
+        path: ~/middleware/apache-tomcat-11.0.7.tar.gz
+        state: absent
+    - name: copy tomcat.service
+      copy:
+        src: tomcat.service
+        dest: /etc/systemd/system/
+      become: yes
+    - name: check service status
+      shell: systemctl is-active tomcat
+      register: tomcat_status
+      changed_when: false
+      ignore_errors: true
+      become: yes
+    - name: daemon-reload
+      systemd:
+        name: "tomcat"
+        state: reloaded
+      become: yes
+      when: tomcat_status.stdout != "active"
+    - name: stop tomcat
+      service:
+        name: "tomcat"  
+        state: stopped
+        enabled: yes
+      become: yes
+    - name: start tomcat
+      service:
+        name: "tomcat"
+        state: started
+        enabled: yes
+      become: yes
+    - name: construct HTTP URL
+      set_fact:
+        tomcat_url: "http://{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}:8080"  
+    - name: wait for tomcat to respond
+      uri:
+        url: "{{ tomcat_url }}"    
+        method: GET
+      register: response
+      until: response.status == 200
+      retries: 10
+      delay: 5
+    - name: tomcat ready
+      debug:
+        msg: "tomcat server is ready!"
+--------------------------------------------------------------------------------------
+
+Ansible Vault
+-------------
+Ansible Vault is an CLI tool provided by ansible to encrypt playbooks/inventoryfiles/vars_files for securing the sensitive information within them. The ansible can decrypt these files while executing
+
+Within a playbook/vars_files/inventory file we might write credentials of the servers or any other sensitive data related to fleets on the cluster. If these files are versioned and distributed across the team for development/delivery, the critical information pertaining to the production environments would be exposed to everyone and creates an security breach
+
+To overcome this porblem and secure the sensitive information, ansible has provided ansible vault CLI tool. It helps us in encrypting the contents of files using AES256 encryption algorithm/standard so that we can store them on Filesystem or SCM repositories securly
+
+1. How to encrypt an playbook/inventoryFile?
+ansible-vault create playbook/inventoryFile
+
+2. How to encrypt an existing playbook/inventoryFile?
+ansible-vault encrypt playbook/inventoryFile
+
+3. How to view the contents of an encrypted playbook/inventoryFile?
+ansible-vault view playbook/inventoryFile
+
+4. How to execute an encrypted playbook or use encrypted inventory/vars_files?
+ansible-vault decrypt playbook.yml
+
+In production environment it is not recommended to decrypt the playbook/inventoryFile as it leaves the copy of decrypted file on the Filesystem of the computer, that poses an security risk. Instead we can ask ansible control node server to decrypt the file on fly during the execution within the memory and execute it using below command
+
+ansible-playbook --ask-vault-pass playbook.yml
+The above --ask-vault-pass prompts an interactive input of the password to decrypt the file in-memory and execute.
+    
+since it is an interactive input in entering the password, we cannot achieve touchless automation. To overcome the above problem we can write the password in a file and pass that as input while executing the playbook
+But we need to follow few recommendations in securing the password file:
+1. write the password in a file
+2. keep it in the same place where we have the playbook file
+3. set the permissions of the file as "0600" so that only owner can read/write and rest of all the others dont have permission in accessing it and hence making it secured
+
+Now pass the password file as input to the ansible-playbook asking him to use the password inside the file to decrypt and execute the playbook
+ansible-playbook --vault-password-file=passwordfile playbook.yml
+
+5. How to edit an encrypted playbook?
+ansible-vault edit playbook.yml
+------------------------------------------------------------------------
+
+Ansible Jinja2 Templates
+-------------------------
+Jinja2 Templates is a powerful and very popular Python module aspart of python language that is used for creating contents from a template file. The dynamic contents that are generated out of the template file can be written into a file or can be used aspart of the program itself.
+    
+Aspart of an automation, we want to generate/create configuration files or generate contents dynamically which can be done through programs. The program takes the dynamic values as input, substitute them into a template file with which the content will be generated.
+    
+For example: we want to create apache2 site configuration file while hosting an static web application on apache2 server. This can be done through shellscript program as below:
+approach#1
+------------
+hostSite.sh
+------------
+DOMAIN_NM=$1
+SITE_DIR=$2
+
+function generateSiteConfig() {
+    sudo echo "<VirtualHost *:80>ServerName $DOMAIN_NM DocumentRoot /var/www/$SITE_DIR</VirtualHost>" >> /etc/apache2/sites-available/$SITE_DIR.conf
+}
+generateSiteConfig
+
+approach#2:
+-----------
+site.conf.tmpl
+--------------
+<VirtualHost *:80>
+    ServerName #DOMAIN_NM#
+    DocumentRoot /var/www/#SITE_DIR#
+</VirtualHost>
+
+hostSite.sh
+------------
+DOMAIN_NM=$1
+SITE_DIR=$2
+
+function generateSiteConfig() {
+    sudo cp site.conf.tmpl /etc/apache2/sites-available/$SITE_DIR.conf
+    sudo sed -i "s/#DOMAIN_NM#/"$DOMAIN_NM /etc/apache2/sites-available/$SITE_DIR.conf
+    sudo sed -i "s/#SITE_DIR#/"$SITE_DIR /etc/apache2/sites-available/$SITE_DIR.conf
+}
+generateSiteConfig
+
+The above approach of generating the dynamic configuration files out of templates within the programs works well for simple requirements of replacing TOKENS with values in generating the files. But if we have to generate the configuration file contents based on conditions or loop of input values.
+
+For eg: In the below tomcat-users.xml.tmpl file we need to generate <user> based on number of users we have as an input in our application
+tomcat-users.xml.tmpl
+---------------------
+<users>
+    <user>
+        <username>#USER_NM#</username>
+        <password>#PASSWORD#</password>
+    </user>
+</users>
+
+generating such complex content with conditions and loops is going to be tricky. To handle such complex configuration file generations with conditions and loops in place, the ansible has provided Jinja2 module
+
+Jinja2 template is not part of ansible, rather it is an python module used for templating and substitutions. It has been integrated into Ansible for generating the configuration files by making it as ansible module.
+    
+How to work with Jinja2 Templates?
+1. Write Jinja2 Template files, embedded with Jinja2 engine provided instruction-set aspart of the template files
+2. use Placeholders whereever we need to replace with dynamic values {{placeholder}}
+3. Conditional expressions
+4. Loop statements
+
+Instead of writing the programming logic in generating the content inside a program, we are writing the logic within the template file itself, so that the programs looks cleaner
+
+Now within our programs we only need to write the logic for computing the data and pass it as an input to the jinja2 template engine, that takes care of substituting the place holders, evaluating/applying the programming logic in generating the dynamic content 
+
+While working with Ansible, we want to generate configuration files aspart of the playbook execution pertaining to the fleet servers of the cluster and copy these configurations onto the managed node as applicable, this can be done easily using jinja2 template module.
+
+Let us take an example to demonstrate the usage of
+site.conf.j2
+------------
+<VirtualHost *:80>
+    ServerName {{DOMAIN_NM}}
+    DocumentRoot /var/www/{{SITE_DIR}}
+</VirtualHost>
+
+In the ansible playbook we can supply the values for the above placeholders asking the jinja2 module to substitute and generate the final configuration file as below:
+siteconf-playbook.yml
+---------------------
+- name: jinja2
+  hosts: all
+  vars:
+    DOMAIN_NM: quickeats.com
+    SITE_DIR: quickeats
+  tasks:
+    - name: generate site configuration file
+      template:
+        src: site.conf.j2
+        dest: site.conf
+
+2. conditional statements in .j2 templates for generating the content dynamically
+2.1. if condition:
+{%if variable operator value %}
+    block
+{%endif%}
+
+2.2 if-else condition:
+{% if variable operator value %}
+    block
+{% else %}
+    block
+{% endif %}
+
+2.3 if-elif-else condition:
+{% if variable operator value %}
+    block
+{% elif variable operator value %}
+    block
+{% else %}
+    block
+{% endif %}
+
+settings.json
+{
+    "notification": "enabled/disabled",
+    "ssl": "true"        
+}
+
+settings.json.j2
+{
+    "notification": {% if notification == "true"%} "enabled" {%else%} "disabled" {%endif%}
+    {%if ssl == "true" %} ,"ssl": "true" {%endif%}    
+}
+
+settings-playbook.yml
+----------------------
+- name: settings generator
+  hosts: all
+  tasks:
+    - name: generate settings
+      template:
+        src: settings.json.j2
+        dest: settings.json
+        
+ansible-playbook --extra-vars notification=true --extra-vars ssl=false settings-playbook.yml
+
+3. loops in jinja2 templates
+{% for var in values %}
+block
+{% endfor %}
+
+generate tomcat-users.xml based on hashes as input in jinja2 template file
+tomcat-users.xml.j2
+-------------------
+<users>
+  {% for user in users %}
+    <user>
+      <username>{{user.username}}</username>
+      <password>{{user.password}}</password>
+    </user>
+  {% endfor %}
+</users>
+
+tomcat-users-playbook.yml
+--------------------------
+- name: tomcat users
+  hosts: all
+  vars:
+    users:
+      - username: tom
+        password: welcome1
+      - username: bob
+        password: welcome2
+      - username: smith
+        password: welcome3
+  tasks:
+    - name: generate tomcat-users.xml
+      template:
+        src: tomcat-users.xml.j2
+        dest: ~/tomcat-users.xml
+
+tomcat.service
+tomcat.service.tmpl
+--------------------
+[Unit]
+Description=Apache Tomcat 11
+After=network.target
+
+[Service]
+Environment=CATALINA_HOME=$CATALINA_HOME
+Environment=CATALINA_BASE=$CATALINA_BASE
+ExecStart=$TOMCAT_HOME/bin/startup.sh
+ExecStop=$TOMCAT_HOME/bin/shutdown.sh
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+
+lineinfile = sed -i 
+
+How about a complex template file generation based on conditions?
+if os.name=windows
+>1
+else if os.name=mac
+fi
+
+tomcat-users.xml
+<users>
+    <user>
+        <username>bob</username>
+        <password>welcome1</username>
+    </user>
+</users>
+
+[Unit]
+Description=Apache Tomcat 11
+After=network.target
+
+[Service]
+Environment=CATALINA_HOME=/home/vagrant/middleware/apache-tomcat-11.0.7
+Environment=CATALINA_BASE=/home/vagrant/middleware/apache-tomcat-11.0.7
+ExecStart=/home/vagrant/middleware/apache-tomcat-11.0.7/bin/startup.sh
+ExecStop=/home/vagrant/middleware/apache-tomcat-11.0.7/bin/shutdown.sh
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+-------------------------------------------------------------------------------------
+
+Ansible Handlers
+------------------
+Ansible handlers are special tasks that only execute when they are notified by the other tasks. By default each task in ansible playbook executes sequentially from top-to the bottom. But sometimes we want to execute a task only upon completing another task, this can be achieved through Handlers.
+    
+There are typical operations like restarting services, reloading configurations or performing cleanup actions after a change has been made. The tasks can be triggered or managed to execute through handlers.
+    
+How does handlers works?
+1. A handler is just like any other task in the ansible playbook but would be declared under handlers section in the playbook. These tasks are special and would not be executed by default aspart of the playbook execution
+2. The handlers would be executed only when a task notify them to execute 
+3. Handlers only run once, no matter how many times/tasks notifies them
+4. The Handlers executes only at the end of the playbook execution after all the tasks have completed
+
+Let us try hosting an static web application by installing an apache2 httpd server
+webhosting
+|-hosting-playbook.yml
+|-site.conf.j2
+|-sites
+  |-quickeats/
+  
+site.conf.j2
+------------
+<VirtualHost *:80>
+  ServerName {{ domain_name }}
+  DocumentRoot /var/www/{{ site_dir }}
+</VirtualHost>
+    
+hosting-playbook.yml
+--------------------
+---
+- name: hosting site
+  hosts: all
+  vars:
+    site_dir: quickeats
+    domain_name: quickeats.com
+  tasks:
+    - name: copy site
+      copy:
+        src: sites/{{site_dir}}
+        dest: /var/www/
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      become: yes
+    - name: start apache2
+      service:
+        name: apache2
+        state: started
+      become: yes
+    - name: configure site
+      template:
+        src: site.conf.j2
+        dest: /etc/apache2/sites-available/"{{site_dir}}".conf        
+      become: yes
+      notify:
+        - enable site
+        - restart apache2
+  handlers:
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+      become: yes
+    - name: enable site
+      shell: a2ensite "{{ site_dir }}"      
+      become: yes
+...
+-----------------------------------------------------------------------------------------
+
+Ansible Roles
+-------------
+Ansible roles are the way through which we can package and distribute ansible playbook automation in a standardized directory structure, so that it can be reused across in building the automation.
+
+The Ansible has defined 8 standard directories into which the automation needs to be implemented, so the people upon distributed can discover and use it
+
+ansible_role (root directory)
+|-default
+  |-main.yml
+|-tasks
+  |-main.yml
+|-handlers
+  |-main.yml
+|-vars
+  |-main.yml
+|-files
+|-templates
+|-meta
+  |-main.yml
+|-tests
+  |-main.yml
+  
+other than files/ and templates/ in rest of the directories a default main.yml is there.
+  
+1. default/main.yml = all the variables with default values are defined/configured that can be used by the tasks and handlers
+2. files = all the static files that needs to be used aspart of the automation should be placed under files/ directory
+3. templates = all the jinja2 template files should be placed here
+4. tasks/main.yml = all the playbook tasks that we want to execute aspart of the automation should be defined/declared inside tasks/main.yml
+Incase if we have several tasks to be carried to achieve the desired state of the system like
+  1. install jdk
+  2. install tomcat server
+  3. install maven
+  etc
+  
+then instead of defining/declaring everything in tasks/main.yml, we can break them into multiple yaml files and import them into main.yml
+
+tasks/
+  |-install-jdk.yml
+  |-install-tomcat.yml
+  |-install-maven.yml
+  |-main.yml
+  
+then import all these install-*.yml into main.yml as below  
+main.yml
+--------
+import_tasks: install-jdk.yml
+import_tasks: install-tomcat.yml
+import_tasks: install-maven.yml
+
+5. handlers/main.yml = all the handlers should be declared inside handlers/main.yml
+6. meta/main.yml = The meta information about the role like author, licensing, maintainers, version etc is defined inside meta/main.yml (information file)
+7. vars/main.yml = all the variables being used aspart of the role should be declared inside vars/main.yml
+8. tests/main.yml = all the tests that has to be performed in testing the role should be declared here
+
+How to create an ansible role?
+------------------------------
+Manually creating the standardized 8 directories in creating a role is quite difficult, to help us in creating the role ansible has provided an ansible-galaxy CLI tool using this we can quickly create standard directories with default files
+
+1. create a role directory and inside it run the below command to initialize the directory layout of the role
+ansible-galaxy init roleName
+
+Now start implementing the automation as defined above in writing variables, tasks, handlers etc
+
+How to use an ansible role within the playbook?
+Inorder to use the roles, we need to place the roles inside any one of the 3 standard directories so that it can be used inside the playbook
+1. within the playbook directory, we need to create an directory called roles/ in which we need to place the roles to be used aspart of the playbook
+
+2. /etc/ansible/roles/ directory under which we can place all the roles globally.
+  
+3. we can define a property roles_path in ansible.cfg file pointing to the directory location where we want to place the roles under
+
+once we place the roles in any one of the above defined directories, we can use the roles within the playbook as below:
+- name: play
+  hosts: all
+  roles:
+    - roleName

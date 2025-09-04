@@ -1,0 +1,102 @@
+How to compare contents of 2 different files in Linux?
+There are 2 ways we can do file comparision using Linux shell commands
+  1. cmp
+  2. diff
+
+#1. cmp = is a shell command used for comparing the contents of 2 files byte by byte and produces the first difference of the file as an output.
+basket1.txt
+apple
+oranges
+papaya
+
+basket2.txt
+apple
+banana
+annar
+
+cmp basket1.txt basket2.txt
+cmp basket1.txt basket2.txt: byte 7, line2
+---------------------------------------------------------------------------------------------------------
+diff = diff is used for comparing 2 text files and displays all the mis-matches in the files. it has few features as below
+  1. in addition to comparision, it will display special symbols helping us to understand what should be done to make those 2 files identical.
+  a = add
+  c = change the text of the file
+  d = delete line
+  
+  2. along with that it indicates how can we make these files identical from which side file to otherside we need apply above operations
+  > = indicates the right side of the file
+  < = indicates suggestion give above should be applied to the left side file
+  2,5c3 < = in the left file from 2-5 lines change or replace with line 3 of the right side file
+  
+
+it compares the 2 files and shows all the differences
+suggestions, how to make these 2 files identical (same)
+  
+basket1.txt
+apple
+banana
+grapes
+
+basket2.txt
+apples
+papaya
+grapes
+
+diff basket1.txt basket2.txt
+
+1,2c1,2
+line 1 - 2 changed with line 1 - 2
+<apple
+<banana
+--------
+>apples
+>papaya
+--------------------------------------------------------------------------------------------------------
+Pipes and Redirections
+
+Pipes (|) = it is used for joining or chaining the shell command output. The output of one command can be redirected as input into another command with which 2nd command will executes. 
+  
+(or)
+2 or more commands can be joined together in passing the output of 1st command as an input to the 2nd command to execute them together.
+
+wc = word count = we can count the number of words, characters and lines of a give file using word count command.
+  
+wc -l = lines 
+wc -w = word (spaces will be counted for identifying the words)
+wc -c = character
+wc -lw = lines and words
+wc -lc = lines and characters
+ws -cw = characters and words
+
+If you pass any text content/string as an input it will display the above things.
+
+echo "How are you" = echo will output to the terminal, but now we want to pass it as an input to another command to count number of words inside the text content
+
+echo "How are you" | wc - w
+
+players.txt
+dhoni
+vihrat
+kohli
+rohit
+
+cat players.txt | wc -l
+
+who = displays the number of uses currently logged into your linx machine
+We want to know how many number of users are currently logged into the machine?
+who | wc -l
+
+To add an user into linux system we need to use adduser command
+sudo adduser [USERNAME]
+sudo adduser bob
+
+
+How to see the number of users who has accounts in the linux operating system?
+Linux will store all the users of the operating in a configuration file under /etc directory called "passwd". and for each user 1 line will written into that file.
+cat /etc/passwd = we can see the users of linux operating system
+
+so to get number of user accounts
+cat /etc/passwd | wc -l
+
+How to know the number of files/directories that are there in the current working directory?
+ls -l | wc -l

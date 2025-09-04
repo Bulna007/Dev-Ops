@@ -1,0 +1,172 @@
+How to host an static web application using apache2 httpd server?
+1. We need an virtual machine with ubuntu operating system. So that we can install and run apache2 server on it. The quickest way of setting up the ubuntu machine is using vagrant.
+	
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+	config.vm.box = "icloudnote/ubuntu"
+	config.vm.network "forwarded_port", guest: 80, host: 80
+		
+	config.vm.provider "virtualbox" do | vb |
+		vb.name="apache2server"
+		vb.cpus=2
+		vb.memory=1024
+	end
+end
+
+2. create #2 web applications with sample HTML Pages
+1. quickeats
+2. sportsbar
+
+Place these #2 website directories under /var/www location
+|-var
+	|-www
+		|-sportsbar
+		|-quickeats
+		
+cd ~/var/www
+git clone https://techsriman:@github.com/techsriman/sportsbar.git
+git clone https://techsriman:@github.com/techsriman/quickeats.git
+	
+3. Install apache2 server
+sudo apt update -y
+sudo apt install -y apache2
+
+its an packaged distribution, distributed through ubuntu repository. so we can use apt tool for installation. The apache2 server will be configured as initd service through the packaged installation itself.
+	
+sudo systemctl status apache2
+
+4. We need to write apache2 virtual host configuration files for each of the websites to map incoming domain to the respective directories for serving the web pages
+upon installing apache2 server on ubuntu operating system, it will be installed with default configurations placed under
+
+/etc/apache2
+		|-sites-available (virtualhost configuration files are placed)
+		|-sites-enabled
+		
+Now we want to host 2 websites for this we need to write #2 configuration files
+cd /etc/apache2/sites-available
+touch quickeats.conf sportsbar.conf
+
+vim quickeats.conf / sportsbar.conf
+
+quickeats.conf
+---------------
+<VirtualHost *:80>
+	ServerName www.quickeats.com
+	DocumentRoot /var/www/quickeats
+</VirtualHost>
+
+sportsbar.conf
+--------------
+<VirtualHost *:80>
+	ServerName www.sportsbar.com
+	DocumentRoot /var/www/sportsbar
+</VirtualHost>
+
+5. we need to enable the sites we configured above
+sudo a2ensite quickeats
+sudo a2ensite sportsbar
+
+sudo systemctl daemon-reload apache2
+-------------------------------------------------------------------------------------------------------------------------------------
+#automation - idempotancy
+idempotancy = performing an operation 1s or n number of times will results in the same outcome.
+
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+  config.vm.box = “icloudnote/ubuntu”
+  config.vm.network “forwarded_port”, host: 80, guest: 80
+
+  config.vm.provider “virtualbox” do | vb |
+    vb.name = “autowebhostingserver”
+    vb.cpus = 2
+    vb.memory = 1024
+  end
+	config.vm.provision "shell", path: "hostwebsite.sh", args: ["quickeats", "www.quickeats.com"]
+	config.vm.provision "shell", path: "hostwebsite.sh", args: ["sportsbar", "www.sportsbar.com"]
+end
+
+
+template.conf
+---------------------
+<VirtualHost *:80>
+  ServerName DOMAIN_NM
+  DocumentRoot /var/www/SITE_DIR
+</VirtualHost>	
+
+hostwebsite.sh
+---------------
+#!/bin/bash
+
+function checkAndInstallApache2() {
+	local APACHE2_INSTALLED_STATUS=$(dpkg -s apache2 | grep "Status:" | cut -d ":" -f2)
+
+	if [ $APACHE2_INSTALLED_STATUS == " install ok installed" ]
+	then
+		 local APACHE2_RUNNING_STATUS=$(sudo systemctl status apache2 | grep "Active:" | cut -d ":" -f2 | awk '{print $1}')
+		 if [ $APACHE2_RUNNING_STATUS != "active" ]; then
+			 echo "apache2 is down! please start to host website"
+			 return 100
+		 fi
+	else
+		 sudo apt update -y
+		 sudo apt install -y apache2
+		 APACHE2_INSTALLATION_STATUS=$?
+		 if [ $APACHE2_INSTALLATION_STATUS -ne 0 ]; then
+			return 200
+		 fi
+	fi
+	return 0
+}
+
+function copySiteDir() {
+	if [ -e /var/www/$SITE_DIR ]; then
+		sudo rm -rf /var/www/$SITE_DIR
+	fi
+	cp -r /vagrant/$SITE_DIR /var/www/
+	return 0
+}
+
+function createVirtualHostConfAndEnableSite() {
+	sudo cp /vagrant/template.conf /var/www/$SITE_DIR.conf
+	sudo sed -i 's/DOMAIN_NM/'$DOMAIN_NM'/g' /var/www/$SITE_DIR.conf
+	sudo sed -i 's/SITE_DIR/'$SITE_DIR'/g'  /var/www/$SITE_DIR.conf
+	sudo a2ensite $SITE_DIR
+	sudo systemctl daemon-reload
+	sudo systemctl restart apache2
+	return 0
+}
+
+
+
+#main block
+NARGS=$#
+if [ $NARGS -ne 2 ]; then
+	echo "error: site dir and domain name is required for hosting the site"
+	exit 100
+fi
+
+SITE_DIR=$1
+DOMAIN_NM=$2
+
+checkAndInstallApache2()
+CHECK_AND_INSTALL_APACHE2_STATUS=$?
+if [ $CHECK_AND_INSTALL_APACHE2_STATUS -ne 0 ]	; then
+	echo "error: while installing or starting apache2, please check"
+	exit 200
+fi
+copySiteDir()
+COPY_SITE_DIR_STATUS=$?
+if [ $COPY_SITE_DIR_STATUS -ne 0 ]	; then
+	echo "error: failed copying the site directory"
+	exit 300
+fi
+
+createVirtualHostConfAndEnableSite()
+ENABLE_SITE_STATUS=$?
+if [ $ENABLE_SITE_STATUS -ne 0 ]; then
+	echo "error: failed enabling the site"
+	exit 400
+fi
+echo "$SITE_DIR enabled successfully"

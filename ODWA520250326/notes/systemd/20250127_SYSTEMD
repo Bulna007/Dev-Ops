@@ -1,0 +1,173 @@
+What is ubuntu service or systemd init service, why do we need it?
+There are few mandatory services or activities thats needs to be performed by the administrator of the linux operating system like
+1. disk management operations
+2. process management
+3. memory management
+4. monitoring
+5. network services
+etc
+
+To perform the above activities the administrator has develop utilities/scripts using a scripting language like shellscripting. Most of these activities are not one-time activities, rather these has to be perform continously right after the bootup of the operating system until it has been shutted-down.
+	
+How can the administrator can run such mandatory activities right after the bootup until the operating system is shutted down?
+Since these programs are non-interactive programs that doesnt require any inputs from the end-user during their execution, the linux administrator can run these programs as background or daemon process. But running these programs as background process has lot of challenges:
+
+1. There can be lot of utilities/programs that has to be executed right after the bootup of the operating system. The administrator has to memorize all such programs and run them manually one after the another which is time taking job
+
+2. Most of the times these utilities/programs has inter-dependency with other programs/utilities. the administrator has to derive such dependencies between these programs, and has to memorize them. while running these programs the administrator has to memorize these programs and their dependencies and has to them in their specific order only, which is a very complex job
+
+3. as these programs are mandatory services, the administrator has to monitor continously to ensure these are always running. Incase of crash these programs needs to be restarted by the administrator.
+	
+4. starting/stopping and restarting these programs requires bunch of commands to be executed, which makes it tedious job to manage.
+	
+From the above running/managing mandatory services/utilities after the bootup of the operating system until its shutdown involves lot of complexities and challenges for an administrator, to overcome these programs the linux operating system has provided initd service.
+	
+The systemd init service is an software package that helps in managing the programs to run as services on the linux operating system. This initd software package is being developed and distributed aspart of GNU Linux project initiative and has been adopted by most of the Linux distros in the market
+	
+How to work with initd system?
+There are 2 parts are there involved in working with initd system
+1. each mandatory program/utility should be register as service with initd system by providing necessary information about the program like
+	1. start command
+	2. stop command
+	3. dependent services/programs
+	4. restart command
+	5. monitoring details
+so that initd system can run, monitor and manage the program continously
+
+2. The administrator has to interact with initd system in managing the services like 
+	1. registering
+	2. un-registering
+	3. stop
+	4. starting
+	5. restarting
+	6. disabling
+	7. enabling
+for carrying all such operations the initd service has provided tools and utilities in interacting with it.
+-------------------------------------------------------------------------------------------------------------------------------------	
+How to register a program within initd system?
+There are 2 ways the programs are registered as services in systemd init system.
+1. administrator has to manually register the program/utility that he wanted to manage by the initd system by writing Service Unit file.
+2. through	packaged installations.
+	
+	
+1. how to register by writing service unit definition file?
+The programs that are managed through systemd init system are considered as Service Units. The administrator has to write service unit definition file describing the details of the program. The initd system has provided standard structure/format in writing the service unit definition file, we should use that specific format/structure in describing the program inorder to register as service.
+	
+To let the initd system pick the service definition file and register the program as service, it has provided a pre-defined directory location, where we need to place the service definition files. There are 2 directory locations are there in which we can place the service definitions files
+
+1. /usr/lib/systemd/system = All the packaged software service unit files are placed under this directory by the package manager tools during installation
+2. /etc/systemd/system = the administrator has to keep the service definition file in this directory to manually register a program as service
+
+How to write the service unit/definition file?
+The service unit or definition file should be written with a filename having extension as ".service" only. For eg.. to register an tomcat server as an service in initd system, we need to write the service definition file as "tomcat.service" and place this under /etc/systemd/system directory.
+	
+The initd system has defined standard unit sections and directives through which we can define the information about the program we want to run as service. The service unit file contains 3 standard sections in which we need to write pre-defined directives describing the program. 
+Each Unit section in the service file must and should be written in [SECTIONNAME] to identify them in definition file. The directives are key/value pairs which are standard/predefined and provided by initd system.
+	
+There are 3 unit sections are there
+1. Unit
+2. Service
+3. Install
+
+tomcat.service
+[Unit]
+key=value
+key=value
+
+[Service]
+key=value
+key=value
+
+[Install]
+key=value
+key=value
+-------------------------------------------------------------------------------------------------------------------------------------
+1. Unit section
+In the unit section we need to describe the basic information about the program and the hard/soft dependencies it has, inorder to run/manage the program 
+
+[Unit]
+Description=documentation or description information about the service
+
+After=Every service may have another service as dependent. unless the dependent service has been started we dont want our service to be started. for eg.. the program we are trying to register as service is a network program (webserver) it is obviously dependent on network.service (built-in service). unless network.service is up/running we cannot have our webserver.service to be running. This hard dependencies can be expressed in our service definition file by using After directive 
+
+After=network.service
+
+Requires=What are all the other services must and should be installed and available mandatorily to have our service registered
+
+Wants=used for expressing soft dependencies between the services. run my service after these services has been started. But the dependent services we have expressed here has failed or not available also ignore and run my service
+
+For eg.. the network program we have developed can be registered as a service with hard/soft dependencies expressed as below
+[Unit]
+Description=Web Server
+After=Network.service, Disk.service
+Wants=ufw.service (firewall)
+	
+2. Service section
+In service section we need to describe the information about the program and how to start/stop/restart the program etc.
+	
+[Service]	
+ExecPreStart=The commands that should be executed before the actual service program to be launched 
+ExecStart=Command to run the service program
+ExecStartPost=command to run after the service program has been started
+Restart=always,none,once
+ExecStop=Command to stop the service program
+Type=Type indicates what type of service it is
+
+There are 5 different service types are there
+1. simple = Simple service means the program that can be launched by running the ExecStart 
+2. forking = The ExecStart command launches another process from the current process and the initd system manages the launched process as service
+3. dbus = The service is registerd as daemon process with name
+4. oneshot = run the service only once, upon completion dont restart
+5. notify = our service notifies other service to be started
+
+3. Install section
+Install section indicates when does the service should be launched
+[Install]
+WantedBy=multi-user.target
+
+multi-user.target = indicates the service should be installed and started immediately after the runLevel-3 which means once the console has been up
+-------------------------------------------------------------------------------------------------------------------------------------
+To manage the services the initd system has provided systemctl tool. It is used for talking to initd system for registering, monitoring, starting, stopping, enabling and disabling the service with the initd system.
+	
+Below are the systemctl commands that we need to use in managing the service
+1. sudo systemctl daemon-reload = will reload all the service definition files we placed in the predefined location
+2. sudo systemctl start serviceName
+3. sudo systemctl stop serviceName
+4. sudo systemctl restart serviceName
+5. sudo systemctl status serviceName
+6. sudo systemctl enable serviceName = by enabling we are registering with initd system
+7. sudo systemctl disable serviceName = deregister
+8. sudo systemctl list-units = all the services registered with initd system will be shown
+-------------------------------------------------------------------------------------------------------------------------------------
+[/usr/bin]:execute permission
+memusagemonitor.sh
+-------------------
+#!/bin/bash
+while [ true ]
+do
+	date >> /var/mem.log
+	free -h | grep "Mem:" | awk '{print "Used : " $3 "\tFree: " $4}' >> /var/mem.log
+	sleep 120s
+done
+
+/etc/systemd/system
+memusage.service
+[Unit]
+Description=Memory monitoring service
+After=Network.target
+
+[Service]
+ExecStart=/usr/bin/memusagemonitor.sh
+Type=simple
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+How to register and start?
+sudo systemctl daemon-reload
+sudo systemctl enable memusage
+sudo systemctl start memusage
+sudo systemctl status memusage
+
+cat /var/mem.log

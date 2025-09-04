@@ -1,0 +1,269 @@
+1. How to create an empty file?
+touch filename
+
+2. how many ways we can navigate to the user home directory and what are those?
+3 ways we can navigate to the user home directory
+cd
+cd ~
+cd $HOME
+
+3. How to navigate back to the previous directory from where we came from?
+cd -
+	
+4. How to navigate to the root of the filesystem?
+cd /
+	
+5. How to print an message onto the console?
+echo "message"
+	
+7. How to list files/folders within a given directory along with sub-directories as well?
+ls -R directoryName
+
+8. How to see list of files/folders with no color-coding?
+ls --color=none
+
+9. How to do long-listing of files and directories?
+ls -l
+
+10. Do we need to create an file within the Linux Filesystem with an extension to identify the type of the File?
+In Linux operating system we never need to create any File with extension (3 characters).
+
+Then how does Linux operating system identifies what type of File it is?
+based on the contents of the File
+
+How does an end-user can identify what type of File it is by looking at the Filename?
+file filename 
+file bash command shows us the type of the file.
+-------------------------------------------------------------------------------------------------------------------------
+1. How to see the details of a File?
+The details of the File means 
+	- author
+	- last modified date
+	- size
+	- permissions
+	- memory address location on the harddisk
+	
+stat filename
+stat = stands for statistics gives us statistical information about the file.
+	
+	
+2. How to remove an existing file?
+rm filename
+
+rm stands for remove and is used for removing/deleting a file from the Filesystem. 
+Note:- once we remove the file using rm, it is an permanent delete, and cannot be restored
+
+3. How to remove multiple files?
+For eg..
+$HOME
+|-favorites
+|-wishlist
+|-stories
+
+rm favorites
+rm wishlist
+rm stories
+
+all the linux commands takes multiple arguments as inputs, rather than type 3 times the same rm command we can pass #3 filenames as input at one shot
+rm favorites wishlist stories
+
+4. How to forcibily remove a file on the Filesystem?
+There are few files that are considered as special files by the linux operating system, so while removing them using rm linux prompts for confirmation (y/n)	to delete the file.
+Incase if we wish to delete the file without prompting for confirmation, we can use -f option as below
+
+rm -f filename
+
+5. How to delete a directory?
+There are 2 ways we can delete a folder or a directory
+
+#1 approach:
+rmdir directoryName
+
+rmdir deletes/removes a directory only when the given directory is empty. if the directory is not empty, we should manually go into the directory and remove all the files and sub-directories inside it before deleting the directory
+
+for eg..
+$HOME
+|-library
+  |-comics
+		|-file.txt
+	|-adventure
+		|-action
+			|-file2.txt
+		|-war
+			|-file3.txt
+If we want to delete the directory library, first we need to delete file3.txt, war, file2.txt, action , adventure, file.txt, commics and then finally library
+starts with lowest in the hierarchy to the top, this is safe approach of deleting the directory, because we always know what we are deleting
+
+But it is an lengthy process and if we have lot of sub-directories with files, we need to navigate all the way down in the tree and delete and takes more time
+
+Instead we can use approach #2
+
+#2 approach:
+rm -r directoryName
+
+here -r stands for recursively delete all the files/folders under the specified directory along with the given directory
+--------------------------------------------------------------------------------------------------------------------------
+command = no revoke, no rollback
+
+Moving Files and Folders
+-------------------------
+1. How to move a file from source directory location to an destination directory location
+$HOME
+|-tourplans
+	|-Aug
+		|-Shimla.txt
+		|-Chandighar.txt
+		|-NewDelhi.txt
+	|-Sep
+		|-Ooty.txt
+		|-goa.txt
+	|-Oct
+		|-Kerala.txt
+		
+
+
+~/tourplans:/> mv Aug/NewDelhi.txt Sep/
+mv stands for move, used for moving a file from one directory to other directory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

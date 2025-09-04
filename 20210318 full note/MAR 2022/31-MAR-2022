@@ -1,0 +1,125 @@
+1. What is containerization technology?
+containerization technology is used for running an software application isolated from others on a machine/computer
+
+purpose/advantage :-
+	1.1 containers are light weight and consumes very less amount of system resources in running an application (as the operating system will not be running within the container)
+	1.2 the software application delivery process can be abstracted, so that without knowing the underlying technology people can run the software
+---------------------------------------------------------------------------------------	
+When to use 
+containerization?:
+Containerization has to be used when we want to run multiple s/w applications on the same computer/machine isolated from each other
+
+virtualization?:
+If we want to provide 2 independent dedicated environments for different people for their usage, then we need to use virtualization
+-----------------------------------------------------------------------------------------
+
+What are the features of the linux operation system required for running containerization?
+1. Linux namespaces
+2. cgroups
+3. union filesystem
+------------------------------------------------------------------------------------------
+docker architecture
+There are 3 components are their in docker
+1. docker engine
+	1.1 docker daemon = api/http endpoints to allow users/clients to communicate with docker engine
+	1.2 containerd = pull the image from registry, convert into oci image format and pass to runc
+	1.3 runc = container runtime that creates the oci containers by talking to the underlying operating system
+	
+2. docker cli = tool for communicating with docker engine
+3. docker container registry = publishing and distributing the docker images
+------------------------------------------------------------------------------------------
+
+What are docker objects?
+There are 2 docker objects are there
+1. docker image
+an application packaged with software libraries, instructions in running the software application along with libs & bins required for communicating with docker engine put together is called an docker image
+characteristics:-
+	1. layered and stackable
+	2. read-only
+	
+2. docker container
+program or a process that is created out of an docker image which is under execution is called an "container".
+-----------------------------------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

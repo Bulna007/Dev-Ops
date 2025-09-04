@@ -1,0 +1,174 @@
+ENTRYPOINT directive
+ENTRYPOINT directive is used for creating an executable docker container. The ENTRYPOINT directive instruction we wrote in the Dockerfile cannot be overriden while running a container.
+	
+We can write both CMD and ENTRYPOINT as part of the Dockerfile. In case if we have written CMD and ENTRYPOINT in Shell-form, only the ENTRYPOINT will be executed by ignoring CMD
+
+If we have written CMD with ENTRYPOINT in execute form, then there are 2 combinations of writing them
+#1 CMD before ENTRYPOINT
+if we write CMD before ENTRYPOINT then CMD instruction will be ignored
+
+#2. CMD after ENTRYPOINT
+if we write CMD after ENTRYPOINT then CMD acts as an argument to the ENTRYPOINT command.
+------------------------------------------------------------------------------------------
+How to override an ENTRYPOINT instruction written in a Dockerfile while running a container?
+run.sh
+------
+#!/bin/bash
+set -e
+nohup actual command for launching the container &
+exec $@
+	
+Dockerfile
+ENTRYPOINT ["./run.sh"]
+------------------------------------------------------------------------------------------
+How to run a docker container as an infinite container?
+	
+Docker Container means?
+Docker container is nothing but a program running in an isolated environment. The container terminates by the moment when the program terminates. 
+Indirectly: if there is no program hanging up the container, automatically the container terminates
+
+foodies (java web application)
+|-src
+	|-main
+		|-java
+		|-resources
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+				|-jsp
+					|-*.jsp
+|-pom.xml
+|-Dockerfile
+|-target
+	|-foodies.war
+	
+Dockerfile
+-----------
+FROM ubuntu:20.04
+ENV JAVA_HOME=/u01/middleware/jdk-11
+ENV TOMCAT_HOME=/u01/middleware/apache-tomcat-9.0.11
+ENV PATH=$PATH:$JAVA_HOME/bin:$TOMCAT_HOME/bin
+
+RUN mkdir -p /u01/middleware
+WORKDIR /u01/middlware
+
+ADD jdkUrl .
+ADD tomcatUrl .
+	
+RUN tar -xzvf openjdk-11-jdk.tar.gz
+RUN tar -xzvf apache-tomcat-9.0.11-bin.tar.gz
+
+COPY target/foodies.war apache-tomcat-9.0.11/webapps
+ENTRYPOINT [apache-tomcat-9.0.11/bin/startup.sh]
+
+When we package and run server platforms inside the container we want container to run for a long time util we stop. but the server program we launch may return the control back quickly upon executing an startup script, which will cause the container to terminate. but how can we hold on the container keeping the server running inside it?
+	
+ENTRYPOINT[startup.sh]
+CMD [tail -f /dev/null]p
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

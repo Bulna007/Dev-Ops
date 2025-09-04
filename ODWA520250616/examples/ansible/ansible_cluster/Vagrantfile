@@ -1,0 +1,26 @@
+Vagrant.configure(2) do | config | 
+    config.vm.define "ansible_controlnode" do | acns|
+        acns.vm.box = "icloudnote/ubuntu" #bento/ubuntu-24.04
+        acns.vm.network "private_network", ip: "192.168.10.11", virtualbox_intnet: "ansible_cluster"
+
+        acns.vm.provider "virtualbox" do | acnsvb |
+            acnsvb.name="ansible_controlnode"
+            acnsvb.cpus=2
+            acnsvb.memory=1024
+        end
+        acns.vm.provision "shell", path: "provisioners/sh/setupcontrolnodeserver.sh"
+    end
+    (1..4).each do | mn_index |
+        config.vm.define "ansible_managednode_#{mn_index}" do | mnode |
+            mnode.vm.box = "icloudnote/ubuntu" #bento/ubuntu-24.04
+            mnode.vm.network "private_network", ip: "192.168.10.#{mn_index+11}", virtualbox_intnet: "ansible_cluster"
+            mnode.vm.provider "virtualbox" do | amnvb |
+                amnvb.name="ansible_managednode_#{mn_index}"
+                amnvb.cpus=2
+                amnvb.memory=1024
+        end
+        mnode.vm.provision "shell", path: "provisioners/sh/setupmanagednodes.sh"
+        end
+    end
+end
+

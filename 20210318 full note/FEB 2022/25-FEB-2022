@@ -1,0 +1,90 @@
+1. How does terraform provisions infrastructure resources across the cloud providers?
+Each cloud provider offers different resources/services and they expose cloudsdks and apis in provisioning the infrastructure resources
+
+To support working with multiple cloud providers and their various different apis or sdks terraform has introduced plugin-based architecture
+
+For each provider we have a provider plugin that takes care of communicating with the relevant cloud provider sdk/api in provisioning the infrastructure, so that terraform supports multiple cloud providers by simply swapping provider plugin
+
+2. Does Terraform configuration we write works across various cloud providers in provisioning the infrastructure resources?
+different cloud provider platforms has different resources/services so a terraform configuration file written for provisioning resources of a cloud provider will not work for other providers since those resources are not available with others.
+
+3. What are the components of the Terraform?
+There are total 4 components are there
+1. Terraform CLI
+2. Terraform Configuration
+3. Provider Plugin
+4. Cloud Provider Api
+
+4. what are the advantages of terraforms?
+1. hybrid iac provider that works for any of the cloud provider platforms
+2. standardized workflow automation in provisioning the infrastructure across any platforms
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

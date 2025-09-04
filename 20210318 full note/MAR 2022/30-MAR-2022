@@ -1,0 +1,134 @@
+Install the below 2 softwares
+
+#1. VirtualBox-6.1.32-149290-Win.exe
+#2. Oracle_VM_VirtualBox_Extension_Pack-6.1.32
+-------------------------------------------------------------
+Create virtual machine by using Virtualbox Manager
+start the machine and goto device at top and click on install guest edition from the cd image
+after installing the guest editions, restart the virtual machine
+------------------------------------------------------------------------------------------
+How to install docker on ubuntu machine?
+There are 2 versions of the docker
+1. docker community edition
+2. docker enterprise edition
+we have to install community edition only which is opensource
+
+#1. open terminal on ubuntu
+#2. sudo apt update -y
+#3. There are few mandatory dependent packages that has to be installed before installing the docker on the machine
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+#4. 
+docker is not available as part of ubuntu official repository, so we need to add docker repository to the source.list
+
+#5. we need to download and add gpg key of the repository 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+#6. add docker repository to our sources.list
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+#7. sudo apt update -y
+#8. sudo apt install docker-ce
+
+The above installation process creates an user: docker and group: docker and installs the docker software and configures it as system service under the user docker only
+
+Now our linux user cannot access the docker engine since he dont has access permissions, so we need to add the current linux user to docker group by running the below command
+
+#9. sudo usermod -aG docker $USER
+#10. sudo init 6
+-----------------------------------------------------------------------------------------
+How to create an ec2 instance?
+#1. login into amazon aws cloud console
+#2. choose from menu under compute -> ec2 
+#3. click on launch ec2 instance from the top right button of the console page
+#4. choose the ami as free-tier and select ubuntu-20.04 LTS as the ami click on next
+#4. select the shape of the instance as t2.micro only (others are chargeable)
+#5. leave the default vpc select and subnet also
+		public ip: enable public ip and click on add storage
+#6. in storage screen change from 8gb to 20 gb storage and click on next tags
+#7. in tags enter key as "Name" and value as "dockerworkstation" and click on next
+#8. security group
+		8.1 choose create new security group and leave next of the options as default and click on next
+#9. review and launch instance
+#10. choose the ssh key
+	10.1 choose create a new ssh key pair
+	10.2 enter keypair name as "dockerkp"
+	10.3 download the keypair and save to $USER_HOME/.ssh/
+#11. click on launch
+-----------------------------------------------------------------------------------------
+#1. goto ec2 instances screen and select the ec2 instance we provisioned and goto networking tab and copy the public ip address and save it on notepad
+
+#2. open gitbash (install git to have gitbash on your machine)
+#3. ssh -i ~/.ssh/dockerkp ubuntu@publicip
+			
+once after provision we just only need to ssh into the ec2 instance for using docker.
+-----------------------------------------------------------------------------------------
+The steps for installing the docker on ec2 ubuntu machine is same as described above.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

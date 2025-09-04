@@ -1,0 +1,113 @@
+ansible_user is the default ssh user with which ansible control node should ssh into the fleet servers
+become_user: is onbehalf of which linux user the playbook/tasks/modules has to be executed on the fleet.
+------------------------------------------------------------------------------------------------
+How can we reuse playbook inside another playbook?
+ansible has provided import_playbook: module that has to imported at top of the playbook before the play execution begins.
+play1.yml	
+- name: play1
+	hosts:
+	tasks:
+
+play2.yml
+- import_playbook: play1.yml
+- name: play2
+	hosts:
+	tasks:
+		- name: task1
+			module:
+				args:
+-----------------------------------------------------------------------------------------------
+Ansible Roles
+
+When we are working on complex automations in building a final system state, we might have to implement lot of software configuration management logic from scratch which takes huge amount of development/testing time to verify the scripts.
+	
+Is there any modular approach through which we can reuse few existing automations inplace to quickly build our automation scripts?
+The ansible has allowed us to reuse existing playbook automations through import_playbook module declaration so that we can quickly build our complex automations.
+But it has quite a number of challenges:
+	1. The playbook might be using few configuration files, templates, modules and variable files  in their module references. How can all of these files along with playbook yml can be distributed to the others
+	2. different developers organizes the playbook and the related files in different directory structure, reusing these playbooks by the others becomes complex as they need to gothrough the directory structure in which the files are organized to reuse them
+	3. The playbook might be using few variables as input, identifying those variables being used and passing them as an input while reusing them is complex as we dont know which are the playbook requires to execute
+	
+How to solve the problem in distributing the automations/playbooks in standardized and reusable way?
+To address the above problems ansible has introduced Ansible Roles
+Ansible Roles
+Ansible Roles is a standardized/organized way of distributing the ansible automations to others, so that they can reuse in building their automations in producing the final system state.
+		
+The Ansible role has defined standard directory structure to be followed in writing the playbook automations. There are total 7 directories are there
+
+rootdirectory (role)
+|-default
+	|-main.yml
+|-tasks
+	|-main.yml
+|-handlers
+	|-main.yml
+|-files
+|-templates
+|-meta
+	|-main.yml
+|-vars
+	|-main.yml
+
+atlease a role should be defined by one these directories and others can be ignored if we dont have any. Each of the directories within role except files/templates are defined with main.yml in which we need to write the respective code
+
+For eg.. 
+under default/main.yml = we need to declare the variables with default values we want to use in our playbook automations of the role
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,87 @@
+Symbolic links
+---------------
+Symbolic links are in-short called "SymLinks". The SymLinks are the pointers to the original file/directory on the Filesystem of the computer. We can imagine an SymLink file as similar to shortcut in windows operating system.
+	
+There are #2 types of symlinks are there
+1. softlink
+	1.1 softlinks can be created for both file and directory
+	1.2 The permissions of the softlink file are different from original file. Always the softlink file will be created with full/all permissions irrespective of the original file permissions. When the user tries to access the original file through softlink file, the permissions of the original file will be enforced in allowing the access
+	The permissions of the softlink is created and defaulted to rwxrwxrwx (777) and cannot be changed as they dont have any significance
+	1.3 We can create softlink files for the files across the filesystems
+	1.4 inode address of the original file and symlink file are different
+	1.5 The softlink always holds an pointer to the original file/directory, so when we move the original file/directory the softlink will be broken. We need to recreate the softlink in such event
+	
+2. hardlink
+	2.1 hardlinks can be created only for the files and not for directories
+	2.2 hardlinks can be created only for the files of local filesystem only and cannot be created for remote files of another filesystem
+	2.3 The File permissions of the hardlink file and original file are always same. if we change permissions of original file, it reflects in hardlink file as well
+	2.4 inode address of both files are same
+	2.5 if we move or modify or rename the original file, the hardlink will not be broken.
+		
+		
+~/personal/finance/bank/account-info.txt (original file)
+how to create a softlink file for the above?
+~/> ln -s ~/personal/finance/bank/account-info.txt account.txt	
+
+ln = stands for create a link file
+
+I can access the contents of account-info.txt by using original file reference and also using softlink file
+cat ~/personal/finance/bank/account-info.txt
+cat ~/account.txt
+
+ls -l ~/account.txt
+
+lrwxrwxrwx joseph joseph .....
+	
+
+if we dont use -s option, then it creates an hardlink
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

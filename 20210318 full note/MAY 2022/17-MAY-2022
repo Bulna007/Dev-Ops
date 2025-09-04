@@ -1,0 +1,185 @@
+How to work with multiple kubernetes cluster environments?
+The kubernetes cluster information is stored in kubeconfig file under $HOME/.kube/config
+
+apiVersion: 1.0
+kind: Config
+preferences: {}
+clusters:
+- cluster:
+	name: dev-cluster
+		server: https://host:port
+		certificate-authority-data:
+- cluster:
+	name: test-cluster
+		server: https://host:port
+		certificate-authority-data:
+users:
+- user:
+	name: dev-user
+		certificate-authority-data:
+		certificate-key-data:
+- user:
+	name: test-user
+	certificate-authority-data:
+	certificate-key-data:
+contexts:
+- context:
+	name: dev-context
+		cluster: dev-cluster
+		user: dev-user
+		namespace: devns
+- context:
+	name: test-context
+		cluster: test-cluster
+		user: test-user
+		namespace: testns
+current-context: dev-context
+
+There are 2 ways are there in modifying kubeconfig file
+1. we can edit the kubeconfig file manually using a text editor
+2. we can modify through kubectl commands
+
+1. How to see the kubeconfig?
+kubectl config view
+
+2. How to see all the clusters information?
+kubectl config get-contexts
+kubectl config get-clusters
+
+3. How to change the namespace of the current context?
+kubectl config set-context --current --namespace=namespacename
+
+4. How to change between the clusters?
+kubectl config use-context contextName
+
+5. How to add a new kubernetes cluster informtion?
+kubectl config set-cluster development --server=https://host:port --insecure-skip-tls-verify
+--------------------------------------------------------------------------------------------
+Kubernetes Objects
+-------------------
+There are different types of resources are there in kubernetes cluster
+1. Pod
+2. Deployments
+3. ReplicaSet
+4. Service
+5. Job
+6. DaemonSet
+etc
+
+The kubernetes will represent the information about all the resources interms of Objects and persist them in etcd of the cluster. All these objects are created under kube-system namespace
+The kubernetes objects represents the state of the kubernetes cluster
+
+What does a kubernetes object represents?
+1. It represents the contaierzied application that is scheduled/running on the cluster
+2. Resources allocated in running the application
+3. The policy bindings to the resource
+
+A kubernetes objects is a record of intent, once we create an kubernetes object, the system constantly work to ensure the object exists/created on the cluster. Through the object we are specifying to the kubernetes system, what we want on the cluster
+
+These kubernetes objects can be created by writing resource spec or manifest file, and should be passed as an input to the controlplane using kubectl.
+The control plane reads the resourcespec/manifest and creates an appropriate kubernetes object and stores/persist in etcd
+
+resourcespec -> kubectl-> controlplane -> object -> stores(etcd)
+	
+The resource spec or manifest is an YAML file that has to be written describing the object we wanted to be created on the cluster as key/value pair and pass it as an intput to control plane
+Required Field:-
+	apiVersion: = which version of the kubernetes object we are using
+	kind = type of object
+	metadata = used to define labels
+	namespace = the object should be created under which namespace
+	spec = desired state of the objects
+-------------------------------------------------------------------------------------------
+How to create and manage these objects in kubernetes cluster?
+The kubectl has provided sophisticated ways in creating and managing these objects on kubernetes cluster. There are 3 ways we can create these objects
+1. imperative commands
+2. imperative object configuration
+3. declarative object configuration
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

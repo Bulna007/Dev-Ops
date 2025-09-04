@@ -1,0 +1,34 @@
+---
+- name: service play
+  hosts: all
+  tasks:
+    # - name: copy memory montoring shellscript
+    #   copy:
+    #     src: memmonitor.sh
+    #     dest: /home/vagrant/
+    #     mode: '0544'
+    #     owner: vagrant
+    #     group: vagrant
+    #   become: yes
+    # - name: copy memory monitoring service file
+    #   copy:
+    #     src: memmonitor.service
+    #     dest: /etc/systemd/system
+    #   become: yes
+    # - name: reload memory montoring service
+    #   service:
+    #     name: memmonitor
+    #     state: reloaded
+    #   become: yes
+    # - name: enable memory montoring service
+    #   service:
+    #     name: memmonitor
+    #     enabled: yes
+    #   become: yes
+    - name: start memory montoring service
+      service:
+        name: memmonitor
+        enabled: no
+      become: yes        
+
+...

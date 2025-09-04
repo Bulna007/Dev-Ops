@@ -1,0 +1,94 @@
+Playbooks are written in YAML format and contains module declarations that has to be executed on fleet servers to achieve the desired system state.
+1. A playbook can container multiple plays in it, a play is nothing but group of tasks we want to apply on a servergroup of machines to achieve desired state of the system
+2. A play defines the follow
+	1. name = describing what we achieve by applying the play
+	2. hosts = group of servers on whom we want to apply the play (list)
+	3. tasks = list of tasks we want to apply on the group of servers
+3. each task is wrapped with an module declaration in it.
+A module is a unit of work we want to perform on a fleet server, using a module we can accomplish various different types of tasks, so by wrapping a module into a task declaration we can derive what is the module is used for accomplishing that is where each module has to be declared within a task
+
+task declaration syntax:
+- name: taskName
+  moduleName:
+		argument: value
+		argument: value
+----------------------------------------------------------------------------------------------
+hosts-inventory.yml
+---------------------
+all:
+  children:
+    dbservers:
+     hosts:
+      - 192.168.10.11
+			- 192.168.10.12
+		javaservers:
+     hosts:
+			- 192.168.10.13
+					
+check-playbook.yml
+--------------------
+---
+- name: check dbservers
+  hosts: dbservers
+	tasks:
+		- name: check rechability
+		  ping
+    - name: print message
+		  debug:
+        msg: "hey! playbook debug message"
+- name: check javaservers
+  hosts: javaservers
+	tasks:
+    - name: ping
+		  ping
+...
+
+How to run a playbook?
+Ansible has provided several CLI tools for performing actions or operations under /etc/ansible/bin directory
+1. ansible = for performing adhoc commands
+2. ansible-galaxy = for creating ansible tasks
+3. ansible-playbook = for executing an ansible playbook
+
+1. ansible-playbook is an cli using which we can run an ansible playbook 
+syntax:
+ansible-playbook -i inventoryFile playbookName.yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

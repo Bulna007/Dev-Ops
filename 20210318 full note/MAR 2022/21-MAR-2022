@@ -1,0 +1,132 @@
+What is virtualization?
+Virtualization is a technology using which we can create multiple virtual machines and can run in parallel, isolated from each other on the same machine using hypervisor.
+	
+The virtual machines communicates with the hypervisor where hypervisor inturn talks to the host operating system on the computer in sharing physical computing resources of the computer to multiple virtual machines
+
+What is containerization?
+Containerization is technic through which we can package software applications and the corresponding libraries/binaries which are required for running the application can run in-parallel islated from each other on the same machine
+
+Now from the above we understood there are 2 ways we can run software applications in parallel isolated from each other we can use either virtualization or containerization, then which one should used when?
+	
+before understanding which one should be used when first lets learn what are the advantages and dis-advantages of each of them
+virtualization:
+advantages:-
+	1. we can run any operating system within the guest/virtual machine independent of the host operating system
+	2. better suitable for software applications that requires an dedicated operating system
+	3. even the host has been compromised still the guests/virtual machines cannot be broken so we can consider it as highly-secured
+	4. suitable for running applications for longer amount of time
+dis-advantages:-
+	1. the virtual machines are consumes lot of system resources as each machine runs their own operating system thus being considered as heavy weight
+	2. since we install the entire operating system on the virtual machine, the virtual machine disk images are huge and cannot be portable 
+	3. due to huge size of virtual disk image files, we cannot achieve CI/CD
+	4. we cannot scale the application quickly as virtual machines requires lot of time for booting
+	5. patching and upgradations are quite difficult
+	
+Containerization:-
+advantages:-
+	1. The containers are light weight, in each container the operating system is not installed, rather only libs/bins are packaged as part of them. so that the containers can talk to containerization engine running the host machine, which inturn can talk to host operating system in sharing hardware resources across the containers running on the machine
+	since there is no operating system running in each container, the system resources the containers are going to consume are very less thus making them light weight
+	2. since we dont install operating system as part of the container, the container images are very small in size and can be easily portable across the computers
+	3. since containers images are very small in size, those are good for implementing CI/CD
+	4. containers bootstraps very quickly by taking no time, so we can easily achieve scalability of software applications using containerization technology
+	5. we can optimize the utilization of physical resources of the computer by running lot of programs in parallel, since containers consumes very less amount of system resources
+	6. patching and upgradation is very easy while using containerization
+	
+dis-advantages:-
+	1. The containers always shares the same operating system of the host, so we cannot install independent operating system of the host computer while using containers.
+	2. containers are not highly-secured, if the host has been compromized then containers are also compromised
+	3. only suitable for short-running applications
+	
+		
+When should we use virtualization and when containerization?
+1. if we want to share a physical computer and its resources between 2 parties where they wanted to run their applications on their own dedicates environment, then we should use virtualization only
+
+2. if we want to run software applications isolated from each other, then we can go for containerization
+
+durgasoftonlinetraining@gmail.com
+/tech.sriman@gmail.com
+		
+#1 new people
+durgasoft has sent you an email with registration details, please see for the email in junk/spam folder and proceed for registration. once paid send the screenshot along with your details
+your name
+mobile
+cource
+faculty
+timings
+
+#2 existing 9:30 pm batch people
+you dont have to send any email, durgasoft will send emails to asking for registration for docker, kuberntes and jenkins
+please cross check in spam/junk folders or else please wait
+
+if you fill that link, it means you are attending the course and will not permit in evening again
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

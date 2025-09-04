@@ -1,0 +1,46 @@
+What are the contents of vbox file?
+by default vagrant packages by compressing the virtual disk image file into "package.box" file when we run
+vagrant package --base "virtualmachinename"
+  
+if we want to generate the boxfile with different name we can use --output flag as shown below.    
+vagrant package --base "vmname" --output file.box
+
+The Vagrant boxfile contains the below files inside it.
+package.box
+|-Vagrantfile
+|-virtualdisk.vdi
+|-metadata.json
+
+vagrant box list = shows all the boxfiles available in the local vagrant cache of the machine
+vagrant box remove boxfilename = removes the box from the local cache
+vagrant box add "boxname" vbox.box = to add local box files into the cache
+---------------------------------------------------------------------------------------------------------
+vagrant provisioners
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

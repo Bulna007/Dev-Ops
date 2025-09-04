@@ -1,0 +1,52 @@
+What is virtualbox network?
+virtualbox hypervisor supports inter-connecting the virtual machines onto a network by attaching virtual network adapters and network modes to interconnect the machines. Virtualbox supports attaching max 8 network interfaces cards to a virtual machine. by default when we create a virtual machine one nic card will be configured. 
+  
+There are 7 network modes are supported by virtualbox.  
+1. Not Attached
+2. NAT
+3. NAT network
+4. Bridge network
+5. Internal network
+6. Host-Only network adapter
+7. Generic Driver
+
+2. NAT
+The default network mode with which the network adapter is configured for a virtual machine is NAT. The guest operating system on vm can access host machine and by using a virtual NAT device it can talk to external network also. But a guest machine is not accessible from host or external network.
+
+The default ip address of the vm network adapter is 10.0.2.2 and the network mask is 255.255.255.0. if you configure more than one guest machines all of the are attached to their isolated network by connecting to the private NAT device. So each of these vms has same ip address across
+
+3. NAT network
+NAT network mode is similar to NAT expect the guest of the same NAT network can communicate with each other.
+goto File Menu and choose preferences. Click on Network item from left page. Now add a new NAT network with CIDR and DHCP enabled.
+Now goto each virtual machine and choose networking setting network mode as NAT network by selecting the NAT network we created.
+
+4. Bridge Network
+In bridge network all the modes of communication are opened where guest can talk to another guest of the same bridge, host and even external network. Similar host can talk to guest and external network can also talk to guest.
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

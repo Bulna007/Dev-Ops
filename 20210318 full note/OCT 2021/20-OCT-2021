@@ -1,0 +1,180 @@
+What is a distributed web application?
+The distributed web application can be accessed over the network using http protocol and serves HTML markup in exchanging the information between the clients and application.
+  
+There are 2 types of distributed web applications are there:
+1. static web application
+In a static web application we typically have HTML, css and images will be there. always the application is going to serve the fixed content as part of the request/response
+
+2. dynamic web application
+These applications will take the enduser data as an input, using which it performs operations and generates the response and dispatches to the client.
+
+How to develop/deploy a dynamic web application in java?
+In general we need httpd/web server for serving static pages over the network to the web browsers or client. These servers will take the http request from the client, goes to the physical directory location on the server machine to locate the HTML page the client is requesting, serves the content of the page as a http response back to the client, thus making them static web applications.
+  
+Whereas in a dynamic web application, we need along with HTML pages the java programs as well. upon receiving the request from the client, the server should read the data the client has send over n/w and execute a java program capture the output of the program, dispatch it as an http response to the client.
+  
+So in order to receive request over http protocol and execute java programs for handling the requests we need java web server rather than httpd servers. There are lot of vendors producing the java web servers both as opensource and commercial distributions, so we dont need to built our own server to run the java web application. few of the java web servers are 
+1. Tomcat
+2. Oracle Weblogic Server
+3. IBM Websphere Server
+4. Glassfish Server
+5. Jetty
+6. Netty
+7. Undertow
+8. Jboss WildflyServer
+we have to install the java web server and we need place our application on the server and start it to make our application accessible.
+  
+What is deployment of an web application?
+The deployment is the process of packaging the application and placing on the web server to make it accessible is called deployment.
+  
+How to distribute an web application in java?
+jar is an packaging standard we need to use in delivery standlone applications which will runs on a computer of the user. but when it comes to web applications we need to package our application as a ".war". 
+  
+war stands for web application archive, in general a web application is considered as enterprise application which takes huge time of development and cost. So to help in quickly building these application we are going to use java libraries distributed as jars in web application.
+  
+From the above we can understand a web application uses bunch of java libraries or jars within it.
+The java api available for developing web application is Servlet and Jsp api, we need to use the 2 libraries in compiling and packging the java application.
+  
+How does an war package looks like?  
+app.war (webroot) (public directory)
+|-html
+|-js
+|-css
+|-images
+|-WEB-INF (protected directory)
+  |-lib
+    |-*.jar
+  |-classes
+    |-.class
+  |-web.xml
+  
+Every java web server has a designated directory called deployment directory into which we need to copy our war application before starting the server. The server during the startup reads the war files from the directory and exposes to the world for accessing.
+  
+How to install an tomcat server and deploy our application on tomcat server?
+1. before using tomcat server we need to install jdk on our machine
+sudo apt update -y
+sudo apt install -y openjdk-11-jdk
+
+2. apache-tomcat server is a binary distribution software
+So we need to download apache-tomcat server .tar/.zip distribution
+extract to a directory
+and configure to execute
+
+#1 create an directory into which we can download and run the tomcat server
+/u01/app
+
+#2. download the apache-tomcat server 10.x
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.12/bin/apache-tomcat-10.0.12.tar.gz
+
+#3. copy the downloaded apache-tomcat-10.0.12.tar.gz into /u01/data directory
+#4. extract the tar
+gunzip apache-tomcat-10.0.12.tar.gz
+tar -xvf apache-tomcat-10.0.12.tar
+
+it will extracts the contents into apache-tomcat-10.0.12
+  
+#5 the directory structure of the apache-tomcat-10.0.12.tar.gz server is as below.
+/u01/data/apache-tomcat-10.0.12
+          |-webapps (deployment directory)
+            |-.war
+          |-conf
+          |-bin
+            |-startup.sh
+            |-shutdown.sh
+          |-lib
+          
+#6 to easily start and stop the apache-tomcat server add to PATH variable
+export TOMCAT_HOME=/u01/data/apache-tomcat-10.0.12
+export PATH=$PATH:$TOMCAT_HOME/bin
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

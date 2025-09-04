@@ -1,0 +1,149 @@
+Jinja2 Templates
+----------------
+While working with Ansible we may have to generate configuration files pertaining to the environment on whom we are applying the automation. To generate configuration files with different configuration values pertaining to each envionment we can take the help of templating technic or methodology.
+	
+Ansible uses Jinja2 Python module to generate configurations/any files by replacing the placeholder written inside a template file, so that the playbook can be kept clean and maintainable.
+	
+Jinja2 has provided control structures in generating the content dynamically based on conditions and loops as well
+
+#1 variable substitutions
+Use {{variable}} variable expression to substitute a value
+
+#2 conditional statements in generating the dynamic output
+if condition:-
+---------------	
+{%if var op val %}
+	statements
+{% endif %}
+
+if/else condition:-
+--------------------	
+{% if var op val %}
+	statement
+{% else %}
+	statement
+{% endif %}
+
+if/elif/else/endif:-
+---------------------	
+{% if var op val %}
+	statement
+{% elif var op val %}
+{% else %}
+	statement
+{% endif %}
+
+#3. loop control structure
+{%for var in values %}
+statement
+{% endfor %}
+
+we can write the above control statements in a jinja2 template file for generating content dynamically, the jinja2 template engine executes these statements by substituting values and generates the data and writes to the file specified
+
+Ansible has provided "template" module using which we can invoke jinja2 template engine and generate the required configuration/outputfile
+
+How to work with jinja2 templates?
+#1 always write the jinja2 template file with an extension ".j2"
+#2 write the statements with placeholder declarations and control statements in template files
+#3 use ansible "template" module in playbooks to execute jinja template engine to process the template file by substituting values in generating the actual files
+
+env.json.j2
+{
+	"hostName": "{{ansible_facts['hostname']}}",
+	"os family": "{{ansible_facts['os_family']}}",
+	"distribution_major": "{{ansible_facts['major_release']}}",
+	"current_user": "{{cuser['stdout']}}",
+	"ip address": "{{ansible_host}}", 
+	"environment": "{{deployment_environment}}"
+}
+
+
+varsubstitution-playbook.yml
+--------------------------------
+---
+- name: jinja2 environment json generation
+  hosts: all
+	vars:
+		deployment_environment: prod
+	- tasks:
+			- name: whoami
+				shell: whoami
+				register: cuser
+			- name: generate env json
+				template:
+					src: env.json.j2
+					dest: ~/env.json					
+...
+---------------------------------------------------------------------------------------------						
+marks.yml
+----------
+wardname: jasicca
+percentage: 60
+subjects:
+  maths: 60
+	science: 56
+	social: 72
+		
+annual-report.j2
+----------------------
+Dear {{wardname}}
+You have secured a percentage of {{percentage}} in subjects
+{%for subjectnm, marks in subjects %}
+	{{subjectnm}}: {{marks}}
+{% endfor %}
+and has secured a grade of 
+{% if percentage >= 60 %}
+A
+{% elif percentage >= 50 %}
+B
+{% elif percentage >= 35 %}
+C
+{% else %}
+D
+{% endif %}
+
+marks-playbook.yml
+---
+- name: marks playbook
+  hosts: all
+	vars_files: marks.yml
+	tasks:
+		- name: generate annual report 
+			template:
+				src: annual-report.j2
+				dest: ~/annual-report-2021
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

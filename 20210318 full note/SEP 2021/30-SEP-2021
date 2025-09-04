@@ -1,0 +1,79 @@
+Firewall
+A Firewall can be a Software program running on a computer or could be hardware device installed on the network, that is used for monitoring and enforcing traffic restrictions on the computers over the network.
+  
+When a computer has been connected to the network, then the other computers connected to the same network can access your computer, but we want to enforce restrictions on the way others can access my computer, this can be achieved through firewall.
+  
+We can enfore several different types of traffic restrictions using firewall as below.
+1. The source ip address of the other computer who can be allowed or denied in accessing the computer
+2. the programs running on a port who can be allowed or denied access
+3. based on protocol we can allow/denie others to access our programs
+
+Ubuntu has comeup with iptables as the default firewall as part its distribution. iptables are much complex to configure and use for a general purpose of user, you need lot of knowledge on networking and procotols to use them.
+  
+So enabling and enforcing traffic restrictions through ip tables seems to very complex, to help us in managing the ip table easily ubuntu distribution has provided a software package called "ufw". ufw stands for un-complicatd firewall
+
+ufw software package by default is distributed from ubuntu-18.0, we dont need to install the ufw manually.
+If we are using older version of ubuntu, then we have to manually install ufw using the below command
+sudo apt install -y ufw
+
+#1
+By default ufw is installed, but is not enabled so it doesnt enforce traffic restrictions on to our computer over the network.
+So if we want to enforce traffic restrictions we need to enable it using below command
+sudo ufw enable = enables the ufw firewall
+sudo ufw disable = disables the firewall
+
+#2
+By default ufw is configured to allow the traffic restrictions as below.
+deny all the incoming network traffic
+allow all the outgoing network traffic
+
+#3 how to know what rules / policies are applied/enforced in ufw?
+sudo ufw status verbose
+
+#4 how to allow/deny a network traffic based on protocol
+sudo ufw allow http
+sudo ufw deny http
+
+#5 how to delete a specific rule in ufw?
+We need to list down all the rules in ufw based on numbered so that we can delete a specific referring to the rule number.
+sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 80/tcp                     ALLOW IN    Anywhere                  
+[ 2] 80/tcp (v6)                ALLOW IN    Anywhere (v6) 
+
+then we can delete a rule referrring to the number
+sudo ufw delete ruleNo
+
+#5 How to allow network traffic from a specific machine of a source ip address of any network traffic?
+sudo ufw allow from ipaddress
+
+#6 how to allow a source ip address computer to access a specific program port
+sudo ufw allow from ip to any port
+sudo ufw allow from 192.168.1.12 to any 80
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

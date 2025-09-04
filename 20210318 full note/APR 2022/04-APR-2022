@@ -1,0 +1,60 @@
+1. How to see all the images on docker workstation/daemon?
+docker image ls
+2. How to see the details of the image like author, platform etc
+docker image inspect image:tag
+3. How to remove an existing docker image from local cache?
+docker image rm image:tag (fails when there is an container created on top of the image)	
+docker image rm -f image:tag (-f forcebily remove the image)		
+4. How to re-tag or attach alias to an image?
+docker image tag image:tag newimage:newtag
+5. How to export a docker image into a file?
+docker image save image:tag -o outputfile.tar
+6. How to import an docker image from a file?
+docker image load -i filename.tar
+7. How to pull a docker image from docker registry?
+docker image pull image:tag
+8. How to remove all the unused docker images?
+docker image prune
+------------------------------------------------------------------------------------------
+
+9. How to push our own docker image into the docker container registry?
+-----------------------------------------------------------------------------------------
+1. login into the docker hub registry "http://hub.docker.com"
+2. navigate into the repositories menu from top and choose create repository inside it.
+3. provide a name for the repository in which we want to store an docker image.
+In one repository we store one docker image attaching with tags indicating multiple versions. Here the repository name is nothing but your docker image name
+4. goto your docker daemon or workstation and login into your docker hub registry using
+docker login (prompt for dockerid/password)
+	
+5. rename your local cached docker image into repository format as 
+dockerid/repositoryname:tag
+dockerid = helps to identify the account into which the image has to be pushed
+repositoryname = nothing but image name identifies into which repository of the user this image should be pushed
+tag = version of the image
+
+6. docker image push dockerid/repositoryname:tag
+-----------------------------------------------------------------------------------------
+How to change the default installation directory of a docker engine/daemon?
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

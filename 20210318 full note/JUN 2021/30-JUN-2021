@@ -1,0 +1,207 @@
+What are the text processing commands available in Linux?
+There are 4 shell utilities available in Linux for text processing.
+  1. cut
+  2. paste
+  3. awk
+  4. sed
+  
+#1 cut
+if we want to extract the data from a File based on a delimeter we can use cut command
+syntax:-
+cut -d "delimeter" -f fieldNo filename
+
+for eg..
+products.txt
+1,lg 32 inch television,20000
+2,samsung microwave, 12000
+  
+cut -d "," -f 1 products.txt
+output:-
+1
+2
+
+Note:- The delimeter can be a single character and doesnt support regular expressions.
+  
+#2 paste  
+paste is used for merging the contents of 2 files line by line based on a delimeter supplied.
+For eg.. we have 2 files as shown below.
+  
+products.txt
+1,lg 32 inch television,20000
+2,samsung microwave, 12000
+  
+stock.txt
+1,109
+2,23
+  
+Now we want to merge the contents of these 2 files using delimeter "," then we can apply paste as below.
+paste -d "," products.txt stock.txt
+-------------------------------------------------------------------------------------------------------
+#3 awk = is a utility that helps the programmers in processing the contents of the text file. We can perform the below operations on a text file using awk
+  1. we can print all the lines of a text file
+  2. we can search for content based on pattern and extract
+  3. we can delimete the contents and print fields also individually
+  4. we can apply actions on the matching content like print, transform etc
+    
+syntax:-    
+awk options 'selectioncriteria {action}' inFile
+
+For eg.. we supplied text file of 10 lines as an input to awk, how does it process.
+  #1 it reads the contents of the text file line by line from top to the bottom
+  #2 try to apply the selectioncriteria on each line and if matches takes that line
+  #3 apply the action on that line
+  
+awk has predefined special variables to identify and process the text.
+  1. NR = keeps the current record it is processing
+  2. NF = no of fields of the current record
+  3. FS = field separator by default the field separator in awk is "space"
+  4. RS = record separator by default the record separator is new line
+  5. OFS = Output Field Seperator by default the field separator while displaying the output is space
+  6. ORS = while displaying the output default seperator for displaying records is new line.
+    
+employees.txt
+1 mark 20000  permanent
+2 steve 10200 contractor
+3 bob 12999   permanent
+    
+#1 awk '{print}' employees.txt = equal to cat
+
+#2 how to print the lines based on selection criteria
+awk '/permanent/ {print}' employees.txt
+now will display only the records that contains the text permanent
+
+#3 by default awk delimetes the file contents based on space and holds in special variables of $1 - $n
+$1 = employeeNo
+$2 = name
+$3 = salary
+$4 = positionType
+and for each line there is an another variable $0 holds complete content of the line
+awk '{print}' employees.txt
+
+want to transform the above file contents with delimeter as space to "," and write to a file with employee no and name, position
+
+awk '{print $1","$2","$4}' employee.txt > emp-positions.txt
+
+#4 we want to display only the lines between 2 and 4 only
+awk 'NR==3, NR==4 {print $0}' employee.txt
+awk 'NR>=3 && NR<=4 {print $2}' employee.txt
+awk 'NR>=3 && /permanent/ {print $0}' employee.txt
+
+#5 display only the records which are having 4 fields
+awk 'NF==4 {print}' employee.txt
+
+#6 how to change the default field separator from space to ",".
+awk -F "," '{print $1}' products.txt
+
+#7 print only the lines which contains number of characters are more than 15
+awk 'length($0) >= 15 {print}' employee.txt
+  
+summarize:-
+awk delimites the file by default with which character "space"  
+how does it holds are represents the fields of data? with special variables $1 - $n 
+want to access complete record $0
+Current Line number = NR
+No of fields in the record = NF
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

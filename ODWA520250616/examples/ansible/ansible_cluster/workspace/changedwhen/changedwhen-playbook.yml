@@ -1,0 +1,7 @@
+- name: changed when
+  hosts: all
+  tasks:
+    - name: start tomcat
+      shell: "~/middleware/apache-tomcat-11.0.7/bin/catalina.sh run 2>&1 | grep java.net.BindException"
+      register: tomcatstatus
+      changed_when: "'Address already in use' not in tomcatstatus.stdout"

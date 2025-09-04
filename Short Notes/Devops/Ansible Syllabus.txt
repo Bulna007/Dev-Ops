@@ -1,0 +1,9 @@
+ansible variables, using in playbook (register)
+jinja2 template
+ansible vault
+when changed
+when failed
+ansible roles
+control statements
+loops
+handlers

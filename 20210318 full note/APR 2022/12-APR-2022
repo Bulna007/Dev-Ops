@@ -1,0 +1,125 @@
+7. COPY directive
+------------------
+copy directive is used for copying the files from docker build context into the docker image location
+
+[GitHub]
+----------------------------------------------------
+tokengenerator
+|-src
+	|-main
+		|-java
+			|-com.tg.service.TokenGeneratorService.java
+		|-resources
+|-Dockerfile		
+|-pom.xml
+-----------------------------------------------------
+|-target
+	|-classes
+	|-tokengenerator-1.0.jar (java packaged application)
+	
+/u01/applications
+		|-tokengenerator-1.0.jar
+		
+java -cp /u01/applications/tokengenerator-1.0.jar com.tg.service.TokenGeneratorService
+-----------------------------------------------------------------------------------------
+
+ubuntu (docker workstation) machine
+-------------------------------------
+#1. install java 11
+sudo apt install -y openjdk-11-jdk
+
+#2. install git
+sudo apt install -y git
+
+#3. install maven
+sudo apt install -y maven
+
+
+#4. mkdir ~/javaworkspace
+#5. cd ~/javaworkspace
+#6. git clone -b master https://github.com/techsriman/tokengenerator.git
+username: techsriman
+password: 
+
+#7. goto project directory
+cd ~/javaworkspace/tokengenerator
+#8. build the maven project
+mvn clean verify
+--------------------------- generates the jar file --------------------------------------
+	
+Dockerfile
+-----------
+FROM ubuntu:20.04
+RUN apt update -y
+RUN apt install -y openjdk-11-jdk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

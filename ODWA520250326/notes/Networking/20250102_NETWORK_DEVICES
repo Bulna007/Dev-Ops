@@ -1,0 +1,186 @@
+There are 7 layers in OSI Model Layer protocol
+1. Application Layer
+messaging semantics and standards defined, in order to let the software application exchange the data over the network in an understandable manner
+
+2. Presentation Layer
+presents the data in transmittable form to lower-layers of the OSI
+	1. data conversion
+	2. data compression/decompression
+	3. data encryption/decryption
+	
+3. Session Layer
+responsible for end-to-end exchange of data between the applications
+	1. authentication & authorization
+	2. session management
+		1. keeps track of the sender and receiver data packets
+		2. reorder the message at the receiver side based on the seq no to build the message back
+		
+4. Transport Layer
+	1. segementation = payload + port no + seq no
+	2. flow control = slows down the sender, incase if receiver is running on low-bandwidth network
+	3. error control = detects the corrupted data packets based on checksum bits and request them to retransmit
+	
+5. Network Layer
+transferring the data packets from one network computer to another computer of different network
+	1. logical addressing = datapacket[segment + source ip + destination ip]
+	2. routing            = identifies the right network to whom the message should be routed to
+	3. path determination = determine the shortest-path in which the data packet should be delivered
+	
+6. Data-link Layer
+its an software embedded aspart of the NIC card by the manufacturer
+	1. Physical addressing = Data Frame[ data packet/ip pakcet + source mac address + destination mac address ]
+	2. media access control = encodes/decodes the data into signal format based on the underlying transmission medium over which the data needs to be transmitted
+	3. error control 
+		1. collision detection = checks to see whether the channel is available or under use, to avoid collision while sending the data
+		2. fault detection     = it adds head/tail bits to the data frame, so that it can identify any corrupted frames over the communication channel due to hardware failures and instructs them to re-transmit
+		
+7. Physical layer
+Responsible for exchanging the physical bits data over the network cable/medium
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Network devices
+----------------
+The Network devices are used for inter-connecting the computers on a network, There are 7 types of Network devices are there
+1. Repeater
+2. Hub
+3. Switch
+4. Bridge
+5. Router
+6. Modem
+7. Firewall
+
+1. Repeater
+A Repeater is also called as "Extender", it is an network device used for amplifying/regenerating the signals over the transmission channel to send the data to the destination computer. When the distance between the source and receiver computer is more, the data packets that are being send by the sender might get weak over the transmission channel and might result in data loss and retransmission. 
+	
+So to overcome this problem, we need to setup/install a repeater between the source and reciever computer, possibly somewhere in the middle of the sender and reciever, so that the repeater receives the signals, amplifies them and forwards to the reciever.
+	
+The repeater can be either wired or wirelss, incase of wireless it is called "Wifi Extender"
+	
+2. Hub
+Hub is an network device used for interconnecting the computers on a network, using the hub device we can setup a star topology network. The hub operates at physical layer of the OSI model, hence all the data being transmitted will be seen as bits only. The hub is not an intelligent device, upon receiving the data by the hub on a port, it copies the data to all the other ports of it, forwarding the data to all the other computer that are connected to the hub. due to this it consumes huge amount of network bandwidth in transferring the data between the computers on the network and results in poor performance as well. At anypoint of time, only 1-pair of computers only can transmit the data
+
+Hub is not suitable for inter-connecting large network of computers, its only for domestic or home usage only. The hub devices are no more exists in the market.
+	
+	
+There are #2 types of hub devices are there
+1. Passive hub = The Passive hub doesnt requires power supply to operate. They simply receives the data on a port and copies to all the other ports to which the computers are plugged-in to distribute the data
+
+2. Active hub = These are plugged-in to the power supply, upon receiving the data, these hubs will amplifies the signals and copies to all the ports/computers that are connected
+
+3. Switch
+Switch is an intelligent hub device that works at the datalink layer of the OSI model layer protocol and it is used for transmitting the data between the computers connected to the same network.
+	
+The switch will maintain an internal datastructure called "mac address table" in which the port and the mac address of the computer connected to the switch is stored. During the bootup of the switch, it collects all the computers that are connected to its ports and their relevant mac addresses and populates them into the mac address table of the switch
+	
+When a computer within the network sends the data to another computer of the same network, the data will be recieved by the switch. The switch will lookup for the destination computer mac address from the data frame it has received and goes to the mac address table to identify the machine plugged into which port of the switch and copies the dataframe only to that port to which the machine is plugged thus forwarding the data to only that machine. So a switch is considered as more efficient device in routing the data to a right computer within the network and supports high-speed data transfers and consumes less-bandwidth
+
+4. Bridge
+Bridge is a device used for inter-connecting 2 different networks together. Bridge also operates at physical layer of the osi model layer protocol. The bridge has only 2 ports so that we can connect 2 different hub networks only using bridge. Whenever the data comes to one port of the bridge, it copies the data to another port forward the data to other network of computers
+
+Bridge is a device used in conjuction with hub only and always the data flows from 1 end of the network to the other end no matter the destination computer is.
+Now Hub and Bridges are no more being used in the market for establishing the network, since they operate at physical layer.
+
+5. Router
+Router is an network device that is used for inter-connecting various different networks. Router operates at the network-layer of the OSI Model layer protocol. The router upon receving an datapacket/ip packet, it identifies the destination computer ip address and computes the network address from it. Then routes the data packet to the right network only
+
+The router maintains the routing table, in which the network administrator can configure the traffic patterns allowing/controlling the data between the networks.
+	
+6. Modem
+Modem is an device that performs modulation and demodulation in converting the analog signals into digital signals and digital to analog. It is used for connecting the computers to an dial-up network.
+	
+7. Firewall
+How to protect or shield our computers from the external network traffic?
+To control the incoming/outgoing network traffic towards our computer, the Firewall has been introduced. Firewall is a software program used for controlling or restricting and monitoring the network traffic on a computer. The Firewall operates at either Network or transport or application layer of the OSI Model layer protocol.
+	
+The enduser can configure the firewall software allowing/denying the incoming or outgoing network traffic of your computer based on
+	1. ip address
+	2. port no
+	3. protocol
+	
+There are #2 types of firewall are there
+1. host-level firewall
+Host-level firewall is an software that is installed on the computer directly, using which we can control or retrict the network traffic towards the programs of your computer.
+	
+2. network firewall
+it is an hardware device that is installed on the network level, through which we can control the traffic to the group of computers connected over the network.
+	
+	
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

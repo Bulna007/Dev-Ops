@@ -1,0 +1,78 @@
+- name: loop until
+  hosts: all
+  tasks:
+    - name: create middleware dir
+      file:
+        path: ~/middleware/
+        state: directory
+        mode: "0777"
+        owner: "vagrant"
+        group: "vagrant"
+    - name: install jdk17
+      apt:
+        name: "openjdk-17-jdk"    
+        state: present
+        update_cache: yes
+      become: yes
+    - name: download tomcat11
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.7/bin/apache-tomcat-11.0.7.tar.gz
+        dest: ~/middleware/
+        owner: "vagrant"
+        group: "vagrant"
+    - name: unarchive tomcat11
+      unarchive:   
+        src: ~/middleware/apache-tomcat-11.0.7.tar.gz
+        dest: ~/middleware
+        remote_src: yes
+        mode: "0777"
+        owner: "vagrant"
+        group: "vagrant"
+    - name: delete tomcat tar file
+      file:
+        path: ~/middleware/apache-tomcat-11.0.7.tar.gz
+        state: absent
+    - name: copy tomcat.service
+      copy:
+        src: tomcat.service
+        dest: /etc/systemd/system/
+      become: yes
+    - name: check service status
+      shell: systemctl is-active tomcat
+      register: tomcat_status
+      changed_when: false
+      ignore_errors: true
+      become: yes  
+    - name: daemon-reload
+      systemd:
+        name: "tomcat"                 
+        state: reloaded
+      become: yes
+      when: tomcat_status.stdout != "active"
+    - name: stop tomcat
+      service:
+        name: "tomcat"    
+        state: stopped
+        enabled: yes
+      become: yes
+    - name: start tomcat
+      service:
+        name: "tomcat"    
+        state: started
+        enabled: yes
+      become: yes
+    - name: construct HTTP URL
+      set_fact:
+        tomcat_url: "http://{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}:8080"  
+    - name: wait for tomcat to respond
+      uri:
+        url: "{{ tomcat_url }}"    
+        method: GET
+      register: response
+      until: response.status == 200
+      retries: 10
+      delay: 5
+    - name: tomcat ready
+      debug:
+        msg: "tomcat server is ready!"  
+

@@ -1,0 +1,140 @@
+To store and manage in accessing the data on a storage device the Files and Folder are introduced. 
+
+File: - The physical address location of the memory where the actual data recides is placed inside a File.
+A file has associated with attributes one of the key attribute is Name of the file using which we can identify and access the underlying data stored on the storage device.
+
+File is a datastructure that holds the address locations of the physical bits where the actual data resides.
+
+Folder = to organize and easily access the group of related files folders are introduced.
+Folder is a special file in which it holds the references of the Files to group together.
+------------------------------------------------------------------------------------------------------
+If we store all the physical bit location address in a File, rather than the amount of data, more amount of memory is required for storing the address of the data, due to which lot of storage memory will be wasted, so this is not an efficient way of storing the data on storage device.
+
+To overcome the above problem File System technics are being introduced. Let me describe a generic model of a File System.
+#1 devide the entire storage memory bits into blocks / storage blocks (memory chunks, segments). 
+#2 each block of should be of same and fixed in nature, so that we can identify the physical bit locations using the block no.
+(blockno * blocksize) - blocksize = start bit location in storage device
+(blockno * blocksize) = end bit location of that block
+
+Now while storing the data on the storage device, allocate a block of memory depends on the size of the data we are storing. 
+For eg.. if the block size is 5 mb and 
+  - the amount of data we are storing is of 4 mb allocate one block
+  - the amount of data we are storing is of 7 mb allocate 2 blocks for storing data
+  
+Now in File corresponding to this data we will store the block no as the address location to the data inorder to access it, rather than storing all they physical bit locations of the storage device. With this little number of address we store more bits of data.
+
+How does the block size will be decided?
+- The bigger the block size is "The more the wastage of the memory"
+- The smaller the block size is "More block address has to be kept in file further wastes memory in storing addresses"    
+so always the block size would be taken to be optimally. The blocks sizes are decided based on the storage capacity of your device
+
+------------------------------------------------------------------------------------------------------
+What is Filesystem?
+FileSystem is a technic or a mechanims using which we can organize and store the data on the physical storage devices of the computer. 
+There are different FileSystem technics are available.
+Different operating systems uses different Filesystem technics in storing and organizing the data on a storage device.
+For eg.. windows operating system has it owns Filesystem technics
+- FAT stands for File Allocation Table = is suitable for storage devices of moderate size (1gb maxfile)
+- NTFS = New technology File System
+
+While installing the operating system, the operating system asks for format of the disk during this process the Filesystem allocation, partitioning of bits and creating datablock,fileblocks and pointertable will takes place.
+
+  
+Linux File System :=
+Linux operating system uses File System technics for storing and organizing the physical storage device memory. The linux file system uses hierachial model.
+Linux supports multiple File System Types:
+1. Ext
+2. Ext2
+3. Ext3
+4. Ext4 (default filesystem)
+5. JFS
+6. XFS
+7. Btrfs
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

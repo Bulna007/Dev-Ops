@@ -1,0 +1,414 @@
+#4 binary software distribution
+To understand and use a binary distribution software, we need to know environment variables
+
+
+Environment Variables
+---------------------
+What are variables, what is purpose of them?
+Variables are placeholders in which we can store values 
+                or 
+named memory locations in which we can store values	
+So that we can refer the values within the program using their variable names we have assigned to them.
+	
+In a program if we are using any values directly those are called literals or constants. always avoid using literals or constants in a program directly.
+	
+calculator.sh
+--------------
+#!/bin/bash
+SUM=$[ 10 + 20 ]
+SUB=$[ 20 - 10 ]	
+MUL=$[ 10 * 20 ]
+DIV=$[ 20 / 10 ]	
+
+echo "SUM : $SUM"
+echo "SUB : $SUB"	
+echo "MUL : $MUL"	
+echo "DIV : $DIV"	
+	
+sudo chmod u+x calculator.sh
+./calculator.sh (to run the shellscript program)
+	
+In the above program we are using literal or constants 10 & 20 in performing the arthematic operations. Incase if we want to change the 10 & 20 values with a different values like 40 & 50 we need to rewrite the whole program. The logic in performing the operations seems to be same, but the values with which we want to carry the operation is changing, for which we need to modify all the lines of code in changing values, this incurrs several problems as described
+
+1. The values gets duplicated across all multiple places within the program, so that in-future to modify the values we need to go through each line in the program and replace them carefully, that takes lot of time
+2. there is a chance where we might miss changing the values at few places that results in in-consistence or incorrect outcome being computed
+So from the above we can understand the code is not maintainable.
+	
+To overcome the above problems we can use variables. Variables are the placeholders in which we can store the values we want to use aspart of our program. Within the program instead of using values(literals) refer variables in using the values. so that in-future if we want to change the values, instead of modifying all the lines of code, change the values we assigned for the variable, hence the code becomes easily maintainable.
+	
+calculator.sh
+-------------
+#!/bin/bash
+A=10
+B=20
+SUM=$[ A + B ]	
+SUB=$[ B - A ]
+MUL=$[ A * B ]
+DIV=$[ B / A ]
+	
+echo "SUM : $SUM"
+echo "SUB : $SUB"	
+echo "MUL : $MUL"	
+echo "DIV : $DIV"	
+	
+Now in the above program if we want to change the values of 10 & 20 to 40 & 50, all that we need to do is, just assign different values to A & B variables, we dont need to modify all the lines of the code as we did earlier.
+-----------------------------------------------------------------------------------------------------------------------------
+scope of variables
+
+If we define a variable within a program, the variable exists/visible/accessible within the same program only and it will not be available in another program.
+	
+in-short: the scope of the variable defined is local to the program only
+
+prog1.sh
+---------
+#!/bin/bash
+A=10
+echo "A : $A"
+	
+chmod u+x prog1.sh
+./prog1.sh
+	
+The variables are created during the execution of the program	and will be destroyed at the end of the program. So that "A" variable will not be visible or accessible to any other program even though it is running on same machine
+	
+prog2.sh
+--------
+#!/bin/bash
+echo "A : $A"
+
+
+How to define a variable, that is globally accessible across all the programs that are running on the operating system of the computer?
+To make the variable accessible globally across all the programs running on the operating system of the computer, create the variable at the operating system scope, so that it is accessible to all the programs running on the operating system.
+	
+These variables that are created at operating system level are called "env variables" and those are accessible across all the programs irrespective of the programming language in which the programs are build
+1. java program
+2. shellscript program
+3. python program
+etc
+
+There are #2 types of env variables are there
+1. system variables
+These are the predefined or built-in variables created by the operating system and it is using these variables for some special purpose.	
+
+2. user-defined variables
+These are the variables created by the user/programmer, so that the variables can be globally used across all the programs that are running on the computer
+
+
+#2. user-defined variables
+The user-defined variables are created by the user/programmer of the computer, so that he can use the value of the variable across all the programs running on the operating system.
+	
+How to declare or create a user-defined variable?
+we can create or declare an user-defined environment variable on a Bash terminal as below
+1. export VARIABLE_NM=VALUE (bash)
+2. setenv VARIABLE_NM VALUE (sh)
+	
+upon creating the variable we can access the value inside the variable using $VARIABLE_NM
+
+#1. System variables
+System variables are the built-in or pre-defined variables defined by the operating system itself, that has attached with pre-defined meaning or purpose
+
+There are lot of pre-defined or built-in variables are created by the operating system few of them are as below:
+1. HOME = points to the user-home directory location of the logged-in user
+2. HOSTNAME = holds the machine or computer name
+3. USER = logged-in user name
+4. SHELL = shell the user is in
+5. LOGNAME = logged-in user name
+
+among the above, there is another special variable called "PATH", that is used by the linux operating system itself in resolving the location of the programs to launch or execute them.
+	
+note: The environment variables in Linux operating system are case-sensitive unlike windows.
+-----------------------------------------------------------------------------------------------------------------------------
+PATH variables
+--------------
+system variables (env variables) are the env variables defined by the operating system with default values, so that it can use these variable values in performing operation. such type of system variable defined by the operating system is PATH variable
+
+PATH is an system (env) variables defined with directory locations of the programs, that operating system uses in locating and running the programs on the machine.
+	
+PATH is an pre-defined env variable that is created by the operating system pointing to default directory locations as below
+1. /bin
+2. /sbin
+3. /usr/bin
+4. /usr/sbin
+5. /usr/local/bin
+6. /usr/local/sbin
+
+
+since the PATH has been configured by the linux operating system pointing to the pre-defined linux filesystem directories, we are able to run all the linux commands/shell utilities without specifying the location of the program/command files
+
+We can point PATH env variable to multiple directory locations of the Filesystem by separting with ":" colon for eg..
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+When we are configuring the PATH env variable with our own directory location we should not override the existing PATH value. always we need to append our directory location to the existing PATH env value, otherwise the default linux operating system commands will not work.
+	
+For eg.. let us assume we have an program as below
+
+~/jobs
+  |-bill
+	  |-generate_bill.sh
+		
+if we want to set the PATH pointing to the directory location of the generate_bill.sh we should do this as below
+export PATH=$PATH:~/jobs/bill
+------------------------------------------------------------------------------------------------------------------------------
+How to make environment variables permanent on the machine?
+The environment variables we create on the bash/shell terminal are local to the terminal session and when we close the termainal all the user-defined env variables will be destroyed and will not available in a new terminal session
+
+To make these environment variables permanent linux operating system has introduced "profiles".
+	
+We can image "profiles" as similar to what we have in mobile phones. A mobile user can create multiple profiles like
+1. office
+2. home
+3. silience
+etc
+
+each profile is configured with settings, features like
+1. ringtones
+2. wallpapers
+3. colors/themes
+4. fonts
+etc
+
+use can choose and switch between different profiles while using the mobile, so that the settings that are configured within the profile will be applied
+
+similar to the above, in linux operating system every user can configure his own profile which means the settings or configurations with which he wanted to boot the linux operating system or terminal session for the user. There are lot of settings/configurations available aspart of the linux operating system, an user is allowed to customize the way he wanted to boot/launch the termain.
+	
+There are multiple ways we can login/launch the linux operating system and the bash terminal as below
+1. gui/non-gui login
+2. remote login
+
+based on the way we launched the terminal, we want to configure or apply different settings/configurations to the terminal. so to handle this linux has provided bunch of configuration files through which we can enable different configurations
+
+1. /etc/profile = The root or super user of the linux operating system can configure the settings here and will be applied to all the linux users of the computer and requires a restart when there is a change.
+2. ~/.bash_profile = The settings/configurations placed here will be applied only for interactive shells only and executed only for the user under which we configured
+3. ~/.profile = in the absence of ~/.bash_profile, then this file will be applied
+4. ~/.bash_login = will be applied for interactive logins, only when we dont have ~/.bash_profile
+5. ~/.bashrc = non-interactive terminals the bashrc settings are applied
+
+interactive shell 
+while launching the shell, the user will be prompted with username/password to grab the access to the machine, then it is called "interactive-shell"
+	
+non-interactive shell
+within an existing shell, we launch new shell, then it is called "non-interactive"
+-------------------------------------------------------------------------------------------------------------------------------
+Binary Software distribution
+
+Java is an programming language software that is distributed in #2 ways
+1. repository based packaged distribution
+2. direct downloadable binary distribution
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

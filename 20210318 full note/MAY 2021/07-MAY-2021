@@ -1,0 +1,103 @@
+What is tr, what is the purpose of it?
+  
+tr can be used for perform 3 operations
+1. replace a single character in a given string
+2. we can delete a single character in a give string
+3. we can apply transformation on the entire string passed, there are lot of in-built transformations are supported by tr
+  - :upper:
+  - :lower:
+  - :space:
+  - :digits:
+  - :alphnumeric:
+
+How to replace a character in given string?
+- echo "sequence" | tr char1 char2  
+
+How to delete a character in given string?
+- echo "sequence" | tr -d charTobeDeleted
+
+How to transform the given string?
+- echo "sequence" | tr "[:lower:]" "[:lower:]"
+---------------------------------------------------------------------------------------------------------
+What is more, what is the purpose of more?
+If we want to access the output of a command or contents of a file, in page while through scrolling behaviour we can use more.
+  
+For eg..
+  cat big.txt | more
+  ls -lR | more
+-------------------------------------------------------------------------------------------------------
+head = if we want to see the top lines of a file we can use head
+head filename = by default displays top 10 lines of a file
+
+if we want to see a specific number of lines of a file
+head -n filename
+
+-------------------------------------------------------------------------------------------------------
+tail = if we want to see the bottom lines of a file we can use tail
+tail filename = displays the last 10 lines of the file.
+  
+if we want to see a specific number of lines we can use -n option
+
+tail -n filename
+------------------------------------------------------------------------------------------------------
+What is a logfile what is the purpose of it?
+Log file is used for storing execution information of a program, so that developers can use that file contents for debugging the program errors. since this file doesnt hold data, rather contains the information about program execution we call it as log file.  
+  
+How does the log file is generated?
+The developer while writing the program, he will write instructions for generating the log file as well.
+
+What are the typical extensions of a log file?
+  - .log
+  - .out
+  - .err
+  - .debug
+
+How to see the generating logs of program?
+tail -f out.log (while programming is generating the log we can see the updated contents always automatically using -f option)  
+  
+#1 Type nano program.sh (will open a quick text editor in linux terminal)  
+  (or)
+instead we can use gedit program.sh (more easy as it is gui)
+
+program.sh
+-----------
+#!/bin/bash
+I=0
+while [ $I -lt 100 ]
+do
+  echo "i : $I" >> out.log
+  I=$[I+1]
+  sleep 2s
+done
+
+#2 chmod u+x program.sh = execute permission on the program.sh file
+#3 ./program.sh = this will run the program
+
+now open another tab in your terminal
+tail -f out.log
+---------------------------------------------------------------------------------------------------------
+How to compare 2 given file contents in Linux?
+There are 2 commands available for comparing the contents of text file in Linux shell.
+  1. cmp 
+  2. diff
+  
+#1 cmp = is used for byte by byte comparision of a text information of a file and outputs the first difference in the filecontents.
+  
+lets create 2 files as below.
+cat > popular-products.txt
+table
+chair
+keychains
+bottles
+
+cat > trending-products.txt
+table
+chair
+laptop
+
+cmp popular-products.txt trending-products.txt
+output:-
+popular-products.txt trending-products.txt differ: byte 13, line 3
+  
+  
+www.leawy.com/drive

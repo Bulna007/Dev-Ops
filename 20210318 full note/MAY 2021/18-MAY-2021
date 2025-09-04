@@ -1,0 +1,82 @@
+There are 3 modes are there
+1. Command Mode (default)
+any keypress on the keyboard will be interpreted as a command and will try to perform an operation on the File Contents. by default when we open vim editor will be in Command Mode. To return back to Command Mode press (esc) key anytime.
+  
+2. Insert/Input Mode
+any keypress on the keyboard will be treated as an input into the File and modifies the contents of the File.
+  
+3. Exit Mode
+To quit from the Editor we should goto Exit Mode. To enter into Exit Mode, first we should return back to Command Mode, the use : for exit mode.
+  :q = quit
+  :q! = quit without saving the file changes
+  :w = write/save the file onto filesystem
+  :wq = save and exit
+  
+What are the Commands available in Command Mode?
+A = append the data at the end of the line
+a = append the data to the right-side of the cursor position
+I = insert the data at the begining of the line
+i = insert the data from the current cursor position
+O = open a new line above the cursor position
+o = open a new line below the cursor position
+r = replace a character
+R = Replacing from current position
+S = Replace the current line
+yy = yanking (copy a line)
+#n yy = copies n lines from the current cursor position
+p = paste copied lines
+x = to delete a single character
+dw = delete a word
+dd = delete line
+#n dd = (2 dd) = deletes 2 lines
+u = undo the previous action
+b = back to the beginging of the word
+w = forward to beginging of the next word
+e = end of the current word
+:linenumber = goes to the line number in the file
+G = move to the end of the file
+ctrl + f = one page forward
+ctrl + b =one page backward
+/phrase + enter = search for the word in the file, to move to next occurrences of the word press "n" to move to previous occurrences of the word "shift+n", to quite from search press "enter"
+-------------------------------------------------------------------------------------------------------- nano = another text editor
+on some linux distributions and on macOS, theres another text editor called nano is available. an alternate to the vim editor, if the people find difficult in using vim editor. if not available in your linux distro, we can install it explicitly.
+  
+nano filename = to open a existing file (if file doesnt exists create one)
+nano = opens the text editor, while saving it ask you the filename
+
+ctrl + o = to save the file (enter the filename and enter)
+ctrl + x = to quit
+ctrl + w = find the text in document
+ctrl + v = page down
+ctrl + y = page up
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

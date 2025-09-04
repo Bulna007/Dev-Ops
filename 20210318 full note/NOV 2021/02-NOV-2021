@@ -1,0 +1,155 @@
+Even though virtualization has solved all the problems we discussed earlier, it has few changes when it is put for usage.
+1. labourious job
+2. patching and upgradation of the env required to build the machine from scratch
+3. huge size and difficult to distribute across the team
+4. each developer should be aware of virtualization technology to setup virtual machine and use it
+5. error prone since it is an repeatitive process
+---------------------------------------------------------------------------------------------------------
+to help us in automating the job of provisioning and managing the virtual machines, vagrant can be used.
+
+Vagrant Architecture
+There are 3 components there
+1. vagrant cli
+2. vagrant engine
+3. vagrant cloud
+
+#1 vagrant cli = is an command-line utility provided by vagrant, which has bunch of commands that can be executed to interact with vagrant engine in automating and managing the virtual machines on the hypervisor
+
+#2 vagrant engine
+vagrant engine takes the machine configuration file and interacts with hypervisor provider in provisioning and managing the virtual machines.
+
+#3 vagrant cloud
+the place where vagrant/community developers can distribute vagrant boxfiles so that those can be downloaded/imported and can quickly provision an virtual machine
+
+What is a Vagrant boxfile?
+These are pre-packaged and compressed virtual machine images with software packages and configurations prebaked and provided by the vagrant developers or other community users. Instead of creating an virtual machine from an iso, vagrant quickly imports the vbox files in provisioning an virtual machine.
+---------------------------------------------------------------------------------------------------------
+What are the features of Vagrant?
+The vagrant is used for provisioning and managing the virtual machines on a hypervisor, there are many features vagrant offers
+1. networking
+2. vagrant boxes
+3. sync folders
+4. provisioners
+5. provider customizations
+6. multi-machine vagrant
+
+How to install vagrant?
+download the vagrant tool
+https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.msi
+and click on to proceed installation
+
+--------------------------------------------------------------------------------------------------------
+How to create virtual machine using vagrant?
+#1 create an project directory in which want to run the vagrant machine
+We are provisioning an virtual/vagrant machine for running an software application, create an vagrant configuration file in the project directory of the application for which we want to use this virtual machine for.
+  
+fithealth
+|-src
+  |-main
+    |-java
+  |-WebRoot
+    |-WEB-INF
+      |-lib
+      |-web.xml
+  |-vagrant configuration file    
+|-bin
+|-dist
+
+The directory in which we created the vagrant configuration file becomes the vagrant project directory, ideally speaking should always create in the application project directory for whom we are using virtual machine
+
+2. how to create an vagrant configuration file under the project directory
+The vagrant configuration file should be created with the name "Vagrantfile", in which we are going to write machine configuration information asking vagrant to create an virtual machine.
+The vagrant configuration files are written in Ruby language.
+Ruby is an programming language, so to work with vagrant we dont need to learn Ruby because we dont have to write programming instructions as part of vagrant file in creating an virtual machine.
+In vagrant file the developer has to write machine configuration information describing the details of the virtual machine want to provision. we dont need to tell vagrant engine by writing instrutions on how to create virtual machine, vagrant engine already know the process of creating the virtual machine.
+  
+Ruby supports DSL (Domain Specific Language) language, which is an english like language through which we can express configurations easily.
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

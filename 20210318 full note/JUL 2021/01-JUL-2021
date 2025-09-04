@@ -1,0 +1,222 @@
+What is awk? what operations we can perform on a text content using awk?
+awk is a shell utility used for processing the text line by line, it can search for given text/pattern on a file and applies the actions like print, transformation etc on the matched content of the file.
+  
+syntax:
+awk options 'selection_criteria {action}' filename
+
+#1 default print all the lines in a file
+awk '{print $0}' filename (or) awk '{print}' filename
+
+#2 the default delimeter in awk is "space", and extracts the fields and stores in $1 - $n variables and $0 is resevered for storing entire line content
+How to extract 2nd and 3rd columns in a file based on default delimeter?
+awk '{print $2 $3}' filename
+
+#3 Want to extract the fields of a file based on "," as a delimeter
+awk -F "," '{print $2 $3}' filename
+
+#4 what are the special commands or variables available as part of awk?
+  NR = NTH ROW (RECORD NUMBER)
+  NF = NUMBER OF FIELDS
+  FS = FIELD SEPARATOR
+  RS = RECORD SEPARATOR
+  OFS = OUTPUT FIELD SEPARATOR
+  ORS = OUTPUT RECORD SEPARATOR
+  
+  
+#5 print the records between 3 to 5 only?  
+awk 'NR>=3, NR<=5 {print $0}' filename
+
+#6 print the records which has atleast 4 columns?
+awk 'NF>= 4 {print}' filename
+
+#7 print the records which contains the text "savings".
+awk '/savings/ {print}' filename
+---------------------------------------------------------------------------------------------------------
+sed stands for streaming editor, it is another linux utility available for processing the text content of a file, most widely used in the market.
+
+The name streaming editor has been given, because it reads the contents of the file line by line from top the bottom and apply the operations like searching, deleting and substituting the matching content
+sed can perform the below operations:-
+  1. print
+  2. substribute/replace
+  3. delete
+  
+by default sed will takes the data from a file or a STDIN and apply the text processing, and generates the output on STDOUT. it will not modify the contents of the original file or stream of Input supplied.
+  
+syntax:-
+sed [options] 'commands' File
+  
+How to use sed?
+sed '' filename.txt = takes the input from File and writes to the STDOUT
+cat filename.txt | sed '' = takes the input from STDIN and writes to the STDOUT
+  
+The commands we can apply on the text:
+print      = p
+substitute = s
+delete     = d
+
+#1 printing of lines
+sed 'p' filename = p stands for print command for sed, so it prints each line twice because default also is print
+
+#2
+sed -n 'p' filename = -n suppress the default printing option (-n --quite, -silent)
+  
+How to print specific lines in a file
+1 sed -n '2p' filename = print only the 2nd line
+2 sed -n '2,5p' filename = prints lines from 2 - 5
+3 sed -n '2,+4p' filename = print from 2nd next 4 lines
+4 sed -n '2~3p' filename = print from 2nd line skip 3 lines and print rest of the lines
+--------------------------------------------------------------------------------------------------------
+#2 deleting text content from a file
+d = stands for delete command
+
+#1
+sed '1d' filename = delete 1st line of the file and print it
+#2
+sed '1,2d' filename =delete 1 to 2nd line of the file and print it
+
+Want to delete the lines of the file and update the file how can we do this?
+There are 2 options are available
+1. use redirection operator
+2. -i = inline edit supported by sed
+
+sed '1d' employees.txt > newemp.txt
+sed -i '1d' employee.txt = inline edits the file and modifies the contents directly
+------------------------------------------------------------------------------------------------------
+#3 substitute text content
+'s'= stands for substitute command
+
+employee.txt
+1 mark 20000  permanent
+2 steve 10200 contractor
+3 bob 12999   permanent
+4 joe 8383 permanent
+5 blake 9383 permanent
+6 jill 8272 contractor
+
+#1 substitute input word with output word.
+sed 's/mark/bill/' employee.txt
+
+Now substitute reads the contents of the text line by line from top the bottom and searches for given text and replaces the 1st occurence by default in each line and skips the rest of the line
+
+employee.txt
+1 mark 20000  permanent mark is good
+2 steve 10200 contractor and the manager is mark
+3 bob 12999   permanent and appointed by mark
+4 joe 8383 permanent
+5 blake 9383 permanent
+6 jill 8272 contractor
+
+#2 if we want to replace all the occurences of the line globally we need to use 'g' command at the end
+sed 's/mark/bill/g' employees.txt
+
+#3 replace only 2nd occurence of the word in every line
+shape.properties
+Length=Length
+
+sed 's/Length/10/2' shape.properties
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

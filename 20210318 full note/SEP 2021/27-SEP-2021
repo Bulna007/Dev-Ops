@@ -1,0 +1,92 @@
+How to publish/host an static web application?
+We need httpd server to host and make static web pages accessible to the external world across the network.
+  
+httpd server = are server program runs on a port no and allows the client applications to communicate with it using http protocol and serves static web pages out of a directory location.
+  
+HTTP protocol = Hypertext transfer protocol, it is an application layer protocol. It defines message structure and semantics enable 2 network applications to exchange hypertext markup across the web/network.
+There are 2 types of messages are there in Http protocol.
+  1. Http Request Message
+  The Http request message contains 3 parts
+    1.1 uri, protocol version and request method (operation)
+    1.2 header
+    1.3 body
+    
+  2. Http Response Message
+  Http Response message contains 3 parts
+    2.1 status = indicating response from the server is success or failure
+    2.2 header 
+    2.3 body = response body to be rendered by the browser
+    
+There are total 9 operations are supported by http protocol
+1. GET
+2. POST
+3. PUT
+4. DELETE
+5. HEAD
+6. TRACE
+7. OPTIONS
+8. PATCH
+9. CONNECT
+out of which a web application supports only 2 operations which are GET/POST only.
+  
+GET = The client will send a HttpRequest Message with Method as Get requesting a resource from the server
+POST = The client will send a http request message containing data in body with Method as Post asking the server to read the data perform operation and return response.
+  
+There are lot of vendors manufacturing and providing httpd servers in the market, few are opensource and few other are commercial. The most popular or well-known httpd servers are 
+  1. apache2 httpd server
+  2. ngnix
+
+How to host an application and bind it over a dns name to make it accessible?
+We can host an application and make it accessible in 2 levels 
+1. within intra-network of an organization
+2. over the internet making it accessible to the world.
+  
+#1. Within the intra-network of an organization
+To host and make an application accessible within the organization we dont need to have
+1. public ip address
+2. public domain name
+we need to take the local network ip address of the server computer on which httpd server is running and register with a local domainname within the intra-network dns registry or the local system dns registry to make it accessible.
+  
+Local System dns registry (linux):
+goto /etc/hosts and make an entry of domain name with ip address to resolve
+
+/etc/hosts
+bakerystore  192.168.1.10
+
+public hosting:
+1. purchase an domain name from domain name provider
+2. host your apache2 server on public ip address computer.
+3. goto dns registry and make an entry of your domain name with public ip address of the machine
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  

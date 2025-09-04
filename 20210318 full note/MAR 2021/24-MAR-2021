@@ -1,0 +1,222 @@
+What are the stages in which a software application is being developed and delivered?
+There are 3 stages in which an application is developed and delivered.
+1. Development
+2. Test
+3. Release
+
+Who are the people involved in development to delivery of a application?
+There are 3 people involved
+1. developer
+2. qa engineer
+3. ops engineer
+
+Lets explore each of these people and their roles and responsibilities and the duties the carry in development to delivery of the application
+
+Developer
+developer takes the requirements from the business owner and builds the software application using a programming language.
+
+duties:-
+  1. requires a development environment = a machine alloted to him on which he setup all the softwares and tools for developing the project is called "Development Environment"
+  2. understand requirements
+  3. identifying the programming language that better suits for the application
+  4. install and configure all the softwares and tools on the developnment environment to begin development of the project
+    4.1 programming language software (java, .net, python, php etc)
+    4.2 database servers (oracle, mysql, ms-sql server etc)
+    4.3 sql schema scripts for creating tables on database
+    4.4 application servers for deploying and running software application
+
+#database = is a software application that helps us in storing and accessing the data quickly.
+#application server = is a software which helps in running the applications, it takes care of allocating resources to our application like ram, cpu etc.
+
+  5. choose a better process model that suits for the nature of the project we are developing
+
+process model? = defines set of standards steps/procedures people has to follow in developing an software application, so that the application can build and delivered successfully. experts in the industry has defined various process models
+  1. waterfall model
+  2. iterative/incremental model
+  3. prototype model
+  4. spiral model
+  5. scrum methodology
+one of very oldest process model available in the software engineering world is "waterfall model" this is very popular and wellknow process model. Lets explore waterfall model
+
+  waterfall has total 5 steps
+    1. requirement gathering and analysis
+    2. design 
+    3. implementation / development
+    4. verification / testing
+    5. release and maintainance
+    
+What does waterfall model is telling us to develop project?
+The whole system has to build through these 5 steps and deliver at one shot. if for big applications we cannot use waterfall process model for developing the application as it becomes very complex to build entire system.
+
+During the time of development, the developer requires quite a no of software tools as below.
+
+  6. developers can build the software system by writing instructions in programming language
+    all the developers are working on the same project and the source code/programs they write has to be shared with other developers in the team, so that together they can build project.
+    So to collaboratively develop the project, developer require source code management tools/softwares. There are many source code repository management softwares are available
+      - wincvs
+      - visual source safe
+      - svn
+      - git
+      
+  7. build tools for translating, packaging and executing the software application
+The source code of an application cannot be directly executed on a compute/machine. Computes/Machines can only understand binary/machine language. So in order to execute a source of the program we need to translate the source code into executable/binary code
+  7.1 Translators = Programming languages will provide translation tools that helps us in translating the source code in binary executable code
+
+We cannot ship the executable code to customer/end user, because it is difficult for him to handle all the files of the application. So we need to use packager tools for easy distribution of the application.
+
+  7.2 Packagers = packager tools are again provided by programming languages, that takes all the executable files of your project compresses and packages into one single file with entry point information for execution of your program.  
+Now deliver the single packaged application file to the customer so that he execute.
+
+What is the process of running a software application?
+-> Source Code -> Translator -> packager -> execution
+
+The code that is developed by the developer will be used by quality assurance team and operational team as well.
+
+quality assurance team - These people has to take the source code from repository and should execute the code to verify the code is working as per the requirements or not.
+operational team - They also has to take the source code from repository and delivery the project executable to the cusotmer.
+Both of these people should be involved in the process of translation->package to delivery or test the application. But none of these people are aware of the process of translation and package as those are specific to development.
+
+It is the responsibility of the developers to automate the entire process of building/translation, executing and package of the application, that is where developers uses build tools like
+  - ant
+  - maven
+  - gradle
+  
+Using build tools the developer will write instruction for translating, package and executing/running the program and will delivery the instruction file along with source code.
+Now qa and ops team will run this build instruction file to produce executable and packaged code as an outcome.
+------------------------------------------------------------------------------------------------------------
+  7.3 Unit Testing
+  -----------------
+
+  Developer upon completion of the development of the code, he has to test the code, to verify it is executing or not so that it can be delivered to the qa, this process of testing is called Unit Testing.
+
+------------------------------------------------------------------------------------------------------------- Quality assurance engineering team
+----------------------------------
+Once the developer has completed the development of the application, he has to perform unit testing, after completing the unit testing if the application looks good without any errors, then he has to deliver the application to the qa.
+
+Quality Assurance Engineer is responsible perform the verification of the system that is delivered by the developer. He has to verify the functionality of the system is meeting the requirements that are defined.
+In order to test/verify the application,
+The quality assurance engineer has to execute the application by passing the inputs and verify the application is producing the accurate output as per the expectition or not. If the out is matching with expected output then the test conducted is passed otherwise will marked as failed. 
+In this way the QA Engineer is going to test the application.
+
+As part of the process of testing the qa does the below activities.
+1. QA Engineer requires an quality assurance environment so that he can take the code from scm repository and execute the code on qa environment to conduct the testing.
+2. The qa requires all the software and tools on the qa environment to be installed, so that he run the application on that environment for testing.
+  - its the responsibility of the deveoper to let the qa and ops team know the details about what softwares and tools are required for running the application on a machine with their configuration details as well.
+  - now the ops engineer has to provide a qa environment/machine installed with all the required softwares and tools with configurations that are specified by developers. So, that qa can run the application on that computer.
+3. qa has to prepare test plan and test cases
+4. manually execute on testcase after another one as per the test plan and record the outcome of test executions in test result file.
+
+test/qa cycle [deadline]
+----------------
+1 - p
+2 - p
+3 - F
+-------- day #1 - reported to developer 1 bug by qa
+
+4 - p
+5 - F
+6 - P
+---------- day #2 reported to developer 1 more bug by qa
+
+#3 day = developer has fixed the bug#1 of day#1 and pushed code to scm repository and he will communicate the same to qa
+
+before begin testing he has to take latest code from scm repository and run the latest copy of the code on qa environment.
+3 - Re-verify (All the testcases relevant to the bug#3) (ReOpen)
+7 - F
+8 - P
+9 - P
+----------- #end of day#3 bug# 3, 5, 7
+till we reach zero bugs, this is called qa cycle.
+
+qa has to perform regression cycle, again from top-to-bottom all the testcases has to be executed on the latest code including the bug fixes.
+  the regression also will be continued utill we arrive to zero bugs.      
+        
+-------------------------------------------------------------------------------------------------------------    
+We learnt the stages and the roles of the people in software development and delivery lifecycle.
+Roles    
+  - developers
+  - qa engineers
+  - ops engineers
+Stages
+  - development
+  - verification
+  - delivery
+  
+How are these people are working?
+These people are working in separate teams dis-jointly for the same project. due to which lot of problems creeps up
+  - lack of coordination and delay in communication impacts the development and delivery of the application
+  - repeated failures in delivery
+  - blame game 
+  - gurus emerge
+  - individual success rather than the whole delivery success
+
+What is devops?
+devops is about fast-paced application development and delivery of the applications to the world
+
+Why do we need to build and deliver applications quickly?
+  1. To be ahead of competion in the market
+  2. high customer Return of Investment, that improves customer satisfaction and trust on our products
+  3. brings down the software manufacturing cost if we develop and deliver quickly
+  
+  2 months development
+  1 month testing
+  1 month delivery = 4 months - shipping a feature
+  
+  1.5 months development
+  10 testing
+  3-5 delivery = 2 months = shipping a feature (50% reduce)
+
+How can we achieve fast-paced development and delivery?
+To achieve fast-paced development and delivery
+  1. change the culture in which team is working on the application
+  2. adopt new tools and technologies
+  
+  
+1. change the culture in which team is working on the application  
+All the poeple in should work as one team in developing and delivery application which is nothing but devops team.
+    
+2. adoption of new tools and technologies.
+Let us try to understand what tools and technologies should be adopted by each of the roles of the people in developement and delivery cycle.
+  
+developer:-
+1. The developer to begin the development of the application he needs environment installed and configured with softwares and tools, this process takes atleast around a time of 5 - 10 days for a typical application. Image if we multiply to each member of a team of size 5 it the overall time would 50 days which is a big number and spikes the cost of building application.
+  
+How can we overcome this problem?
+Let us not setup the environment and install the softwares on the machine manually because it takes lot of time. Instead of it adopt new tools and technologies
+  like virtualization tools like 
+   - oracle virtualbox
+   - microsoft hyperv
+   - parallels
+   - vmware
+  these creates virtual machine computers quickly in couple of minutes
+  we use tools like
+    - use iac tools like vagrant to provision virtual machines on the above platforms
+  for software installation and automation we use software configuration management tools like
+  - ansible
+  - puppet
+  - chef
+    
+chef/puppet/ansible -> software installation and configuration tools
+(devops engineer) (programming)
+    
+-> virtual machine -> devops engineer - 
+    
+vagrant tool -> virtual machine definition -> vagrant -> virtual machine
+                cpu
+                ram
+                storage
+-> export this computer into a file and distribute to 5 developers of the team.
+----------------------------------------------------------------------------------------------------------   Choose a process model for developing the project.
+There are lot of process models available in the market like
+  - waterfall
+  - interative/increment model
+  - prototype
+  - spiral etc
+dont use any of these process models adopt agile methodologies only.
+- one such popular process model in agile methodologies is scrum.
+
+-> fast-fail methodology = 6 months developed -> during testing/delivery you found the system is not meeting the requirements (6 months time and money is gone)
+  
+  15 -> design/develop/verify/deliver -> fail only 15 days are gone
+  -> immediately identifying the failure at early stage will minimizes the chances of failure in future.
+-------------------------------------------------------------------------------------------------------------

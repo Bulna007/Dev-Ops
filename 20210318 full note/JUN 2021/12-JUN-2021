@@ -1,0 +1,35 @@
+Package Managers
+
+What is a Program?
+Program is a File on the Filesystem which contains set of executable instructions that can be passed to the underlying operating system to execute.
+
+What is a Software Application?
+  
+Software Application: A Software Application is being built to meet/serve the need of a business system, ideally it is not meant for serving a part of the requirement.
+A Software Application can be built by putting together multiple programs inside it where in general there always will be one entrypoint or main program will be there. So, the application execution will begin from that program.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

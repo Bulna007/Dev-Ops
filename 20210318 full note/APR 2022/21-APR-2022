@@ -1,0 +1,116 @@
+What are the different statuses under which a docker container can exists?
+A docker container can exists in any one of the 7 states
+1. created
+2. running
+3. paused
+4. restarted
+5. exited
+6. removed
+7. dead
+------------------------------------------------------------------------------------------
+HEALTHCHECK directive
+by looking at the container under "running" status we cannot guarantee the health of the application that is running inside the container.
+	
+There can be a possibility where
+1. application running inside the container may have not started properly or
+2. application could have ran into a stuck thread or non-responsive state where it became in-accessible
+
+even then also the docker engine reports the status of the container as "running" only which leads to unnecessary consumption of system resources and not able to detect the failure of the application
+
+How to identify the application is healthy or not, so that we can stop/restart the container if the application has ran into a problem within the container?
+To help us in keeping track of the health of the application that is running inside the container the docker has introduced HEALTHCHECK directive
+
+To work with HEALTHCHECK directive there are 2 aspects of it
+1. The developer of the software application has to expose an Health Endpoint that can be polled periodically by the docker engine to understand the health of application
+
+2. The devops engineer while baking the docker image has to include HEALTHCHECK directive in invoking the Health Endpoint provided by the developer in returning the status code to docker engine
+
+The docker engine repeatedly polls or executes the HEALTHECHECK directive configured command and takes the result (0|1) based on which it reports the status of the application
+
+HEALTHCHECK [options] CMD command
+options:-
+	1. --interval=DURATION in ms [how frequently the CMD supplied needs to be executed]
+	2. --timeout=DURATION ms = The interval of time to be waited for response from the CMD otherwise mark it as failed
+	3. --start-period=DURATION ms = how long it has to wait upon launching the container to execute the HEALTHCHECK cmd
+	4. --retries=N = how many times it has to execute the HEALTHCHCK cmd before marking the application as unhealthy
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

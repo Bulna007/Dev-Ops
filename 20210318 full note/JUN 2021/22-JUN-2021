@@ -1,0 +1,146 @@
+What is dpkg and list down the options available in dpgk command?
+dpkg stands for debain package installer, which is used for installing the ".deb" files of the ubuntu operating system.
+dpkg -i package.deb
+dpkg -r package
+dpkg -s packageName
+dpkg -l 
+dpkg -l packageName
+dpkg -c package.deb (shows contents of the package)
+dpkg -p packageName = uninstall and remove configuration files of the package
+dpkg --unpack package.deb = unpacks the .deb file 
+
+What are ppa repositories how to manage them?
+ppa stands for personal package archives that are produced by individual and are treated as non-official packages of the ubuntu distro. The ubuntu has provided cannonical servers to host the non-official individual personal packages of the users through launchpad, so that individuals can distribute their software to the world.
+  
+The usage of these ppa are left to the discreation of the user as those are not guaranteed or verified by the ubuntu.
+  
+How to manage the ppa repositories?
+sudo apt-add-repository ppa:name
+sudo apt update
+-------------------------------------------------------------------------------------------------------
+What are environment variables?
+Environment variables are key/value pair we can create a shell or bash prompt which are local to the bash. These are created to be used as part of the programs running on the operating system.
+  
+How to create environment variable?
+export VARIABLE_NM=VARIABLE_VALUE
+
+How to access the environment variable value?
+$variableName
+
+How many types of environment variables are there?
+There are 2 types of environment variables are there
+  1. system variables = pre-configured variables as part of the linux installation and are created during the booting of the linux operating system. Mostly used by the linux itself and rarely being modified by the user.  
+  2. user-defined variables = These variables are created by the user by himself to be used as part of his application programs.
+  
+There are lot of System Variables created by the linux as indicated above, out of which there one special variable called PATH.
+  
+whenever we type a text on the terminal linux will try to do the below. 
+  1. it checks for whether the text we presented to the bash has a relevant command file to execute. For eg. we typed ls, it goes to /bin looks for a file ls and executes since it is pre-defined command
+  
+  2. if we have created our own shellscript program and want to execute we need to pass the complete path to the file inorder to execute. if we want to run a program without specific the location of the program then we can use PATH variable
+  set the PATH variable pointing to the directory in which your program file exists as below.
+  export PATH=$PATH:/directoryLocation
+  
+  always PATH containers existing path locations, dont override the previous values, always append your directory location to the existing path. In linux the Path separator is ":".
+
+As said above it is a predefined/system variable which will be set by default pointing to below directory locations.
+PATH=
+/usr/local/sbin
+/usr/local/bin
+/usr/bin
+/usr/sbin
+/sbin
+/bin
+
+if we observe /bin and /sbin are the directories added by default to the path due to this we are able to run all the build-in linux commands without tell the location of the shell programs.
+  
+PATH = path pointing to the location of progarm files, to execute
+---------------------------------------------------------------------------------------------------------
+
+Bash profiles
+-----------
+An environment variable we create at bash/shell level are local to the shell and will be removed automatically when we close the terminal/bash. everytime when we launch the shell/bash we need to recreate them.
+  
+We have a directory location on the FileSystem which permanently contains our program/shellscript files, each time when we lauch bash, we want to the shellscripts programs out of that location, what we should do?
+  
+we have 2 options here
+  1. either specify the complete location to the shellscript file to execute
+  2. add the directoryLocation of the program files to PATH variable.
+  
+even though we can add the directory location of our shellscript programs to PATH, since it is temporary each time we need recreate the PATH pointing our directory, which seems to be tedious job
+
+How to make this PATH value we setup to be permanent?
+In linux we need to use bash profiles. similar to environment variables in windows.
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

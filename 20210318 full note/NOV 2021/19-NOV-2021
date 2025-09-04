@@ -1,0 +1,96 @@
+There are 2 ways of declaring provisioners in Vagrantfile
+1. inline
+2. block-level
+
+syntax of declaring inline provisioners
+#1
+config.vm.provision "provisioner_nm", type: "type", inline: "script"
+#2  
+config.vm.provision "type", inline: "script"
+#3  
+$script = <<-SCRIPT
+// shell scripting
+SCRIPT
+config.vm.provision "type", inline: $script  
+#4 
+config.vm.provision "type", path: path
+-----------------------------------------------------------------------
+syntax of declaring block-level provisioners
+
+#1 
+config.vm.provision "provisioner_nm", type: "type" do | prov | 
+  prov.inline: ""
+end
+
+#2 
+config.vm.provision "provisioner_nm", type: "type" do | prov |
+  prov.path: ""
+end
+--------------------------------------------------------------------------------------------------
+The first-boot of the virtual machine, vagrant will execute the provisioners by default, thereafter the subsequent boots the vagrant will not execute the provisioners.
+    
+How can we control the execution the provisioners in vagrant?
+There are 2 ways available
+1. commandline switch
+2. through configuration
+
+#1. 
+vagrant up [switch]
+--provision
+--no-provision
+--provision-with="provisioner_name"
+  
+#2
+instead of using switch through commandline we can use run: attribute in vagrant file
+the run attribute takes 1 of the 3 possible values
+1. always
+2. once
+3. never
+
+
+config.vm.provision "provisioner_nm", type: "type", inline: "", run: "always"
+config.vm.provision "provisioner_nm", type: "type" do | prov|
+  prov.inline: ""
+  prov.run: "always"
+end  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

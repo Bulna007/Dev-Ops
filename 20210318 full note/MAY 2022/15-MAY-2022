@@ -1,0 +1,65 @@
+What is kubernetes?
+Kubernetes is a cluster container manager, which is used for scheduling, running, monitoring and managing the containerized applications on a network of computers. we can
+1. schedule and run containers on workernodes
+2. we can scaleup the infrastructure by adding workernodes to the cluster
+3. able to restart the failed containers
+4. we can setup a network of containers so that they can communicate with each other
+5. pod deployments and rolling upgrades
+--------------------------------------------------------------------------------------------
+
+Kubernetes Namespaces
+---------------------
+Namespaces are used for creating compartments or logical grouping of objects/resources on the kubernetes cluster.
+For eg.. when we are running multiple projects on the kubernetes cluster we can ensure no 2 people can see the resources of the each of their other projects throught then the help of namespaces.
+The kubernetes administrator can create users, namespaces. he assigns users to the namespaces granting access to the users to those namespaces only.
+	
+The user can see/manage the objects of that namespace only and cannot see or administer the objects of another namespace. in this way we are able to isolate the objects/resources of the kubernetes cluster
+
+By default as part of the kubernetes install there are 4 namespaces created
+1. default = by default any objects created in kubernetes cluster will be placed under default namespace. by default it is empty. everyone can access the default namespace and should be sufficient for most of the usecases
+2. kube-system = This namespace holds the objects related to kubernetes system like api manager, scheduler and controller manager etc
+3. kube-public = by default it doesnt have any objects and if we place any objects on kube-public those are accessible to anyone without authentication
+4. kube-node-lease = all the kubernetes leased objects are associated to this namespace
+
+
+#1. How to create our own namespace in kubernetes cluster?
+kubectl create namespace namespacename
+
+#2. How to see the namespaces
+kubectl config view
+The above command displays the kubeconfig file used by the kubectl, in which the namespace being used will be specified. if there is no namespace entry we are using "default" namespace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+Each operating system or platform provides their own 
+  - packaging format in distributing the software application
+  - package managementer / installer tools for install the software packages
+  
+Why does different operating systems has comeup with different packages standards and package manager tools?
+A software application distributed by the programmer/developer will works on only specific platform/operating system only, since it is compiled to that operating system. 
+Now the developer has to package that compiled application in order to distribute on to that platform. 
+    
+So how does an enduser can distinguish the packaged application provided by the developer will works on which platform since it is compiled to that platform?
+So to help the enduser in identifying that software runs on which platform every operating system has defined their own packaging standards and tools associated to that packaging standard.
+---------------------------------------------------------------------------------------------------------
+
+There are different distributions of linux operating system. each of the distro has provided different package formats and package manager tools why?
+even though the software application compiled to linux and distributed by the developer works across all the linux distros (because kernal / system routines are same), still we have different packaging formats because.
+    - kernal has not provided any package standard to distribute the software application and no installer is available
+  
+because of these running a sofware application on linux becomes difficult, because enduser should know how to run the software application.
+    
+To overcome this problem every linux distro has comeup with their own packaging standard and package manager tools which resulted in different package standards and managers.
+    debain distribution
+      .deb = packaging standard
+      dpkg = package manager tool
+    
+    redhat distribution
+      .rpm = packaging standard
+      rpm = package manager tool
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

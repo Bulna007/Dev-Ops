@@ -1,0 +1,132 @@
+Ansible Vault
+-------------
+In playbook or inventory files we write configuration information pertaining to software installations or fleet server in-terms of variable declarations holding confidential information, and execute them to achieve the final system state of the Machines. 
+For eg.. we might declare a database server credentials or an application server administrative credentials etc as part of playbook or inventory file. If these files are kept on disk or repository in a plain/text format, anyone who has access to these files will be able to see the credentials and gain the access to the servers/fleet (including production). It is a big security breach.
+	
+Ansible has addressed this problem by providing ansible vault. Ansible Vault is an cli using which we can encrypt the playbooks/inventoryfiles using AES256 encryption algorithm and keep them on Filesystem or in repository.	
+No one can read the contents of the playbook/inventory files once encrypted thus making them complete secured.
+	
+How to work with ansible vault?
+#1. how to create an encrypted playbook?
+ansible-vault create playbook.yml
+It opens an text editor allowing you to write an playbook/inventory file/vars_files once we save and close the editor,it asks for password, using which, the ansible-vault encrypts the contents and stores the encrypted only on the FileSystem.
+	
+#2. how to view the contents of an encrypted file?
+ansible-vault view playbook.yml
+it prompts for the password using which we encrypted earlier and decrypts the filecontents and will display in a editor
+
+#3. how to encrypt an existing playbook?
+ansible-vault encrypt playbook.yml
+it prompts for the password, encrypts and saves the contents on the disk
+
+#4. How to run an encrypted playbook or use vars_files/inventory file?
+There are 2 ways we execute
+
+[during development]
+1. decrypt the contents of these files into plain/text format and execute
+Everytime to execute decrypt the contents of the files, execute it and post complete again encrypt it
+ansible-vault decrypt playbook.yml
+prompts for password and generates plain/text files
+
+[production environments]
+2. we can directly execute encrypted playbooks itself using the below command
+ansible-playbook -i inventoryFile --ask-vault-pass playbook.yml
+before the playbook execution begins the ansible-playbook cli ask for password and decrypts in-memory using ansible-vault and executes the playbook.
+There is a problem with above approach, during the playbook execution ansible-playbook cli asks for password which is interactive execution, so that people should be available in-person to supply the password
+
+To overcome the above problem 
+1. create an password file with password to decrypt the contents of the playbook
+2. keep that preferrably within the same location of playbook
+3. give file permissions as 0600 
+	
+now while running the playbook supply the password file as an input as shown below
+ansible-playbook -i inventoryFile --vault-password-file=passwordFile playbook.yml
+
+
+#5. How to edit an encrypted playbook?
+ansible-vault edit playbook.yml
+prompts for password and opens the playbook in an editor allowing us to modify
+
+#6. How to change the password of an existing playbook?
+ansible-vault rekey playbook.yml
+prompts for existing password, once validated ask for new password with which you want to encrypt
+-----------------------------------------------------------------------------------------------
+Handlers
+Jinja2 Templates
+Roles
+Playbook execution strategies
+
+Ansible Handlers
+-----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

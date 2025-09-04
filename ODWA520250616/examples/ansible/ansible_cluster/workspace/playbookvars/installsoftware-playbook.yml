@@ -1,0 +1,12 @@
+- name: install software packages play
+  hosts: all
+  vars:
+    packageName: tree
+    update_cache: yes
+  tasks:
+    - name: install package
+      apt:
+        name: "{{packageName}}"  
+        state: present
+        update_cache: "{{update_cache}}"
+      become: yes

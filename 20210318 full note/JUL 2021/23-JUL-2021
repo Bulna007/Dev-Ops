@@ -1,0 +1,193 @@
+What are Arrays? why do we need to use them?
+Arrays are variables in which we can store multiple values of the similar type in nature consequetively. In Linux shellscripting since all the values are by default treated as String only we can store different types of values also in an Array.
+Once we store the data in an array we can access the values from the array looping through indexes. Arrays starts with zero and ends withan index depends on the number of values we stored.
+  
+Why and when we should use Arrays?
+If we have group of values on which we want to apply similar type of processing then we can go for Arrays.
+Without Arrays, we need to declare values in multiple varibles to perform processing on the data, which brings problems:
+1. too many variables makes the program difficult to understand
+2. the code we want to apply on all those variables to perform operation will be duplicated because of referring variable names.
+  
+we can avoid the above problems by keeping similar group of values in an array and can apply common processing by looping onthose values.
+  
+How to declare an array?
+There are 3 ways we can delcare an array.
+1. Indexed Declaration
+ARRAYNAME[INDEX]=VALUE
+eg..
+NUMBERS[0]=10
+NUMBERS[1]=20
+  
+2. compound declaration
+ARRAYNAME=(ELM1 ELM2 ELM3)
+NUMBERS=(10 20 30 40)
+  
+3. array declaration
+declare -a ARRAYNAME
+ARRAYNAME[INDEX]=VALUE
+
+delcare -a NUMBERS
+NUMBERS[0]=10
+  
+--------------------------------------------------------------------------------------------------------- How to access values from an Array?
+All the values we placed in the array are stored consequtively, so that we can access them using INDEX
+${ARRAYNAME[INDEX]}
+
+#1 wap program to read N NUMBERS into an array and print them in reverse order
+printReverseArray.sh
+#!/bin/bash
+declare -a NUMBERS
+read -p "N:" N
+I=0
+while [ $I -lt N ]  
+do
+  read -p "Number: " NUMBERS[$I] #read the value and store in the index position given in the array
+  I=$[I+1]
+done
+
+I=$[N-1]
+until [ $I -lt 0 ]
+do
+  echo ${NUMBERS[I]}
+done
+
+How to access all the elements of an array?
+${ARRAYNAME[*]}  (or) ${ARRAYNAME[@]}
+How to find the length of an array?
+${#ARRAYNAME[@]} = prints the number of elements in the array.
+  
+We can access elements from specific index location of an array using
+${ARRAYNAME[@]:2}
+we can extract elements of an array from specified location upto length
+${ARRAYNAME[@]:BEGININDEX:LENGTH}
+
+We can search and replace values in an array as below.
+NAMES=("Alex" "Melon" "Mike" "Joseph")  
+RENAMES=${NAMES[@]/M/N}  
+  
+  
+
+declaring array (3 types)
+assiging values into arrays
+accessing array elements
+length
+print all elements in the array
+extract sub array from given array
+replace elements in array
+remove an element from array
+
+#2 wap to read N elements from the use and find whether given number is present in the array or not
+
+#!/bin/bash
+read -p "NUMBERS:" -a NUMBERS
+read -p "NUMBER TO SEARCH:" N
+
+for ELEM in $NUMBERS
+do
+  if [ $ELEM -eq $N ]; then
+    echo "Found $N"
+    break
+  fi
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

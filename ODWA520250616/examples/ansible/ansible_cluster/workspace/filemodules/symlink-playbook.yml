@@ -1,0 +1,10 @@
+---
+- name: symlink play
+  hosts: all
+  tasks:
+    - name: symlink task
+      file:
+        src: ~/importantnotes.txt
+        dest: ~/officedocs/officenotes.txt
+        state: link
+...

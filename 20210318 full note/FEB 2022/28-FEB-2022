@@ -1,0 +1,108 @@
+What is a datasource, what is the purpose of it?
+Datasource is used for querying or fetching the existing resources of an aws cloud account.
+The datasource declaration starts with "data"	 followed by resourceType and aliasname we want to give to the resource we queried
+
+        Type         alias
+data "aws_subnet" "riderpubsn" {
+  filter {
+    name   = "tag:Name"
+    values = ["riderpubsn1"]
+  }
+}
+	
+The filter condition indicates the criteria based on which we want to query the resource, for eg. while provisioning the ec2 instance we can pass the subnet_id we queried above using
+
+resource "aws_instance" "ec2" {
+	subnet_id = data.aws_subnet.riderpubsn.id
+}
+----------------------------------------------------------------------------------------------------
+Working with variables in Terraform?
+Variables are the placeholders in which we store the data. Like any other language terraform also supports variable declarations, assignment and reference of them in Terraform configurations.
+	
+resource "aws_instance"	"javaserver" {
+	instance_type = "t2.micro"
+	ami = "ami-923838434"	
+}
+In terraform configuration file we configure values pertaining to the infrastructure we want to provision for example while provisioning an ec2 instance "aws_instance", we specify the shape as "t2.micro" as shown above, but while moving to production deployment we want to modify the shape of the instance to higher capacity 
+
+This can be done by modifying the terraform configuration, but each time we want to change a configuration value we need to search through the value whereever it appears and need to modify it which is quite complex and error prone as well
+
+Instead of it we can make use of variables. we can declare variables and refer them in terraform configuration instead of directly writing values. while executing the terraform configuration we can supply values into those variables with which the infrastructured will be provisioned
+
+So we can provisioning infrastructure resources with various different configurations by attaching values to the variables 
+
+There are 3 aspects in working with variables:
+1. how to delcare variables
+2. how to refer the variables in terraform configuration file instead of hardcoding the configuration values
+3. how to pass values to those variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

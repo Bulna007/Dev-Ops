@@ -1,0 +1,174 @@
+How many network modes are supported by Vagrant?
+Vagrant supports 3 networking modes
+1. forwarded_port
+2. private_network
+3. public_network
+
+#3. public_network
+vagrant configures public_network as bridge network mode on underlying virtualbox hypervisor.
+  
+3.1 
+config.vm.network "public_network"  = the default network adapter of the host machine is used as bridge in configuring the bridge network
+
+3.2 
+config.vm.network "public_network", ip: "ip within the host network range" = configures the vagrant machine with bridge network bounded with an static ip address
+
+3.3. 
+config.vm.network "public_network", bridge: ["bridge_name"] = the physical network adapter of the host machine to be used as a bridge
+--------------------------------------------------------------------------------------------------------
+Vagrant SSH
+What does vagrant do to provide SSH access to the remote machine?
+  
+1. by default for every vagrant machine to faciliate SSH access vagrant enables NAT Networking with port forwarding as host: 2222 - guest: 22
+  
+2. vbox images are pre-packaged with ssh server installed and configured with default ssh configuration as PasswordAuthentication: no
+Every vagrant machine has default ssh server installed and configured and running
+
+3. the vagrant vbox file has been packaged with insecured pub/private keys, so during the first boot of virtual machine vagrant will ssh into the virtual machine using insecured public/private keys, regenerates a new keypair, seeds the public key on to the vm, removes the insecured key. and stores the public/private keys on the project directory .vagrant folder to facilitate SSH access
+
+4. vagrant ssh
+internally executes ssh command only
+ssh -i project/.vagrant/machines/virtualbox/private_key -p 2222 vagrant@localhost
+---------------------------------------------------------------------------------------------------------
+How to work with different hypervisor providers in Vagrant?
+Vagrant is a virtualization workflow automation tool that works on the underlying hypervisor providers in provisioning an virtual machine. Vagrant supports multiple hypervisor providers like virtualbox, vmware desktop, vmware fusion, hyper-v, parallelx etc. The default hypervisor provider that vagrant uses in bringing up the virtual machine is "oracle virtualbox" and it supports all the versions of oracle virtualbox right from 5.1 to current version since being an verify popular open source vendor.
+  
+If we have Hyper-V/other installed as an hypervisor provider on our machine, when we run vagrant up, 
+still vagrant looks for virtualbox hypervisor provider to provision the virtual machine.
+
+How can we change the default hypervisor provider in provisioning an virtual machine through vagrant?
+There are 2 ways we can switch or use a different hypervisor provider in vagrant
+#1 global configuration
+We can change the hypervisor provider to be used in provisioning any virtual machines by creating an environment variable as
+set VAGRANT_DEFAULT_PROVIDER=vmware_desktop
+
+#2 change the hypervisor provider to a specific virtual machine rather than globally
+vagrant up --provider=vmware_desktop
+
+Notes:
+When we provision an vagrant machine with one of the hypervisor provider, we cannot switch to another, the only way we do this is by destroying the current machine and reprovision with other hypervisor provider.
+---------------------------------------------------------------------------------------------------------
+Vagrant Providers
+How to work with provider specific configurations in vagrant?
+
+Vagrant.configure(2) do | config |
+  config.vm.box "hashicorp/precise64"  
+end  
+
+The vbox image providers can bake vbox image files and produces multiple vboxfiles each per one provider
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,121 @@
+There are File management commands available in linux to
+  - create new file
+  - copy
+  - modify
+  - remove
+but to edit the contents of an existing file we need to use editors in linux
+There are 2 types of File Editors are available in Linux
+1. CLI Editors (recommended)
+  There are 2 popular text editor tools available
+  1.1 vi = the next version of the vi is vim (vi improved), made vi more user-friendly in vim (edition), all the vi commands works in vim also.
+  
+  1.2 nano
+  
+2. GUI Editors
+Different GUI Desktops provides different File Editors and not same across all distros. For most of the debian distros the gedit is a GUI File Editor tool available to use
+--------------------------------------------------------------------------------------------------------
+vi (vim)
+by default ubuntu distribution comes with old vi editor and it is not user-friendly. In input mode all the keypress will be taken as input and writes to the file, including arrow keys also always we need to goback to command-mode to navigate within the filecontents. backspace and delete keys also will not function here.
+  
+Due to the above working with vi is more complex, instead update the current install of vi to vim by running the below commands.
+  sudo apt update -y
+  sudo apt install -y vim
+---------------------------------------------------------------------------------------------------------
+How to use the vim editor?
+#1 vim filename
+if the filename provided is already existing it opens the file and shows its contents. if not opens a blank/new file with that name and made it available for editing, the file on the filesystem will be created only when we write it in case of new otherwise you wont find a file.
+  
+There are 3 modes are there in vi(vim) editor
+#1 Command mode (default)
+  - By default the vim editor opens in Command Mode only, and here every keypress on the keyboard will be treated as a command and operates/performs an action on the file
+  - To enter into command mode press esc key on the keyboard.
+  
+#2 Insert/Input mode
+  - In this mode, any keypress on the keyboard will input the data onto the file. 
+  - To enter into input mode we need to press (i) key on the keyboard in case of (vi). but in vim if we press any key on keyboard apart from commandkeys (commandmode) automatically it takes us into input mode.
+  - To comeback to the command mode we need to press esc key on keyboard
+
+#3 Exit mode
+  - To quit from the vim editor we have to goto Exit mode
+  - To enter into Exit mode, first goto command mode by pressing (esc) key on keyboard. The press ":" key will enter into quit mode. now below options helps us in quiting from the editor
+    - :q = quit from the editor, if there are no pending changes
+    - :q! = quit from the editor, discard if there are any pending changes
+    - :wq = write and quite
+    - :w = just write to the file.
+      
+  
+In Insert/Input mode all the keypress acts as input apart from backspace, delete and arrowkeys. So lets explore command mode and keys available that acts as commands.
+Command mode (esc)
+1. A = to append the data at the end of the current line
+2. a = to append the data to the right of the cursor position.
+3. I = to insert the data at the beginging of the line
+4. i = to insert the data to the left of the current cursor position
+5. O = open an new line above the cursor position
+6. o = to open a new line below the curson position
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

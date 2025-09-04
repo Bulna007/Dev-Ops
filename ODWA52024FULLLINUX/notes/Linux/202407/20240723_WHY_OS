@@ -1,0 +1,175 @@
+processor = acts the brain of the computer, it performs all the computation operations (arthematic, relational and logical). since it is an electronic device, it can only understand signals (power on/off) which is represented as 1s and 0s respectively
+
+So the only language the processor can understand allowing us to interact with is 1 and 0 only which is called "machine level language"
+
+All the human data is represented in decimal number system base(10), so inorder to pass that as an input to the processor we need to convert the decimal number into binary format. The processor upon computing the data produces binary number which inturn has to be converted into decimal format
+so there are 2 operations we need to perform always inorder to interact with the processor of the computer
+1. binary number -> decimal number (output) = sum(2^position * bit)
+2. decimal number -> binary number (input)  = LCM(2)
+	
+example:
+22 + 33
+	
+1. 22     = 10110 
+	  (10)       (2)
+	
+2|22	
+ -----
+2|11 - 0	
+ -------	
+2| 5 - 1
+ -------	
+2| 2 - 1
+ -------
+2| 1 - 0	
+	
+2. 33    = 100001
+	  (10)        (2)
+	
+2|33
+ --------
+2|16 - 1
+ --------
+2| 8 - 0
+ --------
+2| 4 - 0
+ --------
+2| 2 - 0
+ --------
+2| 1 - 0	
+	
+binary addition:
+
+22 =	010110
+33 =	100001
+	   ----------
+	    110111
+	          (2)
+	
+let us convert this binary number into decimal number as below
+
+ 1     1     0       1      1       1
+ *     *     *       *      *       *
+2^5 + 2^4 + 2^3  +  2^2  + 2^1   + 2^0
+--------------------------------------------
+ 32 + 16  +  0   +   4   +  2    +  1 = 55
+--------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
+1. Machine-Level language
+The machines (processor) can only understand the data that is expressed or represented in 1s and 0s only which is called machine-level language. 
+	
+For humans it is hard to memorize numbers/digits in representing the information, so to overcome this problem in using the computers, the people has introduced Assembly-level language
+
+2. Assembly-level language
+The Assembly level language provides instructions expressed in simple english language words which are even called as "keywords" that can be understood by the processor of the computer.
+	
+For each type of operation we wanted to perform using the processor there is an relevant keyword has been defined or standardized
+1. addition = ADD
+2. substraction = SUB
+3. multiplication = MUL
+4. division = DIV
+5. modulus = MOD
+6. store = STORE
+7. fetching = FETCH
+
+now humans can easily memorize these keywords and can use them for writing instructions, so that it can be passed as an input to the processor of the computer asking him to perform operations.
+
+Note:- The assembly-level language instructions differ from processor to the processor (different for different hardware architectures).
+	
+drawbacks:-
+	1. since the keywords or the instructions of the assembly-level language differs from hardware architecture to another, memorizing them and programming across different processor models is very hard
+	2. the instructions/program we wrote using assembly-level language will not be portable across the different processors that makes hard to work with different processors
+--------------------------------------------------------------------------------------------------------------------------
+What is an operating system?
+operating system is an system software that sits between the enduser and the hardware of the computer, it provides #2 core features as below.
+	
+	1. it ensures the programs written by the users are portable across the hardware platforms by translating the program instructions into hardware(processor) specific instructions, so that those can be executed on any hardware
+	
+	2. provides sophisticated environment with rich set of tools and utilities, that helps the enduser to easily interact with the hardware of the computer
+The more the hardware platforms or architectures the operating system supports, the more it will powerful.
+--------------------------------------------------------------------------------------------------------------------------	
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	

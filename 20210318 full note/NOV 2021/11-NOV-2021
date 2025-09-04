@@ -1,0 +1,72 @@
+by default vagrant provisions the virtual machines using oracle virtualbox as a default hypervisor provider. but if we want to switch to a different hypervisor provider like hyperv or vmware_desktop we can do that in 2 ways
+1. global configuration
+we can create an environment variable with name VAGRANT_DEFAULT_PROVIDER=hyperv, now if we create a vagrant machine, vagrant will try to bringup the machine with hyperv instead of virtualbox. by setting the environment variable, we change the hypervisor provider for all the machines we provision on the host.
+  
+2. specific to the vm
+vagrant up --provider=providerName
+it only applied to the current machine we are bringing up
+
+we cannot switch to an another hypervisor provider in running an virtual machine once after creation, the only way is to destroy and reprovision
+---------------------------------------------------------------------------------------------------------
+How to work with different providers in vagrant?
+Vagrant works on multiple hypervisor providers like
+virtualbox
+vmware
+hyperv
+etc
+
+to work with different hypervisor providers we dont have to create multiple vagrant machine configuration files each per a provider.
+In case Vagrant forces us to maintain separate machine configurations per provider then we endup in duplicating the machine configurations across the providers and maintainability becomes very difficult.
+  
+So vagrant supports image providers to publish vbox images onto vagrant cloud tagging the provider with which the box files works. the image provider might publish mulitple vbox images each per platform tagging with same image name.
+  
+when we create an Vagrantfile, choose the vagrant box = that supports multiple hypervisor providers based on your requirement. 
+  
+So that when we run vagrant up, vagrant cli intelligently pulls the right vbox image from vagrant cloud of that provider we configured and boots the machine. switching to an another provider requires an change in flag rather than maintaining another vagrant configuration file
+
+In-Short
+A Vagrantfile works across multiple hypervisor providers with no changes.
+---------------------------------------------------------------------------------------------------------
+From the above we clearly understood one Vagrantfile works across different providers. but I wanted to customize the Vagrant machine based on the Hypervisor provider am running on.
+  For eg..
+  1. virtualbox = forwarded_port 8080: 80
+  2. hyperv = fowarded_port 7799: 79
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,211 @@
+macbook
+1. intel chipset
+download and install oracle virtualbox for macOSX/Intel Host, install along with extension pack and follow the same process that is explained for windows users on creating virtual machines.
+
+2. apple chipset (m1/m2/m3)
+VMWare Fusion (Virtualization Software): install
+--------------------------------------------------------------------------------------------------------------------------
+About Shells
+-------------	
+Interacting with the kernel of the linux operating system is very complex, users of the computer should know complex programming instructions provided by the kernel in writing the programs in talking to the kernel of the operatin system.
+
+To help the users to easily interact with the linux operating system in using the computer, the shell utility programs are introduced.
+
+Shell is an interpreter program that provides simplied cli commands/instructions that can be used by the users of the computer, upon issuing a command to the Shell, it takes the command and executes an relevant kernel program to perform appropriate operation, captures the result and returns to us. So that working with Linux operating system becomes easy for the users.
+
+Follow:
+User > shell commands/instructions > Shell > (translate) kernel programs > kernel > hardware
+
+In-short:
+Shell can be viewed or visualized as interface between the users and kernel of the operating system
+
+
+There are lot of shell utilities being developed and provided by various different people or organizations in the market, this means we have many ways (different interfaces) in interacting with the kernel 
+Different shells has different capabilities:
+Few shell interpret programs provides simplied instructions/commands that fullfil the requirements of basic users of the computer, where someothers provides powerful instructions/commands that allows to perform low-level operations on the computer/hardware
+	
+More or less all the shell interpreters works on all the linux distros as shell works on Kernel, and more or less across all the distros the kernel is same.
+	
+So based on the purpose or usage of the user of the computer, he/she has to choose an appropriate shell in interacting with kernel of the operating system.
+	
+There are 2 major types of shells
+1. Bourne shell = If we are using an bourne shell, the $ character is the default prompt
+2. C shell = if we are using the C shell, % is the default prompt
+
+The bourne shell has sub-categories:
+1. bourne shell (sh)
+2. korn shell (ksh)
+3. bourne again shell (bash)
+4. POSIX (portable operating system interface) shell (sh)
+	
+The C-type shell has sub-categories:
+1. C shell
+2. TENEX/TOPS (tcsh)
+	
+The default and most used shell across the distros is : bash, so we are going to use bash shell, since it is very popular in the market.
+	
+We can find which shell interpreter we are in by using echo $0
+
+Bash Command Structure
+----------------------
+The command is a program or an action we are performing on the underlying operating system of the command. Structure of the command has three parts to it
+
+Command [options] [arguments]
+
+depending on what we are doing, we might have a command or command with options or command with arguments but always the command is mandatory
+
+command:
+For eg..
+ls = command, that lists files and folders within the current directory
+
+command with options:
+ls -l = here -l options
+options are always passed to the command by using "-" =These options are used for enhacing or changing the behavior of the command
+
+command with arguments:
+argument acts as an input to the command, using which it performs the operation
+
+ls directory/ = instead of showing files and folders of the current directory, it list files/folders under the specified directory/ that is passed as argument
+
+
+windows cannot be seen without ui
+
+linux (kernel) = ui is optional, and can be installed separately (production env)
+	(very very light weight): decent GNU/Linux = 256 mb = 300 mhz processor
+	
+production servers: videos, music, browse, paint (run the program/application)	: gui (system resources)
+	
+development: windows operating system (linux)	
+	linux = kernel (commands) + GUI/Tools  (Linux distros: good tools = never match with windows)
+product development companies: mac over windows
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

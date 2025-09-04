@@ -1,0 +1,94 @@
+What are modules in terraform, why do we use it?
+modules are the way through which we can reuse terraform resource declarations or configurations across the projects in creating the infrastructure
+
+We can create modules locally and can import them into terraform configuration in building the infrastructure or we can reuse the published modules in creating the infra
+
+How to create our own modules?
+While working on modules create the project in organized directory structure
+
+project
+|-modules
+	|-services
+		|-network
+			|-vpc
+				|-inputs.tf
+				|-main.tf
+				|-outputs.tf
+			|-subnet
+				|-inputs.tf
+				|-main.tf
+				|-outputs.tf			
+			|-gateway
+				|-inputs.tf
+				|-main.tf
+				|-outputs.tf			
+		|-compute
+		|-database
+|-global [terraform configuration]
+	|-inputs.tf
+	|-outputs.tf
+	|-inputs.tfvars
+	|-main.tf
+-----------------------------------------------------------------------------------------	
+usecase
+terraform state file management
+terraform control statements
+------------------------------------------------------------------------------------------
+fithealth2
+
+lbr
+ec2
+rds
+
+ec2 = #2 hybrid subnets
+lbr = #2 public subnets
+rds = #2 private subnets
+
+ansible playbook
+-java
+-apache-tomcat server
+
+ansible deploy playbook
+
+fithealth2
+|-src
+  |-main
+		|-java
+		|-resources
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+|-pom.xml
+|-terraform
+	|-modules
+		|-services
+			|-network
+				|-vpc
+				|-subnet
+				|-gateway
+				|-lbr
+			|-compute
+				|-ec2
+			|-database
+				|-rds			
+	|-global
+|-ansible
+	|-playbooks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

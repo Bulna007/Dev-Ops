@@ -1,0 +1,276 @@
+Networking
+----------
+Networking is a technic or mechanism through which we can inter-connect computers together, so that the software applications that are running on those computers can communicate with each other over the network.
+	
+To let the computers communicate with each other they need to be inter-connected with a physical cable/trasmission line. For interconnecting the computers we need
+	1. Each computer must and should have an Network Interface Card (NIC) or Network Adapter attached to the motherboard of the computer. By having NIC card will enable us to plug-in the computer to a wire.
+	NIC = comes with all the required hardware/software needed for exchanging the bits of data over the physical transmission channel.
+		
+	2. To plugin the computers with a wire, we need RJ45 Socket and Port, so that the wire can be plugged-in to both the NIC cards of the computers
+	
+How many NIC cards can be there for a computer?
+depends on the number of PCI slots available on the motherboard of the computer, we can have multiple NIC cards plugged-in to the computer
+
+For the modern computers, the network interface card is installed as a chip/built-in component on the motherboard directly, so that we dont need to buy and plugin additionally the network interface card. Every machine by default comes with one network interface card, if we want we can buy and plugin externally the NIC cards on the motherboard of the computer
+
+
+Whenever a computer is trying to send the data over the network, by default the data reaches to all the computers that are connected with that computer. But if we want to send the data to a specific computer on that network, each computer needs an unique identity that acts as an address for the computer. So each computer on a network must and should have an unique address
+
+For each computer connected to a network, it has #2 types of addresses or identities
+1. ip address (logical address)
+2. mac address (physical address)
+	
+	
+2. mac address or physical address
+mac stands for "media access control" address, it is also called "physical address" of a computer. The mac address will be associated with the Network interface card (NIC). The manufacturer of the Network interface card will seed/writes the mac address into the network interface card itself which is a kind of read-only or permanent address which is unique among all the mac addresses within the world and cannot be changed. If your machine has #2 NIC cards, each of them has 1 mac address.	
+
+The mac address is a 12-digit hexadecimal number that identifies the device on a network. It is typically represented as six groups of two hexadecimal digits separated hypens, colors or without a separator. for eg.. 00-00-00-00-00-00	
+	
+1. ip address
+ip stands for "internet protocol" address which is also called as "logical address" that is generated and assigned to a computer when it is connected to the network. unlike the mac address, ip address is not permanent and will be changing whenever it is connected/dis-connect from an network.
+	
+why #2 address, what is the purpose of #2 addresses?
+1. The source and destination computers that wants to exchange the data are part of #2 different networks, then the ip address is used for routing the data packet from one network to the other corresponding network
+
+2. To identify a specific computer within the network to which the data packet should be delivered we use mac address
+---------------------------------------------------------------------------------------------------------------------------------------------------
+How does programs can communicate with each other over the network? (addressability)
+if a program has to communicate with another program on the other computer over the network, the receiver program must and should have a portno assigned to it by the operating system of the computer.
+So that the sender while sending the data will use along with ip address, the portno of the receiver program inorder to send the data to the specific program
+
+When the data has been send, it will be received by the right computer of the network based on the ip address, then the operating system of the computer will takes the data, look at the portno specified and identifies the program on that computer that is running on the specific portno and forwards the data to the right program on that computer.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+How does the data is being exchanged between the programs over the network?
+In order to exchange the data between any #2 programs across the network we need to have guidelines or rules defined between them in order to guard or exchange the data between those #2 progarms which is called protocol
+
+Protocol is nothing but bunch of rules or guidelines defined by the programs inorder to effectively communicate in exchanging the data between the programs over the network. Protocol guarantees the below aspects of communication 
+1. Even though the physical communication channel is shared among multiple parties, it gives an illusion that each pair of computers has their own dedicated channel over which the communication is being taken place
+2. It ensures no #2 people data is collided or bomboarded that results in loss of communication
+3. The protocol ensures always the data is received by intended reciever only
+4. end-to-end guaranteed delivery of the data is taken care by protocol
+
+
+From the above we can understand, a protocol is nothing but set of rules or guidliness that are defined and agreed upon all the parties to ensure effective exchange of data over the network.
+There are #2 types of protocols are there
+1. Application protocol         = exchange of the between the applications across the network
+2. Transport/(Network) protocol = defines the rules on how the physical bits of data should be transported between the computers across the network
+---------------------------------------------------------------------------------------------------------------------------------------------------
+OSI Model Layer
+---------------
+OSI stands for open system inter-connection standard, it is protocol that helps any 2 different computers or programs to communicate with each other over the network irrespecitive of the hardware or the operating system platform on which they are running. The OSI model layer protocol comprises of both Application protocol and Network/Transport protocol together defined aspart of it enabling us to achieve end-to-end communication between the applications over the network.
+	
+The OSI model layer defines 7 layers aspart of it
+1. Application layer
+2. Presentation layer
+3. Session layer
+4. Transport layer
+5. Network layer
+6. Datalink layer
+7. Physical layer
+
+Each of these layers has their own duties or responsibilities well-defined. The communication takes place starting at the Application Layer at the sender side, and flows down through all the layers sequentially from top to the bottom where each layer takes the data from the above layer performs some operation and produces the data (output) and passes down to the below layer
+
+In the same way at the receiver side the transmission begins from bottom to the top, where the physical layer receives the bits of data that is transmitted over the communication channel, will passes as input all the way from bottom to the top above all layers and finally reaches to the application that is running on the receiver computer
+
+The OSI Model layer protocol should be fllowed/adopter by the Network application, Network devices and Physical medium channel that wishes to communicate over the network
+
+Let us explore each of these layers and their responsibilities/duties one by one
+
+1. Application Layer 
+Any two software applications inorder to communicate with each other they need to exchange the data. The data that is being exchanged by both parties should be understandable to each other, unless otherwise the info will not be meaningful to perform the operation
+
+To make the data understandable to each other, these applications by themself defines set of rules interms of messaging structure and semantics which is agreed upon by both in exchanging the data to perform operations
+
+These rules/guidelines or messaging standards/semantics defined by both these software applications are called "Application layer" protocol
+
+2. Presentation Layer
+The Presentation Layer takes the data as an input from Application Layer and passes the data to the lower-layers of the OSI model in a transmittable format. There are 3 responsibilities performed by the Presentation Layer
+
+1. Data Conversion
+Takes the text data from Application Layer converts the data into bits/bytes format based on charset encoding standard specified by the application
+
+2. Data Compression/Decompression
+Upon converting the text data into bits/bytes, inorder to reduce the size of the data it applies bit compression technics so that it can be quickly transmitted over the network. upon receiving the data at the receiver side, to build back the data it applies decompression technic
+
+3. Data Encryption/Decryption
+Data Encryption is a technic through which we transform the data into another format that no one can steal/understand the data unless they know the encryption key that has been used in encrypting the data. 
+	
+So while transmitting the data over the network, always there is a chance an intruder/hacker might snip into the communication channel and might steal the data, to ensure even it is been stoled, there will not understand the data we need to encrypt and transmit the data over the network.
+	
+upon receiving the data on the reciever end, the data needs to be decrypted using the encryption key we used, so that it would become meaningful and understandable to the reciever.
+	
+	
+3. session layer
+session layer take care of end-to-end exchange of the data between the software applications. It performs #2 responsibilities
+1. authentication/authorization
+2. session management
+
+1. authentication/authorization
+It keeps track of the authentication information about the client who is accessing the application. So that the server application can lookup the authentication information of the client with session-layer to permit access to the application
+
+2. session management
+ 2.1 keeps track of number of packets send by the client application and the number of packets received at the server-application
+ 2.2 reordering the packets at the server-side to construct the message/data back
+ 
+The above #3 layers (Application Layer, Presentation Layer, Session Layer) we have discussed till now are mean for transmission of data between the applications, but the rest of the layers from Transport Layer talks about how to move the data over the network channel.
+	
+4. Transport Layer
+The Transport layer takes the data from Session Layer and performs #3 responsbilities in passing the data to the lower layers of the OSI
+1. Segmentation
+segmentation is the process of breaking the data into smaller data packets and attach to each packet the receiver application port no and sequence no to reconstruct the data at the receiver side
+
+2. Flow control
+Instructs the sender to slow down in sending the data, when the reciever application is running on low-speed network of less capacity to avoid data loss
+
+3. Error control
+detects and requests the sender to resend the data/segment when corrputed based on checksum
+
+5. Network layer
+The network layer is responsible for transferring the data from one network computer to another computer of a different network. The Network layer performs 3 responsibilities
+1. Logical Addressing
+2. Routing
+3. Path Determination
+
+
+#7 layers
+1. Application Layer
+defines messaging semantics and structure that both applications has to follow inorder to exchange the data in understandable format across the network
+
+2. Presentation Layer
+presents the data in transmittable form to the lower layers of OSI. #3 responsibilities
+ 1. data conversion
+ 2. data compression/decompression
+ 3. data encryption/decryption
+ 
+3. session layer
+end to end exchange of the data between the software applications. #2 responsibilities
+ 1. authentication & authorization 
+ 2. session management
+ 	1. keeps track of the number of packets send and received
+	2. reorder the data packets at the receiver end based on sequence no to reconstruct the data
+	
+responsible for exchange of data between applications but not network
+
+4. transport layer
+ 1. segmentation  = break the data into smaller packets and attach receiver app portno and seq no segment: (payload + portno + seq no)
+ 2. flow control  = instructs the sender to slow down, if the receiver is running on low-bandwidth connection in receiving the data
+ 3. error control = attaches checksum bits to the segment, so that at the receiver end we can detect the corrupted packets based on the checksum and instruct the sender to resend the data
+ 
+5. network layer
+transmitting the data from computer to another computer of a different network
+1. logical addressing  = data packet/ip packet: [segment + sourceip + destinationip]
+2. routing = routing is the process of sending the data packet from one network of computer to a different network 
+3. path determination = To deliver/send the data packet to the destination computer/host, there can be multiple paths or routes can be there. identifying the right path that yeilds in low cost interms of time/traffic is called "Path determination"
+	
+6. datalink layer
+The datalink layer is a software that is embedded aspart of the network interface card and is programmed by the network interface card manufacturer itself and shipts to us. The datalink layer is responsible for transferring/delivering the data between the computers within the network
+There are #3 responsibilities being performed by the datalink layer
+	1. Physical addressing = ip packet + source mac + destination mac = data frame
+	2. media access control = encodes/decodes the data into signal form based on the transmission medium, so that the data can be transferrable over the physical medium of communication.
+	3. error control
+	There are #2 types of error control mechanisms are applied
+		1. collision detection = identify the physical channel is available or busy inorder to transmit the data, to avoid collision
+		2. fault detection     = adds head/tail bits to the data frame to detect corrupted frames at the reciever and request for re-tranmission
+		
+7. Physical Layer
+The physical layer takes the bits of data converts them into relevant form based on tranmission media, so that it can be transmitted from source to destination
+
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

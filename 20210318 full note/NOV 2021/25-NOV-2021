@@ -1,0 +1,199 @@
+There are 5 features are there in maven.
+1. Standardized directory structure
+2. Dependency Management
+3. Archetypes
+4. Build Abstraction
+5. Plugins
+
+#1.1 Standardized directory structure
+Because of standard directory structure, we dont need write logic for building/packaging the application, because
+  1. maven knows what build activities has to be applied in building/packaging the application and even how to do it
+  2. it knows the details of the project, which files are located under which directories of the project.
+So if we declare information about our project to maven, maven takes care of building the application.
+  
+directory structure for
+standalone java application
+----------------------------
+project
+|-src
+  |-main
+    |-db
+    |-config
+    |-it  
+    |-java
+    |-resources
+  |-test (unit testcases)
+    |-java
+    |-resources  
+|-pom.xml
+|-target (generated)
+  |-classes
+
+
+directory structure of
+web application project
+project
+|-src
+  |-main
+    |-db
+    |-config
+    |-it
+    |-java
+    |-resources
+    |-webapp
+      |-WEB-INF
+        |-web.xml
+  |-test
+    |-java
+    |-resources
+|-pom.xml
+|-target (generated)
+  |-classes
+
+What is pom.xml, what do we need to write inside pom.xml
+pom.xml stands for project object model (project information file) that holds the information about the project, which will acts as an input to maven to build the project.
+  
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId></groupId>
+  <artifactId><artifactId>
+  <version></version>
+  <packaging></packaging>
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+</project>
+
+How to build the maven project?
+goto project directory and run the below command to build the project
+mvn clean verify
+------------------------------------------------------------------------------------------------
+#2 dependency management
+The java application will be build by the developer by reusing the jar libraries distributed by 3rd party organizations or opensource contributors, dependency management is about how to download and use these jars as part of the java project.
+
+jar - java archieve, packaged with .class files.
+There are 2 types of jars are there in java
+  1. executable jar = we can deliver the application to the customer by packaging the information about our application in manifest.mf  
+  2. distributable jar = libraries distributed to the people so that they can reuse the jar classes in building their application quickly
+  
+  
+How to use a jar library provided by a third-party organization in our project and quickly build the application?
+1. goto 3rd party vendor and download the jar file distributed
+2. place the jar in our project directory (under lib)
+3. export the CLASSPATH pointing to the libraries we want to use for compiling and executing the project.
+  
+There are lot of challenges in downloading the jar libraries manually and use it in our project.
+how to distribute the libraries of the project across the team of developers
+let each developer goto the third-party vendor and download the dependencies individual on their machine, but it poses lot of problems as below.
+  
+1 huge amount of network bandwidth consumption in repeatedly downloading the same jars across the team of developers
+2 manually identifying and downloading the dependencies takes lot of time
+3 identifying the jars required and finding their version numbers in using them is very difficult, because not everyone in the teams knows about all the dependencies required for running the project
+4 authenticity of the library you are downloading is not guaranteed
+5 there is no control on usage of the third-party libraries as everyone is allowed to download and use their libraries
+6 there is a high chance where developer unknowingly might download and use a commercial/licensed dependencies by which the organization might land into legal issues.
+  
+How to overcome the above problems in distributing the dependencies of our project across the team members of our team?
+Maven has introduced dependency management features to help us in distributing and using the jar libraries in our project.
+  
+1. To help us in distributing the jar dependencies across the team members of the project maven has introducted maven repositories
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+

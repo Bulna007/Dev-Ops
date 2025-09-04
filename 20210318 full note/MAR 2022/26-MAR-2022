@@ -1,0 +1,178 @@
+What is docker architecture?
+There are 3 components are there in docker architecture
+1. docker engine
+docker engine takes care of managing images and creating/destroying containers out of the images, it has 3 sub-components inside it
+	1.1 docker daemon = The users can communicate with the docker engine through the help of docker daemon, it is an http endpoints or rest api that is exposed to the users. The users uses docker cli to communicate with the docker engine through the help of docker daemon
+	
+	1.2 containerd = containerd is a component that takes care of pulling the images from container registry, exporting the images and converting the docker images into oci specification formation and passes it as an input to the runc asking to create container in running the application outof the image
+	
+	1.3 runc = runc is an container runtime which is a low-level component build based on oci specification that takes care of talking to the underlying operating system in creating, running, destroying the containers
+
+2. docker cli = is an command-line interface tool provided by docker team to help us in interacting with docker engine
+	
+3. docker container registry = a repository where docker images are published and distributed
+------------------------------------------------------------------------------------------
+What are the docker objects?
+There are 2 types of objects are there in docker
+1. docker image
+2. docker container
+
+#1. docker image
+docker image is a file packaged with
+1. application binary
+2. software packages (required for running the application)
+3. instructions in running the application
+4. bins/libs = that enables to communicate with docker engine
+together to run an application in an isolated environment of a computer
+
+Docker hub is an container repository/ docker registry hosted by docker team to help the people around the world to publish and distribute their own docker images
+
+To publish an docker image into docker registry per each image we need to create an repository, into which we can publish one image.
+There are 2 types of repositories are there
+1. public repository = the docker image published into public repository will be open to the world and anyone can use it or modify it
+
+2. private repository = these repositories are used by either individuals/corporates who are working on commercial/private projects and dont want to expose these images to public world are kept here. 
+So that these images can be delivered/distributed across the stages of our project
+
+Docker Hub is an opensource docker registry where anyone can publish and pull docker images from it. but per user only 2 private repositories are allow and by default all the repositories created by the user are public and infinite public repositories are allowed.
+	
+There are lot of docker images are created and published as part of docker hub registry. we can categories these images into 2 types
+1. docker official/certified/verified images = these images are created by docker/partners and are verified by the docker team and published as part of the repository
+
+2. community immages = any of the users who wanted to contribute for opensource stack can create and publish their own images which are caleld community images and should used at your own discreation
+
+For our software application inorder to containerize the application we need to build our own docker image packaging the application with instructions and libs/bins. It is an usual practice to build docker images of our own by extending the existing docker images
+
+The docker team has provided a base docker image which containers bins/libs which can used as a base from which we can extend and create our own image which is called "alpine" of size 2 mb
+
+Instead of using an alpine image the ubuntu has published official docker image into docker registry which can be used as base image in creating our own image. ubuntu-22.04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

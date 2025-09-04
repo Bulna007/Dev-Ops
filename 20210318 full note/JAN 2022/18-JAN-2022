@@ -1,0 +1,197 @@
+How many types of variables are supported by ansible?
+1. ansible variables
+2. inventory variables
+	- host
+	- group level
+3. playbook variables
+4. vars_file
+5. command-line variables -vars
+6. register variables
+7. magic variables gath_facts
+
+1. Ansible variables
+These are the pre-defined variables provided by the ansible control node using which we can override few of the default global settings that are part of ansible.cfg /etc/ansible directory.
+	
+we can control the way the ansible control node has to connect to the fleet server of our network cluster using these pre-defined variables
+1. ansible_connection
+2. ansible_user
+3. ansible_ssh_port
+4. ansible_private_key_file
+5. ansible_host
+6. ansible_password
+
+How does ansible by default will connects to the fleet server?
+if we are under ansible user on the control node server and runs the module/playbook by default it connects to the fleet server as below.
+	1. try to ssh on to the fleet machine using ansible user (by default)
+	2. and reads the private key file under $home\.ssh\id_rsa, id_rsa.pub
+ssh -i ~/.ssh/id_rsa ansible@fleethost
+to execute the modules of the playbook
+
+we can change the above behaviour using ansible predefined variables
+for example we want to connect as vagrant user to the fleet servers
+given:-
+	1. on the managed nodes there should be an vagrant user
+	2. in the authorized keys of the vagrant user the public_key must be seeded
+	
+then we can ask ansible control node to connect to the fleet server as vagrant user instead of ansible by using ansible_user=vagrant at inventory file for each host
+
+hosts
+--------
+192.168.1.12 ansible_user=vagrant ansible_private_key_file=~/.ssh/vagrant_id_rsa
+-----------------------------------------------------------------------------------------------
+we can define variables in inventory file at 2 different levels
+1. host-level variables
+variables binded to the host and are used only while executing the modules/playbook on that 
+host
+hosts
+-------
+192.168.10.12 variable_name=value variable_name=value
+
+2. group-level variables
+if we have few variables whose value is same for a group host, instead of repeatedly defining those variables at host we can group all the hosts and define group level variables as shown below.
+	
+hosts
+--------
+[javaserver]
+192.168.10.12
+192.168.10.13
+	
+[javaservers:vars]	
+ansible_user=vagrant
+ansible_private_key_file=~/.ssh/vagrant_id_rsa
+-----------------------------------------------------------------------------------------------
+#2. user-defined variables
+along with ansible pre-defined variables we can declare our own or user-defined variables in an inventory file both at host/group level as well.
+	
+we need to pass the data as parameters in running an mobile inside the playbook, instead of hardcoding the input data for an module in the playbook we can pass them as variables, so that we dont need to change playbook each time when we want to execute the playbook modules with different values, so that playbooks will become maintainable
+
+for eg. we want to configure mysql database user with a dbuser name, privileges instead of hardcode the dbusername and privileges, if we take them as variables in playbook we can reuse the playbook for creating different dbusers
+
+mysql_user:
+  name: "{{dbuser}}"
+	priv: "{{priv}}"
+	host_all: yes
+	login_password "{{lpassword}}"	
+become: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

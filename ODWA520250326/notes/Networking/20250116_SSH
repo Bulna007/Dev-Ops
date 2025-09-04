@@ -1,0 +1,165 @@
+SSH (Secure Shell)
+------------------
+SSH stands for secure shell, its a technic or a mechanism through which we can access the remote linux machine over the network.
+	
+There are multiple ways of connecting or accessing the linux operating system computers/machines over the network
+1. Telnet
+2. SSH
+
+1. Telnet = telnet is one of the popular technic that was used before SSH in accessing the linux machines, but it is higly in-secure because all the data that is being exchanged between the client and remote linux computer is in plain-text format, so that any intruder can snip-in and steal the data during the transmission that makes it insecure.
+
+	
+2. SSH = SSH is a secure way of accessing the remote linux machines over the network and hence considered as an alternate to Telnet
+
+SSH uses cryptogrphic technics in ensuring all the communication that takes place between the server/client is secured. One of the cryptographic techic is encryption/decryption.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+1. How to setup SSH access?
+
+1.1 Install SSH Server on the Linux computer
+In the linux operating system, open ssh server is a freely distributed as an packaged software distribution from linux repositories. So we can install the open ssh server using apt repositority tool
+sudo apt update -y
+sudo apt install -y openssh-server (it is by default installed/configured as systemctl initd service)
+
+sudo systemctl status ssh = check the status of the ssh server
+
+1.2 configuring the SSH Server
+upon installing the openssh server, it creates an ssh server configuration file under /etc/ssh/sshd_config. it holds configuration settings pertaining to the openssh server
+Few of the configuration options available in this file are:
+
+1. portno, the default port on which the ssh server runs is 22, if we want we can change using this configuration file
+port=22
+
+2. The default authentication mechanism is passwordAuthentication. if we want we can disable this option explicitly using
+passwordAuthentication Yes
+
+upon changing the configuration settings in this file, we need to restart the ssh server to take the changes effective
+sudo systemctl restart ssh
+
+
+3. How to connect to the ssh server machine using password based authentication?
+1. we need to have ssh client utility installed on the client computer inorder to connect to the ssh server machine
+By default in ubuntu operation system, ssh-client is an pre-installed software, we can use it directly. Incase if we dont have ssh utility we can install using the below command
+
+sudo apt update -y
+sudo apt install -y ssh
+
+2. since by default passwordAuthentication is enabled, we can connect to the server computer using the below command
+ssh username@ip
+
+This will prompt the password of the remote machine user, and upon succesful authentication you will be logged-in to the remote machine.
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

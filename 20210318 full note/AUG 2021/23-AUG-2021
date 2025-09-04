@@ -1,0 +1,43 @@
+how many network devices are there ?
+7 networking devices are there
+1. Repeater = extender
+2. Hub      = star network
+  2.1 passive
+  2.2 active
+  
+3. Switch   = Intelligent Hub, works at datalink layer (routes the packets to the ports based on mac address and used for only lan networking)
+
+4. Bridge   = interconnecting 2 different networks, 2 ports. Copies the data packets received from one port to the other thus forwarding the data to another network.
+
+5. Router
+6. Firewall
+7. Modem
+------------------------------------------------------------------------------------------------------
+5#. Router
+
+Routers are used for inter-connecting the networks of computers together. Unlike a bridge with 2 port, a Router has multiple ports, so that we can plugin multiple networks forming a big network.
+Routers are intelligent devices than bridges and they operate at network layer all the traffic/data that it has received will be forward to only the corresponding network by inspecting the network address out of the ip.
+
+The Routers has routing table, we populate rules enabling how does the data should between the networks. Now we can configure rules restricting how the data has to be moved across the computers of the different network.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

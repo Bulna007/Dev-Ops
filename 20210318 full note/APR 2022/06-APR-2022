@@ -1,0 +1,145 @@
+How to build our own docker images by packaging our application?
+To build our own docker image by packaging software application, dependent libraries and instructions inside it, we need to write Dockerfile declared with docker directives inside it.
+	
+docker directives are the image instructions we write in Dockerfile describing what should be packaged as part of an docker image and pass the docker file to docker daemon to generate/build image out of those instructions
+
+There are 2 types of docker directives are there
+1. image building instructions = These are the instructions executed by the docker daemon while building the docker image
+
+2. container instructions = These are the instructions that are executed only at the time of launching the container to run the application packaged inside the image
+
+There are 2 aspects of building an docker image are there
+1. while building the docker image we want to include all the immutable content inside the image like software application, dependent software packages etc which will be same across running any number of containers ontop of the image. To let the docker daemon include/package these immutable contents at the time of building the image we write in docker file image building instructions
+	
+2. container instructions that has to be used for launching the application packaged within the image, these instructions will be executed at the time of launching the container only
+
+How to build an docker image?
+For every project to be packaged as an image we need to create an directory into which create an file with name "Dockerfile" only (no extension). In this file write docker directives defining the instructions in building image and running the application while launching the container.
+	
+What are the image building instructions?
+1. FROM
+2. ENV
+3. RUN
+4. ADD
+5. COPY
+6. WORKDIR
+7. LABEL
+8. ARG
+
+What are the container instructions?
+1. CMD
+2. ENTRYPOINT
+3. HEALTHCHECK
+4. VOLUME
+5. EXPOSE
+------------------------------------------------------------------------------------------
+What is docker build context?
+We write Dockerfile with docker directives as part of it by placing within an directory. By default to build the docker image we should run docker cli from the directory under which the Dockerfile is located. docker cli, when we asked to build the image will transfers the entire contents of the directory in which Dockerfile is there to docker daemon making them available for building the image.
+	
+The directory under which we run the docker buid is called "build context" since that directory contains all the artifacts that are required/has to be included as part of the docker image
+
+So always it is recommended to create a dedicated directory for each project in writing Dockerfile to build an image, avoid using a global directory locations since the contents of those directories will be transfered to the docker engine which takes lot of time for image building process
+
+Can we write the docker file with a different name or can we build docker image by locating outside the directory in which Dockerfile is there?
+Yes, it is possible to create docker file with a different name or can execute the docker image build from a different directory location other than the Dockerfile location by passing the directory or filename explicity in docker image build instruction
+
+~/work/project
+  |-Dockerfile
+	
+~/ docker image build -f ~/work/project/Dockerfile
+similarly you can even pass the filename also if it is other than "Dockerfile".
+	
+~/work/securenet
+	|-SecureNetDockerfile
+	
+~/docker image build -f ~/work/securenet/SecureNetDockerfile	
+------------------------------------------------------------------------------------------
+What are the contents of a Dockerfile?
+	
+Always the docker image will be build out of an base image so a Dockerfile always starts with a FROM directive/instruction
+
+but before the FROM directive they can be optionally other parser directive instructions can be written.
+	
+The parser directives are the special instructions that can be written as a first-line within a Dockerfile (optional and if it appears should be as a first-line only) which looks similar to comments in Dockerfile
+
+# directiveName=value
+In docker file we write comments starting with #, but if we write first-line with # with pre-defined parser directives those are interpreted specially by the docker engine rather than treating them as comments.
+
+There are only 2 supported parser directives are there
+1. SYNTAX
+2. ESCAPE
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+How to distribute a Software application to the Enduser?
+---------------------------------------------------------
+Program: bunch of instructions written in a file, that can be executable.
+Software Application: Set of programs organized together to execute, so that they can meet the business system requirements for which we build.
+
+The developer will develop the software application, for each software application to use it, there are certain instructions in lauching or running the application will be there.
+For eg.. 
+  They may be an entrypoint program we should launch or run to execute the application.
+  
+The information about how to run this program is well know to developer, but end of the day the application we build will be used by end-user so how does end-user know the details of running application and how to delivery?
+  
+To overcome the above problems, an operating system has introduced packaging application and installing application through package managemers.
+
+Software package:-  
+For each software application the developer build, he has to distribute the software application by packaging into a packaged distribution format to the end-users, so that endusers can install the software application onto that underlying platform using package managers.
+  
+Packaged Software will have below information:
+  1. metata information associated to the software application like
+    - author
+    - organization
+    - version
+    - licensing
+    - platform supported
+    - min requirements
+    - manufactured date
+  2. readme information describing the details of the software in human understandable format
+  3. instruction file helping package managers on how to register/install the software on the operating system
+  4. software executable programs itself
+
+Package Manager:
+After the developer distributed the packaged software application, the enduser cannot directly execute it on the operating system. To run the packaged application there are certain tasks to be performed like
+  - check the software package downloaded is in tact (not corrupted) or not to be executed
+  - since the packaged applications are compressed/zipped, unless those are unzipped we cannot run. So need to extract to an physical directory location on the filesystem.
+  - based on the instructions written we need to run the entrypoint program
+  
+The above job has to be done by the enduser, looks like an enduser should be an computer scientist to run a program which makes hard to use the software programs on an computer system.
+  
+Operating system should support the above process of running the packaged software application by providing tools. since validating, extracting is an one-time process we need package managers or installers through which enduser can install the packaged application on the operating system, so that subsequently he can run it directly from the operating system.
+So operating system has to provide package managers (installation tools)  
+
+what does a package manager does?
+From the above we can understand an enduser should install the software package onto the operating system before using it, this job will be done through the help of package managers. package managers does the below activities
+  - validate the software package provided.
+  - extract the software program packaged inside it into fixed/pre-defined location on the computer filesystem
+  - register the details of this software package with operating system (registries)
+  
+Summary:-
+  software applications are distribtued as software packages
+  software packages are installed on to the computer operating system through package managers.
+  
+Every operating system defines their own package standard and their own set of tools (package managers) supporting the installation of the software. 
+There are different packaging formats are there for each operating system, helping enduser to identify easily which software package works on which operating system.
+  
+For eg.. 
+  windows operating system defined an standard software packaging format called ".exe" and windows installer is the package manager that takes care of installing ".exe" files on to the operating system of the computer
+  
+  mac operating system defined an packaging standard called ".dmg" and has provided its own installer called "homebrew" 
+  
+In case of Linux we have several distros are there majorly we have 2 distros
+  1. debian
+  debain has provided standard packaging standard called ".deb" and an install called dpkg
+  
+  2. redhat
+  redhard has come up with packaging standard as ".rpm" and an installed called rpm installer.
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

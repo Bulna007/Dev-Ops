@@ -1,0 +1,130 @@
+Terraform modules
+-------------------
+Terraform modules are the group of resources that can be imported in various terraform configurations in creating the infrastructure
+Modules are the way through which we can reuse the terraform resource declarations or configurations across the projects
+
+We can create modules of our own locally and can be reused across various projects we build or there are lot of published modules available in the market which can be imported and reused in building the infrastructure
+
+The terraform configurations we wrote till now in building the infrastructure is same, the way we are going to organize them will change
+
+
+javainstance
+|-modules
+	|-services
+		|-network
+			|-vpc
+				|-variables.tf
+				|-main.tf
+				|-outputs.tf				
+			|-subnet
+				|-variables.tf
+				|-main.tf
+				|-outputs.tf			
+			|-internetgateway
+				|-variables.tf
+				|-main.tf
+				|-outputs.tf	
+|-global
+	|-variables.tf
+	|-inputs.tfvars
+	|-main.tf
+	|-outputs.tf
+	
+	
+javainstance/modules/services/network/vpc
+-----------------------------------------
+variables.tf
+-------------
+variable "vpc_cidr" {
+	type = string
+}
+
+main.tf
+-------
+resource "aws_vpc" "javainstancevpc" {
+	cidr_block = var.vpc_cidr
+	tags = {
+		Name = "javainstance_vpc"
+	}
+}
+
+outputs.tf
+-----------
+output "javainstance_vpc_id" {
+	value = aws_vpc.javainstancevpc.id
+}
+--------------------------------------------------------------------
+javainstance/modules/services/network/subnet
+variables.tf
+--------------
+variable "subnet_cidr" {
+	type = string
+}
+variable "vpc_id" {
+	type = string
+}
+
+main.tf
+--------
+resource "aws_subnet" "javainstance_pub_subnet" {
+	vpc_id = var.vpc_id
+	cidr_block = var.subnet_cidr
+}
+
+outputs.tf
+-----------
+output "subnet_id" {
+	value = aws.subnet.javainstance_pub_subnet.id
+}
+
+javainstance/global
+--------------------
+main.tf
+--------
+terraform {
+	required_providers {
+		aws = {
+			source = "hashicorp/aws"
+		}
+	}
+}
+provider "aws" {
+	region = "ap-south-1"
+	profile = "default"
+}
+module "vpc_module" {
+	source "../modules/services/network/vpc"
+	vpc_cidr = "10.0.0.0/16"
+}
+module "subnet_module" {
+	source "../modules/services/network/subnet"
+	vpc_id = vpc_module.javainstance_vpc_id
+	subnet_cidr = "10.0.1.0/24"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

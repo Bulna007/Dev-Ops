@@ -1,0 +1,169 @@
+How many types of variables we can declare in Ansible?
+There are 7 diffferent scopes/types of variables we can use in Ansible
+1. Ansible variables
+2. Inventory level variables (host/group)
+3. Playbook variables
+4. --extra-vars = through command-line
+--------------------------------------------------
+5. vars_file 
+6. register variables
+7. magic variables
+-----------------------------------------------------------------------------------------------
+#4. how to pass the variables dynamically while running a playbook in ansible?
+We can pass dynamic variables as an input while running the playbook using --extra-vars at command-line
+ansible-playbook -i hostfile --extra-vars var=val --extra-vars var=val playbook.yml
+
+#3. How to declare local variables within the playbook with default values assigned?
+Inside the playbook we need to declare vars section in which we can define map/dictionary of variableNames and values as below.
+---
+- name: local variables playbook
+  hosts: all
+	vars:
+		server_port: 8080
+		db_username: root
+		db_password: root
+	tasks:
+		- name: print variable
+			debug:
+				msg: server port: "{{server_port}}"
+...
+---------------------------------------------------------------------------------------------	
+#5. vars files
+by using --extra-vars we can pass dynamic data as input while running the playbook, but each time when we run the playbook we need to manually type all the variables and their corresponding values in executing the playbook which is time taking and may go wrong interms of syntax and becomes quite tedious job
+
+so to avoid this we can declare variables local to the playbook, but if we want to change the values again we need to modify the playbook which might lead to errors in playbook or unnecessary revisions of the playbook should be maintained even there is no change inside it
+
+How to overcome these problems?
+That is where externalize the variable declarations by keeping in another yml file and pass the variables declared inside the yaml as vars_files in playbook
+
+dbserver_vars.yml
+------------------
+mysql:
+  root_user: root
+	root_password: root
+	db_create_user: mysql_user1
+	db_create_password: welcome1
+	db_create_priv: *.*:ALL
+	
+varsfiles-playbook.yml
+---
+- name: vars file playbook
+	hosts: all
+	vars_files: 
+		- dbserver_vars.yml
+		- javaserver_vars.yml
+	tasks:
+		- name: print vars file variable
+			debug:
+				msg: "{{mysql.root_user}}"
+...
+-----------------------------------------------------------------------------------------------
+#6. working with registered variables
+When we execute an ansible module, it produces the outcome as json format, we want to capture the output of an module and want to reuse by passing it as an input to another ansible module, this can be done by storing the output of an ansible module inside a variable.
+					
+we can store the outcome of an module inside a variable using register variables in ansible, so that the variable can be reused in another modules of the playbook
+
+- name: whoam i playbook
+  hosts: all
+	tasks:
+		- name: logged in user
+			shell: whoami > /tmp/whoam.txt
+		- name: cat file
+		  shell: cat /tmp/whoam.txt
+in the above code we want to capture the output of shell module and want to display in next module, but we cannot capture the output by default so we wrote in a File and displayed the contents of the file in the next task using shell module again instead we can use register variables here
+
+- name: whoam i playbook
+	hosts: all
+	tasks:
+		- name: logged in user
+			shell: whoami
+			register: loguser
+		- name: show logged in user
+			debug:
+				msg: "{{loguser}}"
+The output of shell module is captured in a variable and passed as an input to debug module use register variables. This simplifies the process of handshaking between the modules.
+					
+register variables = are dynamic variables that are created during the runtime while the playbook is executing, these are not static variables. we can think of the register variables as pipes in shellscripting
+-----------------------------------------------------------------------------------------------
+#7. What are ansible magic variables or ansible facts?
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,194 @@
+backup classes would start from tomorrow i.e.. 1-JUNE-2021 (Attend Parallely)
+Morning 9:30 am - 10:30 am (7/10 days)
+- join with same zoom meeting of (8:30 am)
+---------------------------------------------------------------------------------------------------------
+There are 2 types of users are there
+1. Root user = full access to the linux machine
+2. Normal user = only has access to the home directory location and can run his own process.
+  
+We can promote a normal user as a previliged user by making him as sudoer. A sudoer is almost equal to an delegated Root user given the type of permissions provided by the Root user to the sudoer.
+  
+How to promote/nominate a user as a Sudoer?
+There are 2 ways are there
+  1. make an entry in /etc/sudoers file
+    There are 2 levels at which we can promote a user as a sudoer
+    1.1 user level
+      For each user we want to promote as a sudoer add an entry for the user as below
+      username ALL=(ALL:ALL) ALL = This grants full access to the linux machine
+      
+      if we want to allow user to execute specific commands on a user we need to use Cmnd_Alias as described below.
+      Cmnd_Alias FILE_CMNDS=/bin/ls, /bin/touch
+      username ALL=(ALL) FILE_CMNDS
+      
+    1.2 group level
+      Instead of providing access to individual user we can promote a group of users as sudoers. a group definition in sudoers file should begin with %groupName
+      %groupName ALL=(ALL:ALL) ALL
+          
+  2. add the user to the sudoer group
+    instead of the above we can simply add a user to the sudoers group. "sudoers" is a pre-defined group available in ubuntu install and configured in sudoers file for all permissions.
+      
+lets say we promoted joe as a sudoer, as below.
+/etc/sudoers
+joe ALL=(ALL:ALL) ALL
+
+sudo ls
+sudo mkdir dairy 
+by default any commands that are executed by the suoders using sudo will be ran onbehalf of Root user. if we want to run the commands onbehalf a different user we need to use su 
+
+sudo su bob mkdir dairy = without the need of login/logout a user can execute the commands onbehalf of other users using "su".
+---------------------------------------------------------------------------------------------------------
+File permissions
+Linux operating has been designed keeping in support of multiple users can access it at the same time. 
+  
+If all of the users has the access to the same physical resources of the computer machine, can one user can access a File/Folder that is created by the other user in Linux?
+  
+If Linux operating system allows any one to access any of the Files/Folders created by any other user, then there is no security and it indirectly means there is no use of having multiple users as all can access any of files/folders.
+Instead create one user and give to everyone is sufficient.
+From the above we can if it permits in such a way we cannot say Linux as an Multi-User Operating System.
+  
+To be truely an Multi-User operating system Linux enforces permissions on the Files/Folders users creates not allowing other users to access it.
+  
+File Permissions:-
+------------------
+There are 3 levels of permissions are associated to a File/Folder in Linux
+- owner (user)
+- group
+- others
+
+we can find a file/folder belongs to which user and group by using 
+ls -l  (be in directory of the file)
+ls -l filename
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

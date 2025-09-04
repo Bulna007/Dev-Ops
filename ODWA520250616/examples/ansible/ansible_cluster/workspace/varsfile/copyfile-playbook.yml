@@ -1,0 +1,13 @@
+- name: copy play
+  hosts: all
+  vars_files:
+    - copyvars.yml
+  tasks:
+    - name: copy
+      copy:
+        src: "{{source_file}}"
+        dest: "{{dest_dir}}"
+        owner: "{{owner}}"
+        group: "{{group}}"
+        mode: "{{mode}}"
+      become: yes  

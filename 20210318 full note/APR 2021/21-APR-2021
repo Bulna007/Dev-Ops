@@ -1,0 +1,209 @@
+There are several linux distros produced by different vendors in the market to make the experience of using linux operating easy.
+There are 4 popular linux distributions exists
+1. Arch
+2. Debain
+3. Redhat
+4. Slackware
+
+Each of these linux distribution vendors produced different linux distros to provide different software utilities bundled for different types of usages.
+There are 2 popularly used linux distributions are
+1. Debain
+Debain provided 4 distro (different linux falvours)
+  1.1 Linux Mint
+  1.2 Ubuntu
+  1.3 Elementary OS
+  1.4 Kali Linux
+2. Redhat
+  2.1 CentOS
+  2.2 Fedora
+  2.3 Redhat Enterprise Linux
+-------------------------------------------------------------------------------------------------------------
+What are the features of the Linux operating system?
+1. Portable = it can run across any hardware platforms
+2. Open Source = It can be used freely and the source code is also freely distributed and freely modifiable
+3. Multi-User / Multi-Programming operating system = Multiple users can use the linux operating at the same time and can share the underlying hardware resources of the computer like RAM, CPU, HDD etc.
+Along with that Multiple programs of different users can be executed simultaneously.
+4. Hierarchial Filesystem = There is only one single root for the Filesystem of the linux
+5. Shell = a special interpreter program that runs on top of the kernal helping the users to interact with the linux Kernal
+6. Highly Secured = There are various different levels of security is provided by the Linux operating system
+  - user authentication
+  - data encryption
+  - access control restrictions on
+    - Files
+    - User Process
+-------------------------------------------------------------------------------------------------------------
+Linux operating system architecture
+There are several layers of Linux operating system
+#1 Hardware Layer = it consists of all the hardware resources of your computer like cpu, ram, hdd etc
+#2 Kernal = It is the core component of the Operating System interacts with the underlying hardware of the computer
+#3 Shell = is an interpreter program that runs on kernal to help users interacting with kernal easily. Shell provides commands, using which end-user can interact with the kernal
+#4 Utility Programs = That handles various operations on using the computer easily.
+-------------------------------------------------------------------------------------------------------------
+How to install the Linux operating system?
+There are 3 ways of installing and using Linux operating system. We are going to use ubuntu 20.04.02 LTS stable version.
+
+#1 dual boot operating system option.
+You have a old machine with less computing resources like
+  cpu:
+    core2duo
+    dual core
+  ram:
+    less than 4gb
+    
+Then the best option is go for dual boot operating system. partition your harddisk into 2 drives, in 1 partition install windows and in another partition install linux.
+During the bootup the computer bios prompts you for starting which operating system you want. You can run only one operating system at a time.
+
+#2 Using Virtualization Tools like
+  2.1 Oracle Virtualbox (preferrably) (open source)
+  2.2 VMware
+  2.3 HyperV
+  2.4 Parallels
+  
+using the virtualization tools like oracle virtualbox we can run multiple operating systems on the same computer parallely. our host machine is windows and we create guest machine (virtual machine) using oracle virtualbox.
+
+Hardware requirements:-
+intel = i3/i5/i7 processors
+ram = above 4+gb
+hdd = 20gb harddisk is enough (4 * 20gb)
+
+The host machine operating system:-
+Windows 10 home/pro/ultimate
+-------------------------------------------------------------------------------------------------------------
+download oracle virtualbox 
+https://www.virtualbox.org/wiki/Downloads
+1. VirtualBox 6.1.20 platform packages (windows)
+2. VirtualBox 6.1.20 Oracle VM VirtualBox Extension Pack (all platforms) = without extension pack, networking, usb devices and music software of you virtual computer will not work.
+
+#1 install Virtualbox 6.1.20 just by going through installation process, after that install extension pack by double clicking on extension pack file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

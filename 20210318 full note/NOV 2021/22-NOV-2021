@@ -1,0 +1,88 @@
+How to configure multiple virtual machine in a Vagrant configuration file?
+
+Vagrantfile
+-------------
+Vagrant.configure(2) do | config |
+  config.vm.define "dbserver" do | dbconfig |
+    dbconfig.vm.box = "ubuntu/focal64"
+    dbconfig.vm.network "private_network", ip: "192.168.10.23", virtualbox_intnet: "nw1"
+    dbconfig.vm.provider "virtualbox" do | vb |
+      vb.memory = 1024
+      vb.cpus=2
+    end
+  end
+  config.vm.define "javaserver" do | javaconfig |
+    javaconfig.vm.box = "ubuntu/focal64"
+  end
+end
+---------------------------------------------------------------------------------------------------
+1. Why do we need to use Maven?
+2. Maven Project directory structure and maven archetypes
+3. Dependency Management
+4. Dependency Scopes
+5. Maven Repositories
+6. Maven Build Lifecycle
+7. Maven Plugin Management
+
+Apache Maven
+[Java Build Tool]
+---------------------
+d:\work:/>
+fithealth
+|-src
+  |-main
+    |-java
+    |-WebRoot
+      |-WEB-INF
+        |-lib
+        |-web.xml
+|-bin  
+|-dist
+  |-war directory structure
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

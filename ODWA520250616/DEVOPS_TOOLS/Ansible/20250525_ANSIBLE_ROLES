@@ -1,0 +1,78 @@
+Ansible Roles
+-------------
+Ansible roles are the way through which we can package and distribute ansible playbook automation in a standardized directory structure, so that it can be reused across in building the automation
+
+The Ansible has defined 8 standard directories into which the automation needs to be implemented, so the people upon distributed can discover and use it
+
+ansible_role (root directory)
+|-default
+  |-main.yml
+|-tasks
+  |-main.yml
+|-handlers
+  |-main.yml
+|-vars
+  |-main.yml
+|-files
+|-templates
+|-meta
+  |-main.yml
+|-tests
+  |-main.yml
+  
+other than files/ and templates/ in rest of the directories a default main.yml is there.
+  
+1. default/main.yml = all the variables with default values are defined/configured that can be used by the tasks and handlers
+2. files = all the static files that needs to be used aspart of the automation should be places under files/ directory
+3. templates = all the jinja2 template files should be placed here
+4. tasks/main.yml = all the playbook tasks that we want to execute aspart of the automation should be defined/declared inside tasks/main.yml
+
+Incase if we have several tasks to be carried to achieve the desired state of the system like
+  1. install jdk
+  2. install tomcat server
+  3. install maven
+  etc
+  
+then instead of defining/declaring everything in tasks/main.yml, we can break them into multiple yaml files and import them into main.yml
+
+tasks/
+  |-install-jdk.yml
+  |-install-tomcat.yml
+  |-install-maven.yml
+  |-main.yml
+  
+then import all these install-*.yml into main.yml as below  
+main.yml
+--------
+import_tasks: install-jdk.yml
+import_tasks: install-tomcat.yml
+import_tasks: install-maven.yml
+
+5. handlers/main.yml = all the handlers should be declared inside handlers/main.yml
+6. meta/main.yml = The meta information about the role like author, licensing, maintainers, version etc is defined inside meta/main.yml (information file)
+7. vars/main.yml = all the variables being used aspart of the role should be declared inside vars/main.yml
+8. tests/main.yml = all the tests that has to be performed in testing the role should be declared here
+
+How to create an ansible role?
+------------------------------
+Manually creating the standardized 8 directories in creating a role is quite difficult, to help us in creating the role ansible has provided an ansible-galaxy CLI tool using this we can quickly create standard directories with default files
+
+1. create a role directory and inside it run the below command to initialize the directory layout of the role
+ansible-galaxy init roleName
+
+Now start implementing the automation as defined above in writing variables, tasks, handlers etc
+
+
+How to use an ansible role within the playbook?
+Inorder to use the roles, we need to place the roles inside any one of the 3 standard directories so that it can be used inside the playbook
+1. within the playbook directory, we need to create an directory called roles/ in which we need to place the roles to be used aspart of the playbook
+
+2. /etc/ansible/roles/ directory under which we can place all the roles globally.
+  
+3. we can define a property roles_path in ansible.cfg file pointing to the directory location where we want to place the roles under
+
+once we place the roles in any one of the above defined directories, we can use the roles within the playbook as below:
+- name: play
+  hosts: all
+  roles:
+    - roleName

@@ -1,0 +1,162 @@
+by default when we install mysql server on ubuntu-20.04, the default authentication mechanism used for login into mysql server database is ubuntu system credentials. we need to change the authentication methodology to mysql_native_password authentication using the below steps:
+
+1. sudo mysql -uroot -proot
+2. use mysql
+3. update user set plugin='mysql_native_password' where user='root';
+4. flush privileges;
+5. alter user 'root'@'localhost' identified with mysql_native_password by 'root';
+exit
+
+try to login without sudo using mysql client
+mysql -uroot -proot
+= you should be able to login as root user
+-----------------------------------------------------------------------------------------------
+#4. How to pass dynamic inputs to the playbook while executing the playbook
+Instead of hardcoding the values within the playbook module declarations we can substitute those values using variables. we can pass values to those variables by defining them in an inventory file at host/group level. Instead of declaring these variables at group/host level in an inventory file there are other ways of passing the variable values dynamically as below
+
+There are 3 ways we can pass values as an input while running the playbook
+1. extra-vars (command-line variables)
+2. variables declared local to the playbook
+3. vars_files
+
+1. extra-vars
+while running the playbook we can pass variables within the command-prompt itself using extra-vars as below
+ansible-playbook -i hosts.yml --extra-vars var1=val1 --extra-vars var2=val2 playbook.yml
+here we are passing 2 variables var1 and var2 which can be accessed inside the playbook using "{{varName}}" variable notation
+
+For eg..
+copyfiles-playbook.yml
+---
+- name: copy files playbook
+	hosts: all
+	tasks:
+		- name: copy source files to destination directory
+			copy:
+				src: "$HOME\abc.txt"
+				dest: "$HOME\extravars\"
+				remote_src: yes				
+...
+instead of hard coding the file paths we can substitute using variables as below
+copyfiles-playbook.yml
+---
+- name: copy files playbook
+	hosts: all
+	tasks:
+		- name: copy source files to destination directory
+			copy:
+				src: "{{sourcefile}}"
+				dest: "{{destdirectory}}"
+				remote_src: yes				
+...
+ansible-playbook -i hosts --extra-vars sourcefile=$HOME\abc.txt --extra-vars destdirectory=$HOME\extravars copyfiles-playbook.yml
+----------------------------------------------------------------------------------------------
+#2. we can pass values to the variables during playbook execution by declaring variables local to the playbook using vars section
+
+systemd-playbook.yml
+---
+- name: manage service playbook
+  hosts: all
+	vars:
+		service_name: apache2
+		service_status: stopped
+	tasks:
+		- name: manage systemctl services
+		  systemd:
+				name: "{{service_name}}"
+				status: "{{service_status}}"
+			become: yes	
+...
+
+in the above playbook we declare 2 local variables named "service_name" and "service_status" using vars section which are called playbook local variables
+if the values of these variables are not going to be dynamic and most of the time we run the playbook with same values instead of harding the literals in modules we can delcare as local variables
+
+we can always overwrite the playbook local variable values with --extra-vars by passing from command prompt. So we can declare variables with default values within the playbook and can override their values while running the playbook by passing them as extra-vars
+
+#3. using vars_file
+instead of passing the variables with values from command-prompt always while running the playbook or keeping the varaibles and values local to the playbook we can define variables in an external variables files and pass it as an input to the playbook using vars_file declaration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+Ansible Vault
+-------------
+Ansible Vault is an CLI tool provided by ansible to encrypt playbooks/inventoryfiles/vars_files for securing the sensitive information within them. The ansible can decrypt these files while executing
+
+Within a playbook/vars_files/inventory file we might write credentials of the servers or any other sensitive data related to fleets on the cluster. If these files are versioned and distributed across the team for development/delivery, the critical information pertaining to the production environments would be exposed to everyone and creates an security breach
+
+To overcome this porblem and secure the sensitive information, ansible has provided ansible vault CLI tool. It helps us in encrypting the contents of files using AES256 encryption algorithm/standard so that we can store them on Filesystem or SCM repositories securly
+
+1. How to encrypt an playbook/inventoryFile?
+ansible-vault create playbook/inventoryFile
+
+2. How to encrypt an existing playbook/inventoryFile?
+ansible-vault encrypt playbook/inventoryFile
+
+3. How to view the contents of an encrypted playbook/inventoryFile?
+ansible-vault view playbook/inventoryFile
+
+4. How to execute an encrypted playbook or use encrypted inventory/vars_files?
+
+ansible-vault decrypt playbook.yml
+
+In production environment is is not recommended to decrypt the playbook/inventoryFile as it leaves the copy of decrypted file on the Filesystem of the computer, that poses an security risk. Instead we can ask ansible control node server to decrypt the file on fly during the execution within the memory and execute it using below command
+
+ansible-playbook --ask-vault-pass playbook.yml
+The above --ask-vault-pass prompts an interactive input of the password to decrypt the file in-memory and execute.
+    
+since it is an interactive input in entering the password, we cannot achieve touchless automation. To overcome the above problem we can write the password in a file and pass that as input while executing the playbook
+But we need to follow few recommendations in securing the password file:
+1. write the password in a file
+2. keep it in the same place where we have the playbook file
+3. set the permissions of the file as "0600" so that only owner can read/write and rest of all the others dont have permission in accessing it and hence making it secured
+
+Now pass the password file as input to the ansible-playbook asking him to use the password inside the file to decrypt and execute the playbook
+
+ansible-playbook --vault-password-file=passwordfile playbook.yml
+
+5. How to edit an encrypted playbook?
+ansible-vault edit playbook.yml

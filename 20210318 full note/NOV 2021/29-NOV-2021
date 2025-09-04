@@ -1,0 +1,190 @@
+#1 standardized directory structure
+#2 pom.xml and basic structure of it and how to build the project 
+#3 dependency management
+	3.1 repositories
+		3.1.1 Maven central repository
+		3.1.2 Local maven repository
+		3.1.3 Remote repository
+	3.2 dependency declaration
+
+Why do we need to use maven remote repository?
+1. reduce the bandwidth consumption on the organizational network to internet
+2. reduce network congession and improve network performance
+3. to control over the dependencies that can be used by the development teams within the organization, so that the corporate can avoid legal/compliance issues
+4. due to security policies and restrictions organizations want to avoid teams to have direct internet access
+5. teams can share the artifacts internally within the organization by publishing them into remote repository
+
+The devops engineer is responsible for setting up the remote repository in an organization to facilitate publishing local artifacts of the teams and distributing the dependencies across the teams.
+There are lot of vendors manufacturing and distributing repository software, few or	opensource and others are commercial.
+	1. jfrog artifactor (opensource)
+	2. nexus repository (commercial)
+	
+By default when we run the maven build, the maven installation on our machine will goes to local maven repository and thereafter the maven central repository locate and download the dependencies.
+when we setup a remote repository on our corporate network we need to manually configure the maven install by passing the information about the remote repository so that it can goto remote repository rather than central repository
+
+$user.home/.m2
+|-settings.xml
+
+In settings.xml we specify the maven settings like 
+localrepository location, servers, proxies etc
+
+<settings>
+	<localRepository>d:/maven/.m2</localRepository>
+	<interactiveMode/>
+	<offline/>
+	<pluginGroups/>
+	<servers/>
+	<mirrors/>
+	<proxies/>
+	<profiles/>
+	<activeProfiles/>
+</settings>
+----------------------------------------------------------------------------------------------------
+
+dependency scopes
+-----------------
+dependency scopes are the means through which we can tell maven how does that dependency has to be used during build/packaging the application
+1. compile = use the dependency in all the phases of bulding and packaging (default scope)
+2. provided = it is already provided by the runtime environment, so only use for compiling dont package it
+3. test     = while executing testcode use the dependency
+4. runtime  = dont use during compilation, include the jar in package
+5. import   = import dependency from another pom file
+		
+pom.xml
+<dependencies>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>4.2</version>
+		<scope>provided</scope>
+	</dependency>	
+	
+	<dependency>
+		<groupId>com.mysql</groupId>
+		<artifactId>mysql-java-connector</artifactId>
+		<version>8.0.11</version>
+		<scope>runtime</scope>	
+	</dependency>
+</dependencies>
+
+servlet-api.jar
+jsp-api.jar
+---------------------
+package these 2 jars in war
+WEB-INF/lib directory
+
+apache-tomcat-9.0.55
+|-bin
+	|-startup.sh
+	|-shutdown.sh
+|-lib (commonly used jars are placed inside)
+	|-servlet-api.jar
+	|-jsp-api.jar
+----------------------------------------------------------------------------------------------------
+Archetype Types
+----------------
+maven enforces to create the project based on maven standard directory structure. so developer has to create the project manually based on directory structured provided by maven, takes lot of time in manually creating.
+	
+to quickly help us in creating the maven projects the maven team has provided archetypes.
+Archetypes are pre-built project templates which are shipped by the maven team to us, using them we can create maven project easily/quickly
+
+project.zip (maven central repository) (template project)
+|-src
+	|-main
+		|-java
+		|-resources
+	|-test
+		|-java
+		|-resources
+|-pom.xml [groupId/artifactId/version: TOKENS]
+
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>REPLACE</groupId>
+	<artifactId>REPLACE<artifactId>
+	<version>REPLACE</version>
+	<packaging>jar</packaging>
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
+</project>
+
+For different projects, the structure of the project will change and few elements in pom.xml also will change, so different types of projects maven has created different archetypes and published into maven central repository
+To identify and access the archetypes those are also associated with gav coordinates. maven provided below archteypes
+groupId = org.apache.maven.archetypes
+
+artifactId:
+1. maven-archetype-quickstart (corejava project) version=[1.4]
+2. maven-archetype-webapp (webapplication project) version = [1.4]	
+-----------------------------------------------------------------	
+3. maven-archetype-mojo (maven plugin project)	
+4. maven-archetype-archetype (archetype project)	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

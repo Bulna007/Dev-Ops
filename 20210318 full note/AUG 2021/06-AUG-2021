@@ -1,0 +1,74 @@
+What are the reponsibilities or benefits of using a protocol in networking?
+1. Even though the communication channel is shared among multiple computers, the protocol gives an illusion, that every 2 computers that are communicating has their own dedicated channel, by dividing the communication channel logically, so that no 2 people data will collide with other data, and information that is sent by sender will be recieved by the Reciever intact.
+  
+2. When a sender sends the data, even though multiple computers are available on the network, only the receiver receives the data, that guaranteed delivery of data only to the intended receiver will be taken care by protocol
+--------------------------------------------------------------------------------------------------------
+From the above we can understand we need a protocol for letting the computers and programs to communicate with each other over the network. That is where OSI Model layer was introduced.
+  
+OSI Model Layer = Open System Inter-Connection standard, the provided set of rules/guidelines enabling any 2 programs running on any platform to communicate with each other and exchange the data over the network.
+  
+OSI Model Layer protocol comprises of both Application Protocol and Tranport protocol within it. To help us in easily understanding and exchaning the data, it has defined 7 layers.
+1. Application Layer
+2. Presentation Layer
+3. Session Layer
+4. Tranport Layer
+5. Network Layer
+6. Datalink Layer
+7. Physical Layer
+
+
+1. Application Layer protocol
+The Server program is capable of performing multiple operations, each operation requires uniquely the data as an input perform operation using the data and returns the output.
+  
+Now when the client program is trying to communicate with server program on the network, it should pass data and operation the server program should perform using the data as well, 
+then only server program will know what operation to be performed with that data and can return the output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

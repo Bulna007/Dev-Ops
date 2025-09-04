@@ -1,0 +1,258 @@
+What is an operating system? what is the purpose of an operating system?
+
+In order to use the computer, users has to interact with the hardware of the computer system, machines/hardware can only understand binary language instructions only, programming or passing instructions in binary language is very difficult for humans to memorize and write.
+
+To overcome the above problem in writing binary instructions, assembly level languages has been brought. These languages provides instruction set as words like FETCH, ADD, SUB, STORE, PRINT using which humans can quickly write programs to perform operations on that computer. Now hardware manufacturers takes the assembly language instructions and transforms into binary instructions and execute on the underlying hardware.
+  advantages:-
+    - users have to write programs using assembly level instructions which is easy to memorize and simple to write so computers are human-friendly
+
+  dis-advantage:-
+    - Each hardware vendor has his own assembly language instruction set which differs from one vendor to the another vendor
+    For eg.. intel processors has their own assembly level instructions
+             amd processor has different instruction set
+    due to the above problem, when we write a program using assembly level instructions it will not works on another hardware, so programs are not portable across various different hardwares of the computer
+
+Looks like programmer/user of a computer should end-up in writing the same program with different assembly-level instruction set of various different vendors to execute on different hardwares, again putting into big problem. "My program runs on My Computer machine"
+    
+To overcome the above problem in using a computer, people has invented operation system.
+
+"operating system" = acts as an interface between the hardware of the computer and humans, allowing them to use the computer system easily. It ensures the programs written by the users/developers will works across various different hardware platforms, that portability of running the programs across the hardward vendors are taken care by operating system software.
+    
+How the portability is achieved?
+To ensure program portability across the hardwares, the operating systems has provided system routines using which programmers has to write the instructions in their programs.
+Now pass these instruction set to the underlying operation system, now operating system takes care of translating these system routines into hardware specific instruction set and executes on the underlying hardware by using translators.
+    
+So if we write any program using system routines, it can be executed on variety of hardwares supported by the operating system.        
+  
+This is the core feature of an operation system, additionally the operating system does various other responsibilities like
+  - memory management
+  - distributing the hardware resources of the computer to multiple programs
+  - managing the hardware resources of the computer instructing them to carryout operations
+-----------------------------------------------------------------------------------------------------------   
+There are problems with writing programs using operating system instruction set.
+  1. The instruction set provided by the operating system to write programs are not human friendly. These are expressed interms of command with arguments, which are tough remember and difficult to code
+  2. The programs written using an operating system instruction set will not work on another operating system of other computer
+  
+Here comes "my program runs on one operating system cannot work on another".
+
+To overcome the above problem high-level programming languages came into picture.
+High-level programming languages provides their own instruction set, which are just english like language where humans often find easy to understand and write the programs.
+
+programmers cannot pass the high-level language programs to underlying operating system to execute because operating system only understands os routines only.
+So every high-level language provides tools called "compilers/interpretors" which are responsible for converting high-level language programs into operating system executable instruction set, so that we can pass the converted program to operating system to execute.
+-------------------------------------------------------------------------------------------------------------
+
+operation system job:-
+It ensures the programs written by the developers will execute across various different hardware platforms.
+
+high-level programming language job:-
+It ensures the high-level program can be written once and can be executed accross multiple different operation systems.
+------------------------------------------------------------------------------------------------------------
+Linux
+
+Linux is an general purpose computer operating system, originally released in 1991 by Linus Torvalds. Linux is defined by its "Kernal".
+
+Kernal is the core component of the Linux system and it interacts with the computer hardware to allow software and other hardware to exchange information.
+
+MINIX = is the initial operating system that was introduced to interact with the computer
+UNIX = from motivation MINIX operating system UNIX operating system was designed, but it is commercial and even the source code of the operating system is not open to everyone.
+LINUX = is based on the phylosophy that software and operating system should be free and freely modifiable. Linux operation was inspired from UNIX and made it as open source under GNU (General Public License)
+
+The kernal is more or less the same across all the installations of linx, the software that sourrounded the kernal that provides capabilities like software package management, control of services, and the location of configurations files different between the linux installations.
+
+
+To work with linux operating system it is very difficult because then end-user should have programming background to talk to Kernal software, so overcome this problem, GNU Project has been started where people around the world started producing software utilities/common tools that can be installed on linux kernal to make linux user-friendly.
+
+How to use linux operating system?
+Install linux operating system, which will comes up with kernal component. now go and download required GNU Project software tools available and install ontop of kernal/os, so that linux can be used easily.
+
+Even though we have software utilities built upon kernal to make it easy to use, again installing these software utilities is a difficult job.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

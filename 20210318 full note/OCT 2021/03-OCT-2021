@@ -1,0 +1,40 @@
+SSH
+Secure Shell, it is a protocol or communication technic through which we can access the shell of the remote computer securely. Through SSH we can manage a remote computer and perform operations by issuing shell commands like Software Package Installations/Upgradation, patching, backup and restore etc.
+  
+SSH uses cryptographic technics for securing the end-end communication. It uses 3 types of encryption technics
+1. Symmetric Encryption
+2. Asymmetic Encryption
+3. Hashing
+
+What is Encryption?
+Encryption is a technic where we use encryption key for transforming the data into another form, so that no other people can understand the data. The person who poses the encryption key can decrypt the message and build it back and can read it. 
+  
+1. Symmetric Encryption
+A single key is used for both encrypting and decrypting the data. here the key should be kept private unless otherwise the data security cannot be achieved. In order to exchange the key between both the parties there are several key exchanges technics are there
+
+2. Asymmetric Encryption
+In an Asymmetric Encryption we have 2 keys. private key and another one is public key. These keys are generated through mathematical calculation in such a way one cannot be computed through other. The data encrypted through public key can be only decryptable by its corresponding private key only.
+These 2 keys are used for exchanging the symmetric key between parties not for data exchange.
+  
+3. Hashing
+Hashing is used for data integrity check, where the receiver can always verify the data he has recieved is the original one that is send by the sender or not by verifying the hash generated on recieved data with the original one.
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

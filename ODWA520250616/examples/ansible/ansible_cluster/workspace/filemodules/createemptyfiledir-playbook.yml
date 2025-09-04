@@ -1,0 +1,13 @@
+---
+- name: create empty file or directory play
+  hosts: all
+  tasks:
+    - name: create a file
+      file:
+        path: ~/importantnotes.txt
+        state: touch
+    - name: create directory
+      file:
+        path: ~/officedocs/
+        state: directory
+...

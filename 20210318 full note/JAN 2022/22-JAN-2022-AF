@@ -1,0 +1,52 @@
+defining "changed" and "failed"
+we define the conditions based on which we mark a task as "changed" or "failed" rather than ansible default mechanism of marking the task
+
+Write a playbook to install apache maven software package given the jdk version installed is 11, if not mark as failure?
+---
+- name: install apache maven 	playbook
+  hosts: all
+	tasks:
+		- name: check jdk 
+			shell: "java -version 2>&1 | grep version | awk '{print $3}' | cut -d '\"' -f2 | cut -d '_' -f1 | cut -d '.' -f1-2"
+			register: jdkversion
+			failed_when: "jdkversion.stdout | float < 11"
+		- name: install apache maven
+			apt:
+				name: maven
+				update_cache: yes
+			become: yes	
+...
+				
+task "check jdk" fails
+- if jdk is not installed
+- if jdk is there but if the version is less 11 also
+---------------------------------------------------------------------------------------------
+changed_when:
+by default if a module has returned exit code as 0, the ansible control treats the module has changed the system state. but if we want to redefine the changed status of a task execution we can use changed when.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,207 @@
+File permissions
+Linux has been built-up from its core keeping in view of security. Since it is an Multi-user operating system, several users can access the Linux machine parallely. 
+  
+if these users has created files/folders on the machine, one cannot access or modify the files and folders that are created by the others, because linux enforces File Permissions.
+  
+How does it works?
+-------------------  
+When a Linux user creates an File/Folder the File/Folder will be associated to that user described below:-
+When a Linux user has created a File/Folder on the File System, the File will be entitled to the user and the primary group of the User.
+  
+lets say we have user joe in devops group (pg).
+id joe 
+
+joe@sriman$ touch daily_dairy.txt  
+daily_dairy.txt file will be created by marking the owner of the file as joe and group to which the file 
+belongs to as devops.
+  
+How can I see a file/folder is associated to which user/group?
+There are 2 ways to get this information
+1. stat filename
+it shows the owner and group of the file to which it belongs to.
+  
+2. ls -l (be in the directory of the file)
+it not only shows the owner and the group along with that it shows the permissions associated to the File.
+  
+  
+The daily_dairy.txt as it was created by joe, he can access/write the data into File. How about other users of the Linux System?
+Lets say by default the other users will not be able to access/modify those files, then it limits the possibility of collaborative working on linux (we cannot take the advantage of multi-user system). 
+  
+Indirectly we mean being multi-user operating system, we need to enforce security and allow controlled access.
+  
+One way to solve this problem is make the group of users to whom you want them to permit access to the File as sudoers. But looks like we broke the security, because sudoers get an unrestricted access to the entire system.
+  
+How to solve the above problem in allowing other users of linux to access the files/folders of a user?
+  
+Linux has comeup with categorize the people to access files into 3 groups.
+1. owner/user of the File
+2. group level
+3. others
+
+Now owner of the File can issue the below permisions on a file or folder he has created to each of these category of users.
+  Read (r)
+  Write (w)
+  Execute (x)
+  
+Managing permissions for Files/Folders means granting READ,WRITE,EXECUTE permissions on the Files/Folders of three categories of users (owner, group, others).
+In-Short: For every File/Folder we need issue 3 permissions to 3 categories of people.
+
+What is the meaning of READ, WRITE, EXECUTE permissions on File/Folder means?
+#1 File
+For a File the meaning of each permissions is described below.
+  1. read = can see the contents of it. we can cat, vi, nano
+  2. write = people can modify the file contents
+  3. execute = there are few files like (.sh), (program) which contains code that can be executed. unless execute permission is granted linux will not allow to run the program.
+  
+#2 Folder
+For a Folder the meaning of each permissions are described below.
+  1. read = we list down the contents of the directory (ls)
+  2. write = we cannot create or delete any of the files and folders within the directory unless we have write permission
+  3. execute = we can go inside the directory using cd, otherwise we cannot enter into directory
+  
+when a user is creating a file/folder within linux system, he/she dont need to grant/apply permissions on it. by default linux will assign default permissions to a file or folder.
+  
+how to see the permissions associated with a file/folder?
+sriman@sriman:~$ touch dairy
+sriman@sriman:~$ ls -l
+total 44
+-rw-rw-r-- 1 sriman sriman    0 May 31 08:40 daily_notes
+-rw-rw-r-- 1 sriman sriman    0 Jun  1 08:59 dairy
+
+1 bit = type of the file
+next 3 characters represents owner permissions (rw-) = read, write but cannot execute
+next 3 characters represents group permissions (rw-) = same as owner
+next 3 characters represents others permissions (r--) = only read
+---------------------------------------------------------------------------------------------------------
+What are the default permissions with which a File will be created?
+User = rw-
+Group= rw-
+Other= r--
+  
+default permissions = rw-rw-r-- 
+
+By default for a file execute permission will not be issued to owner/group/other also because of security reason.
+
+Default Permissions For a Folder?
+User = rwx
+Group = rwx
+Other = r-x
+
+defaults permissions folder = rwxrwxr-x
+---------------------------------------------------------------------------------------------------------
+How does the default permissions would be created by Linux, is it possible to change the default permissions with which a file/folder will gets created?
+Linux will compute the default permissions of the files and folders by using a user level variable called "umask" = user mask
+
+The default umask value for each user of linux is  = 0224, using this linux will compute the default file/folder permissions.
+  
+A max permission we can issue for a File in linux is = rw- (for all)
+                                    Folder in linux is = rwx (for all)
+  
+ODWA231052021 = 9A+bzp  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

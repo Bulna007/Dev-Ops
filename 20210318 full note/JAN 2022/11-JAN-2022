@@ -1,0 +1,189 @@
+1. File Module
+----------------
+1. How to create a file?
+
+file: 
+  path: name
+  state: touch
+	
+2. how to create a directory?
+file:
+  path: directory
+	state: directory
+	
+3. how to create a symlink?
+file:
+  src:
+  dest:
+  owner:
+  group:
+  state: link|hard
+	
+4. How to change the owner/group and permissions of an existing file?
+file:
+  path:
+  owner:
+  group:
+  mode:
+
+5. How to preserve/modify the modification_time and access_time of a file?
+file:
+  path:
+    owner:
+    group:
+		mode:
+		modification_time: preserve|now
+		access_time: preserve|now
+----------------------------------------------------------------------------------------------
+2. lineinfile module
+if we want to change a single line contents in an existing file then we can use lineinfile module. we can treat or think of this module equalent to sed in linux
+	
+#1. replace a text/line based on the matching expression within the line of a given file
+mysqld.conf
+MYSQL_BIND_ADDRESS=127.0.0.1
+	
+sed -i 's/^MYSQL_BIND_ADDRESS=.*/MYSQL_BIND_ADDRESS=0.0.0.0'	
+	
+lineinfile:
+  path: locationof the file
+	regexp:
+  line:
+
+lineinfile:
+  path: /home/ansible/mysqld.conf
+	regexp: '^MYSQL_BIND_ADDRESS=.*'
+	line: 'MYSQL_BIND_ADDRESS=0.0.0.0'
+	--------------------- (optional)	
+	owner:
+  group:
+  mode:
+   		
+#2. how to add/remove a line before or after the matching expression
+/etc/ssh/sshd_config
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+
+add PasswordAuthentication yes after PermitEmptyPasswords line
+
+lineinfile:
+  path: /etc/ssh/sshd_config
+	regexp: '^PermitEmptyPasswords.*'
+	line: 'PasswordAuthentication yes'	
+	insertafter: '^PermitEmptyPasswords.*'
+----------------------------------------------------------------------------------------------
+System Category
+
+#1 user module
+adding an new user or modifying an existing user of the linux operating system can be done using user module
+
+#1. add a user with specific uid and groupid
+user:
+  name:
+  uid:
+  groupid:
+
+#2. add a user with default shell
+user:
+  name:
+  uid:
+  groupid:
+  shell: /bin/bash
+	
+#3. add a user with home directory
+user:
+  name:
+  create_home: yes|no   = create user home directory
+  password:             = login password
+	generate_ssh_key: true = generates an ssh keypair
+	remove: yes = removes an existing user	
+
+write an ansible playbook which creates an user joseph, with home directory and password welcome1 and enables sudoers access to joseph
+
+---
+- name: add user and enable sudoers access
+  hosts: all
+	tasks:
+    - name: create user
+			user:
+        name: joseph
+				create_home: yes
+				password: 'welcome1'
+		  become: yes			
+		- name: promote to sudoer
+		  lineinfile:
+        path: /etc/sudoers
+				insertafter: 'root    ALL=(ALL:ALL) ALL'
+				line: 'joseph ALL=(ALL:ALL) ALL'	
+				validate: '/usr/sbin/visudo -csf %s'	
+		  become: yes		
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

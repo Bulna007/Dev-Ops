@@ -1,0 +1,14 @@
+- name: find products
+  hosts: all
+  tasks:
+    - name: copy products
+      copy: 
+        src: products.txt
+        dest: /tmp
+    - name: search product
+      shell: grep "{{product}}" /tmp/products.txt
+      register: productList
+    - name: print matching products
+      debug:
+        msg: "{{item}}"
+      loop: "{{productList.stdout_lines}}"  

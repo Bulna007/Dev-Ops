@@ -1,0 +1,133 @@
+#1. man pages
+--------------
+In linux (or) bash interpreter, every command has plenty of options, it would be practically impossible to memorize all the options of each command to use it. So to help us in quickly browsing through the manual or documentation of a command linux has provided an utility called "man"
+	
+man command
+man stands for manual and provides documentation about the command we asked.
+-------------------------------------------------------------------------------------------------------------------------
+
+#2. How to count the number of characters, words and lines in a given text/character file?
+wc = word count
+
+wc is an handy bash utility/command available for counting the number of characters, words and lines within the given text file. We can use switches in finding the counts as below
+
+-l = line
+-c = characters
+-w = words
+
+wc file1
+by default shows the number of lines, words and characters within the given file
+if we want we can individually gets the count of each of them using the options described above
+--------------------------------------------------------------------------------------------------------------------------
+#3. How to know the currently logged in user of the linux operating system?
+whoami
+
+whoami = shows the currently logged-in user of the linux operating system.
+--------------------------------------------------------------------------------------------------------------------------
+#4. How to find all the users who are currently logged-in into the linux operating system?
+Linux is an multi-user operating system, and they can multiple users can parallely login and use the operating system of the computer
+we can find all those list of users using
+
+who
+shows all the users and TTY of the users there are logged in
+-------------------------------------------------------------------------------------------------------------------------
+#5. 
+Each user who wants to access the linux operating system must and should register by creating an user account. All the users information who are registered with linux will be stored by the operating system aspart of a file
+
+/etc/passwd
+
+/etc = it is the directory in which installed software package configuration files are stored.
+/etc/passwd = can be accessed by only the super users only, so we need to use sudo command while accessing the file contents	
+
+sudo cat /etc/passwd
+--------------------------------------------------------------------------------------------------------------------------
+#6. How to know the hostname or ip address of the computer?
+
+hostname = is used for accessing the machine name of the computer
+hostname -I = displays the ip addresses of all the network interface cards attached to the computer. 
+	In-Short: ip address of the computer
+	
+#7. How to know the os version of the linux kernel?
+uname -r = shows the linux kernel version we are on
+
+The operating system name and version of it is stored aspart of /etc/os-releases file we can access this info using
+sudo cat /etc/os-release
+
+lsb_release -a = shows the operating system name and release version
+lsb stands = linux stand base release
+
+hostnamectl = used for querying and changing the hostname and related settings
+-------------------------------------------------------------------------------------------------------------------------
+#7. which shell interpreter are we using?
+echo $0 = shows the name of the shell interpreter we are using
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

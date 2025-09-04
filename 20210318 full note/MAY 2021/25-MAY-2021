@@ -1,0 +1,189 @@
+How to add an user in the linux?
+sudo useradd username
+useradd will creates an group with the username as the groupname with generated gid, then creates an user with supplied username with generated uid. associates the user with that group as primary group and creates an user home directory under /home.
+  
+Steps:-  
+---------  
+group = username
+gid = last generated gid + 1
+user = username
+uid = last generated uid + 1
+associate user + group (primary group)
+creates an userhome directory under /home
+
+After creating an user can we login with that user into linux?
+No, by default the user would be created without password, so we cannt login
+
+How to reset the password of a user?
+sudo passwd username  
+
+
+How can get the details the user just now got created?
+id username = gives you information of uid, username, group, gid, primary group information.
+grep -iw username /etc/passwd = we can get the user information through grep from /etc/passwd
+
+How can we see all the users in the linux system?
+all the users details are stored in /etc/passwd, we can fetch the details through cat into that file.
+
+How can we see the groups to which a user is associated?
+groups username = shows all the groups to which the user is associated
+
+How to see all groups on the linux system?
+all the groups are stored in /etc/group file, we can cat it.
+cat /etc/group
+
+Note:-
+These shell commands takes username as an argument, if we dont supply they act on the current user who is issuing the command on shell.
+id
+groups
+passwd
+------------------------------------------------------------------------------------------------------
+A user in linux can be associated in how many groups?
+An user in Linux can be in more than one group, but out of it one of the group we used while creating the user becomes the primary group of the user.
+  
+sudo useradd joe = while creating this user, a joe group will be created and joe user would be associated with joe group. here joe group becomes primary group of the user.
+
+How to create a group?
+sudo groupadd groupname = will creates a group with generated gid and gname supplied, it becomes empty group without any users.
+  
+How to create an user into existing group?
+sudo useradd -g exiting_gid username = in this case the user group will not be created rather the user will be associated with the group supplied as primary group.
+  
+How to create an user by suppliying our own uid?
+sudo useradd -u uid username
+(or)
+sudo useradd -u uid -g existing_gid username
+
+How to change the home directory and default shell of a user?
+sudo useradd -d homeDirectoryLocation -s /bin/bash username
+--------------------------------------------------------------------------------------------------------
+instead of using useradd, ubuntu has provided adduser which is an enhacement of useradd, prompts lot of inputs while adding the user like
+  - firstname
+  - lastername
+  - room no
+  - work phone number etc
+and creates the user with all the information supplied.
+--------------------------------------------------------------------------------------------------------
+We can add the user into existing group after the user has been created as below.
+sudo groupadd devops
+sudo adduser joe = joe group
+
+sudo usermod -aG devops joe
+usermod = stands for modify the existing user,  -a = add, G = group of groupname, username
+---------------------------------------------------------------------------------------------------------
+How to delete an exiting user?
+  
+sudo deluser username
+deletes the user by dis-associating the user from a group
+along with that the primary group of the user will also be deleted,given if there are no other users in the same group
+
+we can delete a group, it there are no users associated to that group
+sudo groupdel groupName
+
+--------------------------------------------------------------------------------------------------------
+How to remove/reset the groups of a user?
+There are 2 ways we can achieve it.  
+sudo groupadd devops
+sudo groupadd developers
+sudo groupadd qa
+
+sudo useradd joe
+sudo usermod -aG devops developers qa joe
+
+we can reset the groups of a user using the below command.
+sudo usermod -G joe, devops developers joe
+
+we can remove a user from a group using the below command.
+sudo gpasswd -d user group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

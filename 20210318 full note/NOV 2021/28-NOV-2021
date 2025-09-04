@@ -1,0 +1,102 @@
+How does the dependencies are identified in the maven central repository?
+The dependencies are identified through gav coordinates
+groupId     = organization/product/individual producing the artifact
+artifactId  = product/projectname
+version     = version no of the project not to override the existing one
+
+All the dependencies required for building/packaging the application has to be declared as part of pom.xml under <dependencies> section
+	1. all the developers in the team knows what dependencies we are using in building the application and precisely which version of them
+	2. once we declared dependencies in the pom.xml we dont have to download them manually, maven takes care of downloading them automatically adds to the build path/classpath of our application.
+	
+Local maven repository
+-----------------------
+When we run the maven build, the maven is going to download dependencies from maven central repository and adds the dependencies to classpath and build/packages the project. If it is repeatedly downloading the dependencies across the projects and builds we run into 2 problems
+	1. unnessarily/repeatedly it is going to download the same dependencies across the projects from maven central repository which will consume more bandwidth of the internet
+	2. multiple copies of the aritacts are placed on the harddisk of our computer which will waste storage space
+	
+to overcome the above problem, maven creates and maintains the dependencies under local maven repository.
+When we run the build for the first time, maven creates an local maven repository under the
+$user.home/.m2 location.
+below is the layout or directory structure of the local maven repository
+$user.home/.m2
+|-repository
+	|-groupId (directory)
+		|-artifactId (directory)
+			|-version (directory)
+				|-dependency (jar/war/ear/zip etc)
+	
+	
+now downloads all the dependencies from maven central repositories and places them under local maven repository. in subsequent builds maven will search for the dependencies in local maven repository if those are not available then only it downloads from maven central repository.
+which saves bandwidth consumption and storage space in keeping the dependencies on our machine
+
+Remote Repositories 
+There are some more problems we will encounter while working in a corporate interms of managing the dependencies in maven let us understand them.
+	
+#1 each engineer/employee working in the company when runs the maven build will connect to the maven central repository and downloads the dependencies which will increase the bandwidth consumption of the coporate network
+#2 if every developers machine is pulling the dependencies from maven central repository through corporate n/w the network traffic and network congession will increase due to which it results in a poor performance of corporate network
+#3 if every developer is allowed to directly download the dependencies from maven central repository there is no control over usage of the dependencies, the people might endup in using the dependencies of the peers/competitors or licensed once which will land the organization into legal and compliance issues.
+#4 many organizations as per their security polices and restrictions dont want their employees to access internet directly due to which downloading the dependencies from maven central repo is not possible.
+How to overcome these problems that we arise in a corporate envionment.		
+To overcome the above problems, maven has introduced maven remote repositories.	
+There are lot of companies manufacturers the repository software and provided to us either opensource or commercial. The repository administrator is responsible for
+	1. setting up the remote repository from one of the repository provider s/w
+	2. configure the remote repository and apply control over sync the dependencies with maven central repository
+	3. distribute the remote repository information to the developer in the org so that they can use the remote repository
+	
+There are lot of repository softwares are available, few of them are
+1. jfrog artifactory (open source)
+2. nexus repository (commercial)
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

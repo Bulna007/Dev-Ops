@@ -1,0 +1,149 @@
+The kubernetes control plane has 3 components within it
+1. api manager
+2. scheduler
+3. controller
+
+How many types of controllers are there?
+There are 5 types of controllers are there
+1. ReplicaSet
+2. DaemonSet
+3. DeploymentSet
+4. Job
+5. Service
+
+#1. ReplicaSet
+Pod is a smallest unit within the kubernetes where multiple containers are kept together and executed within a pod which are having common dependences and lifecyle.
+We can create a pod in kubernetes by using pod manfiest/spec. There are few characteristics of a pod are there
+	1. A pod manfiest creates a pod on the cluster in running state
+	2. Pod will not survive by crash
+	
+If we want to run #10 pods of the same pod spec, we need to create manually #10 pod specs with different pod name and create the pods using the manifests manually, which is quite difficult task.
+In addition we need to monitor and make sure enought number of pods are always running within the cluster, if a pod crashes it will not be brought back automatically we need to monitor and create one more pod in event of crash.
+	
+So managing multiple replicas of a pod and replacing the pod upon crash is very difficult. To overcome the above problem kubernetes has provided ReplicaSet controller
+
+A ReplicaSet controller can be imagined as a Reconcilation loop, where the ReplicaSet controller loops through all the worknodes across the cluster to observe whether the desired number of replicas specified are met or not, and ensures the cluster meets the desired state.
+upon reaching to the desired state of replicas, it monitors the pods on the cluster, and in case of any pod crash, it replaces with a new pod on the cluster to meet the desired state.
+	
+A ReplicaSet spec always will be written along with Pod Spec embedded inside it as there is no meaning of a ReplicaSet without a Pod since it manages the pod.
+	
+#5 workernode cluster
+#4 replicas of a pod
+there is no guarantee that 4 replicas are distributed across different workernodes but kubernetes controlplane makes the best effort in distributing the replicas across the workernodes of the cluster to ensure HA
+
+From the above we can understand we dont have to write a pod spec rather within ReplicaSet spec we define the pod where the ReplicaSet controller bringsup the desired number of pods
+
+ibanking-replicaset.yaml
+-------------------------
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+	name: ibankingreplicaset
+	labels:
+		app: ibanking
+spec:
+	replicas: 2
+	selector:
+		matchLabels:
+			app: ibanking
+			version: "1.0"
+template: [run 3 replicas of the below template]
+	metadata:
+		labels:
+			app: ibanking
+			version: "1.0"
+	spec:			
+		containers:
+			- name: ibanking
+				image: techsriman/ibanking:1.0
+				ports:
+					- name: ibankingport
+						containerPort: 8082
+						protocol: TCP
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

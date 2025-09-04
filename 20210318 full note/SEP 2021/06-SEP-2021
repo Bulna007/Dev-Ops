@@ -1,0 +1,76 @@
+What is Virtualization?
+We can run multiple parallel isolated environments on a physical computer system using virtualization technic.
+  
+environment is referred as the operating system, the language libraries and tools installed on top of it, which are required to run the application software on a machine is called "environment". In general on a machine we can setup only one environment, but through the help of virtualization we can setup multiple different enviroments and run the independent and parallel as well.
+  
+How many ways we can run mutliple environments on a physical machine?
+There are 2 ways to run multiple environments
+1. dualboot configuration = we can partition an harddisk drive into multiple boot partitions and setup different environments in each of those partitions, so that during the bootup the BIOS prompts for which partition to be booted. Here at anypoint of time only one environment will be available.
+  
+2. virtualization = we can create multiple virtual machines with different env, so that we can run all of them parallely by mutual sharing the underlying hardware resources of the computer.
+  
+Why do we need to use virtualization, what are the advantages of using virtualization?
+From an individual perspective
+1. while using a computer, many of the times we comes across using some softwares that runs on different environments, we can effectively use the virtualization concept to setup on run multiple different softwares that works on different environment, which saves cost of buying another computer to run the different environments.
+  
+2. with no reboot we can up multiple environments,that help us in experimentation and testing as well.
+
+From a corporate/enterprise perpective
+1. Through virtualization we can create multiple parallel isolated environments, so that we can allocate and run multiple projects on the same machine without the need to procuring more number of computers for each project. This helps us in reducing the investment cost in buying more number of physical machines
+
+2. Now administrators/support engineers can quickly setup the environments and can swap between various environments easily. 
+  
+3. For developers to work with development of the project they need development environment to be setup with operating system and system software. it takes lot of time for individual developers to setup the environment to start development of the project.
+Through virtualization, a developer can build an virtual environment with required tool/libraries and share the same virtual env to rest of the people in team, so with no time all the people can bring up the required env to begin development which saves huge time and cost of setup.
+  
+From the above we can conclude virtualization lowers the investment cost of procuring hardware, and help us in effectively reusing the hardware machines in an enterprise in running multiple parallel isolated environments.
+    
+How does virtualization works?  
+Virtualization technology works on a component called "Hypervisor". Hypervisor is an technology that helps us in sharing the physical system resources of the computer in running multiple different environments.
+There are 2 types of Hypervisors are there
+1. Software Hypervisor
+2. Hardware Hypervisor
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

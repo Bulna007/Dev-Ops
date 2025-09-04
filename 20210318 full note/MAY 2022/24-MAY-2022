@@ -1,0 +1,121 @@
+What are the different states in which a pod can exists in Kubernetes Cluster?
+A pod in kubernetes can exists in 5 different states which is termed as the lifecycle of a pod
+1. pending = pod has been accepted and it is under creation state
+2. running = atleast one of the container inside the pod has been started and readiness probe on the pod has been passed, then the pod is reported under running state
+3. succedded = when all the containers within the pod has been exited with exitcode as zero, then the pod status is reported as succeded
+4. failed = when atlease one container within the pod has been exited with exitcode as non-zero, then the pod is reported as failed.
+5. crashloopbackoff = when a pod is repeatedly failing for execution after a successive restarts, then to avoid further scheduling of the same pod for execution the kubernetes marks the pod as crashloopbackoff indicating not to schedule the pod for further execution since it is failing repeatedly
+--------------------------------------------------------------------------------------------
+Working with Labels and Annotations in kubernetes
+Labels:
+Labels are arbitary key/value pairs we can attach or assign to the kubernetes objects, these are used for identifying the objects and accessing them over the cluster.
+For any kubernetes object like a 
+ - pod
+ - job
+ - deploymentset
+ - replicaset etc
+we can assign any number of labels, but the key/value pair should appear only once and should be unique
+
+We can define the labels for kubernetes objects in 2 ways
+1. we can declare labels in manifest files of the objects directly
+2. we can attach/bind labels at runtime during the execution
+
+#1. how to declare labels as part of the manifest?
+sailor-pod.yml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: sailorpod
+	labels:
+		app: sailor
+		version: 1.0
+		author: sriman
+		jdk: 11
+spec:
+	containers:
+		- name: sailor
+			image: techsriman/sailorrepo:2.0
+			ports:
+				- name: http
+				  containerPort: 8080
+					protocol: TCP
+					
+#1. We can display all the pods on the cluster along with their labels:
+kubectl get pods --show-labels
+
+#2. We can search/query a pod based on the label using -l switch/option
+kubectl get pods -l app=sailor
+
+#3. we can attach labels to the running pods at runtime using
+kubectl label pods pod-name key=value
+--------------------------------------------------------------------------------------------
+Annotations
+Annotations are used for attaching arbitary information which is non-identifier to an kubernetes object. These are only used as documentation helpers which can read or used through kubernetes metadata api. Unlike labels we cannot use annotations for accesing the objects of kubernetes
+
+
+sailor-pod.yml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: sailorpod
+	labels:
+		app: sailor
+		version: 1.0
+		jdk: 11
+	annotations:
+		author: sriman
+		license: GPL license
+		warranty: no warranty for this product usage
+spec:
+	containers:
+		- name: sailor
+			image: techsriman/sailorrepo:2.0
+			ports:
+				- name: http
+				  containerPort: 8080
+					protocol: TCP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

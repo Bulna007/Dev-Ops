@@ -1,0 +1,957 @@
+AWS Cloudplatform
+------------------
+What is cloud platform?
+on-demand delivery of the computing resources/services to the world is called "cloud computing". Here the computing resources refers to the infrastructure resources that are required for running the software applications like
+1. Networking
+2. Firewall / Gateways / Security devices
+3. Compute Resources (Virtual Machines)
+4. Platform softwares  (Database servers/Application Servers...)
+etc
+
+
+A cloud provider offers 3 types of services
+1. IaaS - Infrastructure as Service
+2. PaaS - Platform as Service
+3. SaaS - Software as Service
+
+1. IaaS 
+Infrastructure as a Service is about infrastructure resources like computing machines, hardware resources, networking, routers, firewalls, security gateways, internet lines etc that are required for running the software applications are delivered to the world aspart of the IaaS offering by the cloud vendor
+
+Before cloud providers these IaaS services are offered by the data centers. But there are lot of restrictions or drawbacks with data center, and all such challenges are overcomed through cloud providers as below
+
+advantages:-
+  1. We can choose the shape (cpu/ram/storage) of the machine as per our requirement in hosting the application, there is no restriction over the shapes
+  2. The resources are procured instantaneously
+  3. There is no upfront sign up charges in procuring the infrastructure resources and no long-term contractual agreements in procuring the infrastructure
+  4. The cloud providers offers 2 types of billing strategies:
+    4.1 Fixed        = Irrespective of the usage of the resource, once we procure from the cloud provider, until we release there will be a fixed charge will be lewied.
+    4.2 Pay-per-usage= we will be changed only based on the usage of the resource only
+  5. monitoring, tracking and securing the access to these resources are taken care by cloudplatform
+  6. backup and restore incase of crash will be handled by the cloud provider
+  7. high-availability upto 99.999% of the resources are guaranteed
+  8. Patching, Licensing, upgradation of resources are taken care by cloud provider
+  
+The cloud providers takes care of managing the lifecycle of the cloud resources like:
+1. provisioning / deprovisioning = creating and destroying the resource
+2. scale-up / scale-down = increasing / decreasing the computing capacity like cpu, storage, memory etc of resource is called "scale-up" and "scale-down"
+3. scale-out / scale-in = adding and removing the resources is called "scale-out" and "scale-in"
+4. backup / restore = periodical backup and incase of crash recovering with the latest snapshot will be handled by cloud provider
+5. start/stop/restart = staring, stopping and restarting the resources 
+-----------------------------------------------------------------------------------------------------------------------------------
+2. PaaS
+PaaS stands for Platform as a Service.
+  
+To run the software applications ontop of the IaaS infrastructure we need additional software packages or libraries like
+  1. programming language softwares (java/python) etc
+  2. application server softwares (tomcat/weblogic/django server)
+  3. database server (mysql/postgres/oracle database)
+  etc
+These software packages sits between the IaaS infrastructure and our software applications which are called "Middleware software" or "Platform Software"
+  
+Upon provisioning the Infrastructure with the cloud provider, the devops engineers has to install and configure the middleware/platform software ontop of the provisioned infrastructure inorder to run the software application. For this the devops engineer has to
+  1. procure the software licenses
+  2. download the software packages
+  3. install and configure them manually onto of the Infrastructure
+  
+There are lot of challenges are there in manually managing the platform software on cloud infrastructure:
+1. The time it takes in installing, configuring the platform software is very high
+2. Incase of scale-up or scale-down the infrastructure, the cloud vendor restart the computing instances. So the devops engineer has to manually takes care of bringing up the platform software upon the event of restart of the Infra
+3. Scale-out or Scale-In of the Infrastructure, the cloud vendor will provision an additional computing instance or remove it. But the platform software on the scaled infra will not be available automatically. The devops engineer has to manually install the platform software and configure it inorder to work
+4. Monitoring, backup and restore of the platform software has to be manually taken care by the devops engineer which is an on-going maintainance
+5. patching and upgradation of the platform software is a difficult job 
+
+Instead of manually managing the platform software, the organization has to adopt automation process through software configuration management tools like
+  1. ansible
+  2. puppet
+  3. chef
+  etc
+But this requires excessive development efforts in achieving automation, testing and cost involved in accomplishing the automation is quite high
+
+Instead the cloud providers itself takes care of provisioning and managing the platform software aspart of the cloud lifecycle operations so that we can directly run our software application on the PaaS services they provided.
+  
+The most popular middleware softwares are only provided as PaaS services by the cloud providers.
+  3. RDS Service (relational database service)
+  4. DynamoDb (no-sql database)
+  5. S3
+  6. Cloud Front (CDN Server)
+-----------------------------------------------------------------------------------------------------------------------------------
+3. SaaS
+SaaS stands for "Software as a Service". There are lot of pre-built enterprise software solutions are available within the market, that offers various different functional aspects in managing the business like
+  
+1. SAP
+2. Peoplesoft
+3. Salesforce
+4. Workday
+5. Jira
+6. Siebel
+7. JDEdwards
+8. E-Business suite
+etc
+
+These softwares can be directly used by the Enterprise business organizations in carrying their business activities. But inorder to use these software solutions the business organization has to 
+1. procure the software licenses
+2. setup the required infrastructure
+3. Install and configure these Enterprise softwares on the Infrastructure, requires special administrators who can install and configure these softwares
+4. Customize / Tweak these software products to work with the Enterprise
+5. Administer, monitoring and manage these softwares
+
+There are lot of challenges in using these Enterprise softwares:
+1. Licensing cost in procuring these enterprise softwares are very high and cannot be affordable for small or moderate organizations
+2. The time required for installing and configuring and customizing these enterprise software products to be used aspart of the business is very high
+3. Need specialized administration team for installing, configuring, monitoring and managing the Enterprise software
+4. Patching and upgradation of these enterprise softwares are very difficult
+5. Managing the cloud lifecycle operations like start/stop/restart, scale-up/scale-down, scale-out/scale-in are very complex
+
+Instead of business organization by themself hosting and managing these softwares, the cloud providers offers these softwares as SaaS services. Instead of procuring the licenses and infrastructure in running them, the cloud providers offers these softwares as services based on multi-tenancy model.
+  
+
+Based on the type of the software the licensing model will differ, for eg.. if we are using a bitbucket cloud, the licensing model is based on 
+  1. no of private repositories
+  2. no of users 
+  3. no of push/commits
+  
+There are lot of cloud providers are there in the market that offers the above services IaaS, PaaS, and SaaS. These services they offer differs from one vendor to the another cloud vendor. Few of the popular cloud providers in the market are
+1. AWS Cloudplatform
+2. Microsoft Azure
+3. Google cloud
+4. Openshift
+5. Oracle Cloud Infrastructure (OCI)
+6. Alibaba
+7. IBM Cloudplatform
+-----------------------------------------------------------------------------------------------------------------------------------
+AWS Cloudplatform
+The AWS Cloudplatform offers lot of services aspart of the cloud platform, around 200+ services are offered by AWS. out of these many number of services, locating and identifying the services will be very difficult. So to help us in easily identifying a service AWS had distributed them into domains.
+  
+Domains are nothing but group of related services put together. There are lot of domains are there out of which 7 core domains are very important to understand.
+  1. Networking 
+  2. Compute
+  3. Database
+  4. Storage
+  5. IAM 
+  6. Messaging
+  7. Monitoring
+  8. Developer tools
+---------------------------------------------------------------------------------------------------------------------------------- 
+AWS Cloudplatform Architecture
+
+AWS Cloudplatform Architecture refers to how does the AWS Cloudplatform has been spread across and is offerring the cloud services to the world.
+  
+#1. AWS Region
+AWS Region is an geographical location from where AWS Cloudplatform is offering the computing services to the world. AWS Region is not an country, rather it is a geographical location or place within a country from where it is offerring the cloud platform services to the World. For eg.. in USA the AWS has 5 different regions from which they are operating and providing cloud services as below
+1. US West (Oregon) Region
+2. US East (Northern Virginia) Region
+3. US West (Northern California) Region
+4. US East (Ohio) Region
+5. Canada (Central) Region**
+6. Canada West (Calgary) Region
+7. Mexico (Central) Region
+
+There are around 37 different geographical locations which are called regions from where AWS Cloudplatform is spread across and offering the cloud services.
+  
+How do we choose a region in provisioning the resources in AWS Cloudplatform?
+  (or)
+What is the reason behind hosting aws cloudplatform across different geographical locations on the globe (regions)?
+  
+There are 3 main reasons behind having aws regions in aws cloudplatform:
+1. to avoid network latency in using the computing services
+2. based on government policies and compliance rules, the businesses are restricted to have their systems/services to be hosted and running on a specific geographic locations within the world
+3. pricing factor
+
+upon logging into aws cloud console, we need choose the AWS region from the top-right corner, to be used in provisioning the resources/services from
+
+#2. Availability Zone (AZ)
+Availability zone is nothing but group of data centers offered within the region. 1 Availability Zone (AZ) means 1 data center within the Region. 
+For each Region, AWS ensures atleast 2 AZs are setup, the main reason for introducing AZ by aws cloudplatform is for High Availability.
+  
+The AWS recommends us to host the resources/services across the AZs of the region, so that if one availability zone goes down, there is guarantee that the application can be accessed from other AZ of the region.
+  
+AWS Cloudplatform chooses the AZs carefully by considering various factors like
+1. power availability
+2. climatic conditions
+3. cyclones
+4. tornodoes
+etc
+so the likeliness of having all the AZs of the region going down at the same time will be less. The AZs are inter-connected with each other with high-speed dedicated leased internet lines so that the experience of distributing the resources across the AZs will be equal to running them on one AZ itself.
+  
+#3. Edge locations
+Edge locations are the mini-data centers co-located across the regions of the aws cloudplatform. These edge locations offers shared/global services to the customers around the world like
+  1. Route53
+  2. Cloud Front
+  etc
+  
+The purpose of the edge location is to reduce the network latency in distributing the shared/global services
+-----------------------------------------------------------------------------------------------------------------------------------
+Scope of AWS Services
+---------------------
+There are around 200+ services are offered by the AWS Cloudplatform, these services are categorized into 3 different scopes based on their availability and accessibility 
+1. Global scope
+2. Region-Level scope
+3. Availability-Zone scope
+
+1. Global scope
+The services scoped to the global are accessible and available across all the regions of the AWS Cloudplatform. A change in any of the services/resources would be reflected across all the regions
+For eg.. 
+  1. if we add an DNS entry in Route53 service, the DNS Route information would be propagated across all the regions of the cloud platform.
+  2. If we create a new AWS IAM User or modify an existing IAM User, it would be reflected across all the regions
+  
+2. Region-Level scope
+The services that are scoped to the region-level are only visible and accessible within the region under which those are provisioned or created.
+For eg..
+    1. A dynamodb table within ap-south-1 region is scoped to the region-level only and visible and accessible within ap-south-1 region only
+    2. If we create an S3 bucket, the bucket and the objects stored inside it are accessible only within the region 
+    
+3. Availability-Zone scope
+These services are created/provisioned and accessible within the AZs of the region only like all the computing services are scope at AZ level like
+  1. ec2 instance will be created within an AZ of the region
+----------------------------------------------------------------------------------------------------------------------------------
+Setting up the AWS Free-tier account
+----------------------------------------------------------------------------------------------------------------------------------
+Core domains of AWS Cloudplatform are
+1. Networking
+2. Database
+3. Storage
+4. Compute
+5. Security (IAM)
+6. Messaging
+7. Developer Tools
+8. Monitoring
+
+Let us understand how to provision an ec2 compute instance through aws cloud console?
+To learn any domains of aws cloudplatform, we need to begin with Networking domain, because without networking we cannot host any services or resources.
+    
+But upon setting up a network, to verify the network configuration we need to have an resource being setup on the network. unless otherwise we cannot test our network
+
+So in aws cloudplatform ec2 instance is nothing but an virtual machine hosted on the cloudplatform on which we can run our software applications.
+    
+Let us understand how to provision an ec2 instance on the default network of aws cloudplatform and access it, so that we can being learning Networking domain
+
+How to provision an ec2 instance in aws cloud console?
+1. login to the aws cloud console
+2. choose the region from the top right corner where you want to provision the ec2 instance
+3. goto services and choose compute (domain) -> ec2 instance
+4. click on launch instance from the ec2 dashboard
+5. in the instance provisioning page we need to enter the below information:
+  1. instance name
+  2. AMI (operating system image): ubuntu
+  3. instance type: t2.micro (eligible for free-tier)
+  4. key pair
+    4.1 click on generate key pair
+    4.2 within the popup, enter the keypair name
+    4.3 choose the encryption algorithm as RSA
+    4.4 click on create will let you download the keypair and save it on the local machine. Store it on $USER_HOME/.ssh/ directory
+    Then choose the above created keypair in the keypair dropdown
+  5. leave the rest of the networking and storage options to default
+  6. click on launch instance at the bottom
+This should provision and bring-up the ec2 instance. Navigate to the instance list page, here we should see the instance we provisioned.
+    
+Click on the ec2 instance id, brings up the instance details page, for there we can copy the public ip address of the ec2 instance.
+  
+How to connect to the above provisioned ec2 instance remotely?
+That is where we use ssh. For this we need to 
+1. install gitbash (windows) and git (linux) operating systems
+2. open the terminal (gitbash) | (bash)
+3. type the below command
+
+ssh -i pathToKeyFile.pem ubuntu@publicip
+
+should allow us to ssh onto the remote ec2 instance from our local work station machine
+
+note: after using the ec2 instance, goto instance list page, select instance and terminate by click on instance state-> terminate option, so that we will not be charged.
+-----------------------------------------------------------------------------------------------------------------------------------
+  
+1. Network domain
+The networking related services or resources are part of Network domain like
+  1.1 vpc
+  1.2 subnets
+  1.3 gateways
+  1.4 security groups / nacl rules (firewall)
+  etc
+in offering networking services in provisioning and exposing the resources  
+  
+
+1. vpc network
+vpc stands for virtual private cloud network, it is isolated network created by aws account user. The resources within a vpc network are isolated from other resources of another vpc.
+In-short: vpc is isolated network of resources
+
+1. VPC network is created per user account, for a region spanning across all the AZs of the region
+2. by default all the resources within the vpc network can communicate with each other
+3. per aws user account, per region at max we can create 5 vpc networks only (soft limit)
+4. by default a resource in one vpc network cannot communicate with a resource in another vpc network, even though both the vpc networks belongs to same aws account user and part of same region. If we resources across the vpcs to communicate with each other we need to use vpc peering
+5. per each aws account, per each region one default vpc network is created by aws cloudplatform itself.
+  
+  
+What is the purpose of vpc network?
+There are several reasons in using an vpc network
+1. per business or department level we can use vpc network
+within an organization there can be several departments like hr, finance and administration etc. The resources or services are scattered across the departments. in order to isolate the resources of one department from others we need to create vpc per department
+
+2. per project
+To keep the resources across projects isolated from each other we can create vpc per project
+
+3. per environment
+per each environment we can create one vpc ensuring the resources of one environment doesnt access the resources of another environment like
+  1. dev
+  2. test
+  3. stage
+  4. production
+  
+How to create a vpc network?
+To create an vpc network we need to specify 2 things
+1. vpc network name = just a name to identify the network among other vpc networks
+2. cidr notation = indicating the network range, stating all the resources that are part of this network should be assigned with ip addresses of the cidr range only
+10.1.0.0/16 = means 16 bits are alloted to the network address and remaining are host bigs, so the ip address for this cidr range can fall between 10.1.0.0 to 10.1.255.255
+  
+so if we create any resources under this vpc network, the resources will assigned with the ip address ranging within the cidr range only
+
+2. Subnet
+vpc is a large isolated network, that spans across the AZs of the region.  If we create resources at the vpc level all the resources are applied/enforced with same access restriction and security. But we wanted different groups of resources to be applied with different access restrictions and security. 
+  
+for eg..
+  1. A database server should not be exposed to the external world and should be accessible internally between the application only
+  2. Where as an ec2 instance running our software application should be exposed and accessible to the external world
+  
+How can we apply different access restrictions in exposing and making these resources accessible differently?
+That is where break down the vpc network into smaller networks called "Subnets"
+  
+Subnets are small networks that are created within an vpc network. Based on the group of resources and the way we want to apply access restrictions we can create several subnets per each group. 
+For eg..
+  1. We can create a database subnet, in which we can place database related resources and enforce traffic restrictions allowing them to be accessible internally
+
+Few points:
+1. A subnet is created within an vpc network and is scoped or created within the Availability Zone of the vpc region
+2. It is recommended to create atleast 2 subnets across the Availability Zones to ensure high availability
+3. Within a vpc network, at max we can create 200 subnets (softlimit)
+  
+What are the reasons for creating a subnet?
+There are 2 main reasons for which we need to use subnets
+1. To enforce different types of traffic restrictions on different groups of resources we need to use subnet
+2. To distribute the resources across the Availability Zones of the vpc network we need to use subnets
+
+How to create a subnet?
+A subnet is created within the vpc under an availability zone. The resources within the subnet of the vpc should be assigned the ip address within the range of vpc network only, but should be broken down into subnet network ip addresses. for this
+  1. choose the vpc under which we want to create the subnet
+  2. identifiable subnet name
+  3. choose the availability zone under which we want to create the subnet 
+  4. cidr notation defining the ip address range for that subnet
+  
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+1. private subnet
+By default when we create a subnet within the vpc, it will be private subnet only. The resources within a private subnet will be accessible within the vpc network only and will not be exposed or accessed from external/public network
+
+2. public subnet
+The resources that are part of the public subnet can talk to any other resources of the same vpc network, along with that these resources will have access to the external network as well.
+    
+Both Inbound and Outbound network traffic to the public network is supported by an public subnet.
+    
+3. Hybrid subnet
+In a Hybrid subnet only outbound network traffic to the external or public network is allowed, but an inbound network traffic from external/public network towards the subnet resources is not allowed. The resources within the Hybrid subnet can communicate with all the other resources within the vpc network
+-----------------------------------------------------------------------------------------------------------------------------------
+Security Groups
+Security Group is a firewall setup at the resource level to apply traffic restrictions on a specific resource. Security Groups are created at vpc level and are enforced or attached to the resources on the VPC.
+
+Security groups are stateful, which means they can keep track of the request/response traffic. When our resource has sent a request to the external system, to allow the response from external system to our resource we dont need inbound rule.
+
+By default the security group would be created with no inbound rules and one default outbound rule with below behavior:
+  1. block all internal/inbound traffic towards the resource
+  2. allow all the external/outbound traffic from the resource to the external network
+  
+There are 2 sets of rules we need to define allowing inbound/outbound traffic from/towards the resources while setting up the security group
+1. Ingress = incoming network traffic rules
+2. Egress  = outgoing network traffic rules
+
+Ingress
+Protocol         Port      Source CIDR 
+
+Egress
+Protocol         Port      Source CIDR 
+
+The security groups are applicable only to few resources types:
+1. ec2 instance
+2. loadbalancer
+3. rds service
+4. elastic beanstalk
+
+Let us setup an ec2 instance on an public subnet, install apache2 server and expose it to the public world by configuring security group.
+-----------------------------------------------------------------------------------------------------------------------------------
+NACL Rules
+----------
+NACL stands for network access control list. It is a firewall setup at Subnet level, controlling the network traffic to the group of resources on a subnet. unlike security groups, the NACL rules are stateless they cannot keep track of the request/response, so to allow a response for request we need to configure an outbound rule as well.
+  
+NACL rules are created at vpc level and attached to subnet of the vpc restricting the network traffic. By default for each vpc network we create, the aws creates an default NACL rules associating it to all the subnets of the vpc network. The default NACL rules has inbound/outbound rules defined allow all the traffic from any source/destination.
+  
+Why NACL rules are stateless?
+Since NACL is an firewall setup at network level, to ensure optimal performance in restricting the network traffic, NACL has been designed to be stateless.
+  
+NACL rules are ordered, which means each rule has a order number and based on the order number in which we configure, those rules are applied in restricting the traffic. A rule no defined with "*" acts as default rule, that would be applied when none of the rules configured are matching with request/response
+
+The default NACL rules configured for each subnet of the vpc is
+Ingress
+rule#   protocol     port    source cidr      action
+1       all traffic  anyPort 0.0.0.0/0        allow
+*       all traffic  anyPort 0.0.0.0/0        deny
+
+Egress
+rule#   protocol     port    destination cidr action
+1       all traffic  anyPort 0.0.0.0/0        allow  
+*       all traffic  anyPort 0.0.0.0/0        deny
+
+From the above we can understand by default the NACL rules are configured to allow any inbound/outbound network traffic from any of the resources of the subnet.
+----------------------------------------------------------------------------------------------------------------------------------
+Database domain
+all the database related services are provided aspart of the database domain. There are 5 services are offered aspart of database domain
+1. RDS Service
+2. AuroraDb
+3. DynamoDb
+4. Elastic Cloud Cache
+5. Redshift
+
+1. RDS Service
+RDS Stands for "Relational Database service", it is not a database server rather it is managed service that is provided by aws cloudplatform that takes care of provisioning, installing, configuring, managing the popular databases on the aws cloudplatform.
+  
+If we want to use a database server for storing the data aspart of our software application, we need to
+1. Procure the Infrastructure
+2. Acquire the database server license
+3. Download the database server software
+4. Install/Configure on the Infrastructure
+5. Patching/Upgrading the database server software needs to be taken care
+6. High-availability by running the database server on Active/Passive mode configuration
+7. Scalability by configuring read-replicas 
+8. Monitoring
+9. Periodical backup and incase of crash recover with the lastest snapshot
+etc
+
+All of the about aspects in running the database server software should be managed manually by the team of administrators and dba's
+  
+Instead of we taking care, aws cloudplatform has provided RDS as an managed service. It takes care of installing, configuring and managing the popular databases on the aws cloudplatform as below
+1. Oracle Database 
+2. Ms-Sql Server
+3. MySql Server
+4. Postgres
+5. Db2
+
+
+In production environment as we store confidential data on these systems, we should provision the RDS Service on the private subnet only and restrict the access to only the application in which we need to use. 
+Let us understand how to provision an RDS service on a private subnet of the vpc and connect through jumpbox.
+  
+1. vpc network
+vpc name: urotaxivpc
+cidr: 10.1.0.0/16
+  
+  
+2. create 3 subnets
+1 subnet = application (public subnet)
+2 subnets = rds database service (private subnets)
+  
+2.1 subnet name : urotaxipubsn1
+    cidr: 10.1.1.0/16
+2.2 subnet name: urotaxiprivsn2 (AZ1)      
+    cidr: 10.1.2.0/16
+2.3 subnet name: urotaxiprivsn3 (AZ2)      
+    cidr: 10.1.3.0/16
+      
+3. create internet gateway
+internet gateway: urotaxiigw
+attach to vpc network: urotaxivpc
+
+4. create a route table and route the public network traffic from the subnet of resources through the internet gateway
+route table: urotaxiigwrt
+subnet association: urotaxipubsn1
+vpc: urotaxivpc
+
+route rules:
+10.1.0.0/16    local
+0.0.0.0/0      urotaxiigw
+
+5. security groups
+1 security = ec2 jumpbox created under public subnet to connect to the rds service database on private subnet
+2 security = rds database service
+
+1.
+security group name: urotaxijumpboxsg
+vpc: urotaxivpc
+inbound
+protocol    port   source cidr
+ssh         22     0.0.0.0/0
+  
+outbound
+protocol    port   source cidr
+anyProtocol anyPort 0.0.0.0/0
+
+2.
+security group name: urotaxirdssg
+vpc: urotaxivpc
+inbound
+protocol          port   source cidr
+mysql/auroradb    3306   10.1.1.0/24
+  
+outbound
+protocol    port   source cidr
+anyProtocol anyPort 0.0.0.0/0  
+
+1. create a dbsubnet group by choose the subnets of the vpc 
+aws rds service takes care of provisioning the rds database instance across any given subnets of our vpc network, for high availability and scalability. 
+  
+dbsubnet group: urotaxidbsubnetgroup
+vpc: urotaxi
+choose: both private subnets of the vpc across the az's
+  
+2. goto rds and create database service
+1. choose database creation method
+  1.1 standard = we need to set all the configurations using which rds provisions the database 
+  1.2 easy create = creates with default configurations and can change it later upon creating the database
+  
+2. choose the database engine to be used in creating the database
+  2.1 aurora mysql
+  2.2 aurora postgres
+  2.3 mysql
+  2.4 postgres
+  2.5 my-sql server
+  2.6 db2
+  2.7 oracle
+  2.8 maria db
+  
+choose: mysql
+
+3. choose the database engine version: lastest available
+4. choose the template
+  4.1 production
+  4.2 dev/test
+  4.3 free-tier
+  
+Choose: free-tier
+
+
+5. database settings
+  5.1 database identifier: urotaxidb
+  5.2 database username
+  5.3 database password
+  5.4 dbInstance shape
+  5.5 choose security group
+  5.6 public access: no
+  5.7 choose db subnet group
+  5.8 choose vpc
+  
+leave the rest of the options to default and create database.
+    
+Inorder to connect to the rds (mysql) database we need jumpbox to be provisioned on the public subnet of the vpc network. Then install the mysql client utility and connect to the rds instance
+
+1. sudo apt update -y
+2. sudo apt install -y mysql-client-8.0
+    
+connect to the mysql database using
+mysql -hrdsendpoint -uuser -ppassword
+-----------------------------------------------------------------------------------------------------------------------------------
+Compute Domain
+All the computing resources required for running the software applications are provided aspart of the compute domain. There are 5 services are offered aspart of the compute domain
+1. elastic cloud compute (ec2)
+2. elastic loadbalancer
+  2.1 application loadbalancer
+  2.2 network loadbalancer
+  2.3 gateway loadbalancer
+  
+3. elastic beanstalk
+4. auto-scaling group (ASG)
+5. Lamdba
+
+Elastic Loadbalancer
+Loadbalancer is used for distributing the traffic across instances of the application that are running across the AZ's of the vpc network. There are 2 reasons for using an loadbalancer
+  1. High availability
+  2. scalability
+  
+In addition to the above reasons, it is always recommended to expose the software applications through front-end as loadbalancer, rather than exposing them directly to the enduser over the public network, so that it helps in securing. Run the software application with the private/hybrid subnet instances only, expose them through loadbalancer. 
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

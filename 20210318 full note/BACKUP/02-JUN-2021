@@ -1,0 +1,94 @@
+www.leawy.com/drive ->
+
+ODWA222052021 = gUw]2v (fullnotes from demo - 22/MAY)
+ODWA231052021 = 9A+bzp (23-MAY = 31 MAY)
+--------------------------------------------------------------------------------------------------------
+What is Devops?
+Faster application development and delivery.
+
+Why do we need faster application development and delivery?
+  - to bring down the cost of building software application
+  - to be ahead of competitors
+  - to provide ROI for customers
+  
+How can we achieve faster application development and delivery through devops, what does devops provides to accomplish it?
+It has suggested 2 things
+  1. change the culture in which people are working
+  2. adopt devops tools and technologies in building applications
+-------------------------------------------------------------------------------------------------------- Most of the devops tools works on Linux platform only. So to start with devops we need good knowledge on Linux operating system.
+
+What is Linux?
+Linux is an Multi-User, Multi-process operating system.
+
+What is an Operating System, why do we use it?
+
+For a user to use a computer he has to pass instructions to the cpu of the computer, since he is the one who performs the operations.
+cpu is an eletronic device, which can only understand the inputs as on/off in terms of computer language an on = 1 & off = 0. this is called machine language/binary language.
+
+conclusion:-
+For users to use a computer machine they need to pass instructions in binary language
+problem:-
+it is hard and difficult for a human to memorize and write instructions in machine language or binary language, thus making computers no use.
+
+How to solve above problem and make computers easy to be used by humans?
+We need natural language capabilities through which humans should interact with computer. So help us the hardware manufacturing vendors has introduced assembly-level language.
+
+Assembly Language:-
+In assembly language we have pre-defined instruction set represent in human understandable format as 
+ADD 
+SUB 
+MUL 
+DIV 
+MOD
+Now people who want to use computer can write instructions in human language using assembly level instructions and it to cpu, so that it perform operation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,279 @@
+What is an operating system, what is the purpose of it?
+Operating System is a System software that helps us in achieving hardware portability of the programs we are running on the computer.
+  
+it acts as an interface between user of the computer and the hardware of the computer in translating the operating system instruction set passed by the user into hardware executable instruction set and execute on the underlying hardware.
+  
+Programming language:-
+while working with operating system instruction set, our programs works with only on that operating system and will not works on other operating system.
+  
+So programming languages has provided the below to achieve portability of programs across the operating systems.
+  1. programming language instruction set
+  2. compiler/interpreter to convert langauge instruction set to operating system instructionset based on operating system
+  
+Programming language provides -> 1 operating system = 1 compiler/interpreter of the platform.
+How to work with programming lanugages.
+  1. write program using language instruction set
+  2. use platform compiler for compiling the program to operating system instruction set
+  3. then run the compiled program on operating system
+  ----------------------------------------------------------
+    underlying:-
+      4. operating system use translators in convert the operating system code into hardware executable code
+      5. pass to hardware of the computer
+      6. hardware will execute.
+
+      
+programming languages = portability across the operating systems
+operating system = portability across the hardware vendors
+---------------------------------------------------------------------------------------------------------
+Introduction to Linux
+---------------------
+
+Linux is a general purpose multi-user and multi-programming operating system, original released in 1991 by linus torvalds.
+      
+Linux has been inspired by MINIX, in turn inspired by UNIX.
+      
+UNIX = initial (at&t bell labs)  = operating system software. UNIX is not open source. to use the operating system we need to purchase license and even the source code cannot be distributed/modifiable.
+thus operating system software doesnt becomes reachable, so that people cant use the computers easily.
+
+MINIX = is a small operating system being developed by a group of interested folks by getting inspired from UNIX, but there are after the efforts are stopped.
+      
+Linux Torvalds = has taken UNIX/MINIX motivation and started Linux operating system, which has been distributed as open source operating system in the world.
+Linux is free to install and use and the source code of the Linux operating system is free distributable and it is distributed under GNU License.
+      
+General Public License = any one use it for free, any one can take the source code, modify it and redistribute it as their own.
+Linux is build by the open source community contributors in the world.
+--------------------------------------------------------------------------------------------------------- Linux is "defined" by its "Kernal", kernal is the core component of the Linux operating system who takes the instructions from the user and translates and communicates with the underlying hardware of the computer.
+  
+Whenever we refer to linux means, its the kernal of the operating system. working with linux (kernal) is very difficult because it has been programmed to use through commands. 
+So a general purpose user cannot easily use linux (kernal) operating system on a computer
+  - installing the linux is very difficult, as the user has to go through executing bunch of commands to get it installed
+  - using the linux also very difficult, because using the instructions/commands of the linux user has to interact with it.
+  
+Conslusion:- you should be a programmer of Linux operating system to use the Linux (kernal).
+  
+From the above we can understand linux is not an general purpose operating system, common man cannot use it. So to make it easily usable people started a project called GNU Linux project.
+
+GNU Linux means = people around the world, in favour with opensource software distribution and are keen about contributing and promoting linux, has formed a group GNU Linux Group.
+  
+These group people produces the software tools and utilities like GUI for linux (KDE, GNOME) desktop environments , textfile editors, music player, image viewers etc that can be installed on kernal to make linux user friendly.
+  
+Now users of linux has to do the below.
+  1. install linux kernal
+  
+  gnu project (googleplay) (ios apple store)
+  2. install desktop environment of your choice
+  3. software utilities 
+  and install on top of kernal so that linux becomes general purpose operating system.
+
+From the above we can understand a general user cannot do the above steps to make linux work on a computer.
+-------------------------------------------------------------------------------------------------------
+The above chanllenges with linux has been understood software players in the market and they started 
+Linux distributions.
+  
+Linux distribution a pre-compiled set of kernal + GNU Software utilities combined to work with each other. so that end user can directly user linux distribution instead of he going through the painful process of gathering and running them.
+  
+Linux Distributions
+--------------------
+The combination of Kernal and these common tools together packaged is reffered as distributions in-short called "distros"
+  
+Different groups of softwares and configurations of the choice are maintained by individuals or groups and are distributed to the people in the world. These software distributions created and maintained by these individuals are called "distros"
+  
+There are 4 major categories of Linux distributions derived from the original linux
+1. Arch
+2. Debain
+3. Redhat
+4. Slackware
+Most of the people uses on of the distribution of redhat or debain in the market
+  Debain provides the below distributions of linux
+  1. Linux Mint
+  2. Ubuntu   (general purpose operating system (desktop like))    
+  3. Elementary OS
+  4. Kali Linux
+
+  Redhat Distributions
+  1. CentOS
+  2. Fedora
+  3. Redhat Enterprise Linux
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+  

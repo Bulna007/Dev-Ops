@@ -1,0 +1,191 @@
+How does an vagrant machine will be booted for the first-time?
+(or)
+What are the stages in which a vagrant machine will be brought up by the Vagarant?
+  
+#1 it checks to see under $VAGRANT_HOME/vagrant.d/boxes directory whether the specified vagrant boxfile is available or not. if not goes to the vagrant could downloads the relevant vagrant boxfile and stores within $VAGRANT_HOME/vagrant.d/boxes directory, which convention as BOXNAME/version/provider/box.vbox
+
+#2 import the vagrant boxfile in creating the vagrant machine
+vagrant boxfile is not an virtual disk image file, it justs acts as a template using which vagrant creates virtual disk image for the virtual machine.
+
+vagrant boxfile = contains operating system and software packages and tools along with configurations using which we can create vagrant machines quickly by importing the vbox rather than installing from iso
+
+vagrant while creating the virtual machine will extract the vagrant boxfile into ~/Virtual VMs/ directory the vbox file and imports into virtual machine as a disk image file
+
+#3 creates the .vagrant folder in project directory
+while bringing up the virtual machine vagrant will creates an .vagrant directory under the project.
+.vagrant directory holds metadata information about the vagrant machine like
+  - virtual disk image used by the vagrant machine and its location
+  - virtual machine name
+  - uid of the vagrant machine
+  - networking
+  - private/public keys etc
+if we remove .vagrant directory we lost the access to the machine through vagrant.
+it configures NAT networking with port forwarding enabled on 22 port for SSH access
+generates an public/private key seeds the public key on the vagrant machine and stores public/private key under .vagrant directory
+boots up the virtual machine and returns
+---------------------------------------------------------------------------------------------------------
+What are the stages in which a vagrant machine can exists?
+There are 5 stages in which a vagrant machine can exist
+1. not created
+2. running
+3. poweroff
+4. saved
+5. aborted
+---------------------------------------------------------------------------------------------------------
+#1 sync_folder
+--------------
+
+during development we want to share the files which we developed on the host machine into the guest/vagrant vm, this can be quickly done by mounting the directory of the host machine onto the guest machine.
+So that we can copy the files onto mount directory and we can access them quickly in vagrant machine.
+  
+We create a host directory and we mount it onto the guest under a specific path
+for eg.. host[d:\devspace] -> guest[~/devwork]
+now we can access the files/folders of d:\devspace of the host under ~/devwork directory in the guest.
+
+almost all hypervisor providers supports sharing the host directories onto the guest machine. vagrant helps us in configuring the shared directories between host and guest through sync_folder declaration.
+
+by default vagrant configures the project directory as a synced folder under /vagrant path of the guest. In general we want to access the project files under guest, so its a default behaviour of vagrant.
+  
+In addition we can configure additional sync_folders in vagrant configuration file through sync_folder declaration as below.
+  
+Vagrantfile
+-------------
+Vagrant.configure(2) do | config |
+  config.vm.box = "basebox"
+  config.vm.synced_folder "source directory", "mountLocation"  
+end
+---------------------------------------------------------------------------------------------------------
+Vagrant networking:-
+A virtual machine should be configured with networking to enable access to the machine
+  1. host <-> machine
+  2. guest <-> guest
+  3. external <-> guest
+unless a virtual machine has been configured or attached to the network, there is a minimal of it we can get from the virtual machine.
+  
+Every Hypervisor provider should support attaching virtual network adapters to the virtual machines and attaching them to the network (using network modes) to make them accessible based on the requirements.
+  
+  
+Vagrant not only permit us in provisioning the machines, along with that it should support enabling networking for the virtual machine through vagrant declarations, so that developer can configure networking mode in a vagrant configuration file and can bring up the virtual machine.  
+Here vagrant facilitates in configuring the networking through hypervisor.
+  
+What are the networking modes supported by the oracle virtualbox provider?
+1. not attached      =    adapter is not connected
+2. nat               =    vm -> host (allowed) | host -> vm (not) | guest -> ext n/w (allowed) | ext -> guest (not allowed only permitted through port forwarding) | guest <-> guest (not allowed)  
+3. nat network
+4. host-only network
+5. internal network
+6. bridge network
+7. generic adapter
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

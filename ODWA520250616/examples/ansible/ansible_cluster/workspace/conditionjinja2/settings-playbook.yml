@@ -1,0 +1,8 @@
+- name: settings play
+  hosts: all
+  tasks:
+    - name: generate settings
+      template:
+        src: settings.json.j2
+        dest: ~/settings.json
+        

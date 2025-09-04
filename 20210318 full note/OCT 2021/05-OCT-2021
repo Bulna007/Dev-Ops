@@ -1,0 +1,136 @@
+Configuring SSH Access
+-----------------------
+Remote Server = The Machine we want to access remotely
+
+1. Install SSH Server
+There is an open source ssh server software available for Linux distributions with package name: openssh-server, we can install on the remote machine
+sudo apt update 
+sudo apt install -y openssh-server
+
+
+2. Upon installing the openssh server, it creates a file called sshd_config under /etc/ssh/sshd_config. This file contains SSH Server configuration settings which can modified if required for changing the behaviour of the Server
+Few configuration settings are as below:
+
+2.1 Enabling SSH Access to the remote computer means allowing the client to connect to the remote machine onbehalf of one of the user of the machine.
+Generate public and private key and associate the public key to one of the user of the remote computer, indicating the clients can ssh into the remote computer as this user.
+  
+If we want to enable remote access of the machine for bob, we need to generate public/private key copy public key contents into the below File.
+~/.ssh/authorized_keys
+Now SSH Server will verify the public key produced by the client at the time of connecting with authorized_keys file to verify is this user is allowed to connect or not
+
+The default location of the authorized key file is ~/.ssh/authorized_keys, if we want to change the filename of location we need to and modify the property in sshd_config file
+
+sshd_config
+AuthorizedKeysFile ~/.ssh/authorized_keys
+
+2.2 by default the SSH Server inorder to allow client to access the remote server will prompts for username/password of the user since we are using public/private key authentication we can disable password authentication which can be done by modifying property in sshd_config
+
+PasswordAuthentication no
+
+
+#3 Generate public and private key pair
+There are 2 ways we can generate public and private key
+1. we can use puttygen tool to generate public and private key
+select the algorithm as RSA and generate keypair, if we want we can enable key phrase to protect the key not to be used by others.
+  
+2. This is the most preffered way of generate the public/private keys while working on linux computers.
+In windows if we have powershell/git bash then also we can use this technic
+There is a tool called ssh-keygen upon running will generate public/private key under the default location
+$USER/.ssh with default filenames as id_rsa.pub and id_rsa.ppk
+
+
+Generate the public/private key on the workstation/client computer and then copy the public key onto the server.
+  
+#4
+Now copy the public key onto the SSH server into authorized_keys file for the user whom you want to enable ssh access.
+There are 2 ways to copy the public key file on to the remote server
+
+
+1. use scp command to copy the file onto the remote system and then copy the contents of the file and manually and paste it into authorized_keys
+
+scp publickeypath username@ipaddress:/location
+
+2. we can use ssh-copy-id command directly, which takes care of copying the public key onto the authorized_keys file by prompting username/password of the remote user machine 
+
+#5 How to ssh into the remote machine
+SSH is the client utility available on linux distro by default. and if we are using windows 10 then the utility is available
+we can install powershell or gitbash to make the utility available in windows as well.
+  
+if the workstation is linux machine|powershell|gitbash then directly ssh into remote computer using ssh command
+ssh username@ipaddress = ssh client command by default looks for ssh public key/private key under userhome .ssh/ directory with key names as id_rsa.pub and id_rsa.ppk
+~/.ssh
+  |-id_rsa.pub
+  |-id_rsa.ppk
+  
+to make these keys secured we need to enable file permissions as 600
+  
+in windows we need to place the ssh keys at the client computer only under $USER/.ssh directory, because a $USER cannot be accessed by other users of the windows machine
+
+if the ssh key locations are different or key filenames are different the ssh will fail to let the ssh client pick the keys from different location or filename use the below command.
+ssh -i location/publickey username@ipaddress
+  
+If we dont have ssh client program available on windows computer then we can use putty tool to ssh onto the remote computer.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

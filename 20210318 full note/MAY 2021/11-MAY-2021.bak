@@ -1,0 +1,80 @@
+In general the shell commands takes the input from STDIN and writes the output to STDOUT, if want to redirect the input/output of the shell commands then we need to use redirection operators.
+  There are 2 redirection operators are there
+    1. < = input redirection
+    2. > = output redirection
+
+a command input can be redirected from a different source than STDIN by using input redirection.
+cat < file1.txt
+cat < file1 > file2.txt
+cat < file1.txt - file2.txt >> file3.txt
+---------------------------------------------------------------------------------------------------------
+
+find = if we want to search for files/folders on our filesystem based on names in linux, we can use find command
+
+#1 
+find directory/ -name "pattern" -print [by default print is enabled, prints each matching file in a separate line]
+
+#2
+find directory/ -name "pattern" -print0 [prints all the matching filenames in one single line]
+
+#3
+find directory/ -name "pattern" -empty = display all the empty files matching with the given name
+
+#4 
+find directory/ -name "pattern" -exec command {} \; = exec the command supplied on all the matching files
+
+#5 
+find directory/ -name "pattern" -o  -name "pattern" = either matching first pattern or second pattern will produced as output
+
+#6 
+find directory/ -name "pattern" -perm octal = search for files of the given pattern with permissions matching (later)
+  For eg.. find directory/ -name "pattern" -perm 644 = shows only the list of files matching with permissions as rw-r-r only
+  
+--------------------------------------------------------------------------------------------------------
+
+find is used for searching for files/folder matching with the given "name/pattern" on the filesystem
+
+grep (content search) = searching for a text inside file, search for the files, whose contents are matching the given text, this is really a powerful feature of linux, where no operating system really provides.
+Most handy command used for searching in log files to find errors., so frequently asked question is how to search in log files can you explain?
+  
+#1 grep "text" filename = it displays all the matching lines of the text within that file.
+  
+#2 grep -R "text" directory = it displays all the matching lines of the text within all the files of the directory recursively
+
+#3 grep -n "text" filename = it displays all the matching lines of the text within that file, along with line number
+
+#4 grep by default is case-sensitive, the text supplied will be searched with matching case only.
+  notes1.txt "Good times"
+  grep "good" notes1.txt = will not give output (no matching lines)
+  grep -i "good" notes1.txt  = here -i stands for ignore case
+    
+  
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,157 @@
+sudo useradd username
+sudo useradd -g exiting_groupid username
+sudo useradd -u uid -g exiting_groupid username
+sudo useradd -u uid -g existing_groupid -d directory/ -s /bin/bash
+
+id username
+grep -iw username /etc/passwd
+groups username
+
+cat /etc/group
+
+sudo usermod -aG groupName username
+sudo usermod -G group1,group2,group3 username
+sudo gpasswd -d userName groupname
+
+sudo groupadd groupName (empty)
+---------------------------------------------------------------------------------------------------------
+How to switch between the users of the Linux?
+  
+Linux being an Multi-User operating system, would allow multiple users to login and access the operating system Resources parallely.
+We can always switch between the users of the linux through graphical user interface, by using switch user option available, it redirects to login prompt asking to choose and enter password of the user with which you want to login.
+  
+In linux a root user can give a previlige to a Normal user allowing him to act upon another user of the Linux system and is allowed to issue commands onbehalf of another without knowing the password of the other user.
+This can be done using a command su
+su = stands for switch user
+sudo su username = you will be prompted for password upon entering the current user will be switched to the other user.
+--------------------------------------------------------------------------------------------------------
+
+In a Linux operating system they can be only one Root user and the other users of the System are considered as Normal users only. To retain the total control of the system with oneplace Linux allows only one Root user.
+  
+But in reality it will become very difficult with an one user as Root to handle all the operations in a corporate. obviously we need more previliged users to delegate responsibilities of Root. To help in delegating few responsibilities to the Normal users of the Linux, the concept of sudoers has been introduced.
+  
+sudoers = means super user do (next high previliged in linux, after the root), if you remember there are 2 directories in linux where we have shell commands.
+  /bin = shell commands that can be used by everyone of the linux system.
+  /sbin = super user commands, that can be used by only a Root user or sudoers
+
+In general when a root user log-in to the Linux machine and opens a terminal he will be placed in normal user prompt only, and will not be allowed to execute any of the /sbin command for the sake of security.
+
+By default a Root user will not be logged in to the shell with root access, he cannot issue any of the super user commands. to switch or gain root access the Root user should issue the below command
+sudo su - = prompts a password takes you into root user prompt by displaying an "#"
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+

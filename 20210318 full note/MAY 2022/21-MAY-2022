@@ -1,0 +1,106 @@
+#1. how to create a pod on the cluster?
+kubectl create -f pod.yml -n namespace
+
+#2. how to see the pods on the cluster?
+kubectl get pods -o wide -n namespace
+
+#3. how to see the details of a pod on the cluster?
+kubectl describe pod podName
+
+#4. how to see the logs of the running application inside the pod?
+kubectl logs podName
+kubectl logs -f podName = tail -f
+
+#5. how to delete a pod
+kubectl delete pod podName
+kubectl delete -f pod.yml
+--------------------------------------------------------------------------------------------
+livelinessProbe and readinessProbe on pods
+
+when we schedule a kubernetes pod during its execution the underlying application running inside the pod might go into unresponsive state due to various different issues like stuck thread or resources not available for serving the request and might be timeout etc.
+even then also kubernetes will report the pod status as running only.
+To identify such unresponsive pods and replace them with healthy pods by the kubernetes we need to help kubernetes determine the real status of the pod, which can be done through readinessProbe and livelinessProbe
+
+Kubernetes supports 2 types of checks to be performed on the pod
+1.readinessProbe
+upon scheduling a pod for execution, the kubernetes after pulling the image and bringing up the pod into execution, it immediate reports the status of the pod as running and make it accessible. but in reality the underlying application running inside the pod is still starting up and may not be ready to accept the requests, even then also kubernetes assumes that it has been started and every request received from the outside world is routed to the application which will eventually fail how to solve this problem?
+	
+The kubernetes has introduced readinessProbe, which let the kubernetes determine when does the actually application is available for accessing. The developer of the underlying application has to expose an http endpoint which needs to be configured as part of the pod spec letting kubernetes probe the endpoint to understand when does the pod application is available for accessing to make it exposed to the world.
+until the readinessProbe passed no requests will be scheduled to be recieved by the pod.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

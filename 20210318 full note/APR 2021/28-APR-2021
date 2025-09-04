@@ -1,0 +1,119 @@
+Filepointer table
+File blocks
+Data blocks
+-> how does files are stored and organized on a storage device of a computer.
+
+What is a File?
+File is a datastructure which holds the memory block address of where the actual data resides on our storage.
+  
+Where does the data will be stored on a storage device of a computer?
+The storage memory is divided into 2 parts
+1. data blocks = is the actual physical locations of the storage where our data is placed
+2. Filesystem space = holds the File blocks and Filepointer table to locate and access the data from datablocks
+  2.1 Fileblock = holds the metadata information of the data like Name, size, owner, created date etc
+  2.2 FilePointer Table = table is a key,value datastructure in which filename and fileblock address will be stored. so that while accessing the data the operating system searches for the file in 
+  Filepointer table to identify FileBlock and Datablocks for the File.  
+
+The entire mechanism of storing and organizing the data is called "Fileystem" technic
+
+Different operating systems comes up with different Filesystem mechanisms.
+Windows operating system supports following Filesystem Technics
+1. FAT
+2. NTFS
+
+Linus operating system supports different Filesystem Technics
+supported:
+1. EXT = old one and no longer used 
+2. EXT2 = allows us to store 2 terrabytes of data. 
+3. EXT3 = is an updated version of EXT2 and backward compatible with EXT2, doesnt support recovery
+4. EXT4 = faster and allows large files with significant speed to be managed. default filesystem in linux. it supports recovery
+5. JFS = very old filesystem developed by IBM. it supports both small and big files, but if failed or corrupted after long time use.  
+6. XFS = is a very old filesystem and works slowly with small files
+7. Btrfs = developed by oracle, it is not stable like EXT in some distros. it has good performance.
+  
+Linux Filesystem is hierarchial which represents or stores files in parent and child relationship.
+Please refer to hierarchial-representation.jpg for more information on Hierarchial Structure.
+  
+In linux the Filesystem starts from one single root node called "/" (root) represents the root of the Filesystem. every other file/folder on the storage will exists under the root only. The linux operating has comeup with pre-defined directory structure layout to organize different types of files of the operating system.
+  
+What is the advantage of Linux Filesystem being hierarchial?
+The user can easily navigate into a specific directory of the Filesystem to locate a group/type of related Files. For eg.. I want to access all the super user shell commands that are shipped as part of linux goto /sbin directoy you find there.
+
+What are the standard directories that comes as part of the Linux Filesystem?
+/
+|-bin    = all the shell command files are there inside the bin directory.
+|-boot   = boot loader files to boot linux operating system are in boot directory.  
+|-dev    = dev stands for devices. all the physical devices like usb, cd, dvds are mounted onto /dev directory
+|-etc    = Contains configuration files for the installed software pacakges
+|-home   = For every user we create in linux a sub-directory will be created under /home with his name
+|-lib    = library files of the installed software packages are placed here
+|-media  = 
+|-mnt
+|-opt
+|-proc
+|-sbin
+|-root
+|-tmp
+|-usr
+|-var
+
+When we install linux operating system on our computer the following directories are created by linux on our filesystem to organize the files of our system.
+Mouting is the process of linking the ext devices on to the Filesystem so that those are made accessible.
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

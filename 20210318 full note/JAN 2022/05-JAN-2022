@@ -1,0 +1,71 @@
+What is an ansible inventory file?
+Ansible inventory files is used for declaring the information about all the fleet servers of the network on whom we want to apply automation.
+	
+default inventory file: /etc/ansible/hosts
+
+instead of using the default inventory file, we can create our own inventory for for each project on which we are working so that we can control closed group of machines.
+~/airtelcarehosts
+ansible -i ~/airtelcarehosts all -m ping
+
+There are 2 formats in which we can write ansible inventory file
+1. ini
+2. yaml
+
+1. ini
+without any extension create a file and delcare each host on per each line
+
+airtelcarehosts 
+192.168.10.12
+192.168.10.13
+	
+2. yaml
+all:
+  hosts:
+   192.168.10.12
+	 192.168.10.13 
+---------------------------------------------------------------------------------------------
+What are groups in ansible inventory?
+groups are used for categorizing the machines used in a project like
+javaservermachines
+dbservermanages
+devenvironment
+prodenv
+so that we can manage those related group of computers together rather than keeping them in multiple inventory files
+
+By default there are 2 groups are there
+1. ungrouped = if we dont declare a host in any group, then it is ungrouped
+2. all = all the machines/hosts declared in inventory is part of all group
+
+1. how to declare group in ini
+[groupName]
+hosts
+----------------------------------------------------------------------------------------------
+how to use ranges in inventory files?
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 

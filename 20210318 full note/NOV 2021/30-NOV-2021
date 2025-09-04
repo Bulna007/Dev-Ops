@@ -1,0 +1,173 @@
+#1 remote repository and why do we need to use it?
+#2 maven settings
+#3 dependency scope
+#4 archetypes
+
+#2 how to modify the maven default settings?
+we have to write settings.xml file under ~/.m2/ location, we can condigure local maven repository location, remote repository, proxies, mirrors etc
+
+#3 dependency scopes
+it is the way through which we tell the maven about how to use the dependencies during the build process. There are 5 scopes 
+1. compile (default) = all the phases
+2. provided = dont package
+3. test = during the testcase executions only
+4. runtime = dont include during compilation, but package
+5. import = refer the dependencies from another pom.xml project
+
+#4 archetypes
+we need to follow standardized directory structure in creating the project while working with maven, creating the project structure takes lot of time manually, so maven has provided pre-packaged project templates shipped to us via maven central repository.
+	
+now developers can download these archetypes and extract them, replace the tokens in pom.xml and use for project development.
+
+How many archetypes are provided?
+based on the type of the project, the project structure will differ in maven, so maven has provided 4 archetypes and those are binded with gav coordinates to identify
+
+groupId: org.apache.maven.archetypes
+artifactId:
+maven-archetype-quickstart = core java
+maven-archetype-webapp = web aplication
+version: 1.4
+------------------------------------------------------------
+maven-archetype-mojo = plugin development
+maven-archetype-archetype = to build our own archetypes
+
+How to create maven project?
+#1 download the archetype based on the type of project we want to develop.
+#2 extract the archetype zip
+#3 goto pom.xml and replace the tokens
+thats it our basic project structure is ready
+
+performing the above procedure manually takes lot of time again, so maven has provided an plugin called "archetype"
+	
+mvn archetype:generate = using an archetype can you please generate a project
+
+mvn archetype:generate -DgroupId=devops -DartifactId=basicjava -Dversion=1.0 -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+we can create maven project quickly by using archetype tool as shown above.	
+---------------------------------------------------------------------------------------------------
+maven plugins
+
+project
+|-src
+	|-main
+		|-java
+			|-com
+				|-bj
+					|-test
+						|-BJTest.java		
+		|-resources
+			|-*.xml | *.properties
+|-pom.xml
+
+
+To build an maven project, maven has to carry several build activites/build steps in a specific order. for eg..
+	1. compile the java source code 
+	2. copy non-java files under resources directory into target/classes directory
+	3. execute unit testcases
+	4. package the application as jar/war dependency on packaging element we wrote in pom.xml
+	
+Each build activity in maven is carried by a component called Plugin. 
+A Plugin is a java class/component written by maven developers, which will contains logic for performing an build activity/step.
+For eg..
+	1. compiling the java source code will be perform by maven-compiler-plugin (java component)
+	2. copying non-java files from resources folder to target/classes will be performed by maven-resource-plugin (java component)
+	3. execute junit testcases will be performed by maven-surefire-plugin (java component)
+	4. package into jar file maven-jar-plugin
+	
+There are default plugins automatically configured and executed by maven based on type of java project.
+<packaging>jar</packaging> = maven knows which plugins are required for a java jar project and will automatically configures and executes
+
+
+apart from default plugins we can create or use 3rd vendor provide plugins for perform additional activities/steps
+for eg..
+we want to send an email after the maven build completed, for this maven doesnt have any in-built plugin. So we can create our own plugin or use 3rd vendor provided mail plugin.
+In order to execute this plugin by maven, we need to configure plugin information in pom.xml and <plugins> declarations similar to <dependencies>
+
+devops engineers has to configure plugins in pom.xml to customize the build activities
+for eg..
+	1. to generate junit testcase reports
+	2. to run code coverage plugins
+	3. to run security plugins
+	4. to run code review plugins
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,243 @@
+devops with aws cloudplatform
+------------------------------
+Duration: 4/5 months
+Fee: 8k
+Timings: Monday - Saturday [7:10 am - 8:10 am]
+                 Saturday/Sunday [7:10 am - 8:10 am or 8:10 am - 9:10 am] (if required will conduct the evening class on saturday/sunday)
+Live class room notes with examples will be shared with the students on weekly basis
+No recordings, no youtube and students are not permitted to record the sessions, if found anyone admission will be canceled without any fee refund
+
+Pre-requisite:
+1. Linux operating system knowledge (required)
+File management commands [mkdir, ls, cd, pwd, touch, tree]
+User management/Permissions commands [useradd, groupadd, chmod, chown]
+Package management [apt, dpkg]
+Utility [cut, sed, awk]
+Process Management commands [ps, kill]
+
+2. Shellscripting (optional)
+3. Basics of java programming language (optional)
+    1. how to compile and run java program
+    2. java libraries and dependencies
+    3. jar/war
+    4. deploying an java web application on an Tomcat server
+--------------------------------------------------------------------------------------------------------------------------------------
+Course Content
+--------------
+1. Ansible
+1. What is software configuration management tools, why do we need them?
+2. Understanding Ansible architecture and capabilities
+3. Setting up Ansible environment
+4. Ansible configuration options available
+5. Inventory Management 
+6. Ansible Variables
+7. Basics of YAML
+8. Writing and executing ansible playbooks
+9. Ansible adhoc commands
+10. Ansible modules 
+11. Loops and Conditions
+12. Ansible Vault
+13. Jinja2 Templates
+14. Ansible roles
+15. When_Changed and When_Failed
+16. Playbook execution strategies
+
+2. AWS Cloudplatform (basic coverage)
+1. AWS Cloudplatform architecture
+2. Setting up an AWS Free-tier account
+3. Networking (vpc, availability zones, regions, subnets, gateways (internet/nat), nacls, security groups)
+4. Compute (ec2 instance, loadbalancer (alb))    
+5. Database (rds instance)    
+6. IAM security (users, groups, roles and access keys)    
+7. Storage domain (S3 storage)    
+
+3. Terraform
+1. Introduction to IAAC automation tools
+2. Terraform Architecture
+3. Terraform File
+4. Terraform Variables 
+5. Provisioners
+6. Modules
+7. Terraform Statefile Management (local/aws s3 storage/dynamodb)
+8. Terraform loops/conditions
+
+Project: AWS Cloudplatform (Ansible + Terraform)
+    
+4. JFrog artifactory repository setup
+
+5. Docker
+1. Introduction to containerization technology
+2. Virtualization vs Containerization
+3. Introduction to docker
+4. Docker installation
+5. Docker cli
+6. Docker hub registry
+7. Docker Images are layered and stackable
+8. Docker Directives (Image building instructions)
+  1. FROM
+  2. COPY
+  3. ADD
+  4. WORKDIR
+  5. RUN
+  6. CMD
+  7. ENTRYPOINT
+  8. ENV
+  9. EXPOSE
+  10. VOLUME
+  11. HEALTHCHECK
+  12. ARG
+9. Docker Tags
+10. Publishing Docker images into the docker hub registry
+11. Docker networking
+12. Setting up our own docker container registry (using artifactory) and publishing and pulling the images
+13. Docker volumes vs Docker Bindmounts
+
+6. Docker Compose
+
+7. Kubernetes (25 days) 
+1. Introduction to Kubernetes and why do we need?
+2. Architecture of Kubernetes
+3. Kubectl / Kube Config
+4. kubernetes specs
+  1. pod
+  2. deployment
+  3. service
+  4. loadbalancer
+  5. ingress
+  6. replicaset
+  7. daemonset
+5. persistent volumes and persistent volume claims
+6. types of controllers
+7. namespaces
+8. configmaps and configsecrets
+9. health probes
+10. resource configurations
+11. rolling strategies
+12. eks cluster on the aws cloudplatform
+13. kubernetes networking
+14. role based access (users/groups) [administration]
+
+8. HELM
+
+9. Jenkins (10/15 days)
+  1. Why jenkins, what is the purpose of it
+  2. How to setup an Jenkins cluster
+  3. Installing and configuring jenkins plugins
+  4. configuring global security
+  5. Integrating Jenkins with git, maven, docker etc
+  6. free-style project
+  7. pipeline
+    1. declarative pipeline (new) [main]
+    2. scripted pipelines (groovy scripting) (old) #only couple of examples
+  8. building ci/cd pipelines through jenkins
+    1. terraform/ansible
+    2. docker/kubernetes
+    
+10. ELK  
+  1. Elastic search
+  2. Logstash
+  3. Kibana / Splunk
+  
+11. Dynatrace
+
+Tools: [5:30 pm IST]
+0. SVN 
+1. Git
+2. Sonarqube
+3. Jacaco
+
+devops + aws cloudplatform [12k] [new 2 months]
+Linux operating system
+Shellscripting
+Networking
+Network protocols
+Ip addressing, Subnet mask, CIDR notation
+SSH protocol
+Apache2 server in hosting an static webapplication
+Java Language basics
+Database basics
+Vagrant
+Virtualization & Virtual Networking
+
++
+current course content
+
+durgasoftonlinetraining@gmail.com
+Name:
+Mobile:
+Course:
+Timing:
+Email Address:
+Payment screenshot:
+Please share immediately the 5:30 pm tools link
+
+tech.sriman@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

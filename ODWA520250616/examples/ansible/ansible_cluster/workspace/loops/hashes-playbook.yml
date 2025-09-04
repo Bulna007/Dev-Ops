@@ -1,0 +1,17 @@
+- name: create multiple users
+  hosts: all
+  tasks:
+    - name: create user
+      user:
+        name: "{{item.user}}"
+        password: "{{item.password}}"
+        uid: "{{item.uid}}"
+        shell: "{{item.shell}}"
+        create_home: "{{item.create_home}}"
+        state: present
+      become: yes
+      loop:
+        - {user: "joe", password: "$6$JxM/jDwQh6TscLQy$aNP4Cf3F0lSwvDpuhZEqcl3dCIvsebNuECtRcopRcmnZunNc.sOMhLXQUovg.YbP4mAaK4uLPFtSDmBBspaTp1", uid: "1005", shell: "/bin/bash", create_home: "yes"}
+        - {user: "jack", password: "$6$JxM/jDwQh6TscLQy$aNP4Cf3F0lSwvDpuhZEqcl3dCIvsebNuECtRcopRcmnZunNc.sOMhLXQUovg.YbP4mAaK4uLPFtSDmBBspaTp1", uid: "1006", shell: "/bin/bash", create_home: "yes"}
+      loop_control:
+        label: "{{item.user}}"  

@@ -1,0 +1,185 @@
+What are loop control statements, what is the purpose of them?
+If we want to execute a block of code at a place within our program for N times, instead of duplicating the code, we place them inside a loop control statement.
+There are 3 loop control statements are supported.
+  1. while
+  2. for
+  3. until
+
+#1. while loop
+while the condition is true repeatedly execute the block of code inside it.
+syntax:-
+  
+  while [ condition ]
+  do
+    #block of code
+  done
+---------------------------------------------------------------------------------------------------------
+#1 print n numbers
+#2 multiplication table
+#3 print even numbers between 1 - n
+------------------------------------
+
+#4 wap to find whether a given number is prime or not?
+prime number is divisible by 1 and itself
+
+7 = divide the number from 2 to 7(n)-1 see if remainder is zero, if it results in zero atleast for 1 number it is not prime, otherwise prime
+
+N=11
+2 - N/2    
+11 % 2 = 1
+   % 3 = 2
+   % 4 = 3
+   % 5 = 1
+    -------- prime
+
+N=10
+I=2
+END=5
+IS_PRIME=1     10%2
+
+checkPrime.sh
+#!/bin/bash
+read -p "N:" N
+I=2
+END=$[N/2]    
+IS_PRIME=1 [FLAG VARIABLES TRUE/FALSE]
+
+while [ $I -le $END ]
+do
+  REM=$[N%I]
+  if [ $REM -eq 0 ]
+  then
+    IS_PRIME=0
+    break; # terminating the loop
+  fi
+  I=$[I+1]
+done
+
+if [ $IS_PRIME -eq 1 ]
+then
+  echo "$N is prime number"
+else
+  echo "$N is not prime"
+fi
+---------------------------------------------------------------------------------------------------------
+#5 wap to sum all the digits in a given number and print it
+
+342 = 3 + 4+ 2 = 9
+987 = 9 + 8 + 7 = 24
+  
+342/10 = 34.2 (since integer .2 is gone, so result = 34) = if we divide any number by 10 we remove the last number because of fractional part
+342%10 = 2 = remainder out of division. any number modulus by 10 will get the remainder as last number
+
+  
+342%10 = 2 +
+342/10 = 34
+
+34%10 = 4 +
+34/10 = 3
+  
+ 3%10=3 +
+ 3/10 = 0  (stop)
+each time divide the number by 10 until it becomes zero. in each iteration get the remainder of the number by dividing with 10. last number will be extracted sum it.
+  
+sumOfDigits.sh
+#!/bin/bash
+read -p "N:" N
+SUM=0
+while [ $N -gt 0 ]
+do
+  REM=$[N%10] #last number
+  SUM=$[SUM+REM] 
+  N=$[N/10] #will remove last number
+done
+-----------------------------------------------------------------------------------------------------
+#6 wap to print below pattern for the given N lines = 5
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

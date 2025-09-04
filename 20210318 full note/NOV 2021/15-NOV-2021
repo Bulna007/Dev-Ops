@@ -1,0 +1,41 @@
+How to create a Vagrant boxfile from the scratch?
+1. create an virtual machine in virtualbox
+goto virtual machine settings do the below changes
+  1.1 disable audio and usb (security)
+  1.2 allocate cpu 1 to 3/4
+  1.3 ram: 1024
+  1.4 configure NAT network with port forwarding 2222 to 22
+2. Start the VM
+  prompt for iso file 
+  enter username and password: vagrant/vagrant
+3. install guest editions to make shared folders, network modes to work
+4. restart the machine
+5. update ubuntu cache repository
+sudo apt update -y
+6. install open ssh server
+sudo apt install -y openssh-server
+7. configure ssh access for vagrant user
+  ~/.ssh/authorized_keys
+  copy insecured_public key into authorized_keys file
+8. enable ssh access without password
+/etc/ssh/sshd_config
+PasswordAuthentication no
+restart ssh server
+9. configure passwordless sudoer access to vagrant user
+  9.1 modify /etc/sudoers, add the entry for vagrant user
+  vagrant ALL=(ALL) NOPASSWD:ALL
+  9.2
+  create new file under /etc/sudoers.d/vagrant
+  vagrant ALL=(ALL) NOPASSWD:ALL
+
+
+
+
+
+
+
+
+
+
+
+

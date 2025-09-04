@@ -1,0 +1,29 @@
+---
+- name: copy site
+  copy:
+    src: files/{{site_dir}}
+    dest: /var/www/
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+- name: install apache2
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+  become: yes
+- name: start apache2
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+  become: yes
+- name: configure site
+  template:
+    src: templates/site.conf.j2
+    dest: /etc/apache2/sites-available/"{{site_dir}}".conf        
+  become: yes
+  notify:
+    - enable site
+    - restart apache2

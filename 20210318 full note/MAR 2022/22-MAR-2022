@@ -1,0 +1,106 @@
+Containerization:
+-------------------
+advantages:-
+1. containers are light weight as they dont run operating system of their own within them so we can run multiple containers on a machine we can optimally utilize the underlying hardware resources of the computer
+2. container images are light weight thus making them portable across the computers
+3. it is easy to implement ci/cd using containerization technology as the container images are small and easily carriable
+4. applications are easily scalable through containerization technology as container doesnt require lot of time in booting
+5. patching and upgrading the containers are easy when compared with virtual machines
+
+dis-advantages:-
+1. we cannot run the container with its own dedicated operating system independent of the host operating system
+2. less secured when compared with virtualization
+3. only suitable for short-running applications only
+------------------------------------------------------------------------------------------
+When to use virtualization and containerization?
+------------------------------------------------
+if we want to share isolated environments of indepedent operating systems across the teams or users we need to go for virtualization. if we just wanted to run multiple applications isolated from each other on the same machine then using containerization
+------------------------------------------------------------------------------------------
+What is containerization, why do we need to use it?
+Using containerization technology we can package software application and its dependent libraries, with bins/libs required for running the application and instructions for running the application and execute it in an isolated manner from another applications running on the same computer
+
+what are the benefits of using containerization?
+There are 2 advantages of using containerization
+1. using containerization technology we can abstract the underlying details of the technology and the way we need to run the application from the opsengineer and can standardize the delivery of the s/w application
+we are standardizing the workflow of delivering a software application 
+
+In-Short: it abstracts the delivery of a software application, so that devops engineer without bothering about the underlying technology in which it is built he can run any s/w application by following standard workflow of execution.
+
+2. as containers are light weight we can run multiple containers on the same machine and can optimize the utlization of resources of the computer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

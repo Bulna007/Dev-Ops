@@ -1,0 +1,215 @@
+sudoers
+--------
+
+1. root user
+root user has unrestricted access to all the services and resources of the linux operating system. There can be only one root user per one linux operating system machine.
+	
+Why there is only one root user is allowed per one linux operating system machine?
+To have the control over the system and its resources with only one user centrally, so that it eliminates the conflict of interest when we have multiple.
+	
+	
+	
+2. normal user
+any other user other than the root, that is created/added by the root is called an normal user. A normal user has access only to the home directory of his own and can see or manage the processes that are owned by him.
+	
+Within the organization or corporate environment, having only one user can manage in carrying administrative activities for bunch of people or machines?
+No it would be very difficult to manage with one root user, as we always have a team of administrators working for handling the administrative activites for all the employees within the organization. In such case we need several root users each per one administrator member within the adminstration team
+
+But this is against to the policy of Linux operating system allowing multiple roots.
+
+	
+To address the problem of having multiple root users with administrative access, the linux operating system has introduced "sudoers"
+	
+"sudoers" stands for super user do, which are allowed to perform administrative activities or operations by running /sbin commands of the root/super user
+
+Then what is the difference between root and a sudoer?
+The root can enforce restrictions on a sudoer by permitting him to perform
+	1. specific /sbin commands (or super user commands) (Command Alias)
+	2. on specific group/users only (User Alias)
+	3. from an specific source ip address machine only (ip address)
+	
+	
+How to make a normal user as sudoer?
+The root user can promote any other normal user of the linux operating system as sudoer. it can be done in #3 ways
+1. we can make an user as a sudoer through /etc/sudoers (file)
+2. we can make an user as a sudoer through creating a new file entry within /etc/sudoers.d/ (directory)
+3. by adding an user into sudoer group
+
+
+#1. through /etc/sudoers (file)
+one way to promote a normal user as sudoer is through /etc/sudoers file. The /etc/sudoers is an special configuration file that is located under /etc directory. Within this file the root user has to configure a normal user as an sudoer, this can be done in #2 sections or ways
+
+Within the /etc/sudoers file there are #2 sections are there
+1. users section
+if we want to promote a single user as a sudoer, then we need to configure an entry under users section
+
+2. groups section
+if we want to promote a group of users (consists of several users) as sudoers then we need to configure an entry under groups section
+
+
+1. How to promote a single user as sudoer?
+we need to make an configuration entry under users section of the /etc/sudoers file with the below syntax:
+
+username ALL=(ALL:ALL) ALL #root
+
+1. ALL = indicates executing an sudo command from which location (here ALL indicates from any location)
+2. ALL = indicates can execute super user commands on all the users
+3. ALL = indicates he can execute commands on any group of users
+4. ALL = indicates any commands on any group of users indicated above
+
+if we grant access for running any commands on any user or group from any where, he is equally same as "root" user.
+	
+	
+How to elevate a normal user of the linux operating system as sudoer?
+There are #3 ways a normal user can be elevated as an sudoer
+1. add an configuration entry in /etc/sudoers file
+2. create a new file with configuration entry under /etc/sudoers.d/ directory
+3. sudoers group
+
+1. /etc/sudoers file
+There are 2 ways or 2 sections there within the sudoers file
+1. user section
+if we want to promote a single user as sudoer then define an configuration entry for the user under user section
+
+2. group section
+if we want to promote a linux group of users as sudoers, then make an entry under group section
+
+1. user section
+how to promote an user as a sudoer
+username ALL=(ALL:ALL) ALL
+
+username = is the name of the linux user we want to promote as sudoer
+ALL = user is allowed to grab sudoer access from which ip address machine
+ALL = onbehalf of which user
+ALL = onbehalf of which group
+ALL = what commands
+
+How to edit the sudoers file?
+By default the sudoers file can be accessed only by the root user and he has read-only access. If we modify the sudoers file in-correctly then all the users losses the sudoers permission
+
+There are 2 ways we can edit the sudoers file
+1. visudo
+visudo is a bash utility provided by the linux that can be used by an root user for editing the sudoers file. When we type visudo on the terminal or bash prompt it directly opens /etc/sudoers file either in nano/vim editor allowing the root to edit the file
+
+upon editing the file, when we save it, the visudo editor performs syntax check or validation on the contents of the file. if there is an syntax error, it will not allow us to save the sudoers file. upon successful validation only it permits us to save the sudoers file
+
+2. using an temporary file approach
+Instead of we directly modifying the original sudoers file, we create a temporary copy of the /etc/sudoers file, modify the contents of the temporary file, validate and replace with the original
+
+#1 create a clone copy of the sudoers file
+sudo cp /etc/sudoers /etc/sudoers.tmp
+
+#2. grant write permission to the temporary file
+sudo chmod u+w /etc/sudoers.tmp
+
+#3. edit the temporary file by adding an new entry as required
+sudo vim /etc/sudoers.tmp
+
+#4 check the changes we made are valid or not valid using visudo as below
+visudo -cf /etc/sudoers.tmp
+
+#5. if the validation is success, then we can override the sudoers file with sudoers.tmp file
+chmod u-w /etc/sudoers.tmp
+mv /etc/sudoers.tmp /etc/sudoers
+
+2. group section
+-----------------
+we can promote a linux group of users as sudoers easily rather than promoting individual users by adding an group entry in the /etc/sudoers file under group section as below
+
+For eg.. if we have #10 system administrators working in the company/organization and has linux user accounts created for them. instead of promoting each system administrator as sudoer, we can create a sysadm group, add #10 users into the sysadm group
+and then promote sysadm group of users as sudoers by making an entry under group section of /etc/sudoers file
+
+%groupName ALL=(ALL:ALL) ALL
+% = here % indicates its not an username, it is a group name to linux operating system
+-------------------------------------------------------------------------------------------------------------------------
+
+#3. /etc/sudoers.d directory
+There is an @includedir entry inside the /etc/sudoers file, the includes /etc/sudoers.d directory. The @includedir entry means, all the files that are placed inside the /etc/sudoers.d/ directory, their file entries are included inside the /etc/sudoers file
+
+For example we want to promote james normal user as sudoer one way we can promote james as a sudoer is
+1. modify the /etc/sudoers file, and add an entry for james
+
+instead of modifying the /etc/sudoers file we can use /etc/sudoers.d directory approach as below
+
+#2
+2.1 create a new file under /etc/sudoers.d directory, for eg.. with a name as username itself "james"
+sudo touch /etc/sudoers.d/james
+
+in this way per each user we want to promote as sudoer we can create one new file under /etc/sudoers.d directory
+
+2.2 now into this file make an entry for promoting james as an sudoer
+sudo vim /etc/sudoers.d/james
+
+james ALL=(ALL:ALL) ALL
+:wq
+
+With this james becomes sudoer. At later point of time we want to drop james as sudoer, the only thing we need to do is remove the james file from /etc/sudoers.d rather than editing the /etc/sudoers file
+
+This approach is quite easy in promoting users as sudoers, rather than editing the /etc/sudoers file
+
+--------------------------------------------------------------------------------------------------------------------------
+Passwordless sudoers
+--------------------
+please refer to the 20240923_PASSWORDLESS_SUDOERS.pdf file
+
+How to fix the errors in sudoers file?
+(safety)	
+Incase if we have modified or corrupted the sudoers file by making wrong entry syntactically, everyone losses the sudoers access and will not be able to execute any superuser commands on the machine. How can we fix such error in sudoers file?
+	
+There is an utility "pkexec" that is used for running any linux command as an another user, if we have not specified the username of the user onbehalf of whom we want to execute the command, it by default executes under root user permission
+
+pk stands for polkit, it provides an organized way for non-privileged process to communicate with priviliged ones
+
+
+Now we can edit the sudoers file using
+pkexec visudo /etc/sudoers
+
+now it prompts for root user password, upon providing will gain access to sudoers file for modification.
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

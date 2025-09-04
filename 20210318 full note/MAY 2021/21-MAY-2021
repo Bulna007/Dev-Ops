@@ -1,0 +1,124 @@
+pack and unpack group of files/folders in linux?
+Linux has provided an tar utility using which we can pack and unpack files/folders. we use pack/unpack technic to make the files/folders easily transferable.
+
+pack:- tar -cvf tarname.tar sourcefiles/folders
+unpack:- tar -xvf tarname.tar
+
+compression and uncompression, how do we do that in linux?
+if we want to compress or uncompression the files/folders we need to use 2 utilities gzip and gunzip. we cannot directly gzip and gunzip files/folders, we have to tar them and should gzip, similar first uncompress them and untar to extract.
+  
+tar -cvf tarname.tar directory/
+gzip tarname.tar = produces tarname.tar.gz (replacing the orginial tarname.tar)
+gunzip tarname.tar.gz = will produce tarname.tar file, then extract using tar -xvf tarname.tar
+--------------------------------------------------------------------------------------------------------
+User Management 
+There are 2 types of users are there in linux operating system.
+1. Root user = During the installation of the Linux operating system, we create an user with password, which is nothing but Root user of Linux. Root user of Linux has complete control over the entire Resource of the System.
+The Root user can perform any of the activities on the linux machine like
+  - user management
+  - manage all the system resources (network adapters, hardware devices)
+  - process management
+  - file management
+  - network configurations
+  - system configurations
+  - software installations
+  
+There can be only one Root user in a Linux operating system to retain the control over the machine within one user.
+
+2. Normal user = Any other user that is added by the Root user in linux operating system becomes Normal User. A Normal user only has access to his home directory and can manage his own process only.
+  
+3. Groups
+A Root user cannot manage in granting/revoking the permissions to the individual linux users of the system, it will be difficult for him to track and manage who has want access in the System. So, to manage related group of users, linux has introduced concept of Groups.
+  
+Root user can create a group and can add multiple users to the group. Now instead of managing individual users, we can grant and revoke permissions at the group level.
+  
+What are the basic attributes of an user?
+Every user we create in linux operating system has below attributes
+ - username
+ - uid
+ - password
+similary every group we create in linux has
+ - groupName
+ - gid
+ 
+How to add an user to linux operating system, what will happen when we add an user in linx?
+The user in linux operating system will be added by create an User Account. while creating/adding the user account, the below activities takes place in linux
+  1.  The linux operating system automatically generates an unique uid for that user, by incrementing the last uid generated and associates the uid with the user it is creating.
+  2. Every user in linux must and should be associated with a group. so when we create a user in linux operating system, it will automatically creates a group with the same name of the user and associates the user to his group.
+  while creating the group, linux generates the gid for the group automatically, by incrementing last generated group id and associate to the group.
+  3. For every user account being created, it creates an default home directory for the user generally
+  under /home/$USER, and associates that directory as a home directory for that user. So user has complete access to his home directory location.
+
+    
+The entire users of the linux system will be stored by the linux in a file "/etc/passwd" 
+all the groups information of the linux system is stored in "/etc/groups"
+    
+    
+  
+    
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

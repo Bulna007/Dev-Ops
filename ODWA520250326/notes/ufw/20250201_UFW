@@ -1,0 +1,54 @@
+Firewall
+---------
+Firewall is an network security software provided by most of the operating system in control of incoming/outgoing network traffic from the computer. The users of the computer can configure firewalls defining allowing the programs to
+ 1. which ports are allowed/denied
+ 2. which protocol requests allowed/denied
+ 3. what ip addresses from where the requested/responses are allowed/denied
+
+There are 2 types of firewalls are there
+1. firewall as an software that is installed within the operating system of the computer
+2. hardware firewalls that sits at network level, to manage, monitor and restrict network traffic for the group of computers over the network.
+	
+Most of the operating systems provides firewall as an inbuilt software for securing the access to the computer over the network. The ubuntu operating system also has provided iptables as firewall software.
+	
+working with iptables is a bit complex, so ubuntu operating system has provided an utility software called "ufw" which acts as an interface in interacting with the ubuntu iptables firewall
+	
+ufw stands for "uncomplicated firewall".
+
+Both iptable and ufw utility are pre-packaged and pre-installed aspart of ubuntu operating system itself. But by default ufw is disabled. So no network restrictions are applied on the applications
+
+1. To enable the ufw firewall we need to use:
+sudo ufw enable
+
+2. To see the status of the ufw 
+sudo ufw status
+
+3. To see the traffic rules enforced by the firewall
+sudo ufw status verbosed
+
+4. when we define a rule in the firewall, per each rule a rule# will be assigned and the rules are applied or enforced based on the order of the rule#. So to see the rule# of the rules we defined we can use the below command
+sudo ufw status numbered
+
+5. How to allow/deny the network traffic to the programs on a specific portno?
+sudo ufw allow/deny portno
+
+6. How to allow/deny network traffic to range of portnos?
+sudo ufw allow/deny portno1:port2/protocol
+
+7. How to allow/deny network traffic from a source ip address?
+sudo ufw allow/deny from sourceip
+
+8. How to allow/deny network traffic from a protocol?
+sudo ufw allow/deny protocol
+
+9. How to delete a rule?
+we can only delete a firewall rule based on the rule# only
+sudo ufw delete rule#
+
+Let us experiment the firewall by installing the tomcat server as an server-side application on our computer
+1. To install tomcat server we need to have java installed on the computer for this run the below command
+sudo apt update -y
+sudo apt install -y openjdk-17-jdk
+
+To verify java installation run the below command
+java -version

@@ -1,0 +1,120 @@
+When we install ansible, the configuration files are placed under /etc/ansible. The central configuration file where control node properties are configured is /etc/ansible/ansible.cfg
+/etc/ansible/ansible.cfg, here we can modify several settings related to control node server behaviour, for eg..
+fork=5 = how many managed nodes the ansible should execute modules/playbooks in parallel
+inventory=/etc/ansible/hosts = its the default inventory file under which it looks for managed nodes information to execute automation
+remote=22 by default ansible connects to the managed nodes of the fleet over ssh using port = 22, if the fleet servers are configured under different port we can change the configuration here
+
+Now before running any automation using ansible, we need to add entries of the hosts into /etc/ansible/hosts.
+	
+Ansible Modules
+----------------
+The ansible modules are the basic building blocks of ansible, there carry an operation or an action to achieve automation.
+Ansible modules are piece of code written in python language by the ansible developers and distributed as part of ansible install. These are the code-blocks that are transferred over the ssh onto the ansible managed nodes and will be executed remotely on the node and transfers the outcome of execution in a json format back to the ansible control node.
+	
+How to run an ansible module to apply automations on the fleet?
+There are 2 ways 
+1. adhoc
+2. playbook
+
+#1. adhoc commands
+adhoc commands are the way through which we can run ansible modules in-line quickly without the need of writing the playbooks. if we want to perform an one-time activity on all the managed nodes of the fleet, then use ansible adhoc commands. if we want to perform a bunch of activities in accomplishing an final system state repeatedly, the use ansible playbooks
+
+syntax:-
+ansible [group] -m module -a arguments
+ansible all -m ping = execute ping module on all the group of machines in inventory file
+ansible has provided an shell module using which we can execute shell commands on the fleet as below
+ansible all -m shell -a "hostname -I" = gives ip addresses of all the managed nodes
+ansible all -m shell -a "whoami"	= logged in user
+
+When to use ansible adhoc commands?
+if we want to perform 1/2 activities on the fleet servers only once like
+	- checking the state of the machines using ping
+	- accessing the directories or contents for information sake
+	- update cache etc
+	
+or any small maintainance activites we can use adhoc commands like reboot all the fleet servers quickly using adhoc commands.
+-----------------------------------------------------------------------------------------------
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

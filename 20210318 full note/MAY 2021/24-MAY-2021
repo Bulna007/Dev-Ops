@@ -1,0 +1,157 @@
+How does a user will added in Linux, what happens when we add a user in Linux operating system?
+We can add a user in linux operating system by using useradd command in linux by supplying username with which we want to add the user, below are the activites would happen when we add an user.
+  1. The linux operating system generates automatically an uid by incrementing the last generated uid and assigns to the user whichever it is creating now.
+  2. it creates a home directory for the user, and by default the home directly location under /home/$USERNAME
+  3. it creates a group for the user with the same name as username by incrementing the gid of the group from the last generated group id 
+  4. associate the user it his group 
+
+#1 Command for adding a new user in Linux
+Only the Root user can add the users in the linux, so all these commands are placed in /sbin directory of the linux where only a super user can execute these commands
+
+sudo useradd username = This command allows you to add an new user into the linux.
+with this a new user with name username provided will be added, by associating the user to his own group as what we described above. in creates a default home directory location for that user. but this user cannot login into linux system, since we havent created any password for this user.
+  
+lets add a user bob here
+sudo useradd bob
+this will prompts for sudo password, once provided will add the bob user with bob group into the system (note: no password being asked)
+  
+#2 Where does linux stores all the users and groups information?
+Linux will store users and groups in 2 files
+  - /etc/passwd = this file contains information about all the users who has an account in the current linux machine
+  - /etc/group = holds the information about all the groups on the linux system
+
+To verify bob has been added into the linux system or not we can check that by grep the files.
+sudo grep -iw bob /etc/passwd
+sudo grep -w bob /etc/group
+
+#3 after adding the user bob, since he doesnt have password, linux would not allow him to login. Now the root user after adding the bob can set/reset the password for him enabling the login permission.
+sudo passwd bob
+this prompts for entering password for the user, thereafter bob can login.
+  
+The immediate question we get is why would we need to add a user in linux system without a password and not allowing him to login?
+
+#4 we can see the information about the user with the below command.
+  id username
+  this command shows the details of the user like username, uid, groups to which has been associated.
+
+#5 we can add a user along with specifying the uid and group to which we want to add the user and his default home directory location as well.
+  useradd -u 1010 -g 1010 -d /home/myuser -s /bin/bash joe
+in the above we need to pass existing gid to which group the user should be associated, in case if we dont specify gid a new group will be created as described earlier.
+  
+how to add a user with defaults?
+how to add a user with given uid, home directory location and shell to be used?
+
+#6 when adding a user in linux we can specify the group into which the user should be added by specifying gid, so that the user would be created associating to an existing group and there will no usergroup created in linux
+
+id username = displays details of the user
+groups username = shows the user is in which groups
+
+/etc/passwd = can access details of all the users in the linux operating system
+/etc/group = can access details of all the groups in the linux operating system.
+  
+#7 we can add an group in linux?
+  sudo groupadd groupname
+This will create a new group with the name given in the linux
+
+10 devops engineers
+sudo groupadd devops
+sudo useradd -g 1006 joe
+sudo useradd -g 1006 bob
+
+#8 we can delete an existing user in linux 
+deluser username
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

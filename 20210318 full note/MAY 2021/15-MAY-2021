@@ -1,0 +1,226 @@
+17th May 2021, Monday - Devops with Aws Timinings : 8:15 am - 9:15 am, no new link, just continue join with old link
+------------------------------------------------------------------------------------------------------
+what is the grep why do we use it?
+grep is used for content based searching within the files.
+
+grep "phrase" filename = print lines where matching word found
+grep -R "phrase" directory/ = recursively in directories and sub-directories
+grep -o "phrase" filename = output only matching words
+grep -w "phrase" filename = match whole word
+grep -i "phrase" filename = ignore case
+grep -n "phrase" filename = print line number
+grep -c "phrase" filename = print count of matches
+grep -v "phrase" filename = invert the match
+
+regular expressions
+--------------------
+[] = any single character match
+[l-u] = any single character range match
+^=match the pattern at the begining of the line
+$=match the pattern preceeding word with the end of the line
+.*=any characters for any no of times
+* =occurence of a pattern
+\=escape character
+. = matches single character
+---------------------------------------------------------------------------------------------------------
+Text Editors available in Linux shell, helps us in managing the contents of files.
+We can create/open an existing file modify the file contents, save/update the files on the filesystem using Text Editors provided by the Linux. You can think of these as similar to the tools available in windows like notepad, wordpad etc
+
+In linux we have 2 types of text editors are there:-
+  - Command-Line Editors
+    - vim
+    - nano
+  - GUI Editors
+    - depends on the desktop you are using these gui tools will differ
+    - ubuntu distros = gedit (dont use it)
+  
+Most of the time we run linux as Headless which means there is no gui attached, so there is no way to use GUI editors, we have to fallback to CLI Editor tools only.
+
+out of the 2 tools available in cli editors
+#1 vi (vim) = is the most popular text editor available as part of distros of linux by default.
+by default your linux installation comes with old version of vi, before running the vi, we need to update to the latest version of the vi.
+  
+sudo apt update -y
+sudo apt install -y vim (latest version of the vi editor)
+--------------------------------------------------------------------------------------------------------
+There are 3 modes are there in vi
+1. Command Mode (default)
+  whenever we lauch/open an vi editor by default, it opens in command mode only. when we are in command mode, we cannot input the data into the file, rather every keypress on the keyboard works as a command to modify or manipulate the file contents.
+  We can enter into command mode always by pressing (esc) key on keyboard
+  
+  
+2. Input Mode
+  In the input mode we can modify the data  on the file, to enter into input mode from command mode we need to press "i" key on the keyboard. to goback to command mode we need to press (esc) key
+  in vim to enter into input mode from command mode, press any key on the keyboard takes you to input mode first (apart from pre-defined command keys)
+  
+3. Exit Mode
+  To quit from the editor, first we need to goback to command mode by pressing (esc), the we need use :q quit from editor
+  :w = write
+  :q = quite, but will not let you quit if there are any pending changes in the file
+  :wq = write and quite
+  :q! = discard the changes and quit
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

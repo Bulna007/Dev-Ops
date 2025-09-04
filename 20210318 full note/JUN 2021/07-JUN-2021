@@ -1,0 +1,244 @@
+How to find the user shell in which we are running the commands?
+whoami
+
+How to find the user with which we loggedin?
+logname
+
+How many users are loggedin to the Linux?
+users
+who = it shows the details of login timestamp
+
+How to know the operating system name?
+uname
+uname -a = prints all the details
+
+How to find the hostname of the computer?
+hostname = prints the computer/machine name
+hostname -i = loopback ip address
+hostname -I = prints all the ip addresses associated with that computer.
+  
+How to change the hostname of the computer?
+go and modify the hostname within the /etc/hostname
+
+How to find the network interfaces and their ip address within the Machine?
+ifconfig = is not available by default we need to install net-tools package
+  
+sudo apt install -y net-tools
+ifconfig = shows all the network interfaces attached to the computer along with their network address
+
+How to verify the reachability of a server?
+ping serverName/ip address
+
+
+How to list down the hardware devices attached to our machine?
+lshw = the output differs between root/normal user
+
+How to get the cpu information of our computer?
+cat /proc/cpuinfo 
+
+
+What are the init levels in linux? (RunLevels)
+These are even called as RunLevels.
+  
+init 0 = shutdown
+init 1 = Single user mode or emergency mode means no network, no multitasking is only root has access
+init 2 = No network, but multitasking support is present
+init 3 = network is present, multitasking is present but no GUI
+init 4 = it is similar to init 3 only, for reserved for research
+init 5 = network is present mult-tasking and GUI is present with Sound
+init 6 = System restart
+
+
+reboot = restart
+reboot -f = fast restart
+
+sudo mkdir storage
+sudo -u joe mkdir /home/joe/storage
+---------------------------------------------------------------------------------------------------------
+
+By default when we run a program in linux, it can access all the files/folders of the Filesystem, that user has access. So from this we can understand if the user is a Root/Sudoer the program can gain access to the Files/Folders of linux by running as sudoer.
+From the above we can understand we could run into a big security problem in linux where a program can open/up or do anything on the files/folders of the computer given it has been launched as sudoer or a user has all the access to the computer.
+  
+How to address the above problem?
+Lets say we want to run tomcat server. Then create a user called tomcat in linux, dont give sudoer permission, give permission to a directory
+tomcat user -> /u01/app/tomcat = place your software in tomcat directory and run it.
+  
+In linux we create users for 2 reasons.
+  1. we want to grant access to the linux system for other users
+  2. we want to isolate the execution of programs in the linux operating system by running it under a user with less priveliges and permissions
+---------------------------------------------------------------------------------------------------------
+What is a Program?
+Program is a File on the Filesystem. In case of a Program File it contains executable instructions rather than data, so that we execute the program instructions inside it by passing to our operating system.
+    
+What is a Process?
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

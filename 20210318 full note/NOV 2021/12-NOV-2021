@@ -1,0 +1,122 @@
+The same vagrant machine configuration file works across multiple hypervisor providers in Vagrant, we dont have to write different copies of vagrant file to work across different hypervisors, this helps us in avoiding duplicating the machine configurations.
+
+To make the same configuration works across multiple providers there are many aspects to it
+1. The vbox image providers produces multiple copies of the vbox images pertaining to each provider and publish them into vagrant cloud by tagging them to the provider specific
+
+2. the vagrant cli when we issue vagrant up will goes to the vagrant cloud and pulls the relevant vbox image file based on the hypervisor platform on which we are running, so if we switch to different hypervisor again the vagrant cli pulls the vbox image of the platform in bringing up the machine
+
+From the above we can understand the same configuration can be used across different providers.
+--------------------------------------------------------------------------------------------------------
+
+How to customize the vagrant machine based on the provider on which we are running?
+How to include provider specific customizations into the Vagrant machine?
+
+Looks like again we are back to the original problem. we have to write multiple machine configuration files pertaining to each provider, so that we endup in duplicating the configuration across the providers.
+  
+To save us from the above problem Vagrant support provider configuration in Vagrantfile as below.
+  
+Apply customizations to the machine configurations based on the hypervisor provider.
+  
+Vagrantfile
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64" #all providers use the vbox image as = "ubuntu/focal64"
+  
+  config.vm.provider "hyperv" do | hyperv, override |
+    override.vm.box = "hashicorp/precise64"
+    override.vm.network "private_network", type: "dhcp"
+  end    
+end  
+  
+In the provider block we defined 2 objects
+1. hyperv = its a block level object representing provider 
+2. override = is a child object using which we can override the properties we configured in parent object config. So if we want to change vm.box defined in parent "ubuntu/focal64" for hyperv provider we need to use ovveride object to define it in the provider block
+
+
+2# How to apply provider settings to the machines
+For eg when we are using hypervisor provider as virtualbox, it supports few configurations specific to virtualbox, if we write those configurations in vagrant configuration file, then the configuration works only with virtualbox and will loose hypervisor provider portability.
+  
+To help us in adding customizations or settings specific to hypervisor provider the vagrant supports provider configurations as below.
+  
+config = virtual machine object  
+vb = provider object
+machine = child object of base config
+  
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64"
+  
+  config.vm.provider "virtualbox" do | vb|
+    vb.memory = 2048
+    vb.cpus = 3
+    vb.name = "db machine"
+    vb.gui = true 
+  end
+end  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

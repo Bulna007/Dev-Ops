@@ -1,0 +1,154 @@
+How to package an java web application and delivery/deploy?
+we need to package an web application in "war" packaging standard. WAR stands for web application archive, since web applications are very large applications, we inturn has to use other libraries in building the application. So in war we need package jar libraries.
+  
+What is the structure of a war file, how does its contents looks like?  
+*.war (webroot)
+(static content | public resources)  
+|-html
+|-js
+|-css
+|-images
+|-jsp
+|-WEB-INF (protected resources)
+  |-lib
+    |-*.jar
+  |-classes
+    |-.class
+  |-web.xml (optional)
+      
+After developing the code, we need to compile and package our application into above war structure.
+In java we use Servlet and Jsp apis in developing web application, so we need to include those library jars in compiling the code.
+      
+How to install and deploy our application on apache-tomcat server?
+#1 install jdk11
+sudo apt udpate -y
+sudo apt install -y openjdk-11-jdk
+
+#2 apache tomcat server is a binary distribution which cannot be install through ubuntu package manager, we need to download the .zip/.tar.gz distribution, extract it and configure to use it.
+  2.1 mkdir /u01/app
+  2.2 wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.12/bin/apache-tomcat-10.0.12.tar.gz
+  2.3 gunzip apache-tomcat-10.0.12.tar.gz
+  2.4 tar -xvf apache-tomcat-10.0.12.tar
+  it will gets extracted to /u01/app/apache-tomcat-10.0.12
+    
+#3 The apache tomcat server directory structure
+/u01/app/
+apache-tomcat-10.0.12
+|-webapps
+|-conf
+|-lib
+|-bin
+  |-startup.sh
+  |-shutdown.sh
+the apache-tomcat-10.0.12/webapps is the deployment directory, if we place the war file in that directory, the server will pick up during startup automatically.
+  
+#4  
+add the tomcat bin directory to the system PATH variable, so that we can easily start or stop from any location
+export TOMCAT_HOME=/u01/app/apache-tomcat-10.0.12
+export PATH=$PATH:$TOMCAT_HOME/bin
+---------------------------------------------------------------------------------------------------------
+~/javaworkspace/
+airtelcare (project directory structure) (git repository)
+|-src
+  |-com.airtelcare.newconnection
+    |-NewDTHRequestServlet.java
+|-WebRoot
+  |-request-new-connection.jsp
+  |-request-details.jsp
+  |-WEB-INF    
+    |-lib
+      |-server-api.jar
+      |-jsp-api.jar    
+|-bin
+
+request-new-connection.jsp
+<%@page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New DTH Connection</title>
+  </head>
+  <body>
+    <h2>New DTH Connection Request</h2>
+    <form method="post" action="${pageContext.request.contextPath}/newDTHRequest">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name"/>
+      <label for="contactNo">Contract No:</label>
+      <input type="text" name="contactNo" id="contactNo"/>
+      <label for="emailAddress">Email Address:</label>
+      <input type="email" name="emailAddress" id="emailAddress"/>
+      <label for="state">State:</label>
+      <input type="text" name="state" id="state"/>
+      <label for="city">City:</label>
+      <input type="text" name="city" id="city"/>
+      <label for="zip">Pincode:</label>
+      <input type="text" name="zip" id="zip"/>
+      <label for="connectionType">SD:</label>
+      <input type="radio" name="connectionType" id="connectionType" value="SD"/>
+      <label for="connectionType">HD:</label>
+      <input type="radio" name="connectionType" id="connectionType" value="HD"/>
+      <input type="submit" value="place"/>
+    </form>
+  </body>
+</html>
+
+request-details.jsp
+<%@page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New DTH Connection</title>
+  </head>
+  <body>
+    <h2>New DTH Connection Request Details</h2>
+    Hi, $Name
+    <p>
+      We have received your request for new connection $connectionType, we will reach to you within 24 - 48 working hours, here is the reference no: $refNo for the same.
+      Thank You.
+    </p>
+  </body>
+</html>
+
+
+package com.airtelcare.newconnection;
+public class NewDTHRequestServlet extends HttpServlet {
+  public void service(HttpServletRequest request, HttpServletResponse response) {
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

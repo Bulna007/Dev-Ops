@@ -1,0 +1,139 @@
+What are the benefits of using iac tools for provisioning an infrastructure?
+1. self-service
+The developer by himself can build/deploy the application onto the targeted environment without the need of ops engineer so that the rate of delivery of the application can be improved
+
+2. documentation
+iac code acts as a best source of documentation information to understand the infrastructure architecture of our application
+
+3. version control
+we can quickly understand how does the infrastructure has been evolved to the current state by going through the version history of the iac code in source repository, in addition we can rollback the infrastructure to any of the previous states since we are writing the code for managing the infra
+
+4. speed and safe
+we can quickly produce the re-producible environments through iac automation, since it is carried through automation there is no chance that something might me wrong
+
+5. validation
+we can get the iac code reviewed by the peers and can validate/test it before applying on final environment
+
+6. reusability
+we can public iac code as libraries/code modules and can reuse them in implementing several automations
+
+7. Collaboration and Sharing
+we can share the iac code across the team members by placing in version control system and can evolve the infrastructure through collaborative development. In addition we share our changes to the iac code to others through source repositories
+----------------------------------------------------------------------------------------------
+How can we compare iac automation tools with software configuration management tools?
+There are lot of software configuration management tools are there like ansible, puppet, chef, salt etc which helps us in installing and configuration the software packages, within these there are few tools like ansible and others supports infrastructure provisioning automation as well.
+	
+similary there are lot of iac tools are there which supports infrastructure provisioning, within them there are few iac tools that supports software configuration management
+
+looks like there is a very thin line between infrastructure as code and software configuration management tools as both are inter-changeable can be used, then which one is supposed to be used when, what is the core differences let us try to explore:
+
+server templating tools vs software configuration management tools
+(docker/packer)         vs chef/puppet/ansible/salt
+-------------------------------------------------------------------------
+if we are using server templating tools like docker, packer etc most of the software configuration managment requirements are handled by these tools itself and doesnt require scm tools like ansible/puppet/chef or saltstack, but to provision infrastructure we still need iac tools
+
+if we are running our application without server templating tools then to install the softwares and configure on the env we need software configuration management tools along with iac tools
+----------------------------------------------------------------------------------------------
+Software configuration Management tools   vs infrastruction as a code (iac) tools
+chef/puppet/ansible/salt                  vs terraform, cloud formation and openstack heat
+----------------------------------------------------------------------------------------------
+1. Mutable vs Immutable infrastructure
+mutable = will/can be changed
+immutable = cannot be changed
+
+software configuration management tools
+1-> stage (10 resources)	
+	2-> stage |-writing the code on (+5 resources) 
+		3-> stage |-adding more code to bake few more additional resources (+2 resources)
+	
+iac tools
+1-> stage (10 resources)
+	2-> stage (0 again) (15 resources)
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

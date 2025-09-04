@@ -1,0 +1,132 @@
+How many loop control statements are there?
+There are 3 loop control statements are there
+1. while
+2. for
+3. until
+
+2. for loop
+There are 2 syntaxes of working with for loop are supported.
+  2.1 iterate over the fixed list of values without using counter and condition
+  2.2 counter-based for loop
+  
+2.1 for loop over fixed list of values
+syntax:
+
+for I in 1 2 3 4 5 6 7
+do
+  # statements to be executed
+done
+---------------------------------------------------------------------------------------------------------
+wap to create the list of directories provided as an input through program arg under the given directory.
+if the directory already exists delete and recreate.
+  
+mkdirs.sh sourcedir dir1 dir2 dir3 dir4
+sourcedir
+|-dir1 (delete) recreate
+|-dir2
+|-dir3
+|-dir4
+
+mkdirs.sh
+----------------
+#!/bin/bash
+NARGS=$#
+if [ $NARGS -lt 2 ]
+then
+  echo "ERROR: pass source directory and the target directory to create"
+  exit 1
+fi
+
+SOURCE_DIR=$1
+if [ ! -d $SOURCE_DIR ]; then
+  echo "ERROR: $SOURCE_DIR provided does not exists"
+  exit 2
+elif [ ! -w $SOURCE_DIR ]; then
+  echo "ERROR: no write permission"
+  exit 3
+fi
+
+for DIR in $*
+do
+  if [ $SOURCE_DIR = $DIR ]; then
+    continue;
+  elif [ -d $SOURCE_DIR/$DIR ]; then
+    rm -rf $SOURCE_DIR/$DIR    
+  fi
+  
+  mkdir $SOURCE_DIR/$DIR  
+done
+
+mkdirs.sh /home/sriman dir1 dir2 dir3
+$* = /home/sriman dir1 dir2 dir3
+SOURCE_DIR=/home/sriman
+break = will moves the control outside the loop or breaks the loop
+continue = will not execute the code within loop and goes to next iteration
+-------------------------------------------------------------------------------------------------------
+wap to cleanup empty directories and files under the given directory using shellscript program
+
+#2 counter based for loop
+wap to print 1 to N numbers
+
+printN.sh
+read -p "N:" N
+for((I=1;I<$N;I++))
+do
+  echo "$I"
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

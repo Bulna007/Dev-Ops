@@ -1,0 +1,2973 @@
+What is shellscripting, what is purpose of it?
+We want to perform bunch of shell commands repeatedly over the period of time in accomplishing job/task, the linux or devops engineer has to enter these commands manually on the bash terminal (TTY) in carrying out these activities. There are several problems in manually performing these commands:
+1. it is time consuming in manually entering these commands on the terminal to carry out the operation
+2. if there are bunch of commands that has to be executed in a specific sequence order one after the another, memorizing and typing these commands is an complex job
+3. in addition the user who is running those commands has pass command by command one after the other waiting for each one to finish execution, that takes lot of time
+4. the chances of performing human errors while running these commands manually is high, that results in un-predictable outcome
+
+Instead of manually typing these commands in performing the operations repeatedly, we can make use of shellscripting
+
+Shellscripting:
+A shellscripting is a file in which bunch of shell/bash commands are written that can be passed as an input to the underlying operating system bash interpreter. The bash interpreter takes each command one by one from the top of the file to the bottom and executes the sequentially on the underlying operating system of the computer
+
+How to write a shellscript program?
+Shellscript is a file in which we write bunch of shell commands in the sequence order in which they have to be executed and pass them to the underlying bash interpreter asking him to execute. So from this we can understand shellscript is nothing but a file
+
+1. 
+We need to create a file on the Filesystem of the computer. The name of the file should be written appropriate to the operation we are performing aspart of the program. It is a good practise of writing the shellscript file with an extension of ".sh"
+	
+touch message.sh
+
+2.
+every shellscript program has to begin with starting line shebang
+shebang is an instruction we are writing to the shell-interpreter asking to use a specific shell interpreter in executing the commands we wrote in the shellscript file
+
+#!/bin/bash (shebang) (instruction)
+	
+message.sh
+#!/bin/bash
+echo "good morning"
+	
+The shebang we wrote in message.sh indicates all the following lines after the shebang should be executed with bash interpreter
+
+After the shebang we can write shellcommands we want to execute
+
+
+How to execute the shellscript?
+There are #2 ways of executing shellscript program are there
+#1
+grant execute permission to the shellscript program
+chmod u+x message.sh
+
+goto the program directory and run
+./message.sh
+
+
+#2
+without granting execute permission also we can run the shellscript program. The file should have read permission then we can launch the shellprogram using
+
+bash message.sh
+
+here a new bash interpreter will begin reading the message.sh instructions in running them
+-------------------------------------------------------------------------------------------------------------------------------
+vscode editor
+microsoft visual studio code editor is an IDE (integrated development editor) that provides syntax highlighting and inline code assistance and embedded terminal with huge community plugins that helps in easily working on all the devops and ui related technologies. its opensource!
+	
+There are #2 ways we can install vscode editor
+1. directly download .deb file and install
+2. through ubuntu repo based install: https://code.visualstudio.com/docs/setup/linux
+
+
+upon installing we can open the vscode editor by type "code" on the terminal.
+-------------------------------------------------------------------------------------------------------------------------------
+Working with variables in Shellscript program?
+	
+Variables are placeholder in which we can store values, so that instead of using literals in the program we can refer the variables in using the values to perform operation
+
+There are different types of literals are there
+1. String literal = value written by sourrounding in double quote "Hello"
+2. Integer literal = a number being used 39
+3. Float/Decimal literal =  a decimal or floating point number: 45.4
+	
+We can write a program by using/referring the literal values directly as below.
+	
+math.sh
+--------
+#!/bin/bash
+echo $[10+20]
+echo $[20-10]
+echo $[10*20]
+echo $[20/10]
+	
+In the above program the values 10, 20 are hardcoded or referred literally so that we run into many problems interms of maintainance as below
+1. if we want to modify 10, 20 to 30 and 40 then we need to go thru each line in program to see where we are using 10 & 20 and replace with 30 & 40 that takes lot of time 
+2. while modifying the code, we might introduce new bugs as we are making changes at multiple places
+3. we might endup in modifying the values at few places and might miss at someother, due to which the program runs into in-consistency
+
+so from the above we can understand avoid using literals and use variables in referring the values
+
+How to declare a variable in shellscript program?
+VARIABLE_NM=VALUE
+
+The standard convention to be followed in writing the variable name is "capital letters" in shellscripting. it is recommendation not mantory
+
+A=10
+B=20
+	
+How to refer the variable value within a shell program?	
+anything we write inside a shell program will be treated as command by the shell interpreter and tries to execute. but when we are referring variable, to let the shell interpreter understand it as a variable rather than a command we need to use $VAR expression
+
+$A = will refers to the value of the variable A
+
+let us write the above math.sh program using variables
+
+math.sh
+--------
+#!/bin/bash
+A=10
+B=20
+	
+echo $[A+B]
+echo $[B-A]
+echo $[A*B]
+echo $[B/A]
+-------------------------------------------------------------------------------------------------------------------------------------
+How to collect dynamic inputs while executing the shellscript program?
+	
+math.sh
+-------
+#!/bin/bash
+A=20
+B=30
+	
+echo $[A+B]
+echo $[B-A]
+echo $[A*B]
+echo $[B/A]
+
+In the above program we have hardcoded the A and B variables with values 20 & 30 resp. so each time when we run the program it computes and outputs the same set of values. if we want to perform computation operations (sum,substract,multiply,division) on a different values we need to go and modify the program itself.
+	
+here it looks like changing the program seems to be easy job since we have used variables in carrying the values. how about an end-user using our program wants to execute with different values?
+	
+The enduser dont know how to change the sourcecode of the program, so instead of assigning/hardcoding the variable values within the program, if the program can prompt user to input the value while executing, so that by taking the user input value if the program can perform the operation it adds more flexibility in using the program. So how to dynamically collect the data within a shellscripting program while executing?
+	
+The bash has provided an instruction called "read", that reads the input data from the keyboard of the user while running.
+
+	
+dynamic_math.sh
+-------
+#!/bin/bash
+read A #program will be waiting for keyboard input for A, upon entering value and pressing Enter key, goes to the next line
+read B #program will be waiting for keyboard input for B
+	
+echo $[A+B]
+echo $[B-A]
+echo $[A*B]
+echo $[B/A]
+
+In the above program we use read A and read B statements to collect the input from the user interactively while running the program. upon running the shellscript program, it waits for the user input for both A & B values quitely
+
+The enduser dont have a clue about does the program is waiting for the input or it got hang during the execution, so always it is adviced to have an print statement letting the user know he has to enter some value to proceed execution as below
+
+dynamic_math.sh
+-------
+#!/bin/bash
+echo "Enter A"
+read A #program will be waiting for keyboard input for A, upon entering value and pressing Enter key, goes to the next line
+echo "Enter B"
+read B #program will be waiting for keyboard input for B
+	
+echo $[A+B]
+echo $[B-A]
+echo $[A*B]
+echo $[B/A]
+
+if we are using the echo, always echo writes an new line at the end leaving the cursor to the next line, instead we can use -p switch in the read utility to print a message before waiting for input as below
+
+
+dynamic_math.sh
+-------
+#!/bin/bash
+read -p "Enter A: " A 
+read -p "Enter B: " B 
+	
+echo $[A+B]
+echo $[B-A]
+echo $[A*B]
+echo $[B/A]
+-------------------------------------------------------------------------------------------------------------------------------------
+1. wap to take length and breath of a rectangle and calculate the area and print it
+
+area_rectangle.sh
+------------------
+#!/bin/bash
+
+read -p "Length: " LEN
+read -p "Breath: " BRE
+
+AREA=$[LEN*BRE]
+echo "Area : $AREA"
+-------------------------------------------------------------------------------------------------------------------------------------
+How to collect or pass the input data non-interactively while launching the shellscript program?	
+We are using read statements in collecting the dynamic input from the user interactively while running the program. But there are problems with interactive inputs, always the enduser must be available at the terminal waiting for program to prompt for input, so that he can supply the values, this will blocks the user waiting for the program to prompt for input indefinitely until its completion.
+	
+For eg.. in bigprogram.sh shellscript program below the program collects #3 input values at various different places during execution. when the user launched the program he has to be available through the runtime of the program waiting for prompting the input in supplying the values.	
+	
+	
+bigprogram.sh
+--------------
+echo "Input mass :"
+read MASS
+
+#100 lines (processing)
+	
+echo "Input Friction:"	
+read FRICTION
+
+
+#4000 (processing)
+	
+echo "Input Velocity:"
+read VELOCITY
+
+before running the program itself the enduser knows the program requires what data as an input, so if he can some how pass all the values as input while launching program, and if the program can take those values in performing the operation, the enduser is not blocked on the program and he can collect the output at some later point of time without waiting, thus non-interactive inputs comes into play
+
+when we should user interactive vs non-interactive inputs?
+interactive:
+if the user of the program is an end-user or customer since he dont know up-front what are all the input values the program requires inorder to perform the operation, it is preffered to design the program to collect the inputs interactively.
+	
+For eg.. an premium policy calculator program: the enduser dont know what inputs does the program requires to calculate the premium amount for a policy. so if the program prompts user asking to supply values interactively it would more convienient for end user to use the program
+
+non-interactive:
+If we want to implement touchless automation in running a program then it is good to go for non-interactive inputs. usually the programs designed to be used by administrators, technical users or devops engineers are preffered to be non-interactive
+
+For eg.. we want to write a program to backup the files from a source directory to destination. so here the program requires #2 inputs 1. source and 2. destination where to backup
+now instead of designing this program to collect the source and destination directories interactively, the administrator or technical user or devops engineer while launching the program can pass source and destination directories so that he/she dont need to be blocked waiting for the program to prompt for input, rather they can perform someother operation
+
+when we are launching the program itself we can supply the input values to the program separated by space between the values as below.
+
+The shell interpreter upon receiving the program along with input values for execution, it understands the user wants to execute the program with those values supplied as input, so to make those values available within the program, the shell interpreter will assign the values to implicit/special variables starting with 0,1,2.....n depends on number of inputs we supplied while launching the program
+
+
+./addNumber.sh 10 20	
+
+addNumbers.sh
+--------------
+#!/bin/bash
+A=$1
+B=$2
+SUM=$[A+B]
+echo "Sum : $SUM"
+	
+additionally few more special variables are created to help us in accessing the values as below
+
+$n = nth argument
+$0 = always points to the program name we are running
+$# = returns number of input values we passed
+$@ = returns all the arguments we passed as an input
+$* = is equal to $@
+
+
+
+
+
+
+
+
+
+
+
+./areatriangle.sh 10 8 
+
+By the way we are running the program, it understands we are passing input values in running the program and to make them available to the shell program it assigns the values to implicit or magic variables which are $0, $1, $2..... $n and make them available and accessible within the program
+
+now we can access these values within the shell program by using the implict variables directly.
+
+$0 = program name
+$1, $2... = are the rest of the inputs we pass in running the program
+
+$# = gives the number of values we passed in running the program
+$@ (or) $* = accessing all the parameters we passed in running the program
+
+perimeter_triangle.sh
+-----------------
+SIDE1=$1
+BASE=$2
+SIDE2=$3
+
+LEN=$#
+PROG_NM=$0
+ALL_ARGS=$@
+PERIMETER=$[SIDE1 + BASE + SIDE2]
+echo "perimeter : $PERIMETER"
+echo "No of arguments: $LEN"
+echo "Program filename: $PROG_NM"
+echo "all arguments : $ALL_ARGS"
+-------------------------------------------------------------------------------------------------------------------------------------
+How to write arthimetic expressions within a shellscript program?
+	
+By default when we write anything (word/character/data/symbol) within a shell program, the shell interpreter treats it as a command and will try to execute. so if we write an arthematic expression asking him to execute, the shell interpreter will not treat as expression to evaluate
+
+#!/bin/bash
+A=10
+B=20
+SUM=$A+$B
+
+the above SUM=$A+$B will be treated as string and return 10+20 as an output when we print SUM
+
+So we need to instruct the shell interpreter not to treat as string and consider as arthematic expression and ask him to perform relevant operation, how to let the shell interpreter evaluate it as expression?
+	
+There are 3 ways or 3 syntaxes through which we can tell shell interpreter to recognize or treat as expression
+1. using expr keyword
+using expr keyword we can tell the shell intepreter to treat the given string sequence as an expression asking to perform operation as below
+
+#!/bin/bash
+A=10
+B=20
+SUM=`expr $A + $B`
+echo $SUM
+
+The expr way of writing the expressions are old style of programming, there are #2 more ways of writing the expressions are there as below.
+	
+#2. using $(())	notation
+#!/bin/bash
+A=10
+B=20
+SUM=$((A+B))
+echo $SUM
+
+#3. using $[] notation
+this is the most simplified form of writing expression than the other 2
+	
+A=10
+B=20
+SUM=$[A+B]
+echo $SUM
+-------------------------------------------------------------------------------------------------------------------------------------
+Command Substitution
+--------------------
+Command substitution is used for collecting the output of an shell command within a shellprogram into an variable, so that using the output we can perform some other operation within the program.
+	
+By default the shell interpreter upon executing an shell command within a shell program, it writes the output onto the TTY/console, but by using the command substitution we can capture the output of executing that shell command into an variable.	
+	
+syntax:
+VAR=$(COMMAND)
+	
+$() = command substitution
+$(()) = arthematic expression
+
+wap to take users first and lastname as input and print number of characters within the total name as output?
+	
+namelength.sh
+--------------
+#!/bin/bash
+read -p "Firstname : " FIRST_NM
+read -p "Lastname : " LAST_NM
+
+FIRSTNM_LEN=$(echo -n $FIRST_NM|wc -c)
+LASTNM_LEN=$(echo -n $LAST_NM|wc -c)	
+	
+LEN=$((FIRSTNM_LEN + LASTNM_LEN))	
+echo "length of fullname is : $LEN"
+-------------------------------------------------------------------------------------------------------------------------------------
+printf
+printf stands for print formatted output
+
+
+There are 2 ways we can write the data onto the TTY/console in a Linux program
+1. echo
+
+echo is an instruction used for writing the data onto the STDOUT/TTY of the user and always echo writes the output onto a new line only(default). If we want to supress the newline in writing the output, we need to use -n option
+
+echo -n "good morning" = it prints the good morning on the same line
+
+2. printf
+printf is similar to printf in c programming language, that allows us format the output while printing. unlike the echo the printf always writes the output and leaves the curson onto the same line.
+	
+printf "good morning" = will prints the message on the line without writing the new line at the end
+
+There are few pre-defined escape sequences can be used for formatting the output while using printf
+\ is an escape character or escape sequence. it means anything followed by \ character should be interpreter specially and perform appropriate action. 
+For eg.. if we write printf "n", it prints n character onto TTY
+but if we use printf "\n", it treats n after \ specially and prints new line
+There are bunch of predefined escape sequences are there that can be used for formatting the output while using printf as below
+
+1. \n = prints newline onto the console
+2. \t = prints a tab
+3. \r = writes an carriage return (generates an enter key)
+4. \b = backspace
+5. \\ = prints "\" onto the console
+	
+these escape sequences are not supported by echo
+
+
+In addition to the escape sequences, the printf supports format specifiers to format the output and write onto the console
+
+%d = integer number
+%f = floating numbers
+%c = single character
+%s = string
+%x = small letters hexa decimal
+%X = capital letters hexa decimal
+
+
+useprintf.sh
+-------------
+A=10
+B=200
+S="Good morning"
+C='y'
+	
+printf "A: %3d\n" $A
+printf "B: %3d\n" $B
+printf "Message: %s\n" $S
+printf "Character :%c\n" $C
+-------------------------------------------------------------------------------------------------------------------------------------
+shellscript operators
+---------------------
+operators are the symbols associated with pre-defined meaning to perform operations, the shell interpreter by looking at these symbols will understand we are asking him to perform specific type of operation and performs it on the given data/inputs
+
+There are various different types of operations we can perform like arthematic operations, relational operations and logical operations etc for each of these operations types the shell interpreter has provided special symbols. There are 5 types of operators are provided by shell interpreter as below
+
+1. Arthematic operators
+2. Relational operators
+3. Logical operators
+4. String operators
+5. File operators
+
+
+1. Arthematic operators
+These operators (symbols) are used for performing arthematic operations like addition, substraction, division, multiplication and modulus etc
+1.1 + = addition
+1.2 - = substraction
+1.3 * = multiplication
+1.4 / = division
+1.5 % = modulus = remainder of a division is returned by modulus operator
+
+
+2. Relational operators
+These operators are used for perform comparision between 2 inputs like greaterThan, lessThan, equalTo etc. these are called decision making operators and always the result of relational operators is boolean (true/false) only
+
+These relational operators can be applied only on numeric inputs for comparing #2 differnt values and is not applicable on string data.
+1. -gt = greaterthan
+2. -lt = lessThan
+3. -ge = greaterThan or equalTo
+4. -le = lessthan or equalto
+5. -eq = equalTo
+6. -ne = not equalTo
+
+3. Logical operators
+The logical operators are used for combining multiple relational operations together like AND, OR and NOT
+
+1. -a = and
+2. -o = or
+3. ! = not
+
+
+Truth Tables
+1. AND
+-------
+REL1   REL2    OUTCOME
+T       T        T
+T       F        F
+F       T        F
+F       F        F
+
+2. OR
+------
+REL1    REL2   OUTCOME
+T        T       T
+T        F       T
+F        T       T
+F        F       F
+
+3. NOT
+------
+NOT operator is used for negating the outcome, if an expression has been evaluated to TRUE, we can negate it using NOT operator as FALSE
+
+RE   OUTCOME
+T       F
+F       T
+
+4. string operators
+--------------------
+These operators are used for performing operations on the string data. we can perform operations like length, equal, empty etc
+
+>  = greaterThan
+<  = lessThan
+>= = greaterThan or equal
+<= = lessThan or equal
+== = equalTo
+-z = is zero length
+-n = is non-zero length
+
+5. File operators
+-----------------
+By using file operators we can perform file related operations like isFile, isDir, isExists , writable, readable, executable etc
+
+1. -e = file/directory exists or not
+2. -f = is it regular file or not
+3. -d = is it directory or not
+4. -r = read permission
+5. -w = write permission
+6. -x = execute permission
+7. -c = character special file
+8. -s = size of the file is greaterthan zero
+9. -b = block special file
+10. -o = is he the owner of the file or directory
+11. -of = File f1 is older than f2
+12. -nf = File f1 is newer than f2
+------------------------------------------------------------------------------------------------------------------------------------
+using expr for perform string operations
+----------------------------------------
+We can use expr to perform string operations as well, there are 3 types of string operations we can perform using it
+1. length
+2. substring in the given string
+3. comparing #2 given strings
+
+1. length of a given string
+wap to read accountNo of an bank account from the user and print the length of the accountNo
+
+lenaccountno.sh
+----------------
+#!/bin/bash
+read -p "Account No: " ACC_NO
+LEN=$(echo -n $ACC_NO | wc -c)
+	
+(or)
+	
+LEN=`expr length $ACC_NO`
+
+length is an pre-defined keyword or operator supported by expr using which we can find the length of the given string
+
+2. substring
+how to extract a substring within the given string
+We have bank ifsc code of 11 characters which comprises of
+	1. first 4 characters = bank name
+	2. next 3 = zonal code
+	3. next 4 = branch code
+	
+For eg..	
+SBIN0023943
+SBIN = State bank of India
+002 = zonal
+3943 = branch code
+
+we want to extract these fields from the given 11 characters ifsc code how can we extract these substrings in the given 11 character string
+
+syntax:-
+	`expr substr $STRING START_POS NO_OF_CHARS`
+	
+IFSC_CODE=SBIN0023943
+BANK_NM=`expr substr $IFSC_CODE 1 4`
+ZONAL_CODE=`expr substr $IFSC_CODE 5 3`
+BRANCH_CODE=`expr substr $IFSC_CODE 9 3`
+
+3. comparing #2 given strings
+We can compare #2 given strings and check whether those are equal or not by using expr
+
+syntax:-
+	`expr "$STR1" : "$STR2"`
+This expr expression returns:
+1. 0 if all given #2 strings are not matching
+2. if both strings are matching, returns the total character count of the string
+
+
+cmpstr.sh
+---------
+#!/bin/bash
+STR1=$1
+STR2=$2
+
+MATCH_CNT=`expr "$STR1": "$STR2"`
+echo "Match count : $MATCH_CNT"
+-------------------------------------------------------------------------------------------------------------------------------------
+Control statements
+By default the shell interpreter executes the instructions written inside the shell program from top-to the bottom sequentially one after the another. But sometimes we may want to execute few/group of instructions based on various different conditions or few other group of instructions repeatitively, this can be achieved through the help of control statements
+
+
+ticketgenerator.sh
+------------------
+#!/bin/bash
+SOURCE=$1
+DESTINATION=$2
+RESERVATION_CLASS=$3 (general, second-class, second-seating, 2nd ac, 3rd ac, 1st ac ...)
+	
+##
+Lines of code to generate ticket for general quota #10
+
+##
+Lines of code to generate ticket for 2A: #20
+
+##
+Lines of code to generate ticket for 3A: #10
+
+
+There are 2 types of control statements are there
+1. conditional control statements
+	1.1 if condition
+	1.2 if-else condition or if-elif-else condition
+	1.3 case/esac
+	
+2. loop control statements
+	2.1 while
+	2.2 for
+	2.3 until
+-------------------------------------------------------------------------------------------------------------------------------------
+1. Conditional Control statements
+Conditional control statements are used for controlling the flow of execution of the code based on some condition. Here we write expression (relational expression) that evaluates to true/false. If the expression is evaluated to true, then we want to execute a block/bunch of lines of code, otherwise we want to skip executing them this can be achieved by using conditional control statements.
+These are of #3 types
+1. if condition
+2. if-else or if-elif-else
+3. case/esac
+
+if-condition
+-------------
+syntax:
+
+if [ expression ]
+then
+  #block of code 
+fi
+(or)
+if [ expression ] ; then
+	#block of code
+fi
+
+wap to read #2 numbers from the user interactively and print big number
+bigNumber.sh
+-------------
+#!/bin/bash
+read -p "A: " A
+read -p "B: " B
+
+if [ $A -gt $B ]
+then
+	echo "$A is big" #execute only when A is greaterThan B
+fi
+	
+if [ $B -gt $A ]	
+then	
+	echo "$B is big"
+fi
+
+if [ $A -eq $B ]
+then
+	echo "A: $A and B: $B are equal"
+fi
+
+#2. wap to read a number from the user non-interactively and print whether the number is positive or negative number.
+
+posorneg.sh
+-----------
+#!/bin/bash
+N=$1
+N_ARGS=$#
+
+if [ $N_ARGS -ne 1 ]
+then
+	echo "error: one number is required as input"
+	exit 1 #exit is for terminating the program
+fi
+
+if [ $N -gt 0 ]
+then
+	echo "positive number"
+fi
+
+if [ $N -lt 0 ]
+then
+	echo "negative number"
+fi
+
+if [ $N -eq 0 ]
+then
+	echo "neigther positive nor negative"
+fi	
+-----------------------------------------------------------------------------------------------------------------------------------
+2. if-else condition
+the result out of an expression has only #2 possible outcomes and if we want to execute different blocks of code based on the outcome, then instead of writing #2 if conditions we can use if-else condition where always the else will true if the if-block condition has been failed.
+	
+wap to find whether a given number is even or odd number and print it?
+	
+evenorodd.sh
+-------------
+#!/bin/bash
+read -p "N :" N
+REM=$[N%2]
+
+0 or non-zero
+
+if [ $REM -eq 0 ]
+then
+	echo "$N is even number"
+else
+	echo "$N is odd number"
+fi
+
+wap to check whether a person is eligible for applying driving license or not?
+criteria: person should be 18+ years to be eligible
+
+checkeligbilityforlicense.sh
+-----------------------------
+AGE=$1
+N_ARGS=$#
+
+if [ $N_ARGS -ne 1 ]
+then
+	echo "error: age is required"
+	exit 1
+fi
+
+if [ $AGE -ge 18 ]
+then
+	echo "Eligible to apply for drivers license"
+else
+	echo "Oops! Not eligible to apply for drivers license"
+fi
+-------------------------------------------------------------------------------------------------------------------------------------
+How to work with floating point/decimal numbers aspart of the shellscript program?
+The shellscript is not an programming language designed to support performing mathematical or scientific operations, it is an language designed to perform administrative related activities like software installations, automations, configurations etc. So by default the shell interpreter supports performing arthematic operations only in integer inputs and doesnt support floating/decimal values.
+	
+So inorder to support floating/decimal values (fractional numbers), the shell interpreter has provided an shell utility "bc" stands for basic calculator. The bc takes an arthematic expression as an input (with floating numbers), performs computation and generates the output onto the console
+
+we need to set the scale=1 to support decimal operation
+
+wap to take #2 floating/decimal numbers as input and perform addition operation
+
+adddecimal.sh
+-------------
+#!/bin/bash
+read -p "Enter a:" A
+read -p "Enter b:" B
+
+#SUM=$[A+B] this will not work for floating/decimal value inputs
+SUM=$(echo "$A+$B" | bc)
+echo "SUM : $SUM"
+
+bc = by default taking the input from STDIN
+
+we can set scale option while working with division operation as below:
+DIV=$(echo "scale=2; $B/$A" | bc)
+-------------------------------------------------------------------------------------------------------------------------------------
+if-elif-else
+-------------
+For a given expression, if it evaluates to multiple possible outcomes which are mutually exclusive and for each possible outcome we want to perform some operation instead of using multiple if conditional statements we can use if-elif-else statement
+
+wap to calculate the bill for the items the customer has bought in an restaurant.
+
+generatebill.sh
+---------------
+#!/bin/bash
+echo "1. Idly: INR 40"
+echo "2. Dosa: INR 80"
+echo "3. Vada: INR 50"
+echo "4. Poori: INR 90"
+	3
+	
+read -p "enter the menu item you want: " MENU_ITEM
+read -p "quantity :" QTY
+BILL_AMT=0
+
+if [ $MENU_ITEM -eq 1 ]
+then
+	BILL_AMT = $[ 40 * QTY]
+elif [ $MENU_ITEM -eq 2 ]
+then
+		BILL_AMT = $[ 80 * QTY]
+elif [ $MENU_ITEM -eq 3 ]
+then
+		BILL_AMT = $[ 50 * QTY]
+elif [ $MENU_ITEM -eq 4 ]
+then
+		BILL_AMT = $[ 90 * QTY]
+else
+	echo "error: invalid item selected"
+	exit 1
+fi	
+
+echo "Bill Amount : $BILL_AMT"	
+	
+chmod u+x generatebill.sh
+./generatebill.sh
+-------------------------------------------------------------------------------------------------------------------------------------
+wap to calculate electricity bill based on the units consumed using the below slab limits:
+	
+between   0 - 50  = 5.25
+	       51 - 150 = 7.50
+	      151 - 350 = 8.25
+	      > 350     = 9.50
+
+units consumed: 380
+	bill: (50 * 5.25) + (100 * 7.50) + (200 * 8.25) + (30 * 9.50)
+		
+electricitybill.sh
+-------------------
+#!/bin/bash
+read -p "units consumed: " UNITS
+BILL_AMT=0
+		
+if [ $UNITS -gt 0 -a $UNITS -le 50 ]; then
+	BILL_AMT=$(echo "$UNITS*5.25" | bc)
+elif [ $UNITS -gt 50 -a $UNITS -le 150 ]; then
+	BILL_AMT=$(echo "(50*5.25) + (($UNITS-50)*7.50)" | bc)
+elif [ $UNITS -gt 150 -a $UNITS -le 350 ]; then
+	BILL_AMT=$(echo "(50*5.25) + (100*7.50) + (($UNITS-150)*8.25)" | bc)
+elif [ $UNITS -gt 350 ]; then
+	BILL_AMT=$(echo "(50*5.25) + (100*7.50) + (200*8.25) + (($UNITS-350)*9.50)" | bc)
+else
+	echo "error: invalid input"
+	exit 1
+fi
+
+echo "Bill Amount : $BILL_AMT"
+-------------------------------------------------------------------------------------------------------------------------------------
+Nested-if control statement
+
+Within an if conditional statement we can write one more conditional statement, which is called nested-if control statements
+
+kms: 10
+tripType: shared/private
+cabType: hatchback/sedan/suv/premium
+
+1. tripType: shared
+	PRICE: 5.25
+2. tripType: private
+	2.1 cabType: hatchBack
+		PRICE: 6.15
+	2.2 cabType: sedan
+		PRICE: 7.80
+	2.4 cabType: suv
+		PRICE: 9.50
+	2.5 cabType: premium
+		PRICE: 12.25
+			
+tripestimate.sh
+----------------
+#!/bin/bash
+read -p "Estimated kilometers:" EST_KMS
+read -p "Trip type (private/shared):" TRIP_TYPE
+read -p "Cab Type (Hatchback/Sedan/SUV/Premium):" CAB_TYPE
+TRIP_AMT=0
+			
+if [ $TYPE_TYPE = "shared" ]; then
+	TRIP_AMT=$(echo "$EST_KMS*5.25" | bc)
+elif [ $TRIP_TYPE = "private" ]; then
+	#nested if condition
+	if [ $CAB_TYPE = "Hatchback" ]; then
+		TRIP_AMT=$(echo "$EST_KMS*6.15" | bc)
+	elif [ $CAB_TYPE = "Sedan" ]; then
+		TRIP_AMT=$(echo "$EST_KMS*7.80" | bc)
+	elif [ $CAB_TYPE = "SUV" ]; then
+		TRIP_AMT=$(echo "$EST_KMS*9.50" | bc)
+	elif [ $CAB_TYPE = "Premium" ]; then
+		TRIP_AMT=$(echo "$EST_KMS*12.25" | bc)
+	else
+		echo "error: invalid input"
+		exit 1
+	fi
+	
+else
+	echo "error: invalid input"
+	exit 1
+fi
+	
+echo "Trip estimated amount : $TRIP_AMT"	
+	
+--------------------------------------------------------------------------------------------------------------------------------------------#4. case-esac statement
+"case" is also another conditional control statement similar to "if" used for executing a block of code based on the outcome of an expression. But there is an difference between case and if conditional statements let us understand
+
+1. if condition
+Incase of if condition we can execute a block of code based on conditional expression build over a range of values. For eg.. if gross income of an individual is between 1 to 5 lacs execute this block of code
+
+2. case statement
+Incase of case statement it always matches the given input with only one outcome and we cannot write expression with range of values
+For the given input, if there are only fixed possible outcomes are there, and for each matching outcome we want to perform an block of code then we need to use "case" statement
+
+even though there is a limitation with "case", it works better interms of performance when compared with "if" condition
+
+1. pushpa 2
+2. matka
+3. lucky bhaskar
+4. maharaja
+5. amaran
+
+read -p "choose movie:" MOVIE
+5
+
+if [ $MOVIE -eq 1 ]; then
+	// print ticket for pushpa 2
+elif [ $MOVIE -eq 2 ]; then
+	// print ticket matka
+elif [ $MOVIE -eq 3 ]; then
+	// print ticket lucky bhaskar
+elif [ $MOVIE -eq 4 ]; then
+	// print maharaja
+elif [ $MOVIE - eq 5 ]; then
+	// print amaran
+else
+	// wrong option choosen
+	// exit
+fi
+
+case $MOVIE
+1))
+	// print ticket for pushpa 2
+2))
+	// print ticket matka
+3))
+	// print ticket lucky bhaskar
+4))
+	// print maharaja
+5))
+	// print amaran
+*))
+	// wrong input
+esac
+
+In the above example, if we have choosen the movie as #5, it takes 5 comparisions to identify the right block of code to be executed incase of "if-elif-else" conditional statement, whereas if we use "case", it directly jumps to the matching section to execute the block of code which is optimal when compared with if
+	
+syntax:-
+case INPUT in
+1)
+	block#1
+;;
+2)
+	block#2
+;;
+3)
+	block#3
+;;
+*) 
+	default statements
+esac
+
+wap to print the curriculum of the day for which the student has choosen.
+	
+daycalendar.sh	
+---------------
+#!/bin/bash
+
+read -p "Day of week: " DAY_OF_WEEK
+
+case $DAY_OF_WEEK in
+"Mon")
+	echo "Networking"
+	echo "Database"
+	echo "Data Structure"
+	echo "IOT"
+;;
+"Tue")
+	echo "Database"
+	echo "Data Structures"
+	echo "Math"
+	echo "Operating Systems"
+;;
+"Wed")
+	echo "Networking"
+	echo "Database"
+	echo "Data Structure"
+	echo "Linux"
+;;
+"Thu")
+	echo "Database"
+	echo "Data Structures"
+	echo "Math"
+	echo "Data Science"
+;;
+"Fri")
+	echo "Networking"
+	echo "Database"
+	echo "Data Structure"
+	echo "Math"
+;;
+"*")
+	echo "Holiday"
+esac
+-------------------------------------------------------------------------------------------------------------------------------------
+How many types of control statements are there?
+There are #2 types of control statements are there
+1. conditional control statements
+	1.1 if condition
+	1.2 if-else / if-elif-else and nested if conditions
+	1.3 case/esac
+2. loop control statements
+	2.1 for
+	2.2 while
+	2.3 until
+	
+2. loop control statements
+
+We want to execute a line or block of code repeatedly until a specific number of times or a condition has been met, one way we can accomplish is to repeatedly write the same code for executing it for given number of times
+
+#!/bin/bash
+echo "good morning"
+echo "shellscripting is powerful scripting language!"				
+echo "good morning"
+echo "shellscripting is powerful scripting language!"				
+echo "good morning"
+echo "shellscripting is powerful scripting language!"			
+echo "good morning"
+echo "shellscripting is powerful scripting language!"		
+echo "good morning"
+echo "shellscripting is powerful scripting language!"				
+
+even though we can accomplish executing the code repeatedly by duplicating the code as above, it brings us lot of maintainability problems as below:
+1. if we want to change the block of code we want to repeatedly execute for eg.. instead of "good morning", we want to print "greetings!" then we need to modify the code across all the lines where we have written "good morning" to "greetings!"
+2. more changes takes more time in modifying the code
+3. more changes attracts more bugs
+4. the cost of making the changes will be more
+From the above we can understand always avoid duplicating the code within the program
+
+Then how to repeatedly execute a block of code at a place within the program until a condition has been met or fixed number of times. That is where loop control statements are being introduced.
+	
+Loop control statements are used for executing a line or block of code repeatedly at a place within the program until a condition has been met during execution. There are 3 types of loop control statements are there
+1. while
+2. for
+3. until
+let us explore each of them
+
+
+1. while loop
+while loop is an control statement that is used for executing a block of code repeatedly until a condition has been met. If the condition is evaluated to true, it repeats executing the block of code, otherwise the control comes out of the loop and executes the remaining instructions in the program
+
+syntax:-
+while [ condition ]
+do
+	#block of code
+done
+
+if the given condition is evaluated to true, then the lines between do & done will be executed, in this way each iteration the condition is evaluated and the block of code between do & done will be executed until the condition evaluavates to false
+	
+If we wish to execute the block of code for specific number of times (like #3), then we can write counter based while loops. In counter based while loops we have #3 parts
+1. counter variable / initialization
+2. condition
+3. incrementation
+
+For eg.. we want to print "good morning" & "shellscripting is a powerful scripting language" for #5 times we can accomplish this as below.
+	
+greetingsloop.sh
+-----------------
+#!/bin/bash
+I=1 #counter variables
+while [ $I -le 5 ] #condition
+do
+	echo "good morning"
+	echo "shellscripting is a powerful scripting language"
+	I=$[I+1] #increment
+done
+echo "good bye!"
+	
+	
+wap to print 1 to N numbers
+For eg.. given N is 10, then print 1 2 3 4 5 6 7 8 9 10
+	
+printNNumbers.sh
+-----------------
+#!/bin/bash
+read -p "N :" N
+I=1
+	
+while [ $I -le $N ]
+do
+	echo "$I"
+	I=$[I+1]
+done
+
+3. wap to print all the even numbers between 1 to N
+
+printEven.sh
+-------------
+#!/bin/bash
+I=2 #initialization
+read -p "N :" N
+
+while [ $I -le $N ] #condition
+do
+	REM=$[I%2]
+	if [ $REM -eq 0 ]; then
+		echo "$I "
+	fi
+	
+	I=$[I+1] #incrementation
+done
+-------------------------------------------------------------------------------------------------------------------------------------
+wap to print N multiplication table from 1 to 10
+For eg.. N=2
+1 * 2 = 2
+2 * 2 = 4
+3 * 2 = 6
+4 * 2 = 8
+5 * 2 = 10
+6 * 2 = 12
+7 * 2 = 14
+8 * 2 = 16
+9 * 2 = 18
+10 * 2 = 20
+		
+printNTable.sh
+--------------
+#!/bin/bash
+read -p "N :" N
+I=1
+		
+while [ $I -le 10 ]
+do
+	MUL=$[I*N]
+	printf "%d * %d = %d\n" $I $N $MUL
+	I=$[I+1]	
+done
+-------------------------------------------------------------------------------------------------------------------------------------
+wap to sum all the numbers between 1 to N and print
+N=5
+1 + 2 + 3 + 4 + 5 = 15
+	
+sumOfNNumbers.sh
+-----------------
+#!/bin/bash
+read -p "N :" N
+I=1
+SUM=0
+while [ $I -le $N ]	
+do
+	SUM=$[SUM+I]
+	I=$[I+1]
+done
+
+echo "sum : $SUM" 
+-------------------------------------------------------------------------------------------------------------------------------------
+wap to check whether a given number is prime or not?
+prime = The number will be only divisible by 1 and itself and should be divisble by anyother number, then it is called prime number
+
+
+checkprime.sh
+--------------
+#!/bin/bash
+read -p "N :" N
+I=2
+MID=$[N/2]
+REM=0
+IS_PRIME=1 #flag
+
+while [ $I -le $MID ]
+do
+	REM=$[N%I]
+	if [ $REM -eq 0 ]; then
+		IS_PRIME=0
+		break
+	fi	
+	I=$[I+1]
+done
+
+if [ $IS_PRIME -eq 1 ]; then
+	echo "$N is prime number"
+else
+	echo "$N is not a prime number"
+fi
+
+break = is an control statement used for terminating an loop, usually used based on a condition
+	
+wap to print fibonocci series upto N
+fibinocci series means: next number is the sum of previous 2 number
+1 1 2 3 5 8 13 21 34 ... N
+
+N = 10
+
+fibinocci.sh
+-------------
+#!/bin/bash
+read -p "N : " N
+PN=0
+CN=1
+NN=1
+	
+printf "%d " $CN	
+while [ $NN -le N ]
+do
+	printf "%d " $NN
+	PN=$CN
+	CN=$NN
+	NN=$[PN+CN]
+done
+-------------------------------------------------------------------------------------------------------------------------------------
+1) wap to sum all the digits in a given number and print it (extract digits in a number)
+for eg.. 245 = 11
+	
+2) wap to reverse a given number (this becomes easy)
+for eg.. 345 = 543
+	
+3) wap to print the below series as output (nested while loop)
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5 ... N
+
+4) wap to print numbers in reverse order from N to 1 (basic)
+N=10
+10 9 8 7 6 5 4 3 2 1
+-------------------------------------------------------------------------------------------------------------------------------------
+2 for loop
+for loop is also an loop control statement used for executing a block of code repeatitively at a place within the program. The for loop is majorly designed for iterating over a fixed list of values (these fixed list of values are called "items"). In addition there is another variant of for loop which is used as counter-based loop as well
+
+From the above we can think of #2 forms of for loop are there
+1. iterate over a fixed list of values
+2. counter-based for loop
+
+1. loop thru fixed list of values
+In this for loop we iterate over fixed list of values taking each value as an input to perform operation using it. The list of values are called "items"
+Here we take each item from that list of items one by one and perform operation using that item.
+For eg.. In an e-commerce application the customers adds the products to cart, when we goto checkout, we need to take all the items from the cart and need to add into order for billing, this is one of the example of fixed list of values
+
+syntax:-
+	for ITEM in ITEMS
+	do
+		#statement
+	done
+	
+1. wap to print 1 to 10 numbers sequentially
+Here the input is finite-set of (fixed) data which is 1.. 10 numbers and I need to iterate over each number(item) and print it
+
+print10Numbers.sh
+------------------
+#!/bin/bash
+for I in 1 2 3 4 5 6 7 8 9 10
+do
+	echo $I
+done
+
+2. wap to add/sum N given numbers that are passed non-interactively to the shellscript program
+
+addGivenNumbers.sh
+-------------------
+#!/bin/bash
+NARGS=$#
+
+if [ $NARGS -lt 2 ]; then
+	echo "error: atleast #2 numbers are required as input"
+	exit 1
+fi
+SUM=0
+for N in $@
+do
+	SUM=$[SUM+N]
+done
+echo "SUM : $SUM"
+
+./addGivenNumbers.sh 10 32 22 19
+------------------------------------------------------------------------------------------------------------------------------------
+Most of the time we use for loops for iterating over the list of files/folders to perform File-based operations within the shellscript program
+
+For eg.. we want to count the number of files including the sub-directories within a given directory we can easily iterate over the list of files/directories within a given directory using for loop
+
+~/library
+	|-adventure
+		|-book1.txt
+		|-adventure2.txt
+	|-comics
+		|-comic1.txt
+	|-fiction
+		|-fiction1.txt
+		|-fiction2.txt
+		
+Here we can get the list of items that are there under ~/library directory which are files and folders and can loop thru them using for loop and count for only files as below
+
+countfiles.sh
+--------------
+read -p "directory path: " DIR_PATH
+
+if [ ! -d $DIR_PATH ]; then
+	echo "error: directory doesnt exists"
+	exit 1
+fi
+C=0
+	
+for F in $DIR_PATH/\*
+do
+	if [ -f $F ]; then
+		C=$[C+1]
+	fi
+done
+echo "total number of files under: $DIR_PATH are $C"
+
+./countfiles.sh ~/library
+
+
+wap to cleanup empty files under the given path (non-interactive input)?
+		
+cleaupjunk.sh
+--------------
+#!/bin/bash
+DIR_LOC=$1
+
+for F in $DIR_LOC/\*
+do
+	if [ -f $F -a ! -s $F ]; then
+		rm $F
+	fi
+done
+--------------------------------------------------------------------------------------------------------------------------------------------------
+counter-based for loop
+
+We can repeatedly execute a block of code for a fixed number of times by using counter based for loops. This can be achieved using while loop as well, but the syntax of using counter-based for loops are pretty easy than while. In these counter based loops there are #3 parts are there
+1. Initialization
+2. Condition
+3. Incrementation/Decrementation
+
+In counter based for loop, all of these #3 parts are written in one statement as below
+syntax:
+
+for((INITAILIZATION;CONDITION;INCREMENTATION))
+do
+	#block
+done
+
+1. wap to print 1 to N numbers
+printNNumbers.sh
+-----------------
+#!/bin/bash
+read -p "N :" N
+for((I=0;I<N;I++)) 
+do
+	echo $I
+done
+---------------------------------------------------------------------------------------------------------------------------------------------------
+until loop
+----------
+until is also an loop control statement used for repeatedly executing a block of code until the condition remains false, once the condition is true, it breaks the loop. So we can see this as the reverse of while loop
+
+syntax:-
+	until [ condition ]
+	do
+		#block
+	done
+	
+here the condition is false, it enters into the loop and executes the block of code repeatedly until the condition becomes true
+		
+wap to print numbers from N to 1
+		
+reverseNumbers.sh
+------------------
+#!/bin/bash
+read -p "N : " N #10
+I=$N
+until [ $I = 0 ]
+do
+	echo "$I"
+	I=$[I-1]
+done
+
+wap program to read numbers interactively from the user, sum them and return until the user enter the number as -1
+sumGivenNumbers.sh
+------------------
+#!/bin/bash
+
+SUM=0
+N=0
+	
+until [ $N -eq -1 ]
+do
+	SUM=$[SUM+N]
+	read -p "N :" N	
+done
+echo "Sum : $SUM"
+	
+
+while = while the condition is true, repeatedly execute the block of code
+for = loop thru the fixed list of items
+until = until the condition becomes true, repeatedly execute the block of code
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Arrays
+------
+Arrays are used for storing bunch of identical (similar data type) values sequentially or in contigous-memory locations in the memory. These are also called as indexed base collection of data, where we can access the data by referring the index location within the array
+
+
+tax_prog.sh
+------------
+GROSS_INCOME1=300000
+GROSS_INCOME2=500000
+GROSS_INCOME3=700000
+	
+#tax to be collected is 12%
+	
+TAX_AMT1=$(echo "scale=2; ($GROSS_INCOME1 * 10)/100" | bc)
+NET_INCOME1=$[GROSS_INCOME1 - TAX_AMT1]	
+printf "gross income1 : %f, tax amount1 : %f, net income1: %f" $GROSS_INCOME1 $TAX_AMT1 $NET_INCOME1
+
+TAX_AMT2=$(echo "scale=2; ($GROSS_INCOME2 * 10)/100" | bc)
+NET_INCOME2=$[GROSS_INCOME2 - TAX_AMT2]	
+printf "gross income2 : %f, tax amount2 : %f, net income2: %f" $GROSS_INCOME2 $TAX_AMT2 $NET_INCOME2
+
+TAX_AMT3=$(echo "scale=2; ($GROSS_INCOME3 * 10)/100" | bc)
+NET_INCOME3=$[GROSS_INCOME3 - TAX_AMT3]	
+printf "gross income3 : %f, tax amount3 : %f, net income3: %f" $GROSS_INCOME3 $TAX_AMT3 $NET_INCOME3
+
+There are group of similar type of values/data, on whom we want to apply same logic in performing computation operation. We can store these group of values into individual variables like VAR1, VAR2, VAR3... 
+	
+Then while applying the computation logic in performing calculation we need to refer individual variables that results in duplication of code in applying on different variable values.
+	
+Instead of storing in indepenent variables we can store them in a collection called "array"	, so that we can apply the same type of logic on the array of elements by iterating through each value by index easily
+
+GROSS_INCOMES=(300000, 500000, 700000)
+Here we created an GROSS_INCOMES variable of array type, in which we stored #3 values inside it. So these values inside the array are stored in contigous memory location, so that we can access each of these values by using index positions in which those are stored. The index starts with 0 and goes until N depends on the number of values we stored
+
+Now we can access the values inside the GROSS_INCOMES array variable using 
+	GROSS_INCOMES[0] = will gives us 300000
+	GROSS_INCOMES[1] = will gives us 500000
+	
+so that we can write a program to iterate through these array of values using loops and can apply same logic on each element of the array so that we can avoid duplication of code
+
+tax_program.sh
+---------------
+#!/bin/bash
+GROSS_INCOMES=(300000 500000 700000)
+	
+for GROSS_INCOME in ${GROSS_INCOMES[@]}
+do
+	TAX_AMT=$(echo "scale=2; ($GROSS_INCOME*10)/100" | bc)
+	NET_INCOME=$[GROSS_INCOME-TAX_AMT]
+	echo "Gross Income: $GROSS_INCOME, Tax Amount: $TAX_AMT and Net Income: $NET_INCOME"
+done
+
+From the above we can understand the purpose of arrays as:
+"We can apply the programming logic on the group of elements/data by iterating/streaming them sequentially, so that we can avoid duplicating the code"
+	
+How to declare an array?
+There are #3 ways we can declare arrays in shellscript programming
+
+1. while creating the array itself we can initialize with values inside them
+syntax:
+ARRAY_VAR=(VAL1 VAL2 VAL3)
+	
+GROSS_INCOMES=(300000 500000 700000)	
+	
+2. Index-based declaration
+syntax:-
+ARRAY_VAR[0]=VAL
+ARRAY_VAR[1]=VAL
+ARRAY_VAR[2]=VAL
+
+GROSS_INCOMES[0]=300000
+GROSS_INCOMES[1]=500000
+GROSS_INCOMES[2]=700000
+	
+3. Array declaration
+syntax:-
+	declare -a ARRAY_VAR	
+-a indciates the variable is array type
+upon delcaring the array, the array will be empty. after creating we can populate the data into the array using indexes
+
+declare -a GROSS_INCOMES
+GROSS_INCOMES[0]=300000
+GROSS_INCOMES[1]=500000
+GROSS_INCOMES[2]=700000
+
+--------------------------------------------------------------------------------------------------------------------------------------------------	
+How to interactively read the data into array variable?
+While reading the data itself we can store the data into array variable by using -a option in read bash command as below
+
+read -p "message" -a ARRAY_VAR
+
+read -p "Gross Incomes :" -a GROSS_INCOMES
+The above read statement prompts for entering the data, while passing the values we need to separate them with spaces, so that all the values are taken as input and populate into array variables as we indicated "-a"
+--------------------------------------------------------------------------------------------------------------------------------------------------
+How to access the data from the array?
+We store the data inside an array, so that we can access the data and perform operations on them. So, let us understand how to access the data from the array
+
+1. How to access all the elements of an array?
+When we declare an variable, to access the data of the variable we use $VAR expression
+N=10 = declare variable
+$N   = to access the data from the variable
+
+but when it comes to arrays, to refer arrays in accessing the data always we need to use ${ARRAY} expression only
+NUMBERS=(10 20 30) = declare array
+${NUMBERS} = inorder to refer the array always ${} expression should be used
+
+To access all the elements inside an array we have #2 syntaxes
+1. ${ARRAY[@]}
+2. ${ARRAY[*]}
+
+
+2. How to find the length of an array?	
+syntax:-
+${#ARRAY_NM[@]}	
+
+3. How to access an indexed location value in a array?
+${ARRAY[INDEX]}
+---------------------------------------------------------------------------------------------------------------------------------------------------
+	
+1. wap to interactively read the numbers into an array and print all the values
+
+printArray.sh
+-------------
+#!/bin/bash
+read -p "Numbers :" -a NUMBERS
+
+There are #2 ways we can loop through the elements of an array
+1. for in items loop
+2. index based while/for/until loop
+
+1. item-based loop
+for N in ${NUMBERS[@]}
+do
+	echo $N
+done
+
+(or)
+2. Index based traversal
+while:
+I=0
+LEN=${#NUMBERS[@]}	
+while [ $I -lt $LEN ]
+do
+	N=${NUMBERS[I]}
+	echo "$N"
+	I=$[I+1]
+done
+
+counter-based for:
+LEN=${#NUMBERS[@]}	
+for((I=0;I<LEN;I++))
+do
+	echo ${NUMBERS[I]}
+done
+--------------------------------------------------------------------------------------------------------------------------------------------------
+2. wap to interactively collect the numbers into an array and find the biggest number and print it
+
+Numbers: 37 92 72 173 83
+bigNumber: 173
+	
+	
+bigNumerInArray.sh
+-------------------
+#!/bin/bash
+
+read -p "Numbers: " -a NUMBERS
+BIG_NUMBER=0
+	
+for NUM in ${NUMBERS[@]}
+do
+	if [ $BIG_NUMBER -lt $NUM ]; then
+		BIG_NUMBER=$NUM
+	fi	
+done
+echo "Big Number: $BIG_NUMBER"
+	
+3. wap to sum all the even numbers in the array and print it?
+4. wap to reverse the elements of an array?
+10 38 40 98 3
+3 98 40 38 10
+		
+reverse_array.sh
+----------------
+#!/bin/bash
+read -p "Numbers : " -a NUMBERS
+declare -a REVERSE_NUMBERS
+
+LEN=${#NUMBERS[@]}
+I=$[LEN-1]
+
+for NUM in ${NUMBERS[@]}
+do
+	REVERSE_NUMBERS[I]=$NUM
+	I=$[I-1]
+done
+echo "${REVERSE_NUMBERS[@]}"
+	
+programs to work:
+1. wap to remove duplicate numbers from the given array and create new array?
+2. wap to remove negative numbers in the given array
+3. wap to print only odd numbers in the array
+4. wap to print second highest number in the array
+5. wap to sort the elements of the array and print it
+Input: 10 38 49 68 3 95, sorted: 3 10 38 49 68 95
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Functions
+
+What are functions, what is the purpose of functions?
+If we have a block of code we wanted to execute at various different places within the shellscript program, we cannot use loop control statements for executing it repeatedly, because loops are used for executing a block of code repeatedly at one place within the program
+
+But here we want to execute the block of code at various different places within the shellscript program. one way we can achieve in executing the block of code at different places is, write the same code at all the places whereever we want to execute. But the problem is the code will be duplicated at various different places, so that we run into maintainability issues as below
+1. if there is a change required in the block of code we need to modify it at several places whereeven it is written
+2. the time required in identifying the places where we need to change the code is high
+3. since we need to modify at several places, the cost of making the changes and time needed is also high
+4. chances of increasing bugs will be more
+
+Instead of duplicating the code across all the places we can write the code at one place and reuse it across several places in the application by using "functions"
+	
+Functions are named codeblocks, that is written at one-place within the program and can be reused across various places within the application
+
+How to work with functions?
+When we are working with functions, our shellscript program is divided into #2 blocks
+1. main block
+2. function block
+
+always the shell-interpreter begins execution of the shellscript program from main-block only. By default the functions written within the shell program will not be executed. Whereever within the program we want to execute the function block-of-code we need to call the function inorder to execute.
+	
+1. main block = The instructions that are directly written within the shellscript program are part of main-block of code
+2. function block = The instructions that are wrapped inside the function() {} declaration are called function block
+
+syntax:-
+function functionName() {
+	line1
+	line2
+	line3
+}	
+
+how to call the function to execute the block of code within the main-block?
+refer the function name within the main block to execute the function block
+
+Flow of execution:
+#!/bin/bash
+function f1() {
+	echo "f1:1"
+	echo "f1:2"
+	echo "f1:3"
+}
+
+#main block
+echo "#mb1"
+echo "#mb2"
+echo "#mb3"
+f1
+echo "#mb4"
+echo "#mb5"
+echo "#mb6"	
+f1
+echo "end"
+	
+flow of execution: #mb1, #mb2, #mb3, f1:1, f1:2, f1:3, #mb4, #mb5, #mb6, f1:1, f1:2, f1:3, end
+--------------------------------------------------------------------------------------------------------------------------------------------------
+wap to demonstrate the usage of functions and flow of execution
+
+basicfunction.sh
+-----------------
+#!/bin/bash
+
+function greet() {
+	echo "good morning!"
+	echo "bye!"
+}
+
+#main block
+echo "demonstrating the usage of function"
+greet
+echo "after the greet function"
+
+echo "one more time greet"	
+greet
+echo "after the greet function"
+echo "end"
+
+chmod u+x basicfunction.sh
+./basicfunction.sh
+
+#modularity = break the code and reuse it at different places (organized coding)
+---------------------------------------------------------------------------------------------------------------------------------------------------
+function arguments
+-------------------
+2. wap to add #2 numbers in a function
+
+addNumbers.sh
+--------------
+#!/bin/bash
+
+function add() {
+	A=10
+	B=20
+	SUM=$[A+B]
+	echo "Sum : $SUM"
+}
+
+#main block
+echo "performing add operation"
+add
+
+echo "some other place"
+add
+
+In the above program we are calling add function at different places within the program, but whereever we call the add function always perform addition of the A, B values which are fixed as 10, 20 respectively and produces the same output. But reusing doesnt mean execute the same block of code with same data, we want to reuse the functionality written inside the function at different places within our program by using different input data
+
+That is where functions are designed to take input data through function arguments. Function arguments are the input data we can pass to a function while calling it. So that the function can take the arguments (input data) we passed and performs the operation on the data and computes the output. So that we can reuse the functions at different places by passing data as input. 
+	
+How to pass argument values (input data) while calling the function?
+Along with referring function name while calling it we need to pass the data/values separated by space. For eg.. if we want to call add function with #2 numbers as input we can do that as below
+
+add 30 50
+	
+How to read the values/arguments passed to function inside the function?
+We can collect/read the function arguments using magic/implict variables within the function using $1, $2, $3, $4... $N similar to non-interactive shellprogram input
+1. $# = number of parameters we passed in calling the function 
+2. $@ = all the parameters
+
+Let us write the above add function with arguments as input
+
+addWithArgs.sh
+---------------
+#!/bin/bash
+
+function add() {
+  NARGS=$#
+	if [ $NARGS -ne 2 ]; then
+		echo "error: #2 arguments are required"
+		exit 1
+	fi
+	
+	A=$1
+	B=$2
+	SUM=$[A+B]
+	echo "Sum : $SUM"
+}
+
+#main block
+add 10 20
+add 30 28
+--------------------------------------------------------------------------------------------------------------------------------------------------
+scope of variables in shell program
+------------------------------------
+The scope of variable refers to the visibility/accessibility of the variable within the shellscript program. There are #2 scopes of variables are there in shellscript program
+1. global scope
+2. local scope
+
+1. global scope
+all the variables that we declared in the shellscript program by default are global variables only, which means it is accessible through out the entire shellscript program (Within the main-block and inside function blocks)
+	
+2. local variable
+When we create a variable within the function by default the scope of the variable is global and becomes accessible throughout the entire shell program. Incase if we declared the variable within a function using local keyword, then it will be accessible within the function only, which is called local variable
+
+
+multiplication_tbl_varscope.sh
+-------------------------------
+#!/bin/bash
+
+function printTable() {
+	#can i access TABLE variable
+	I=1 #global only
+	local N=10
+
+	#here I is global variable, but N is local variable and is 
+	#accessible within the function only because we declared it using local keyword	
+}
+
+NARGS=$#
+if [ $NARGS -ne 1 ]; then
+	echo "error: Table is required"
+	exit 1
+fi
+
+TABLE=$1 #global variables
+printTable 
+
+echo "I : $I" 
+echo "N : $N"	#N is not accessible as we declared inside the function using local keyword
+---------------------------------------------------------------------------------------------------------------------------------------------------
+***** exitcodes in Linux operating system
+Every program that is running on the operating system of the computer, upon completing their execution should return an exitcode indicating the status of its completion to the underlying operating system. If the program has completed execution and returned an exitcode of "zero" 0 means the program has finished execution successfully. Anything other than zero indicates the program ran into error during the execution and has terminated withan failure
+
+It is the responsibility of the operating system to gather the exitcodes returned by the program and monitor them to keep track of the health of the programs that are running on the operating system.
+	
+By default if a program has finished execution without any error, the default exitcode the program returns is "zero" indicating successful termination. If there is a failure then the program should return an non-zero exitcode to the operating system.
+	
+upon the program returning the exitcode to the operating system, the operating system stores this exitcode temporarily in a special variable "$?"	and will always be replaced with last executed program exitcode
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Working with function returnValues
+-----------------------------------
+The functions can take arguments as input, perform the operation and computes the output, so that we can achieve resuability through the means of using the functions in a shellscript program. Here there are #2 aspects associated with functions interms of their usage
+
+1. The function upon performing an operation will computes the output, the output that is computed by the function should be sometimes returned to the callee, so that the callee can take this output return by the function as input in performing further operation on it
+
+2. The callee should be able to determine whether a function has completed execution and returning the control to it by successfully or because of a failure. Based on it the callee can understand how to use the output that is computed by the function
+
+
+2. How to know the status of execution of a function?
+To let the callee know the status of the execution of a function, the function should return an exitcode indicating the status of its execution to the callee. A zero indicates function completed execution successfuly and is computing output that can be used by the callee.
+A non-zero exitcode indicates something went wrong during the function execution, so that the callee should be able to handle the failure appropriately
+
+How can a function can return an exitcode to the callee?
+The return statement inside a function is used for returning the exitcode to the callee. When the function return an exitcode using return statement, immediately the control will be transfered to callee
+
+function add() {
+  NARGS=$#
+	if [ $NARGS -ne 2 ]; then
+		return 12 #return error exitcode
+	fi
+	
+	local A=$1
+	local B=$2
+	SUM=$[A+B]
+	return 0 #exitcode indicating successful completion
+}
+	
+#main block
+add 10 20
+ADD_STATUS=$? #to collect the status of execution of the function
+
+if [ $ADD_STATUS -eq 12 ]; then
+	echo "error: 2 parameters are required"
+	exit 1
+elif [ $ADD_STATUS -eq 0 ]; then
+	echo "Sum : $SUM"
+fi
+
+
+1. how to return the outcome computed by the function?
+Un-fortunately in shellscripting a function cannot return an outcome it has computed to the callee. For this we need to rely on global variables.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,83 @@
+File Management Commands
+1. how to create an empty file? = touch filename
+2. how to know the current directory? = pwd
+3. how to print a message to the Terminal/STDOUT? = echo "message"
+4. how to see the contents of a File? = cat filename
+5. How to create a file with data? = echo "contents" > filename (may or may not exists) >> (append)
+6. How to list the directory contents? = ls
+    - long listing directory contents = ls -l
+    - human readable format = ls -lh
+    - recursively see all the sub-directory contents = ls -R
+------------------------------------------------------------------------------------------------------
+by default when we open the Terminal we will be in $USER directory
+
+directory related commands
+_-_-_-__-__-__-__-__-__-__-__-_
+
+#1 create directory commands
+How to create a directory to place the group of related files? (folder)
+mkdir = stands for make directory
+syntax:-
+mkdir directoryName
+
+/home/sriman$ mkdir dir1/dir2 = Yes given if dir1 already exists then dir2 will be created inside dir1, otherwise gives error
+
+if we want to create all the directories along with the path specified we can use below command
+mkdir -p dir1/dir2 = even dir1 doesnt exists it creates first and then creates child directory
+-p = stands for path
+
+#2 change directory commands
+_-_-_-__-__-__-__-__-__-__-__-_
+we can switch or change into the directory using cd
+cd = stands for change directory
+cd books = now you will be inside the books directory and all the command we execute here will works relative to books directory only.
+  
+cd .. = will takes you to the parent directory (cd space ..)
+cd (or) cd ~ = both will takes the user to his home directory
+cd - = takes you to the previous directory where you came from
+cd directoryName = takes you into that directory
+cd dir1/dir2/dir3 = takes you directly into the dir3 (nested directories)
+  
+
+#3 how to remove/delete directory?
+rm fileName = removes the given file
+rmdir directoryName = to delete the directory given it is empty. if the directory has contents inside it (files/folders), then the command gives error asking us to empty the directory before deleting.
+
+if we want to delete the directory complete including the files inside it at one-shot we can use the below command
+
+rm -r directoryName = -r stands for recursively delete all of the sub-directories and files inside the directory
+
+in addition we can use -f flag = stands force if we have any special files inside the directory to delete.
+rm -rf directoryName  
+------------------------------------------------------------------------------------------------------
+There is a shell utility called Tree, we can use it for seeing the structure of the directory contents in tree format.
+by default tree utility will not be available in ubuntu distro, we need to install it explicitly, using apt (package manager)
+  
+to install tree utility we need to run the below command
+sudo apt install tree = this will install the tree shell utility (program)
+
+tree = displays the current directory structure as tree
+tree directoryName = displays that directory contents in tree structure.
+tree -L n directoryName = -L stands for level, how many levels of subdirectories to be shown we can control.
+  
+tree is a very handy/useful utitlity while we are working on projects to see directory structure of our project, and mostly used.
+------------------------------------------------------------------------------------------------------
+In windows a file is always created with an extension of (.3characters)
+For eg..
+notes.txt (text file)
+syllabus.pdf (pdf)
+accounts.xls (excelsheet)
+The extension helps the windows to identify the type of the file, so that it can associate a relevant action to that file.
+  
+For eg.. when we click on .pdf extension files, windows opens acrobat reader. if we double click on a .exe file windows runs the program. So, extension plays a crucial role in identify the type of the file in windows.
+  
+In Linux File extensions are not mandatory/required. Linux to identify the type of the file it always tries to see the contents of the file to determine. linux being intelligent enough can determine what a file is of type by its own.
+  
+But how about an user of Linux knows by looking at a file what is its type is?
+For eg..
+accounts
+logo
+what is the type of accounts or logo by looking at the filename, we cannot identify so we dont know what to do with those files.
+To help us in identifying the file types linux as provided an command called file.
+  
+file filename = tells the type of the file.

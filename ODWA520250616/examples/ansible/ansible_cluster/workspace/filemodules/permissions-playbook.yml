@@ -1,0 +1,13 @@
+---
+- name: permissions play
+  hosts: all
+  tasks:
+    - name: change permissions
+      file:
+        path: /home/vagrant/importantnotes.txt
+        owner: 'vagrant'
+        group: 'vagrant'
+        mode: '0544'
+        modification_time: preserve
+      become: yes  
+...

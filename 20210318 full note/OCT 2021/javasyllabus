@@ -1,0 +1,17 @@
+What is java programming language?
+How is it different from other languages in the market?
+
+How to develop a basic java application?
+How to compile and execute a basic java application?
+What are java libraries, why do we use it?
+How to package a core java program?
+  Jar structure
+  types of jar
+  distributable and executable jar
+
+What is a web application?
+What is a Servlet Container or Application Server?
+packaging a java web application into war file?
+structure of the war
+how to deploy the war into server and start
+

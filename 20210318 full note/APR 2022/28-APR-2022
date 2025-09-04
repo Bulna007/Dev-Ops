@@ -1,0 +1,51 @@
+Kubernetes (k8s)
+----------------
+Kubernetes is a container cluster manager, which takes care of scheduling, monitoring and running docker containers on a network/cluster of computers
+
+
+Kubernetes is majorly used for deploying and monitoring microservices architecture based applications right now in the industry.
+being an devops engineer we should know what are the requirements of a typical microservices applications and how to deploy them in a kubernetes environment.
+	
+There are 2 types of application architectures are there in which we can develop an application
+1. monolithic architecture based application
+2. microservices architecture based applications
+
+#1. Monolithic architecture 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

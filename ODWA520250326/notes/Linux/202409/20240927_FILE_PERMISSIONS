@@ -1,0 +1,259 @@
+File permissions
+-----------------
+Granting access to a File or Folder of a user to other users of the Linux operating system means, granting permissions on the File or Folder allowing them to perform operations on them.
+	
+There are #3 types of permissions we can grant on a File or Folder 
+1. read
+2. write
+3. execute
+
+These permissions on a File means:
+1. read = we can view the contents of the file. 
+2. write = modify the contents of the file
+3. execute = if it is an program file we can run the program
+
+Folder means:
+1. read = we can list the contents of the folder using ls
+2. write = we can create new files/folders or delete existing files or folders inside the directory
+3. execute = we can cd into that directory
+
+These permissions are represented using symbols.
+	1. read = r
+	2. write = w
+	3. execute = x
+	if the user is not entitiled with a permission indicated with -
+		
+These permissions can be granted for a File or Folder to:
+1. owner
+2. group
+3. others
+
+by default when a File or Folder is created by a user
+1. the user who has created the File/folder will become the owner of the File or Folder
+2. The primary group of the owner will be tagged as File/Folder group
+3. the rest of the users who is not owner and not part of the File/Folder group are considered as others.
+	
+We can control access to a File or Folder by granting (read,write,execute) permissions to these people (owner,group,others).
+-------------------------------------------------------------------------------------------------------------------------
+	
+How to change the permissions of a File or Folder?
+A File or a Folder is created always with a default permissions assigned by the Linux operating system based on umask value. Later on the owner or root (sudoer) can change the permissions of a File/Folder.
+	
+There are #2 ways we can change the permissions of a File or Folder:
+1. symbolic notation
+2. octal notation
+
+The linux has provided an bash utility called chmod which stands for "change mode of access". This command supports both symbolic and octal notation of changing the permissions for a file or folder
+
+2. octal notation
+In octal notation, the three permissions (read, write, execute) has been assigned with weights (number) as below
+
+read(r)       = 4
+write(w)      = 2
+execute(x)    = 1	
+no permission = 0	
+a zero indicates no permission, so total it makes to:8 which is why named as octal notation. We can use chmod command for changing the permissions for a File/folder as below
+
+chmod ownerweightgroupweightotherweight filename
+chmod 640 expenses.txt
+based on the permission we want to assign for a owner, group or others sum the weights of the permissions each per individual and set the permission
+
+chmod 340 expenses.txt
+owner: -wx
+group: r--
+others: ---
+	
+using octal notation we cannot add or remove a permission for a owner,group or others specifically we need to always reset the permissions for all the people while using octal notation
+
+
+Few points to remember:
+1. always while using octal notation we need to set the permissions for all the #3 levels (owner, group, others)
+2. octal notation will reset the existing permissions on a File/Folder with new permissions we passed	
+
+#2. symbolic notation
+For setting the permissions for a File/Folder in symbolic notation chmod has provided pre-defined symbols indicating permissions, levels and operators
+
+permissions:
+read    = r
+write   = w
+execute = x
+
+levels:
+owner  = u
+group  = g
+others = o
+
+operators:
+add permission    = +
+revoke permission = -
+reset permission  = =
+	
+Incase of symbolic notation
+1. we can add,remove or reset permissions to a specific level (owner, group, others) on a File/Folder
+2. We dont need to always reset the permission to change
+
+syntax:
+chmod leveloperatorpermission,leveloperatorpermission,leveloperatorpermission file/folder
+
+For eg we want to 
+chmod u+rw expenses.txt = grant rw permission to the owner of the file
+chmod u+x expenses.txt  = grant or add execute permission to the owner
+
+chmod g=r expenses.txt = reset the permissions for the file group grant only read
+
+chmod u+rw,g=r,o=r expenses.txt
+
+it seems like symbolic notation is very flexible when compared with octal, but in realtime people use octal notation because without caring about what the currents permissions, I always can reset with whichever we want.
+	
+We can recursively change the permissions of all the files and sub-directories including the directory by using -r option as below
+
+chmod -r permissions file/folder
+
+-------------------------------------------------------------------------------------------------------------------------
+1. How to change the file group of an existing file?
+2. How to change the owner of an existing file?
+
+We can use a bash utility chown stands for “change owner”.
+syntax:
+
+chown user:group filename/folder
+
+owner: mike  group: healthsciencegroup
+finance/
+	|-expenses.txt 
+	|-cashbook.txt
+	|-ledger.txt
+	
+chown -R user:group directory/
+this reset the ownership of the directory including all the sub-directories and files inside it recursively	
+-------------------------------------------------------------------------------------------------------------------------
+How does the default permissions to a File/Folder will be assigned by the Linux operation system at the time of creating them?
+The linux operating system computes the default permissions for a File or Folder using umask.
+	
+
+we can change the default permissions being assigned to a File or Folder by changing the umask variable value of a user using the below command
+
+umask 0ownergroupother
+
+When we change the umask variable value for a user, it will be temporary and upon restart or logout/login into the terminal the operating system will reset the umask variable value of the user to default.
+	
+How to make a permanent change of umask variable value for an user?
+To permanently make a change in umask variable value we need to add an entry into ~/.bashrc file 
+
+vim ~/.bashrc
+goto the end of the file and an entry as below
+
+umask 0026
+then write and quite
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

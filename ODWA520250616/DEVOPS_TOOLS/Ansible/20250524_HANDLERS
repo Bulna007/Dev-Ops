@@ -1,0 +1,61 @@
+Ansible Handlers
+------------------
+Ansible handlers are special tasks that only execute when they are notified by the other tasks. By default each task in ansible playbook executes sequentially from top-to the bottom. But sometimes we want to execute a task only upon completing another task, this can be achieved through Handlers.
+    
+There are typically operations like restarting services, reloading configurations or performing cleanup actions after a change has been made. The tasks can be triggered or managed to execute through handlers.
+    
+How does handlers works?
+1. A handler is just like any other task in the ansible playbook but would be declared under handlers section in the playbook. These tasks are special and would not be executed by default aspart of the playbook execution
+2. The handlers would be executed only when a task notify them to execute 
+3. Handlers only run once, no matter how many times/tasks notifies them
+4. The Handlers executes only at the end of the playbook execution after all the tasks have completed
+
+Let us try hosting an static web application by installing an apache2 httpd server
+
+webhosting
+|-hosting-playbook.yml
+|-site.conf.j2
+|-sites
+  |-quickeats/
+  
+site.conf.j2
+<VirtualHost *:80>
+  ServerName {{ domain_name }}
+  DocumentRoot /var/www/{{ site_dir }}
+</VirtualHost>
+    
+hosting-playbook.yml
+---
+- name: host web site
+  hosts: all
+  tasks:
+    - name: copy site
+      copy:
+        src: sites/"{{site_dir}}"
+        dest: /var/www/
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      become: yes
+      notify: restart apache2
+    - name: configure site
+      template:
+        src: site.conf.j2
+        dest: /etc/apache2/sites-available/"{{ site_dir }}".conf
+      become: yes
+      notify: enable site
+      
+  handlers:
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: enable site
+      shell: a2ensite "{{ site_dir }}"
+      become: yes

@@ -1,0 +1,124 @@
+Precedence in taking variable values supplied:
+1. *.auto.tfvars
+2. -var-file=*.tfvars
+3. -var switch
+4. environment variables
+
+Working with output variables
+------------------------------
+Output variables are similar to function/method calls in programming language, when we call a method with inputs after executing it produces an output, that can be taken as an input to another function similarly a terraform resource execution might generate an output, which can be captured into an output variable, so that it can be passed as an input to another resource in terraform configuration file or can be printed onto console
+
+We can declare output variables to capture the values of execution in terraform configuration file *.tf itself, but it is recommended to declare output variables in a separate terraform configuration file usually named as outputs.tf
+
+we declare an output variable output variable block as below.
+	
+outputs.tf
+----------
+output "variableName" {
+	value = expression pointing to the attribute of the resource
+	description = "information about the variable"
+	sensitive = true/false (based on which the variables will be printed to console)	
+}
+----------------------------------------------------------------------------------------------------
+Terraform provisioners
+----------------------
+Terraform is an iac tool that takes care of provisioning infrastructure resources on cloud providers, but we need software packages to be installed and configured on the provisioned infrastructure to achieve the final system state. The job of terraform is not about installations/configurations, so how to solve problem
+
+There are 2 options are available
+1. use software configuration management tools like ansible, puppet, chef or salt for installing and configuring the software packages on the provisioned infrastructure
+2. bake the custom images with the cloud provider to provision the infrastructure directly
+
+#2 even the second approach still requires to provision infrastructure and manually install the software which is not recommended.
+	
+Now looks like we need to go for configuration management approach, but after provisioning the infrastructure using terraform, we need to manually run the configuration management scripts to install and configure software packages, which makes the job difficult since we need to extract the output of terraform and should carefully pass it as an input to ansible/puppet/chef/salt etc
+
+Instead we can take the help of provisioners supported by terraform in automatically invoking an configuration management script post completion of the provisioning 
+There are 3 types of provisioners are supported by terraform:
+1. file provisioner = used to copy files from specified directory to the resource
+2. local-exec provisioner = runs a provisioner script on the local machine where terraform control node is there
+3. remote-exec provisioner = copies the provisioner script onto the resource and will execute locally on the resource level
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

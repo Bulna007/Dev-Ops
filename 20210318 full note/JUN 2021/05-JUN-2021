@@ -1,0 +1,131 @@
+System commands
+----------------
+How to get the current user in which we are in shell?
+whoami
+
+How to get the login name of the user?
+logname 
+
+How to get all the users who are currently logged in to the Linux Machine?
+users
+
+How to get the login users with timestamp of their login?
+who
+
+How to know the current operating system we are using?
+uname
+uname -a = full details of the linux machine
+
+How to get the name of the computer?
+hostname
+
+How to get the ip address of the machine?
+hostname -i = local ip address
+hostname -I = list down all the network card ip addresses attached to the machine
+
+How to get the ip address and mac address of all the network cards attached to our machine?
+In ubuntu we cannot get all the ip address/mac address by default, we need to install a software package called net-tools.
+
+sudo apt update -y
+sudo apt install -y net-tools
+ifconfig = will display all the network card configurations.
+  
+How to find whether a remote server is accessible or not?  
+ping serverName/ip address
+
+How to switch to a root user in Linux?
+sudo su -
+sudo -i
+
+How to change the name of the computer?
+There is a configuration file in /etc/hostname in which the name of the computer is stored. if we want to change the computer name we have to modify that file
+
+sudo vi /etc/hostname
+change and save it and relogin will gets effected.
+  
+How to reboot the linux machine from commandline?
+init 0 = shutdown
+init 6 = restart
+reboot = restart
+reboot -f = fast restart
+
+How to see the hardware of our computer?
+In windows we get the list of hardware attached to our computer by going to device manager
+lshw  = list hardware to get the complete list of hardware attached to our computer.
+  
+How to get the cpu information?
+each hardware attached to the linux machine is stored/represented as a file on the Linux FileSystem.
+cat /proc/cpuinfo
+--------------------------------------------------------------------------------------------------------
+Process Related Commands
+------------------------
+
+What is a Program?
+Program is a File stored on Filesystem, which contains executable instructions as part of it. user can run the program file to get the output after execution.
+  
+What is a Process?
+A program under execution is called a process. program while executing will takes system resources like cpu, memory and other hardware resources of our computer. To keep track of this information of a executing program linux creates "process".
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

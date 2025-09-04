@@ -1,0 +1,215 @@
+What is a Program?
+A program is nothing but a File stored on the Filesystem, but unlike the normal files a program file contains executable instruction which can be passed to the operating system asking to execute.
+  
+An operating systems is just not only responsible for translating the program instructions into hardware instructions to execute on the underlying hardware, even it is responsible for various activities like
+  - resource allocation
+  - resource management
+  - monitoring etc
+to give an enduser a pleasent experience of using a computer system.
+If operating system dont hold the responsibility of manging the programs which are under execution, then most of the programs would result in failure.
+  
+How does an operating system keeps track of the programs which are under execution, how does it identifies which programs are using which resource of the machine and what is their state?
+  
+That is where when we submit a program to operating system asking to execute, it creates a process control block (pcb) (in short reffered as "process") which carries all the details of the program which is under execution like
+  - user/owner (running the program)
+  - reference to program
+  - cpu
+  - memory
+  - other hardware resources
+  - process created time
+  - estimated lapse time
+  - exit code
+  
+process = is a program under execution in which the operating system keeps track of the information of its execution. In linux operating system, for each process it creates it assigns an process id (pid) to identify the process uniquely and manage it. The pid of the process is unique across the current running process of the linux.
+Linux will maintain all the process that are under execution by writing them into a File on FileSystem under /proc/ directory. For each process under execution linux creates a separate file and writes the execution information of the process.
+
+How to see all the process that are running within our linux machine?
+In windows we can go and view all the process in Task Manager. Similarly we can see all the current running process in Linux using Top command.
+  
+top = it shows the live status of all the process on the machine.
+output:-  
+ PID  USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                             
+ 1424 sriman    20   0  840956  72688  46996 S   0.3   1.2   0:02.17 Xorg                                 
+ 1559 sriman    20   0  163996   2752   2388 S   0.3   0.0   0:02.03 VBoxClient                           
+ 1658 sriman    20   0 3949408 347692 127208 S   0.3   5.7   0:13.46 gnome-shell                         
+ 2276 sriman    20   0   20492   3792   3276 R   0.3   0.1   0:00.12 top                                 
+    1 root      20   0  101880  11192   8192 S   0.0   0.2   0:01.92 systemd                            
+    2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd   
+
+TOP Table
+-----------
+PID = process id
+USER = who launched the process (or) process belongs to which user
+PR = process priority
+NI = nice value of the process
+VIRT = Virtual Memory allocated
+RES = reserved memory allocated
+SHR = shared memory allocated
+S = Status of the process
+%CPU = amount of cpu being consumed by the process
+%MEM = memory allocated for that process
+TIME+COMMAND = how long the process is running and reference the program command used for launching the process.
+  
+What are the status in which a process can be there in Linux?
+A process can be there in any one of the below 6 states.
+  
+D = uniterruptable program (daemon)
+S = sleeping (cpu is not allocated)
+R = running
+T = traced/terminated
+I = idle (cpu is allocated, but there is no operation being performed by that process)
+z = zoombie
+
+zoombie = when a process has been completed its execution, the process will be terminated immediately but the process information will not be removed from operating system, rather the operating system notifies its parent process about the child process has been terminated. 
+  
+Then the parent process collects the state of the child process and clears its process block allocated. during this interval time the process will be shown as Zoombie (the process is just lying with no existence). For zoombie process the cpu allocation will be "zero" as the process doesnt exists
+--------------------------------------------------------------------------------------------------------
+Priority of a process
+How does an cpu allocation will be done to the process of our computer?
+In general we have cpus of 8 core/4 core etc, which means we have 8 cpus which can execute paralley 8 process. 
+The operating system allocates for each process 1 core cpu to run it, 8 process will allocated each 1 core and runs parallely. If there are more number of process than the cpu cores, then operating system has to distribute the cpu across the processing using time sharing/cpu scheduling algorithms.
+  
+Cpu Scheduling algorithms:-
+  1. round robin
+  2. time sharing
+  3. priority based scheduling
+  4. shortest job first
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

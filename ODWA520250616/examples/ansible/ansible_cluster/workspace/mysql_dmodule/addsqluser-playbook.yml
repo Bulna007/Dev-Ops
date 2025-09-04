@@ -1,0 +1,11 @@
+- name: add user play
+  hosts: all
+  tasks:
+    - name: add sql user
+      mysql_user:
+        name: quickeatsuser
+        password: welcome1
+        state: present
+        priv: "*.*:ALL"
+        login_user: root
+        login_password: root

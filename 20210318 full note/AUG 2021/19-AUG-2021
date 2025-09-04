@@ -1,0 +1,38 @@
+There are 5 types of network topologies are there
+1. Bus Topology = backbone cable where all the machines are connected to the backbone
+2. Ring Topology = each machine is connected to its adjacent forming a ring
+3. Star Topology = all the devices are connected centrally to hub device
+4. Mesh Topology = each device is connected n-1 devices on the network thus forming a robust network
+5. Hybrid Topology = multiple topology networks are inter-connected through hybrid.
+------------------------------------------------------------------------------------------------------
+What are network devices, and how do they work?
+In a typical network, if we want to interconnect computers together, we have to run through cables and nic connecting n-1 computers on the network. if we want to interconnect 10 computers on the network then we should run 10-1 (9) nic cards and cables through each computer,
+Now the cost of setting up the network is very high and takes more time. Trouble shooting the network is very difficult. This type of network model is suggested for WAN networks only.
+  
+To save us from the above problems there are network devices can be used, in interconnecting the computers.
+These are hardware devices/peripherals used for establishing and inter-connecting computers together, which are called network devices.
+1. Repeater = Repeater is a device used for interconnecting distant computers together, it amplifies or regenerates the singals ensure both devices can communicate without any data loss
+
+2. Hub
+
+3. Switch
+4. Bridge
+5. Router
+6. Modem
+7. Firewall
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+

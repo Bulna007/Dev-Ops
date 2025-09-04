@@ -1,0 +1,10 @@
+How does platform independent programming languages like java has solved the problems 
+1. how to distribute the Software application?
+2. portability?
+
+#1. In java language the source code is not compiled to platform executable, the java compiler will generates an intermediate executable code called "Byte Code".
+Now distribute the bytecode to the enduser. The java has provided an JRE interpreter which the enduser has to use in executing the bytecode on the platform.
+  
+Hence the bytecode can be carried across all platforms, where the JRE Interpreter of the platform translates to platform executable and runs the program, so we dont need to compile and distribute several copies of executables for each platform.
+  
+#2. WORA

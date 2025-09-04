@@ -1,0 +1,139 @@
+setup-webserver.sh
+
+#!/bin/bash
+IS_JDK11_INSTALLED=0
+IS_TOMCAT_INSTALLED=0
+IS_TOMCAT_SERVICE_INSTALLED=0
+	
+function checkJdkInstalled() {
+	JDK11_STATUS=$(dpkg -s openjdk-11-jdk)
+	if [[ $JDK11_STATUS == *"install ok installed"* ]]; then
+		IS_JDK11_INSTALLED=1
+	fi
+}
+function installJdk() {
+	sudo apt install -y openjdk-11-jdk
+	local JDK_INSTALL_STATUS=$?
+	return $JDK_INSTALL_STATUS
+}
+
+function checkTomcatServerInstalled() {
+	if [ -d $HOME/middleware/apache-tomcat-9.0.56/ ]; then
+		IS_TOMCAT_INSTALLED=1
+	fi
+}
+
+function installTomcatServer() {
+	mkdir -p $HOME/middleware
+	cd $HOME/middleware
+	wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz
+	gunzip apache-tomcat-9.0.56.tar.gz
+	tar -xvf apache-tomcat-9.0.56.tar
+	rm apache-tomcat-9.0.56.tar
+	local TOMCAT_INSTALL_STATUS=$?
+	return $TOMCAT_INSTALL_STATUS
+}
+
+function checkTomcatService() {
+	TOMCAT_SERVICE_STATUS=$(sudo systemctl status tomcat)
+	if [[ $TOMCAT_SERVICE_STATUS == *"Unit tomcat.service could not be found."* ]]; then
+		IS_TOMCAT_SERVICE_INSTALLED=0
+	else
+		IS_TOMCAT_SERVICE_INSTALLED=1
+	fi
+}
+
+function configureTomcatServerAsService() {
+	sudo cp /tmp/tomcat.service.conf /etc/systemd/system/tomcat.service
+	sudo systemctl daemon-reload
+	sudo systemctl restart tomcat	
+}
+
+#main block
+sudo apt update -y
+checkJdkInstalled
+if [ $IS_JDK11_INSTALLED -eq 0 ]; then
+	installJdk
+	JDK_INSTALLED=$?
+	if [ $JDK_INSTALLED -eq 0 ]; then
+		echo "INFO: jdk installation was successful"
+	else
+		echo "ERROR: failed installing the jdk, please check logs"
+		exit 100
+	fi
+else
+	echo "INFO: jdk is already available so skipping.."
+fi
+
+checkTomcatServerInstalled
+if [ $IS_TOMCAT_INSTALLED -eq 0 ]; then
+	installTomcatServer
+	TOMCAT_INSTALLED=$?
+	if [ $TOMCAT_INSTALLED -eq 0 ]; then
+		echo "INFO: tomcat server installed successfully"
+	else
+		echo "ERROR: failed in installing tomcat server"
+		exit 101
+	fi
+else
+	echo "INFO: Tomcat is available, so skipping installation"
+fi
+checkTomcatService
+if [ $IS_TOMCAT_SERVICE_INSTALLED -eq 0 ]; then
+	configureTomcatServerAsService
+else
+	echo "INFO: tomcat is already configured as a service"
+fi
+
+
+/src/main/config
+tomcat.service.conf
+[Unit]
+Description=Apache Tomcat Server
+After=network.target
+
+[Service]
+Type=forking
+Environment=JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+Environment=CATALINA_HOME=$HOME/middleware/apache-tomcat-9.0.56
+Environment=CATALINA_BASE=$HOME/middleware/apache-tomcat-9.0.56	
+
+ExecStart=$HOME/middleware/apache-tomcat-9.0.56/bin/startup.sh
+ExecStop=$HOME/middleware/apache-tomcat-9.0.56/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
+
+Vagrantfile
+Vagrant.configure("2") do | config |
+	config.vm.define "javaserver" do | javaserver |
+		
+		javaserver.vm.provision "copy tomcat service", type: "file", source: "src/main/config/tomcat-service.conf", destination: "/tmp/"
+		javaserver.vm.provision "install jdk and tomcat", type: "shell", path: "src/main/sh/setupWebServer.sh"
+	end	
+end	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

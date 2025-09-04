@@ -1,0 +1,137 @@
+1. Loop over list of values
+- name: loop over list
+	debug:
+		msg: "{{item}}"
+	loop:
+		- apple
+		- banana
+		- grapes
+loop/repeat the execution of debug module for all the list of fruits supplied, where in each iteration pass the value of the list as item 
+
+2. loop over list of hashes
+hash means an object of key: value pairs
+{manufacturer: 'honda', color: 'black', model: 'activa'}
+
+- name: loop over hashes
+	debug:
+		msg: "Filename: {{item.name}} data: {{item.data}} dest: {{item.destination}}"
+	loop:
+		- {name: "personinfo.txt", data: "nothing", destination: "/tmp", perm: "0600"}
+		- {name: "officeinfo.txt", data: "software engineer", destination: "/tmp", perm: "0640"}
+
+3. loop over dictionaries
+vars:
+  players:
+		kohli: captain
+		sharma: opener
+		shekar: batsman
+		
+		
+- name: loop over dictionaries
+  debug:
+    msg: "{{item.key}} {{item.value}}"
+  loop: "{{players | dict2items}}"
+		
+Filters: are used for transforming the data into one form to another
+String can be converted into float using : float
+	                           integer using: int
+a decimal number can round to 2 decimals using: round
+
+The dict2items filter converts the map of values into hashes as below
+- {key: "kohli", value: "captain"}
+- {key: "sharma", value: "opener"}
+- {key: "shekar", value: "batsman"}
+
+The different between hashes and dictionaries are:
+dictionary we have key: value data
+where as hashes containers objects of attribute: values separated by "," 
+{attr: value, attr: value}
+
+4. loop until a condition
+we can use until keyword to retry a task until a certain the condition is false.
+
+- name: wait for program1 to execute
+  shell: "find . -name 'program.log' | wc -l "
+  register: count
+	until: count.stdout | int == 1
+	delay: 1
+	retries: 10
+- name: run program2 if program1 is there		
+  shell: sh program2.sh
+  when: count.stdout|int == 1
+		
+5. looping over inventory
+hosts
+[javaservers]
+192.168.10.12
+192.168.10.13
+		
+192.168.20.12
+		
+- name: loop over group of hosts
+  debug: 
+    msg: "{{item}}"
+	loop: "{{groups[javaservers]}}"
+
+repeatedly execute debug module for all the hosts in group "javaservers"		
+
+- name: loop over all the hosts of inventory file
+  debug:
+    msg: "{{item}}"
+	loop: "{{ansible_play_batch}}"		
+		
+ansible_play_batch = indicates all the hosts
+-----------------------------------------------------------------------------------------------
+6. with_list
+with_list is a replacement of loop: list of values
+- name: loop through list of values
+  debug:
+    msg: "{{item}}"
+	with_list:
+		- apple
+		- banana
+		- grape
+-----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

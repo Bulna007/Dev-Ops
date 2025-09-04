@@ -1,0 +1,158 @@
+What are sudoers, what is the purpose of sudoers?
+sudoers are the normal users for the linux operating system, for whom the root has provided elevated permissions for performing the operations.
+  
+A sudoer can perform any operation on the linux machine based on the grant options that are provided the Root user to the sudoer. A Root user can give elevated access with all rights to the sudoer as well, we can say a sudoer as a equal to nominated Root user based on the permissions granted.
+  
+Then what is the difference between Root user and Sudoer in such a case?
+  - by default when we boot a linux operating system all the system processes and services of the linux machine will be booted/executed under Root user only.
+  - in this case looks like to boot a Linux machine we need Root user otherwise linux operating system will not start/boot/work
+  - we cannot migrate any of the Root process to the sudoers
+  
+systemd = process that runs on Root permission  
+service-resolvedns
+
+Can a sudoer can delete a Root user?
+by default all the System processes and services run on Root user, so if there are process and services running on behalf of any user we can delete that user. it indirectly indicates we cannot delete Root user.
+  
+sudoers can use brute force mechanism for deleting a Root user.
+  1. he can manually goto /etc/passwd remove Root entry
+  2. he can goto /etc/group and remove Root group entry
+  3. he can goto /etc/shadow = and remove password
+  
+this will wipe out the entries of Root user at various places withour linux system, so that Root will loose the access and results in failure of booting the system, it results in corrupted operating system.
+  
+we want to restrict a sudoer to perform or run few shell commands only this can be achieved by making an entry in /etc/sudoers as shown below.
+#CMD ALIAS
+Cmnd_Alias FILE_CMD=/usr/bin/ls, /usr/bin/touch
+
+#USER
+user ALL=(ALL) : FILE_CMD
+
+#GROUP
+
+Normal user by default can execute all the /bin commands of the linux operating system.
+  ls
+  touch
+  clear
+  mkdir
+  mv
+  cd
+  cp
+  ....
+but a user cannot execute /sbin commands
+when we make a user as a sudoer he can run the commands with sudo permission. so if a user is running any command sudo command means he is running the command onbehalf of Root.
+  so by default /bin and /sbin commands cannot be executed with sudo permission unless Root grants
+  by default /bin commands he can execute onbehalf him but not onbehalf of Root user.
+---------------------------------------------------------------------------------------------------------
+What does Normal user can do bydefault?
+  he run only /bin commands onbehalf of him only
+  can access files/folders under his home directory location
+  
+When can a user can run a command with sudo permissions?
+When Root user grants sudoers permission, then a Normal user can run /bin or /sbin commands with sudo permission.
+  
+What does it mean if user is running the command as sudo?
+by default the command will be exeucted as a Root user.
+
+How to grant sudoer access to a normal user?
+We an grant in 2 ways
+  1. make an entry in /etc/sudoers file for a user or group level
+  2. add user to the sudoers group (this gains total control by default)
+    
+How can we grant a sudoer access to specific commands of the linux as sudoer?
+We have to create group of commands as command alias and we can specify command alias for the user while configuring as a sudoer.
+  
+Cmnd_Alias FILE_CMDS=/bin/ls, /bin/touch = we created group of linux commands with alias (shortname)
+joe    ALL=(ALL) FILE_CMDS = joe can run ls, touch using sudo permission and he cannot run any other commands with sudo permission. but still he run /bin commands with his own user.
+  
+  
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

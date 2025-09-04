@@ -1,0 +1,12 @@
+Vagrant.configure(2) do | config | 
+    config.vm.box = "icloudnote/ubuntu"
+    config.vm.network "forwarded_port", host: 8080, guest: 80
+
+    config.vm.provider "virtualbox" do | vb | 
+        vb.name="webserver"
+        vb.cpus=2
+        vb.memory=1024
+    end
+    config.vm.provision "shell", path: "hostsite.sh", args: ["quickeats", "www.quickeats.com"]
+    config.vm.provision "shell", path: "hostsite.sh", args: ["sportsbar", "www.sportsbar.com"]
+end

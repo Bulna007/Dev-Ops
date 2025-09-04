@@ -1,0 +1,105 @@
+Vagrant
+
+What is Vagrant? why do we need to use it?
+Vagrant is an virtualization workflow automation tool, that can be used by developers, quality assurance engineers and even support/operational engineers in developing and delivering the application.
+  
+When we are working on distributed web applications, our application will have 2 tiers, which are 2 environments
+  1. client environment
+  tools required for accessing the application and testing the application becomes client environment. for eg.. web browsers, postman, soapui, swagger and other debugging tools
+  
+  2. server environment
+  the softwares/servers required to deploy and run the distributed application will falls into server environment.
+    
+  Note:-
+  Server environment doesnt mean we are referring to any specific server software, here the term server means environment from where we are serving the functionality to the client. To serve the functionality to the client, it may require several softwares or applications to be running the computer all of those becomes server environment softwares
+  
+The developer inorder to develop the application requires both of these environments, vagrant help us in quickly bringing up these environments in facilitating the development and delivery of the application
+--------------------------------------------------------------------------------------------------------
+
+Without vagrant let us try to explore how do we need to get these 2 environments setup to have development and delivery of the application:
+
+There are 2 ways we can setup the client/server environments:
+1. The developer can setup both client/server environment on his workstation
+2. We can setup the server environment centrally on one single machine, where all the developers can work on their workstation as client and can deploy and test their code by placing it on central server environment.
+  
+1. The developer can setup both client/server environment on his workstation
+1.1 too much amount of time we need to spend across the team in setting up the env
+1.2 different developers had different workstation envs, instructions for setting up the env are different and debugging becomes very difficult
+1.3 all the people of the team should know end-end setup to develop the application, which becomes very complex
+1.4 not a production like environment
+1.5 my code runs on my machine
+1.6 cannot work on parallel project development as we cannot setup multiple different environments on one single computer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

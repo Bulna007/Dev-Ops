@@ -1,0 +1,51 @@
+How many layers are there in OSI Layer model?
+There are 7 layers are there
+1. Application Layer:- Message Sematics and Structure to allow applications to exchange the data in understandable format
+2. Presentation Layer:- 3 Responsiblities
+  2.1 Data Conversion
+  2.2 Data Compression/DeCompression
+  2.3 Data Encryption/DeCryption
+3. Session Layer  = End-End communication between the applications are managed by Session Layer
+  3.1 Authentication/Authorization = Keeps track of the authentication/authorization role of the user information of the users accessing.
+  3.2 Session Management
+      - keeps track of the data like how many data packets has been transmitted, still how many are pending
+      - which data packets belongs to which application at receiver side
+      - reconstructing the original message based on sequence order
+-----------------------------------------------------------------------------------------------------
+
+4. Transport Layer = It performs 3 responsibilities
+  4.1 Segmentation = takes the data from Presentation Layer, breaks them into smaller packets and assigns port no of the receiver program and sequence no to assemble the message in the proper order 
+  The process of breaking the data into packets by assigining port and sequence no is called "Segmentation"  
+  4.2 Flow Control = Instructs the sender to slow down the data transfer rates when the reciever is slow network connection receiver to avoid lost of data 
+  4.3 Error Control = computes and adds checksum bits to the data segment, allowing the receiver to detect the faulty or lost data segments and instructs the sender to resend
+  
+5. Network Layer = Takes care of transmitting the data from a computer to another network
+  5.1 Logical Addressing
+  5.2 Routing
+  5.3 Path Determination
+  
+  
+
+  
+  
+  
+  
+
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

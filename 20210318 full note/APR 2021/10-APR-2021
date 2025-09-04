@@ -1,0 +1,272 @@
+development phase
+
+Unit Testing
+  - unit testing and tools facilitate us in writing the unit testcases
+  - ci tools like jenkins / hudson / anthril pro / bamboo to run the unit testcase automatically before the delivery of the application to the qa
+
+Build automation tools
+  - as part of the project we should use build automation tools like
+    - maven
+    - gradle
+-------------------------------------------------------------------------------------------------------------
+qa phase
+qa conducts the testing to verify the system/software application is meeting the end-users requirement or not, by conduting the functional testing on the application/software system.
+
+1. To carryout the testing/verification activity the qa requires qa environment
+  qa environment must be production like environment, to enure the system/application being tested works on production without any errors/issues
+  
+  How to setup the qa environment?
+  The devops engineer is responsible for settingup the qa environment 
+  As the whole team is working under one umberella as devops team, there are no gaps of communication due to which 
+   - the devops engineer has to pro-actively work in providing the qa env with no dealy
+   - they should not be mis-interpretations or mis-communications in understand what tools/softwares to be installed in facilitating the testing. This is learnt through the process, and no one need to provide these details as every member is available through all the stages of development to delivery.
+   
+   To facilitate creating/provisioning the infrastructure the devops engineers has to use certain devops tools like
+    - ansible/puppet/chef = software installations and configurations
+    - terraform/openstack heat/cloud formation = infrastructure automation tools to create computers/machines on cloud providers (amazon webservice cloud platform, gcp, azure etc)
+
+2. deploy and run the code to test it
+  To test the application, qa engineer has to carry out the below activities
+  - qa engineer has to pull the code from scm repository
+  - build the software application using tools like maven/gradle etc (depends on the language), these tools produces packaged and executable applications.
+  - deploy the packaged application onto the application server and run the application
+  with the above application will be running, now qa can conduct the testing process
+
+  The above process has to be carried repeatedly on a daily basis to have the latest code deployed and running on qa environment to test the application, called qa cycle. This process occupies considerable amount of time on every day which reduces the qa window time in testing the application, which further delays the deliverability of the application.
+  
+  To daily facilitate in deploying the code in to qa environment use jenkins automation tool
+  cd = continous deployment
+  
+  In jenkins we create pipeline (jobs) = a pipeline is nothing sequence of activities defined inside it that has to be executed in a specific order. We can combine 2 different pipelines
+  
+3. Now qa has to begin testing the application
+Now qa has to conduct the testing for the application by accessing and using all he features/functionalities of the application. Generally qa performs this testing process manually which takes lot of time.
+  
+For eg.. :-  
+Lets say qa has identified a bug -> it is reported to developer, now developer fix the code and push the code into scm repository and returns the bug in fixed state to qa ->  now qa has to kick ci/cd pipeline and deploy the latest code into qa environment and should revalidate the bug (is fixed or reopen?)
+  
+Looks they need to test the whole functionality of the application by performing different types of test and for each bug reported they need retest the specific functionality to validate the fix. once all the bugs are closed again qa has to perform regression means one more round of testing with all the test executions that were conducted earlier.
+The above process takes lot of time and the more the bugs are the more delay in delivery of the application.
+  
+
+usecase to understand the challenges involved in going through testing phase to get the application delivered.
+----------------------------------------------------------------------------------------------------------  
+-> we are planning to release redbus.in application (2.0.1) with new features
+  Features:-
+    * cancel tickets
+    * more buses and seating types
+    * tracking bus
+
+  # development team added the new features by writing the code and performed (30 days)(15 days) = 45 days
+    - unit testing manually 
+      #feature level
+      #random application level
+      
+    and push the code into scm repository
+    
+  # qa team has conducted series of test on the new features (50 testcase), once after that the qa has to conduct the entire application testing by executing all the testcases (2000 testcases)
+   if there is a bug, bug re-verification = (5 days) (20 days) (10 days) = 35 days
+   regression
+   
+-- finally application has been delivered into production = 15 days 
+application release = 45 + 35 + 15 = 95 days (3 to 3 1/2 months)
+------------------------------------------------------------------------------------------------------------
+3rd bug was identified in production 
+# development team has to fix the code  = (5 days) (1 days) (15 days) = 21 days
+  - unit testing
+    - bug fix
+    - whole application
+    
+# qa has to verify the fix (5 days) (20 days) (10 days) = 35 days
+  - fix verification
+  - whole application testing
+  - regression
+  
+-> production (bug) = 15 days
+-> 71 days = 1 million
+
+Now the development team and qa team are under illusion that the more frequently we release the application the more chances of hitting with the bugs so let us not plan for releasing the application frequently
+ - Here neither the development team nor qa team is able to identify the root cause, there are conduting unit testing and qa testing manually due to this process there is always chance of going something wrong due to which the application might lead to a bug in delivering
+ 
+From a business owner stand point of view, a bug is more costlier than an Feature release, so let us accumlate or gather all the bugs and plan them for release at one day, which eventually degrades the quality of the application.
+  
+From customer point of view = no ROI and sufferring with poor quality application, lost trust.
+------------------------------------------------------------------------------------------------------------
+To overcome the above problem both 
+  - developers during unit testing
+  - qa for quality testing 
+should adopt automation testing tools in case of development we already discussed now qa what tools has to be adopted?
+
+qa has to write test programs which will test the actual program developer has written and verify the output and mark it as passed or failed. to write testprograms to implementation automation testing takes lot of time instead they need to use libraries/tools to write them quickly
+
+  ui testing tools
+  - selenium
+  - webdriver
+  functional testing
+  - junit
+  - testNG
+  performance and load testing
+  - qtp
+  - test runner
+
+the new features test it manually, and continue automating them through automation tools, then to conduct regression/whole application testing run all the automation testcases.
+-------------------------------------------------------------------------------------------------------------
+Operational Engineer:-
+
+Operational Engineer right from the stage of development to the delivery of the application, he will be carrying various different responsibilities. One such huge responsibility is releasing the application into production environment.
+
+- setup the production infrastructure
+  - machines/computers
+  - networking
+  - routers
+  - firewall
+  - internet gateways
+  - ssl certificate
+  - monitoring tools
+  - load balancer configurations
+
+To setup the production environment with required infrastructure like machines, computers, routers, firewall configurations, antivirus, network security, ssl configurations and load balancers it takes huge amount of time and the cost of meeting such requirement is very high than development of the application.
+
+More over to cerify the infrastructure is working properly without any security volunerabilities takes huge time and requires expertise
+
+After the initial setup periodical maintainance and regular checks has to be conducted like
+  - Troubleshooting a failed router/link/machine
+  - upgradation of the routers and applying patches
+  - software upgrades
+  - replacement of fault hardware
+  - disaster recovery
+  - adding new computers on to the network based on demand
+
+Handling the above activities are going to be very difficult, instead use cloud platform, now devops engineer is responsible for carrying all the above activities on cloud platform like aws/azure/google/pcf/digitalocean/oci
+
+
+  
+
+
+- build and deploy the application on the production server
+- expose it to the public world by associating with domain name using dns servers
+- continue monitoring the health of the application and traffic patterns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

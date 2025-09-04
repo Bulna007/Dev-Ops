@@ -1,0 +1,99 @@
+Shell scripting
+
+Sh/Bash is an interpreter programs have provided bunch of shell utilities which we can use for performing the operations on the linux machine.
+Shell Script is program file in which we write shell utility commands and execute it using Shell interpretor. 
+  
+Why do we need to write a ShellScript program?
+If we have set of commands that has to be executed repeatitively over a period of time in accomplishing an operation, rather than we typing those set of commands on the Shell interpretor daily, we can have them placed in shell program file and execute the program file whenever we want to perform operation. This help us in automating (instead of we interactively typing the commands) the execution of the commands without user interaction and can speed up the job and accuraccy in carrying the operations.
+  advantages:
+  1. non-interactive approach, if we are manually executing the shell commands on a interpreter, user has to wait for executing the next command util the current command completes its executing which is interactive approach, instead if we place all the command we want to execute to perform the operation in a shellscript program, we can run the program without the presence of user and all the commands will execute non-interactively, that reduces greatly the time of the user.
+    
+  2. requires minimal efforts in perform an operation repeatively, because we dont need to type instructions manually on the Shell terminal
+  
+  3. avoids human errors, once the program has been written and verified there is no chance of mistake would happen while performing the operation.
+--------------------------------------------------------------------------------------------------------- 
+How to write a shellscript program?
+Shell programs are written with Shell Utility commands as instructions and are executed by Shell interpretors. A shell program is nothing but a file on the filesystem which contains only the Shell instructions and is saved with an extension usually as (.sh).
+    
+Since the program has to be executed by a Shell Interpretor, to indicate these instructions has to be executed by which interpretor we write shell program start with a line Shebang
+
+shout.sh
+#!/bin/bash = indicating all the instructions in this file should be executed using bash interpretor
+echo "Hurray! Shell program is running."
+    
+by default in linux a file will be saved with permissions 644, but inorder to execute a shell program we need execution permissions.
+Now issue execute permission to run the above program
+chmod u+x shout.sh
+
+How to run the program?
+To run the program pass the complete path to the file or set the directory location of the file to the PATH env variable, so that you can run the program just by typing filename.
+
+Editor    
+We can write shellscript programs using vim editor, but more convieniently we can write Shell Script programs using vscode (visual studio code editor) has lot of features like
+  - inline help
+  - internal shell terminal 
+  - syntax highlighting
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  

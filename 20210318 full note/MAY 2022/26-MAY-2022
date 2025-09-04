@@ -1,0 +1,138 @@
+Always push the configuration values required for your application into the environment/system rather than designing the application to read the configuration values from external location
+
+In a java applications we can read the configuration values from environment variables or system properties, so that while running the application the devops engineer/developer can pass these values as an input by configuring them in the environment.
+	
+In an kubernetes environment we dont lauch the application on a workernode or environment, kubernetes master/controlplane takes care of scheduling the dockerized application on one of the workernode
+So, we dont have a way to inject the configuration values into the containerized application environment while launching the application, because controlplane takes care of it
+
+So how to manage in running an application with external configuration being passed as an input while running on kubernetes environment?
+one way we can do this is by passing the configuration values as environment variables by defining them directly within the pod spec/manifest.
+but it has quite a number of challenges,like each time there is a change in the configuration values we need to rewrite the pod spec which is not easily maintainable.
+	
+Instead of writing these configuration values in manifest/spec files place them in configmap as objects in kubernetes cluster. These configuration values placed in config map can be passed as an input to the pods/application in 3 ways
+1. environment variables =  we can pass these config map key/values as environment variables by referring them in pod spec
+2. command-line arguments = we can pass these configmap values as commandline arguments while lauching the application
+3. through config map api = In our containerized application we write the code for reading the config map values and using in the application (not recommended) 
+	
+What are ConfigMap, what is the purpose of them?
+ConfigMaps are used for externalizing the application configuration, so that we can pass them as an input while lauching the application in a kubernetes environment.
+	
+In order to use the configuration values through ConfigMap we need to create ConfigMap object with keys/values on kubernetes cluster.
+	
+#1. ConfigMap
+sailor-configmap.yml
+---------------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+	name: sailorconfig
+	labels:
+		environment: dev
+data:
+	driverClassname: com.mysql.cj.jdbc.Driver
+	url: jdbc:mysql://localhost:3306/db
+	username: root
+	password: root
+		
+kubectl create -f sailor-configmap.yml
+
+sailor-pod.yml
+--------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: sailorpod
+	labels:
+		app: sailor
+spec:
+	containers:
+		- name: sailor
+			image: techsriman/sailorrepo:2.0
+			ports:
+				- name: http
+				  containerPort: 8080
+					protocol: TCP
+			env:
+				- name: db.driverClassname
+					valueFrom:
+						configMapKeyRef:
+							name: sailorconfig
+							key: driverClassname
+				- name: db.url
+					valueFrom
+						configMapKeyRef:
+							name: sailorconfig
+							key: url
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

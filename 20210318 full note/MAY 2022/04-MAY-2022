@@ -1,0 +1,68 @@
+Kubernetes
+Kubernetes is a container cluster manager that takes care of scheduling, monitoring and managing the containerized applications a network cluster of computers
+
+Kubernetes Architecture
+The kubernetes majorly contains 4 components as part of it
+1. Master Node
+2. Worker Node
+3. Kubectl 
+4. etcd
+
+#1. Kubernetes Master Node
+Kubernetes Master Node is also called as "Control Plane", which is a central computer of the Kubernetes cluster. The kubernetes master takes care of scheduling, monitoring and managing the containers on the cluster
+it has 3 major components as part of it
+
+1.1 Api manager
+We can schedule, monitor and manage containerized applications on kubernetes cluster, by talking through the help of api manager. The api manager acts an face or front-end to the kubernetes cluster
+To perform any operation on the kubernetes cluster we need to talk to the api manager only. The api manager is build on http protocol and exposes itself as a httpendpoints/rest endpoints to the public world.
+	
+There are several ways we can talk to the api manager of the kubernetes cluster
+1. The kubernetes has provided an cli tool called kubectl through which we can talk to the api manager.
+2. We can invoke the restendpoints exposed by the api manager
+3. there are api libraries provided by the kubernetes using them we can interact with the kubernetes api manager
+
+There are 2 major responsibilities carried by the Api manager
+1. The api manager will receives the http requests from the users/kubernetes administrators. upon receiving the request, api manager will validate the request received is valid and can be understood for performing operation or not.
+if the request is invalid returns an error to the user by discarding the request
+
+2. The api manager upon receiving the request will verify, whether the user who has sent the request poses the authorization in carrying the operation or not on the cluster.
+	
+From the above we can understand the api manager acts as an gateway of entry into the kubernetes cluster which means any request that has to be entered into the cluster should pass through the api manager only
+	
+1.2 Scheduler
+upon receiving the request by the api manager, after validating and authorizing the request, the api manager will handover the request to the scheduler asking to run an container/pod on the kubernetes cluster.
+	
+The scheduler is responsible for identifying an appropriate node/workernode on the kubernetes cluster on whom the container/pod can be scheduled for execution
+
+The scheduler communicates with the kubelet process that is running on each worker node and checks whether there is enough capacity is available on the node to run the container/pod on that node. If not it goes to the next node of the cluster until finds an appropriate node on whom it schedule the pod/container for execution
+
+once the appropriate node has been identified the request will be handovered to the kubelet process of the node, asking him to take care of bringing up the pod/container on the node by allocating appropriate resources required.
+
+1.3 Controller Manager
+The Controller Manager is a daemon process that is running on the kubernetes master/control plane which ensures always the desired number of pods/containers are running on the kubernetes cluster.
+There are 5 different types of Controllers are there in kubernetes
+1. ReplicaSet
+2. DaemonSet
+3. DeploymentSet
+4. Service
+5. Job
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

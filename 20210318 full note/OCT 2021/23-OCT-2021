@@ -1,0 +1,73 @@
+project structure
+-----------------
+~/javaworkspace/
+airtelcare
+|-src
+  |-NewDTHRequestServlet.java
+|-WebRoot
+  |-request-new-connection.jsp
+  |-request-details.jsp
+  |-WEB-INF
+    |-lib
+      |-servlet-api.jar
+      |-jsp-api.jar
+|-bin
+|-dist
+
+#1 clone the git project
+~/javaworkspace:/>
+git clone -b master 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@github.com/techsriman/airtelcare.git
+
+~/javaworkspace/airtelcare/>
+#2. export CLASSPATH
+export CLASSPATH=~/javaworkspace/airtelcare/WebRoot/WEB-INF/lib/servlet-api.jar:~/javaworkspace/airtelcare/WebRoot/WEB-INF/lib/jsp-api.jar
+
+#3
+javac -d bin src/*.java
+
+
+#4 we need to create war file
+create the directories with contents as below manually by copying from above project under dist directory.
+
+airtelcare
+    ├── request-details.jsp
+    ├── request-new-connection.jsp
+    └── WEB-INF
+        ├── classes
+        │   └── com
+        │       └── airtelcare
+        │           └── servlet
+        │               └── NewDTHRequestServlet.class
+        └── lib
+            ├── jsp-api.jar
+            └── servlet-api.jar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

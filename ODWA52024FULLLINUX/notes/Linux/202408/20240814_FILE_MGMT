@@ -1,0 +1,350 @@
+1. how to see the current working directory in which the user is in?
+pwd
+
+2. how to create an empty file?
+touch filename
+
+3. how to switch to the home directory of the user?
+cd
+
+4. how to goto parent directory of the current directory?
+cd ..
+	
+5. how to create a file with data inside it?
+echo "message" > filename
+
+> = output redirection operator
+
+6. how to see the contents of a File?
+cat filename
+
+7. how to see the list of files and folders in the current working directory?
+ls
+
+8. what is a directory?
+group/collection of related files are kept inside a directory, so that we can navigate, locate and access the files/folders easily
+
+9. how to create a directory?
+mkdir directoryName
+--------------------------------------------------------------------------------------------------------------------------
+All about "cd" change directory
+inorder to switch between the directory of the Filesystem we need to use cd bash command.
+	
+1. cd directoryName
+change to the specified directory.
+Note: always by using cd we can change to the directory within the Path in which we are in
+
+   d1
+|   |   |
+d2  d3  d4
+|
+dc1
+if we are in directory d1, by using cd we can change into one of the child directories of the d1 which are (d2, d3, d4) only.
+if we are in d2 directory, we cannot directly jump to d3 directory, we need to navigate to one-level up means parent so that we can goto any of the childs of the parent.
+	
+2. we can change to the root of the Filesystem by using
+cd /
+"/" = always represents root if it is used alone. Linux Filesystem is hierarchial and starts with only one root indicated by "/"
+	
+In addition we can use "/" as an separator between the directories as below.
+   d1	
+   |
+	 d2
+	 |
+	 d3
+we are in d1, and wants to navigate to d3. unless we go into d2, we cannot goto d3. For this one way we can switch to d2 is
+~/d1:/> cd d2
+~/d1/d2:/> cd d3
+we need to run #2 times the cd bash command to switch to d3
+
+instead of this we can switch to d3 directly at oneshot by specifiying the path to the directory d3 by using "/" as an separator as below
+~/d1:/> cd d2/d3 = this means first goto d2 and then after goto d3 we are specifiying at one shot by giving the complete path of navitation through "/"
+	
+3. How to navigate to the parent directory of the current?
+cd ..
+	
+4. how to navigate to the home directory location of the user?
+cd
+cd ~ (tidle, character below the esc key on the keyboard)
+~ = always represents the HOME directory of the user irrespective of where you are using
+cd $HOME
+$HOME = is an pre-defined variable always points to the home directory of the current user. 
+there is no difference between ~ and $HOME, both are same, its just an convinience of typing the command
+
+5. how to navigate back to the directory from where we came?
+cd - 
+takes back to the previous working directory from where we navigated from
+--------------------------------------------------------------------------------------------------------------------------
+All about "ls"
+ls bash command is used for listing files and folders of a given directory. by default if no directory has been passed as an input, it shows/lists files and folders of the current working directory. There are many forms of "ls", let us explore
+
+1. how to see all the files and folders in the current working directory?
+ls
+
+2. how to see the files and folders of a specific directory other than the current working directory?
+~/todolist/102024/finance:/> 
+now we want to see the files and folders in 082024 directory from here
+
+~/todolist/102024/finance:/> ls ../../082024
+	(or)
+~/todolist/102024/finance:/> ls ~/todolist/082024
+	
+ls directoryPath
+
+3. how to see the files/folders along with sub-directories of the specified directory recursively?
+	
+~/>todolist
+   |-082024
+		 (files)
+	 |-092024
+		 (files)
+	 |-102024
+		 |-personal
+		 	(files)
+		 |-finance
+		 	(files)
+	
+~/todolist:/>	ls 
+ls = only shows the files/folders of the current working directory. it doesnt shows the child directories and their sub-directory contents recursively
+but if we wish to see the contents of the current working directory along with child directories recursively we can use
+
+ls -R directoryName
+-R stands for recursively
+
+4. How to list files/folders using ls with no color?
+ls = by default it lists all the files and folders using color coding. If it is a directory it displays it in blue color and its an plain file, it displays in white color. If it is an executable file, then it displays in green color
+
+we dont want any color-coding, rather display everything in white color
+ls --color=none
+
+5. how to see the long-listing of files and folders using ls?
+ls -l
+displays long list of files and folders with lot of information in tabular format 
+FileType Permissions SymLinks owner group size(kb) last modified date  filename/directory 
+
+FileType: is the first character in the list that indicates what type it is
+d = directory
+- = regular file
+
+File permissions, owner, group and symlinks = in the follow-on sessions
+
+6. how to see the output of ls in human readable format?
+ls -lh
+h = human readable format, that means the sizes are displayed in kb, mb, gb based on its size
+--------------------------------------------------------------------------------------------------------------------------
+How to know the Type of a File?
+A file can be
+1. text file
+2. audio
+3. video
+4. image
+5. pdf
+etc
+by looking at a file, how do we determine what type of file it is?
+	
+In general when we are creating the files, we use file extensions to quantity or specify what type of file it is by using 3 characters
+Windows operating system heavily relies on the .3 character extensions to identify the file type and associate applications is using that file.
+	
+For eg..
+if the FileType is
+1. .jpeg/.png/.gif = windows operating system opens the File in Image Viewer application
+2. .mkv = opens in video player application
+3. .txt = opens in notepad or textpad
+
+so from the above identifying the filetypes is very important for an operating system to associate a default program in using that file.
+	
+But when it comes to Linux operating system, it doesnt uses the file extensions to determine what type of file it is. So it means we dont have to create files in linux operating system with extensions.
+	
+Then how does linux operating system identifies, type of the file?
+Linux will determine what type of File it is by looking into the contents of the file automatically.
+	
+But when it comes to user, if the files are created without extension, we cannot know by looking at filename what type of file it is?
+To help us in identifying the type of the file, linux operating system bash interpreter has provided file command
+
+file filename
+displays the type of the file.
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

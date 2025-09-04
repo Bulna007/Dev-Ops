@@ -1,0 +1,162 @@
+How does Platform Independent Programming language like java has overcome the problems with High-level programming languages?
+1. The Software program has to be compiled to each platform and should be distributed
+In java the source code of the program will not be compiled to the platform executable, rather it produces an intermediate executable code which is called "Byte Code", deliver the bytecode to the enduser. The enduser has to pass the bytecode to platform interpreter to execute on the platform. So once compiled it can carried to any platform and can be executed.
+  
+2. Programs written in high-level languages are not portable across the platforms
+Unlike C or C++ languages java has abstracted hardware or operating system specific instruction set to the programmer, so the java program once written would work across any platform without any changes required. 
+--------------------------------------------------------------------------------------------------------
+What is the workflow of execution of java program?
+1. write the source code of the program.
+2. compile the program using java platform provided compiler tool which is javac, thus produces bytecode which is with an extension ".class" file
+3. pass the bytecode to the interpreter and execute it.
+  
+From the above we can understand to work with java programs we need 2 tools
+1. compiler
+2. interpreter
+
+java has distributed these 2 tools through 2 software bundles
+1. jdk = java development kit. it is an software bundle that is packaged with development related tools like compiler other java utilities along with interpreter. So that developer can write the source code and compile and execute it.
+  
+2. jre = For an enduser always we deliver bytecode, so to run the bytecode we just need interpreter which is shipped as part of jre
+
+Let us try to install jdk to develop and execute java programs.
+sudo apt update
+sudo apt install openjdk-11-jdk
+
+
+How to execute a basic java program?
+#1 write the source code
+
+mkdir -p ~/javaworkspace/basicjava
+here we have created a project directory called "basicjava", in which we are going to write our source code of the project.
+
+#2 let us write a java program under basicjava directory
+always a java program file will have an extension ".java"
+touch Runner.java
+
+
+#3 open the java program file and start writing the code inside it as shown below.
+vim Runner.java
+
+public class Runner {
+  public static void main(String[] args) {
+    System.out.println("Hurray! java program finally works");
+  }
+}
+
+Few points to memorize:
+1. every java program must and should container a class. If the class is public means any one can use it and the classname and filename should be same.  
+2. every java program begins its execution from main() method, it is called entrypoint of the java program.
+  
+#4 compile the java program written using java compiler
+javac = is a java compiler tool shipped as part of jdk, which is available on our machine because we installed jdk
+
+~/javaworkspace/basicjava/>
+javac Runner.java
+Java compiler can you compile the source code inside the Runner.java file and generate bytecode. Now the java compiler generates another file with name Runner.class which containers bytecode of our source code.
+  
+#5 execute the java program
+~/javaworkspace/basicjava
+java Runner
+we are asking java interpreter program to read the bytecode inside Runner.class file and execute. Note, here we should not specify ".class" while passing it to java interpreter.
+-------------------------------------------------------------------------------------------------------- 
+What is classpath in java program?
+The classpath is an special environment variable which tells the java interpreter where does our bytecode is located, to read and execute.
+The default classpath is always "." indicating current working directory
+note env variable should be in capital "CLASSPATH".
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  

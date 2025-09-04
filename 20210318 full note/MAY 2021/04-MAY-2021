@@ -1,0 +1,121 @@
+create directory = mkdir directoryName
+create directory and its sub-directory as well = mkdir -p dir1/dir2
+
+rmdir dir1 (we should empty contents of it before running)
+rm -r dir1
+rm filename
+
+change to a directory
+cd dir1
+cd dir1/dir2 (multiple directories)
+cd (or) cd ~ (takes to the user home directory)
+cd .. (takes to parent directory)  
+cd - (takes back to the previous directory where we navigated from)  
+  
+file filename = displays the type of the file (based on its contents)  
+tree dir1 before running install tree: sudo apt install tree
+tree -L n dir1
+
+init 0 = for shutdown
+-----------------------------------------------------------------------------------------------------
+#1
+mv command can be used for 2 things
+  1. moving files and directories
+  2. renaming files and directories
+  
+mv file1 /directoryPath = if we want to move a file from one directory location to another we can use mv (stands for move)
+
+For eg..
+  mv books/book1.txt stores/
+  
+in addition we can use mv for renaming the file/directories also. lets say you are inside the books directory. now we want to rename chapter1.txt to synopsis.txt
+books
+|-chapter1.txt
+
+goto books directory
+~/books$ mv chapter1.txt synopsis.txt
+instead of telling directory path, specify filename, which indicates same location rename the file.
+  
+we can use mv for moving the directories as well, if the source specified is a directory it moves the contents of directory inlcuding its sub-directories also.
+
+books
+|-subjects
+  |-chapter1.txt
+  |-chapter2.txt
+|-archives
+  |-book1.txt
+  |-book2.txt
+
+stores/
+
+mv books/archives stores = will moves the entire directory contents of archives to stores directory  
+  
+  
+Thumb rule:
+mv source target
+  1. target is an existing directory = it works as move
+  2. target is an non-existing directory = it treats as a filename and renames.
+
+mv table
+----------
+mv file1 file2 = rename file
+mv dir1/ dir2/ (non-existing) = rename directory
+
+mv file1 /directoryPath = move file
+mv dir1/ dir2/(existing) = move directory
+
+-----------------------------------------------------------------------------------------------------
+#2
+cp = copies the files/folders from one location to another, unlike mv it retains the contents of the source.
+  
+For eg..
+books/
+|-file1.txt
+
+stores/
+
+cp books/file1.txt stores/ = now the file1.txt will be copied to stores and will appear at 2 places
+
+we can use cp for copying directory from one location to another, but we should use -R option to say recursively
+
+dir1
+|-random.txt
+|-lottery.txt
+
+dir2
+
+cp -R dir1/ dir2/ = now dir1 will be copied to dir2
+i dont want to copy dir1 to the dir2, but i want only copy dir1 contents into dir2
+dir2
+|-dir1 (no)
+
+dir2
+|-random.txt
+|-lottery.txt (yes)
+how?
+  
+cp dir1/\* dir2 = copies the contents of the dir1 to dir2, but not the dir1 
+
+Lets say we have subdirectories in dir1
+
+dir1
+|-random.txt
+|-lottery.txt
+|-secret
+  |-secrets.txt
+
+dir2/ (empty)
+  
+Now I want to copy contents of the dir1 to dir2 how?
+cp dir1/* dir2 = will not copy sub-directories of dir1, we should use -r 
+cp -r dir1/* dir2
+------------------------------------------------------------------------------------------------------
+
+cat filename = cat reads the data from the given file and writes on to the STDOUT/Terminal
+cat = now cat tries to read the data from STDIN/keyboard and displays on to the Terminal/STDOUT
+    (source) (target)
+cat input    output
+cat inFile (STDOUT default)
+cat (STDIN default) (STDOUT default)
+
+cat > file1.txt (ctrl+d) = we can take input from the keyboard and write to a file.

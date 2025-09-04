@@ -1,0 +1,223 @@
+There are 3 modes in vim
+1. Command Mode (default)
+Any keypress on the keyboard acts as a command and perform some operation on the File. Press (esc) on the keyboard to enter in Command Mode always.
+  
+  
+2. Input/Insert Mode
+Any keypress on the keyboard will input the data on to the File. Press (i) on the keyboard to enter into input mode.
+  
+3. Exit Mode
+Goto Command Mode and then press ":" to enter into Exit Mode
+:q
+:q!
+:w
+:wq
+--------------------------------------------------------------------------------------------------------
+I = insert data from begining of the line
+w = begining of the next word
+u = undo the previous changes
+S = replace the line
+dd = delete one line
+r = replace a single character
+R = replace characters from current cursor position
+O = open a new line at the top of the cursor position
+A = append the data to the end of the line
+/phrase + enter = to search. n = next occurrence, shift + n = previous occurence. just enter to quit from search
+b = back to the begining of the word
+e = end of the current word
+shift + G = last line of the file
+:n = goto to specific line number in file
+yy = yank copy the current cursor line
+x = to remove a character
+dw = remove one word
+p = paste the line back
+ctrl + f = page down
+ctrl + b = page up
+---------------------------------------------------------------------------------------------------------
+
+Terminal Shortcuts
+-------------------
+ctrl + l = clear screen (clear)
+ctrl + e = end of the line
+ctrl + a = begining of the line
+ctrl + right/left arrow to navigate between the words in terminal
+up arrow / down arrow keys = to navigate through history of commands
+ctrl + u = delete all the characters from current cursor position to begining of line
+ctrl + k = delete all the characters from current cursor position till end of the line
+copy/paste = ctrl + shift + c / v
+ctrl + R = search within the history of commands
+---------------------------------------------------------------------------------------------------------
+Packing and Un-Packing files 
+----------------------------
+Usually we store the data on a File, and we can group multiple files together into a Folder to identify and access related files quickly.
+  
+File = can be transfered from one machine to the another machine, in multiple ways
+  - over email we can exchange
+  - over network we can transfer etc
+Folder = group of files, cannot be transferable between computers or over an email as well.
+
+How to make the Folder and filecontents inside it transferrable, that is where packaging comes into picture.
+Packing = is technic of combining multiple files and folders into one single file. packing different from compression, here the file contents are not being reduced in size, we just combile multiple files/folders into one single to transfer them easily.
+  
+#30 files = want to send the 30 files over the network to another computer. so we need to transfer 30 files each one of it at a time by establishing connection and disconnection for 30 times, impacts the performance. instead of it we can package 30 files into 1 single file and transfer at one-shot.
+  
+similarly we can package one or more folder contents into one single file, so that it can be transferrable.
+  
+Linux has provided an utility called "tar" standards for tape archive, used for packing and unpacking the contents of files/folders together.
+  
+pack = tar -cvf filename.tar sourcefolder/files
+here "hypen" (-) is used for passing options to the tar command, telling what operation should be done.
+
+c = create the archive
+v = verbose, display which files you are including in the tar
+f = filename 
+sourcefolder (or) files = list of folders and files to be packaged into the tar.
+
+The tar command will produce one singlefile by packing all the input files/folder provided with an extension ".tar"
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

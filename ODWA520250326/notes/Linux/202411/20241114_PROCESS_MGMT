@@ -1,0 +1,564 @@
+init-levels: indicates how we wanted to boot the linux operating system.
+There are 7 init-levels right from 0 - 6 are supported
+init 0 = shutdown or poweroff
+init 1 = single user with no networking, no multi-tasking and only root access 
+init 2,3,4 = with networking and multi-tasking, but no gui
+init 5 = supports networking, multi-tasking with gui and sound
+init 6 = reboot
+-------------------------------------------------------------------------------------------------------------------------------
+Process Management
+
+What is a process?
+A program under execution is called a "process".
+	
+program is a file that contains set/bunch of instructions that can be passed as an input to the operating system of the computer asking to execute on the underlying hardware of the computer.
+	
+In a multi-user and multi-tasking/programming operating	system like Linux, there can more than one program executed in-parallel or simulataneously by sharing the physical system resources of the machine.
+	
+In such case how does the operating system knows what are the programs that are currently under execution, which programs are alloted with what system resources and how does it keeps track of the current state of execution of the programs?	
+	
+To keep track of the programs and their resources being alloted and their state of execution, the operating system creates an process (process control block) and stores all the information about the programs that are under execution within the pcb block
+
+For each program - operating system creates one process (pcb) in which it keeps track of the information about that program that is running.
+	
+
+
+When we ask Linux operating system to execute a program, it creates an process representing the program we ask for execution and associates an unique id for the process which is called "PID". The PID of a process acts as an unique identifier and will not match with any other process PID on the operating system of the computer. by using the PID we can manage the process like kill or change priority of the process etc
+
+For each process Linux creates it internally keeps track of lot of information like
+1. owner = the user who has launched the program
+2. group = primary group of the user who launched the program
+3. PID
+4. started date/time
+5. memory allocated
+6. cpu
+7. program = process has been created for running instructions in which program
+-------------------------------------------------------------------------------------------------------------------------------
+How to see the information about the processes that are running on the linux operating system?
+In windows operating system we have Task Manager, in that we can see all the programs that are running on the operating system, their cpu usage, memory usage	and from how long these programs are running will be shown.
+If there is any program that is un-responsive we can kill the program/process as well. Similarly in the linux operationg system also there should an ability to see the process and kill them if required.
+
+
+
+
+
+
+process = A program under execution is called a "Process". To keep track of the information about the programs that are currently running on the machine, Linux operating system will creates an process in which it stores the execution details of the program
+
+A process management refers to managing and controlling the process that are running on the Linux operating system. For this linux operating system has provided bunch of bash utilities or commands using which we can manage the processes.
+	
+	
+How to see all the processes that are running on the linux operating system machine?
+The linux operating system has provided "top" command "table of process", it lists all the processes that are currently running on the operating system machine
+
+top
+
+top - 20:57:05 up 27 min,  1 user,  load average: 0.34, 0.15, 0.13
+Tasks: 218 total,   1 running, 217 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.9 us,  0.5 sy,  0.0 ni, 98.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   5933.0 total,   3469.6 free,    998.4 used,   1465.1 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   4656.8 avail Mem 
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                     
+   1846 sriman    20   0 4957632 382432 151360 S   7.0   6.3   0:27.36 gnome-shell                                                
+   4337 sriman    20   0  568120  58312  44916 S   1.3   1.0   0:02.18 gnome-terminal-                                             
+    500 systemd+  20   0   14828   6244   5452 S   0.3   0.1   0:01.94 systemd-oomd                                                 
+   1162 root      20   0  298324   1292   1152 S   0.3   0.0   0:00.66 VBoxDRMClient                                               
+   2448 sriman    20   0  227512   2528   2168 S   0.3   0.0   0:02.91 VBoxClient                                                   
+   4384 sriman    20   0   21864   4152   3312 R   0.3   0.1   0:00.18 top                                                         
+      1 root      20   0  168136  13276   8184 S   0.0   0.2   0:03.97 systemd   
+
+the top command shows the list of process that are currently running on the operating system continously until we press 'q'. Below are the columns of data it displays aspart of the top table
+
+PID  = process id
+USER = owner of the process who launched it
+PR   = priority
+NI   = nice value of the process
+VIRT = virtual memory assigned to the process
+RES  = reserved memory
+SHR  = shared memory
+S    = status of the process
+%CPU = percentage of cpu the process is using
+%MEM = percentage of memory usage
+TIME+=elapsed time (how long the process is running)
+COMMAND=The command used for launching the process
+
+What are the possible statuses in which a process can exists in Linux operating system?
+There are 6 possible statuses in which a process can exist in linux operating system
+1. D (daemon) (un-interuptable process) = background process which doesnt require user interaction. by default all the operating system processes are daemon process only. usually these are long running processes and doesnt require any user interaction during execution.
+2. S (sleeping) = The operating system has not allocated cpu for that process and is currently kep under waiting state which is called "sleeping" status
+3. T (traced/terminated) = The process has finished execution and has been terminated
+4. R (running) The operating system has allocated cpu/memory and it is currently under execution is called "running" state
+5. I (idle) = The cpu is allocated to the process, but the process is waiting for completing an end-user input operation or someother process/resource to be available
+6. Z (zoombie process)
+	
+
+What is a zoombie process?
+A process during its execution might launch another process within it which is called "child process". The Linux operating system inorder to keep track of the information about which is the child process and who is the parent process for it, it stores pid of the parent process as ppid in the child process to inter-link them
+
+When the child process finished execution and got terminated, the linux operating has to release the memory alloted to the process, but to facilitate the parent process to extract or collect the information about the process by the parent, it marks the child process as "Zoombie" without removing the process information from the memory.
+	
+Zoombie process = A process which has been finished or terminated, but kept in memory for the parent process to access its information.
+-------------------------------------------------------------------------------------------------------------------------------------
+Process priority
+----------------
+Linux is an multi-user and multi-programming operating system, so there will be always multiple programs running in-parallel or simultaneously on the operating system of the computer. Every operating system inorder to manage in sharing the physical hardware resources in running multiple processes, it uses job/cpu scheduling algorithms like
+
+1. round-robin
+2. time sharing
+3. shorted-job first
+4. priority-based scheduling
+etc
+
+The Linux operating system uses hybrid model which means it uses time sharing/round robin + priority based scheduling algorithms in allocating the cpu to the processes
+
+By default it is round-robin/time-sharing, which means the cpu will be allocated to each process for certain amount of time and switches to another process. This goes until it reaches to the last process in the queue for execution and turns back to the first-one again allocating the cpu to execute
+
+In addition to above we can tell the linux operating system to allocate more cpu for a specific process by increasing the priority of the process. If the priority number is less for a process it means it has more priority.
+	
+In the Linux operating system there are 2 types of processes are there
+1. System process
+System proceses are mandatory processes that are launched during the boot of operating system and continue to exists/execute until we terminate/shutdown the operating system. These processes runs under operating system space
+	
+2. User process
+These are the processes launched by the user of the operating system and executed under user space and can be managed by the user/owner of the process
+
+	
+The priority of the process within the linux operating system ranges between 0 - 139, within this the system processes are launched under the range of 0 - 99 and cannot be changed. The user processes are launched with priority range between 100 - 139 and can be changed by the user
+
+By default Linux operating system assigns for a user launched process a priority of 120. The Linux operating system doesnt allow the user to change the priority (PR) of the process directly, because there is a chance where the user might set the priority of the user process within the range of operating system process space and might effect the operating system functioning.
+	
+So to allow us to change the prority of the process in a controlled way the NI (Nice Value) has been introduced. The priority of the process is computed based on the NI value
+
+Formula:
+PR = 20 + NI
+The NI value can range between -20 to 19
+	
+PR = 20 - 20 = 0 [This means the priority is 100, because the user process space starts with priority as 100 + 0]
+PR = 20 + 19 = 39 [This means the priority is 139, as again the user process starts with 100]
+
+The higher the NI value of a process, the lowest the priority of the process
+
+How to change the priority of a process?
+renice -n nicevalue pid = to change the priority
+
+While launching the process itself we can specify the priority or nicevalue with which the process should be launched by using below command
+
+nice -n niceValue command
+-------------------------------------------------------------------------------------------------------------------------------
+How to stop/kill an running process in Linux operating system?
+Few times a process during its execution might goes into un-responsive state or few times we dont want a process to continue execution. In such case we can kill or terminate a process by using "kill" bash command
+
+kill pid = will sends an signal to the process asking to terminate
+
+kill -SIGNAL_NUMBER pid = here -SINGAL_NUMBER indicates how a process should be terminated
+
+kill -9 pid = to terimate forcefully
+
+we can see the list of supported signals of kill command by using kill -l. If we dont specify an SIGNAL_NUMBER the default signal uses by kill command is 15
+-------------------------------------------------------------------------------------------------------------------------------
+How to find the current running processes of the linux operating system?
+We can use "top" command to see all the process that are running on the Linux operating system machine. top is an	live command like Task Manager (Windows) using which we can monitor the processes that are running on the system.
+	
+Along with this we can even use "ps" (process status) that displays the snapshot of current running process on the machine
+
+ps             = displays all the processes of the current user within the TTY (terminal)
+ps -a          = display all the processes of all the terminals of the current user
+ps -u username = display all the process of a specific user only
+ps -e          = displays everyones processes of the linux systems
+ps -f          = show full columns
+ps -eo pid,ppid,ni,command = show only specific columns as output
+-e =everyone process and -o = output specific columns only
+-------------------------------------------------------------------------------------------------------------------------------
+Foreground process vs Background process
+There are #2 types of process are there in Linux operating system
+1. Foreground process
+2. Background process
+
+1. Foreground process
+The Foreground process are the one that requires user interaction during their execution. The enduser might need to pass the data as an input interactively during their execution and the program might generate output and render it on to the TTY of the user. such programs that has end-user interaction during their execution are called foreground processes
+
+These process will be attached to TTY and blocks the TTY until their completion. If we close the terminal(TTY) the process would be exited/terminated
+
+Let us write a small shellprogram to demonstrate the same:
+
+addNumber.sh
+-------------
+#!/bin/bash
+read -p "A: " A
+read -p "B: " B
+SUM=$[A+B]
+echo "SUM : $SUM" 
+
+chmod u+x addNumber.sh
+./addNumber.sh
+
+by default when we run a program, it will be launched as foreground process only
+
+2. Background process
+There are few programs that doesnt require any user interaction. They dont take any input from the enduser and doesnt produces any output onto the TTY (STDOUT) directly. These process might produce some output, but the output will not be directly written on TTY rather will be writtten to an different destination like a File etc
+
+If these programs are executed as foreground process, they dont take any input from the user and produce output but:
+	blocks the TTY and runs 2 processes un-necessarily
+	1. program itself
+	2. TTY terminate process
+	
+since these programs/processes runs for longer amount of time, there is a chance where we might accidentally close the terminal due to which the process will be terminated. Instead we can run such process as background process
+
+generateoddnumbers.sh
+---------------------
+#!/bin/bash
+I=1
+while [ $I -lt 10000 ]
+do
+	echo "$I" >> /tmp/odd.txt
+	I=$[I+2]
+done
+
+chmod u+x generateoddnumber.sh
+./generateoddnumber.sh (default: foreground)
+	
+by default when we launch the above program it runs as foreground process, even though it doesnt take any input from the user and doesnt produce any output onto the Console (TTY) of the user, it blocks the TTY to keep running the program.
+	
+instead we can run the above program as background process. 
+	
+./generateoddnumber.sh &
+
+any program or command while launching if we append & at the end, the linux operating system launches the program as background process (by not blocking the TTY)
+	
+To keep of the program execution we need to rely on top or ps only
+
+sometimes there are few programs that doesnt take any input from the enduser, but generates the output to the Terminal (TTY/STDOUT). We can run these programs as foreground processes, but there is no use since they dont require enduser interaction in passing the input apart from block TTY.
+	
+So if we run these program as background processes, the output that is generated by these programs will be lost. So looks like we are forced to run such programs as foreground processes even though we dont need interaction just to collect the output by blocking the TTY
+
+To overcome such problems in running the above type of programs and collect the output the linux has provided nohup command.
+	
+nohup will capture the output generated by the program to TTY and writes into nohup.out file by default under the current working directory. so that we can always can collect the output from nohup.out file. 
+Note: nohup will not run the process as background process still along with nohup we need to use & at the last to run as background process
+-------------------------------------------------------------------------------------------------------------------------------
+Text processing commands
+------------------------
+
+There are few text processing commands are provided by linux operating system through which we can perform the below operations on text content:
+1. search for a specific text within the give text of information
+2. extracting the portion of data
+3. extracting few fields of data within the given text information
+4. merging 2 different text contents
+5. replacing/substituting the text content
+6. deleting a portion of text
+etc
+these all operations can be performed by using the text processing commands that linux has provided
+
+There are bunch of text processing commands are provided, that serves different purposes 
+1. cut
+2. paste
+3. sort
+4. awk
+5. sed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

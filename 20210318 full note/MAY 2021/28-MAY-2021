@@ -1,0 +1,90 @@
+There are 2 types of users are there in Linux
+  1. Root user
+  2. Normal user
+
+Since we have only one Root user, he cannot handle all the responsibilities to delegate few of the responsibilities to others, linux has introduced Sudoers. Root user can nominate any of the Normal users at sudoers.
+  
+What a sudoer can do?
+  1. he can act upon any other user on linux system
+  2. he can run commands on any group of users
+  3. he can executer super user commands of the linux system
+What he cannot do?
+  1. he cannot create or modify anyother users of the linux.
+  
+There are 2 ways of promoting/nominating a user as a sudoer.
+  1. add any entry of a user/group in /etc/sudoers
+  2. add the user to the sudoers group
+  
+#1. make an entry into sudeoers file
+  There are 2 ways in promoting a user a sudoer.
+  1.1 user level 
+    make an entry of the user whom you want to promote as sudoer in /etc/sudoers file with below format
+    username ALL=(ALL:ALL) ALL
+    1 ALL = from any machine he can grab sudo access
+    2 ALL = onbehalf of any user, he can perform/execute commands
+    3 ALL = for any group of users
+    4 ALL = he run all the commands of the linux for any of the people above
+    
+  1.2 group level
+    instead of nominating an user, we can promote group of users to act as sudoers
+    %groupName ALL=(ALL:ALL) ALL
+    
+Note:- be careful while modifying the sudoers file, if there is an error/wrong syntax written sudoers file will loose the sudo access to all the users of the linux system.    
+  
+How to verify the sudoers file before applying.
+1. copy the contents of the /etc/sudoers file into /tmp directory
+2. make the changes into /tmp/sudoers
+3. visudo -cf /tmp/sudoers
+parsed ok
+4. paste the file overwriting the original file into /etc/sudoers
+
+The sudoers file has syntax error and got corrupted and lost the sudo access, how to fix it?
+pkexec visudo /etc/sudoers (prompts for root password) and allows you to edit.
+  
+#2 add the user to the sudoers group so that he can grab sudo access.
+if we look at /etc/sudoers file there is an group level entry by default sudoers. 
+Linux system by default creates a group called sudoers as part of installation and adds the group to the sudoers group in /etc/sudoers file.
+So, the quickest way of granting sudo access to any user is add him to sudoers group, so that we dont need to edit the /etc/sudoers file
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

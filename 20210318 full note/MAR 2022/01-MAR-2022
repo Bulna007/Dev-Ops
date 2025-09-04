@@ -1,0 +1,327 @@
+How to work with variables in Terraform?
+Variables are the placeholder in which we can store the values/data. While working with Terraform we write configuration values in the Terraform configuration files pertaining to the infrastructure we want to provision.
+	
+for eg.. to provision an ec2 instance we declare below resource in HCL file.
+resource "aws_instance"	 "ec2" {
+	instance_type = "t2.micro"
+	ami = "ami-39383"	
+}
+
+the configuration values we declared in the HCL files has to be changed across different env, for eg while deploying the application on production env we need high shape machine rather than "t2.micro". We can effective manage these changes in configuration values effectively using variables in terraform.
+	
+Terraform supports working with variables like any other language, there are 3 parts in working with variables
+1. variable declaration
+2. variable reference
+3. supply values to the varaibles
+
+#1. How to declare variables in terraform?
+We can declare variables inside the terraform configuration file using variable block declaration.
+	
+main.tf
+--------
+variable "instance_shape" {
+	type = string
+	description = "carries/holds instance shape"
+	default = "t2.micro"
+}
+a variable declaration contains 3 parts
+1. type         = which type of data we hold in that variable
+2. description  = short description defining the usage of the variable
+3. default      = default value incase if we have not supplied the value
+
+if we have supplied default value for a variable then it is considered as optional. incase for a variable if we dont define default value, then terraform prompts for the input for that variable during execution.
+	
+Its often an best practise or recommendation to keep variable declarations outside of the terraform configuration by keeping the variables in another terraform configuration file under the project directory only with extension "*tf". Most commonly people declare variables in variables.tf placed within the project directory
+
+There are different types of variables are supported by terraform
+1. string
+2. list
+3. map
+4. bool
+5. number
+6. set
+7. object
+
+variable "subnetcidrs" {
+	type = list
+	description = "subnet cidrs"
+	default = ["10.0.1.0/24", "10.0.2.0/24"]	
+}
+
+variable "tags" {
+	type = map
+	default = {
+		Name = javaserver
+		Env = dev
+		App = fithealth2		
+	}
+}
+
+variable "ec2instance" {
+	type = object({
+		instance_type = string
+		ami = string
+	})
+}
+
+variable "version" {
+	type = number
+	description = "version no"
+	default = 1.0
+}
+----------------------------------------------------------------------------------------------------
+#2. How to refer these variables in terraform configuration?
+variables.tf
+-------------
+variable "instance" {
+	type = object({
+		shape = string
+		ami = string
+	})
+	default = {
+		shape = "t2.micro"
+		ami = "ami-29283783"
+	}
+}
+
+variable "region" {
+	type = string
+	default = "ap-south-1"
+}
+	
+main.tf
+-------
+terraform {
+	required_providers {
+		aws = {
+			source = "hashicorp/aws"
+		}
+	}
+}
+provider "aws" {
+	region = var.region
+}
+resource "aws_instance" "javaserver" {
+	instance_type = var.instance.shape
+	ami = var.instance.ami
+	tags {
+		Name = var.tags['Name']
+	}
+}
+----------------------------------------------------------------------------------------------------
+#3. How to supply values while applying the terraform configuration?
+while declaring the variables, if we assign default values, then we dont need to supply values for those variables during execution. if there is no default value configured then terraform prompts for the value during execution.
+	
+Instead of letting terraform prompt for an variable we can pass the values for these variables directly during execution in 4 ways
+
+variable "aws_region" {
+	type=string
+}
+
+#1. using -var switch
+while running or applying terraform configuration we can pass values for the variables using -var switch
+syntax:-
+terraform apply -var varName=value -var varName=value -var varName=value
+for e.g
+
+terraform apply -var aws_region=ap-south-1 -var instance.shape=t2.micro -var instance.ami=ami-2092393
+	
+#2. using *.tfvars files
+instead of passing the variable values in the terminal using -var switch we can define variable values in an *.tfvars file and pass it as an input during execution
+
+for eg..
+variables.tf
+variable "aws_region" {
+	type = string
+}	
+
+main.tf
+provider "aws" {
+	region = var.aws_region
+}
+
+now define values for the variables we referred above in an *.tfvars file, the standard naming covention of the file in which we delcare values for the variables is "inputs.tfvars"
+	
+inputs.tfvars
+-------------
+aws_region=ap-south1
+tags = {
+	Name = "javaserver"
+	Env = "dev"
+	App = "fithealth2"
+}
+
+while running we need to supply the above tfvars to terraform
+terraform apply -tfvars=inputs.tfvars
+
+#3. using *.auto.tfvars
+if we define variable values in tfvars file we need to pass the file manually as an input during terraform execution using -tfvars switch. Instead follow naming convention in write the inputs file as *.auto.tfvars for e.g.. we can write inputs.auto.tfvars and place the file defined with variable values under project directory
+
+when we run terraform apply, it checks under project directory for files of the naming convention *.auto.tfvars and picks them automatically and uses the variable values during execution we dont need to pass the tfvars file manually
+
+#4. using environment variables
+instead of defining the variable values in tfvars or *.auto.tfvars we can pass them as an environment variables as shown below.
+	
+For eg.. we declared an variable as below
+variables.tf
+-------------
+variable "aws_region" {
+	type = string
+}
+
+before running terraform apply we need to set the value for the variable through environment variable at terminal
+export TF_VAR_aws_region=ap-south-1
+	
+we need to prefix TF_VAR_ for each variable we want to pass the value through environment variable, terraform reads the environment variable value by prefixing every terraform variable with TF_VAR_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

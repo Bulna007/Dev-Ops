@@ -1,0 +1,132 @@
+find command
+-------------
+find is one of the powerful and repeatedly used shell command. It is used for searching the files or folders of the Filesystem of the computer matching with Names. By using find we can search for files or folders by name including the sub-directories also
+
+~/movies (10000: collection)
+	|-action
+		|-golden-eye.mkv
+		|-taken
+		|-johnwick
+	|-adventure
+		|-journey
+		|-journey2
+		|-castaway
+		|-indianajones
+	|-comedy
+		|-friends
+		|-deadpool
+		|-badboys
+		|-dumb-and-dumbers
+	|-thriller
+		|-the-mask
+		|-joker
+		|-hush
+		|-aliens
+	|-horror
+		|-anabelle
+		|-nun
+		|-nun2
+		|-conjuring
+		|-exorcist
+		|-evil-dead
+
+we want to find an movie within the movies/ or any of the sub-directories, inorder to do this, we need to manually navigate into movie/ directory and all of the sub-directories under it to locate and access an movie we are looking for. But this process of manually looking up/searching through for a movie is time taking process and might endup in failure in locating the file because of human error
+
+
+instead of we manually navigating through the directories for searching for the file, we can make use of "find" bash command.
+"find" = is used for searching for a file or folder with a given name
+
+find directory/ -name "filename"
+directory/ = refers to the directory in which we wanted to search for the file with given name -name "filename"
+		
+~/> find movies/ -name "nun"
+
+There are plenty of options in using the find are available:
+
+1. find directory/ -name "pattern"
+it search for the file matching with filename of the given "pattern" under the specified directory/ including the sub-directories and displays the list of matching filenames along with their path one per each line
+
+
+2. find directory/ -name "pattern" -print = displays each matching outcome in a new line. default option
+
+3. find directory/ -name "pattern" -print0 = print or display all the matching outcomes in one-single line
+
+4. find directory/ -type f -name "pattern"
+-type f = stands for find only files matching with pattern, ignore directories
+-type d = only match directories and ignore files
+
+5. find directory/ -name "pattern" -empty
+returns all the empty files or folders of the given matching pattern
+
+6. how to search for files/folders of multi-pattern matching
+list down the file/folder names matching with either pattern1 or pattern2
+
+find directory/ -name "pattern1"
+find directory/ -name "pattern2"
+	
+this will result in @2 list of outputs, rather we want combined output of the files of any matching pattern1 or pattern2
+
+find directory -name "pattern1" -o -name "pattern2"
+	
+7. How to perform an action or an operation on the outcome of the find command?
+we can use find with -exec option to perform an operation on the each outcome returned by the find command.
+	
+syntax:
+find directory/ -name "pattern" -exec command {} \;
+
+
+	
+find movies/ -type d -name "a*" -exec ls {} \;
+action/
+adventure/
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+printf = printf helps us in writing the output to the console in a formatted manner. It supports escape characters and format specifiers in writing the output.
+escape characters supported:
+\n, \t, \v, \r, \\, \b
+
+format specifiers supported:
+%d, %c, %s, %u, %x, %X, %e, %f, %n
+-------------------------------------------------------------------------------------------------------
+how to perform arthematic operations in shell program?
+by default every character we use in a shell program will be treated as character data and will not perform arthematic operations on that data. So to the shell interpreter understand and perform arthematic operation with the given expression we need to use special syntax in writing it.
+There are 3 syntaxes in writing an arthematic expression which would be interpreted by Shell interpretor.
+#1. `expr $IN1 OPERATOR $IN2`
+#2. $((IN1 OPERATOR IN2))
+#3. $[IN1 OPERATOR IN2]  
+---------------------------------------------------------------------------------------------------------
+Command Substitution:
+By default when we write a shell command in shellscript program, the output of the command execution will be written directly on to the STDOUT (console). if we want to take the output of the command execution into a variable to further perform the operation then we need to use Command Substitutions.
+
+syntax:-
+VARIABLENAME=$(command)
+  
+#!/bin/bash
+FILE_LOC=$1
+NFILES=$(ls -l $FILE_LOC | wc -l)
+printf " %d files/folders in the directory %s\n" $NFILES $FILE_LOC
+---------------------------------------------------------------------------------------------------------
+working with expr
+we can not only use expr for performing arthematic operations, we can use for string operations as well.
+#1 we can find the length of a give string using expr
+NAME="sachin"
+LENGTH=`expr length "$NAME"`
+length is an operator supported by expr and returns no of characters in the given string.
+  
+#2 we can extract a substring from a given string using substr operator
+ACCOUNT_NO=SBI|00010|000042
+BANK_NM=`expr substr $ACCOUNT_NO 0 3`
+BRANCH_CODE=`expr substr $ACCOUNT_NO 3 4`
+NO=`expr substr $ACCOUNT_NO 8 5`
+
+syntax:
+`expr substr $VARIABLE START_POSITION LENGTH`
+
+#3 we can compare 2 given strings are same or not using ":" operator
+NAME1="Robert"
+NAME2="Robert"  
+MATCHES=`expr "$NAME1"  : "$NAME2"`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

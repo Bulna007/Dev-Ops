@@ -1,0 +1,172 @@
+There are 3 major component are there in Vagrant
+1. Vagrant CLI = used for interacting with vagrant engine
+2. Vagrant Engine = talks to the underlying hypervisor in provisioning and managing the vm
+3. Vagrant Cloud = vbox files are kept and distributed to quickly create vm
+
+Feature:
+1. networking
+2. vagrant boxes
+3. sync folders
+4. provisioners 
+5. provider customizations
+6. multi-machine vagrant
+
+How to create an virtual machine using vagrant?
+#1 setup an project directory.
+create a project directory in which we need to create vagrant machine configuration file. The directory in which we create vagrant configuration file is called vagrant project directory. We create vagrant machines for developing or testing or certifying an application, since we are using the machine for a project it is recommended to create vagrant configuration file in same directory of the project for whom we are creating the machine.
+  
+FitHealth  
+|-src
+  |-main
+    |-java
+    |-WebRoot
+      |-WEB-INF
+        |-lib
+        |-web.xml
+|-Vagrantfile (vagrant configuration file)
+|-bin
+|-dist
+  
+advantage:
+the advantage of keeping the vagrant file within the application directory itself is, it can be easily distributed across the team as the code is placed in code repositories
+
+#2 create an vagrant configuration file within the project directory we created above
+we need to create an vagrant machine configuration file, with name as "Vagrantfile". The machine configuration file should be written in Ruby language. Ruby is an programming language, so to work with vagrant we dont have to know Ruby language.
+  
+In vagrant configuration file we are not going to write programmatic instructions in creating an virtual machine, rather we are going describe/declare machine configuration information specifying for eg.. cpu capacity, ram and hdd etc. based on the machine configuration we declared vagrant engine is going to provision a virtual machine with underlying hypervisor
+
+Ruby programming language supports DSL configurations. DSL Stands for domain specific language which is an english like language any work can quickly understand and use for describing/declaring information.
+
+d:\work\vagrant\
+|-basicvagrant (project directory)
+  |-Vagrantfile
+  
+Vagrant.configure(2) do | config |
+  
+end
+
+In the above snippet of code, we are creating an config object using the Vagrant configuration version 2.  One config object holds configuration information about one machine we want to create. Now into the config object populate machine configuration like vbox file to be used, cpu, ram etc.
+  
+Vagrant.configure(2) do | config |
+  config.vm.box = "hashicorp/precise64"
+end
+
+the only declaration required for creating an virtual/vagrant machine in vagrant configuration file is vm.box, rest of the details will be taken default.
+
+We can take the help of vagrant cli in creating the above vagrant configuration file as below.
+  
+
+vagrant init = creates an Vagrantfile with base template
+vagrant init vbox = creates an Vagrantfile by populating vm.box as specified
+
+if already within the project directory Vagrantfile is there the vagrant init command will ignore creating if we want to replace the existing file with new file being generated we can use
+vagrant init -f box
+
+How to run the vagrant machine?
+Be in the project directory and run the command vagrant up
+
+
+vagrant cli commands
+----------------------
+vagrant init = creates an vagrant configuration file from base template
+vagrant up = boot up virtual machine
+vagrant status = tells the status of the vm
+vagrant global-status = shows the status of all the vms on the host
+vagrant halt = stop vm
+vagrant suspend = saves the current state of machine and power off
+vagrant resume = boots the machine back from saved state
+vagrant reload = restart
+vagrant destroy = stop and delete the vm
+vagrant ssh =  ssh into the vagrant machine
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

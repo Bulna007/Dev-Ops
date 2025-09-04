@@ -1,0 +1,10 @@
+- name: copy module play
+  hosts: all
+  tasks:
+    - name: copy shellscript file
+      copy:
+        src: /vagrant/workspace/copymodules/numbers.sh
+        dest: /home/vagrant/
+        owner: 'vagrant'
+        group: 'vagrant'
+        mode: '0544'

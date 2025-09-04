@@ -1,0 +1,79 @@
+What is a Filesystem?
+Filesystem is an mechanism or a technic used by the operating system of the computer to store, organize and manage the data on the harddisk of the computer. Different operating systems vendors uses different Filesystem technics
+
+In windows:
+1. FAT32 (File Allocation Table)
+2. NTFS (New Technology Filesystem)
+
+In Linux:
+Incase of Linux there are various different Filesystem technics are available over the ages, where most of them or old and may not be using and few of them are being used as below
+1. EXT
+2. EXT2
+3. EXT3
+4. EXT4 
+5. JFS
+6. XFS
+7. BTRFS
+
+out of the above Filesystem technics, the newest and default Filesystem technic that is being used aspart of the Linux operating system is "ext4".
+--------------------------------------------------------------------------------------------------------------------------
+Linux operating system uses hierarchial Filesystem technic in storing and managing the data on the harddisk or storage device of the computer.
+	
+Hierarchial
+Anything that is expressed or represented in parent/child relationship manner is called "hierarchial" representation. It is inverted tree format. Hierarchial representations always starts with one single root node that indicates the start. 
+A parent can have any number of child nodes, but always a child belongs to one single parent only.
+	
+Incase of windows operating system, they dont use hierarchial filesystem technic, we have multiple roots of the storage in windows which are called "drives (c:\, d:\, e:\ ...)", means each drive is an root. Now user has to navigate through these drives to locate and access the data that stored on the harddisk.
+	
+Unlike windows Filesystem, linux operating system uses hierarchial filesystem, which means always linux has one single root only "/"	
+	
+Linux Filesystem directories:
+during the time of installing the linux operating system, it creates standardized directories on the harddisk of the computer to store, organize the files of the operating system and users.
+	
+The linux filesystem being hierarchial will starts with a root represented with "/", and all the files and directories are the children of this root only.
+	
+\ (root)
+|-/bin   = linux core commands resides under the bin directory (like ls, cd, touch, mkdir etc)
+|-/boot  = boot loader and boot files are located in the boot directory.
+|-/dev   = all the physical drives like harddisk, pendrives, usbs, diskdrives etc are mounted here
+|-/etc   = configuration files of the installed software packages are placed here   
+|-/home  = For each user of the linux operating system, the linux create a sub-directory under the /home allowing the user to store personal files/folders inside it
+|-/lib   = libraries of the installed software packages are placed here, because libraries are commonly shared across the software packages
+|-/media = all the multi-media devices like music players (ipods), cameras, dvds are mounted and made accessible from here
+|-/mnt   = here the network drives or network storage devices are mounted. In few distros we may find usb or dvd also mounted here instead of /media
+|-/opt   = all the optional software packages are installed and placed under opt directory
+|-/proc  = everything in linux is a file, the /proc directory holds the information about all the running programs on the linux operating system.
+|-/root  = The /root is the home directory for the root user of the linux operating system
+|-/sbin  = the root user related super user commands are placed under /sbin directory
+|-/tmp   = temporary files
+|-/usr   = utilities and files shared between the users of the linux operating system are placed here
+|-/var   = var stands for variable large files. This directory holds system logs and other variable data	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

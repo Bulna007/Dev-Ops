@@ -1,0 +1,137 @@
+docker, kubernetes and jenkins course
+pre-requisite:
+1. basics of java language, how to run java application
+2. how to deploy an java application on a servlet container environment
+3. basics of linux operating system and package managers
+apt, yum, dpkg and other package management tools
+4. optionally good to have shellscripting knowledge
+5. basics of networking and protocols
+
+system requirements:-
+--------------------------------
+windows 10 operating system
+i3/i5/i7 processor or ryzen5 series
+ram: 8gb
+hdd/ssd: 100 gb freespace
+
+Monday - Friday [8:15 am - 9:15 am]
+Saturday - [8:15 am - 10:00 am]
+Sunday - [9:30 am - 11:00 am] [5:30 pm - 7:00 pm]
+Duration: 45 days
+Fee: 5k (zero discount)
+Weekly basis the notes will be shared: live running notes
+no vidoes, no youtubes and no facebook likes and no subscribe and click on bell icon
+no recordings
+
+telegram group: you can discuss with your friends in recollecting the content
+10 days = just drop us an email, we will allow you in next batch for th missed sessions
+---------------------------------------------------------------------------------------
+docker: (15-20 days)
+1. what is containerization technology, why do we need to use it
+2. compare virtualization with containerization technology and discuss the benefits and drawbacks of each of them
+3. The architecture of docker
+4. docker workflow
+5. docker layer images
+6. docker installation
+7. docker CLI
+8. how bake our own docker image (superior in docker) (docker files)
+		- docker directives (image instructions and container instructions)
+9. docker networking
+10. docker container lifecycle
+11. docker volumes
+12. docker inspect
+13. docker mounts
+14. docker container registry
+
+kubernetes (k8s) [15 - 20 days]
+1. what is kubernetes cluster manager why do we need it
+2. kubernetes architecture
+3. setup an kubernetes cluster using
+	1. minikube
+	2. standalone kubernetes cluster setup (kubeadm)
+4. kubectl
+5. kubeproxy
+6. kubernetes objects
+	1. pod
+	2. deployment
+	3. service
+	4. nodes
+	5. load balancer
+7. kubeconfig
+8. kubernetes networking options
+9. aws kubernetes service (eks)
+10. kubernetes config maps
+11. kubernetes secrets
+
+Jenkins [7-10 days]
+1. Introduction to  Jenkins
+2. Why continous integration
+3. Jenkins setup and configure jenkins plugins
+4. integrate jenkins with github
+5. Jenkins administration
+	1. users
+	2. slaves
+	3. manage plugins
+6. working with jenkins free style project
+7. understand jenkins pipelines
+	1. declarative pipelines (dsl)
+	2. scripted pipelines (requires groovy scripting)
+8. configuring maven, docker plugins using jenkins
+--------------------------------------------------------------------------------------
+
+devops with aws batch : 1 month, 9:30 am - 10:30 am ist: 12k
+new aws full batch: 15 days to 1 month, 6:00 am - 7:00 am ist: 6k
+spring boot and microservices = 2 months: 6k
+new framework batch = 2 months of time: 15k
+webservices, rest and microservices starts in next week: 7k
+
+docker, kubernetes and jenkins now you can convert into devops course later
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

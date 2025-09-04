@@ -1,0 +1,151 @@
+AWS Architecture
+----------------
+#1. Region
+aws cloud platform has streched across various different locations around the world to offer the cloud services to the people/customers. The countries/geographic locations where aws operates and provides the services are called regions.
+
+Right now there are 22 regions are there in which aws is operating, when the aws user login-in to console, he has to choose a region where he wanted to avail the services
+
+The Region should be choose based on the customers/geographic locations where the traffic source is coming from, which can help in avoiding the latency of requests/response
+
+#2. Availability Zones (AZ)
+availability zones are the datacenters that aws has setup within a region to offer services. The details of the availability zones (like is an single datacenter or a group of data centers operated together) and the physical location of them is abstracted from the endusers/customers by aws. 
+
+The aws has provided the availability zones for supporting high availability, where if one of the availability zone within a region goes down always the other availability is available to avoid zero-down time. The aws provides recommendations to the customers to distribute their resources/services across the availability zones of the region to achieve high-availability
+
+Per each region atlease 2 availability zones are provided by aws. The aws has takencare of inter-connecting all the AZs of an region with high-speed dedicated internet connection. So there is no latency of communication across the resources of a region
+
+#3 Edge Locations
+Edge locations are the mini datacenters setup aws per each region and availability zone to serve few services like CloudFront, ElasticCache and Route53 services
+
+These services are made more reachable to the people around the world with low-latency by hosting them in nearest locations of the customers through edge locations
+-----------------------------------------------------------------------------------------------
+
+#1. Networking
+---------------
+The networking related services for managing the accessibility and visibility of resources are part of network domain
+
+1. VPC
+vpc stands for virtual private cloud network. we can create an isolated network of resources that are independent of other resources within the aws account through the help of vpc.
+
+by default all the resources of an aws account are protected and restricted from access by the other aws account users and their resources. But all the resources of an aws account within a region can see other resources of the same account of that region
+
+Now we want to control/restrict access to a group of resources from other group of resources of the same account user, this can be done by grouping them and placing in separate networks through vpc.
+	
+vpc streches across all the availability zones of a region (or) vpc contains all the availability zones of a region. so that we can group resources under a vpc network by distributing them across the availability zones.
+
+While creating an vpc we need to specify the cidr range to indicate the group of computers as one network. and the resources created under that vpc are assigned with the cidr range of ip addresses only
+
+vpc are used for create isolated networks in hosting applications of
+	1. different departments of a company
+	2. different business units
+	3. applications
+	4. environments
+	
+by default all the resources within the vpc can communicate with each other but the resources across the vpc cannot communiate with each other.
+	
+important points:-
+	1. vpc is an isolated network
+	2. per region and contains all the availability zones
+	3. cidr range in creating vpc
+	4. max 5 vpcs per aws account are allowed (softlimit)
+	5. by default all the resources within the vpc can communicate with each other, but across the vpcs we need to create vpc peering to establish communication
+-----------------------------------------------------------------------------------------------
+#2. subnet
+subnet is a smaller group of network created out of an vpc. we can enfore different traffic restrictions to different group of resources within a vpc by categorizing them into subnets
+
+subnet is a subnetwork created with in a vpc and is targeted to an availability zone of a vpc. it is recommended to create atleast 2 subnets distributed across the availability zones of the vpc/region
+per vpc we can create at max 200 subnets only
+subnets are scoped to the availability zone of a vpc
+
+There are 2 reasons why we use subnet
+1. we can enforce different traffic restrictions on a group of resources of a vpc from differently from other group of resources of the same vpc by keeping them into separate subnets
+2. we can map a resource to an availability zone of a vpc through subnet
+
+while creating an vpc or a subnet we need to specify cidr range indicating the range of ip address to be allocated to the resources within them.
+	
+cidr = class-less inter-domain routing, through which we specify the network bits range and host bits range	to classify the resources into multiple networks.
+	
+For eg if we create an vpc
+airtelcarevpc: [cidr=172.10.0.0/16] = it indicates the network address is : 172.10 and remaining are host address
+Now we can further breakdown the vpc into smaller networks by creating subnetworks with cidr range within the vpc
+	airtelcaresn1: [cidr=172.10.1.0/24] = indicates consider 24 bits as network address which indicates 172.10.1 = network address of this subnet and remaining or host bits
+	airtelcaresn2: [cidr=172.10.2.0/24] = indicates consider 24 bits as network address which indicates 172.10.2 = network address of this subnet and remaining or host bits
+	
+now we can enforce different traffic restrictions based on network address	to these individual group of subnets
+
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

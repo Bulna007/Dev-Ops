@@ -1,0 +1,75 @@
+#1 How to access the meta information about a file, like inode address, blocks and owner etc?
+stat filename = gives all the Meta information about the File.
+
+#2 What are regular expressions that are supported by the Shell commands?
+There are 3 symbols are there which can be used as an regular expressions as part of shell commands
+1. * = any match of any number of characters
+2. ? = single character any match
+3. [] = single character range matching
+
+#3 what is a range expression supported by linux shell commands?
+{} = indicates within the given range values the command should be executed repeatedly. similar to a loop in programming languages
+
+echo {1..10} = run the echo command from 1 to 10 values repeatedly, this displays 
+1 2 3 4 5 6 7 8 9 10
+------------------------------------------------------------------------------------------------------
+tr = is used for deleting, replacing or changing a given character
+delete/replace works only on one single character
+changing/transformation (upper case/lower case) will be applied on whole string
+
+echo "Good Morning"
+
+                (pipe operator)
+                (writing the output of a command as an input to another command)
+echo "Morning" = by default this command writes the output to STDOUT/Terminal, instead we want this command to write output to another command we can use (|) operator. This is basically used for joining linux commands together in executing.
+
+Transformation of String:-  
+echo "Good Morning" | tr "[:lower:]" "[:upper:]"  
+(or)
+echo "Good Morning" | tr "[a-z]" "[A-Z]"
+  
+Replace a Character:-
+echo "devops is easy" | tr y i
+replaces the character y whereever it appears in the string with i
+
+remove a character from a give string:-
+echo "Great Job" | tr -d b
+deletes the charater b inside the given string
+
+echo "Humpty Dumpty sat on a wall" | tr "[:space:]" -
+The output of the command will be
+Humpty-Dumpty-sat-on-a-wall replaces all the spaces with -
+-----------------------------------------------------------------------------------------------------
+How to create an hidden file in Linux?
+
+A file that starts with name "." is considered as hidden file in linux and will not be visible by default when we list down using ls
+
+touch .password = it creates this as .password hidden file (. = it is not considered as extension)
+this file will not be listed when we use ls command.
+To see the hidden files of a directory we should use ls -a (a stands for all)
+-----------------------------------------------------------------------------------------------------
+when we are browing large files with huge contents or listing down the files and directories, if the content is huge, the screen automatically rollup and will not display top lines rather the last output will be visible.
+if we want to see the top output, we need to scroll up manually, instead we can use more command. More helps in displaying the contents page by page, so that we can scroll by pressing enter key line by line.
+If we want to quit in the middle of the output we need press q
+
+ls -lr | more
+cat big.txt | more
+-----------------------------------------------------------------------------------------------------
+can we see huge log files using cat command?
+Yes we can see but there is of no use, because it scrolls up and displays only last few lines. even we use more also it is difficult to go page by page.
+  
+There are 2 important commands used for browsing or seeing the contents of a log file in an application.
+  1. tail
+  2. head
+
+head is used for seeing/accessing the top lines of a file
+head app.log = by default the first 10 lines only will be displayed
+if we want to see top 20 lines we can use 
+head -20 filename
+head -n filename
+
+tail is used for seeing/accessing the last lines of file
+tail app.log = by default displays the last 10 lines of the file.
+  
+tail -n filename = bottom n number of lines
+tail -f filename = displays the contents of log file in flow without stopping.

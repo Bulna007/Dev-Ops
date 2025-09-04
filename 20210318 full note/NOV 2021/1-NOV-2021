@@ -1,0 +1,75 @@
+What is Vagrant? what is the purpose of it?
+Vagrant is an virtualization workflow automation tool, through which we can provision the virtual machines on a hypervisor provider.
+  
+What are the problems in setting up the virtual machine manually in performing the development and delivery of the software applications?
+1. laborious process where quite number of things has to be carried manually which takes lot of time
+2. patching, upgradation of the environments requries rebuiding the env from scratch and redistribute the machine images across the team
+3. virtual machine images files are huge in nature which are very difficult to distribute across the team
+4. Since it is a repeatitive process, there is an high amount of chance where something might go wrong during the process of setting up and requires efforts from the scratch which is going to waste lot of time.
+5. Team has know the virtualization technology and has to perform the process of installing and configuring virtual machine to use it.  
+To overcome the above problems we need virtualization automation tool which is vagrant.
+  
+  
+How does vagrant solves the above problems?
+
+vbox images
+vagrant has comeup with vagrant box files, which are prepackaged virtual machine image files backed with minimal operating system and required software utilities as part of them. we can quickly create virtual machines by just importing the vbox images. Since these vbox images are small in size those can be distributable easily also.
+  
+The developer dont have to create an vbox images from scratch, because setting up an vbox image will equally takes the time of setting up an vdi image out of an iso. So Vagrant by themself has backed vbox images for various different platforms/operating systems with required tools and packages and distributed to the world.
+  
+How does vagrant has distributed these vbox images to the world?
+Vagrant has comeup with vagrant cloud its an marketplace where people can browse the vbox images and download and use/import them in creating virtual machines quickly.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

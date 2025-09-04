@@ -1,0 +1,103 @@
+What are policies what is the purpose of them?
+we can grant access permissions to the IAM Users of an AWS Account through policies.
+
+AWS has predefined lot of permissions for each resource/service type which can be assigned to an IAM User, but directly assigning the permissions to the IAM users is a very difficult job since we need to compile the compatible list of permissions that are required to grant the access to a resource or service
+
+So to help us in easily working with these permissions AWS has introduced policies. Policy is an set of related permissions grouped together that can be assigned to an IAM user in order to grant the access to the resource quickly.
+
+The AWS has pre-built around 200+ policies based on the common requirement of usage and has provided to us, which can be directly used for granting the access to the services/resource of an AWS Account. In case if the default ones doesnt fit our requirement, we can create our own custom policies as well
+
+We can broadly classify the policies into 3 types:
+1. aws managed policies
+These are the policied build by aws cloud engineers and has provided to us for direct usage. These policies are maintained by aws ifself and any changes required due to any additional features introduced are taken care by aws itself.
+		
+2. customer managed policies
+if our requirement doesnt fits into the pre-defined policies then customer can create his/her own policies with the permissions defined using aws policy generator tool or manually.
+The scope of these policies are to the aws user account level and will not visible to the other users of the aws cloud platform and these has to be managed by the customer itself
+
+3. inline policies
+At the time of creating an user/resource within our account, we can define policy inline to the resource/user level and can be attached, which is not reusable
+
+How to create our own custom policy?
+Policy definition are written in json language and has pre-defined sections within it. There are 4 important sections are there in policy definition
+
+1. sid 
+sid is a unique name we assign to a policy to identify and distinguish from another policies. for eg we are creating an aws ec2 policy where we are only allowing the user to see the ec2 details and allow him to start/stop/restart so we can name this policy accordingly as
+AWSEc2ReadOnlyRestartPolicy
+
+2. principle = "*"
+principle is arn (amazon resource name) of the IAM user to whom we are granting the permission of the resource, if we want to apply this to the users who has been assigned to the policy then we can define principle as "{*}" or ignore writing principle
+
+3. action
+the list of permissions we want to grant to the user on resource/service
+
+4. resource
+To which resources of the aws account we want to grant the access can be done through resource. if we want the iam users to grant access specific actions/permission to the the ec2 instances then we can write resource as ec2:*
+and if it specific ec2 instance then we need to arn of the instance
+
+5. effect
+tells you the actions listed above are allowed/denied
+
+Here is the syntax of policy definition
+{
+	"Version": "2022-02-16",
+	"Statement": [
+		{
+			"Sid": "EC2ReadOnlyRestartPolicy",
+			"Effect": "Allow",
+			"Action": [
+				// 
+			],
+			"Principle": "{*}",
+			"Resource" : "ec2:*"
+		}, 
+		{
+			// statement2
+		}
+	]
+}
+	
+Statement can be used for granting actions/permission on a resource to an IAM user, so we can combile multiple resource actions to various users through one policy definition.
+
+I want to provide access to ec2 also and rds also together = then define 1 policy with 2 statements inside it
+
+I want to provided access to ec2 instance for few people and rds instance to few other people, then dont combile into 1 single policy as 2 statements, rather define separate policies
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

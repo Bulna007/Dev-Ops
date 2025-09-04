@@ -1,0 +1,204 @@
+What is a program?
+Program is set of instructions written on a File that is passed as an input to the operating system	asking him to execute on the underlying hardware of the computer
+
+What is a Software application?
+A Software Application is developed by the developers based on the requirements provided by the business. In order to offer business services fulfilling the business/customers, the developers has to build multiple functionalities aspart of the system. As there are several functionalities to be built, these are distributed or scatter across several programs that are put together to execute which is called an "Software Application".
+	
+In-Short: A software application comprises of several programs that are put together to be executed in fulfilling the business services/functionalities
+
+How does the software application is distributed to the business owner or enduser?
+Software distribution/delivery:
+upon developing the software application by the developers, they have to deliver the software application to the enduser/business organization for whom it has been developed for. The process of deliverying the software application to the enduser/business organization is called "Software Distribution".
+	
+1. operating system packaging standards in distributing an software application, why do we need these packaging standards?2. how does these packages software applications are being installed and registered on the operating system of the computer?
+package installers & operating system registry (software registry)	
+3. how does an user can launch or run the software application on the operating system of the computer upon install?
+	
+
+4. Why does different operating systems has provided different software packaging standards?
+--------------------------------------------------------------------------------------------------------------------------
+The operating system has standardized the packaging standards in packaging and distributing an software application to the enduser. Aspart of an packaged software there are 
+1. software binaries (executable code)
+2. entrypoint program 
+3. instructions in launching the application
+4. along with this metadata describing the information about the application like
+	1. author
+	2. manufacturer
+	3. licensing
+	4. warranty & scope of usage
+	5. version
+	6. supported platform
+	
+Along with this operating systems provides software package managers or installers that takes the packages software application as an input and installes it on the underlying operating system machine as below
+1. it unpacks or extracts the packages software application
+2. copies the binaries (executable programs) into an Filesystem directory location
+3. reads the instructions in running the software application and adds them as entries into operating system system registry enabling the operating system to quickly locate in running the application
+4. creates an shortcut enabling the endusers to quickly launch the application
+--------------------------------------------------------------------------------------------------------------------------
+
+Why does different operating system vendors provided different packaging standards in distributing the software application?
+upon developing an software application, the developer has to compile the software application using the platform compiler so that it generates the application binaries or executable code specific to the operating system platform. So we need to distribute different copies of these executables specific to each platform of the user
+
+So for this every operating system to different the software of the platform they introduced their own packaging standards and installers. So the developers upon compiling the software package it based on the operating system packaging standards and distribute it, so that enduser can easily identify based on the packaged software, it works for which platform and use it accordingly
+
+windows: .exe or .msi (microsoft installer)
+linux: .deb, .rpm (dpkg, apt, rpm)	
+mac: .dmg (mac installer or homebrew)	
+--------------------------------------------------------------------------------------------------------------------------What are the packaging standards and package managers available aspart of the linux operating system?
+(or)
+Why there are different packaging standards and package installers provided by various different distros of the linux operating system?
+The kernel at its core has not provided any sophisticated packaging standards and package managers in installing and distributing software applications aspart of the Linux operating system platform.
+The enduser by themself has to follow complex procedure that is given by developers in manually installing and running the software applications on the linux kernel, that makes linux operating system very difficult to use.
+	
+To overcome the problem of using linux operating system, the distros are introduced. each distro vendor has comeup with their own packaging standard and package manager tools/utilities in installing and using the software applications on their respective distro, even though the underlying binary of the application is same across	
+--------------------------------------------------------------------------------------------------------------------------
+What are the ways the software packages/applications are distributed in Linux operating system?
+The software packages are distributed in #3 different ways
+1. Repository based packaged software distribution
+2. direct downloadable packaged software distribution
+3. binary distribution
+
+1. Repository based packaged software distribution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	

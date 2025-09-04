@@ -1,0 +1,210 @@
+How to add an user with password in ansible user module?
+	
+user:
+  name:
+  create_home: yes
+	password: {{welcome1 | password_hash('sha512')}}
+-----------------------------------------------------------------------------------------------
+systemd
+ufw
+reboot
+mysql_db
+mysql_user
+get_url
+url
+
+root = remote access = ? = no
+create user 'fithealthdb'@'%' identified by 'welcome1';
+grant privileges on *.* to 'fithealthdb'@'%';
+flush previliges
+
+mysql_user:
+  name: fithealthdb
+	hostall: yes
+	login_password: welcome1
+	state: present
+	priv: "*.*:ALL"
+----------------------------------------------------------------------------------------------
+Working with Ansible variables
+------------------------------
+Variables are the placeholders in which we can store the values, so that in our program we can refer variable name to access the value rather than using the literal value, so that our program will become maintainable easily. when there is a change in value modify it in variable rather than program
+		
+Ansible is an software configuration management tool in which we hold information pertaining to configurations of the machines using which we want to perform the action
+
+for eg.. we want to add an mysql_user into the database with different usernames/passwords and privileges based on the project/environment where we are deploying the project. if the username, password or access priviliges are hardcode in playbooks, then each time we need to modify the playbook to get it executed with different set of values of different environments.
+	
+To help us in keeping playbook maintainable user variables rather than referring to literals directly
+
+How to work with variables in ansible?
+There are several levels at which we can use variables in ansible
+1. ansible variables
+2. inventory level variables
+	1. host level
+	2. group level
+3. playbook variables
+4. var_files in playbook
+5. vars from command-line
+6. register variables
+7. ansible facts which are magic variables of ansible
+-----------------------------------------------------------------------------------------------
+#1. Ansible variables
+ansible variables are the pre-defined variables defined by the ansible system using which they perform operations. By changing or modifying the values of these pre-defined variables we can tweak the ansible system.
+	
+Most of the ansible system settings are populated with their default values in /etc/ansible/ansible.cfg which is considered as global system settings file. if we want to modify something globally across the cluster then only we need to modify ansible.cfg file
+	
+	
+In addition to the global settings, ansible has provided pre-defined ansible variables which can be configured with values, so that it overrides the default settings of the ansible.cfg file
+
+There are ssh connection related ansible variables are there using them we can customize/modify the behaviour in which ansible connects to the fleet server
+1. ansible_connection = local/ssh
+2. ansible_ssh_port=22
+3. ansible_user=ansible
+4. ansible_host
+5. ansible_private_key_file
+6. ansible_ssh_password
+7. become
+8. become_method
+9. become_user
+
+
+we can define these variables at inventory file level, an eg.. is shown below
+hosts
+127.0.0.1 ansible_connection=local
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+		
+
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

@@ -1,0 +1,47 @@
+High-level programming language
+dis-advantages:-
+1. developer has to compile code multiple times each per one platform
+2. keeping track of mulitple binaries each per platform and maintaining them is difficult
+3. distributing the software is very difficult as the size of distribution is huge
+4. enduser should remember which code works on which platform
+5. few of the instruction set provided by the high-level languages are not portable across all the platforms, so developer has to spend lot of time in writing conditional logic in making the code portable across all the platforms. So it takes more time for developing the application
+6. the time required for testing and cerifying the application across all the platforms is very high
+
+From the above we can understand, the time required for developing and cost of development of the application is very high when we go for high-level programming languages.
+  
+Platform Independent High-level programming languages
+To overcome the above problem the platform independent high-level programming languages are introduced like
+1. java
+2. .net
+3. groovy
+4. phython
+5. scala
+6. golan
+7. ruby
+8. php
+
+The above problems are addressed by platform independent languages differently.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

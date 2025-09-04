@@ -1,0 +1,40 @@
+fithealth
+|-src
+	|-main
+		|-db
+		|-config
+		|-sh
+		|-java
+		|-resources
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+|-pom.xml
+|-Vagrantfile
+
+wiki = documentation
+
+#0 modify db.properties in fithealth2 project populating with the details of dbserver
+#1 do maven build, if maven build is successful, the 
+#2 vagrant up
+	- dbserver [provision]
+	- javaserver
+		- copy tomcat service file
+		- copy war file of maven build into /tmp/ = always
+		- install jdk and tomcat
+		- deploy the war = always
+			- stop tomcat server
+			- remove existing war file and exploded directories on the webapps directory of the tomcat
+			- copy new war file from /tmp directory into webapps directory of tomcat server
+			- start the tomcat
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	

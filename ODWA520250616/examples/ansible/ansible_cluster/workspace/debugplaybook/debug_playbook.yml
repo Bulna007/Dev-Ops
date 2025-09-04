@@ -1,0 +1,10 @@
+---
+- name: debugplay
+  hosts: all
+  tasks:
+    - name: debug task
+      debug:
+        msg: Welcome to Ansible playbooks!
+    - name: ping
+      ping:      
+...

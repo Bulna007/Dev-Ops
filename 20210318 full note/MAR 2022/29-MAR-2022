@@ -1,0 +1,194 @@
+Why docker images are read-only?
+When we create an container out of an image, the application running within the container may generate some data during execution and stores on the underlying image, insuch case for running multiple containers of the same application we need several copies of docker image which increases the harddisk storage in running/scaling the docker applications.
+
+To avoid this the docker has comeup with images are readonly. So, when we run a docker container it sits ontop of the read-only docker image and adds an container writable layer into which the application of the container will writes the data, since the underlying image is readonly, the same image can be reused in running multiple containers of the application
+So we can save lot of disk-space in running/scaling the containerized application by making docker images as read-only
+
+What is the difference between windows docker images and linux docker images?
+How to choose between windows docker image vs linux docker image?
+------------------------------------------------------------------------------------------
+How to install docker?
+
+1. Windows Support
+-----------------
+initially there is no support of running docker on windows operating system is available, The Microsoft has made lot of improvements as part of the windows platform to bring docker on windows.
+
+From Windows 10 Home/Professional/Ultimate verions we can install and run docker containers
+Windows Server > 2016
+The docker team has provided an tool called docker-desktop-windows to run docker on windows operating system.
+
+Windows 7 we can install and run docker using docker-tool-box-for-windows
+----------------------------------------------------------------------------------
+2. Mac operating system
+---------------------
+There is a tool provided by docker team called "docker-desktop for mac" which we can directly install on mac and run docker containers
+------------------------------------------------------------------------------------------
+
+3. Ubuntu linux operating system
+------------------------------
+1. sudo apt update
+2. sudo apt install apt-transport-https ca-certificates curl software-properties-common
+3. sudo apt install -y docker-ce
+
+after installing the docker we can check whether it is running or not using
+sudo systemctl docker
+
+The docker software will be installed by creating an docker user and docker group and runs onbehalf of that user only, so that it cannot access any other files/folders of linux operating system apart from the user home and cannot access any other process on the machine
+
+So if we have a logged-in user as "sriman", he cannot access or manage docker containers/images that are running on docker engine which is running under "docker user".
+The only we way we can make "sriman" manage docker engine is
+1. he should be a sudoer (not recommended)
+2. add sriman to docker group so that sriman can manage docker engine
+
+sudo usermod -aG docker sriman
+logout from shell and login back so that you can manage the docker engine through "sriman" user.
+------------------------------------------------------------------------------------------
+1. install oracle virtualbox and virtualbox extension pack on your windows computer
+2. open virtualbox manager and create a new virtual machine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

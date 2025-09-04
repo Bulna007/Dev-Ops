@@ -1,0 +1,132 @@
+2. subnet
+----------
+subnet is a smaller network of resources within the vpc. by distributing the resources into multiple subnets of the vpc we can apply various different types of traffic restrictions on the group of resources of the subnet
+
+Points to remember:-
+1. Subnet is created within a vpc per availability zone, we can create any number of subnets within the availability zone of a vpc
+2. per vpc we can create at max 200 subnets
+3. it is recommended to create atleast 2 subnets within the vpc across the availability zones
+
+We use subnet for 2 reasons:
+1. to separate a group of resources from another group of resources within the vpc to enfore accessibility/security restrictions
+2. through subnet we map resource to the availability zone of a vpc
+
+
+while creating a vpc or a subnet we need to specify the CIDR range indicating the range of ip addresses to be alloted to the resources of the vpc/subnet
+
+There are 3 types of subnets are there
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+#1. private subnet
+------------------
+every subnet we create within a vpc is by default private subnet only. The resources of the private subnet are not accessible from the external network/internet. but the resources are accessible by the other resources across the subnets of the same vpc
+
+#2. public subnet
+-------------------
+A subnet is called public subnet when the traffic of the subnet is routed through the internet gateway (if attached to the internet gateway)
+Internet gateway: is an network device provided by aws cloud platform which is connected to the public network/internet. So to route the public/internet traffic to the resources of our vpc we need to attach the internet gateway to the vpc
+
+we need to associate the subnet to the internet gateway by creating a route table and routing the public network traffic though internet gateway of that subnet
+
+	2.1 create an internet gateway
+	2.2 attach internet gateway to vpc
+	2.3 create route table and attached to vpc
+	2.4 associate subnet of the vpc to the route table
+	2.5 add routing rule, routing 0.0.0.0/0 public network from that associated subnet through internet gateway
+	
+then the subnet becomes public subnet
+
+#3. Hybrid subnet
+------------------
+A subnet is called hybrid subnet if it is partially opened to the public network. we want the resources of the subnet to access internet, but we dont want external resources of the public network to access the resources of our vpc then we use hybrid subnet
+
+In order to configure hybrid subnet we need 2 things
+1. setup one of the subnet of our vpc as public subnet
+2. create an nat gateway on the public subnet of the vpc and route the network traffic of a subnet through the nate gateway to allow internet access
+-----------------------------------------------------------------------------------------------
+Route Table
+It is used for inter-connecting the subnets of the vpc and allows traffic between all the subnets of the vpc and even external networks as well.
+	
+For each vpc there will be one main route table created by aws by default (we cannot remove).
+The main route table will have a default route allowing network traffic across the subnet resources of the vpc
+route: vpc cidr   vpc
+
+If we want to additional route the subnet traffic through external sources create appropriate network devices like
+1. internet gateway
+2. nat gateway
+
+and add a routing rule by associating the subnets of the vpc to the route table in routing the network traffic through these device based on cidr range
+----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

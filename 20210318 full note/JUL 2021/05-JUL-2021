@@ -1,0 +1,311 @@
+What is a ShellScript program, what is the purpose of it?
+Shellscript program is a File in which we write Shell utilities and Shell instruction set that are interpreted and executed by the Shell is called "ShellScript" program.
+  
+purpose:-
+There are certain operations which we might want to perform repeatitively, rather than typing those command each time to accomplish the operation, we can automate the efforts of performing it by writing in a program file (shellscript) and can execute the file directly.
+  advantages:-
+    1. no human interaction required to carry the job, automation
+    2. saves lot of time in accomplishing the task
+    3. avoids human errors
+    4. high amount of accuracy can be achieved, which results increased success rate.
+---------------------------------------------------------------------------------------------------------
+How to write a Shellscript?
+Its an File on the FileSystem in which we write shell commands and shell instruction set (provided by shell interpreter) which can be passed as an input to the Shell to execute, So we should start creating a File.
+#1 The shellscript usually created with a extension (.sh) to identify it quickly (best practise)    
+touch shout.sh
+
+#2 every shellscript file recommended to start with shebang
+shout.sh
+#!/bin/bash
+shebang:- shebang tell the linux which shell interpretor program to be used for running the instructions in this shellscript file. shebang is optional, if not specified the default shell of the user will be used for running script.
+  
+#3 write any of the linux shell commands or shell instruction set
+
+How to run the shellscript file?
+by default a file in linux will be created with permissions: 644 (non-root user)
+owner = rw group = r other = r by default a file in linux will not have execute permissions
+
+How to execute in such a case?
+There are 2 options we have.
+1. grant execute permission on the file.
+chmod u+x shout.sh
+
+Now execute the shellfile by typing absolute path to the file ./shout.sh
+if we want to avoid using the fullpath we need to set environment variable PATH pointing to the directory location of the Shell file or place that in ~/.bashrc
+
+2. we can run an shellfile which has rw permission by passing it to a new shell interpreter as below.
+cat shout.sh
+bash shout.sh = bash read the contents of the shell file and execute.
+---------------------------------------------------------------------------------------------------------
+Working with variables
+----------------------
+The values we use as part of a program directly are called literals (constants), there are different types of literals like
+1. number
+2. string etc
+
+math.sh
+#!/bin/bash
+echo 10+20
+echo 10*20
+echo 20-10
+echo 20/10
+
+never use literals directly within your program, because they will put us into maintainance problems of the program.
+For eg.. we want to change in above math.sh program 10, 20 to 40, 50 so how to make the changes now?
+Now to make the change goto each line of the program and find 10, 20 and replace with 40, 50 which has lot of problems
+  problems:
+    1. takes more time to modify or accomodate the change (imagine a program has 500 lines)
+    2. high chances where we might miss or modify the things incorrectly will break the program
+    
+instead of using literals directly in your program, use variables.
+What are variables, why do we need to use it?
+A name give to a value through which we want to access/use the value in a program.
+(or)
+variables are nothing but named place holder for values.
+Now in our program instead of using the values directly we refer variables (pointing to those values). The advantage is if we want to change the values on which our program should perform operation we change value of variable rather than entire program.
+
+How to declare variables in linux shellscript program?
+VARIABLENAME=VALUE
+it is a common bestpractise to declare variable name in capital letter in shellscript program, but not mandatory.
+
+math.sh
+#!/bin/bash
+A=10
+B=20
+
+echo $A
+
+everyline in a shell program shell interpreter will try to interpret/execute it by resolving to a command/instruction. 
+when we declare a variable like below
+A=10
+and if we refer the variable using Name as below.
+A 
+shell interpreter tries to execute it rather than treating it as a variable, where it is not a command and gives error. So to let the shell interpreter understand we are reffering a varible we need to use $VARAIBLENAME expression.
+------------------------------------------------------------------------------------------------------
+Reading data interactively in shell program
+-------------------------------------------
+nchars.sh
+----------
+#!/bin/bash
+PERSON_NAME="Paul"
+echo $PERSON_NAME | wc -c
+
+
+Requirement: we have 30 people names and we want to find no of characters in these 30 people names, what should I do?
+Modify the program 30 times each time with a person name and run it. Looks like a very difficult job because we need to change the program 30 times and not sure we have modified it correctly or not.
+
+How to solve the above problem?
+Instead of hardcoding (directly writing) value for a variable in a program, we take the input from the user while running the program interactively. everytime when we run the program, program should ask the user to enter data and take it as an input dynamically which is called interactive inputs in shell program.
+
+For this Shell has provided an Shell instruction read which will reads the value from the keyboard (STDIN) and assigns to the variable supplied.
+read A = read will takes the input from keyboard (STDIN) and assigns to variable A. So, to read we need to supply the variable name where the data read should be stored.
+
+nchars.sh
+#!/bin/bash
+echo "Enter person name"
+read PERSON_NAME
+echo $PERSON_NAME | wc -c
+
+
+now instead of using echo statement prompting the user to enter the data there is -p option available in read, which indicates print the message and wait for the input
+
+nchars.sh
+#!/bin/bash
+read -p "Enter person name:" PERSON_NAME
+echo $PERSON_NAME | wc -c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  

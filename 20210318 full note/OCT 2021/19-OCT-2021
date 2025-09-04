@@ -1,0 +1,152 @@
+What is jar application or an executable jar, why do we need it?
+While distributing an java application to the enduser we build and deliver the application as an executable jar or java jar application.
+  
+In order to run the java program, we need to set the classpath to all the dependencies and we need to pass main classname as an input to jre to run the program. all such technical inputs related to our application in running the application is not known to the enduser.
+  
+Let the developer define such information in executing the applcation in manifest.mf and place in within META-INF/ directory of the jar file, So that JRE while executing the jar reads the information from manifest and executes without taking inputs from the user.
+  
+*.jar
+|-META-INF
+  |-manifest.mf
+    Main-Class: fqnClassname
+|-*.class
+  
+insurance
+|-src
+  |-PolicyManager.java
+|-bin
+  |-PolicyManager.class
+manifest.txt    
+
+package com.bajajallianz.service;
+public class PolicyManager {
+  public static void main(String[] args) {
+    System.out.println("Policy Manager at your service!");
+  }
+}
+  
+#1. 
+~/javaworkspace/insurance/>  javac -d bin src/PolicyManager.java
+
+#2. write manifest.txt file with the contents you want to place in manifest.mf of jar
+manifest.txt
+Main-Class: com.bajajallianz.service.PolicyManager
+
+#3. 
+~/javaworkspace/insurance/>
+jar -cvfm insurance.jar manifest.txt  -C bin/ .
+--------------------------------------------------------------------------------------------------------
+Introduction to programming languages, why do we need them?
+  1. what is high-level programming language, why is it introduced?
+  2. workflow of executing an high-level programming language
+  3. why platform independent programming languages like java are introduced?
+  4. how does java or any platform independent programming languages solved the problems with high-level programming languages?
+  5. workflow in executing an java program?
+  6. jdk and jre software and how to install them and use them?
+  7. develop basic java program, compile and execute it
+  8. what is classpath, why do we need to use it?
+  9. what is a jar file, how many types of jar files are there?
+  10. building an distributable java jar library.
+      10.1 how to create an library jar
+      10.2 how to use that jar in building java application
+  11. what is an executable or jar application, how to create and execute it?
+-------------------------------------------------------------------------------------------------------
+What is an distributed web application, how do we build it in java programming language? 
+Distributed web applications are the applications that are accessible over the network using http protocol and servers web content (html markup) over the network.  
+  
+The endusers uses client tools/programs like web browsers in accessing the web application and the webpages over the network by sending http request/http response.
+  
+There are 2 types of distributed web applications are there
+1. static
+as part of these applications only HTML markup pages will be there and no matter how many times we accessed the web pages, that content will fixed and rendered the same.
+  
+2. dynamic
+These applications will take user data as an input, using the data they perform operations and produces the response to the user based on the inputs. which means the response from the application will change from user to user based on their inputs, so it is called dynamic web application
+
+we need server-side programming languages to building dynamic web applications like
+java
+.net
+ruby
+scala
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

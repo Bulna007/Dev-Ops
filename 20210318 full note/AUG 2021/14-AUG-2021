@@ -1,0 +1,139 @@
+Network Layer
+--------------
+Network layer receives segment from transport layer and converts into data packet and transmits the between the computers across the network. There are 3 responsibilities carried by Network layer.
+  1. Logial Addressing
+  takes the segment adds sender and reciever ip address which is thereby called "data packet" or "ip packet".  
+  2. Routing
+  Determines the network to which the data packet should be routed based on network address derived from the ip address of the destination.  
+  3. Path Determination
+  There are multiple paths in sending the data from source to the destination which are called intermediatories. The network layer identifies the shortest-path by which the data can quickly recieved by the receiver which is called "Path Determination"
+  
+  
+#6. DataLink Layer
+Datalink layer is a software embedded as part of the network interface card, programmed by the manufacturer and shipped to us. It is responsible for making the data transmittable over the physical channel. While transferring the data between the hosts/computers of the same network, then datalink layer participates, but while routing the data between the networks, that datalayer has no presence.
+  
+There are 3 responsibilities of datalink layer
+1. Physical Addressing
+2. Media Access Control
+3. Error Control
+
+6.1 Physical Addressing
+Here the datapacket will taken as an input and attaches the source and destination computer mac address, in addition adds some head/tail bits and makes it as a data framework.
+  
+6.2 Media Access Control
+It is responsible for making the data transmitted over the physical channel to be accessible by the higher-level layers of the OSI Model. It frames the data and unwarps the data between the medium of communication to make the data transferrable across various types of transmission channels.
+
+6.3 Error Control
+There are 2 types of error control done by the datalink layer
+  6.3.1. Collision detection:- Datalink layer keeps an eye on network channel to identify the line is busy or available for transmission to avoid collision while sending the data over the channel.
+  
+  6.3.2. Fault data frames: Due to hardware failures/limitations sometimes the frames are received in corrupted state, So the datalink layer while transmitting the dataframes over the it adds some random bits which helps in detecting the corrupted frameworks and requests for re-transmission.
+    
+7. Physical Layer
+The phsical layer takes the bits of data converts into the relevant format based on transmission media like wired (Singals), Fiber (light waves) and wirelss (radio signals) and transmits the data over the channel. The actual data transfer takes place at this layer.
+-----------------------------------------------------------------------------------------------------
+1. Application Layer
+defines message structure and semantics to make application exchange the data in understandable format
+
+2. Presentation Layer
+At the sender it presents the data to lower layers from the application in transmittable format and at receiver side presents the data to application in application format.
+  2.1 Data Conversion: (CharSet)
+  2.2 Data Compression and DeCompression: bit reduction (quick data transfer)
+  2.3 Data Encryption and DeCryption: data security
+
+3. Session Layer (no way connected to transmission data), rather it is responsible session management between the application
+  3.1 authentication and authorization
+  it keeps track of users authentication and authorization information and grants access to the application.    
+  3.2 session management
+  it keeps track the data packets that are transmitted
+  reorders the received data packets to build the original message
+  and routes the data packets to the right application at the destination.
+
+4. Transport Layer
+  4.1 segmentation: breaks the data into smaller chunks and attaches portno and sequence no forming it as segment
+  4.2 flow control: slows down the sender in transmitting the data when receiver is running on slow internet line
+  4.3 error control: attaches checksum bits to the original message, to identify in corrupted data being received at destination
+  
+5. Network Layer  
+  transmitting the data between the computers across the network
+  5.1 logical address: attaches source and destination ip address to the segment which is called "data packet"
+  5.2 Routing: routes the data packet between the networks
+  5.3 Path Determination: computes the shortest path for data transmission
+  
+6. Datalink layer
+  responsible for moving the dataframes between the computers within in the network
+  6.1 physical address: attaches source and destination mac address along with some head/tail bits calling it as "data frame"
+  6.2 media access control: converts the dataframe into a format that can be transmittable over the medium of transport
+  6.3 error control
+      6.3.1 collision detection = avoids collision over the network channel
+      6.3.2 fault data = adds additional bits to the frame so that we can recieved corrupted frame and ask for re-transmission
+7. Physical layer: converts bits into signals so that those can be transmitted over the medium
+
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

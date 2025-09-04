@@ -1,0 +1,136 @@
+What are synced_folders, what is the purpose of it?
+We can mount the folder of a host machine onto the guest so that the files/folders of the host can be accessed inside the guest is called sync folders.
+during the development, the developer often wants to move the files across the host-> guest which can be done quickly through sync folders
+
+we declare sync folder declaration in vagrant configuration file, through which vagrant will configure the shared folder on the underlying hypervisor for our virtual machine.
+  
+Vagrantfile
+Vagrant.configure(2) do | config |
+  config.vm.box = "box"
+  config.vm.synced_folder "source directory", "mount location"
+end
+
+by default vagrant will configure the project directory as a sync folder to the mount path of the guest as /vagrant
+---------------------------------------------------------------------------------------------------------
+Vagrant networking
+
+The hypervisor provider supports configuring network adapters for the virtual machines, configure networking mode in how the machine should be connected and accessible over the network. By enabling the network for a virtual machine we can access the machine remotely and can run the application.
+  
+Different Hypervisor providers supports different networking modes, when it comes to oracle virtualbox hypervisor provider, it supports 7 networking modes
+1. Not Attached
+2. NAT
+3. NAT Network
+4. Host-Only Network Adapter
+5. Internal Network
+6. Bridge
+7. Generic Adapter
+
+Now we are going to create the virtual machine through vagrant, we pass machine declarations asking the vagrant to create the virtual machine on the hypervisor provider. In addition to the machine configuration we need to declare networking information also asking vagrant to provision a virtual machine on the hypervisor with appropriate network configuration.
+  
+In vagrant machine configuration file we should not declare provider specific network configuration, because provider to provider networking modes and their configurations are different which makes the vagrant configuration specific to the provider.
+  
+Vagrant has comeup with their own network modes which would be supported by all the hypervisor providers. if we configure vagrant networking mode in vagrant configuration, during the provisioning vagrant maps the vagrant networking to underlying hypervisor provider networking. The same machine configuration is now portable across all the hypervisors that vagrant supports.
+  
+Vagrant supports 3 types of network configurations
+1. forwarded port
+it is a nat network with port forwarding configuration in virtualbox
+purpose:
+during the development, the developer will deploys the application on the virtual machine environment treating it as server environment, and he wanted to access the application remotely from the host machine as a client environment. To enable the Host machine to access the guest machine on a specific port we can do port forwarding configuration so that we can quickly access the guest application from host using the specific port.
+This results in an highly secured environment configuration.  
+
+2. private network
+Internal network with network name configured so that all the guest machine on the same network can communicate with each other.
+purpose:
+when we are deploying multi-tier applications, we have web server running on one vm and database server running on another vm. we want db server to be accessible only to the web server vm, which can be done through private network only.
+
+3. public network
+Bridge network which opens up everything to the world, it is less secured and not recommended in production env
+purpose:
+during the development we want to allow the machine to communicated openly, we are least bothered about security in such case we can use public network.
+  
+How to configure networking in vagrant configuration file?
+The basic syntax of configuring the networking in vagrant configuration file is:
+
+config.vm.network "networking mode", options
+here "networking mode" can be either forwarded_port, private_network or public_network. and options differ from network mode to another.
+For eg.. 
+  forwarded_port we configure host port and guest port to whom we should forward
+  private_network = we need to configure private network name on which guest should be communicating
+  public_network = should tell the physical network adapter of the host on whom the vm should be bridged
+  
+
+#1 forwarded port
+-------------------
+Vagrantfile
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64"
+  config.vm.synced_folder "e:/devwork", "/workspace"
+  config.vm.network "forwarded_port", guest: 8080, host: 80
+end
+
+The above configuration indicates if we send the request to on host machine to 80 as http://localhost, then host will do port forwarding to the guest machine on 8080 port.
+
+if we want only a specific host to access the guest application on the port we can do below configuration as well.
+  config.vm.network "forwarded_port", guest: 8080, host: 80, host_ip: "192.168.10.2"
+Now virtual machine can be accessible by the specific host ip computer only, thus making it more secure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

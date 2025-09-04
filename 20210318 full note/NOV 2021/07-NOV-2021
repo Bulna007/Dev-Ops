@@ -1,0 +1,128 @@
+Vagrant Networking
+
+Vagrant while provisioning a virtual machine will takes care of configuring networking modes with the underlying hypervisor provider. vagrant supports 3 types of networking modes
+
+1. forwarded_port 
+nat + port forwarding = virtualbox
+development environment
+
+2. private_network
+internet network with network name
+multi-tier application deployments, where all the guests should able to communicate with eachother
+
+3. public_network
+birdge network on physical network adapter of the host
+public access open to everyone (only for development env)
+  
+How to declare network configuration in Vagrantfile?
+  
+Vagrantfile
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "box"
+  config.vm.synced_folder "source directory", "mount location"
+  config.vm.network "network mode", options
+end
+different networking mode has different options to be configured.
+  
+#1 forwarded_port network configuration
+
+1.1 expose guest port onto the host through a specific port
+
+Vagrantfile
+Vagrant.configure(2) do | config |
+  config.vm.box="ubuntu/focal64"
+  config.vm.network "forwarded_port", guest: 80, host: 80
+end  
+  
+The above network configuration indicates all the request that are sent to the host machine on 80 port should be forwarded to the guest machine application running on 80 port
+
+1.2 we can even forward the request to guest machine port if the request is coming with specific ip address of the host
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "base"
+  config.vm.network "forwarded_port", host: 80, guest: 80, host_ip: 223.10.2.1    
+end
+---------------------------------------------------------------------------------------------------------
+By default for every vagrant machine, the vagrant will configure default network configuration enabling the SSH access to the virtual machine remotely. It will setup
+
+forwarded_port network mode with port forwarding of
+host port: 2222 to guest port: 22
+forwarded port means nat network. if it is an nat network we can only have access from guest to the host, not from host to the guest. but we want to access virtual machine over ssh from the host, so vagrant configures port forwarding on host port: 2222 onto guest ssh server port: 22
+  
+why 2222 on the host port?
+to avoid conflicting port of 22 on the host, if host is running ssh server.
+  
+In addition to the default forwarded_port configuration we enable or configure another forwarded_port configuration exposing another port of the guest to the host
+for eg.. we have apache2 server running on guest machine, we want to access from the host?
+we need to configure one more forwarded_port configuration exposing guest: 80 to the host port: 80/anything
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+

@@ -1,0 +1,184 @@
+How to pass non-interactive inputs to the software packages during installation?
+The ubuntu has provided an software package utility called debain configuration utility. it is a database where we can store keys/values, so that during the installation of software packages the apt/dpkg tools looks for relevant inputs as keys for that software package using the corresponding the values the package will installed non-interactively.
+
+by default debconf is not available as part of ubuntu we need to explicitly install it.
+sudo apt install -y debconf-utils
+
+How to know which keys are required for a software package during installation to configure it in debconf util?
+by default we dont know, so install the software package manually, then run debconf-get-selections and see the corresponding keys populated by the package in debconf-utils database from which we can identify keys required.
+
+for eg.. to install mysql server in touchless manner for install it manually.
+sudo apt install -y mysql-server-8.0
+
+now query debconf database to find the above software package requires what keys during installation.
+sudo debconf-get-selections = all software package keys
+now filter them using grep
+sudo debconf-get-selections | grep mysql-server-8.0
+
+now we can see the below 2 keys.
+mysql-server-8.0 mysql-server/root_password_again password
+mysql-server-8.0 mysql-server/root_password password
+
+Now if we can seed these 2 keys into debconf database before installing mysql server package then during mysql installation the apt/dpkg package managers pull the keys and pass the inputs to software package for installation automatically.
+
+debconf-utils package has provided few cli commands
+debconf-get-selections = to see all the keys
+debconf-set-selections = to set key/value into debconf database
+
+use set selection to populate above keys/values into debconf database as below.
+echo "mysql-server-8.0 mysql-server/root_password password root" | sudo debconf-set-selections
+echo "mysql-server-8.0 mysql-server/root_password_again password root" | sudo debconf-set-selections
+
+now install mysql server
+sudo apt install -y mysql-server-8.0
+now the mysql server database will be installed with configured root password, now anonymous login is denied for the database.
+
+After installing mysql server we need to still run mysql_secure_installation shell script for configuring the mysql server for production.
+for production usage we dont want anonymous users, test databases or remote login for root user, we need to configure all these parameters by running mysql_secure_installation script.
+
+but mysql_secure_installation script prompts for user inputs, how to run it non-interactively?
+
+How to run shellscripting in non-interactive way even if it requires user inputs?
+
+add.sh
+-----------
+#!/bin/bash
+echo "enter a"
+read A
+echo "enter b"
+read B
+SUM=$[A+B]
+echo "SUM : $SUM"
+
+The above shellscript requires interactive inputs upon execution, but we want to run it non-interactively, how can we do that.
+shell/linux has provided an utility called expect
+
+expect is used for providing the expected inputs while running a shellscript non interactively.
+expect has provided few tools
+spawn = run another shellscript inside the expect
+expect = expecting the user input
+send = send the user input
+interactive = manual enter the input.
+
+noninteractive-add.sh
+#!/usr/bin/expect -f
+spawn ./add.sh
+expect "enter a\r"
+send -- "10\r"
+expect "enter b\r"
+send -- "20\r"
+expect eof
+
+./noninteractive-add.sh
+by default expect is not available in ubuntu we need to install
+sudo apt install -y expect
+
+
+Enter password for user root:
+Press y|Y for Yes, any other key for No:
+Change the password for root ? ((Press y|Y for Yes, any other key for No) :
+Remove anonymous users? (Press y|Y for Yes, any other key for No) :
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) :
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
+
+expect_mysql_secure_installation.sh                                        
+-------------------------------------
+#!/usr/bin/expect -f
+set timeout -1
+spawn mysql_secure_installation
+expect "Enter password for user root:"
+send -- "root\r"
+expect "Press y|Y for Yes, any other key for No:"
+send -- "No\r"
+expect "Change the password for root ? ((Press y|Y for Yes, any other key for No) :"
+send -- "No\r"
+expect "Remove anonymous users? (Press y|Y for Yes, any other key for No) :"
+send -- "Y\r"
+expect "Disallow root login remotely? (Press y|Y for Yes, any other key for No) :"
+send -- "Y\r"
+expect "Remove test database and access to it? (Press y|Y for Yes, any other key for No) :"
+send -- "Y\r"
+expect "Reload privilege tables now? (Press y|Y for Yes, any other key for No) :"
+send -- "Y\r"
+expect eof
+
+after this we need to expose the mysql server database to remote access:
+#1 change bind-address in /etc/mysql/mysql.conf.d/mysqld.conf file
+sudo sed -i 's/^bind-address.*/bind-address=0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.conf
+
+#2 we need to create an user for the application to allow remote login
+create a sql file with sql queries to create and grant permission to the user
+createuser.sql
+create user 'fithealth'@'%' identified by 'welcome1'
+grant all privileges on *.* to 'fithealth'@'%';
+flush priviliges
+
+sudo mysql -uroot -proot < createuser.sql
+
+airteldb.sql
+sudo mysql -uroot -proot < airteldb.sql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

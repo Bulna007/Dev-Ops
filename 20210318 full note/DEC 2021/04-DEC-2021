@@ -1,0 +1,13 @@
+artifactory servers
+The Artifactory servers/repositories are used for publishing interim dependencies that are produced out of a project build, that can be shared between the teams/products usually.
+	
+Apart from that mainly from the world DevOps artifactory servers plays a major role interms of adopting ci/cd pipeline integration. The developer upon promoting/merging an feature branch, we want to release the feature for qa certification.
+	
+so we can take the help of continous integration tools like jenkins which takes care of build the project and executing the junit testcases written by the developers on the project and based on the outcome of the test executions we want to publish the generated artifact of the project into artifactory repository, so that it can be promoted to qa for testing.
+
+once the qa has certified the artifact, it will be promoted for release as well from artifactory, so ci/cd can be achieved through artifactory repository.
+	
+	
+	
+	
+	

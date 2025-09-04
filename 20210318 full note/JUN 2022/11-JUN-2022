@@ -1,0 +1,665 @@
+What is jenkins?
+The jenkins is an CI/CD tool similar to jenkins there are lot of other tools available in the market like
+	- bamboo
+	- hudson
+	- concourse
+	- teamcity
+	
+For building, deploying and release an application there are quite a number of activities that has to be carried in a sequential manner at different stages of delivery
+
+#1 Continous Integration
+Whenever a developer merges his features into the develop/master branch, immediately the ops engineer has to perform the various different quality checks in certifying the code and making the artifact available for testing, like
+	1 pull the code from the git repository (from develop branch)
+	2 run the unit testcases
+	3 run the code quality/code coverage tools like sonarcube and verify the code meets the benchmark standards are not
+	4 then build the project
+	5 push the artifact into artifactory repository 
+	6 if it is an containerized application, build the image out of the artifact and push to the container repository
+	
+#2 Continous Deployment
+At this stage the artifact produced during the continous integration stage has to be deployed and made available for qa engineer for testing, the qa engineer identifies the feature and pickups the latest build in which the feature is included and ask the ops engineer to setup the environment with that build for testing. To make the build available for testing, the ops engineer has to perform various activities
+based on the type of application:
+	1 setup the test infrastructure
+		- vagrant in a virtualization env
+		- terraform in a cloud env		
+	2 install the required software packages and libraries
+	3 pull the artifact from artifactory repository
+	4 deploy the application on the target env
+	5 run the qa automation testcases on the deployed env and generate the report and publish it
+	6 if there are no failures release the env to qa for further testing
+
+ #3 Continous Delivery
+ Depends on the nature of the project the delivery process vary
+ #1 if it is a cloud application then 
+ 	all the cloud env in which application is running will be refereshed with latest artifact
+ #2 if it is a binary delivery to the user, then the test and ceritfied artifact will be released to the public 
+	 
+The devops engineer has to perform relevant activities at different stages in building, testing deploying and delivering the project repeatitively, which is an tedious job, to carry out all of these activities through automation the ops engineer requires ci/cd tools like jenkins
+
+Jenkins is a continous integration/delivery tool that orchestrates all the above activities that has to be carried out in delivering the software application. The jenkins has provided various different plugins that can be used for performing majority of the build activities automatically
+
+Jenkins Architecture
+---------------------
+Jenkins follows master and slave architecture, where the jenkins will be installed on a central server environment and configured with slave nodes attached to it. whenever we ask the master to perform any build, the master executes the builds on these slave nodes
+
+To ensure the scalability of the builds for various different projects, mater node distributes them across all the slaves which are responsible for performing the build activities
+Features:
+	1. highly scalable
+	2. scripted pipelines = The entire build activities for a project can be scriped and versioned as part of the sourcecode repository.
+		by looking at the various versions of the jenkins pipeline, anyone can understand how does the project is evolved to this stage
+		As the build activities are scripted and delivered through sourcecode the whole teams knows and can collaboratively contribute for release management of the project
+	3. plugin based architecture = we can add new features into the jenkins by installing new plugins to support different types of builds
+		maven plugin
+	4. we can establish parent and child relationships between the jenkins jobs
+	5. we can run multiple pipelines in parallel for faster builds and deliveries
+	
+How to work with jenkins?
+The devops engineer has to write the script/code describing the steps he wanted to peform in carrying out the activities for a project by creating a project in jenkins master.
+There are 2 types of jenkins projects are there
+	1. free-style project
+	Jenkins will provide an user interface allowing the opsengineer to define the steps that has to be applied in build the project. The jenkins takes the code and persist in its own persistence storage.
+	The entire activities we want to perform for a project are put together without any classification, so that we cannot differentiate the progress of the project.
+	There are lot of problems with free-style project
+		1. There is no versioning of the build activities
+		2. we cannot keep the realtime project of the build execution
+		3. it is hard to identify the failure and debug
+		
+	2. pipeline project
+		Pipeline project is defined as an sequence of steps/stages in which the build activities has to be carried sequentially are written
+		There are 3 ways in which we can create a pipeline project script
+		1. we can directly write pipeline code in jenkins GUI interface
+		2. we can write in a Jenkinsfile and pass it as an input to master to execute
+		3. we can write it in Blueocean and link it to jenkins to execute
+		There are 2 types of pipeines are there
+		1. declarative pipeline = jenkins has provided few declarative tags/constructs based on DSL language using which devops engineer can write pipeline code
+		
+		2. scripted pipeline
+		are advanced pipelines that requires groovy language for writing the pipeline
+
+Jenkins Installation
+----------------------
+#1. we need to setup the master and slave infra
+Let us use vagrant to build the machines, so that we can install the jenkins master and configure slaves with master
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+    config.vm.define "jenkinsmaster" do | jenkinsmaster |
+        jenkinsmaster.vm.box = "ubuntu/impish64"
+        jenkinsmaster.vm.network "private_network", ip: "192.168.10.11"
+        jenkinsmaster.vm.network "forwarded_port", guest: 8080, host: 8082
+        jenkinsmaster.vm.hostname = "jenkinsmaster"
+        jenkinsmaster.vm.provider "virtualbox" do | vb |
+            vb.cpus = 2
+            vb.memory = 2048
+            vb.name = "jenkinsmaster"
+        end
+    end
+    %w{agentnode1 agentnode2}.each_with_index do | nodename, index |
+        config.vm.define nodename do | agentnode |
+            agentnode.vm.box = "ubuntu/impish64"
+            agentnode.vm.network "private_network", ip: "192.168.10.#{index+12}"            
+            agentnode.vm.hostname = nodename
+            agentnode.vm.provider "virtualbox" do | vb |
+                vb.cpus = 2
+                vb.memory = 2048
+                vb.name = nodename
+            end
+        end
+    end
+end
+
+#2 install the jenkins master on the master node
+#1 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+#2 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+#3 sudo apt update
+#4 sudo apt install openjdk-11-jdk
+#5 sudo apt install jenkins
+
+#3 setup slave node
+1 sudo apt update -y
+2 sudo apt install openjdk-11-jdk
+3 sudo apt install maven
+--------------------------------------------------------------------------------------------
+How to add slave nodes to the master?
+#1. goto each slave node and create a empty directory with ownership of ssh user of the machine in which you want jenkins agent to be installed
+
+sudo mkdir -p /opt/jenkins
+sudo chown vagrant:vagrant /opt/jenkins
+
+#2. To add a node we need to create ssh credentials by navigating to dashboard->manage jenkins-> manage credentails
+1. goto jenkins store
+2. click on global credentails unrestricted
+3. from left menu choose add credentail
+3. select the type of credentail as SSH Username with private key
+
+#3. goto manage nodes from dashboard->manage jenkins->manage nodes and clouds
+1. click on new node
+2. enter nodename "agentnode1", "agentnode2"
+3. choose connection type as SSH
+4. choose credential
+-------------------------------------------------------------------------------------------
+There are 2 ways we can use github in jenkins:
+1. throught gitpat token we can manage git projects in jenkins
+2. through git webhooks
+
+build periodically -> jenkins build for every 10 minutes (cron expression)
+poll scm -> cron expression (10 minutes check whether change in the repo or not), if there is a newer commit
+--------------------------------------------------------------------------------------------
+Pipelines
+There are 2 types of pipeline projects are there
+1. declarative pipeline
+2. scripted pipeline
+
+#1. declarative pipeline
+declarative pipelines are written in DSL language (domain specific language) which is quite expressive and easy to understand and doesnt needs any programming language knowledge to work.
+Here the entire build process is broken down into stages and each stage will have steps to perform the operation
+
+syntax:-
+
+pipeline {
+	agent {
+		label 'agentnode1'
+	}
+	stages {
+		stage('pull scm') {
+			steps {
+				echo "pull code from scm repository"
+			}
+		}
+		stage('build') {
+			steps {
+				echo "mvn clean verify"
+			}
+		}
+		stage('deploy') {
+			steps {
+				echo "push artifact to the repository"
+			}
+		}
+	}
+}
+
+#2. scripted pipeline
+The scripted pipelines are advanced jenkins pipelines in which the groovy script will be written as part of pipeline code. since we write groovy script we have a better programmatic control in writing the build scripts, but the jenkins developer has to have a strong groovy knowledge to write these pipelines
+
+syntax:-
+node('agentnode1')	{
+	stage('git checkout') {
+		echo "git checkout url"
+	}
+	stage('build') {
+		echo "maven build"
+	}
+}
+
+How to declare variables in jenkins and how to use global variables in jenkins pipeline?
+with can declare variables in environment {} block in a pipeline 
+pipeline {
+	agent {
+		label 'agentnode1'
+	}
+	environment {
+		KEY=VALUE
+	}
+}
+there are lot of global variables pre-defined by jenkins which can be accessed using a keyword called env.
+we can get the information about the CURRENT BUILD and the status of it using env variable, refer to jenkins global variable documentation for variables configured by default
+	
+pipeline {
+	agent {
+		label 'agentnode2'
+	}
+	environment {
+		PROJECT_NM = 'PROJECT1'
+	}
+	stages {
+		stage('variables') {
+			step {
+				echo ${PROJECT_NM}
+				echo env.BUILD_NUMBER
+					
+			}
+		}
+	}
+}
+
+How to working with parameters in jenkins pipeline?
+parameterizing the jenkins pipeline is nothing but taking the data during the time of launching build and passing it as an input to the jenkins pipeline is called parameters of jenkins build.
+	
+jenkins help us in creating a nice form page for our pipeline project with
+textboxes
+checkboxes
+select/choice
+etc
+through which we can enter and pass the data as an input to jenkins pipeline
+
+There are 2 ways we can configure parameters in jenkins pipeline
+1. static
+Through jenkins GUI we configure parameters to be used for that project. there is an drawback, if we move the jenkins project from one env to another we need to again recreate the project in another jenkins UI by manually setting up the parameters
+	
+2. dynamic
+In the jenkins pipeline itself we declare parameters with which we wanted to build the project, so when we migrate from one jenkins env to another all the parameters will be created automatically.
+	
+Jenkinsfile
+-------------
+pipeline {
+    agent any
+    parameters {
+      string 'TARGET_HOST'
+      choice choices: ['DEV', 'TEST', 'STAGE', 'PROD'], name: 'BUILD_ENVIRONMENT'
+    }
+    stages {
+        stage('print parameters') {
+            steps {
+                echo params.TARGET_HOST
+                echo params.BUILD_ENVIRONMENT
+            }
+        }
+    }
+}	
+	
+How to take input step while running the jenkins build?
+during the pipeline execution, we want to display confirm dialogs or user inputs to proceed execution of the stages in the pipeline,we can do that using inputStep in pipeline as below.
+	
+The parameters we declare are prompted at the time of launching the build, but input step are dynamic inputs which will be prompted only during stage of execution
+
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                echo "checkout the project from git"
+            }
+        }
+        stage('unit tests') {
+            steps {
+                echo "running unit tests"
+            }
+        }
+        stage('build') {
+            steps {
+                echo "maven build"
+            }
+        }
+        stage('push') {
+            steps {
+                input message: 'Do you want to push', ok: 'Yes'                
+                echo "pushed the code"
+            }
+        }
+    }
+}
+
+Not just confirmation boxes we can take parameters also in the inputStep
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                echo "checkout the project from git"
+            }
+        }
+        stage('unit tests') {
+            steps {
+                echo "running unit tests"
+            }
+        }
+        stage('build') {
+            steps {
+                input(
+                    message: "enter the build goal you want to execute",
+                    submitter: "sriman",
+                    parameters: [string(name: 'MAVEN_GOAL', defaultValue: 'verify')]
+                )
+                echo "maven build :  ${params.MAVEN_GOAL}"
+            }
+        }
+        stage('push') {
+            steps {
+                input message: 'Do you want to push', ok: 'Yes'
+                
+                echo "pushed the code"
+            }
+        }
+    }
+}
+
+When conditions in running the stages in pipeline
+While running the pipeline based on user parameters as an input we want to make decision whether a stage should be executed or not through when condition
+For eg. while lauching the build, user might input the data Run Unit Tests: No
+so we want to skip executed unit test stage which can be done through when condition
+
+
+
+
+How to run ansible scripts in jenkins pipeline?
+https://github.com/jenkinsci/ansible-plugin
+sudo apt install sshpass
+
+How to build and deploy the project dynamic web project on the jenkins node using pipeline?
+https://github.com/techsriman/sailor.git
+maven
+java
+tomcat
+
+To use maven and java we need to first configure them as tools in jenkins global configuration
+
+pipeline {
+	agent any
+	tools {
+		maven 'maven'
+		java 'jdk11'
+	}
+}
+mvn clean verify
+--------------------------------------------------------------------------------------------
+sailorl1
+---------
+pipeline {
+    agent {
+        label 'agentnode1'
+    }
+    tools {
+        maven 'maven'
+        jdk 'jdk11'
+    }
+    stages {
+        stage('scm checkout') {
+            steps {
+                git(url: 'https://github.com/techsriman/sailor.git', credentialsId: 'githubtechsriman')
+            }
+        }
+        stage('build') {
+            steps {
+                sh '''
+                    mvn clean verify
+                    mkdir -p ~/sailor
+                    cp target/sailor.war ~/sailor
+                '''
+            }
+        }
+    }
+}
+
+sailorl2
+---------
+pipeline {
+    agent {
+        label 'agentnode1'
+    }
+    environment {
+        TOMCAT_HOME="/u01/middleware/apache-tomcat-9.0.64"
+    }
+    stages {
+         stage('scm checkout') {
+            steps {
+                git(url: 'https://github.com/techsriman/sailor.git', credentialsId: 'githubtechsriman')
+            }
+        }
+        stage('setup environment') {
+            steps {
+            sh '''
+                sudo mkdir -p /u01/middleware
+                sudo chown -R vagrant:vagrant /u01
+                cd /u01/middleware
+                
+                if [ ! -e /u01/middleware/apache-tomcat-9.0.64 ]
+                then
+                    wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.64/bin/apache-tomcat-9.0.64.tar.gz
+                    tar -xzvf apache-tomcat-9.0.64.tar.gz
+                    rm apache-tomcat-9.0.64.tar.gz
+                    sudo cp $WORKSPACE/tomcat.service /etc/systemd/system
+                    sudo systemctl daemon-reload
+                    sudo systemctl start tomcat
+                fi
+            '''
+            }
+        }
+
+        stage('cleanup') {
+            steps {
+            sh '''
+                    sudo systemctl stop tomcat
+                    rm $TOMCAT_HOME/webapps/sailor.war || true
+                '''
+            }
+        }
+        
+        stage('deploy') {
+            steps {
+            sh '''
+                cp ~/sailor/sailor.war $TOMCAT_HOME/webapps
+                sudo systemctl start tomcat
+            '''
+            }
+        }
+    }
+}
+
+How to run terraform and ansible scripts on jenkins pipelines?
+#1 install terraform & ansible on all the nodes where you want to build the pipelines
+#2. AWSCloud Account with Api Access Keys configured
+#3. Intall
+	- Ansible plugin
+	- Terraform plugin 
+	in jenkins manage plugins
+#4. configure the installation locations on Configure configure global tools section of jenkins
+#4. create AWS_ACCESS_KEY and AWS_SECRET_ACCESS_KEY as credentails in the jenkins wallet
+
+
+
+
+
+
+
+
+
+How to install terraform on ubuntu?
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
+
+
+AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

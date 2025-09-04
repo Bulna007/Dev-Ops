@@ -1,0 +1,286 @@
+Packing and Unpacking the files in Linux.
+----------------------------------------
+In general we can transfer a file from one computer to the another computer through various means.
+  - through email exchange
+  - by sending it over the network through ftp or remote copy etc
+
+But what if we want to send bunch of files or even a folder contains files to the other machine.
+  1. if we want to transfer bunch of files
+    we need to send each file at a time, which takes lot of time in sending it one by one. the performance or transfer time also will be more, because of connection establishment and disconnect for each file over the network.
+  2. Folders
+    Folder are non-transferable directly, we cannot share them or send them over by email or through network channel in any means
+    
+How to address the above problem in sending multiple files or folders to others?
+Linux has provided a tool called "tar", it stands for Tape Archive. 
+  
+tar is not a zipping tool it doesnt compresses the contents of files or folder we are packing. It is only meant for combining multiple files or folders into one single file, so that it can transferred to the others at one go/shot. at the end the original filesize and the packaged filesize would be same,there is no compression added.
+  
+The tar will package the contents of the files / folders and produces a singlefile with extension usually as ".tar" to identify it easily.
+
+How to create a tar file?
+use tar utility it has many options lets explore.
+
+How create a tar file?
+tar -cvf filename.tar source files/folder
+
+c = create
+v = verbose
+f = filename to be used in creating the tar
+
+for eg..
+we have library with lot of books we want to tar few files of it.
+  library
+    |-book1.txt
+    |-book2.txt
+    |-geography.txt
+    |-history.txt
+    
+# to package only book1.txt, book2.txt goto library directory
+sriman@sriman/library$ tar -cvf books.tar book1.txt book2.txt
+
+# if we want to package the whole contents of the library directory we can do that by passing directory directly.
+sriman@sriman$ tar -cvf library.tar library/
+  
+How to unpack a tar file?
+tar -xvf filename.tar
+x = extract the file contents
+v = verbose
+f = input filename we are passing
+always tar will extract the filecontents into current working directory whereever we run
+
+Compression and UnCompression
+-----------------------------
+The tar utility is for packing and unpacking the file contents, but will not reduces the contents of the files, once packaged we can compress the contents of it using compression/uncompression called "gzip" and "gunzip" in Linux.
+  
+Here comes 2 tools for compression and uncompression
+1. gzip = zipping the contents of a tar file, we cannot directly compress the file/folders, we need to pack them into a ".tar" file then we can compress it. once we run gzip utility by passing ".tar" as an input it produces ".tar.gz" file by modifying/replacing the original tar file.
+  
+library
+  |-books1.txt
+  |-books2.txt
+  |-jerry.jpeg
+  |-doeremon.jpeg
+library.tar
+tar -cvf library.tar library/ = it produces library.tar file
+
+library
+  |-books1.txt
+  |-books2.txt
+  |-jerry.jpeg
+  |-doeremon.jpeg
+library.tar  
+  
+now pass it to gzip tool as below
+gzip library.tar = now will zip the tar file and generates library.tar.gz. you wont find library.tar in the directory now.
+
+once we build the tar.gz file we can quickly transfer to others. again if we want to get back original contents of the files it is a 2 step process.
+  1. gunzip to build back tar
+  2. untar it 
+
+gunzip library.tar.gz = it will uncompress file into tar back
+tar -xvf library.tar = will extracts the file contents.
+--------------------------------------------------------------------------------------------------------
+File Management Commands
+  File / Folder Management 
+  Find and Search in Files / Folders
+  Pipes and Redirections
+  File Comparision
+  File Editors
+  Packing and UnPacking
+  Compression and UnCompression
+---------------------------------------------------------------------------------------------------------
+User Management Commands
+Linux is an Multi-User operating system, multiple users can login and access the linux machine paralley and can share FileSystem space, hardware resources and processes running on the machine.
+  
+linux will distributed the hardware resources of the computer to multiple users based on their usage.
+allows the users to share the FileSystem space in managing the Files/Folders of the Machine
+allows individual users to launch and manage their own process as well.
+
+In Linux we have 2 types of users are there
+1. ROOT user = There can be only 1 ROOT user of a Linux operating system. multiple ROOT users are not allowed/not possible. The total control over the machine should lie in the hands of one single user only, this the reason Linux allows only 1 ROOT user.
+ROOT user has total control over the Linux Machine and can perform any operation on any of the Resources
+  - CREATE OTHER USER
+  - MODIFY OTHER USERS
+  - CAN MANAGE FILES AND DEVICES
+  - CAN MANAGE PROCESS
+  
+
+  
+  
+2. Normal user
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

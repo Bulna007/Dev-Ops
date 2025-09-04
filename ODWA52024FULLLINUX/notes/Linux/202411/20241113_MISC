@@ -1,0 +1,74 @@
+#1 How find the hostname of the linux machine?
+1. hostname
+2. hostname -I = all the network adapters attached to the machine, their ip address are displayed
+
+#2 How to change the name of the computer?
+1. sudo vim /etc/hostname
+2. hostnamectl set-hostname hostname
+
+#3 How to find all the network adapters and their physical and logic ip address of them?
+ifconfig
+
+by default ifconfig is not available, we need to install net-tools package to use it
+
+#4 How to check the network reachability with another computer?
+ping ipaddress/hostname
+
+#5 How to list all the hardware devices attached to the computer?
+lshw
+
+#6 how to get the cpu information of the computer?
+linux operating system stores the information about the cpu (processor) in a file /proc/cpuinfo
+
+1. cat /proc/cpuinfo
+2. lscpu
+
+#7. How to see the available memory?
+free -h (ram)	
+-h = human readable format
+	
+#8. What are init levels or run-levels in the linux operating system?
+init-level or run levels indicates how we wanted the linux operating system to be booted. There are 7 run levels are there from 0 - 6 to boot the linux operating system. To boot the linux operating system in a specific run or init level we need to use init followed by init-level
+
+init - is an super user command we need to use super user privilige to run it.
+	
+1. sudo init 0 = shutdown/poweroff
+2. sudo init 1 = single user-mode with no networking, no multi-tasking and only root access (similar to safe-mode in windows)
+3. sudo init 2 = with network and multi-tasking but no gui
+4. sudo init 3 = supports networking and multi-tasking, but no gui
+5. sudo init 4 = same as init 3 run-level only. but reserved for research purpose
+6. sudo init 5 = supports networking, multitasking with gui and sound
+7. sudo init 6 = reboot
+
+how to know the current run level?
+who -r
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

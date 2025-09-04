@@ -1,0 +1,306 @@
+How to compare the contents of 2 different files?
+The are 2 bash commands for comparing the contents of the files
+1. cmp
+2. diff
+
+1. cmp
+cmp stands for compare, it is used for comparing 2 files byte by byte and output the first different between the file contents
+
+fruits.txt
+apple
+banana
+papaya
+grapes
+
+fresh-fruits.txt
+apple
+banana
+papaya
+oranges
+grapes
+
+when we use cmp for comparing these 2 files it compares fruits.txt and fresh-fruits.txt byte by byte and shows the first difference between those 2 files
+fruits.txt fresh-fruits.txt differ: 18 byte, line 5
+	
+if there is no difference between those 2 files, then it will not show any output.
+	
+1. cmp fruits.txt fresh-fruits.txt
+fruits.txt fresh-fruits.txt differ: 18 byte, line 5
+	
+	
+2. -b option
+if we use -b option, it shows at what byte the difference has been found in the file
+
+cmp -b fruits.txt fresh-fruits.txt
+fruits.txt fresh-fruits.txt differ: 18 byte, line 5 g asciicode o asciicode
+
+3. -i option
+ignore the specified number of bytes starting from top in both the files while comparing
+cmp -i 18 fruits.txt fresh-fruits.txt
+fruits.txt fresh-fruits.txt differ: 3 byte, line 1
+
+4. -i n1:n2
+ignore starting from the top of the file n1 bytes in first file and n2 bytes in second file and compare
+n1 = ignore n1 bytes in first file
+n2 = ignore n2 bytes in second file
+and begin comparing the files
+
+cmp -i 18:20 fruits.txt fresh-fruits.txt
+
+
+5. -l = list all the difference between both the files
+cmp -l fruits.txt fresh-fruits.txt
+byteposition line fruits.txt fresh-fruits.txt
+...
+..
+..
+--------------------------------------------------------------------------------------------------------------------------
+2. diff
+diff stands for difference, it is used for comparing the contents line by line within the given 2 files. Not only the diff command helps in comparing the contents it displays recommendations through special symbols indicating how to make the contents of the 2 files identical.
+	
+symbols:
+1. a = add
+2. c = change
+3. d = delete
+4. > = refers to the contents of the file2
+5. < = refers to the contents of the file1
+
+#1. add recommendation
+
+groceries
+-------------
+chanadal
+urdal
+sugar
+
+groceries_mustbuy
+----------------------
+chanadal
+urdal
+sugar
+rice
+
+diff groceries groceries_mustbuy
+3a4
+> rice
+
+after the 3rd line in groceries add the 4th line of groceries_mustbuy and the 4th line is
+> rice
+
+#2. delete recommendation
+
+fruits
+-------
+grapes
+papaya
+oranges
+banana
+
+fresh-fruits
+------------
+grapes
+papaya
+oranges
+
+diff fruits fresh-fruits
+4d3
+< banana
+delete the 4th line in fruits, so that from 3rd line onwards both the files becomes identical
+
+#3. change recommendation
+
+products
+---------
+sony 32inch led
+iphone 15 pro
+bose soundbar
+
+warehouse-products
+-------------------
+sony 32inch led
+iphone 15 pro
+sony playstation5
+
+diff products warehouse-products
+3c3
+< bose soundbar
+----------------
+> sony playstation5
+
+change the 3rd line products with 3rd line in warehouse-products
+the line to be changed in left-side file is bose soundbar and the line in right side is > sony playstation5
+
+#4. multiple differences between the files (recommendations)
+vegetables
+----------
+brinjal
+tomato
+chillies
+onions
+potatoes
+beetroot
+carrot
+spinach
+oil
+
+shoppinglist
+------------
+brinjal
+tomato
+sugar
+chillies
+onions
+curryleaf
+beetroot
+carrot
+spinach
+
+
+1. recommendation
+diff vegetables shoppinglist
+2a3
+> sugar
+
+2. recommendation
+5c5
+< potatoes
+-----------
+> curryleaf
+
+3. recommendation
+9d8
+< oil
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,49 @@
+Virtualbox networking
+The virtualbox hypervisor supports 8 network interface cards to an virtual machine and by default enables/attaches one nic to the machine, out of which 4 can be managed through virtualbox manager gui and other 4 can be configured through VBoxManage CLI Tool provided as part of virtualbox installation.
+
+
+Types of Virtual Network adapters supported by Virtualbox
+The virtualbox hypervisor can supports 6 virtual adapter types
+1. AMD PCnet-PCI II
+2. AMD PCnet-FAST III
+3. Intel Pro/1000 MT Desktop
+4. Intel Pro/1000 T Server
+5. Intel Pro/1000 MT Server
+6. ParaVirtualized Network adapter
+
+Virtulbox hypervisor supports 7 networking modes allowing your virtual machine to be connected to the network
+1. Not Attached
+2. NAT (Network Address Translation)
+3. NAT Network
+4. Bridge Network
+5. Internal Network
+6. Host-Only Network
+7. Generic Driver
+
+#1. Not Attached
+The virtul machine has network adapter, but the network cable has not been plugged in connecting to the network. Generally we use this network mode to simulate network disconnection, so that we can test our software application behaviour while the network got disconnected.
+
+#2. NAT (Network Address Translation)
+The virtualbox will attach the network interface card by default to an virtual machine with NAT network mode.
+
+Guest Machine -> Host Machine
+              -> External Network
+Host Machine
+External Network -> cannot -> Guest Machine
+Guest Machine    -> cannot -> Guest Machine
+
+
+#2 Nat Network
+
+
+
+
+
+
+
+
+
+
+
+
+

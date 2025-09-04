@@ -1,0 +1,153 @@
+There are 2 types of process are there
+1. Foreground 
+These process required user interaction during the time of execution, the enduser has to provide data as an input while running and the process will provide output directly to the enduser.
+  
+2. Background
+These are the process which are usually in runs for longer amount of time and doesnt require user interaction during execution and will not provide output directly to the enduser. Such process rather than running in foreground by blocking the terminal process, we can run them as background process.
+  
+There are certain programs that performs mandatory operations/services which has to be executed upon the boot of the operating system and should continue to run in background for eg..
+  few of the System Services are:
+  1. device activation software
+  2. network socket activation
+  3. mounting the network drives
+  4. security programs etc  
+running them as background programs bring lot of problems.  
+1. background process will not start automatically at the boot of the operating system. the user of the computer upon bringing up the operating system has to manually run all these mandatory service programs, which is a very tedious job. The end-user find it very complex to use the computer since he has do lot of things before using the machine
+
+2. These Software Programs/Services has to execute in background until we shutdown the machine, so the enduser has to ensure the background process we launched is running and was not crashed. monitoring and restarting these process is a difficult job
+
+3. Managing these service programs like stopping or restarting or disabling is a difficult job
+
+We need someone who should take care of running such mandatory system services upon boot of the operating system, monitoring and recovering when those are crashed automatically otherwise it becomes very difficult to use the computer even thought the operating system has been booted.
+To help us in managing such mandatory programs the GNU project has provided a utility called systemd init system.
+  
+Majority of Linux distro has adopted and ships systemd init as a default software utility for managing the programs as services. Ubuntu uses systemd init for managing the system services.
+  
+We can use systemd init and can do the below things:
+1. we can register our program as a service unit in systemd init system, so that monitoring and managing the program will be taken care by systemd
+2. we can control the service units registered with systemd like stop, start, restart, disable, enable etc.
+  
+There are 2 types of systemd services are there
+1. services provided by the package installations (System Services)
+There are certain softwares upon installing should run from the boot of the operating system util System Shutdown. For eg..
+  1. Apache2
+  2. Ngnix
+  3. Weblogic Server
+etc
+Since these are mandatory programs to be executed upon boot time on any computer whereever installed, these software programs are registered as services automatically during the time of installations.
+For eg..
+  while installing the apache2 server using apt install -y apache2, the apt tool post installation of the apache2 package will reads the service unit definition of the software package and register it as a service in systemd init automatically.
+      
+2. system administrator services (User Services)
+These are programs/utilities written by the administrator/user of the system, which seems to be mandatory to be executed upon boot of operating system and continue to run util shutdown.
+For e.g.. an application administrator can write a program that performs periodical backup of the data, these programs should run right away from boot util shutdown, so these programs are registered as services manually by the administrator of the computer which are called "System Administrator services"
+---------------------------------------------------------------------------------------------------------
+    
+In the #1 since those are registered automatically as services during installation we need to only control/monitor them using systemd tool. but in the #2 case since these are our programs/utilities developed by us registering them as services should be done manually and monitor.
+    
+How to register a program/utility as a systemd service in the systemd init?
+We need to write a service unit definition file describing the details of the Software program and how to run it to and provide as an input to systemd init by placing in a directory location.
+There are 2 different locations from where systemd init system can read our service unit definition.
+  1. packaged services that comes through software installations these service unit definition files are located under /usr/lib/systemd/system
+  2. system administrator services are placed under /etc/systemd/system
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,2 @@
+Main-Class: com.cbr.run.App
+Class-Path: lib/georouting.jar

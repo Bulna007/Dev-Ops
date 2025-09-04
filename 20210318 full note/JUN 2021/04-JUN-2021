@@ -1,0 +1,317 @@
+How to grant access to the permission to a File/Folder in linux?
+#1 We can grant permissions to a File/Folder to 3 different groups of users
+  - user (owner) = who created the file
+  - group = the group to which the file belongs to
+  - others = not an owner and is not part of the File group.
+  
+#2 There are 3 permissions associated with a File/Folder
+  - READ     = r
+  - WRITE    = w
+  - EXECUTE  = x
+  
+A owner/sudoers can change the default permissions of a File/Folder with which it has been created by using chmod command.
+chmod = change the mode of access
+There are 2 ways to work with chmod
+  1. octal notation
+  2. symbolic notation
+  
+#1 each permission was given an weighted value as described below.
+  READ    = 4
+  WRITE   = 2
+  EXECUTE = 1
+
+Based on the permission we want to issue to the 3 groups of users we need calculate the total weighted value from the above numbers and pass to chmod for each group.
+  chmod ownerWeightedNumbergroupWeightedNumerotherWeightedNumber File/Folder
+  chmod 655 products.txt (File)
+  chmod 755 categories/ (Folder)
+  
+When we change the permissions of a Folder, by default the permission will be applied to only the Folder not to subfolders and files inside it.
+How to change the permissions for the Files/Folders within a directory?
+  chmod -R 755 directory/
+
+note:- irrespective of a File/Folder permissions sudoers can access any Files/Folders.
+---------------------------------------------------------------------------------------------------------
+symbolic notation:-
+  
+In octal notation we rely on weighted numbers in issuing File/Folder permissions there are 2 difficulties in octal notation:-
+  1. always we need to pass the permissions for all 3 groups of users, even we want to change a single group
+  2. chmod will not allows you to modify the existing permission, rather always reset on permissions. so if we want to upgrade/downgrade the permissions we need to pass final value of the permission we want to reach.
+    
+To solve the above problems symbolic notation has been introduced. 
+  #1 For group of users are denoated with symbols
+  u = owner
+  g = group
+  o = others
+  now while giving permissions to a file or a folder we need to tell to whom we want to give permission.
+    
+  #2 The permissions to be granted are denotated through symbols below
+  r = read
+  w = write
+  x = execute
+    
+  #3 operators to indicate the application of permissions
+  + = add the permissions
+  - = remove the permission
+  = = reset the permission
+  
+  with using operators and symbols we can grant permissions to a File/Folder using chmod
+  
+  chmod u+x products.txt = grant execute permission oto the owner on the file
+  chmod u+rwx products.txt = grant read,write,execute permission to owner of the file  
+  chmod u+x,g+w,o=r products.txt = add execute permissions to owner, g add write permissions and others reset all the permisions and grant only read  
+  chmod g-w products.txt = remove write access to group
+  
+In symbolic notation also if want to change the permissions recursively we can use -R
+
+--------------------------------------------------------------------------------------------------------
+How does the default permissions for a file or folder is derived in Linux?
+while creating a file/folder the user dont need to specify the permissions with which those has to be created. 
+because most of files/folders we created will have same permissions unless there are some special files/folders for whom we want different.
+  
+For e.g.. we created a secrets,bank accounts or confidential data files, which containers passwords, this can be treated as special file and should be given different permissions, apart from such files rest of files/folders we create can have general permissions.
+  
+If linux forces us to pass file/folders permissions while creating for file/folder, it becomes difficult job for user. So to avoid difficult for a user in specifying file/folder permission every while creating it takes care of creating a file/folder with default permissions.
+  
+But if those are special files, the owner after creating has to change the permissions of file/folder using chmod.
+  
+How does linux derives these default permissions.
+For each user in linux there is a special variable called umask which is at linux user level. The default value for umask is "002".
+  
+While creating a File/Folder by a user linux uses the umask variable value of the user to compute permissions for File/Folder to be created with.
+  
+Max File permissions = 666
+Max Folder permissions = 777
+
+Now if user creates a File
+touch f1
+
+default file permissions     666
+take umask value of the user 002
+                             ----
+                             664 = rw-rw-r
+                             ----
+So umask value at user level gives the control for a user in setting default permissions of file/folder he is creating.
+  
+mkdir dir1
+default folder permissions = 777
+                      umask= 002
+                             ---
+                             775 = rwxrwxr-x                             
+                             ---
+--------------------------------------------------------------------------------------------------------
+By default a file/folder is created by a user, what is the owner and group of file will be?
+uid = joe gid=devops
+
+joe quicknotes
+
+quicknotes (file)
+  owner = joe
+  group = devops
+  
+can we change the owner and group of a file which has been created already?
+Yes in linux we can do that by using chown
+chown = change owner can be used for changing the owner and group of File/Folder.
+  
+chown bob quicknotes
+chown bob:bob quicknotes
+note: chown is a super user command so need sudo access
+-------------------------------------------------------------------------------------------------------
+
+user management
+- add user
+- add group
+- changing groups of users
+- delete
+- sudoers 
+  - user level sudoer
+  - group level sudoer
+  - cmd_alias to control command execution
+- File permissions
+  - chmod
+    - octal
+    - symbolic 
+  - chown
+  - default permissions through umask
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  

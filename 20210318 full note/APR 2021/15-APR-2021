@@ -1,0 +1,119 @@
+qa engineer, how he has to conduct the testing process. how can we automate the testing process of qa engineers, what are the benefits we gain
+
+Manual testing will eat up lot of time, so adopt test automation tools only to verify the functionality of the application
+Test Automation refers to verifying the developer code, by writing test programs and executing them and compare with the output. To write automation programs for testing, it takes lot of time so qa should use tools/libraries for quickly writing test programs
+  - selenium
+  - webdriver
+  - junit
+  - testNG
+  - qtp
+  - load runner
+  - test runner
+  - jmeter    
+  - burp
+  - fortify scanner
+
+The qa cannot achieve 100% automation due to various different reasons, they might be few functionalities that has to be tested manually and for new features as it takes time to automate initially they may have to go through manual testing process.
+  So for every release qa has to partially perform manual testing and remaining functionalities they can test through automation
+
+Operational Engineer
+---------------------
+Operational Engineer right from the stage of development to the delivery of the application, he will be carrying various different responsibilities. One such huge responsibility is releasing the application into production environment.
+
+- setup the production infrastructure
+  - machines/computers
+  - networking
+  - routers
+  - firewall
+  - internet gateways
+  - ssl certificate
+  - monitoring tools
+  - load balancer configurations
+
+To setup the production environment with required infrastructure like machines, computers, routers, firewall configurations, antivirus, network security, ssl configurations and load balancers it takes huge amount of time and the cost of meeting such requirement is very high than development of the application.
+
+More over to cerify the infrastructure is working properly without any security volunerabilities takes huge time and requires expertise
+
+After the initial setup periodical maintainance and regular checks has to be conducted like
+  - Troubleshooting a failed router/link/machine
+  - upgradation of the routers and applying patches
+  - software upgrades
+  - replacement of fault hardware
+  - disaster recovery
+  - adding new computers on to the network based on demand
+
+From the above we can understand infrastructure establishment and maintainance is quite expensive and time taking job, so instead of we setting up the physical infrastructure, adopt cloud platforms.
+    
+cloud providers/platforms will provide infrastructure on demand  (iaas) = all the physical and infrastructure requirements of running an application like
+- machines
+- firewalls
+- routers
+- networks etc
+will be provided virtually by the providers. There are lot of cloud providers are there in the market
+- aws
+- gcp
+- pcf
+- azure
+- digital ocean
+- oci etc
+
+Now devops engineer has to have knowledge of any one of the cloud provider and should provision infrastructure and maintain as well. if our infrastructure is very huge then manually creating infrastructure on cloud platforms is going to take more time so using cloud infrastructure automation tools like
+  1. terraform
+  2. openstack heat
+  3. cloud formation etc
+    
+
+- build and deploy the application on the production server
+  - build tools
+    - maven
+    - gradle
+    
+- expose it to the public world by associating with domain name using dns servers
+  - you need to regsiter public ip of the computer with domain name
+  
+- continue monitoring the health of the application and traffic patterns
+  - Splunk
+  - Nagios
+  - Watchdog
+  - Cloud Watch
+  - Elk
+  - DynoTrace
+  - Promethesus
+  - AppDynamics
+  - Grafana
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

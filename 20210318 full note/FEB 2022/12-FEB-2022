@@ -1,0 +1,61 @@
+Elastic Load balancer
+---------------------
+Elastic load balancer is used for distributing the traffic source across multiple target group of instances
+The aws cloud platform supports 3 types of loadbalancers
+1. application load balancer
+http protocol based load balancer which means it works for only http/https based protocol requests only. It supports routing the requests based on
+	1. url
+	2. query expressions
+	3. headers
+etc
+so it is specially design to work with web application in distributing network traffic.
+
+2. network load balancer
+Network load balancer works for any other protocol irrespectively. unlike application load balancer here we cannot configure path-based or header based routing
+here we can configure a listener to listen for the request on a specific protocol and port and forward/distribute the request to target group of servers
+
+3. gateway load balancer
+it is used for gatewaying the request through the appliances like firewall or a traffic inspector or a monitoring tool etc before the data packets are delivered to the destination
+----------------------------------------------------------------------------------------------
+#1. Application Load Balancer
+Application load balancer is used for routing/distributing the http/https traffic across the target group of instances
+	
+How to work with Application Loadbalancer?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

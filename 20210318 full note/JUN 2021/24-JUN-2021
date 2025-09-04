@@ -1,0 +1,117 @@
+What is PATH variable what is the purpose of it?
+PATH is an system variable of the Linux operating system, when we try to run a program in linux, by default we need to supply the absolute location of the program where it is residing on the FileSystem, if we want to avoid specifying the fullpath to the program in running we can add the directory location of the program to the PATH environment variable.
+  
+So when we run the program from bash terminal by default linux will look into the PATH variable to determine the program location to execute.
+  
+By default PATH variable is configured to point to the below directory locations
+1. /usr/local/bin
+2. /usr/local/sbin
+3. /usr/bin
+4. /usr/sbin
+5. /bin
+6. /sbin
+--------------------------------------------------------------------------------------------------------
+What are bash profiles what is the purpose of it?
+Profile in general refers to the configuration settings pertaining to an user. 
+  
+For eg we will create our own profile in Mobile phones with screen saver, wallpaper and ringtones we can switch from one profile to another profile to change the look and feel, usability.
+  
+Similarly a user of linux want to launch the bash terminal with his own configuration settings defined which can be accomplished through bash profile configuration files.
+We use bash profile in configuration program locations, environment variables etc. In general an environment variable we created in linux shell/bash will be erased when we close the terminal/ exit from shell, if we want that env variable to be available all the time when we launch the bash terminal we can have these variable created in bash profile configuration files.
+  
+There are multiple bash profile configuration files are available in linux which will be executed by default by bash when we launch.
+  /etc/profile = root or admin user can configure and will be applied for all the users of the linux (restart)
+  ~/.bash_profile = interactive login shells this configuration file will be executed if found in user home directory then it ignores ~/.profile and ~/.bash_login files
+  
+  ~/.profile = in the absence of ~/.bash_profile file
+  ~/.bash_login = interactive login shells when we dont have ~/.bash_profile
+  
+  ~/.bashrc = interative non-login shells
+  
+  
+  
+interactive and login shell = through ssh we launch the shell terminal by logging in which is interactive and login shell in this case ~/.bash_profile will be executed.
+    
+interactive, non-login shell = we can ssh through a remote machine by providing login, after that we can lauch an another shell inside which doesnt require login, then bashrc will be executed.
+    
+Why we have so many bash profile configuration files?
+We want different settings to be applied for different type of login users of the bash.
+For example a user is connecting to our machine through remote ssh access we want the configuration settings with which he launches the shell to be different from local user who directly access the linux machine.
+So to allow customizations based on user access we have different configuration files.
+--------------------------------------------------------------------------------------------------------
+Symbolic links = are pointers to the original files on the Filesystem through which we can access the contents of the original files.
+  
+There are 2 types of symbolic links are there
+1. softlink
+2. hardlink
+
+softlink
+1. softlink can be created for both files and directories on a FileSystem
+2. softlinks can be created across the filesystem which means a remote system directories/files also we can create softlinks
+3. INode address of the original file and softlink file will be different
+4. Permission for softlink is different from original file
+5. softlinks are broken when we modify the location of the original file we are pointing
+
+hardlinks
+---------
+1. hardlinks can be created only for files but not directories
+2. hardlinks can be created only to the files/folders of local filesystem only
+3. INode address of original file and hardlink file will be same
+4. Persmissionf for original file and hardline file will be same
+5. hardlinks are not broken when the original file locations are changed, those are automatically reconfigured with the changes.
+  
+How to create a softlink?
+ln -s sourceFile linkFile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

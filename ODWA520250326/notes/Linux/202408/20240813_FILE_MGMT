@@ -1,0 +1,184 @@
+1. how to see the current working directory?
+pwd = print working directory
+
+2. how to create an empty file on the Filesystem of the linux?
+touch filename
+
+3. how to switch to the home directory of the user?
+cd
+
+4. how to print an message onto the stdout or console?
+echo "message"	
+	
+5. how to create a file with data inside it?
+use redirection operators
+2 redirection operators are there
+1. > = output redirector
+2. < = input redirector
+
+echo "message" > filename
+
+6. How to see the contents of a File?
+cat filename
+--------------------------------------------------------------------------------------------------------------------------
+
+1. What is an folder or a directory?
+Folder is an special type of File in which we hold the pointers to the other files on the Filesystem of the computer. Folder is a way through which we can group or organize related set of files together, so that we can access them quickly by navigating into that folder.
+	
+In-short: A folder is an collection of related-set of files kept together
+
+How to create a Folder or directory?
+mkdir directoryName
+
+mkdir stands for make directory (create directory) with the given directoryName. The mkdir creates the directory under the current working directory in which we are in. the mkdir creates new directory as empty without any files or folders inside it.
+	
+How to create the directory structure with files as below under user home ($HOME) directory?
+$HOME:/>
+todolist
+|-082024 (here)
+	|-librarysubscription.txt
+	|-collegeadmissions.txt
+	|-tripToHomeTown.txt
+|-092024
+	|-chesscompetition.txt
+	|-officetravel.txt
+	|-movies-wishlist.txt
+|-102024
+	|-financial
+		|-new-sb-accounts.txt
+		|-newpolicy.txt
+		|-pay-creditcard-balances.txt
+	|-personal
+		|-vacation-plan.txt
+		
+		
+1. goto home directory
+cd
+takes to the home directory of the user
+
+2. create todolist directory
+mkdir todolist
+goto todolist
+cd todolist
+
+3. create #3 sub-directories inside todolist (082024, 092024, 102024)
+mkdir 082024
+mkdir 092024	
+mkdir 102024	
+	(or)
+mkdir 082024 092024 102024
+	
+4. goto 082024 directory
+cd 082024
+touch librarysubscription.txt
+touch collegeadmissions.txt
+touch tripToHomeTown.txt
+
+5. goto parent directory (todolist)
+cd ..
+6. goto 092024
+cd 092024
+	
+7. create #3 files
+touch chesscompetition.txt
+touch officetravel.txt
+touch movies-wishlist.txt
+
+8. goto parent (todolist)
+cd ..
+
+9. goto 102024
+then create #2 sub-directories
+mkdir financial personal
+cd financial
+touch new-sb-accounts.txt
+touch newpolicy.txt
+touch pay-creditcard-balances.txt
+
+10. goto parent (102024)
+cd ..
+11. goto personal
+cd personal
+
+12. create files
+touch vacation-plan.txt
+
+
+
+
+7:00
+7:10 am - 8:10 am
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

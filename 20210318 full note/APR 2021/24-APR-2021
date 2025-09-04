@@ -1,0 +1,142 @@
+1. Why do we need an operating system, how does operating systems makes the programs/application hardware portable?  
+2. What are high-level programming languages, how do we achieve portability in running programs across any operating system?  
+  
+Linux operating system    
+1. Introduction 
+2. Linux distributions and various distros of linux available in the market
+  arch
+  debian
+    - ubuntu
+    - linux mint
+    - kali linux
+    - elementary os
+  redhat
+    - centos
+    - fedora
+    - redhat linux enterprise    
+  slackware
+3. Linux features
+  1. portability
+  2. open source
+  3. multi-user and multi-programming
+  4. shell
+  5. hierarchial filesystem
+  6. security
+4. Architecture
+-----------------------------------------------------------------------------------------------------
+
+Linux Filesystem.
+Filsystem is technic or a methodology in storing and organizing the data on a storage device of a computer system.
+  
+How to store characters data on a computer storage device?  
+The human data is in the format of symbols, but computers device are capable of storing anything in the binary form.
+So in order to represent symbols in binary format, we need to assign decimal number to the symbols so that those numbers can be converted into binary format and can be stored on the hardddisk of our computer.
+  
+symbol -> decimal -> binary -> harddisk  
+
+How to identify for which symbol what is its decimal representation, so that we can exchange data on any 2 computers easily?
+
+People has established standards over representing characters in decimal notation which are called Character set representation standards.
+Char-Set standards will define for each symbol a decimal number so that the character can be equally identified on any computer in the sameway.
+  
+There are multiple character set encoding standards are there
+i) ascii
+ii) unicode
+iii) utf-8
+iv) utf-16
+v) iso-9001 standard
+
+ascii = is a character-set standard that defined decimal numbers for only english language characters, numbers  and few frequently used symbols in a computer. so we cannot use ascii for representing different languages apart from english.
+  
+If wanted to represent other languages characters in computers we need to use different character-set encoding standards.
+
+How does the data is managed and stored in harddisk?  
+We have lots of data to be stored on a harddisk of a computer, all of the data is transformed into bits format and is stored on harddisk. In this case how do we identify out of the bits we stored on harddisk which bits are representing what information, how can we logically group the related data to access it easily.
+  
+That is where computer systems / storage devices introduced files and folders. Files and Folders are the once through which we can organize, manage and access the data together.
+  
+File is an datastructure in which we keep hold of the address locations of the harddisk where actual bits of data is stored.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,60 @@
+Bash Profiles
+--------------
+The bash profiles are bunch of configuration files in which user can configure settings using which he wanted to launch the shell/bash
+#1 /etc/profile = global and can be modified by root only
+#2 ~/.bash_profile = interactive login shell (if the file was not there we can create if we want)
+#3 ~/.profile and ~/.bash_login = interactive login shell would be skipped in the presence of ~/.bash_profile
+#4 ~/.bashrc = interactive non-login shell
+---------------------------------------------------------------------------------------------------------
+What are symbolic links, how do we use them?
+Symbolic links are the pointer to the original files of the linux filesystem. These are similar to the short-cut we create in windows operating system.
+  
+purpose:- to quickly access a file/folder on the linux filesystem we can use symlinks.
+  
+There are 2 types of symlinks are there
+1. Softlink
+2. Hardlink
+
+How to create symbolic link?
+linux has provided an utility ln (link), using which we can create a link file
+
+softlink
+---------
+ln -s sourcefile linkfile
+to identify the file type we can use
+ls -l = shows the symbolic link file with (l) -> pointing to original file path
+file filename
+
+
+hardlink
+---------
+ln sourcefile linkfile
+without -s by default it creates hardlink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

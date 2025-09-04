@@ -1,0 +1,140 @@
+Docker, Kuberntes and Jenkins
+duration: 45 working days
+Fee: 5k
+
+Timings:-
+Monday - Friday = 8:15 am - 9:15 am
+Saturday = 8:15 am - 10:00 am
+Sunday = 9:30 am - 11:00 am / 5:30 pm - 7:00 pm
+
+Weekly basis: live classroom notes will be shared to the students
+no recordings, no vidoes and no facebook downloads
+
+pre-requisite:-
+1. 
+	java appliation
+	and web application
+	execution knowledge
+application server (tomcat)
+2. linux basic knowledge
+3. optionally: good to have shellscripting knowledge
+4. application protocols like http knowledge is good to have
+5. basic concepts of networking
+	ip address
+	cidr
+	how does computers communicate over the networks
+------------------------------------------------------------------------------------------
+docker
+
+What is virtualization?
+To understand docker first let us explore what is virtualization, why do we need it?
+The I.T infrastructure cost in developing and deliverying the software applications are quite high. for eg.. in an organization they can be multiple software applications being developed in parallely
+in order to certify these applications and delivery we need qa environment, each project has to be dedicated with a computer/machine to test and certify the application because, why? because
+
+1. even though an application/project requires only few days/months of time for testing, still the machine has to dedicated to the project since re-setup of the environment and reconfiguring the software for running the project on that machine takes lot of time
+
+2. even though the software application uses few system resources in running on the computer we cannot still reuse the same system in running other application for testing since a computer can be used for running one environment only
+
+How to solve the above problem?
+To address the above problems in running multiple parallel isolated environments on a single computer virtualization has been introduced
+
+
+tech.sriman@gmail.com
+durgasoftonlinetraining@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

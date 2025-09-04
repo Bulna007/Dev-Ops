@@ -1,0 +1,139 @@
+Kubernetes objects
+-------------------
+What are kubernetes objects?
+There are various different types of resources supported by the kubernetes cluster
+1. pod
+2. deployment
+3. replicaset
+4. daemonset
+5. service
+6. job
+etc
+
+all of these resources are represented as objects in kubernetes cluster and are persisted as part of etcd
+
+How does kubernetes objects are created?
+The operational engineer writes the resource spec or an manifest describing the resource, wanted to create on the kubernetes cluster. pass this resource spec as an input to kubectl.
+
+The kubectl transfers/passes the resource spec to controlplane which takes care of reading the resource spec and creates it as an object and stores in etcd of the cluster.
+	
+By creating an object we are asking the kubernetes to bring the system to the desired state. object acts an record of intent, the control plane constantly work for bring the system to the desired state based on the object definition
+
+The resource spec / manifest is an YAML file in which we describe the information about the resource we wanted to create as an object on the cluster. It contains various different key/value pair information out of which most of the resource spec has the below common properties.
+	
+1. apiVersion
+2. kind
+3. metadata
+4. namespace
+5. spec 
+
+How to create and manage the kubernetes objects on the cluster?
+The kubectl command supports 3 ways of creating the objects on the cluster
+1. Imperative commands
+kubectl has provided handful commands to which we can pass input arguments in creating various different types of kubernetes objects on the cluster. we dont need to manually write resource spec/manifest in creating the objects on the cluster
+
+kubectl run apache2 --image=apache2 --port=80
+
+advantages:-
+1. quickly can create objects on the cluster without writing any manifest
+
+dis-advantages:-
+1. we dont have a spec in hand that can be tweaked or modified or reused at later point of time
+
+
+2. Imperative object configuration
+
+
+3. declarative object configurtion
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

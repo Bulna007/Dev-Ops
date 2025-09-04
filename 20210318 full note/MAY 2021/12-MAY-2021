@@ -1,0 +1,103 @@
+#1 
+I want to find the empty files under a directory matching with a file pattern?
+find directory/ -name "pattern" -empty
+
+#2 
+I want to search for both .log and .out files under a directory and want to print?
+find directory/ -name "*.log" -o -name "*.out" 
+
+#3
+I want to search for a file with a file permission of 655 of any name?
+find directory/ -name "*" -perm 655
+  
+#4 
+I want to count the number of files of "*.log" and "*.out" in the directory without using ls?
+find directory/ -name "*.log" -o -name "*.out" | wc -l
+
+There is a difference between | and -exec in find
+ - In case if we use (|) pipe operator the second command will be executed by passing the entire output of find.
+ - In -exec option for each matching file outcome the exec command will be applied line by line
+--------------------------------------------------------------------------------------------------------- 
+grep
+grep is used for searching files based on the contents of the file with given "input string". Mostly grep is used for searching log files to identify errors.
+  
+#1 grep "text" filename = prints the matching lines within that file
+#2 grep -R "text" directory = it recursively goes through all the files and sub-directories search for the files whose content is matching with given "text" and displays the lines along with the filepath as well.
+#3 grep -n "text" filename = prints the line number where the matching world has been found
+#4 grep -i "text" filename = by default grep matches the text supplied with case-sensitive, here -i indicates ignore case
+#5 grep -o "text" filename = by default grep displays the matching lines where the word appeared. instead if we want only matching words as output we have to use -o
+-o = stands for output only matching words
+
+#6 grep -w "text" filename = by default grep returns the lines which are partial matched with the word in the file, for eg.. we are searching for text "lang", if the file contains any words of those 4 characters it returns 
+if we want grep to match whole word then use -w
+
+#7 grep -c "text" filename = displays count of occurences of the word in the file
+#8 grep -digit "text" filename = displays the no of lines around the matching lines
+#9 grep -v "text" filename = displays the lines which doesnt have the given text (invert matching)
+-------------------------------------------------------------------------------------------------------
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

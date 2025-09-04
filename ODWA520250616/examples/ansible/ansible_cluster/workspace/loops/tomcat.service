@@ -1,0 +1,14 @@
+[Unit]
+Description=Apache Tomcat 11
+After=network.target
+
+[Service]
+Environment=CATALINA_HOME=/home/vagrant/middleware/apache-tomcat-11.0.7
+Environment=CATALINA_BASE=/home/vagrant/middleware/apache-tomcat-11.0.7
+ExecStart=/home/vagrant/middleware/apache-tomcat-11.0.7/bin/startup.sh
+ExecStop=/home/vagrant/middleware/apache-tomcat-11.0.7/bin/shutdown.sh
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

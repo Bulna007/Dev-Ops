@@ -1,0 +1,212 @@
+What is the Shell?
+Shell is an interpreter program, the help us in communicating with the kernal of the linux operating system. programming to the kernal is very complex and requires low-level programming skills that makes the user difficult to work with linux
+
+So, to overcome the above problem, different people has written shell interpretor program through which we can talk to the kernal more easily.
+
+There are 2 popular shells are available
+bourne shell
+c shell
+each of these shells has sub-types
+bourne shell
+  1. bourne shell
+  2. korn shell
+  3. bourne again shell (bash)
+  4. POSIX
+c shell
+  1. c shell
+  2. TOPS
+  
+bourne shell (sh) is older and an improved version is bourne again shell (bash)
+  
+Working with Files and Folders in Linux
+---------------------------------------
+#1 how to create a File in linux?
+we can create an empty file within linux filesystem using 
+touch filename
+
+#2 how to print a message on to the terminal window?
+echo "message"
+
+#3 how to see the files/folders that are there in linux machine
+ls = displays all the files/folders that are there within the current working directory
+ls -l = long listing of files/directories
+ls -a = displays hidden files 
+hidden file = in linux if we create a file/folder starting with (.) dot, then it is considered as hidden and by default will not be displayed when use ls or ls -l. to display hidden files we need to use -a indicates all 
+
+ls directory/ = displays the files and folders in the given directory
+
+#4 how to create a directory?
+  mkdir directoryName
+  mkdir -p parent/childdirectory = it creates both parent and child directory together
+  
+#5 how to write the data into an file?
+touch filename = creates as an empty file
+
+echo "Good Morning" > filename = ">" is called redirection operator which will redirect the output into a file given
+
+#6 how to see the contents of a file?
+cat filename
+
+#7 how to enter data into a file interactively?
+echo "Good Morning" > filename
+
+cat by default takes the data from the keyboard (STDIN) and writes the data onto Console (STDOUT)
+cat < filename =  take the input from file and prints onto console
+
+cat > filename
+
+#8 how to change from one directory to another.
+  
+cd directoryName
+cd .. = moves you to parent directory
+
+cd = takes to the user home
+cd ~ = takes to the home directory
+
+cd - = takes to the previous directory
+
+
+#9 how to know the current directory we are in?
+pwd = print working directory
+
+#10 how to remove a file on filesystem?
+rm filename
+
+#11 how to remove a directory on filesystem?
+rmdir directoryName = given the directory should be empty
+rm -r = will removes the files/folders inside the directory recursively
+rm -rf  = force to remove the files.
+  
+#12 how to copy a file/folder from one location to another.
+cp sourcefile destinationfile
+by default cp doesnt support copying folders, only we can copy files. if we want to copy directorys as well then use -r (recursively)
+cp -r sourceDirectory destinationDirectory
+
+#13 how to move files and folders within linux 
+mv command is used for 2 purposes
+1. moving the contents
+2. rename
+
+
+mv sourceFile destinationDirectory/ = move the file to a directory(exists)
+mv -r sourceDirectory destinationDirectory/ = -r recursively moves the directory(exists) contents
+
+mv sourceFile newFileName = rename
+mv sourceDirectory newDirectoryName = rename
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

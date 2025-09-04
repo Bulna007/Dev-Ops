@@ -1,0 +1,167 @@
+Kubernetes (k8s)
+Kubernetes is a container cluster manager, that schedules, monitors and manages the containerized applications on a network cluster of computers
+
+There are 4 parts in kubernetes
+1. kubernetes master/control plane
+2. kubernetes worknode
+3. kubectl
+4. etcd
+
+#1. kubernetes masternode (or) kubernetes controlplane
+kubernetes master is also called as "control plane" of the kubernetes which is an central node of the kuberneter cluster that takes care of scheduling, monitoring and managing the containerized applications on the cluster of computers. Kubernetes master is installed on a central computer/machine where it has access to all the other machines of the network.
+	
+There are 3 parts are there in kubernetes master
+1.1 api manager
+1.2 scheduler
+1.3 controller manager
+
+1.1 api manager
+api manager acts an front-end of the kubernetes cluster, it is built on http protocol and exposed as httpendpoints to the clients/users of the kubernetes cluster. Through the help of api manager only people can interact with kubernetes cluster/masternode
+
+When the client/user has sent an request to the api manager the api manager will
+1. validate whether the incoming request is valid or not, if it is valid then it handovers the request to the scheduler for further operation
+
+2. authentication/authorization: the api manager before accepting the request,it verifies whether the user sending the request is authorized to perform the operation or not, if not denies the request and returns an error response
+So, from the above we can understand api manager acts as a gateway of receiving the requests into kubernetes master
+
+How many ways we can interact with the api manager
+There are 3 ways we can interact with api manager
+1. kubeclt cli
+2. rest endpoint
+3. api (language)
+	
+#2. scheduler
+upon receiving the request, the api manager handovers the request to scheduler asking to perform the operation.
+The scheduler identifies an appropriate workernode of the cluster on whom the containerized application can be executed by talking to the kubelet process of the workernode. The scheduler will not run the containerized application on the container runtime, the job of bringing up the containerized application is takencare by the kubelet process running on the node.
+	
+#3 controller manager
+controller manager is a daemon process that runs in background on the controlplane of the cluster and ensures always we reach to desired state of the cluster
+There are 5 types of controllers are there
+1. ReplicaSet = ensures the desired number of replicas are running on the cluster
+2. DaemonSet  = ensures the pods are running across all the nodes of the cluster
+3. DeploymentSet = takes care of pod updates
+4. Service = offering network services to all the pods that are running on the kubernetes clsuter and ensures the communication across the pods and to the external networks
+5. Job = We want to run an external program on each node of the cluster cluster to perform some one time activity which will be takecare by the job controller
+
+
+#2. kubernetes worknode
+kubernetes worknode is a computer/machine attached to the kubernetes master/control plane on which a pod is scheduled for execution. A worknode can be scheduled to run one or more pods on it based on the capacity of the workernode
+
+There are 3 major components are there to be installed on each worker node
+1. container runtime
+A workernode should be installed with an container runtime to schedule and execute a pod on it. without a container runtime an containerized application cannot be executed.
+For eg. we can have a docker being installed on a workernode to run docker containers
+
+2. kubelet
+kubelet is a process runs on each workernode of the cluster, which gathers the information about what are the pods and how many of them on running on each workernode and keeps track of their statuses. We can think of an kubelet as an endprocess to whom always the master reach to for any information about the workernode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

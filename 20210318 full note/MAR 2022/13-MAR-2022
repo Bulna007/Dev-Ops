@@ -1,0 +1,4 @@
+tomcat as a service
+db.properties = hostname
+database -> create db
+copy war onto both tomcat servers

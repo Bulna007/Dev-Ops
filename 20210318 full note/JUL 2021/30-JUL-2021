@@ -1,0 +1,105 @@
+#wap to add all the prime numbers in the given array
+
+#!/bin/bash
+RET_PRIME_NUMBER=0
+RET_SUM_OF_PRIME_NUMBERS=0
+function checkPrime() {
+  local F_PRIME_NUM=1 #assume prime number
+  local N_ARGS=$#
+  if [ $N_ARGS -ne 1 ]; then
+    echo "ERROR!: argument is missing"
+    return 100
+  fi
+  local N=$1
+  local LEN=$[N/2]
+  
+  
+  for((I=2;I<=LEN;I++))
+  do
+    local REM=$[N%I]
+    if [ $REM -eq 0 ]; then
+      F_PRIME_NUM=0 #mark it as not a prime by assigning 0
+      break    
+    fi    
+  done
+  RET_PRIME_NUMBER=$F_PRIME_NUM
+  return 0
+}
+
+function addPrimeNumbers() {
+  local N_ARGS=$#
+  local SUM=0
+  
+  if [ $N_ARGS -eq 0 ]; then
+    return 100
+  fi
+  
+  local NUMBERS=$@
+  for NUM in ${NUMBERS[@]}
+  do
+    checkPrime $NUM
+    EXITCODE=$?
+    if [ $EXITCODE -eq 0 ]; then
+      if[ $RET_PRIME_NUMBER -eq 1 ]; then
+        SUM=$[SUM+NUM]
+      fi
+    fi
+  done
+  RET_SUM_OF_PRIME_NUMBERS=$SUM
+  return 0
+}
+
+#main program
+read -p "NUMBERS:" -a NUMBERS
+addPrimeNumbers ${NUMBERS[@]}
+EXTCODE=$?
+if [ $EXTCODE -eq 0 ]; then
+  echo "sum of prime numbers : $RET_SUM_OF_PRIME_NUMBERS"
+fi
+--------------------------------------------------------------------------------------------------------
+What is networking, how do we inter-connect computers with each other?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

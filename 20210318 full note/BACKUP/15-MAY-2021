@@ -1,0 +1,156 @@
+Linux is an multi-user operating system and multi-programming operating system. which means multiple users can use the linux operating system at the same time and can run their own process in an isolated manner.
+
+So for each of user to distinguish in linux we need user accounts.
+There are 2 types of users are there in linux operating system
+  1. ROOT user = has global access to all the system resources of the machine
+  2. NORMAL user = has limited access like he can access only his home directory location and can his own software programs.
+  
+by default ROOT will created through linux installation process and there is only 1 ROOT user permitted in linux.
+A ROOT user can add any number of users in to linux which becomes NORMAL users of the users by default.
+
+every user has the below attributes attached user account.
+  1. uid
+  2. username
+  3. home directory location
+  4. shell
+  5. password
+  6. gid (group)
+
+every user must and should be associated to a group in linux. groups are the way through which we can combine multiple linux users together so that we can manage their file permissions other aspects of the linux.
+
+by default when we add user in linux for him a group will be created automatically with the username and will be associated to that user. (this is called primary group)
+An user can be part of more than one group as well.
+
+How to create an user in linux?
+sudo useradd username = but by default it makes an entry only in /etc/passwd and will not create home directories and password for the user, we need to grant several things to make the user accessible, so ubuntu has provided another handy tool called adduser
+
+sudo adduser username = recommended to use (perl script)
+sudo adduser bob = bob group will be created, bob user will be created and allocates bob group as primary group to bob
+
+sudo adduser bob -g gid = here username group will not be created, only he will be added into existing group.
+
+devops group = 1002
+sudo adduser bob -g 1002 = the user bob will be created by adding him to devops group, now user group is not created. now primary group is devops group only.
+
+
+cat /etc/passwd = here is the file we can find details of an user
+id username = shows the uid, groups to which the user is associated
+
+groups username = shows list of groups in which the user is
+
+cat /etc/groups = shows you list of groups we have in the system.
+
+sudo usermod -aG groupName username
+sudo gpasswd -d user group
+
+sudo groupadd groupName
+
+sudo su username
+sudo su -
+sudo su -i
+---------------------------------------------------------------------------------------------------------
+sudoers
+previliged users next after the root. they have equal access to the linux system like ROOT provided the root user
+
+How to promote a normal user as root user?
+there are 2 ways are there
+1. declare the user in /etc/sudoers
+  There are 2 levels at which we can make a user as sudoer
+  1.1 user level
+  1.2 group level
+  
+For each user we can make an entry in sudoers file with formation
+username  ALL=(ALL:ALL) ALL
+ALL = FROM ANY WHERE
+ALL = ONBEHALF OF ANY USER
+ALL = ONBEHALF OF ANY GROUP
+ALL = ANY COMMANDS
+
+Cmd_Alias installcommands='apt, dpk'
+joe ALL=(ALL) installcommands
+
+We can make a user as sudoer at group level well in the sudoers file
+%group ALL=(ALL:ALL) ALL
+to all the users who below to the group given has sudoers access
+
+2. add the user to the sudoers group
+instead of it we can simply add a user to sudoers group.
+
+by default a root or a sudoer will be logged in as normal user in shell prompt, to allow the user to execute super user commands they need to either switch as root or use sudo commandname to run with sudoers previliges.
+
+
+if you root user switch to root prompt and execute super user commands.
+sudo su -
+
+if you are not a root user, just a sudoer to run super user commands we need to use 
+sudo commandname
+
+man command
+q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

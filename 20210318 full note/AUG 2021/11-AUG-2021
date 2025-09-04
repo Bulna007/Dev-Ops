@@ -1,0 +1,67 @@
+1. Application Layer
+2. Presentation Layer
+3. Session Layer
+4. Transport Layer
+5. Network Layer
+6. DataLink Layer
+7. Physical Layer
+
+1. Application Layer
+defines standard messaging structure and semantics over which both the applications has to communicate
+
+2. Presentation Layer
+It presents the data to the lower-layers in sender side in transmittable format and receives the data and presents to the Application Layer to consume. It performs 3 responsibilities
+  2.1 Data Conversion = converts character representation of data into bits/bytes
+  2.2 Data Compression/DeCompression = bit reduction, to transfer quickly over the network
+  2.3 Data Encryption/DeCryption = securing the data
+  
+3. Session Layer
+End-To-End application communication will be managed by Session Layer. it does 2 responsibilities
+  3.1 Authentication/Authorization
+  3.2 Session Management
+  
+While transmitting the data, it will be broken down into smaller data packets for 2 reasons
+  - avoid network congession and blocking other computers in using the network
+  - retransmitting the lost data will be easy, we can retransmit the data packet we lost rather than the whole data again
+  
+  3.1 Authentication and Authorization
+    Authentication: identifying the user who is trying to access the application in order to grant access. Client has to produce an username/password while accessing the application, so that server program can validate the username/password and allow the user to access the application.
+      
+    Authorization: is a role based access mechanism, there are multiple roles of users within the application exists, every user cannot perform all the operations.
+    identifying the user role granting the permission to perform the operation is called authorization.
+      
+    Session layer helps the applications in keeping track of authentication/authorization information by storing at the session level, so that client programs dont need to reproduce the authentication data each time while trying to access within the Session.
+      
+  
+  3.2 what is session management, what does it do?
+    3.2.1 identify the data packets received and route them to the right application at the received end.
+    3.2.2 resequencing the data into correct order to build back the original message will be takencare
+    3.2.3 keeps track of number of data packets transmitted, received and pending end-end  
+------------------------------------------------------------------------------------------------------
+The above three layers we discussed are related to application implementation not related to data transfer.
+    
+
+#4 Transport Layer
+The transport layer performs 3 responsibilities
+1. Segmentation
+2. Flow control
+3. Error control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  

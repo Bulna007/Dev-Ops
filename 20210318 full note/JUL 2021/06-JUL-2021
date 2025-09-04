@@ -1,0 +1,188 @@
+What are variables, why do we need to use them?
+variables are the named place holders in which we store the values, so that within our program we can refer variable rather than directly using the value (literal).
+advantage:-
+  1. if we want to change the value used in our program, we just need to modify the variable value rather than modifying all the lines of code to change the value.
+  2. code become readable
+
+How to declare variables in Shellscript program?
+VARIABLE_NM=VALUE
+A=10
+use capital letters while declaring variable names, as a standard convention in shellscript program.
+  
+How to access the value of a variable?
+by default shell interpreter takes every character and tries to execute it by identifying it as a command, so we cannot directly refer or access a variables with its name, because it treats as a command and will give error. To let the shell interpreter understand we are referring a variable rather than passing an instruction to execute we need to use $expression
+
+$VARIABLE_NM = to refer or use variable.
+------------------------------------------------------------------------------------------------------
+How to interactively read the data in a shellscript program?
+read = shell instruction provided bash which allows us to read the data from STDIN (keyboard) and store the value in a variable.
+  
+read variableName
+read -p "enter a:" A
+--------------------------------------------------------------------------------------------------------
+
+Non-Interactive inputs
+----------------------
+When we are looking for achieving automation through shellscript, we need avoid using read shell instruction because it enforce the user to enter the data interactively which again requires user presence in performing the operation.
+  
+nchars.sh
+read PERSON_NM  #wrong
+PERSON="julian" #wrong 
+echo $PERSON_NM | wc -c
+
+./nchars.sh
+
+everytime when we run the program the PERSON_NM is fixed and produces the same output, so to change the input (PERONS_NM) with which program should work, always we need to modify the project, this is not recommended.
+How to solve the problem?
+We can pass the data non-interactively to a shell program using program arguments.
+  
+nchars.sh
+------------
+#!/bin/bash
+PERSON_NM=$1
+echo $PERSON_NM | wc -c
+
+./nchars.sh julian 10
+./nchars.sh max
+
+program arguments are the inputs we pass to the shell program while running/lauching the shell program. The shell interpreter while running the program will take the arguments we supplied as an input and stores them in a special variables starting from $0
+
+Now in our program we can access the values supplied as arguments in terminal prompt using special variables created by Shell interpreter.
+  
+Shell interpreter creates lot of variables to represent inputs for the program as below.
+  $# = indicates number of parameters supplied as input
+  $0 = name of shell script file we are running
+  $1 = first parameter (arg1)
+  $2 = second parameter (arg2)
+  .
+  .
+  .
+  $n = nth parameter
+  $@ = all the parameters we supplied
+  $* = all the parameters we supplied as an input
+--------------------------------------------------------------------------------------------------------
+There are 2 ways we can print the output onto the console within a shellscript program.
+1. echo = echo always writes the output and produces an new line at the end;
+2. printf = it is equal to the printf we used in c programming. the name indicates print the output using format specifiers (or print the output by formatting).  
+%s = to output a string  
+%d = to output a digit/number
+%x = to output data in hexadecimal small letters
+%X = to output data in hexadecimal capital letters
+%nx, %nd = leave specified number of spaces while generating the output.
+  
+  
+read.sh
+#!/bin/bash
+read -p "enter a age :" AGE
+read -p "enter name: " NAME
+read -p "enter gross salary" SALARY
+
+printf "Your name is %s and age is %d and salary is %d" $NAME $AGE $SALARY
+in a printf we can use format specifiers and escape sequences to format the output while printing.
+  %d %s %x %X = are treated as format specifiers in writing the values
+  \n \r \t = are escape charaters using which we can format the output.
+note:- printf by default will not generate a new line at the end of the output  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

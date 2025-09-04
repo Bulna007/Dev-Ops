@@ -1,0 +1,65 @@
+Computer Networking
+Every computer inorder to communicate with another computer, they must be inter-connected with each other through a communication medium like a wire/cable. In order to connect the computer through cable, it must have network interface card/adapter on the motherboard of the computer.
+  
+Network interface adapter/card = is a hardware device, that either sits on the motherboard of the computer or an pci card that can be chipped in to the pci slot of the computer and exposes a socket/port to plugin the wire into it.
+  
+In order to plugin a network wire we need to use RJ45 socket into the network adapter port of the computer, so that an connection will be established from the computer on to the network.
+  
+How many network interface adapters/cards can be plugged-in to a computer?
+Based on pci slots available, but we can have one or more depends on the number of other computers to which we want to connect.
+  
+How can a computer can identify itself on the network, or how to transfer the data to another computer on the network?
+By default when a computer drops a datapacket on to the network, it will be transferred to all the computers it is connected to and every receives the data. To send the data to a specific computer on the network we need to use identification of the computer
+
+There are 2 types of identities are there for a computer on the network.
+  1. ip address
+  internet protocol address, which is an logical address generated to a computer when it has connected to the network. it is of 32-bit length divided into 4 octets (each assigned with 8 bits), the format of ip address could range from 0.0.0.0 - 255.255.255.255
+  Usually the ip address of a computer will not be fixed, and will be changing when a computer has been connected and dis-connected from the network.
+  In order to communicate with another computer over the network, a computer should use the ip address of other. (it acts as an primary means of identifying a computer)
+  
+  2. mac address
+  media access control address which is the physical address generated and attached to network interface adapter/card by the manufacturer at the time of manufacturing. Usually these mac addresses are fixed/static and cannot be changed.
+  A computer to communicate with another computer over the network, it cannot use mac address, the only means through which we can identify is "ip address".
+
+How many ip address and mac address are attached to a computer?
+It depends on the number of nic cards attached to the computer, each nic card has an mac and ip address being assigned, so that computer can have multiple ips and mac address.  
+-------------------------------------------------------------------------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

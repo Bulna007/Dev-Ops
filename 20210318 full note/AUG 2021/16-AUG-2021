@@ -1,0 +1,210 @@
+OSI Model layer
+----------------
+Open System Inter-connection standard is protocol used for interconnecting the computers of hybrid environment. It comprises of 7 layers
+1. Application Layer
+    Messaging Structure and semantics are established to ensure both the applications can exchange the data meaningfully
+2. Presentation Layer
+    Presents the data to and from the top and bottom layers in a transmittable format
+    2.1 Data Conversion
+    2.2. Data Compression/DeCompression
+    2.3 Data Encryption/DeCryption
+3. Session Layer
+    End-To-End application communication will be taken care
+    3.1 Authentication/Authorization
+    3.2 Session Management
+4. Transport Layer
+    4.1 Segmentation
+    4.2 Flow Control
+    4.3 Error Control
+5. Network Layer
+    Responsible for tranmitting the data from one computer to another computer of other network
+    5.1 Logical Addressing
+    5.2 Routing
+    5.3 Path Determination
+6. Datalink Layer
+    6.1 Physical Addressing
+    6.2 Media Acess Control
+    6.3 Error Control
+        6.3.1 Collision detection
+        6.3.2 Fault data
+7. Physical Layer
+    Responsible for converting the bits representation into transmittable signal format
+-----------------------------------------------------------------------------------------------------
+Network Toplogies
+The way computers are inter-connected over the network is called "Network Topologies"
+      
+There are 2 types of network topologies are there
+1. Logical Topology = How does the data moves between the computers over the network
+2. Physical Topology = How does the computers are physically arranged and interconnected with the organization
+
+Now let us try to understand how many ways we can inter-connect the computers over a network (Physical Toplogies)
+There are 5 network topologies are there
+1. Bus Toplogy
+2. Ring Topology
+3. Star Topology
+4. Mesh Topology
+5. Hybrid Topology
+
+#1 Bus Topology
+A backbone cable is laid through out the entire network where all the computers are tapped or pierced into the backbone cable establishing interconnection with others. A computer on the network in order to transfer the data to other computer will places the data packet on the backbone cable, where data packets moves from one end-to-another end sequentially through all the hops connected to that backbone cable.
+  
+Each computer gets a chance to see the datapacket and check whether it belongs to him or not, otherwise will retransmits the data by placing onto the backbone cable, that is how data moves here. The data moves in uni-directional only in bus network.
+  
+advantages:-
+  1. low cost in establishing the network
+  2. quick to setup the network 
+  3. troubleshooting and fault detection is easy.
+
+dis-advantages:-
+  1. Not suitable for interconnecting large number of computers onto the network, if more computers are connected, there is high chance of signal degradation or loss of data due to which network failure arise.
+  2. less secured
+  3. if more computers on connected on to the network, there is high chance data collision takes place
+  4. If the backbone cable was broken, then the entire network will goes down.
+    
+Bus topology is suitable for only intern-connecting limited setup of computers only (like a homenetwork) where the network traffic is very less. It is not suitable for inter-connecting large computers over a office network.
+
+#2 Ring Topology
+Ring toplogy each computer is inter-connected to its adjacent computers thus forming an ring like structure. Each computer requires 2 network interface cards in establishing the network, the data flows in clock-wise uni-direction only. as the data moves in uni-directional, minimum chance of data collision arises.
+  
+If the 1 Node on the network has to transfer the data to Nth node on the network, the data has to move through all the computers between 2-n-1, which slows down the data transfer rate. To overcome this problem dual ring topology was introduced.
+  
+In dual ring each computer is connected to its adjacents with 2 wires instead of one, where 1 wire is moving the data in clock-wise direction, other one used for anti-clock wise direction, now data can be moved in both the directions thus enabling high rate of data transfer. With the dual ring the network will be more robust.
+
+advantages:-
+  1. we can create larger network of computers.
+  2. no data collisions
+  3. we can quickly add a new computer or remove an existing computer from the network.
+  
+dis-advantages:-  
+  1. cost of setting up the network is high
+  2. if one node goes down all the nodes after this node becomes unreachable, since data transfer happens in clock-wise uni-directional
+  3. trouble shooting the network failures and fault detection takes lot of time
+  
+#3 Star Topology
+
+All the computers on the network are inter-connected to a central device called "hub". A computer in-order to send the data to another on the network, he has to send the data to the central hub, where the hub takes care of forwarding the data to all the computers connected on to the network, thus enabling data transfer. We can use duplex cables, where it contains 2 wires within the cable, one can be used for sending the data from hub to computer and another one for receiving the data, so that we improve data transfer rates within the network.
+There is zero chance of data collision takes place, as all the data receives by the hub and will managed by hub before forwarding the data.
+  
+advantages:-
+  1. very cheap in setting up the network, because minimal cables and nic cards are required in establishing the network
+  2. quick to setup the network
+  3. adding and removing a computer on the network is easy and will not impacts the other computers on the network
+  4. If one node goes down only that computer cannot be reachable, but it has zero impact on the network.
+  5. no data collisions
+  6. troubleshooting and fault detection is easy because hub will tell us which link went down.
+  
+dis-advantage:-
+  1. if hub goes down, the entire network will be down
+  
+#4 Mesh Topology
+Every computer on the network inter-connect with n-1 computers on the network forming a mesh structure. This network is considered as the most robust network, as if one link failure will not leaves the node not reacable, because always we have alternate paths in reaching to the note. More suitable for inter-conneting wan networks like interconnecting the isp servers across the cities.
+  
+advantages:-
+  1. robust network
+  2. high data transfer as direct line internconnecting the computers are there
+  3. no data collision
+  
+dis-advantages:-
+  1. quite expensive as more cables and nics runs through the network
+  2. very complex to setup and time consuming
+  3. troubleshooting and fault detection is very difficult
+  4. only suitable for inter-connecting the wide area networks (WAN) only.
+    
+    
+#5 Hybrid Toplogy
+Inter-connecting multiple different topology networks together is called a "Hybrid" Topology
+------------------------------------------------------------------------------------------------------
+Network devices
+In order to interconnect computers to a network, we need to use devices establishing the network which are called "Network Devices".
+There are 6 types of network devices are there
+1. Repeators
+2. Hub
+3. Switch
+4. Bridge
+5. Router
+6. Modem
+7. Firewall (network security device)
+    
+
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

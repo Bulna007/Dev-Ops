@@ -1,0 +1,13 @@
+Vagrant.configure(2) do | config | 
+    config.vm.box="icloudnote/ubuntu"
+
+    config.vm.provider "virtualbox" do | vb |
+        vb.name="extfileprov"
+        vb.cpus=4
+        vb.memory=1024
+    end
+
+    config.vm.provision "installJdk", type: "shell" do | prov |        
+        prov.path="installJdk.sh"
+    end
+end

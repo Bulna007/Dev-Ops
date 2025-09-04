@@ -1,0 +1,132 @@
+devops with amazon web services (aws)
+
+pre-requisite:-
+What should I know to join this course?
+If you know 4 components of a computer
+  1. cpu
+  2. monitor
+  3. keyboard
+  4. mouse
+You are eligible
+Non-It background = mechanical, ece, eee 
+                    degree, graduate
+                    --------------------------
+                    quick entry point to software world
+                    
+disclaimar := non-it people they initial find little difficult in coping up the course, but goes on with constant practise you will be feeling comfortable with all the areas of the course.
+
+system administrator -- 100 positions / 20 position
+network engineer
+linux administrator
+
+testing = manual testing -> automation test engineers = devops culture -> they write code for testing software applications -> you need to integrate your testing code into ci/cd pipeline to execute it automatically. which requires devops knowledge
+
+funcational software (sap, salesforce, crm, erp) = 
+Yes even sap, salesforce are on cloud and many of the companies are looking for hosting crm software on cloud.
+
+support engineer
+You are the most welcome people, why devops is related application delivery and monitoring
+
+developer
+Most eligible candidate for devops -> devops starts with you. If you dont write the code whereelse all these things falls under.
+
+devops with cloud platform
+devops with aws platform
+-------------------------------------------------------------------------------------------------------------
+Course Syllabus
+
+Introduction to devops
+  - how does software engineering world exists
+  - software develop and delivery lifecycle
+  - bottlenecks with the current way of development and delivery of the applications
+  - how can devops can change the whold world.
+Highlevel picture of the devops tools and how are those being used in devops architecture
+
+Linux (debain ubuntu) - you will uninstall windows you will install linux
+Linux shellscripting (deploying patches, install software packages) (programming)
+-------------------------------------------------------------------------------------------------------------
+Networking
+  - topologies
+  - network devices
+  - ip addressing
+  - protocols
+  - cidr notation
+
+ssh protocol
+how to configure ssh access to a machine
+what is a firwall software? how to configure firewall
+linux service, how to create our own service in linux
+-------------------------------------------------------------------------------------------------------------
+java language basics
+  - how does java applications work
+  - how to run 
+  - what java application packaging standards
+  - how to deploy java application on containers
+
+Maven Tool (devops)
+Scrum is an Agile Methodology
+-------------------------------------------------------------------------------------------------------------
+Virtualization (vagrant)
+- 6 Features
+- ci/cd model (java application deployment to the end-system)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,344 @@
+What are playbooks in Ansible, what is the purpose of them?
+If we want to perform bunch of activities repeatedly across multiple fleets to achieve the desired state of the system, instead of executing the ansible modules through adhoc commands, it is good to write playbooks.
+	
+playbooks are the files in which the ansible developer has to declare the modules he wanted to execute in a specific order and pass it as an input to the ansible control node, which will interprets and executes the modules to achieve the desired system state.
+	
+How to write the playbooks?
+Playbooks has to be written in Yaml Format only, so that ansible control node can understand, interpret and executes the modules declared inside.
+	
+	
+What is YAML, why do we use it?
+YAML is an data representation standard that is used for representing or storing the data. There are lot of other data presentation standards are there like
+1. XML
+2. JSON
+as well.
+	
+The data representation standards allows us to define the data in structured format with semantics, punjunctions and syntaxes so that application programs/software tools can easily extract the data and perform the operation
+Each data representation standard has their own format in which we need to define the data.
+	
+For eg.. XML language allows us to write the data in tags.
+<address>
+	<addressLine1>5th Lane, Template Street</addressLine1>
+	<addressLine2>18-9-29, 2nd Floor</addressLine2>
+	<city>Hyderabad</city>
+	<state>TS</state>
+	<zip>500076</zip>
+	<country>India</country>
+</address>
+
+
+The another data representation standard available is JSON which stands for "Javascript object notation"
+{
+	"addressLine1" :"5th Lane, Template Street",
+	"addressLine2": "18-9-29, 2nd Floor",
+	"city":"Hyderabad",
+	"state":"TS",
+	"zip": "500076",
+	"country" :"India"
+}
+
+Instead of using XML or JSON the new data representation standard has been introduced called "YAML"
+YAML stands for "Yet another markup language"	(aint markup language), markup language means something that is constructed using <tags></tags>, since YAML format doesnt uses tags, it is called "Am not a markup language".
+YAML is considered the most easy data representation language that can be understood by Machines and Human-beings as well, YAML uses less punctuations and easy syntaxes due to which it is easy to write YAML file.
+	
+YAML supports 2 types of data structures
+1. lists = are used for representing collection of values
+2. maps = key/value pair, usually used for representing objects of data
+
+#1. List
+How to represent a list of values in YAML?
+- grapes
+- banana
+- oranges
+- apple
+- kiwi
+
+#2. Map
+maps are key/value pair data used for representing an object.
+after the key: space is mandatory in writing the value
+
+addressLine1: 5th Lane, Template Street
+addressLine2: 18-9-29, 2nd Floor
+city: hyderabad
+state: TS
+zip: 500075
+country: India
+
+YAML supports in-built data types
+1. String
+Any character data you wrote in YAML is considered as string, you dont have to put your string in "double quotes" unline json
+2. Number
+any numeric value written will be considred as number
+3. Boolean
+true, false, TRUE, FALSE, yes, no
+
+every yaml file starts with "---" and should end with "...", even though it is optional it is recommended to write YAML using the above standard. 
+	
+fruits.yaml	
+---
+- banana
+- apple
+- grapes
+- papaya
+...
+	
+we want to represent 2 different information like fruits also and groceries also, inorder do this we need to write 2 yaml files as below.
+fruits.yaml
+---
+- apple
+- grape
+- papaya
+- banana
+...
+	
+groceries.yaml
+---
+- salt
+- sugar
+- groundnuts
+- atta
+...
+
+instead of write multiple yaml files for representing different data, we can combine into one single file using the --- and ...
+	
+productslist.yaml
+---
+- apple
+- grape
+- papaya
+- banana
+...
+---
+- salt
+- sugar
+- groundnuts
+- atta	
+...
+By the above we have multiple yaml documents written in onesingle yaml file.
+
+
+bike.yaml
+---
+modelName: honda unicorn
+manufacturer: honda
+year: 2021
+color: black
+engineNo: E0383903
+chasisNo: Ch92823
+features:
+	- autostart
+	- smart, digital meeter
+	- diskbreak
+	- mono suspension
+...
+	
+The YAML file can be saved with an extension of either ".yaml"	or ".yml" as most of the platforms supports 3 letter extensions
+How to verify the YAML file wrote is valid/correct or not?
+we have several online tools are available, one of such popular tools is http://www.yamllint.com/
+----------------------------------------------------------------------------------------------
+	
+person
+personName, age, gender, uniqueNo, mobileNo, emailAddress and 
+addresses
+	home address, city, state, zip, country
+	
+{
+	"personName": "Alexander",
+	"age": 23,
+	"gender": "Male", 
+	"uniqueNo": "U90383",
+	"mobileNo" : "92839434",
+	"emailAddress" : "alex@gmail.com",
+	"address" : [
+		{
+			"homeAddress": "5th lane, template street, 2nd floot",
+			"city": "hyderabad",
+			"state": "ts",
+			"zip": "90383",
+			"country":"India"
+		},
+		{
+			"homeAddress": "5th lane, template street, 2nd floot",
+			"city": "hyderabad",
+			"state": "ts",
+			"zip": "90383",
+			"country":"India"
+		}
+	]
+	
+}
+	
+person.yml
+personName: Alexander
+age: 23
+gender: male
+mobileNo: 093833
+emailAddress: alex@gmail.com
+uniqueNo: U0982383
+addresses:
+  - streetAddress: 5th lane, beside vegetable market
+	  city: hyderabad
+	  state: telangana
+	  zip: 9383
+	  country: India
+	
+	- streetAddress: 10-32-2/A, Borabanda
+	  city: secunderabad
+	  state: telangana
+	  zip: 9337
+	  country: India
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

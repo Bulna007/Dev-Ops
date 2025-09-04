@@ -1,0 +1,263 @@
+Java Framework Package (Fee: 15k)
+1. Spring Framework with spring boot (Fee: 10k) 
+	(Spring Framework: 6 months) (Spring boot: 45 days) (tomorrow)
+	Timings: 6:00 AM IST - 7:00 AM IST
+	
+2. Hibernate / Jpa api (Fee: 6k) (duration: 4 months) (started: 25 days)
+	Timings: 8:00 AM IST - 9:00 AM IST
+	
+3. Java Restful Services (Fee: 6k) (duration: 4 months) (going to start: end of the month)
+	Timings: 6:30 PM IST - 7:30 PM IST
+	
+4. Spring Microservices (Fee: 5k) (duration: 45 days)
+5. Spring Reactive Webflux (Fee: 4k) (duration: 25 days)
+------------------------------------------------------------------------------------------------------------------
+		
+Java Realtime tools (Fee: 5k) (duration: 2 months)		
+Java Realtime project training (Fee: 6k) (duration: 3 months)		
+-----------------------------------------------------------------------------------------------------------------
+Devops with AWS 
+AWS Cloud Practitioner certification training
+
+email: tech.sriman@gmail.com
+Telegram group
+
+------------------------------------------------------------------------------------------------------------------
+Devops with aws (includes Linux & Shellscripting)
+Fee: 12k [existing students of sriman sir: 10k]
+duration: 9 months
+Timings: 7:00 am ist - 8:00 am ist [Monday - Saturday]
+         7:30 am ist - 8:30 am ist [Sunday] (if needed, if we are slipping the time will conduct one hour of evening session as well on Saturday/Sunday = 5:30 pm ist - 6:30 pm ist)
+Notes: live classroom notes is written including examples and provided to students on weekly basis
+All examples are demonstrated live, no pre-written examples
+Recordings: No recordings, no videos, no youtube and if any student found to be recording the session, the admission will be cancelled without any fee refund.
+
+Incase of any personal emergency or medical reason, please send us an message in mail/telegram. the session will be recorded and shared with student directly
+
+pre-requisite:
+no prior programming knowledge is needed, just be aware of basics of computers should be enough to join this course.	
+experience: min: 3 years - max: 5 years	
+
+Who are eligible for attending this course?
+1. Freshers are eligible 
+2. Non-IT: mechanical, civil, ece, eee, bcom, bsc, pharamacy: can claim experience and get the job
+3. Administrator, DBA, Network, Linux, Testing engineer = the final destination is devops only
+4. .NET, java, Python, SDET = are eligible for attending devops
+
+Target: entry-level to expertize (professional)
+--------------------------------------------------------------------------------------------------------------------------
+Course Content:
+1. Introduction to devops (10 days)
+2. Linux operating system (2 months)
+	2.1 File Management 
+	2.2 User Management 
+	2.3 File Permissions
+	2.4 Networking
+	2.5 Process Management
+	2.6 Utility 
+	2.7 Package Management
+	2.8 Service
+3. Linux Shellscripting (15 days)
+	
+4. Networking (10/15 days)
+	4.1 Network Topologies
+	4.2 Network devices
+	4.3 Firewall
+	4.4 SSH
+	4.5 Protocols (OSI Model Layer)
+	4.6 IP Addressing (Classfull / Class-less ip address)
+	4.7 Subnet mask
+	4.8 CIDR Notation
+------------------------------------------------------------------------------------------ 
+5. Virtualization (10 days)
+	1. oracle virtualbox (install/configure)
+	2. oracle virtualbox networking modes
+		2.1 Nat
+		2.2 Nat network
+		2.3 bridge
+		2.4 internal network
+		2.5 host-only network adapter
+		
+6. Vagrant (Virtualization workflow automation Tool [iac]) (10/15 days)
+	6.1 Networking
+	6.2 Provider customizations
+	6.3 Provisioners
+	6.4 Vagrant cloud
+	6.5 Boxfiles
+	6.6 Multi-machine Vagrant
+	
+7. Java Language basics | Python | .Net (7 days) 
+	1. Programming language (platform-independent programming)
+	2. packaging standards (jar/war/ear)
+	3. how to run an basic java application
+	4. how to deploy an web application on a web server environment (tomcat)
+		
+8. Database (oracle/mysql/postgres)	(mysql) (5 days)
+	1. basics of database management system (RDBMS)
+	2. installing mysql server on linux operating system platform
+	3. basics of tables/relationships
+	4. basic sql queries
+	
+9. delivering/hosting an static web application using httpd servers (apache2 webserver)	 (7 days)
+	1. virtualhost configuration
+	2. proxy server
+	3. delivering an static web application manually and through automationscripts using shellscript
+
+10. Tools (10 days)
+	1. Maven (Build Tool)
+	2. Git Repository (Branching strategies)
+	3. Agile Methodologies (scrum)
+	4. JUnit (basics)
+	5. Sonarcube
+	6. Jacaco
+	7. JFrog Artifactory repository (hosting)
+-------------------------------------------------------------------------------------------------------------------------
+11. Ansible (20/25 days)
+	1. What is software configuration management tool, how is it different from shellscripting or python programming
+	2. Software configuration management tools architecture
+		1. pull-based architecture
+		2. push-based architecture
+	3. ansible adhoc commands
+	4. ansible inventory
+	5. learning basics of YAML
+	6. Installing and configuring the Ansible cluster
+	7. Ansible Playbooks
+	8. Ansible Modules
+		1. File
+		2. System
+		3. Database
+		4. Service
+		5. Package management
+	9. Ansible Jinja2 Templates
+	10. Ansible Roles (Galaxy)
+	11. Ansible Handlers
+	12. Control Statements (when, loops)
+	13. Ansible Vault
+	
+12. AWS Cloud platform  (200+ services) [20 days]
+	Domains
+	1. Networking (full)
+	2. Compute
+		1. ec2 instance
+		2. loadbalancer (alb)
+		3. elastic kubernetes service (elk)
+		4. elasic container registry (ecr)
+	3. Database
+		1. RDS Service 
+	4. Storage
+		1. S3 Storage
+		2. Bucket policies
+	5. Security (full)
+	
+separate course:		
+aws cloud practitioner certification: outsider: 7k (devops with aws: 5k) [Timings: 8:00 am - 9:00 am] 
+                                                                         [duration: 4 months]																																			 
+13. Terraform (iac automation tool) (15/20 days)
+	1. iac architecture
+	2. terraform architecture
+	3. terraform modules
+	4. terraform plugin
+	5. terraform scripts
+	6. terraform remote state file management
+	7. terraform provisioners
+-------------------------------------------------------------------------------------------------------------------------
+
+14. Jenkins (Continous Integration Server) (15/20 days)
+	1. What is Continous Integration and Continous deployment/delivery means, how this can be achieved?
+	2. ci/cd tools available in the market
+	3. Jenkins architecture
+	4. Setting up the Jenkins cluster
+	5. Adding and configuring jenkins agent Nodes
+	6. Global Tool configurations
+	7. Plugin management
+		1. GIT
+		2. MAVEN
+		3. ANSIBLE
+		4. TERRAFORM
+		5. JDK
+	8. Jenkins Secrets
+	9. Jenkins Job
+		1. Free-style
+		2. Pipeline Job
+			2.1 declarative pipeline (plugins with shellscripting)
+			2.2 scripted pipeline (groovy script knowledge)
+	10 jenkins parameters (static/dynamic)
+	11. creating a pipeline job with terraform, ansible integration for delivering e2e application on the aws cloud
+	
+15. Docker (25/30 days)
+	1. What is containerization?
+	2. Virtualization vs Containerization
+	3. How does containerization technology works?
+		1. linux namespaces
+		2. cgroups
+		3. union filesystem
+	4. docker vs open container specification (runc)
+	5. docker registry
+	6. docker image (layered / stackable)
+	7. docker context
+	8. docker workflow (command-line interface commands) (image/container management)
+	9. docker directives
+		1. image management directives
+			1. ENV
+			2. FROM
+			3. ADD
+			4. COPY
+			5. RUN
+			6. EXPOSE
+			7. VOLUME
+			8. WORKDIR
+			9. LABEL
+		2. container management directivies
+			1. CMD
+			2. ENTRYPOINT
+	10. how to run the docker container as?
+		1. interactive
+		2. infinite
+	11. docker volumes
+		1. bind mounts
+		2. bind volumes
+	12. docker networking
+	13. docker compose
+
+16. Kubernetes (20/25 days)
+	1. Container Cluster Manager, why do we need?
+	2. Kubernetes Architecture
+	3. Installing and configuring the Kubernetes cluster
+		1. docker-desktop kubernetes
+		2. eks cluster (aws cloudplatform)
+		3. minicube
+  4. kubectl and kubeconfig
+	5. kubernetes objects
+	6. kubernetes namespaces
+	7. kubectl cli commands
+	8. kubernetes controllers
+		1. DaemonSet
+		2. DeploymentSet
+		3. ReplicaSet
+		4. Job
+		5. Service
+			1. ClusterIP
+			2. NodePort
+			3. LoadBalancer
+			4. Ingress
+			5. Headless Service
+ 9. Kubernetes ConfigMaps
+ 10. Kubernetes ConfigSecrets
+ 11. Persistence Volumes and Persistent Volume Claims
+ 12. Kubernetes Networking
+ 
+17. HELM2 (kubernetes package manager) (5 days)
+18. ELK  (5 days)
+	1. Elastic Search
+	2. Logstash
+	3. Kibana/Splunk
+19. Dynatrace (1/2 days)
+--------------------------------------------------------------------------------------------------------------------------
+system requirements:
+--------------------
+processor: i3, i5, i7+ or equivalent capacity
+ram: 8 gb (recommend: 16 gb)
+hdd: 500 gb	(hdd/ssd)
+operating system: windows, linux or mac
+
+day#1: aws cloud machines (free-tier: 12 months) [last option]

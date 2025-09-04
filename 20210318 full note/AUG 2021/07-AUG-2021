@@ -1,0 +1,128 @@
+What is protocol, why do we need to use it?
+protocol is set of rules or guidelines we should follow in accomplishing or acheving an outcome. network protocol is rules/guidelines machines or program has to follow inorder to exchange the data effective between them over the network.
+  
+There are 2 types of protocols are there
+1. Application Protocol
+These protocols are used by end-end application which are exchanging the data between them. They define messaging structure and semantics over which data should be exchanged, so that both the application can understand the data easily.
+  
+2. Transport Protocol
+These defines rules for transmitting the physical bits of data over the network
+
+OSI Model Layer
+---------------
+International Standard Organization (ISO) has introduced OSI Model Layer protocol (1984) in defining the rules in exchanging the data between computer/application over the network.
+OSI stands for Open System Inter-Connection Standard, using which any 2 computers/applications running on any platform can exchange the data over the network.
+  
+The OSI Model Layer protocol has comeup with 7 layers, which we can think of stages of data transfer over the network and these layers has to be executed in sequential order
+  top-bottom: sender 
+  bottom-top: receiver
+  
+1. Application Layer
+2. Presentation Layer
+3. Session Layer
+4. Transport Layer
+5. Network Layer
+6. Datalink Layer
+7. Physical Layer
+--------------------------------------------------------------------------------------------------------
+#1. Application Layer
+The rules/guidelines that any 2 application has to follow in exchanging the data in an understandable manner is defined at Application Layer.
+    
+The programs communicating over the network can be classified into 2 types
+1. Client program
+2. Server program
+
+Client program want to send the data to the server program over the network asking him to perform operation on the data and give the outcome of the operation back. 
+Now if client program sends the data to the server program, how can the server interpret the data and perform operation?
+For eg.. 938310/09/2021avaialability
+if the client program is sending trainNo, travelDate, and operation to be performed as availability in the above format, how can the server program interpret the data and perform the operation, it cannot because the data is not in understandable format.
+  
+So to make the data exchange effective these 2 programs has to define rules in terms of
+  1. Messaging Structure
+  2. Semantics
+Then the server and client program can interpret the data and exchange with each other, so that communication will become effective.
+
+The rules that are defined by both these applications interms of message structure/semantics are called Application Layer protocol.
+  
+From the above we can understand if we built a program that want to communicate over the network then the program should have below:
+  1. port no
+  2. application protocol defined = message structure and semantics on how to exchange the data.
+    
+There are standard application layer protocols are there in the Computer Science Engineering world, why?
+There are lot of common application we use across, in the internet world like
+  1. Email Exchange
+  2. File Transfer
+  3. Browing web
+  
+Email Exchange:
+People can send and receive email using the email clients and email servers, across the email providers as well. unless we have standard message structure and semantics being defined people cannot exchange the emails using any client and any provider. So there email exchange protocols are defined.
+  1. SMTP = Simple Mail Transfer Protocol
+  2. POP = post of office protocol
+  3. IMAP = Internet Mail Access Protocol
+  
+All the mail servers are designed based on the above protocols in (exchanging the data), so that everyone can send and receive emails irrespective of the provider in which you have email account. because every server is using the same protocol stack.
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

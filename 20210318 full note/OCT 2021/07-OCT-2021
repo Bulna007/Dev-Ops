@@ -1,0 +1,131 @@
+How to host an static website using apache2 server?
+
+groovin (directory) -> groovin (server name), groovin.conf
+|-css
+|-images
+|-html
+
+
+#1 
+check for apache2 server installation found or not
+if apache2 server installation not found, then
+  sudo apt update
+  sudo apt install -y apache2
+else if apache2 server already installed
+  verify the status of it
+  if status is running, good to go
+    print "apache2 found skip installing"
+  else if it is not running
+    print "error! server down, bring it up and run"
+fi
+
+#2 
+clone the project into /var/www directory to host it
+check for projectdirectory already exists in /var/www or not
+  if not available clone the git repository into /var/www directory
+    git clone -b master http://github.com/techsriman/groovin.git
+  else if directory already present in the destination location
+    rename the existing directory into backup using currenttimestamp
+    clone the latest copy of the repository again to host new code
+fi
+
+#3 
+change the folder pemissions of the project directory to 755
+    
+#4
+site-template.conf
+<VirtualHost *:80>
+  ServerName #SERVERNAME
+  DocumentRoot /var/www/#PROJECTDIR
+</VirtualHost>
+check is the site config is already available at /etc/apache2/sites-available/groovin.conf
+if available dont recreate and skip configuration
+if not available 
+  1. copy site-template.conf into /etc/apache2/sites-available/projectname.conf
+  2. sed -i /s/#SERVERNAME/$serverName/g /etc/apache2/sites-available/projectname.conf
+  2. sed -i /s/#PROJECTDIR/$projectdir/g /etc/apache2/sites-available/projectname.conf
+  
+#5 
+enable the website
+sudo a2ensite projectname
+
+#6 
+reload the apache2 server
+
+To run the above script in touchless automation (non-interactive mode), we need to grant passwordless sudo access to one of the user
+make an entry into /etc/sudoers
+
+USERNAME   ALL = (ALL:ALL) ALL
+USERNAME  ALL=(ALL) NOPASSWD:ALL = grant the user the sudo access without any password
+
+
+gitRepositoryUrl = http://github.com/techsriman/groovin.git
+domainName = groovin
+projectName = groovin
+
+
+apache2hosting.sh
+#!/bin/bash
+NO_ARGS=$#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

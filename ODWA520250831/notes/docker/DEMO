@@ -1,0 +1,143 @@
+Docker, kubernetes, jenkins and ELK [6k]
+Timings: 7:10 am - 8:10 am [Saturday/Sunday: 5:30 pm - 6:30 pm or 6:30 pm - 7:30 pm]
+Duration: 3 months
+Fee: 6k [existing sriman sir students: 5k]
+Notes: will be provided including examples on weekly basis
+No videos, no recordings, no youtube. Students are not permitted to record the sessions if we found anyone recording the admission will be canceled without any fee refund.
+
+Pre-requisite:
+Basic of Linux operating system 
+1. file management commands (ls, cd, mkdir, touch, redirector operators >, <, pipe operators)
+2. process related commands (ps, kill)
+3. user management commands (chmod, chown, file permissions)
+4. software package management commands (apt)
+
+shellscripting (optional)
+java programming language (basics) (optional)
+- compiling
+- running
+- deploying the java program on tomcat server
+---------------------------------------------------------------------------------------------------------------------
+Course Content
+--------------
+1. Docker 
+Introduction to containerization technology
+Virtualization vs Containerization
+How does containerization works (internals)
+Introduction docker
+Docker CLI
+Docker Hub Registry
+Docker Images and Layer architecture (layered and stackable)
+Docker directives
+1.1 Image building instruction / Container Instructions
+ - FROM
+ - COPY
+ - ADD
+ - RUN
+ - CMD
+ - WORKDIR
+ - ENTRYPOINT
+ - EXPOSE
+ - VOLUME
+ - ENV
+ - ARG
+ - HEALTHCHECK
+Docker Tag
+publishing and distributing the docker images on the docker hub registry
+docker networking
+How to setup own own docker container registry using jfrog artifactory server
+docker volumes vs bindmounts
+
+docker compose
+
+2. Kubernetes (k8s) (EKS: AWS)
+Introduction to kubernetes why do we need it
+Architecture of Kubernetes
+Kubectl
+Kubeconfig
+Kubernetes Specs
+ 1. pod spec
+ 2. deployment spec
+ 3. service spec
+ 4. loadbalancer
+ 5. ingress
+ 6. replicaset
+ 7. daemonset
+pv and pvc
+Kubernetes Networking
+Types of controllers
+namespaces
+configMap and config secrets
+Health Probes
+Resource configurations
+rolling strategies
+
+3. HELM3
+Architecture
+
+4. Jenkins
+Introduction to Jenkins
+Why Jenkins what is the purpose of it
+How to setup the Jenkins cluster
+Installing and configuring jenkins plugin (maven, docker, kubernetes, git, ansible, terraform)
+configuring global security
+free-style project (older)
+Pipeline
+ 1. declarative pipeline (new) (plugins and shellscripting)
+ 2. scripted pipeline (old) (groovy scripting)
+Building ci/cd through jenkins
+ 1. ansible & terraform
+ 2. docker and kubernetes
+ 
+5. ELK (Microservices applications logging and tracing)
+Elastic search
+Logstash
+Kibana (splunk)
+ 
+Dynatrace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

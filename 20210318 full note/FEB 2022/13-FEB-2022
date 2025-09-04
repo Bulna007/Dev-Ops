@@ -1,0 +1,219 @@
+Security Domain:
+IAM Service
+IAM stands for identity and access management service where we can delegate the access to the services or resource of an aws account to another aws users or resource through IAM service
+Following are the things we do using IAM Service
+1. user
+2. groups
+3. add users to the groups
+4. policies
+5. roles
+
+#1. users
+The account we create initially inorder to use the aws cloud services/resources is called root account, which has unrestricted access to all the services and resources of the aws account. by default the services/resource we provisioning through the account are entitiled to the root account and he or she can use the resources of their own without any restriction.
+	
+In addition to the root account, we can delegate access to the services or resources of root account by adding additional users which are called IAM users to the account.
+	
+While creating an IAM user the aws root account holder has to grant permissions by attaching policies to the users allowing them to access resources/services.
+	
+How to add an IAM User?
+We can add an IAM user by click on add user in IAM Service where in it ask for couple of things as described below.
+	1. IAM user should be provided with an username for identification
+	2. There are 2 types of access we can provide to the IAM User
+		2.1 api access = programmatic access to the aws cloud services/resources
+		2.2 aws console access = user can login into the web console and provision or manage the resources manually
+	The root user can provide either an api access or console access or both to an IAM user while adding the user.
+	if api access has been choosen, the aws cloud platform generates an api key/secret allowing the user to access resources programmatically, but he cannot login into aws cloud console
+	
+	if an console access has been choosen, the root user has to provide a password along with user name allowing to be used for login into cloud console.
+		
+	If the root user has provided the console access to the IAM user then:	
+	3. In the console login page you need to select an option of login as an IAM user
+	Then you will be prompted for aws account id which is an 12 digit number generated at the time of an adding an root user account and username and password.
+	But for an root user you will be asked enter email address with which the root has been registed.
+		
+	4. while adding the IAM user the root user can grant permissions to the resources of aws account through policy binding
+	There are lot of permissions that are pre-built by the aws developers and grouped them together as a policy definition.
+		
+	for eg: an ec2 can have below permissions
+		- list
+		- details
+		- provision
+		- deprovision
+		- start
+		- stop
+		- restart
+	while creating an aws iam user granting the access by attching permissions of a resource/service is quite difficult because the list of permissions could be really length where we need to spend lot of time in picking up the permissions instead of it
+	aws developer has created lot of pre-built policy definitions attached with permissions that are most oftenly used by the people for eg..
+		1. AWSEc2FullAccess = all the operations can be performed on the ec2 instances of the account
+		2. AWSEc2ReadOnlyAccess = this policy is attached withonly the permissions to list, view the ec2 instances of an account
+	depends on the user we are adding and nature of his duties now the root user has to assing a relevant policy that permits him to access the resources/services
+upon clicking on create user, the aws console displays an confirmation page displaying.
+		1. 12 digit account number of the Root User which IAM user has to use for login to identify himself he belongs to which root account.
+		2. apikey/secret = which cannot be downloaded later, incase of lost of key again the root account user has to regenerate the key by deleting the old one
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

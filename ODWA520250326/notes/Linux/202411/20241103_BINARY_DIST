@@ -1,0 +1,68 @@
+How many ways the software packages are distributed in Linux operating system?
+There are 3 ways in which the software packages are distributed
+1. Repository-based packaged software distribution
+	1.1 distro repositories (marketplace)
+	Categories: Main, Universe, Restricted, Multiverse
+	
+	1.2 vendor repositories
+		1.2.1 vendor registries/repositories needs to be registered/add into the Linux operating system 
+		(under: /etc/apt/sources.list or /etc/apt/sources.list.d/)
+			- manually
+			- apt-add-repository
+			
+  1.3 to secure the communication between the linux operating system and repositories, gpg keys are used
+		- download the public gpg keys of the vendors and add them into linux operating system under keyrings. Along with that we need to tag this gpg key while adding the repository
+		
+	1.4 apt tool for managing the packaged softwares that are distributed through repositories
+	
+2. direct downloadable software packages
+	1. dpkg
+	2. apt install -f
+	
+3. ppa repositories
+------------------------------------------------------------------------------------------------------------------------------
+ppa repositories
+ppa stands for "personal package archives". The software manufacturer vendors can publish or distribute their software packages which are under alpha/beta or early release software through ppa repositories.
+	
+The ubuntu has provided an launchpad tool: https://launchpad.net/ubuntu. Here anyone can register and create their own repository and publish their software packages to the world
+
+
+1. How to install the software packages from the ppa repositories?
+We need to add the ppa repository into the /etc/apt/sources.list file as a ppa repository by using the below command
+
+sudo apt-add-repository ppa:repositoryName
+
+after adding the repository we can use apt tool for searching and installing the software package on to the ubuntu operating system machine.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

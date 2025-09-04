@@ -1,0 +1,118 @@
+by default the docker uses htttps for connecting to the docker container registry, so we need to modify daemon.json to ignore https, add this configuration in all the 3 nodes
+
+
+sudo vi /etc/docker/daemon.json
+{
+  "insecure-registries" : ["jcrnode.com"]
+}
+sudo systemctl restart docker
+-------------------------------------------------------------------------------------------
+How many ways we can create kubernetes objects on the kubernetes cluster?
+The kubectl provides 3 ways in creating the kubernetes objects on the cluster
+1. imperative commands
+The kubectl has provided handful of commands taking arguments as input in creating various different kubernetes objects like pods, service, deployments etc. we dont need to write resource spec or manifest in creating the objects on the cluster
+
+kubectl run podName --image=imageName --port=portNo
+The above quickly creates an pod on the cluster with given image and port to be exposed
+
+advantages:-
+	1. quickly we can create an kubernetes object on the cluster without writing any spec
+dis-advantage:-
+	1. since we dont have an resource spec in creating the object, we cannot modify or create another object on a different environment
+
+2. imperative object configuration
+In an imperative object configuration, we write resource spec or manifest describing the information about the object we want to create on the cluster in an ".yml" file and pass the manifest to kubectl asking to perform operations like create, delete etc
+
+kubectl create -f apache-pod.yml
+kubectl delete -f apache-pod.yml
+
+3. declarative object configuration
+There can be group of resources that has to be created on the k8s cluster to achieve the desired state of the system. For each of these resources describing their information we have created manifests
+These manifests has to be applied on the cluster in specific order based on the dependencies of these resources. 
+applying individual manifest by deriving the dependency order of resources takes lot of time, instead use declarative object configuration commands
+
+keep all the resource specifications/manifests within a directory
+configs/
+	pods.yml
+	deployments.yml
+	service.yml	
+pass the directory as an input to the kubectl tool asking to apply these manifests on the cluster
+kubectl apply -f configs/
+kubectl delete -f configs/
+	
+How to write a pod spec and create the pod object on the cluster?
+pod is an smallest entity on the k8s cluster where a group of containers which shares common dependencies like resources(files/mount locations)	or lifecycle are put together to be executed within an pod
+
+ubuntu/apache2:2.4-22.04_beta
+
+apache2-pod.yml
+-----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: apache2pod
+spec:
+	containers:
+		- name: apache2
+			image: jcrnode.com/docker/ubuntu/apache2:2.4-22.04_beta
+			ports:
+				- containerPort: 80
+					name: http
+					protocol: TCP
+
+kubectl create -f apache2-pod.yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

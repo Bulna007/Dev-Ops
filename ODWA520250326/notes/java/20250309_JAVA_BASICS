@@ -1,0 +1,587 @@
+High-level languages
+dis-advantages:
+1. These High-level languages provides low-level instructions/operating system specific instruction-set in writing the programs. So if the developer is writing the programs using these low-level instruction-set the programs will not be portable across the operating system platforms.
+2. The developers has to take necessary precautions while developing the program in-such a way it works across all the operating system platforms which requires additional efforts and developer time in achieving the portability
+3. More time needed for testing and certifying the application across all the operating system platform
+4. The cost of development and testing of the application is high
+5. The software application should be compiled for each operating system platform to generate operating system specific binaries and distribute different binaries pertaining to each platform to the enduser
+--------------------------------------------------------------------------------------------------------------------------------------
+To overcome the above challenges with High-level programming languages, the Platform-Independent high-level programming languages are introduced.
+	
+Platform Independent High-level programming languages (Java/.Net/Scala)
+------------------------------------------------------------------------
+Platform Independent high-level programming languages provides instruction-set that is independent of the operating system platform. This means once we write the program using these languages, those works across any operating system platform.
+	
+Now inorder to execute these programs we need to compile them using the Language Compiler, unlike HLL the PL HLL Compilers compiles the sourcecode and generates intermediate executable code which is independent of the operating system platform.
+	
+Now this intermediate executable code cannot be directly passed to operating system asking to execute, to help us in translating the intermediate executable code into platform executable code, the Platform Independent HLL provides Language Runtime.
+	
+We need to install the Language runtime on our operating system of the computer. Inorder to execute intermediate executable code we need to pass it as an input to the Language runtime, which converts it into operating system platform executable and pass to the underlying operating system to execute it.
+	
+Hence once we compile the Source code, the binary/executable code produced can be carried across any operating system platform.
+Principle: WORA (Write once, run anywhere)	and CORA (Compile once, run anywhere)
+-------------------------------------------------------------------------------------------------------------------------------------
+Java programming language
+Java is an platform independent high-level programming language that is initially developed by Sun Microsystems and later acquired by Oracle. Using java programming language we can develop wide range of applications ranging from desktop to distributed/enterprise applications. Java is an object oriented programming language works based on oops principles.
+	
+Java is distributed in #2 distributions
+1. jdk (java development kit)
+jdk stands for java development kit. It is an software that is distributed by java platform that should be used by the developers who develops software applications using java language.
+	
+jdk comes with development related tools as well as runtime execution tools bundled together allowing the programmers to develop, compile and run the program like
+1. java compiler
+2. java runtime environment
+3. profiler tools
+4. debugger tools
+etc
+
+jdk = development tools  + runtime engine
+
+	
+2. jre (java runtime environment)	
+jre stands for java runtime environment it contains only runtime engine that is required for running the java application that is shipped by the developer. It doesnt have any development tools like compilers/debuggers/profilers etc.
+	
+The enduser has to install JRE on their machine inorder to run java programs that are distributed by developers or organizations.
+-------------------------------------------------------------------------------------------------------------------------------------
+How to install java on the computer?
+Java is distributed as an packaged distribution through ubuntu repositories, so we can install it using apt package manager directly.
+sudo apt update -y
+sudo apt install -y openjdk-17-jdk
+
+To write the java program sophisticated we need additional tools like IDE, for this we can install VSCode editor with java extension/plugin inside it.
+	
+upon installing the java software we can check java installing by running the below command
+java -version
+-------------------------------------------------------------------------------------------------------------------------------------
+How to develop and run a basic java program?
+without using IDE
+
+#1 create the project
+To begin developing a java program we need to create a project directory. It is recommended to follow a directory layout in creating project as below
+
+project (directory)
+|-src
+|-bin
+
+src = In this directory we need to write the sourcecode of the java programs
+bin = In this directory we need to place the intermediate executable code (bytecode) that is generated upon compiling the source code of the java program
+
+#2 write the java program
+Rules:
+1. Every java program should be written in file with extension .java
+2. Every java program must and should start withan class declaration, because java is object-oriented programming language
+3. Java programs begins execution from an Main class, main method. The Main class should be written following few rules
+	1. The Main class filename and the classname should be same
+	2. The Main class should be declared with public access modifier
+	3. Every java class should be written under an package declaration, so that it can be identified uniquely
+	
+$USER_HOME	
+|-PocketChange (project directory)
+	|-src
+    |-com
+		  |-hdfc
+			  |-netbanking
+					|-CurrencyConverter.java
+	|-bin
+    |-com
+		  |-hdfc
+			  |-netbanking
+				  |-CurrencyConverter.class (bytecode/intermediate executable code)
+	
+package com.hdfc.netbanking;
+public class CurrencyConverter {
+	public static void main(String args[]) {
+		System.out.println("Welcome to Currency Converter!");
+		System.out.println("Enter USD amount: ");
+		Scanner scanner = new Scanner(System.in);
+		
+		double usdAmount = scanner.nextDouble();
+		
+		double inrAmount = 87.17 * usdAmount;
+		System.out.println("USD : "+ usdAmount + " is INR: "+ inrAmount);
+	}
+}
+
+How to run the above java program?
+1. compile the java program and generate the bytecode (.class) file
+goto project directory
+cd $USER_HOME/PocketChange/
+$USER_HOME/PocketChange:/> javac -d bin src/com/hdfc/netbanking/CurrencyConverter.java
+
+This will generate an CurrencyConveter.class under the bin directory within the specified package directory layout.
+	
+2. run the java program
+cd $USER_HOME/PocketChange/
+$USER_HOME/PocketChange:/> java -cp	bin com.hdfc.netbanking.CurrencyConverter
+-------------------------------------------------------------------------------------------------------------------------------------
+Jar (Java application archive)
+-------------------------------
+An java application that is developed can be distributed in 2 ways
+1. library or dependency
+2. application
+
+
+1. Library/dependency Jar
+Across the projects we are building, they can be common functionality that could exist. If the developers are building the functionality from scratch, it would take lot of time/cost for development, instead if people can identify such common functionality across the projects and build those functionalities and distribute as libraries then people can reuse them across the projects in quickly building them.
+	
+Java supports reusability by allowing the java components to be distributed as as Jar libraries and reuse them in other applications. That is the core strength of java programming language.
+	
+There are plenty of libraries that are distributed by various different people around the world, most of these libraries are open source and few of them are commercial. So people can quickly reuse these libraries in building the enterprise large-scale java applications.
+	
+2. Application Jar
+Upon developing the java application, the developer has to deliver the application to the enduser. So that the enduser can use that application aspart of his business in serving the business services to the customers. In this case the java application should be distributed as application rather than library.
+	
+In both of these cases the java application is packaged as "jar" and distributed either as library or application.
+	
+What is an jar?
+jar stands for java application archieve. It is an packaging standard introduced or provided by java platform in compressing the contents of .class files and distribute it.
+	
+Aspart of any java application whether it is application/library there are bunch of .class files will be presented. These .class files cannot be distributed or delivered to the customer as an directory since those are not transferrable. so to make these classfiles or bytecode transfferable we need to package them into single packaged file
+	
+So for this we can compress the directory contents into zip/compressed format and can distribute to the customers. But there are problems with this approach
+	1. zip/compression technics are platform specific and will not be portable across the operating system platforms even though java programs are platform portable
+	2. The enduser has to unzip or uncompress the zip file inorder to execute the .class files inside it.
+To overcome these problem, java platform has introduced "Jar" packaging standard.
+		
+Jar is nothing but compressed file attached with metadata information describing the information about the application. There are many benefits are distributing jar over zip format
+1. Jar is platform independent standard defined by java language and works across all the operating system platforms
+2. Java itself has provided an Jar utility or tool aspart of jdk distribution that can be used for packaging and unpackging the jar
+3. The jvm (java engine) can directly read the bytecode or .class files from the Jar file itself, we dont have to unpack to use it.
+-------------------------------------------------------------------------------------------------------------------------------------
+How to build an application jar?
+Let us build a java project with a Main class, main method. upon compiling and generating the class files we can package the class files into application jar.
+	
+$USER_HOME
+|-loanagent
+  |-src
+		|-com
+			|-loanagent
+				|-run
+					|-App.java
+	|-bin
+		|-classes
+		
+package com.loanagent.run;
+public class App {
+	public static void main(String[] args) {
+		System.out.println("Welcome to Loan 365!");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter principle amount:");
+		double principleAmount = scanner.nextDouble();
+		System.out.println("Tenure :");
+		int tenure = scanner.nextInt();
+		
+		double interestAmount = (principleAmount * tenure * 8.65)/100;
+		System.out.println("Interest Amount to be paid : " + interestAmount);
+	}
+}
+cd $USER_HOME/loanagent
+$USER_HOME/loanagent:/> javac -d bin/classes src/com/loanagent/run/App.java
+
+$USER_HOME/loanagent:/> java -cp bin/classes com.loanagent.run.App (to run the java program)
+$USER_HOME/loanagent:/> touch manifest.txt
+
+Main-Class: com.loanagent.run.App
+
+Now package the application as jar below:
+$USER_HOME/loanagent:/> jar -cvfm loanagent.jar manifest.txt -C bin/classes/ .
+
+loanagent.jar
+|-META-INF
+	|-manifest.mf
+		|-Main-Class: com.loanagent.run.App
+|-com
+	|-loanagent
+		|-run
+			|-App.class
+				
+$USER_HOME/loanagent:/> java -jar loanagent.jar
+
+
+Inorder to run the java application, we need to launch the jvm by passing the classpath location where the .class files are located on the Filesystem along with fully qualified name of the java class that is acting as entrypoint in running the application.
+	
+This information is pretty much known to the developer so he can run the application, but when we are delivering this application to the enduser we have #2 problems
+	1. we cannot transfer directory of files to the enduser
+	2. the enduser is not aware of the details of the entrypoint program and how to launch it by typing the command
+	
+To overcome these 2 problems java has introduced executable jar, which means jar itself has all the information regarding entrypoint program in launching the application. 
+The developer while packaging the application into executable jar, along with placing the .class files, he has to package the metadata information about the application like entrypoint program. upon distributing the jar to the enduser
+
+he passes the jar as an input to jvm asking to execute, the jvm reads the information about the entrypoint program from jar metadata and lauching the application.
+	
+executable jar: has entrypoint (or main class) information placed aspart of the metadata of the jar file itself
+-------------------------------------------------------------------------------------------------------------------------------------
+2. How to build an library jar and use it in another java application?
+
+1. Let us create a java reusable project and distribute as library
+$USER_HOME
+|-georouting
+	|-src
+		|-com
+			|-georouting
+				|-bean
+					|-RouteService.java
+	|-bin
+	
+package com.georouting.bean;
+public class RouteService {
+	public double distance(String source, String destination) {
+		SecureRandom random = new SecureRandom();
+		return random.nextDouble(100);
+	}
+}
+
+A library jar doesnt holds the executable information, instead it is a single-packaged file compressed with all the .class files of the application making it transferrable and shippable
+Let us build the library jar:
+
+$USER_HOME/georouting:/> javac -d bin src/com/georouting/bean/RouteService.java
+$USER_HOME/georouting:/> jar -cvf goerouting.jar -C bin/ .
+	
+2. Let us build Cab rental application that uses the library jar: georouting.jar in reusing for distance calculation in generating the trip estimate
+
+$USER_HOME
+|-cabrentals
+	|-src
+		|-com
+			|-cabrentals
+				|-run
+					|-App.java
+	|-lib
+		|-georouting.jar
+	|-bin
+	
+
+package com.cabrentals.run;
+import com.georouting.bean.*;
+
+public class App {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Source : ");
+		String source = scanner.nextString();
+		
+		System.out.println("Destination :");
+		String destination = scanner.nextString();
+		
+		RouteService routeService = new RouteService();
+		long distance = routeService.distance(source, destination);
+		
+		double estimatedTripAmount = distance * 8.25;
+		System.out.println("Estimated trip amount : " + estimatedTripAmount);
+	}
+}
+
+To compile the above class, as it is internally referencing RoutingService class which is part of georouting.jar we need to set the classpath pointing to the jar file as below
+$USER_HOME/cabrentals:/> javac -cp lib/georouting.jar;bin src/com/cabrentals/run/App.java
+$USER_HOME/cabrentals:/> java -cp lib/georouting.jar;bin com.cabrentals.run.App
+manifest.txt
+Main-Class: com.cabrentals.run.App
+Class-Path: lib/goerouting.jar
+$USER_HOME/cabrentals:/> jar -cvfm cabrentals.jar manifest.txt -C bin/ .
+$USER_HOME/cabrentals:/> java -jar cabrentals.jar
+-------------------------------------------------------------------------------------------------------------------------------------
+How to deploy a dynamic java web application?
+Java programming language has provided jee platform/api that comprises of servlet/jsp api for developing web applications. Along with this there are several third-party frameworks or libraries are available in java to developer web applications like Struts and Spring Framework.
+	
+Upon developing the java web application, those must be deployed on a java web server like
+1. Tomcat
+2. Jetty
+3. Netty
+4. Undertow
+5. Weblogic server
+6. Websphere
+7. Glassfish
+
+Inorder to deploy the application on to any of these servers we need to package the application and java has provided "war" packaging standard (war = web application archieve). upon packaging the application we need to place this application into the Web Servers above, this process of placing the application onto the webserver is called "deploying the application"
+	
+The process of deploying the application and running the web server will differ from one server to another and the information about where to place the war file inside the server and how to run the server will be provided by developer. This information is even available with vendor documentation of the server vendor.
+	
+Based on this the devops engineer is responsible for packaging, deploying and running the application
+
+War file
+---------
+WAR stands for Web Application archieve, and the typical directory structure of the WAR files looks below
+
+webroot.war (warfile)
+	|-html
+	|-css
+	|-js
+	|-images
+	|-fonts
+	|-icons
+	|-WEB-INF
+		|-lib
+			|-*.jar
+		|-classes
+			|-*.class
+		|-web.xml (optional)
+
+Typical directory structure of an Java Web application is as below:
+project (directory)
+  |-src
+		|-*.java
+	|-WebContent (public resources)
+		|-html
+		|-css
+		|-js
+		|-images
+		|-fonts
+		|-icons
+		|-WEB-INF
+			|-lib
+				|-*.jar
+			|-web.xml (optional)
+	|-build
+		|-classes
+
+How to package an java web application into war file?
+
+$USER_HOME
+|-railenquiry (project directory)
+  |-src
+		|-com
+			|-railenquiry
+				|-servlet
+	  			|-PNREnquiryServlet.java
+  |-WebContent
+	  |-pnrenquiry.jsp
+	  |-pnrstatus.jsp
+	  |-WEB-INF
+		  |-lib
+		  	|-jakarta.servlet-api-6.1.0.jar
+		  	|-jakarta.servlet.jsp-api-4.0.0.jar
+  |-build
+  	|-classes
+			|-com
+				|-railenquiry
+					|-servlet	
+						|-PNREnquiryServlet.class
+		|-dist
+			|-railenquiry (webroot) (war directory structure)
+				|-pnrenquiry.jsp
+				|-pnrstatus.jsp
+				|-WEB-INF
+					|-lib
+						|-jakarta.servlet-api-6.1.0.jar
+		  			|-jakarta.servlet.jsp-api-4.0.0.jar
+					|-classes
+						|-com
+							|-railenquiry
+								|-servlet	
+									|-PNREnquiryServlet.class
+		
+	
+Inorder to package the project as a WAR we need to compile the java classes within the project
+#1. Compile the sourcecode
+To compile sourcecode we need to set classpath pointing to the Jar files that are in the lib directory along with build/classes also
+$USER_HOME/railenquiry:/> javac -d build/classes -cp WebContent/WEB-INF/lib/jakarta.servlet-api-6.1.0.jar;WebContent/WEB-INF/lib/jakarta.servlet.jsp-api-4.0.0.jar;build/classes src/com/railenquiry/servlet/PNREnquiryServlet.java
+
+#2 package project as war
+To do this create an directory structure under build/dist that exactly represents the WAR file directory structure
+build/dist
+|-railenquiry (webroot) (war directory structure)
+	|-pnrenquiry.jsp
+	|-pnrstatus.jsp
+	|-WEB-INF
+		|-lib
+			|-jakarta.servlet-api-6.1.0.jar
+			|-jakarta.servlet.jsp-api-4.0.0.jar
+		|-classes
+			|-com
+				|-railenquiry
+					|-servlet	
+						|-PNREnquiryServlet.class
+
+WAR file is nothing but a jar packaging file only with a different directory structure and extension, so we can use jar tool itself to package an war file as below
+							
+$USER_HOME/railenquiry/build/dist:/>jar -cvf railenquiry.war -C railenquiry	.	
+	
+	
+#3. deploy the application onto Dynamic Web Server. For java we use apache tomcat server
+1. apache tomcat server is distributed as binary distribution, so we need to download the apache tomcat server (tar.gz) file
+https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.5/bin/apache-tomcat-11.0.5.tar.gz
+
+2. create an middleware directory under $USERHOME
+cd ~
+mkdir middleware
+cd middleware
+wget https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.5/bin/apache-tomcat-11.0.5.tar.gz
+
+3. upon download extract the tar.gz file
+tar -xzvf apache-tomcat-11.0.5.tar.gz
+
+4. below is the directory structure of the tomcat server
+~/middleware:/>
+|-apache-tomcat-11.0.5
+	|-lib
+	|-conf
+	|-webapps (deployment directory) #every webserver has its own deployment directory, here we need place WAR files
+	|-bin
+		|-startup.sh
+		|-shutdown.sh
+	
+this process of copying the WAR files into the webapps/ directory of the tomcat server is called "deployment".
+5. upon deploying the WAR file we need to start the tomcat server by running startup.sh and to shutdown the server we need to shutdown.sh
+There are 2 ways in managing the start/shutdown of the server
+1. Environment variables (during development)
+Instead of going to TOMCAT_HOME/bin directory to start and shutdown the server we can add the TOMCAT directory location to the PATH environment variable. So that we can start/shutdown the server from any Filesystem location on our computer. It will be more convienient during development.
+	
+2. Initd Service (production)
+Since it is binary distribution, it will not be automatically registered as initd service. Since tomcat server should be running infinitely to expose the application to the world, in production env it is recommended create service unit file with all the info and register as initd service in the system.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

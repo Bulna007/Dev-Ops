@@ -1,0 +1,347 @@
+1. How to setup aws account to be used as apart of terraform?
+To provision the resources on a cloud provider using terraform, we need to have an cloud account. if we are working with aws cloud provider, first we need to setup aws account.
+	
+There are 2 types of users in aws:
+1. aws root account 
+2. aws iam user
+
+after setting up the aws root account, we can provision the aws cloud resources using terraform. To start with it, we need to use api key/secret for provisioning the resources, we should not use cloud console username/password.
+	
+Dont use apikey/secret of root account user for provisioning resources using terraform, as the root has unrestricted access to all the services/resources of your account, using them might put us into trouble, instead create an iam user, bind necessary policies and generate apikey/secret and pass it as an input to terraform for provisioning the resources
+
+2. How to pass the aws apikey/secret as an input to terraform cli asking to provisioning resources on the cloud account?
+There are 3 ways we can pass api access_key and secret information to the terraform cli
+#1. shared file approach
+after creating the IAM user and after generating the api access_key and secret we need to pass this information to terraform cli as below
+	1.1 create an ".aws" directory under $USER home of the computer where we are running the CLI
+	1.2 create an file with name "credentails"
+	1.3 we may have multiple aws accounts / aws iam users using them we want to provision the resources, seeding directly the access_key/secret of one user in the credentails file will makes terraform to work with only one user, if we want to switch to a different user we need to again modify the credentials which is an laborious job, to help us the terraform has added "profile" support
+	~/.aws/credentails
+	-------------------
+	[default]
+	[default]
+	aws_access_key_id=accesskey
+	aws_secret_access_key=secretcode
+	
+	
+	
+Now in terraform configuration file we need to specify the profile to be used for connecting and provisioning the resources on the cloud
+----------------------------------------------------------------------------------------------------
+#2. through environment variables
+before running the terraform cli, we need to set the access_key/secret using environment variables, these variables are standardized by the terraform to which we need to populate the values
+
+set AWS_ACCESS_KEY_ID=
+set AWS_SECRET_ACCESS_KEY=
+----------------------------------------------------------------------------------------------------
+#3. write the credentails in terraform configuration file
+we can directly embed the aws access_key/secret inside the terraform configuration file along with resource declarations
+This way of configuring credentails is high-discouraged, since we push the terraform configurations into version control system which will makes the credentails exposed to everyone
+
+provider "aws" {
+	access_key = ""
+	secret_key = ""
+}
+----------------------------------------------------------------------------------------------------
+3. How to provision the aws cloud resources using terraform?
+To provision the infrastructure resources using terraform, we need to declare the resources information that has to be provisioned by terraform for our application by writing terraform configuration file
+There are 2 formats provided by Hashicorp for writing terraform configuration file
+1. HCL = Hashicorp language
+2. JSON = Terraform supports declaration of resources in json format as well
+
+Preferrably use HCL format to write configuration file rather than Json, since HCL is more easy and readable
+
+There are 2 types of declarations we can write in terraform configuration file
+1. resource declaration
+2. datasource declaration
+
+#1. resource declaration
+A resource declaration indicates the cloud resource we want to provision with a cloud provider, for eg if we want to provision an ec2 instance with aws cloud provider we need to write ec2 resource declaration describing the details of the ec2 instance we want to provisio by terraform in configuration file
+
+syntax:-
+resource "TYPE" "NAME" {
+	resource configuration
+}
+
+A resource declaration contains 2 parts
+1. TYPE = indicates the type of resource we want to provision. For every cloud provider the resource type starts with cloudprovider_resourceType
+for eg if we want to provision an ec2 instance on aws cloud provider then the resource Type will be aws_ec2
+
+2. Name = The Name here doesnt refers to the resource we want to create its just a configuration name which we can refer in other resources to express dependency
+
+resource "aws_subnet" "sn1" {
+	vpc_id = aws_vpc.vpc1
+}
+
+resource "aws_vpc" "vpc1" {
+	cidr: "10.0.0.0/16"
+	tags {
+		Name = "healthfitvpc"
+	}
+}
+
+
+
+In the above terraform configuration we are expressing resource dependencies through implicit reference of the other resource by Name, here we specified the subnet "sn1" should be created under vpc1 using resource name as aws_vpc.vpc1
+
+when we apply the above terraform configuration by passing to terraform CLI, the terraform will generates an acyclic graph representing the resources and thier dependencies and creates the resources in the order of their dependencies automatically
+
+Each cloud provider has lot of resource types, memorizing and defining them in terraform configuration file seems to be not pratical, so we always need to refer the provider documentation provided by terraform to write configuration
+
+#2. datasource declaration
+datasource declaration is used for querying the existing resources available on the cloud platform, so that using these references we can create resources
+For eg.. we want to provision an ec2 instances in an existing subnet of a vpc, we can query the information about the existing subnet using datasource declaration, so that we can pass that subnet information to ec2 resource declaration.
+
+resource "aws_ec2" "javaserver" {
+	subnet_id: aws_subnet.sn1
+	type: t2.micro	
+}
+---------------------------------------------------------------------------------------------------
+4. How to write terraform configuration file with resources/datasource declarations?
+In order to provision cloud resources we need to write terraform configuration file and is specific to project for which we are creating infrastructure
+1. create an project directory
+for eg.. ec2 directory
+
+d:\fithealth
+|-src
+	|-main
+		|-java
+		|-resources
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+|-terraform	
+	|-main.tf [4 resources]
+	(or)
+	declare resources in individual configuration files as below
+	|-ec2.tf
+	|-vpc.tf
+	|-subnet.tf
+	|-securitygroups.tf
+|-pom.xml
+2. now we need to write terraform configuration file with resource declaration, the terraform configuration files are written with extension ".tf" only. usually the preffered name of the configuration file is "main.tf" but always we can write the terraform configuration filename as anything
+3. we can either declare all the resources of our project in one single terraform configuration file like main.tf or we can break the resources into several configuration files and place them under one single directory (project directory), so while executing the terraform combines all the terraform configuration files and their resource declarations into single configuration by merging them together and applies
+
+In addition to the resource declarations we need to define provider plugin configuration and credentials information letting terraform provision resources on that cloud provider of that account as below.
+	
+projectdirectory
+d:\terraform\ec2:/>
+main.tf
+--------
+#provider plugin configuration
+terraform {
+	required_providers {
+		aws = {
+			source = "hashicorp/aws"
+		}
+	}
+}
+#provider configuration
+provider "aws" {
+	region = "ap-south-1"
+	profile = "default"
+}
+
+resource "aws_ec2_instance" "javaserver" {
+	instance_type = "t2.micro"
+	ami = "ami-039303"
+}
+----------------------------------------------------------------------------------------------------
+5. How to run the terraform configuration?
+1. goto the project directory in which we place the terraform configuration files
+2. terraform init
+the terraform cli will reads all the .tf files under that directory, merges the configurations and validates. if the configuration is invalid, results in an error. if the configuration is valid, then immediately it downloads the provider plugin and stores under the project directory by creating an directory called .terraform
+
+per machine of a project we need to run once the terraform init for downloading the plugin
+
+3. terraform plan
+before applying the terraform configuration we can verify the infrastructure we want to create results in expected state or not using plan
+The terraform goes to the aws cloud platform and queries all the existing resources and compares with the resource declarations we defined in configuration file based on it describes a plan indicating
+which resources will be newly created, which are modified or destroyed
+if the changes it is going apply looks good, then we can instruct terraform to apply
+
+4. terraform apply
+This will executes the terraform configuration on the cloud provider results in creating the infrastructure
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	

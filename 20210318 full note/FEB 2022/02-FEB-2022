@@ -1,0 +1,245 @@
+There are many hosting options are available in hosting an application like
+1. on-premise hosting
+2. shared hosting spaces
+3. datacenter
+all of the above has their own challenges, difficulties in using their services in hosting an application, to overcome these challenges cloud platforms are introduced.
+	
+What is a cloud provider/platform?
+on-demand supply of computing services to the world is called "cloud". The cloud providers offers 3 types of services.
+	1. iaas = infrastructure as a service
+	2. paas = platform as a service
+	3. sass = software as a service
+	
+#1. iaas [infrastructure as a service]
+----------------------------------------
+The computing resources like
+	- computer/machine (compute)
+	- networking
+	- networking devices (routers, firewalls)
+are provided on-demand to the customer across the world as part of iaas.
+	
+In addition the cloud providers takes care of lifecycle management of these resources/services as well.	
+	1. provisioning
+	2. deprovisioning
+	3. scale-up
+	4. scale-down
+	5. scale-out
+	6. scale-in
+	7. start/stop/restart
+	8. backup
+	9. restore
+of the resources are managed by the cloud provider
+
+The biggest advantage of using a cloud platform is:
+1. on-demand supply of computing resources 
+2. instances can be provisioned based on the requirement with customized shapes
+3. no fixed durations or commited usage of intervals in procuring the resources, we can release any of the services/resource onspot whenever we want
+4. pay-per usage, when we dont use it, we will not be charged
+
+
+#2. paas [platform as a service]
+---------------------------------
+To run a software application on the computer, the hardware or compute machine with operating system itself is not sufficient. we need to install software packages ontop of the compute machine inorder to deploy our applications.
+	
+For eg.. 
+	1. to run a basic java application we need jdk software to be installed
+	2. to run an python application we need to install pip/python sdk on machine
+	3. to run an java web application we need jdk and application server software to be installed and configured on the compute machine to deploy and run our application
+	
+These software packages that are required to be available to deploy and run our software applications are called platform software, which are commonly required for most of the applications of that nature.
+	
+Who has to take care of installing and configuring these platform softwares on the compute instances we procured from iaas of the cloud provider?
+The ops engineer has to be responsible for installing and configuring these platform softwares inorder to make our applications deployable on that environment.
+	
+To install/configure these platform softwares on the compute instances takes lot of time by the ops engineers and more over these are common software packages required for many of the applications of that nature which has to be done many times
+
+In addition managing these software installations and configuring them manually has lot of challenges:-
+	1. In case if we are deploying our application on a multi-node cluster environment, then these platform softwares has to be installed on all of the machines on whom we want to deploy our application which takes more amount of time for setting up the environment
+	2. during the time of scaleout the iaas provider provides an compute instance now the ops engineer has to take care of installing the software packages again on the new node of the clusted and configure accordingly to work with existing instance that is already running.
+	The amount of time and efforts required in scaling-out your application to work as a cluster and cost of implementing is quite high
+	3. during scale-in again we need to reconfigure our cluster setup on the platform software then we need to release the compute instance that also has to be taken care by ops engineer
+	4. backup of the iaas layer is taken care by cloud, but additional your platform softwaer and your application databackups has to be handled by ops enigneer.
+	5. incase of crash the iaas restores the compute instance, but restoring your application state back on that instance has to be taken care by the ops engineer
+	
+Instead of managing the paas software by your own, the cloud providers offers paas services which are ready made software packages installed and configured for usage on top of iaas
+
+Now we can procure instances that are installed with paas software packages directly rather than procuring an bare-metal machine from iaas and installing the paas by our own.
+1. during the provisioning along with iaas the cloud provider installs necessary software packages and configures them to be available for direct usage.
+	
+all the lifecycle operations like
+1. provisioning
+2. deprovisioning
+3. scaleup/down
+4. scaleout/in
+5. backup/restore
+6. stop/start/restart 
+are managed by the cloud provider along with paas layer
+
+
+gcp (iaas)
+amazon (iaas)
+database softwares
+servers
+
+
+	
+oracle 
+|- many platform softwares
+	|-oracle database
+	|-mysql server
+	|-java
+	|-weblogic server
+lacs of software tools are there manufactured by the company
+
+evolved as cloud player
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

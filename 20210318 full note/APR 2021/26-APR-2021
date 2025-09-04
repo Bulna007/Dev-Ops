@@ -1,0 +1,163 @@
+how does the data is being stored on the storage device of a computer system?
+electronic devices are capable of representing the state either as off/on (0/1) only. then how to store the natural language symbolic representation in computer system storage device?
+
+For each symbol give an decimal number (notation) -> then convert the decimal number into binary number (format), so that we can store the symbol in its equivalent binary format.
+
+How do we exchange the data across the computers of the world in an understandable format?
+To standardize the charaters with decimal numbers so that we can use anywhere in the world, character-set encoding standards are introduced. (in-short called "char-set")
+  There are many char-sets support different lanugages as below
+  - ascii (255 characters) (1 byte memory to represent a character)
+  - utf-8 
+  - utf-16
+  - utf-32
+  - unicode
+  - iso-9001
+so while storing the human character data we should use above char-set and convert the data into decimal->binary and represent/store it on the computer system / storage device.
+
+How does the data is being stored on a harddisk or any permanent storage device?
+An harddisk or a storage device comprises of bits/cells into which we can store either a zero or one binary format only. So we can represent the data into binary format (using char-set) and store in the memory bit locations of the storage device.
+  
+We can store any amount of data by represeting in its binary format. if all of the data is scattered and laid on the harddisk bit locations how can we identify which bits of data of which memory locations belongs to what data?
+  
+For eg. we stored 
+  #1 bank account no
+  #2 office address
+both of them are scattered or thrown on the bit locations of the harddisk, while reading the account no how does an operating system  will identify the memory bits belongs to bank account no on storage device.
+  
+To access the underlying data human has to write down the address locations of each of these memory bits on a paper and pass it as input to the computer asking to read. looks like there is no benefit of storing the data, because we can instead directly write the data paper rather than address.
+  
+How to resolve the above problem. That is where Files and Folders are introduced?
+Files and Folders are used for managing and storing the data on the storages devices of the computer.
+  
+Instead of we memorizing the physical bit locations of our data, operating system takes care of storing all of these bit locations into a datastructure called "File".
+File is a datastructure which holds the address locations of the data which it has been stored on the harddisk. File has few attributes to identify and manage.
+  attributes:-
+    - every file has Filename with which we can access the data on the storage device
+    - owner
+    - creation date
+    - modified date 
+    - format
+    - size 
+and many other additional attributes also could be associated to the file.
+    
+Folder:- is used for organizing the group of files that holds related information. Lets say if we have created 1000 files on the computer again browsing the file required would be tedious job similar to memory bits. how to quickly identify and locate a file on the harddisk to access. This where folder are used.
+Folder is a special file but it contains the list of Filenames that are grouped together. so that we can easily navigate.
+  
+How does the data is stored on the computer system storage devices?
+In-terms of Files and organized into Folders.
+------------------------------------------------------------------------------------------------------
+The above methodology of storing the data is seems to be in-efficient. why?
+because we store data in bit locations and we store bit location address in a File, which indicates half of memory is being used for storing address of the data only which endup with lot of memory wastage.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

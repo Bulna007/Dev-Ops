@@ -1,0 +1,6 @@
+- name: magic variables play
+  hosts: all
+  tasks:
+    - name: free mem
+      debug: 
+        msg: "{{ansible_memory_mb.real.free}}"

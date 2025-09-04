@@ -1,0 +1,35 @@
+What are network devices, what is the purpose of them?
+Network devices are used for inter-connecting the computers to form a network. There are 7 types of network devices are there
+1. Repeater
+2. Hub
+3. Switch
+4. Bridge
+5. Router
+6. Firewall
+7. Modem
+
+1. Repeater = Repeater amplifies or regenerate the signals in transmitting the data between 2 distant computers within a network
+
+2. Hub = Hub is used for interconnecting the computers to form a network, using hub we setup star topology. Hub works at Physical layer of the OSI Model, where it receives the datapacket interms of signals and copies to all the ports of the hub. Now every computer upon recieving verifies the datapacket belongs to it or not, if not discard, otherwise use it. The bandwidth consumption is very high incase of Hub and results in poor network speed.
+There are 2 types of hubs are there
+1. Passive Hub = no power, no signal regeneration
+2. Active Hub = powered devices, should be plugged-in. receives the signals amplifies or regenerates and copy to all the ports
+
+3. Switch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  

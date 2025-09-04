@@ -1,0 +1,67 @@
+docker networking
+------------------
+docker supports 5 types of network modes
+1. bridge network
+2. host network
+3. overlay
+4. macvlan
+5. none
+
+1. bridge network
+if we want to create an isolated network on which we want to make group of containers to communicate with each other then we need to use bridge network
+
+by default when we run the docker container without specifying network option, the it will launched under default bridge, which means all the containers on the default bridge will communicate thus making it in-secure
+
+if we are creating an user-defined bridge network in launching the containers we have advantages:-
+	1. dns resolution
+	2. we can customize the configurations and ip tables of the network
+	3. we can attach and detach containers onfly at runtime
+	
+#2. host network
+There is only one host network per docker engine will be created. when we launch an docker container under host network, the container will be running on the network of the host directly. The host-container can communicate with each other
+when we use host network there is no need of port-forwarding, since both are on the same network
+
+#3. overlay
+using the overlay we can make a container of one docker workstation to communicate with another docker container running on a different docker engine/workstation
+
+#4 macvlan
+allows you to attach mac address to an docker container, appearing it as a physical network adapter. The docker engine will routes the network traffic to a specific container based on mac address
+
+#5. none
+no networking
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

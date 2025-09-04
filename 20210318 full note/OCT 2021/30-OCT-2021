@@ -1,0 +1,67 @@
+What is vagrant? what is the purpose of it?
+vagrant is an virtualization workflow automation tool, that can be used by developers, quality assurance enginers and support/operational engineers in developing and delivering the application.
+  
+While working on distributed client-server technology applications, vagrant will greatly help us in setting up the environment in developing and delivering the applications.
+  
+How to setup the client/server environment in developing and delivering the application?
+There are 2 ways we can setup the environment
+1. Both client and server environments can be setup on the local workstation of the developer
+2. Setup a centralized Server environment and let the developer use their workstation as client environment.
+  
+1. Both client and server environments can be setup on the local workstation of the developer
+The developer can setup both server and client environments on his workstation so that he can quickly build the application and verify. but it has lot of problems
+  1.1 to setup both client/server environments on the local workstation of the developer he has to install and configure lot of softwares and tools required for running the application which takes too much amount of time. In not one, the whole team of developers has to go through in installing and configuring the environments to start development which takes huge amount of time.
+    
+  1.2 Different developers of the team has different workstation environments, so the process of installation and configuration of the client/server softwares are different from each of the developers, which makes more complex in setting up env and troubleshooting
+  
+  1.3 There are different roles of developers are there within a team, for eg.. someone would be working on UI and other may be working on database and only few of them might be working on end-end of the application. even then also the whole team should be aware of setting up the environment in developing and testing their changes which makes the people very complex in working on the application and would be even more time consuming also
+  
+  1.4 It is not an production like environment during development we have both client/server setup on workstation itself, where as in production we have server environment running on one machine and client is connected and accessing the application remotely from a different machine, due to the environment differences we might see few issues during production
+  
+  1.5 my code works on my machine. since different developers has different env on which there are working.
+    
+  1.6 A developer cannot work parallely on multiple projects, because he cannot setup multiple environments on a single machine
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

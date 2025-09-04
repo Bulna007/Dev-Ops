@@ -1,0 +1,147 @@
+How does apt tool know the information about software package repositories?
+all the software package repositories information is stored in /etc/apt/sources.list file, so it goes into the sources.list file in pickingup the repository url to download and install software packages.
+  
+Can we add an enterprise repository into the sources.list file?
+Yes we can do that, but usually every enterprise repository provides a public key through which the apt tool has to connect in establishing an encryption channel over communicating with enterprise software repository.
+  #1 download the gpg/apt-key provided by the enterprise software repository vendor
+  #2 install the key file into apt keys: - apt-key add keyfile 
+
+after adding the public key of the repository we can browse the software repository by adding an entry into sources.list
+  There are 2 ways we can add an entry into sources.list
+    1. we can manually edit the sources.list file and make an entry of the repository
+    2. use apt-add-repository utility
+    
+sudo apt-add-repository repositoryUrl
+---------------------------------------------------------------------------------------------------------
+apt stands for advanced packaging tool, used for browsing, download and installing the software packages and managing them.
+  
+apt install packageName = it will ask for confirmation
+apt install -y packageName = dont ask for confirmation, proceed to install directly
+apt install -qq -y packageName = quite install
+apt remove packageName
+apt purge packageName = along with uninstalling, will remove software directories/files on the filesystem
+apt update = to rebuild the repository index
+apt upgrade = upgrades the existing software packages to the latest version
+apt search packageName
+apt list = list down the software packages that are already installed
+apt list --upgradable = before running this we need to run apt update to rebuild repository index
+apt autoremove = identify and automatically remove unused packages
+
+There are 2 other tools are available in linux for installing and managing software packages
+1. apt-get = install/updating
+2. apt-cache = searching within repository index cache
+
+The above 2 tools are ubuntu core tools that are used for managing the software packages of ubuntu.
+  For example for installing, we need to use apt-get, for searching packages we need to apt-cache
+looks like from an enduser perspective it is a bit complex to understand which functionality is provided by which tool and what commands are variable, since multiple commands are there, combining the above 2 tools ubuntu has provided "apt".    
+---------------------------------------------------------------------------------------------------------
+There are 3 ways of installing the software packages in linux.
+1. installable software packages distributed through software repositories
+2. installable software packages directly downloadable
+3. binary distributions
+
+
+
+#2 
+Instead of always publishing the software packages into repositories, the software manufacturing vendors might directly distribute them with a downloadable link as well.
+dpkg = debain package manager = debain package installer tool.
+apt = package manager
+    
+what is the different between package manager tool and package installer tool?
+dpkg is similary to an windows installer, dpkg will not download the software packages from the repository, if you have already a downloaded software package we can simply install it through dpkg.
+
+There are few software packages requires dependent software packages to be available to work for eg..
+  #1 mysql server requires .net framework dependency to install
+  #2 apache maven requires java as dependency software
+  
+dpkg is a software installer which doesnt cares about dependent software package and will try to install the .deb file provided, eventually fails if we need dependency.
+  dpkg has drawbacks
+  1. it doesnt download the software from repo
+  2. cannot resovle dependencies
+  
+but a package manager like apt can do the following
+- it can download software packages from repo
+- it can resolve dependencies as well.
+  
+This is same as rpm installer, yum is package manager in redhat
+From the above we can understand apt tool internally uses dpkg, because ultimate software installer is dpkg.
+
+Now we can install direct downloadable software in how many ways?
+2 ways, either through dpkg or apt 
+#1 dpkg = if you have already downloaded .deb file we can quickly pass it to dpkg -i package.deb, will install it, but doesnt resolve dependency
+
+#2 apt = if your .deb you are installing has dependency, better use apt only
+sudo apt install -f path/packageName.deb
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

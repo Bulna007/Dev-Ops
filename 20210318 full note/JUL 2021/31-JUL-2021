@@ -1,0 +1,64 @@
+Fundamentals of Networking
+1. How does computers are connected over the network
+2. Machine identification on the network
+3. program identification
+4. How does the data transfer takes places over the network
+--------------------------------------------------------------------------------------------------------
+How does computers are connected over the network?
+For any 2 computers to inter-connect and communicate with each other, the computers should have network interface card (nic) to be available. Either it is inbuilt on the motherboard of the computer (default) or we should additional purchase and add it on to the motherboard of the computer as an peripheral component interface (pci) card.
+  
+The NIC card allows us to plugin an RJ45 socket port inter-connecting both the computers on either of the side, so that the physical data can be transffered from one end to the another.  
+
+How many network interface cards can be attached to a computer?  
+A Machine/Computer can have one or more network interface cards attached, allowing them to interconnect directly to more than 1 computer or more computers  
+
+
+How does one computer/machine on the network can communicate with another computer over the network?
+Whenever a computer drops an datapacket over the network, by default the data would be transmitted to all the computers inter-connected with it. Now if we wish to transmit the data only to one of the computer on the n/w, we should have an identification of the computer on the network.
+  
+Looks like every computer on the network in-order to communicate with other requires an identification name/no through which we can talk to the computer. In networking each computer is identified with an no called "ip address", stands for internet protocol address through which a computer system is identified on the network.
+ip address:  
+  1. a computer/machine can have more than one ip address, depends on the number of network interface cards plugged-in to the computer.
+  2. the ip address is a 32-bit length number divided to 4 octets to identify and locate a computer over the network for eg.. 10.1.34.23
+  3. The ip address of a computer is not fixed, everytime when a computer, connects/dis-connects the ip address will be released and will re-assigned to the computer based on availability of ips. So it can be called as logical address, which is computed at the time of connecting the computer.
+    
+Every computer on the network has 2 types of address.
+  1. Logical address = logical address is nothing but the ip address that would be computed when a computer is connected onto the network.
+    
+  2. Physical or mac address = every network interface adapter (card) is written with an mac address by the manufacturer of the hardward. so that we have mac address available. if we have 2 network adapters attached to our computer, we have 2 mac addresses.
+  These mac address are static address and cannot be changed or always remains same for the network interface card. We can change the mac address of nic, using mac software.    
+In order for a computer to communicate with another computer we need to ip address only.
+  
+    
+    
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  

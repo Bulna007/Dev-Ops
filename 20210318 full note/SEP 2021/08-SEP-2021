@@ -1,0 +1,101 @@
+What is virtualization, why do we need to use it?
+We can run mulitple parallel isolated environments on a physical machine using virtualization.
+  
+Virtual Networking
+--------------------
+The Virtual Machine we have created through the help of hypervisor should be connected to the network otherwise we cannot use the machine effectively like
+  1. we cannot download and install any Software on the machine
+  2. we cannot update exiting software applications
+  3. we cannot access the application running within virtual machine by exposing it to external world.
+merely it looks like there is no use of virtualization technology if there is no ability of connecting the virtual machines to the network. So, the support for connecting an virtual machine to the network is provided by every hypervisor vendor.
+  
+To have any computer/machine connected to the network it required network adapter, even if it is an virtual machine required network adapter, the hypervisor while creating the virtual machine should attach an network adapter to the virtual machine facilitating it to connect to the network.
+  
+Every hypervisor will create an virtual or emulated network interface card and attaches to the virtual machine while creating the virtual machine. The hypervisor acts as an routing engine in transferring the data packets between physical adapter and virtual network adapter of the virtual machine.
+  
+By establishing network to the virtual machine we have 5 possibilities of allowing the traffic to the virtual machine as described below.
+  
+1. guest -> host
+2. host -> guest
+3. guest -> external network
+4. external network -> guest
+5. guest -> guest
+
+we dont want always our virtual machine to be opened for everyone for access, it depends on which types of applications we are running based on which we decide the accessibility of the machine
+
+In-Short:-
+  1. every hypervisor vendor should create and attach virtual network interface card to an virtual machine to let it connect to the network
+  2. hypervisor should provide networking modes helping us to choose how does the network traffic should be received/send from a virtual machine
+
+Virtualbox hypervisor networking
+---------------------------------
+When we create a virtual machine with oracle virtualbox hypervisor, by default it creates 8 network interface cards for each guest/virtual machine. we can see only 4 network interface cards through UI and by default 1 enabled. The other 4 network interface cards can be managed through Virtualbox Manager commandline interface tool (vboxmanager)
+
+VBoxManage modifyvm vmname --nic4 networkmode  
+when we install virtualbox hypervisor software the VBoxManage tool is also installed by default through which we can manage the virtualmachine in CLI mode.
+  
+There are six virtual adapters types that can be virtualized using virtualbox
+1. AMD PCnet-PCI II
+2. AMD PCnet-FAST III
+3. Intel PRO/1000 MT Desktop
+4. Intel PRO/1000 T Server
+5. Intel PRO/1000 MT Server
+6. ParaVirtualized Network Adapter
+
+Oracle virtualbox supports 7 networking modes allowing you to establish network for your virtual machine
+1. Not Attached
+2. NAT
+3. NAT Network
+4. Bridge Network
+5. Internal Network
+6. Host-Only Network adapter
+7. Generic Driver
+
+#1. Not Attached
+we have network interface card for our machine, but it is disconnected or not plugged-in. we can use not attached mode for testing our software applications, how they are behaving in case of network dis-connectivity using this mode.
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

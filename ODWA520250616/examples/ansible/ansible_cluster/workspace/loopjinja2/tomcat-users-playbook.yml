@@ -1,0 +1,15 @@
+- name: tomcat users
+  hosts: all
+  vars:
+    users:
+      - username: tom
+        password: welcome1
+      - username: bob
+        password: welcome2
+      - username: smith
+        password: welcome3
+  tasks:
+    - name: generate tomcat-users.xml
+      template:
+        src: tomcat-users.xml.j2
+        dest: ~/tomcat-users.xml

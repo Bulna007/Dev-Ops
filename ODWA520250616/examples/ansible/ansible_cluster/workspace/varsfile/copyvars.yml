@@ -1,0 +1,5 @@
+source_file: secrets.txt
+dest_dir: /home/vagrant/
+owner: vagrant
+group: vagrant
+mode: 0544

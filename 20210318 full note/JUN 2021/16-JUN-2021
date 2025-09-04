@@ -1,0 +1,96 @@
+Why different operating systems/platforms are providing different packaging standards?
+Always a program is compiled to an operating system/platform, so that it runs only on that platform. To distinguish the program works on which platform there are different operating system packaging standards and package managers are introduced, so that enduser can use an appropriate software package based on platform he is using.
+  
+If we compile a program to the Linux kernal, does the program works across all the distros or not?
+Yes ofcourse will work on all the distros, because kernal/system routines are same across all the distros. 
+  
+In such case why do we have different package format and package managers across linux distro?
+Kernal has not provided any sophisticated tools in packaging and installing a software application, this makes the enduser difficult to run an software application on linux, to overcome this problem every distro has defined their own packaging format and package manager tools for facilitating in installing the software.
+  
+  
+  
+The software packages are distributed in linux platform in 3 ways.
+  1. repository distribution software
+  2. direct downloadable and installable packages
+  3. binary distribution
+  
+  
+#1 repository distribution software
+software repositories are the means through which software packages are distributed to the linux operating system users, so that those can discovered and install on linux operating system by end-users.
+  
+Every distro provides their own software package repository, through which people discover and install the software. 
+In addition an enterprise organization which is producing an commercial/opensource software at a very large scale can also maintain their own repository and distribute their software to the customer instead of through distro repository.
+  
+Every organization may not efford in maintaining their own repository so they can distribute their software packages through distro repository itself.
+  
+From the above we can understand, different software packages are being distribtued through software repositories like
+- open source
+- commercial etc
+then how does the people identify or differentiate these software packages.
+  
+To help the endusers in discovering the software packages easily the repositories has introduced categories (repository classification)  of 4 types
+  1. Main = Canonical support free and open source (distro) 
+  2. Universe = Community maintained free and opensource software
+  3. Restricted = proprietory device driver softwares
+  4. Multiverse = Software restricted by copyright and legal issues (commercial)
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

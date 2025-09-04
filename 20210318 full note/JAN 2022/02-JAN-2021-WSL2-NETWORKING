@@ -1,0 +1,119 @@
+How to install WSL2
+1. open powershell on windows 10 under administrative rights
+2. run the below command
+	wsl --install
+3. verify wsl2 is running using the below command
+	wsl -l -v
+4. wsl --shutdown = to poweroff WSL2
+5. wsl = to turn on the WSL2 machine
+---------------------------------------------------------------------------------------------
+How to enable access to WSL2 machine from windows?
+WSL2 is running on virtual either network adapter and it is connected via nat network to windows host. So we have access to Windows 10 Host machine to WSL2 Ubuntu and viceversa as well.
+but windows firewall software (defender) blocks access from Windows 10 to WSL2 by default for security, we need to enable by adding a firewall rule.
+	1. goto windows defender
+	2. click on allow an app or feature through windows defender firewall
+	3. choose from the list file and printer sharing (both: public/private) enable. this should open ping access in bi-directional
+	4. click on advanced settings on windows defender
+	5. now add 2 rules both inbound/outbound allow public access to a port number 22
+this should allow access to ssh connection from WSL2 to host network
+-----------------------------------------------------------------------------------------------
+How to setup ansible?
+#1. we want to run ansible control node server on WSL2 machine
+#2 create 2 virtualmachine on oracle virtualbox which acts as managed nodes to apply the ansible automations
+	1. The 2 ubuntu managed nodes can be provisioned through vagrant
+	2. configure bridge networking bridge the wifi network adapter so that WSL2 can access them
+	3. bind static ip address to each of the managed node vagrant configuration
+	
+Vagrantfile
+-------------
+Vagrant.configure("2") do | config |
+    config.vm.box = "ubuntu/focal64"
+    config.vm.define "node1" do | node1config |
+        node1config.vm.network "public_network", bridge: ["Killer Wireless-n/a/ac 1535 Wireless Network Adapter"], ip: "192.168.1.42"
+        node1config.vm.provider "virtualbox" do | vb |
+            vb.name = "node1"
+            vb.memory = 1024            
+        end                   
+    end
+    config.vm.define "node2" do | node2config |
+        node2config.vm.network "public_network", bridge: ["Killer Wireless-n/a/ac 1535 Wireless Network Adapter"], ip: "192.168.1.43"
+        node2config.vm.provider "virtualbox" do | vb |
+            vb.name="node2"
+            vb.memory = 1024
+        end
+    end
+end	
+
+#3. create WSL2 user "joe" on both the managed nodes to ssh onto those machines as joe
+#4. configure password less access to joe user on both managed nodes
+#5. generate ssh keypair using ssh-keygen on WSL2
+#6. copy public key (eg.. id_rsa.pub) onto both managed nodes to enable ssh access onbehalf of "joe" user
+	mkdir /home/joe/.ssh
+	touch /home/joe/.ssh/authorized_keys
+	copy public key contents manually on to authorized_keys
+	
+we can automate the above process through vagrant provisioners
+
+summary:
+we should be able to ssh from WSL2 to both the managed nodes on "WSL2 User" with password less sudoers access, then we can install vagrant on WSL2 and manage ansible cluster
+
+goto WSL2 Machine and install Ansible Control node software
+1. sudo apt update
+2. sudo apt install -y software-properties-common
+3. sudo apt install -y ansible
+
+verify your ansible installation
+------------------------------------
+ansible --version
+should be able to see the similar output
+
+ansible 2.9.6
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/sriman/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.8.2 (default, Mar 13 2020, 10:14:16) [GCC 9.3.0]
+	
+verify ansible cluster
+-----------------------
+1. add both the managed nodes ip address into /etc/ansible/hosts
+sudo vim /etc/ansibles/hosts
+
+hosts
+192.168.1.42
+192.168.1.43
+	
+2. ansible all -m ping
+we should receive pong message from each host back 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

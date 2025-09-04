@@ -1,0 +1,1017 @@
+Spring Boot
+-----------
+Spring boot is an another module, provided by the spring development team aspart of the spring framework. Every spring module provided by the spring team will help us in building an functional aspect of an application
+a. Spring Core = dependency management
+b. Spring JDBC = persistence aspects of an application
+c. Spring WebMVC = webapplication layer of an application
+whereas when it comes to spring boot, the spring team has provided it to address the non-functional requirements in building an application using spring framework.
+
+Q.) What do you mean by non-functional requirements?
+Ans: There are lots of non-functional requirements are there in building an application using spring framework, one such aspect is:
+Spring framework provides lot of boiler plate logic in quickly building the application, inorder to use or make spring framework work for our application, we need to pour lot of configuration information pertaining to our application to the spring framework, which means we need to fine tune the framework components so that these can be used in building our application.
+
+This aspect makes most of the developers find it very complex to learn or understand, use the spring framework in building the application because we need to know which components are provided by the framework and what are their dependencies inorder to use them. So the developers has to spend lot of time in configuring the framework components and most of the code that is written in configuring the framework seems to be fuss code, means it doesn't have any meaning interms of functionality.
+
+To overcome the above problem in configuring the framework components, the spring boot has been introduced. The spring boot is an module that eliminates most of the fuss logic that needs to be written in configuring the framework components for our application. All that we need to do is just supply the values with which we wanted the framework components to be configured, so that spring boot takes care of configuring the framework components for our application with the values we supplied and makes them available for us to use.
+Thus reduces the overall time and complexity in building an spring framework application when we use spring boot.
+
+There are 6 features are there in spring boot that helps us in building an spring framework based application very quickly
+1. Auto Configurations
+2. Starter Dependencies
+3. Actuator Endpoints
+4. Devtools
+5. Embedded Servlet Container
+6. Spring Boot CLI
+
+1. Auto Configurations
+----------------------
+Auto configuration takes care of quickly configuring the spring framework components as bean definitions with default values within our application based on opinionated-view. 
+If the requirements are diverging from defaults, with minimal efforts by passing the values as input we can fine tune the components to work for our application.
+
+Note: There are lot of components provided aspart of the framework, if auto-configurations takes care of configuring all of the framework components as beans in our application, then we would endup in wasting huge amount of jvm memory even though we don't use them.
+
+So to avoid this spring boot auto-configuration are designed to work on opinionated view.
+For example if we add spring jdbc module as a dependency within our application, along with h2 database as well. By looking at h2 database within the classpath of our application, the auto-configuration will understand that we are using in-memory database in our application and takes care of configuring the jdbc module classes as bean definitions with default configuration.
+
+Here the auto-configuration takes care of configuring the DataSource, JdbcTemplate and PlatformTransactionManager as bean definitions with default values pointing to h2 database of our application, but in case if we are using an mysql-connector-java as a database driver in our application, the spring boot auto-configuration don't know the details of our database in configuring the framework components.
+
+So if the requirements are diverging from the defaults, then the developers can pass the configuration values with which the components should be configured as bean definitons to auto-configurations. So with minimal efforts we can quickly fine tune framework components for our application.
+
+2. Starter Dependencies
+-----------------------
+Inorder to develop an applcation using spring framework, we need to add spring modules as dependencies to our project. Each of the spring modules has inturn other spring modules as dependencies and even they have external third-party libraries also as dependencies. Now we need to identify which modules are dependent on what other modules and external libraries along with their version compatabilities in creating the project for development.
+
+Identifying and compiling these list of dependencies in creating the project is very complex task and takes huge amount of time. Many of the times we endup with exceptions while compiling or running the application.
+
+To overcome the above problems in setting up the project while working with spring framework, the spring boot team has introduced starter dependencies.
+
+Starter dependencies are nothing but maven dependencies/artifacts declared with transitives as spring modules and third party libraries, that can be quickly used in setting up the spring framework project.
+Per each type of technology we use in building the application, spring boot has comeup with one starter. We can quickly add these starters as dependencies into our project, so that we can quickly build applications using spring framework.
+
+3. Actuator Endpoints
+---------------------
+We can build development to production grade deployable application quickly using spring boot actuator endpoints.
+
+When we develop an application, to make it production deployable we need to add additional components/endpoints to ship it to the production for monitoring and managing like:
+a. healthcheck
+b. metrics
+c. logs
+etc.
+
+The development team upon completing the development and QA completed the testing of the application, to make the application production deployable, again we need to spend considerable amount of time in building these non-functional endpoints that are needed for managing/monitoring the application in the production.
+This increases the cost of development and delays the delivery of the application. Since this seems to be a common requirement of having the additional endpoints to make the application deployable, spring boot team has provided actuator endpoints.
+
+The actuator endpoints are nothing but pre-built components that can be embedded or packaged into our application quickly, so that we can have the application deployed into production and manage/monitor it easily without any delay.
+
+4. DevTools
+-----------
+Devtools provides all the tools required for the developers in quickly developing the application.
+For example during the development of the application the developer debug the application and modifies the code for fixing the issues they have encountered. Inorder to reflect the changes that are made, the developers has to restart the servers which kills the developers time in developing the application.
+
+Instead we can take the help of devtools, without the need to restart/redeploy the application onto the server, the devtools takes care of reloading the modified classfiles of the application into the jvm memory reflecting these changes quickly, so that in no time the developers can verify and proceed for further development of the application.
+
+In this way several features/tools are provided by devtools in quickly developing the application.
+
+5. Embedded Servlet Container
+-----------------------------
+While working with spring boot in building an web application, we don't need to setup/configure an standalone servlet container instead the spring boot takescare of deploying and hosting the application aspart of the embedded servlet container that is shipped along with the code itself.
+
+6. Spring Boot CLI
+------------------
+It is used to quickly prototype the application
+--------------------------------------------------
+In-Short:-
+1. Auto-configurations:- These helps in quickly configuring framework components as beans in our application.
+2. Starter dependencies:- These are maven artifacts declared with transitives as spring modules and third party libraries, that can be quickly used in setting up the project.
+3. Actuator endpoints:- These are pre-built endpoints shipped by the spring boot team, which can be embedded aspart of our application using which we can build development to production grade deployable application with no efforts.
+4. Devtools:- All the tools required for quickly developing the applicatio are provided aspart of the DevTools.
+-------------------------------------------------------------------------------------------------------------------------------
+Q. How to develop an spring core application using spring boot?
+Ans:
+#1. Create an project
+Even though it is not mandatory to use an build tool for creating/developing an project while working with spring boot, to get best out of using spring boot, it is highly recommended to use one of the build tools like
+a. ant + ivy
+b. maven
+c. gradle
+
+Let's create an project using maven build tool with the below command:
+D:/Spring/boot:
+mvn archetype:generate -DgroupId=org.boot -DartifactId=bootcore -Dversion=1.0.0 -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+
+with the above command, maven creates an standard maven java project.
+
+#2. Now we need to add the required dependencies in developing the project and building with spring framework. Below are the dependencies that we need to add in pom.xml for developing with spring framework + core module
+2.1 spring-core
+2.2 spring-context
+2.3 spring-context-support
+2.4 spring-beans
+third party libraries like
+2.5 commons-beans
+2.6 commons-logging
+etc
+
+Based on the type of project/technologies we want to use in developing, we need to identify which spring modules and what are their third-party library dependencies along with their versions to be added to the project. It takes lot of time in identifying the right set of dependencies along with compatible versions in setting up the project.
+
+To overcome this problem, spring boot team has provided spring boot starter dependencies. For developing an spring core application, the spring boot team has provided a starter dependency called "spring-boot-starter" that needs to be added as dependency in our pom.xml as below
+
+pom.xml
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.boot</groupId>	
+	<artifactId>bootcore</artifactId>
+	<version>1.0.0</version>
+	<dependencies>	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+	</dependencies>
+</project>
+
+By adding the spring-boot-starter as dependency in our project, it pulls all the basic spring core modules and their third party libraries into the project with their compatible versions as well. So creating an spring boot project would become very easy.
+
+#3. Write your application components inorder to develop the application, but use an recommended package standard as below
+We write our own application components in building the applcation like
+	a. beans
+	b. dao/repositories
+	c. controllers
+	d. services
+
+But it is always recommended to have an base package for our application under which all these components must be placed.
+For eg. in our project we can have the components being organized into packages as below
+
+org.bootcore (basepackage)
+	|-beans
+	|-controllers
+	|-service
+	|-repositories
+	etc
+
+Let us write an bean class into which we inject the values
+
+package com.bootcore.beans;
+@Component
+class LoanApplication{
+	@Value("${applicantName}")
+	String applicantName;
+	@Value("${age}")
+	int age;
+	@Value("${dob}")
+	String dob;
+	@Value("${gender}")
+	String gender;
+	@Value("${occupation}")
+	String occupation;
+	@Value("${annualGrossSalary}")
+	double annualGrossSalary;
+	@Value("${loanType}")
+	String loanType;
+	@Value("${tenure}")
+	int tenure;
+	@Value("${principleAmount}")
+	double principleAmount;
+	
+	//setters and getters
+}
+
+@Component
+class CreditReport{
+	@Autowired
+	LoanApplication loanApplication;
+	@Value("${cibilScore}")	
+	int cibilScore;
+	@Value("${description}")
+	String description;
+
+	//setters and getters
+}
+
+//No sourcecode
+class LoanAnalyzer{
+	LoanApplication loanApplication;
+	public void setLoanApplication(LoanApplication loanApplication){
+		this.loanApplication = loanApplication;
+	}
+	public LoanApplication getLoanApplication(){
+		return loanApplication;
+	}
+}
+
+Inorder to inject the values into the above attributes of the classes, we need to write an properties file as below
+
+appValues.properties
+-------------------
+applicantName=John
+age=22
+dob=22/12/1999
+gender=male
+occupation=DSE
+annualGrossSalary=650000
+loanType=personal
+tenure=36
+principleAmount=200000
+cibilScore=756
+description=qualified
+
+To load the above properties file into environment object of ioc container by writing @PropertySource annotation on an configuration class.
+
+@Configuration
+@PropertySource("classpath:appValues.properties")
+@ComponentScan(basePackages={"com.bootcore.beans"})
+class JavaConfig {
+	@Bean
+	public LoanAnalyzer loanAnalyzer(LoanApplication loanApplication){
+		LoanAnalyzer analyzer = new LoanAnalyzer(loanApplication);
+		return loanAnalyzer;
+	}
+}
+
+4. The main class for our application in which create the ioc container to use the bean definitions
+
+class BootCoreApplication {
+	public static void main(String[] args){
+		ApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
+		CreditReport creditReport = context.getBean("creditReport", CreditReport.class);
+		Sout(creditReport);
+	}
+}
+
+There are few changes in the way we write the code when we are working with spring boot as demonstrated below
+a. Don't write appValues.properties, instead spring boot has provided an pre-defined properties/yaml file called application.properties|yaml in which we define all the configuration values that we want to use in our application.
+Place this properties file under the classpath of our application directly, this means in a maven project it should be placed under src/main/resources directory.
+
+application.properties
+-------------------
+applicantName=John
+age=22
+dob=22/12/1999
+gender=male
+occupation=DSE
+annualGrossSalary=650000
+loanType=personal
+tenure=36
+principleAmount=200000
+cibilScore=756
+description=qualified
+
+To have these properties loaded into environment object of ioc container, we don't need to write @PropertySource annotation. This file will be read and loaded automatically into env object of ioc container by spring boot.
+
+b. We can reuse the Main Application class itself as configuration class instead of writing an seperate configuration class for defining bean configurations, so that we can avoid number of classes being written in our application.
+
+@ComponentScan(basePackages={"com.bootcore.beans"})
+class BootCoreApplication{
+	public static void main(String[] args){
+		ApplicationContext context = new AnnotationConfigApplicationContext(BootCoreApplication.class);
+	}
+}
+
+This application class is usually called as BootApplication class
+i. The standard naming convention used in writing this classname is ApplicationNameApplication.
+for e.g. here the name of the class will be BootCoreApplication.
+
+ii. The Boot Application class should be placed under root package of the project only, here it should be under com.bootcore and all the other components of our application falls under sub-packages of the root in which we have our Application class.
+
+Instead of creating the ioc container by our own using AnnotationConfigApplicationContext, use SpringApplication class for creating ioc container.
+
+Instead of writing @Configuration and @ComponentScan we need to annotate the BootApplication class with @SpringBootApplication annotation.
+
+@SpringBootApplication annotation is equivalent to 3 annotations of spring framework
+a. @Configuration
+b. @ComponentScan = applied with basePackages as .*
+c. @EnableAutoConfiguration
+
+Upon writing @SpringBootApplication on main class
+a. The Application class becomes @Configuration class
+b. It has been annotated with @ComponentScan with basePackages as ".*", which means scan for all the sub-packages under the root package for stereotype annotated classes.
+c. @EnableAutoConfiguration = By default AutoConfigurations are not enabled in spring boot application. To enable them explicitely we need to write @EnableAutoConfiguration annotation on the configuration class. By writing @SpringBootApplication on the main class(Configuration class) we are enabling auto-configurations of spring boot by default here.
+
+Since we are annotating the Main class with @SpringBootApplication annotation, this class is even called as "Boot Application" class.
+ 
+Within the Main class inside the main method, we need to write the logic for creating ioc container. Instead of we writing the code for creating the ioc container using AnnotationConfigApplicationContext or any of the implementations of ApplicationContext interface we need to use SpringApplication provided by spring boot developers in creating the ioc container.
+
+@SpringBootApplication
+class BootCoreApplication{
+	public static void main(String[] args){
+		ApplicationContext context = SpringApplication.run(BootCoreApplication.class, args);
+		CreditReport report = context.getBean(CreditReport.class);
+		sout(report);
+	}
+}
+
+Q.) How does spring boot application works?
+			or
+    What will happen when we call SpringApplication.run(Application.class, args)?
+Ans: The whole eco system of spring boot has been wrapped inside the SpringApplication class, which is the core or fundamental component of Spring Boot. Upon calling the static method run(...) on the SpringApplication class, it performs the below operations aspart of our application -
+
+ApplicationContext context = SpringApplication.run(App.class, args);
+a. Creates an empty environment object
+The SpringApplication class creates an empty environment object.
+
+b. Detects and loads the external configuration of our application into the environment object.
+Environment object = is the part of the ioc container into which we can load the properties/configuration values, so that these can be injected as dependent values into the attributes of the bean definitions.
+
+The application.properties we wrote and placed under the classpath will be loaded into the environment object of the ioc container by SpringApplication.run(...).
+
+c. Prints the Spring Boot Banner.
+
+d. Detects/identifies the type of the application by looking at the project classpath as below
+	i. If spring mvc jars are found under the classpath of the project, it treats the WebApplicationType as "WEB" and creates the ioc container of type AnnotationConfigServletWebServerApplicationContext.
+
+	ii. If spring webflux jars are found under the classpath of the project, it treats the WebApplicationType as "REACTIVE" and instantiates the ioc container of type AnnotationConfigReactiveWebServerApplicationContext
+
+	iii. Otherwise it treates the WebApplicationType as "NONE" and instantiates AnnotationConfigApplicationContext.
+
+e. It instantiates the spring factories(AutoConfiguration classes) and registers them with the ioc container.
+
+f. Invokes the ApplicationContextInitializer.
+
+g. prepareContext
+
+h. refreshContext = instantiates the objects for the bean definitions
+
+i. Executes the CommandLineRunners and ApplicationRunners and returns the reference of the ioc container to the application.
+
+j. During the above stages of executions/operations, the SpringApplication class publishes different types of events indicating the stages at which the application is booting and triggers the listener class allowing us for performing operations in handling those events.
+-------------------------------------------------
+
+Q.) What are starter dependencies, what is the purpose of them?
+Ans: 
+To setup a spring framework project, the developers has to spend lot of time in
+a. Identifying the module dependencies based on the technologies we are using and even their cross module dependencies of the spring framework along with their versions.
+b. These spring framework modules that we are using inturn are dependent on external third-party libraries, the developer has to spend lot time to identify these third-party libraries and their compatible versions in using them.
+
+To overcome the above problem, spring boot team has provided spring-boot-starter dependencies. The starter dependencies works based on maven transitive dependency management technique.
+
+The spring boot development team has identified most commonly used technologies in building the spring projects. For each popular/frequently used technologies they created starter dependencies.
+
+For eg.. people commonly develop web applications, so spring boot team has defined an starter dependency called "spring-boot-starter-web".
+Each starter dependency is nothing but an maven artifact attached with pom file. In the pom file they defined
+a. Spring framework modules that are required to work on that technology along with cross module dependencies with their compatible versions.
+b. Third-party libraries with their compatible versions and published them into maven central repository.
+
+So when we add a spring-boot-starter dependency to our project, all the transitive dependencies defined/declared within the starter will be added to the build/classpath of our project by maven.
+
+For all the starters provided by spring boot team, the artifactId starts with "spring-boot-starter-*".
+There is a base starter provided by spring boot called "spring-boot-starter", which has spring core and the required module dependencies commonly required for all the spring boot starters.
+
+So per each release of the spring framework, the spring boot team provides an relevant release of boot with starter dependencies defined with transitives as the latest release of spring framework modules and their compatible third party libraries.
+
+For eg.. 
+Spring Framework 5, all the modules are at 5.0.0 version like
+ spring-core:5.0
+ spring-aop:5.0
+ spring-jdbc:5.0
+etc
+
+To work with spring framework 5, the spring boot has released an spring-boot: 2.7.0 declaring their starters with transitives as spring-framework 5.0 modules
+spring-boot-starter:2.7.0
+	|-transitivies
+		|-spring-core:5.0
+		|-spring-context:5.0			
+		|-spring-beans:5.0			
+		|-spring-context-support:5.0			
+			etc
+			
+For the new release of spring framework 6, the spring boot team has releases another version: 3.0.0 in which the starter dependencies are declared with transitives as spring framework 6 modules.
+---------------------------------------------------
+
+Q.) How many ways are there in setting up a spring boot project while working with maven?
+Ans: There are 3 ways in which we can setup an spring boot application while working with maven.
+
+1. Directly declare starter dependencies/plugins of spring boot in pom.xml.
+
+1.1. Create an maven-archetype-quickstart project
+mvn archetype:generate -DgroupId=boot.org -DartifactId=directboot -Dversion=1.0.0 -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+
+When we are setting up the spring boot project using maven, we have to do #2 things as below-
+a. Add the starter dependencies into the pom.xml file of our project.
+There are several starter dependencies are provided by spring boot team, per each technology. 
+For e.g. to work with spring core application the spring boot has provided spring-boot-starter. Inorder to work with web application spring boot has provided spring-boot-starter-web.
+
+For all the spring boot starters the gav coordinates will be
+groupId=org.springframework.boot
+artifactId=spring-boot-starter-*
+version=versionNo
+
+Note:- All the spring boot defined starter follows the stadard naming convention of spring-boot-starter-*.
+
+b. Configure spring-boot-maven-plugin within pom.xml under build/plugins section as below
+<plugin>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-maven-plugin</artifactId>
+	<version>3.2.0</version>
+	<executions>
+		<execution>
+			<phase>package</phase>
+			<goals>
+				<goal>repackage</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+
+Spring Boot has provided an maven plugin called "spring-boot-maven-plugin". It is an build plugin that does the job of building our application as boot jar/war artifact.
+
+2. Using spring-boot-starter-parent as parent project
+
+Q.) How to upgrade from one version of the spring framework to newer version while working with spring boot?
+Ans: To upgrade to an newer version of the spring framework we need to upgrade all the starter dependencies and spring boot plugins used in our project. There is always a chance where while migrating we might miss/eft with upgrading one of the starters in the project that might lead to in-compatabilities even while using spring boot.
+In addition it looks like an tidious job of modifying all the starters to migrate.
+To overcome this problem, the spring boot team has defined an parent maven project called "spring-boot-starter-parent".
+
+This is the most commonly and widely used approach in setting up spring boot project while working with maven.
+
+The spring-boot-starter-parent is an another maven project created by spring boot team for each release of the spring boot. In this project, the spring boot team defines all the spring boot starters and boot maven plugin with relevant configurations that can be inherited in creating an project.
+
+spring-boot-starter-parent (maven project)
+|-pom.xml
+  |-packaging="pom"
+	|-dependencyManagement (inheritable)
+	  |-dependencies
+			|-spring-boot-starter-*
+	|-build
+		|-pluginManagement
+			|-plugins
+				|-spring-boot-maven-plugin (inheritable with appropriate configurations)
+
+This project can be declared as an parent project while creating our spring-boot project, so that all the starter dependency/plugin configurations would be inherited and can be reused aspart of our project as below.
+
+bootparent
+|-src
+  |-main
+	|-java
+	|-resources
+|-pom.xml
+
+In our pom.xml we need to declare spring-boot-starter-parent as an parent project so that the parent project configurations would be inherited into our project as below-
+
+<project>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.5</version>
+		<relativePath/>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId/>
+	<artifactId/>
+	<version/>
+</project>
+
+with the above our project is inherited from spring-boot-starter-parent, so while declaring starter dependencies in our project we dont need to specify the version of those dependencies and while configuring the plugin we dont need to specify version and plugin configurations. all these are inherited from parent pom.
+	
+bootparent
+|-src
+  |-main
+	|-java
+	|-resources
+|-pom.xml
+  |-parent
+	  org.springframework.boot:spring-boot-starter-parent:3.1.5
+	|-dependencies
+		|-declare starter dependencies without versions
+	|-plugins
+		|-declare spring-boot-maven-plugin without version & configuration
+
+with this approach we can easily migrate from one version of the spring framework to another version just by modifying the parent project version.
+
+3. Import spring-boot-starter-parent pom dependencies
+In maven we can create a project by declaring only one project as parent, in an organization environment we might have an organization parent project defined with dependencies/plugins configurations which we need to use it as a parent in creating the projects within the organizations. In such case creating our project with parent as spring-boot-starter-parent is not possible so we need to use import pom dependencies approach.
+
+while creating our own project, we need to declare organization project as an parent project, then how to reuse the configurations of spring-boot-starter-parent?
+	
+oracle-esb
+|-pom.xml
+
+
+pom.xml
+-------
+<project>
+	<parent>
+		<groupId>oracle.com</groupId>
+		<artifactId>oracle-middleware-common</artifactId>
+		<version>1.0.1</version>
+		<relativePath/>
+	</parent>
+	
+	<artifactId>oracle-esb</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-parent</artifactId>
+				<version>3.1.5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.1.5</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+---------------------------------------------------
+
+Q.) How to setup a spring boot project by using gradle build tool?
+Gradle is an another build tool which acts as an alternate to the maven and can be used for building java projects.
+There are few short-falss with maven build tool, to overcome with them gradle has been introduced.
+
+Short-falls with maven:
+-----------------------
+a. Maven strictly enforces conventions inorder to build the projects. 
+For eg.. unless we create the project based on standardized directory layout the project cannot be build by maven.
+
+b. Plugins are the only way through which we can accomplish build step or build activity, so customizing the build process is very difficult since we need to create our own plugins.
+
+To overcome the above problems with maven, the gradle build tool has been introduced-
+a. Gradle has defined standardized directory structure in creating the projects, but it is optional to be followed, and incase if we have created the project with a different directory structure, we can customize the gradle to build our projects easily.
+
+b. Different projects requires different build activities to be applied, so the concept of build lifecycle of maven doesn't applies in gradle, instead gradle has provided plugins
+each plugin
+	> enforces conventions
+	> tasks to be applied in building the project
+
+The plugins in maven are completely different from gradle:
+In Maven: A plugin is an basic building block that represents an task or an operation aspart of the build process.
+
+In Gradle: A plugin represents convenstions and tasks that needs to be applied in building a specific type of project
+An operation or a build activity is represented by an gradle task. There are lot of predefined tasks are provided by Gradle.
+
+There are various types of plugins defined by gradle like
+a. java plugin
+b. java application plugin
+etc
+
+So if we apply java plugin then we need to
+1. create the project based on the conventions or directory layout defined by java plugin.
+2. The java plugin applies predefined or standard tasks(like compile, package, etc) in building the java project.
+
+So now based on the type of the project we are developing we need to choose an appropriate plugin in building the project using gradle.
+
+Incase of gradle we need to write build.gradle and it's an build script file in which we need to define
+1. plugins
+2. dependencies
+3. repositories
+using which we need to build the project
+
+Example:
+--------
+Setup an java application project using gradle as below
+
+#1. Create an empty project directory
+for eg. bootgradle
+
+Goto the directory location within the command-prompt and run
+	> gradle init
+
+Upon running the above command, it prompts for series of questions as below:
+
+1.1 Choose the Type of Application:
+1. Basic
+2. Application
+3. Library
+4. Plugin
+
+Choose: 2
+	
+1.2 Language
+  1: C++
+  2: Groovy
+  3: Java
+  4: Kotlin
+  5: Scala
+  6: Swift
+	
+choose: 3
+	
+Split functionality across multiple subprojects?:
+  1: no - only one application project
+  2: yes - application and library projects
+Enter selection (default: no - only one application project) [1..2] 1
+
+Select build script DSL:
+  1: Groovy
+  2: Kotlin
+Enter selection (default: Groovy) [1..2] 1
+
+Generate build using new APIs and behavior (some features may change in the next minor release)? (default: no) [yes, no]
+
+Select test framework:
+  1: JUnit 4
+  2: TestNG
+  3: Spock
+  4: JUnit Jupiter
+Enter selection (default: JUnit Jupiter) [1..4] 4	
+ 
+#2. Upon creating the project the directory structure looks as below
+
+bootgradle
+|-app
+	|-src
+		|-main
+			|-java
+			|-resources
+		|-test
+			|-java
+			|-resources
+	|-build.gradle
+|-settings.gradle
+
+
+"app" is an application module that is added into the project in which we need to write our project sourcecode.
+
+#3. Goto the build.gradle and add the below plugins and dependencies
+
+3.1. Under plugins {} clouser add boot plugin, so that boot conventions and boot tasks will be applied to the project
+plugins {
+	id 'application'
+	id 'org.springframework.boot' version '3.1.5'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+3.2. Add starter dependencies under dependencies clouser
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter:3.1.5'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'com.bootgradle.BootGradleApplication' #main application classname
+}
+
+This finishes setting up springboot project using gradle and we can continue working on the sourcecode of the application.
+
+Q.) How to run the project?
+Ans: Goto the root of the project directory under the terminal/command-prompt and run the below command
+	> gradle bootRun
+	
+Note: gradle clean build = will clean and compile the project
+---------------------------------------------------
+
+Q.) How to distribute a java application to the enduser?
+Ans: The java application is shipped or distributed to the enduser by packaging it into jar packaging format.
+There are 2 types of JARs are there:
+1. Library/Distributable Jar
+2. Executable/Application Jar
+
+1. Library/Distributable Jar
+----------------------------
+These jars contains bunch of class files packaged/compressed and distributed, so that those can be reused in building other java applications quickly.
+
+2. Executable/Application Jar
+-----------------------------
+To ship an java application to the enduser or customer directly, we need to package the java application as an executable jar.
+An executable jar contains all the necessary information pertaining to how to execute the application is written aspart of the MANIFEST.MF and packaged inside the jar itself. So that the enduser/customer don't need to know this information in running the application. He can simply launch the application by using
+	> java -jar jarName.jar
+
+So that the jvm quickly goes to the manifest.mf of the jar we passed and reads all the necessary information in running the application.
+
+To create an jar as an executable jar
+a. The application should have an Main class defined with main() method inside it
+b. The main class should be defined or declared inside the mainifest.mf with attribute as 
+	> "Main-Class": fqnMainClass
+
+When we are building real-world java applications, we use lot of third party librariesas dependencies in reusing their functionality in building the application.
+For eg.. To build an database application we use jdbc api and implementation library(jdbc driver) jars. Unless we have these libraries in classpath, we cannot run the application. 
+
+Let us consider a project with libraries as dependencies and understand how to compile and run the application
+d:\workspace:/>
+	|-tourplanner
+		|-src
+			|-com
+				|-tourplanner
+					|-main
+						|-Application.java
+	|-lib
+		|-mysql-connector-java-8.12.jar
+	|-bin
+		|-com
+			|-tourplanner
+				|-main
+					|-Application.class
+
+we need to set the classpath pointing to the application dependent jars and to the bin directory where the .class files of the application are there to run the application
+
+set CLASSPATH=d:\workspace\lib\mysql-connector-java-8.12.jar;d:\workspace\bin
+java com.tourplanner.main Application
+
+Q.) How to deliver the above application to the enduser?
+Ans: To deliver it to the enduser we need to package the application as an executable jar.
+
+tourplanner.jar
+|-META-INF
+	|-manifest.mf
+		|-Main class: com.tourplanner.main.Application
+|-com
+	|-tourplanner
+		|-main
+			|-Application.class
+
+But we cannot execute theis jar file directly, because our application components are dependent on the third-party library(in the above example mysql-connecter-java-8.12.jar).
+
+Q.) How do we distribute our application as an executable jar along with third party libraries as depenencies?
+Ans: Inside jar file we cannot place another jar, which is not supported by the java platform. The java standard classloaders doesn't support loading the classfiles/bytecode of the classes that are packaged in a jar and embedded inside another jar.
+
+The only way we can distribute an executable jar along with dependent libraries is by placing our application executable jar and dependent libraries into one directory and set the classpath inside he manifest.mf file pointing to all the dependent jars as below
+
+TourPlanner (directory)
+|-tourplanner.jar
+	|-META-INF
+		|-manifest.mf
+|-mysql-connector-java-8.12.jar
+|-commons-logging-1.12.jar
+
+manifest.mf
+-----------
+Main-Class: com.tourplanner.main.Application
+Class-Path: mysql-connector-java-8.12.jar;commons-logging-1.12.jar
+
+Now we can run the application directly using "java -jar tourplanner.jar". But we should be in application jar directory while launching it.There is no single packaged distribution, and we need to zip the application directory with application executable and dependent libraries to ship to the customer which is the biggest drawback.
+
+Q.) So how to package and distribute an executable application as an single distributable file?
+Ans: This is an classic problem and people mitigates it with one alternate solution, since java language has not provided any mechanism to package and distribute executable jar along with dependent libraries.
+
+Fat/Uber Jar:
+-------------
+Package the application classes and the dependent jars into one single jar which is called "one-big jar" or "fat/uber jar" and distribute it to the enduser. For this we need to unpack all the dependent jars and repackage them into one single jar along with our application classes together.
+
+eg: 
+tourplanner
+|-lib
+	|-mysql-connector-java-8.12.jar (unjar)
+	|-commons-logging-1.12.jar (unjar)
+|-bin
+	|-*.class (application classfiles)
+	|-along with this, unjar all the dependent jar classfiles also here
+then package into one single application executable jar file.
+
+There are problems with FAT/UBER Jar approach
+a. Identifying what are the dependent jars and their versions being used in our application is not possible.
+b. It takes lot of time in packaging our application binaries since all the dependent jars needs to be unpacked and should be packaged into one single jar.
+c. Upgrading an dependent library or adding or removing an dependent library requires repackaging the whole application.
+
+The java platform has not provided anny mechanism to package and distribute an java application along with dependent libraries as executable jar.
+
+To overcome these problems in packaging and distributing our application, the Spring Boot has introduced Spring Boot Executable Jar.
+
+The Spring Boot team has come up with #2 aspects in building an boot executable jar as below:
+1. Customized directory layout for the boot executable jar
+2. Spring boot custom classloaders to support loading the classes based on the directory structure of boot executable jar
+
+1. Customized directory structure/layout of an boot executable jar
+Unlike the fat or shadded or uber jar, wherein we unpack and repack all the classes into one-single jar, in boot executable jar the dependent jar files are packaged inside the application jar itself. For this spring boot has defined a different directory structure of the jar to place dependent jars along with our application classes inside it.
+
+bootexecutable.jar
+|-META-INF
+	|-Main-Class: org.springframework.boot.loader.JarLauncher
+	|-Start-Class: fqnMainClass(our application main class)
+|-org
+	|-springframework
+		|-boot
+			|-loader
+				|-Launcher.class
+				|-JarLauncher.class
+				|-WarLauncher.class
+|-BOOT-INF
+	|-classes
+		|-*.class(our application .class files are placed)
+		|-lib
+			|-*.jar(dependent jars of our application are placed)
+
+2. Custom classloaders
+Java standard classloaders don't support loading the .class file of a jar embedded inside another jar, they can only support loading the .class files of an jar itself. To support loading the classes based on the boot executable jar directory structure and even load the .class files of a jar inside the embedded jar, the spring boot team has introduced custor class loaders of their own.
+
+Classloaders: Classloaders are the java classes that are used for loading the bytecode of a .cass file into the jvm memory.
+
+The abstract base classloader of all the boot classloader is:
+a. Launcher.class
+From which 2 more child classloaders are derived
+i.  JarLauncher.class
+ii. WarLauncher.class
+
+Depends on the packaging type of our application one of these classloaders will be used for loading the classes of our application into jvm memory.
+
+The classloaders are the java classes that contain main(...) method inside them and equipped with logic for loading the application classes based on custom directory structure.
+
+
+Q.) How does the spring boot executable jar works?
+Ans: Since it is an executable jar, we can launch the application directly using "java -jar jarName.jar", upon launching the application, the jvm standard classloader loads all the .class files that are directly placed within the application jar. In this case all the spring loader classes are loaded into the jvm memory, then it picks the Main-Class: attribute from manifest.mf and invokes the main() method on that class.
+
+Since JarClassLoader is a custom classloader provided by spring boot with main method, the java standard classloader invokes its main(...) method . The JarClassLoader upon calling will loads all the classes under BOOT-INF/classes and the .class files inside the embedded jars of BOOT-INF/lib directory into the jvm memory.
+Then invokes the Start-Class: specified class in the manifest.mf, thus by launching our application.
+
+Based on the boot executable jar directory structure defined by spring boot team, the developers has to manually package their application and distribute it. Then we can distribute our java application as an single packaged distribution file with dependencies.
+The standard jar utility provided by java doesn't support packaging the application based on boot executable jar, so developers has to manually package the application onto boot executable jar directory structure and it is very difficult job.
+
+To overcome the above problem, the spring boot team has provided spring-boot-maven-plugin.
+Maven plugin: A plugin in maven is the basic building block that performs an action or an operation aspart of the build process. Every plugin has goals.
+
+spring-boot-maven-plugin: performs an action/operation which is packaging the application as an boot executable jar. The spring boot maven plugin has a goal "repackage".
+
+Now within our application we need to configure spring-boot-maven-plugin to be executed by associating it to an phase of the build lifecycle.
+Here incase of boot plugin we associate it to package phase with goal repackage.
+
+Note: If we are creating our spring boot project by declaring the parent as spring-boot-starter-parent, we don't need to configure the spring-boot-maven-plugin with phase/goals as those are already defined in parent. We just only need to declare the plugin to be used in our application.
+
+Q.) How does the spring-boot-maven-plugin works?
+Ans: When we run the maven build, during the package phase after maven-jar-plugin has packaged the application into jar file, the spring-boot-maven-plugin repackage goal will be invoked by the maven system.
+Now the spring-boot-maven-plugin renames the application.jar files into application.jar.original file and then creates as boot executable jar as below:
+a. Goes to the pom.xml and identifies all the dependencies of our application and creates BOOT-INF/lib directory and placed all the dependent jars inside it.
+b. Takes the classes/ from target directory and places them in BOOT-INF/classes
+c. Then adds the springboot classloaders  into the boot jar file directly.
+d. Adds the META-INF/manifest.mf with Main-Class as one of the boot custom classloader either JarLauncher or WarLauncher based on packaging type of our application in pom.xml.
+e. Picks up the Main class of our application based on @SpringBootApplication annotation and writes it as a Start-Class and packages into the boot jar and creates it. 
+
+Now we can directly run the boot executable jar application using "java -jar jarName.jar".
+
+
+Q.) How does the spring boot application will be bootstrapped?
+Ans:
+ApplicationContext applicationContext = SpringApplication.run(BootApplication.class, args);
+Below activities would be performed in bringup the spring boot application:
+1. Creates an empty envirenment object.
+2. Detects and loads the external configuration of our application into the environment object it has created above.
+3. Pring spring boot banner.
+4. Detects the WebApplicationType based on the dependencies in the classpath and creates an appropriate ioc container
+	4.1. If WebMVC jars are found within the classpath, it treats the WebApplicationType as WEB and created AnnotationConfigServletWebServerApplicationContext
+	4.2. If WebFlux jars are found within the classpath, it treats the WebApplicationTypes as REACTIVE and creates AnnotationConfigReactiveWebServerApplicationContext.
+	4.3. Else WebApplicationType as NONE and creates AnnotationConfigApplicationContext.
+5. Instantiates and registers the spring factories(autoconfiguration) to the ioc container.
+6. Invokes the ApplicationContextInitializer.
+7. prepareContext
+8. refreshContext
+9. Invokes the CommandLineRunners and ApplicationRunners o perform startup activities before running the application. Upon completing the Runner it will returns the reference of the ioc container to us.
+10. During the above stages, the SpringApplication.run(..) publishes different types of events indicating the stage at which the application is in while bootstrapping and invokes the appropriate listener if available.
+
+Q.) What are the various different sources from where the SpringApplication class would detect and loads the external configuration of our application into the environment object?
+Ans: 
+1. If we enable devtools module, it looks for a file under $USER_HOME directory with name "spring-boot-devtools.properties" and loads the properties into the environment object.
+2. It looks for an environment variable with name "SPRING_APPLICATION_JSON" containing json object of key/value pair. If found it parses the key/value pair and loads into the environment object.
+3. If WebApplicationType is "WEB" then loads init-params and context-params into the environment object.
+4. All the environment variables are loaded into environment object.
+5. All the JVM system properties are loaded into environment object.
+6. RandomValueSourceProperty that we specified in application.properties.
+7. Detects and loads application.properties or application.yml|yaml from any of the below locations
+	a. Under project root directory.
+	b. Under config sub-directory of the project.
+	c. Under classpath of our application (incase of maven project: it looks under resources/ directory)
+	d. Under config sub-directory of the classpath of our application (incase of maven project: resources/config directory)
+
+Example:
+
+@Component
+@PropertySource
+class Project {
+	@Value("${projectNo}")	
+	int projectNo;
+	@Value("${projectName}")
+	String projectName;
+	@Value("${duration}")
+	int duration;
+	@Value("${teamSize}")
+	int teamSize;
+	@Value("${clientName}")
+	String clientName;
+	
+	//accessors
+}
+
+@SpringBootApplication
+class ExtConfigBootApplication {
+	public static void main(String[] args) {
+		ApplicationContext context = SpringApplication.run(ExtConfigBootApplication.class, args);
+		Project project = context.getBean(Project.class);
+		sout(project);
+	}
+}
+
+
+
+
+
+
+
+29/11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+in cmd
+------
+set SPRING_APPLICATION_JSON={"id":101,"projectName":"UHG","duration":180,"teamSize":10}
+
+in ide
+------
+SPRING_APPLICATION_JSON={"id":101,"projectName":"UHG","duration":180,"teamSize":10}
+
+jvm system properties
+---------------------
+java -Did=103 -DteamSize=12 -DprojectName=admin -Dduration=15 -jar target/bootextconfig-1.0.0.jar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

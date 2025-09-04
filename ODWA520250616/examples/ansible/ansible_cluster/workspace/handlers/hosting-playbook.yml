@@ -1,0 +1,44 @@
+---
+- name: hosting site
+  hosts: all
+  vars:
+    site_dir: quickeats
+    domain_name: quickeats.com
+  tasks:
+    - name: copy site
+      copy:
+        src: sites/{{site_dir}}
+        dest: /var/www/
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      become: yes
+    - name: start apache2
+      service:
+        name: apache2
+        state: started
+      become: yes
+    - name: configure site
+      template:
+        src: site.conf.j2
+        dest: /etc/apache2/sites-available/"{{site_dir}}".conf        
+      become: yes
+      notify:
+        - enable site
+        - restart apache2
+  handlers:
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+      become: yes
+    - name: enable site
+      shell: a2ensite "{{ site_dir }}"      
+      become: yes
+        

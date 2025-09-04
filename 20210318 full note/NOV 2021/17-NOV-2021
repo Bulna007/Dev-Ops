@@ -1,0 +1,86 @@
+What are provisioners, why do we need to use provisioners?
+Provisioners are the automation scripts we want to execute during the boot up the virtual machine to install softwares or configure the env. The vagrant takescare of executing the provisioners by default during the first boot of the Virtual Machine
+
+The virtual machine we provisioned through vagrant basebox doesnt contain required s/w and configurations to run our application, so ops engineer has to manually setup the s/w required and configure which is laborious process, instead he/she can write automation scripts which takes care of installation and configuration activies post provisioning machine.
+  
+After the first boot of the vm, if we have to execute these automation scripts manually to install s/w it becomes difficult job, because people has to understand what scripts has to be executed ,in which order, what commands to be used, what inputs to be passed this makes the usage of automation scripts difficult.
+
+Instead we can declare those automation scripts to vagrant as provisioners asking vagrant to execute upon firstboot of the machine.
+  
+There are multiple types of provisioners are support by vagrant.
+1. ShellScript
+2. File
+3. Ansbile
+4. Puppet
+5. Chef
+6. Salt
+
+We can declare provisioners in Vagrantfile in 2 ways
+1. Inline
+2. Block
+
+#1. Inline ShellScript
+Vagrant.configure(2) do | config |
+  config.vm.box= "ubuntu/focal64"
+  config.vm.provision "provisioner_nm", type: "", inline: ""
+end
+  
+#1 declaring provisioner with name
+config.vm.provision "provisioner_nm", type: "type", inline: ""
+config.vm.provision "installjdk", type: "shell", inline: "sudo apt install -y openjdk-11-jdk"
+
+#2 declare provisioner without name
+config.vm.provision "type", inline: ""
+config.vm.provision "shell", inline: "sudo apt install -y openjdk-11-jdk"  
+
+#3 declare provisioner inline-block
+config.vm.provision "shell" do | javaprov |
+  javaprov.inline: ""
+end  
+
+#4 declare provisioner with extenal shellscript file
+installjdk.sh
+sudo apt update -y
+sudo apt install -y openjdk-11-jdk
+
+config.vm.provision "shell", path: "installJdk.sh"
+config.vm.provision "installjdk", type: "shell", path:"installJdk.sh"  
+  
+config.vm.provision "shell" do | javaprov |
+  javaprov.path: "installJdk.sh"
+end  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

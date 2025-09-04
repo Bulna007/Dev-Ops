@@ -1,0 +1,210 @@
+How to create/provision on eks cluster?
+1. need to have an aws cloud account.
+2. The aws has provided an service called "eks cluster", which is elastic kubernetes service cluster.
+
+The eks is a fully managed service, which provides lot of features/advantages:
+1. The AWS Cloud platform eks service itself takes care of provisioning the master/control plane and workernodes and setup the cluster with CNI network and necessary containerization engine.
+2. The kubernetes takes care of setting up the control-plane and ensures its HA, the eks guarantees the availability of the control plane always
+3. The worker nodes are provisioned and distribtued across the availability zones to ensure the HA of the applications
+
+There are multiple ways we can provision an eks cluster
+1. ekscli interface = it is an command-line tool which is provided by aws through which one-shot we can setup kubernetes cluster
+2. through aws management console = we can manually configure the cluster through various different options
+3. Through automation using terraform or ansible
+
+Let us understand how to setup eks through cloud console
+#1. we need vpc, subnets within the aws account
+There are 3 ways we can host an eks cluster
+	1. public = experimental / development
+	2. private & public = typical organization env, where a team manages kubernetes deployments in non-production environments
+	3. private = production environment
+	
+#2. To provision an eks cluster atleast we need 2 subnets under 2 different availability zones of a vpc for HA
+
+#3. we need to create ecr registry and publish docker images into ecr when we choose private or private/public provisioning
+
+
+#1. setup aws cli on the workstation by following the guide
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+#2. configure api keys in user account
+#3. run aws configure command tosetup aws cli with the account
+awscli configure
+#4. do a docker login to configure the docker cli work with aws ecr as below
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/e1b8q8o4
+
+#5. build the covido application and docker image and push to container registry
+~/workspace/covido
+mvn clean verify
+docker image build -t repositoryURI:1.0 .
+docker image push repositoryURI:1.0
+--------------------------------------------------------------------------------------------
+# provision eks cluster
+There are 2 parts are there in setting up the eks cluster
+1. setup controlplane
+	1. vpc = create an vpc with CIDR
+	2. subnet
+		- 2 public subnets
+		- 2 private subnets
+		
+	3. aws role EKSCluster
+	goto IAM policies choose Role
+	create a role EKSCluster Role with EKSClusterPolicy inside it
+	4. goto Elastic Kubernetes Service and create an cluster
+		1. ClusterName
+		2. VPC
+		3. Subnets
+		4. Role
+		5. Type (Private & Public)
+		6. SecurityGroup
+		
+5. configure kubeconfig file on workstation by running the below command.
+aws eks update-kubeconfig --region region-code --name cluster-name	
+
+aws eks update-kubeconfig --region us-east-2 --name CovidoEKS
+
+2. create worknodes through nodegroup
+#1. we need EKSNodeGroupRole
+AmazonEKSWorkerNodePolicy
+AmazonEC2ContainerRegistryReadOnly
+AmazonEKS_CNI_Policy
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,82 @@
+How many networking modes are supported by vagrant?
+Vagrant supports 3 networking modes
+1. forwarded_port
+2. private_network
+3. public_network
+
+#1 forwarded_port
+it is equal to nat with port forwarding
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64"
+  config.vm.network "forwarded_port", host: 8081, guest: 80
+  config.vm.network "forwarded_port", host: 8081, guest: 80, host_ip: "192.168.0.1"  
+end  
+
+#2 private_network
+A private network of Vagrant maps to host-only network adapter in virtualbox 
+
+There are multiple options available in private_network configuration
+2.1 = DHCP enabled
+Vagrant.configure(2) do | config |
+    config.vm.box="Ubuntu/focal64"
+    config.vm.network "private_network", type: "dhcp"
+end    
+
+2.2 Static IP Address Binding
+Machine#1
+Vagrant.configure(2) do | config |
+  config.vm.network "private_network", ip: "192.168.1.23"    
+end      
+
+Machine#2
+Vagrant.configure(2) do | config |
+  config.vm.network "private_network", ip: "192.168.1.24"    
+end      
+
+Here instead of enabling the dhcp server for generating ip address, we are manually assigning fixed/static ip address. this will facilitate in quick testing of the application in a multi-tier deployments where a db server will give static ip so that in web server application we can hardcode the ip address of the db to test it.
+  
+  
+2.3  Guest to Guest communication for enabling multi-tier application deployments
+Machine#1
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64"
+  config.vm.network "private_network", virtualbox_intnet: "network1", type: "dhcp" 
+end
+
+Machine#2
+Vagrant.configure(2) do | config |
+    config.vm.box="ubuntu/focal64"
+    config.vm.network "private_network", virtualbox_intnet: "network1", type: "dhcp"
+end    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

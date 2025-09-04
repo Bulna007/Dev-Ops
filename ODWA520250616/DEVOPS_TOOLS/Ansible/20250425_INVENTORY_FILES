@@ -1,0 +1,237 @@
+What is an Ansible inventory file, how to write an ansible inventory file?
+The Ansible control node server is stateless, it does not hold any information pertaining to the managed nodes of the ansible cluster. so, inorder to apply the code automation like executing a module or playbook on the nodes of the cluster, the devops engineer has to provide the list of managed nodes on the cluster by writing inventory file
+
+The default inventory file the ansible control server looks at is /etc/ansible/hosts file. In this file we need to declare the list of hosts/managed nodes of the cluster on whom we want to apply the modules/playbooks. The ansible control node server inorder to execute the modules/playbooks will look into this file for identifying the nodes of the cluster
+
+Instead of using default inventoryFile, we can create our own inventoryFile with list of managed nodes and pass it as an input to the control node server using -i switch while running the playbook/module as below
+
+syntax:-
+ansible [group] -i inventoryFile -m module -a args
+
+There are 2 forms of writing an inventoryFile are there
+1. INI format
+2. YAML format
+
+1. INI
+INI file is an plain text file used for configuration purposes. The name comes from "initialization" or often used for initialization settings for an software application. These files holds the information in key=value pair format
+In the hosts INI file we can declare each host/managed node in a new file as shown below
+
+$HOME/hosts
+-------------
+192.168.10.12
+192.168.10.13
+    
+ansible all -i $HOME/hosts -m ping
+
+2. YAML 
+$HOME/hosts.yml
+----------------
+all:
+  hosts:
+    192.168.10.11:
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+    192.168.10.12:
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+
+(or)
+          
+all:
+  hosts:
+    javaserver1:
+      ansible_host: 192.168.10.12
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+    javaserver2:
+      ansible_host: 192.168.10.13
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+
+ansible all -i $HOME/hosts.yml -m ping
+
+In an organization there can be lot of machines assigned to different projects, always we dont want to apply the modules or playbooks across all the servers in the organization. so instead of using default inventory file it is recommended to use project specific inventory file and pass -i switch passing the inventoryFile in executing the modules/playbooks
+-----------------------------------------------------------------------------------------------------------------------------------
+
+As per the above recommendation, for each project we need to have project specific inventory declared with managed nodes related to that project. But having an project specific inventory file may not be helpful, because all the servers alloted to the project may not be same, different managed nodes are installed with different software utilities and packages. So we need to run different code modules on different groups of nodes in the cluster
+
+To apply automation on subset of nodes, we can define groups, where we can group similar type of machines so that we can apply code automation easily.
+There are 2 default groups are there in the inventoryFile
+1. all group
+2. ungrouped
+
+1. all group = all the hosts declared in the inventoryFile are part of all group
+2. ungrouped = If there is any node/host that is not part of any group, then it is assigned to ungrouped.
+  
+How to declare groups in inventoryFile?
+$USER_HOME/hosts
+192.168.10.11
+[dbservers]  
+192.168.10.12
+192.168.10.13
+[javaservers]  
+192.168.10.14
+192.168.10.15  
+
+In the above hosts file we have 5 nodes and 4 groups
+1. all group which has all the nodes defined in the inventory file
+2. ungrouped = we have only 1 node: 192.168.10.11
+and rest of all are part of dbservers group and javaservers group  
+
+YAML:
+all:
+  hosts:
+    192.168.10.12:
+      ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+  children:
+    dbservers:
+      hosts:
+        192.168.10.13:
+          ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+    javaservers:
+      hosts:
+        192.168.10.14:
+          ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+        192.168.10.15:
+          ansible_ssh_private_key_file: ~/.ssh/ansiblekey
+----------------------------------------------------------------------------------------------------------------------------------
+Inventory File Variables
+------------------------
+Variables acts as placeholders or reserved/named memory locations in which we can store values and refer them through the variableName. By using variables we can easily maintain the program, incase if we need to change the value being used in the program we dont need to change all the places where we are using the value instead we can change the value assigned to the variable to quickly get that reflected everywhere.
+  
+We can define variables and attach to either host, group or global level within the inventoryFile. These variables acts as input while executing playbook/module on the managed nodes of the cluster. So we can avoid hardcoding the values inside the playbook and run the playbook by passing different values from these variables.
+  
+There are 3 levels at which we can define variables in inventory file:
+1. global variables
+These are the variables that will be passed to all the modules/playbooks that are executed against the all hosts/groups defined in the inventoryFile
+  
+2. host-level variables
+These variables are defined/attached specific to the host only. So that these variables will act as input to the playbook/module while it is running on the specific host only. ideally configuration values, lables that classified the machine/usage are defined as host-level variables
+
+3. group-level variables
+Group level variables are defined for a group of hosts whose values are common for the entire group
+
+There are 2 types of variables are there in ansible
+1. ansible pre-defined variables
+2. custom/user-defined variables
+
+1. ansible pre-defined variables
+These variables are the ones for which ansible has attached pre-defined meaning to them. Through these variables we change the behavior of the control node server and how it has to connect to the managed nodes or how it has to execute the playbook or modules on the managed of the cluster. All these pre-defined variables are prefixed with "ansible_"
+  
+1. ansible_host
+2. ansible_port
+3. ansible_user
+4. ansible_password
+5. ansible_ssh_private_key_file
+6. ansible_become
+7. ansible_become_user
+8. ansible_become_password
+9. ansible_shell_type
+
+2. user-defined variables
+In addition to the pre-defined variables we can define our own variables attached with values within the inventoryFile, so that these variables will be passed as input while executing the playbooks or modules on the nodes of the cluster
+
+How to declare these variables?
+1. INI
+1.1 host-level variables
+hosts
+-----
+192.168.10.12 variableName=value1 variableName=value2
+
+1.2 group-level variables
+[dbservers]
+192.168.10.12
+192.168.10.13
+  
+[dbservers:vars]
+variableName=value
+variableName=value
+
+1.3 global variables
+[all:vars]
+variable1=value1
+variable2=value2
+
+2. YAML
+1. global, host-level & group-level variables
+
+all:
+  hosts:
+    192.168.10.12:
+      variableName=value
+      variableName=value
+  vars:
+    variableName=value
+  children:
+    dbservers:
+      hosts:
+        192.168.10.13:
+          variableName:value
+      vars:
+        variableName=value
+        variableName=value
+----------------------------------------------------------------------------------------------------------------------------   
+Ansible host aliases
+--------------------
+In addition to the host addresses/ip addresses, we can assign an alias name to each host defined in the inventory file, that makes it more readable and easy to debug.
+          
+hosts
+-----
+dbServer ansible_host=192.168.10.12
+javaServer ansible_host=192.168.10.13
+           
+debug module:
+To explore the variables in inventory file we can use debug module for printing the variable values while executing on the ansible nodes. its similar to echo command.
+
+ansible all -m debug -a "msg='good morning'"
+
+hosts
+------
+[all:vars]
+project_name=netsecure_banking
+
+[all]
+javaServer1 ansible_host=192.168.10.12 ansible_ssh_private_key_file=~/.ssh/ansiblekey software_version=java17
+
+[dbServers]
+dbServer1 ansible_host=192.168.10.13 ansible_ssh_private_key_file=~/.ssh/ansiblekey software_version=mysql8
+dbServer2 ansible_host=192.168.10.14 ansible_ssh_private_key_file=~/.ssh/ansiblekey
+
+[dbServers:vars]
+software_version=oracle19c  
+ansible all -i hosts -m debug -a "msg='software version: {{ software_version }} , project: {{ project_name }}'"
+
+hosts.yml
+---------
+all:
+  hosts:
+    javaServer1:
+      ansible_host: 192.168.10.12
+      software_version: jdk17
+  vars:
+    project_name: netbanking
+  children:
+    dbServers:
+      hosts:
+        dbServer1:
+          ansible_host: 192.168.10.13
+          software_version: mysql18
+        dbServer2:
+          ansible_host: 192.168.10.14
+      vars:
+        software_version: oracle19c
+...
+-----------------------------------------------------------------------------------------------------------------------------
+Host Ranges
+-----------
+In an organization we might have lot of hosts with similar host patterns either with a specific naming convention or ip address range. To avoid adding each host in the inventoryFile manually we can use host patterns/ranges
+
+For eg.. we have java servers starting for ip address: 192.168.10.12 to 192.168.10.25. Instead of defining 14 managed nodes with same duplicate configuration defined in the inventory file we can make use of host ranges as below
+
+hosts
+-----
+[javaServers]
+javaServers[1:13:1] 192.168.10.[12:25:1] ansible_ssh_private_key_file=~/.ssh/ansiblekey
+
+hosts.yml
+---------
+all:
+  hosts:
+    192.168.10.[12:25:1]:
+      ansible_ssh_private_key_file=~/.ssh/ansiblekey

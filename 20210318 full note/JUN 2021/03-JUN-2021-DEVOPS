@@ -1,0 +1,179 @@
+In Linux we can give permissions for accessing the File/Folder of user as below.
+#1 We can manage and assign permissions to 3 groups of users
+  - owner = owner refers to the user who has created that file
+  - group = the group to which that file belongs to, to those group of users we are assigning permission to access
+  - others = who are not within user/group of File/Folder
+  
+#2 How many types of permissions are there?
+  There are 3 types of permissions we can in Linux
+  1. Read     = r
+  2. Write    = w
+  3. Excecute = x
+The above permissions can be given to all 3 groups of users.
+  
+What is the meaning of above permissions for a ?
+  File:
+    Read = we can see the contents of the File
+    Write = we can modify the contents of the File
+    Execute = If given a program user can run it
+  Folder:
+    Read: we can list the files/folders inside it using (ls)
+    Write: We can add/remove/copy/move a file or folder into it
+    Execute: we can cd into that folder
+
+By default a user dont need to specify the permissions with which a File/Folder should be created, Linux will derive default permissions based on a variable umask.
+
+Can we change the default permissions of a File/Folder in Linux?
+Yes, we can by using chmod shell utitlity.
+      
+chmod = stands for change the mode of access, is used for changing the permission for a File/Folder after creating. chmod allows us to modify the permissions in 2 ways.
+  1. octal notation
+  2. symbolic notation
+  
+#1 octal notation
+For each permissions the chmod has given weighted number as shown below.
+  READ    =   4
+  WRITE   =   2
+  EXECUTE =   1
+             --- 
+              7=max permission should be applied to owner,group,others
+total numbers are 0 - 7 = 8 (octal)              
+based on permission we want to grant we need to compute the total weighted value of the permissions and pass to chmod for all the groups of users.
+  
+Important points to keep in mind while using chmod:-  
+1. always reset the permissions replacing the existing permissions.
+2. we always has to pass permissions to all the 3 groups of users while changing.  
+  
+syntax:-
+  chmod owner group other filename
+  chmod 7     6     4     filename => chmod 764 filename
+  
+
+u: joe, pg: devops
+memories.txt [rw-r--r--] (owner: joe, group: devops)  
+
+  
+pgGrouplevel:- u: bob, pg: devops => rw
+groupLevel:-   u: mike, pg: mike, others: devops => rw
+others:-       u: blake, pg: blake (he is not owner and not same group of file, so called others) => r
+
+
+
+u: joe, g: devops
+docs [rwxr-xr-x] (owner: joe, group: devops)
+ |-meeting-notes.txt [rw-r--r--]  
+ |-important.txt [rw-r--r--]
+ 
+how to give write access to the group on folder docs/
+chmod 775 docs/ = when we change permissions for a directory it only changes the permission of directory not the files inside the directory.
+  
+output:-
+u: joe, g: devops
+docs [rwxrwxr-x] (owner: joe, group: devops)
+ |-meeting-notes.txt [rw-r--r--]  
+ |-important.txt [rw-r--r--]
+
+How to change permissions along with folder, even the subdirectories and files inside it?
+chmod -R 774 docs/
+-R indicates recursively apply these permissions to docs also and subdirectories and files inside it.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

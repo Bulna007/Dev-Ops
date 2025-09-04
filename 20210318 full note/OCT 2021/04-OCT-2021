@@ -1,0 +1,6 @@
+Symmetric Encryption = single key is being used by sender/receiver for encrypting and decrypting the messages.
+  
+Asymmetric Encryption = There is a pair of private/public key will be used for encryption and decryption. We cannot compute each of the keys from others. The data encrypted through public key can be decryptable through private key only.
+
+Hashing = hashing is a function which computes a unique number based on the input data we supplied to the function, it is used in general for data integrity. 
+----------------------------------------------------------------------------------------------------------

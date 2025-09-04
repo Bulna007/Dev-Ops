@@ -1,0 +1,299 @@
+What are data representation standards, why do we need them?
+YAML
+YAML stands for Yet (Ain't) another markup language which means not an mark-up language. It is another text-based data representation standard used for storing and representing the data similar to XML or Json formats.
+                     
+YAML stores or represents the data in structured format attached with semantics to the data. YAML greatly relies on indentation to represent the data.
+                     
+DataTypes in YAML:
+YAML supports built-in primitive datatypes as below
+1. string
+any sequence/set of characters is consider as String. To represent a string we dont need to enclose them in double-quotes
+
+2. number
+any digits are consider as numbers
+
+3. Boolean
+true, false, TRUE, FALSE, yes, no
+
+YAML supports 2 types of data structures
+1. Mappings (Dictionaries) = is an object type data structure that holds or represents key/value pair data
+2. List (Sequences)        = holding collection of values
+
+Let us explore representing the data in YAML format
+1. XML
+<ticket>
+  <pnrno>pa939</pnrno>
+  <source>Hyderabad</source>
+  <destination>Banglore</destination>
+  <journey-dt>2025-05-30</journey-dt>
+  <reservation-class>sleeper</reservation-class>
+  <price>550</price>
+</ticket>
+
+2. Json
+{
+   "ticket": {
+      "pnrno": "pa939",
+      "source": "hyderabad",
+      "destination": "banglore",
+      "journey-dt": "2025-05-30",
+      "reservation-class" : "sleeper",
+      "price": 550
+    }
+}
+                     
+3. YAML
+---
+ticket:
+   pnrno: pa939
+   source: hyderabad
+   destination: banglore
+   journey-dt: 2025-05-30
+   reservation-class: sleeper
+   price: 550
+...                     
+                     
+
+examples:
+1. XML
+<groceries>
+  <item>ground nuts</item>
+  <item>cooking oil</item>
+  <item>chilli powder</item>
+</groceries>
+
+2. JSON
+{
+   "groceries": ["groundnuts", "cooking oil", "chilli powder"]
+}
+
+3. YAML
+groceries:
+   - ground nuts
+   - cooking oil
+   - chilli powder
+
+#2
+<tour-package>
+  <package-name>Northern India</package-name>
+  <days>12</days>
+  <boarding-station>Hyderabad</boarding-station>
+  <itenary>
+    <day1>
+        <place>1</place>
+        <place>2</place>
+    </day1>
+  </itenary>
+  <price>3</price>
+</tour-package>
+
+JSON
+{
+   "tour-package": {
+      "package-name": "Northern India",
+      "days": 12,
+      "boarding-station": "Hyderabad",
+      "itenary": {
+         "day1": {
+	    "place": [1, 2]
+         }
+      },
+      "price": 3
+   }
+}
+
+YAML:
+tour-package:
+  package-name: Northern India
+  days: 12
+  boarding-station: Hyderabad
+  itenary: 
+    day1:
+      place: 
+        - 1
+        - 2
+  price: 3
+
+#3
+<person>
+  <first-name></first-name>
+  <last-name></last-name>
+  <age></age>
+  <gender></gender>
+  <address>
+    <addressLine1></addressLine1>
+    <addressLine2></addressLine2>
+    <city></city>
+    <state></state>
+    <zip></zip>
+    <country></country>
+  </address>
+</person>
+
+JSON
+{
+   "person": {
+      "first-name": "john",
+      "last-name": "snow",
+      "age": 22,
+      "gender": "M",
+      "address": {
+         "addressLine1": "phase1",
+	 "addressLine2": "hj",
+	 "city": "pune",
+	 "state": "MH",
+	 "zip": 411057,
+	 "country": "India"
+      }
+    }
+}
+
+YAML:
+person:
+  first-name: john
+  last-name: snow
+  age: 22
+  gender: M
+  address:
+    addressLine1: phase1
+    addressLine2: hj
+    city: pune
+    state: MH
+    zip: 411057
+    country: India
+
+#4
+XML:
+<parcel>
+  <parcel-no>p38</parcel-no>
+  <source>source1</source>
+  <destination>dest1</destination>
+  <booking-dt>2025-04-30</booking-dt>
+  <weight>394</weight>
+  <amount>494</amount>
+  <sender>
+    <sender-name>person1</sender-name>
+    <contact-no></contact-no>
+  </sender>
+  <receiver>
+    <receiver-name>person2</receiver-name>
+    <contact-no></contact-no>
+  </receiver>
+</parcel>
+
+JSON
+{
+   "parcel": {
+      "parcel-no": "p38",
+      "source": "pune",
+      "destination": "hinjewadi",
+      "booking-dt": "2025-07-17",
+      "weight": 394,
+      "amount": 494,
+      "sender": {
+         "sender-name": "person1",
+         "contact-no": "893402442"
+      },
+      "receiver": {
+         "receiver-name": "person2",
+         "contact-no": "39824718"
+      }
+   }
+}
+            
+YAML:
+parcel:
+  parcel-no: p38
+  source: pue
+  destination: hj
+  booking-dt: 2025-07-17
+  weight: 394
+  amount: 494
+  sender:
+    sender-name: person1
+    contact-no: 938479243
+  receiver: 
+    receiver-name: person2
+    contact-no: 938074184
+
+#5.
+JSON:
+ticket.json                     
+{
+  "pnrNo": "p9383",
+  "source": "",
+  "destination": "",
+  "journeyDate" : "",
+  "passengers": [
+    {
+      "passengerName": "",
+      "age": 23,
+      "gender": "male",
+      "mobileNo": "",
+      "coach": "",
+      "berth": 3
+    }, 
+    {
+      "passengerName": "",
+      "age": 23,
+      "gender": "male",
+      "mobileNo": "",
+      "coach": "",
+      "berth": 3
+    }
+  ],
+  "price": 3844.3,
+  "status": "CONF"
+}
+
+YAML:
+pnrNo: p9383
+source: pune
+destination: mumbai
+journeyDate: 2025-07-19
+passengers:
+  - passengerName: abc
+    age: 23
+    gender: male
+    mobile: 87432903432
+    coach: b2
+    berth: 3
+  - passengerName: pqr
+    age: 23
+    gender: male
+    mobile: 87232903432
+    coach: b4
+    berth: 21
+price: 3844.3
+status: CONF
+
+#6.
+JSON:                     
+[
+  {
+    "playerName": "sachin",
+    "age": 39,
+    "gender": "Male",
+    "rank": 3,
+    "matchesPlayed": 39
+  },
+  {
+    "playerName": "dhoni",
+    "age": 36,
+    "gender": "Male",
+    "rank": 38,
+    "matchesPlayed": 39
+  }
+]    
+                     
+YAML:
+- playerName: sachin
+  age: 39
+  gender: male
+  rank: 3
+  matchesPlayed: 39
+- playerName: dhoni
+  age: 36
+  gender: male
+  rank: 24
+  matchesPlayed: 30 

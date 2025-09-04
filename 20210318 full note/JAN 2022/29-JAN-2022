@@ -1,0 +1,144 @@
+Ansible Roles
+-------------
+We can distribute ansible automcation scripts in a standardized and reusable way to the people by using Ansible Roles
+
+Each Ansible Role is defined into a Standard directory structure
+role (directory)
+|-defaults
+	|-main.yml
+|-tasks
+	|-main.yml
+|-handlers
+	|-main.yml
+|-vars
+	|-main.yml
+|-files
+|-templates
+|-tests
+	|-main.yml
+|-meta
+	|-main.yml
+
+The ansible roles has 7 directories inside it where in each of these directories contains main.yml file repectively apart from files and templates directory. Not all the directories are mandatory, whichever we want to use as part of our automation we can create those directories and get rid of the others.
+	
+Let us explore the directories and contents that has to be placed inside them
+1. defaults = in which main.yml file would be presented and should declare all the variables with default values with which we want to use them as part of our playbook automation
+
+2. tasks = all the tasks we want to execute as part of our automation must be defined under main.yml of the task directory. 
+	
+main.yml
+- import_tasks: install-apache.yml
+- import_tasks: copy-configure-site.yml
+- import_tasks: enable-site.yml
+- import_tasks: reload-apache2.yml
+
+install-apache.yml	
+- name: install apache2
+	module:
+
+copy-configure-site.yml
+- name: copy site
+	module:
+- name: configure apache2 conf
+	module
+
+enable-site.yml
+enable site
+
+reload-apache2.yml
+- reload apache2
+
+if want we can breakdown the tasks definitions into multiple yaml files again kept in tasks directory only and can import them in main.yml and execute them together to encourage readability.
+	
+3. handlers = the handlers that has to be executed based on a notification are declared inside main.yml of handlers directory
+
+	
+4. files = the files that are reffered as part of the modules to be used are declared under files directory
+5. templates = all the jinja2 templates that has to be processed and copied on to the fleet servers are placed under templates directory
+6. vars = The variables that are used as part of the playbook modules are defined within vars directory, which can be overriden while execution
+7. meta = the metadata information about the role is defined inside the main.yaml of the meta directory.
+For eg.
+What is the purpose of the role, what does it perform
+who is author of the role
+version
+license information
+it is an informational file that acts as documentation about the role, so that people can refer it to understand the role before usage
+8. tests = directory in which we write playbook code to use the role for testing.
+
+- name: playbook
+	hosts: all
+	tasks:
+		- name: debug
+			debug:
+				msg: message
+- role "roleName"
+
+
+To create a role with standardized directory structure ansible has provided ansible-galaxy cli tool for us
+How to create a role?
+1. create a directory for the role we want to create. For eg apache2
+2. go into the directory and type 
+ansible-galaxy init
+will initializes the directory with standard ansible role layout
+
+
+How to use roles in the playbook?
+By default ansible looks for the role under 
+1. /etc/ansible/roles directory, we can change the default location by modifying ansible.cfg file
+2. roles/ directory relative to the playbook file
+
+So we need to place the roles we created either under #1 or #2 structure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

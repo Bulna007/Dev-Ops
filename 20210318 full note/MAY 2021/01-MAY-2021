@@ -1,0 +1,313 @@
+Linux Shell
+Shortcuts To be used In Linux Terminal (Headless Linux)
+
+Shell:- special interpreter program used for communicating with kernal asking to perform operations.
+There are 2 major shells are available
+1. Bourne Shell
+  1.1 bourne shell
+  1.2 korn shell
+  1.3 bourne again shell
+  1.4 POSIX 
+  
+2. C Shell
+  2.1 c shell
+  2.2 Tenex / TOPS (tcsh)
+----------------------------------------------------------------------------------------------------  
+Most of the people prefer to use Linux operating system to run applications in production server environment, in which we dont need any of the desktop user features like
+  - music players
+  - document writers
+  - spread sheets
+  - surffing etc.
+The operating system should run with minimal set of computing resources to be occupied giving more computing space for the application programs to execute, that is most of the users prefer to use linux under headless mode.
+  
+Being devops engineers we want to build, ship and execute software applications on linux env, we are not desktop or general purpose users, here come learning linux means "using the linux in headless mode" and operating with it using shell (programs).
+
+how to run the shell commands/program in Linux?
+Linux has provided a Terminal software through which we can issue linux shell commands using which we can interact with the kernal of the operating system.
+  
+Linux Terminal = is an CUI (Character User Interface) through which we can iteract with kernal by passing shell commands.
+  
+To work with Linux Terminal sophisticatedly we need to know short-cuts in terminal.
+  tab = autocompletion of commands/files/directories
+  control + c = to stop/cancel running command
+  control + l = clear screen
+  control + a = move cursor to the beggining of the line
+  control + e = move cursor to the end of the line
+  control + left/right arrow = move one word left/right
+  control + shift + c = copy
+  control + shift + v = paste
+  control + u = delete the characters from current cursor position to the begining of the line
+  control + k = delete to the end of the line
+  up/down allows = browsing through history of commands
+  control + r = search commands
+  man command = browing the document of the commands.
+-----------------------------------------------------------------------------------------------------
+What are the operations we can do on a computer using operating system.
+1. File Management commands
+2. User Management commands
+3. Software package management
+4. Process related commands
+5. device management commands
+    - cpu related commands
+    - storage commands
+6. networking management
+Learning linux about how to manage in carrying out the above operations on the computer using linux. so we are going to learn shell commands in performing the above operations.
+----------------------------------------------------------------------------------------------------  
+#1 File/Folder Management commands
+
+Files = are the means through which we can store the information on the storage device of a computer, so that we can access and perform operations on that data.
+Folder = is a collection / group of files kept together to access and manage them easily.
+  
+1. How to create an file on linux machine?
+touch filename 
+touch is a command used for creating an empty file on the linux machine. the file would be created under the current directory in which you ran the command.
+
+2. how to know the current directory in which I AM?
+pwd = print working directory  = displays the directory in which the user exists currently.
+
+3. how to print a message on to the terminal?
+echo "message" = prints the message on to the terminal window
+
+4. how to create a file with contents inside it?
+every command when we execute by default generates the output on to the terminal window (STDOUT). now we want to write the output of a command into a File, so we need to use redirection operation ">/<"
+here we can use ">" redirection operator to write the output to a file as shown below.
+
+echo "message" > message.txt = now the output of the command will be send to a file called "message.txt". it creates and writes the contents into the file.
+  
+if we write again the data on to the above file message.txt using echo, it will replace existing contents with new. if we want to append the new text into the existing contents of the file we can use ">>" - append operator
+echo " good morning" >> message.txt
+now the contents of the file will be message good morning
+    
+5. how to see the contents of the File?
+cat filename
+
+6. how to see the files and folders of a directory?
+ls = stands for list files of a folder
+by default ls displays only the filenames horizantally. 
+  
+if we want long listing of the filenames of a directory we can use below command
+ls -l
+this will output lot of information along with listing files of the directory.
+permissions     owner  group  size created date name  
+drwxr-xr-x   2  sriman sriman 4096 Apr 22 10:29 Desktop
+drwxr-xr-x   2  sriman sriman 4096 Apr 22 10:29 Documents
+
+ls -lh = displays the contents of the folder in a human readable format. here in the above output we got size of the file in bytes, but usually we want to see in kb/mb/gb depends on the size of the file which can be done using "ls -lh"
+  
+ls by default will display the contents of the current working directory. we can pass directory name as an input asking to show the contents of it through argument
+ls directoryName
+
+ls by default displays all the contents of the current directory, but will not display the sub-directory contents in the current directory.
+  
+/home/sriman$  
+subjects
+|-maths
+  |-chapter1.txt
+  |-chapter2.txt
+|-social
+  |-general-social.txt
+|-science
+
+/home/sriman/subjects$ ls -R = is used for recursively display all the contents from the directory including its sub directories
+
+sriman@odwa2:~/subjects$ ls -R
+.:
+maths  science  social
+./maths:
+./science:
+chapter1.txt  chapter2.txt
+./social:
+general.txt
+
+
+ODWA2DDMMYYY = PASSWORD
+ODWA201052021 = 4d>S-m
+
+ODWA221042021 = 3k:'Wq
+  
+ODWA229042021 = Wd{2y' (consolidated notes password)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

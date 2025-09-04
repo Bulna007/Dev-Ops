@@ -1,0 +1,85 @@
+What is classpath, why do we need to use it?
+CLASSPATH is an environment variable using which we can specify .class file or jar file location to the jvm interpreter to load and execute.
+  
+
+#1 Muliple Java classes work together
+
+MapEngine.java
+/* will takes address as an input and returns lat & log coordinates */
+package com.google.maps.engine;
+class MapEngine {
+  public String getCoordinates(String address) {
+    return "(29.3, 93.23)";
+  }
+}
+
+MapCanvas.java
+
+package com.google.maps.canvas;
+import com.google.maps.engine.MapEngine;
+class MapCanvas {
+  public static void main(String[] args) {
+    MapEngine mapEngine = new MapEngine();
+    String coordinates = mapEngine.getCoordinates("Cybercity gateway, madhapur");
+    System.out.println("coordinates : " + coordinates);    
+  }
+}
+
+~/javaworkspace/gmap
+  |-src
+    |-MapEngine.java
+    |-MapCanvas.java
+  |-bin
+
+~/javaworkspace/gmap/> javac -d bin src/MapEngine.java
+~/javaworkspace/gmap/> export CLASSPATH=bin
+~/javaworkspace/gmap/> javac -d bin src/MapCanvas.java
+
+~/javaworkspace/gmap
+  |-src
+    |-MapEngine.java
+    |-MapCanvas.java
+  |-bin
+    |-MapEngine.class
+    |-MapCanvas.class
+
+~/javaworkspace/gmap/> java com.google.maps.canvas.MapCanvas      
+---------------------------------------------------------------------------------------------------------
+What is jar file in java, why do we need to use it?
+jar stands for java archive, there are 2 reasons for which we use jar file in java language
+
+1. jar as a library distributable
+2. jar as an application
+
+
+ODWA217102021  = 6WwnBA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

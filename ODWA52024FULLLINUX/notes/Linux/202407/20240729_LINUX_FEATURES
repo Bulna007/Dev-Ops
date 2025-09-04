@@ -1,0 +1,211 @@
+What are Linux distros?
+different groups of softwares + configuration choices that are maintained by individuals or organizations distributed to the public is called distro
+
+There are 4 major distributions are there
+1. Arch
+2. Debian
+	2.1 Linux mint
+	2.2 Ubuntu
+	2.3 Elementary OS
+	2.4 Kali Linux
+3. Redhat
+	3.1 CentOS
+	3.2 Fedora
+	3.3 Redhat Enterprise Linux
+4. Slackware
+--------------------------------------------------------------------------------------------------------------------------
+Features of Linux operating system
+1. Portable 
+Linux operating system can work on different types of hardware aswell as linux kernel supports installation on any kind of hardware platforms.
+	
+2. Open Source
+Source code is freely distributed and it is community based development project
+
+3. Multi-User / Multi-Programming operating system
+It can be used by multiple users at a time and can share the system resources like RAM, CPU etc. Multiple application programs can also run simultaneously or in-parallel as well.
+	
+4. Hierarchial File System
+Linux operating system affords a standard file structure in which system files and user files are arranged
+
+5. Shell
+Linux operating system offers a special interpreter program, that can be used for executing commands on the operating system kernal called "Shell"
+In other words: Shell is an inter-preter program using which we can easily communicate with the kernel of the operating system
+
+6. Security
+Linux operating offers user security systems using authentication features like encryption of data, password protection and controlled access to particular files/folders
+-------------------------------------------------------------------------------------------------------------------------
+Linux Architecture
+
+1. Hardware Layer
+It consists of all the peripheral devices like (RAM, Processor, harddisk etc)
+
+2. Kernel
+It is the core component of the linux operating system, that interacts directly with the hardware of the computer. It provides low-level services to the upper components
+
+3. Shell
+Shell is an interpreter program, that acts as an interface to the Kernel. It hides the complexities of Kernel functions from the users. The shell takes the shell commands from the user and executes them on the Kernel by invoking kernel functions
+
+4. Software Tools/Utilities
+These are programs provides the users most of the functionality of an operating system
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

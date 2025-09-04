@@ -1,0 +1,262 @@
+What is Linux operating system?
+Linux is an general purpose operating system that is opensource and is freely distributed under GNU/GPL Public License. 
+	
+GNU/GPL (General User / General Public License) = under this the sourcecode is freely available, anyone can modify the sourcecode and redistribute it.
+	
+The Linux operating system has been inspired by MINIX which, in turn was inspired by UNIX	
+
+Kernal:
+Linux operating system is defined by its core component called "Kernal", The kernal interacts with the underlying hardware of the computer allowing the software and other hardware to communicate with each other.
+
+In the early stages of the Linux operating system, only the kernal exists with no other tools or utilities around it. It was hard to install and have kernal running on the computer. There are no sophisticated Linux installers or Graphical user interface exists to use the Linux operating system.
+	
+Users has to go through the complex job of running bunch of CLI Commands on the console (black screen), inorder to have linux being installed and use it.
+"Its very complex to install and use the linux operating system": not being termed as General Purpose operating system.
+	
+Later on, groups or individuals who are infavor of open source software stack, to promote and want to contribute opensource software development, came forward and formed a group called "GNU Project". As part of GNU project they manufactured lot of tools and utilities to make the Linux operating system user friendly to use like
+1. Graphical User interface
+		1.1 KDE 
+		1.2 GNOME
+		1.3 MATE
+		etc
+2. Audio Players
+3. Video Players
+4. Web Browsers
+5. Image Viewers 
+etc
+and distributed them freely to the world.
+	
+Having huge contribution from the world towards the Linux operating system, still challanges continues to exists as below:
+1. still there are not sophisticated installer tools for installing the linux operating system, the users has to go through the same level of complexity in installing the linux
+
+2. even though there are lot of graphical user interface tools are build and distributed, they have their own version compatibility. Based on the version of the kernal users installed, they need to pick the right version of the GUI software to work with, makes the people more complex in choosing and installing them as well
+
+4. In addition based on the combination of Kernal + GUI versions, the users has to pickup the right and compatible versions of the tools and utilities to make it sophisticated
+
+"end of the day, Linux is still an monster to be used"
+
+To help us in solving the above complexities in using the Linux kernal, the Linux distros are introduced.
+-------------------------------------------------------------------------------------------------------------------------
+
+Linux distros
+-------------
+Different groups and organizations came forward and build Linux operating system with their own choice of software tools and utilities, configurations and package managers/installers packaged together and distributed as an Linux operating system.
+	
+							tools & utilities
+										|
+configurations - kernal - graphical user interface
+										|
+								installer
+	
+so users around the world, can directly download the linux distros provided by these organizations and install them quickly and use it, there by which linux became General Purpose operating system 
+
+The Linux kernel is more or less same across all the installations of the Linux, only the software that surrounds the kernel that provides capabilities like software package management (installers), control of services and location of configuration files differs between them
+
+There are four major categories of Linux distributions derived from the original distribution of Linux
+1. Arch
+2. Debian
+3. Redhat
+4. Slackware
+
+Each distribution vendor has provided multiple distros. Most of the people uses one of the Distributions derived from Redhat or Debain.
+	
+Debain Distributions:
+1. Linux Mint
+2. Ubuntu
+3. Elementary OS
+4. Kali Linux
+
+Redhat distribution:
+1. CentOS
+2. Fedora
+3. Redhat enterprise Linux
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

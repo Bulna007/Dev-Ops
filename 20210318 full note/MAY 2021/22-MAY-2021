@@ -1,0 +1,112 @@
+User Management 
+----------------
+Linux is an Multi-User operating system, where more than 1 users can login into the Linux machine and can use in-paralel. Linux takecare of sharing the Resouce of machine across the users like
+  - hardware of the machines = sharability of the hardware resource
+  - filesystem level = where one user cannot see the files/folders created by another user
+  - isolation at the process level for each user, so that one user cannot see the processes being executed by other user.
+
+How many types of Users are there in Linux?
+There are 2 types of Users are there in Linux operating system.
+  1. Root user
+  The Root user would be created during the process of installing the operating system, and would have total control of the entire system he can do any of operations on the Machine like
+    - User Management
+    - Resource Management
+    - Process Management
+    - File Management (File Permissions)
+    - Network configurations
+    - Software Installations
+    - Software configurations
+    
+  There exists only 1 root user per linux install and cannot have multiple Root users at all, the idea behind having only 1 Root user is "to retain the total control of the system with one user", so that we can avoid conflicts that arises if we have multiple.
+    
+  2. Normal user
+  All the other users that are added into Linux machine are considered as Normal users. A Normal user will have only the access his own home directory and can launch and manage his own process. He dont have any control over the machine.
+    
+  Root user can grant permissions to the Normal users in accessing the Files and Folders of the Linux system otherthan their home directory. Why?
+    
+  Lets say in an organization there are accountants working on keeping track of accounts of different firms. lets say an senior accountant has created a accounts file "krishna-aquamarine-exports-accounts.txt", by default the senior accountant only has access to read, modify and delete the file. But it would be impractical to have only senior accountant to manage this file, even his sub-ordinates also should able to read or modify the data how this can be done. This where permissions can be granted on files/folders in linux.
+    
+  By the above we can understand every user can be granted with permissions to access Files/Folders of others in linux (seems to be necessary). 
+  Looks like granting permissions to the Files/Folders at each individual user level seems to be problematic in terms of
+    - tracking who has access to the File/Folder of the System.
+    - revoking or changing the File permission to each individual user is difficult
+
+Group:-
+  To overcome the above problem linux has comeup with Group. Group is a collection of users for whom we can assign/grant permissions on Files/Folders easily on Group, rather than individual.
+    - tracking which groups has access to what Files/Folders is much easier
+    - changing the permissions in order effect multiple users can be done easily at group level
+    
+Here come we have 2 entities here
+  1. user
+  2. group
+
+Few things to be considered
+1. we can have any number of groups created in Linux machine
+2. A group can have any number of users associated to it
+3. A user can be in multiple groups as well.
+    
+Users and groups has certain attributes associated with them.
+User:-
+  Every user has username, uid, password. At the time of creating the user the linux would take care of generating the uid by increamenting the last generated uid with which the user would gets created. Its mandatory that every user in linux has to be associated with atleast one group.  
+  Usually the uid starts in linux with = 1000
+  
+Group:-
+  Every group has groupname, gid and same as above the gid also would be generated while creating the group automatically by Linux by incrementing the last generated group id
+  usually the gid starts in linux with = 1000
+
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+    
+    
+  
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

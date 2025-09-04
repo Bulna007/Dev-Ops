@@ -1,0 +1,60 @@
+Changed_When and Failed_When
+----------------------------
+The Ansible control node server upon executing the modules on the managed node, it gathers the output of execution and reports the status of execution as one of the below statuses per each module
+1. ok
+2. changed
+3. failed
+4. skipped
+5. ignored
+6. unreachable
+7. rescued
+
+The ansible controlnode server derives the module has affected/changed the state of the managed node or not by looking at the exitcode of the module execution.
+If the exitcode of the module execution has resulted as "0" then ansible control node server reports the status as changed and anything that is non-zero would mark the module as "failed" execution
+
+sometimes we dont want to mark the status of a module being reported as changed or failed based on the exitcode, rather we want to evaluate a condition based on that outcome of execution to determine whether it has changed or failed. This can be done using changed_when and failed_when
+
+For eg..
+When we execute a shell or command module, upon executing the shell command we passed, it always returns the exitcode as "0" indicating the success of execution of the command we supplied, this marks the module as "changed" by the control node server. If the command we supplied returns an non-zero exitcode, then ansible controlnode server marks the module as failed. This is the default behavior for any module
+
+We want to change the above behavior of reporting the status of the execution, by using when_changed and failed_when
+
+Let us take an usecase to understand:
+We want to install an software package like openjdk 17 or mysql server 8.0 or apache tomcat 11, but before installing any of these packages we want to check whether the managed node qualifies for minimal ssytem requirements in running the sofware. If the managed node doesnt qualify the minimal requirement we wanted to fail the playbook execution
+
+#1. failed_when:
+Let us understand how to implement using failed_when in playbook:
+To install openjdk-17-jdk software package, the minimal system requirement is: storage 5 gb
+
+- name: install java17 play
+  hosts: all
+  tasks:
+    - name: check sys req
+      shell: "df /dev/sda1 | grep -v Filesystem | awk '{print $4}'"
+      register: diskspace
+      failed_when: "diskspace.stdout | float < 21474836480"        
+    - name: install java17
+      apt:
+       name: openjdk-17-jdk
+       state: present
+       update_cache: yes
+      become: yes
+      
+
+#2. changed_when:
+
+apache-tomcat-11.1.23
+  |-bin
+    |-startup.sh
+    |-shutdown.sh
+    |-catalina.sh
+  |-lib
+  |-webapps
+  
+~/middleware/apache-tomcat-11.1.23/bin/catalina.sh run
+"Address already in use"
+
+- name: start tomcat
+  shell: "~/middleware/apache-tomcat-11.0.7/bin/catalina.sh run 2>&1 | grep java.net.BindException"
+  register: tomcatstatus
+  changed_when: "'Address already in use' not in tomcatstatus.stdout"

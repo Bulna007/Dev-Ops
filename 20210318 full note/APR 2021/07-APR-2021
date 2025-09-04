@@ -1,0 +1,71 @@
+#1 development environment ready
+by using modern tools and technologies like
+  - virtualization technology
+  - iac tools (infrastructure automation tool)
+  - software configuration management tools
+-------------------------------------------------------------------------------------
+#2 choose a process model
+  - use preferrably agile methodologies (scrum)
+Why scrum?
+helps you in identifying the failure at early stages and can build product/project in increments (sprints) and can be delivered to the owner
+
+We have more aggresive development and delivery cycles, where a team has to encourage themselve in committing for the tasks to be development and delivered in short-intervals of time. To meet the delivery deadlines with short-intervals of time it is not possible to meet unless we use modern tools and technologies that is where devops compliments scrum methodology
+
+In another way we can say = devops is the way through which we can implement agile methodologies.
+-------------------------------------------------------------------------------------------------------------
+How to do collaborative application development?
+Use software configuration management tools (scm tools). There are lot of scm tools are available in the market like
+  - wincvs
+  - vss
+  - perforce
+  - svn
+  - git
+git is the recommended repository management software for implementing scrum/devops process
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

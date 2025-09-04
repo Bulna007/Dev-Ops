@@ -1,0 +1,178 @@
+What is ansible inventory file?
+The list of hosts on whom we want to manage through ansible are declared as apart of inventory file.
+1. default inventory file location /etc/ansible/hosts
+2. why we need to write our own inventory file and how to use our inventory file while running the ansible modules
+3. Types of inventory file formats (INI or YAML)
+4. declaring groups in inventory file
+5. range expressions to manage fleets using FQName of the Machines rather than ip address
+6. binding alias names to the ansible managed nodes in inventory file
+-----------------------------------------------------------------------------------------------
+Ansible playbook
+
+How to perform software installations and configurations using ansible?
+Ansible has provided ansible modules which can be executed on the fleet servers using adhoc commands, but adhoc commands are meant for performing one-time activity only.
+	
+To bring a machine to a desired system state we may have to execute multiple ansible modules in a specific order, running these modules manually one after another using adhoc commands is quite complex, takes lot of time and even error prone as well.
+	
+The Ansible playbooks are the way through which we can declare, archestrate and execute all the ansible modules in the desired manner to achieve the desired state of the system.
+-----------------------------------------------------------------------------------------------	
+What is an Ansible Playbooks?
+----------------------------------	
+Ansible Playbook is a File in which ansible developer can list down the bunch of ansible modules in a specific order in which he wanted them to be executed, so that upon passing to ansible control node, it reads the playbook file and execute all of the modules listed through which we can execute desired state of the system easily.
+	
+There are 2 types of Software configuration management tools from the point of programming are there
+1. programmatic scm tools
+In programmatic scm tools, the developer has to write the lines code in brining up the machine to the desired system state for eg.. while we are working on shellscript programming to install a software we need to lot of lines of code to accomplish the desired state. so it is called "programmatic scm tools"	
+	
+For eg.. we write instructions in installing openjdk11 package as below in shellscripting
+sudo apt update -y
+JDK_STATUS=$(dpkg -s openjdk-11-jdk)
+if [[ $JDK_STATUS == *"install ok installed"* ]]; then
+	echo "ignore already available"
+else
+	sudo apt install -y openjdk-11-jdk
+fi
+	
+2. declarative scm tools
+In declarative scm tools, never the programmer writes the instructions or lines of code in achieving the desired state. rather he declares what should be the final state of the system using declarative statements.
+	
+how to install jdk11 in a delcarative scm tool through declarations:	
+package:
+	name: openjdk-11-jdk
+	state: present
+	
+Now it is the responsiblity of the scm tool software to read programmer declarations perform required operations/actions behind the scenes to bring the system to the desired state.
+		
+From the above we can understand working with declarative scm tools are much easier in accomplishing the final system state rather than programmatic tools, because the user/engineer who is working doesnt required programming language background to build desired state of the system.
+		
+Ansible is an declarative software configuration management tool.
+So if we want to achieve a desired system state in ansible, we dont need to write the lines of code, rather we need to instruct ansible control node, which modules of the ansible to be executed by declaring them in a playbook
+
+(or)
+Ansible developer will declare the ansible modules in playbook in a specific order to achieve the desired system state, so that ansible reads those declarations and execute them.
+	
+	
+How to write Ansible Playbooks?
+--------------------------------	
+Playbooks cannot be written in text/character based format, we need to write playbooks in a structured format so that ansible can read the information extract the module declarations and can execute.
+	
+for e.g..
+if we write a playbook in xml format as shown below ansible can understand and execute it
+ping-playbook.xml
+<playbook>
+	<name>ping playbook</name>
+	<modules>
+		<module>
+			<name>ping</name>			
+		</module>
+	</modules>
+</playbook>
+in the above xml file we have written the information in structured format so that anyone can read the playbook and understand module declarations and can execute
+
+along with xml there are another other structured formats are there like
+	- json = javascript object notation
+	- yaml = yet another markup language (Ain't markup language)
+	etc
+	
+These are the different formats in which we can represent the data on a file so that programs/software tools can read and perform operations
+
+Ansible Control Node Server is also an software program, so we need to write ansible module declarations in data representation format only so that ansible can understand the module declarations and can execute.																				
+Ansible Playbooks has to be written in YAML format
+
+What is YAML format, how to represent data in YAML Format?
+
+																				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

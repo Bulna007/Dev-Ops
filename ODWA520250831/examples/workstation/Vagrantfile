@@ -1,0 +1,10 @@
+Vagrant.configure(2) do | config |
+    config.vm.box = "icloudnote/ubuntu"
+
+    config.vm.provider "virtualbox" do | vb |
+        vb.cpus = 2
+        vb.memory = 4096
+        vb.name = "dockerws"
+    end
+    config.vm.provision "shell", path: "sh/install.sh"
+end

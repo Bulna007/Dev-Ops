@@ -1,0 +1,98 @@
+What is virtualization, why do we need to use it?
+We can run multiple environment in-parallel, isolated from each other on a one physical machine through virtualization.
+benefits:-
+  1. we can effectively utilize the hardware resources of the physical machine by sharing them between multiple virtual machine environments
+  2. organizations can lower their investment cost of procuring hardware resources in running multiple different environments through the virtualization technology
+  3. The System administration and Support teams can utilize the virtualization technology to quickly swap different environments on the physical machine to provide environments for different teams across.
+  4. development teams can utilize virtualization technology to quickly bring up their development environments
+  
+Virtualization works on top of hypervisor, it is a component that helps in sharing the physical hardware resources of the computer across multiple virtual environments which gives an illusion of having multiple machines.
+There are 2 types of hypervisors are there
+1. Software hypervisor = installed on top of host machine operating system, which communicates with the host os in sharing the physical hardware resources to the guest mahcines.
+drawbacks:
+  The Host Operating System, which consumes the physical resources of the computer unnecessarily just to keep hypervisor running.
+advantage:
+  low cost solution
+  
+2. Hardware hypervisor = directly runs on top the hardware of the physical machine without the need of operating system the host. the full capacity of the host is utilized for the guest machines only, which can result in max throughput.
+drawbacks:
+  high cost, cannot be used for personal computing
+advantages:
+  no wastage of physical resources as there is no host os
+  
+There are lot of vendors producing the software and hardware hypervisors in the market.
+1. Software hypervisor providers
+  1.1 Oracle virtualbox (popular/opensource s/w hypervisor)
+  1.2 vm workstation
+  1.3 vm desktop
+  1.4 hyper-v (microsoft)
+  1.5 parallelx
+  
+2. Hardware hypervisor or native or bare-metal hypervisors
+  1.1 Microsoft Hyper-V
+  1.2 Oracle VM Server
+  1.3 VMWare ESXi (no operating system) 
+  1.4 Xen Server  
+-----------------------------------------------------------------------------------------------------
+Virtualbox Networking
+
+Networking is one of the most important aspect of any computer whether it is host machine or even guest machine, without networking merely the presence of the machine is useless, as it cannot communicate with the external world.
+    
+For eg
+1. how to download/install a software package on to the guest machine when it was not connected to any network.
+2. how can we upgrade an existing software package or operating system patches on to the guest machine
+3. we cannot access the applications running with the guest machine from outside the world.
+    
+looks like if the virtual machine cannot connect to the network, it becomes isolated and cannot be used for any purpose, so not only the physical machines even the virtual machines also should have ability of connecting over the network.
+  
+How to establish networking for virtual machines?
+Through the help of hypervisor we are creating the virtual machines. if any computer to be connected over the network, it requires network interface card.
+  
+If we have a physical computer, we can plugin a hardware network adapter into the computer and we can establish network to that computer. Since the virtual machines are not physical we cannot attach physical network interface cards to them.
+
+So the Hypervisor Softwares has to emulate a hardware network interface card, which is an virtual network interface card and should attach to the virtual machine at the time of creating the virtual machine so that it can be plugged into network.
+
+Having virtual network interface card for a guest/virtual machine is not sufficient, since it is not a physical hardware device, we cannot plugin the network wire into its port to bring it on the network. we need the support of hypervisor software, which can help us in attaching network to the virtual network adapter of the virtual machine.
+  
+The hypervisor acts an network engine/router which will routes the data packets between the host and guest machine. Every hypervisor support different networking modes/models helping us in choosing how it should route the data packets between host and guest.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

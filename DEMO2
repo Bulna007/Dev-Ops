@@ -1,0 +1,92 @@
+devops with aws (including linux and shellscripting)
+fee: 12k (existing sriman sir students: 10k)	
+duration: 9 months
+timings: [7:10 am - 8:10 am] (Monday-Friday)
+         [8:00 am - 9:00 am] (Saturday/Sunday)
+Notes: The live notes is captured including working examples during the session and will be shared to the students on weekly basis
+Videos: No videos/No recording. students are not permitted to record the sessions, if we found any one recording the session, the admission will be cancelled without any fee refund.
+	
+Exception: Urgent/medical reasons, incase if you are not able to attend the session. [Weekly]
+
+Rule: Students should be actively contributing to the session by responding and giving replies to the session.  move the student to waiting room.
+--------------------------------------------------------------------------------------------------------------------------
+pre-requisite:
+there is no knowledge of computers required for attending the course. 
+
+optional:
+basics of computer
+programming language 
+
+course contents:
+Introduction to devops
+
+[Mandatory] [3 months] [6 months]
+Linux operating system [2 months 10 days]
+shellscripting [15 - 20 days]
+
+Networking: [15 - 20 days]
+protocols (tcp/ip , udp)
+osi model layers
+network devices
+network topologies
+ip addressing (classful/ class-less)
+subnet
+cidr notation
+
+SSH protocol [4/5]
+Httpd servers [5]
+How to install apache2 server and host an static web application to the world
+
+Virtualization [10 days]
+Virtual Network 
+
+Java Language  [10 days]
+How to deploy web applications on a tomcat server
+RDBMS database basics
+Mysql server (installation/configuration)
+	
+java application + mysql server database
+
+Java Tools: [10/15 days] (evening: 6:30 pm - 7:30 pm)
+1. Maven (basics)
+2. Junit (basics)
+3. Jacaco
+4. Sonarqube
+5. git
+6. svn
+7. logging (basics)
+	
+vagrant (virtualization workflow automation tool) [10 days]
+ansible [15-20 days]
+aws cloud platform (5 domains) [15 days]
+	1. Compute domain
+		1.1 ec2 
+		1.2 application loadbalancer
+	2. Database
+		1. RDS Instance (mysql)
+	3. Storage
+		1. S3 bucket
+	4. Security
+		1. IAM
+		2. Users
+		3. Roles
+		4. Groups
+	5. Networking
+		1. vpc
+		2. subnet
+		3. gateways (nat/internet gateway)
+	  4. security groups
+		5. nacl rules
+		6. keypair
+		
+terraform [15 days]
+ansible + terraform = e2e application
+
+docker  [20 days]
+docker compose [2/3 days]
+kubernetes [20 days]
+jenkins [10/15 days]
+elastic search + logstash + kibana [5 days]
+helm2 [2 days]
+jfrog artifactory [5 days]
+docker container registry [5 days] 

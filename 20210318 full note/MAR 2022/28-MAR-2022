@@ -1,0 +1,130 @@
+What are docker objects?
+There are 2 types of docker objects are there
+1. docker image
+2. docker container
+
+#1. docker image
+There are 2 characteristics are there in docker image
+1.1 docker images are read-only
+1.2 docker images are layered and stackable 
+whenever we build an docker image we derive our image by referring base image. since the base image has not been modified rather referred we gain 2 advantages
+	1. while creating images for various different applications, all of the application images refers to the same base image due to which the harddisk storage space can be reduced
+	2. bandwidth consumption in publishing and distributing images will be reduced
+	
+#1.1 why docker images are read-only?
+when we run a docker container out of an image, the docker container creates an container writable layer ontop of the docker image into which the containerized application writes the data which is generated while the application is running, keeping underlying docker image read-only.
+So that the same docker image can be reused in creating any number of containers from that image which makes the docker containers highly scalable with low storage space
+
+Per each container there is a separate container writable layer will be there which is created at the time of creating the container and will be destroyed automatically at the end of the container
+
+The docker users storage drivers for writing the data into the container writable layer of the container
+
+#2. docker container
+A running processes or a program that is created out of an existing docker image that runs isolated from other process is called an container.
+The lifetime the container is dependent on the amount of time the application running, once the application inside the container terminates, the container will gets terminated.
+------------------------------------------------------------------------------------------
+How to install the docker?
+docker supports both windows/linux operating system.
+earlier docker used to work on linux operating only as it greatly depends on features like linux namespaces, cgroups and union filesystem.
+Microsoft has worked hardly in bringing docker on to the Window platform and has added all required features in Windows to make docker work.
+	
+From Windows 10 onward in professional and above versions of it, support for running docker is available
+The docker has shipped an tool called docker-desktop-windows that can be installed on the windows 10 professional or above to use docker.
+	
+From docker linux to docker windows
+1. The docker cli changes greatly
+2. The docker images also changes
+3. The size of the docker images on windows is more than linux
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

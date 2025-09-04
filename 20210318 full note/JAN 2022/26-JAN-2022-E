@@ -1,0 +1,158 @@
+How to write conditional and loop control statements in jinja2 templates?
+	
+if condition:	
+{% if var operator value %}
+statement
+{% endif %}
+
+loop statement:
+{% for var in list %}
+statement
+{% endfor %}
+-----------------------------------------------------------------------------------------------
+Ansible Handlers
+There can be few tasks in which we might be installing/configuring and update the configurations/settings of an server/software or fleet machine, inorder to make these changes effective the system/software package or the server may have to be restarted or reloaded.
+	
+Here the restart/reload task is an dependent task that has to be executed only when the parent task which is modifying the configurations has modified/changed the final system state.
+	
+By default when we write tasks in playbook all of the tasks are executed sequentially from top to the bottom, but we want these special tasks to be executed only when the parent task has changed the system state. 
+This can be achieved throught the help of handlers.
+	
+Handlers are the special type of tasks that will not be executed by default as part of playbook executions.	These tasks will be executed only when one of the task of the playbook has notified them to execute.
+	
+---
+- name: handlers playbook
+	hosts: all
+	tasks:
+		- name: task1
+			module:
+				args:
+			notify:
+				- handler1
+	handlers:
+		- name: handler1
+			module:
+				args:	
+...
+In the above playbook if the task1 has executed and resulted in a state as: "changed", then it notifies the handler1 for execution. All the handlers within the playbook which are notified will be executed at the last after all the tasks in the playbook has completed execution.
+-----------------------------------------------------------------------------------------------
+apache2site
+|-sitevars.yml
+|-apache2conf.j2
+|-apache2site-playbook.yml
+
+sitevars.yml
+---------------
+site:
+  directory: greatchefs	
+	servername: greatchefs.com
+	
+apache2conf.j2
+<VirtualHost *:80>
+   ServerName {{site.servername}}
+   DocumentRoot /var/www/{{site.directory}}
+</VirtualHost>
+	
+apache2site-playbook.yml
+------------------------
+- name: apache2 static hosting
+	hosts: all
+	vars_files: sitevars.yml
+	tasks:
+		- name: install apache2
+			apt:
+				name: apache2
+				update_cache: yes
+				state: present
+			become: yes
+		- name: copy site directory
+			copy:
+				src: {{site.directory}}
+				dest: /var/www/
+				recurse: yes
+				mode: 0655
+				owner: ansible
+				group: ansible
+			become: yes
+		- name: configure site
+			template:
+				src: apache2conf.j2
+				dest: /etc/apache2/sites-available/{{site.directory}}.conf
+			become: yes
+		- name: enable site
+			shell: a2ensite {{site.directory}}
+			become: yes
+			notify:
+				-reloadApache2
+	handlers:
+		- name: reloadApache2
+			service:
+				name: apache2
+				state: restart
+			become: yes
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

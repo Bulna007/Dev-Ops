@@ -1,0 +1,158 @@
+enterprise application has been broken down into multiple smaller microservices
+- built out of their own source code project
+- has an separate repository
+- individual teams
+- build independently
+- produces an deployable artifact
+- runs on an isolated environment (independently deployable)
+
+advantages:-
+1. as there are individual teams working independently on their own source code repositories in building their microservices, they can place their features and release them independent of others
+2. patching and upgradation will not effect the whole system
+3. vertical scaling can be achieved
+4. truely supports ci/cd
+--------------------------------------------------------------------------------------------
+Kubernetes (k8s)
+kubernetes is an container cluster manager which takes care of distribute the containerized applications on a network of computers. It takes care scheduling, monitoring and scaling up the containerized applications on a network of computers
+
+
+when we are working on containerized applications, there are lot of problems in managing these containers manually
+1. distributing the containerized applications on a network computers is difficult
+2. keeping track of nodes/machines on the network, and identifying which containers are scheduled on which nodes of the network is quite difficult
+3. patching/upgradation is very difficult, we need to ssh onto each node on the cluster to identify the respective application is running on which node and derive a strategy to replace older version to new version
+while patching or upgradation, we need to keep track of which nodes we have verified and upgraded and what are the remaining nodes to verify
+4. monitoring these containers distributed on the network cluster is very difficult
+5. identifying and replacing/restarting the crashed containers is highly difficult
+6. keeping track of resource capacity/usage occupied by the nodes and migrating/moving the containers to the different nodes manually is a tedious job
+7. scaling up the application on the network cluster is difficult
+
+To overcome the above problems/difficulties in managing the containerized applications on a network cluster kubernetes has been introduced
+
+kubernetes is a container cluster manager, that takes care of scheduling, monitor and running containers on a computer network 
+--------------------------------------------------------------------------------------------
+Architecture of Kubernetes (k8s)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

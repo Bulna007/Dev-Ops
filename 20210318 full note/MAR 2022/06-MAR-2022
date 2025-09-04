@@ -1,0 +1,75 @@
+What are provisioners why do we need them?
+upon provisioning the infrastructure resources, inorder to install and configure software packages we on the provisioned infrastructure terraform has provided provisioners to automate the execution of the software configuration management scripts
+
+There are 3 types of provisioners are there
+1. file provisioner
+copying the files onto the remote machines
+
+2. local-exec provisioner
+execute provisioners scripts on the local environment of the terraform control node, after provisioning the resource
+
+3. remote-exec provisioner
+execute the provisioner scripts on the remote machine
+
+There are 2 levels at which we can execute a provisioner
+1. resource level
+2. global
+
+#1. resource level
+upon provisioning an resource we can execute a provisioner on the resource level
+#2. global
+upon provisioning a group of resources if we want to execute a provisioner script then we need to use global level
+
+
+#1. file provisioner
+resource "aws_instance" "ec2" {
+	instance_type = "t2.micro"
+	ami = "ami-9393"
+	
+	connection {
+		type = "ssh"
+		host = self.public_ip
+		user = "ubuntu"
+		private_key = file("~/.ssh/terraform")
+	}
+	provisioner "file" {
+		source = "sh/installjdk.sh"
+		destination = "/tmp/installjdk.sh"
+	}
+	provisioner "remote-exec" {
+		inline = [
+			"sudo chmod u+x /tmp/installjdk.sh",
+			"bash /tmp/installjdk.sh"
+		]
+	}
+}
+
+#2. local-exec provisioner
+resource "aws_instance" "ec2" {
+	instance_type = "t2.micro"
+	ami = "ami-938933"
+	
+	provisioner "local-exec" {
+		inline = [
+			"echo $self.public_ip > ec2-info.txt"
+		]
+	}
+}
+
+Terraform Modules
+-------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

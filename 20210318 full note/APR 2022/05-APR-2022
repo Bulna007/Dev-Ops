@@ -1,0 +1,182 @@
+How to change the default installation directory of the docker in an ec2 instance onto an EBS block storage volume mounted externally?
+	
+#1. provision an ec2 instance 
+#2. install the docker on the ec2 instance by following the instructions provided earlier
+#3. The docker will be installed by default on
+/var/lib/docker directory
+
+create and mount an EBS volume onto ec2 instance by following below instructions
+------------------------------------------------------------------------------------------
+#4. create an EBS volume by navigating into compute domain and choose ebs volume and click create
+#5. choose the region and availability zone same as your ec2 instance
+#6. after creating the EBS volume goto actions menu and click on attach to instance
+
+#7. Now the ebs volume will be detected as an device on the ec2 instance, so run the below command to identify the device name
+sudo fdisk -l
+here we can find an device volume of 100Gi located mostly with name /dev/xdvf
+
+#8. mount the EBS volume onto the ec2 instance by creating an directory
+sudo mkdir -p /u01/dev
+
+#9. format the EBS volume before mounting
+sudo mkfs.ext4 /dev/xdvf
+
+#10. mount /dev/xdvf /u01/dev
+------------------------------------------------------------------------------------------
+
+#11. stop the docker engine
+sudo systemctl stop docker
+
+#12. move the docker home directory into /u01/dev directory
+sudo mv /var/lib/docker /u01/dev/
+	
+#13. create an symlink under /var/lib with name docker pointing to /u01/dev/docker directory
+sudo ln -s /u01/dev/docker /var/lib/docker
+
+#14. start the docker 
+sudo systemctl start docker
+------------------------------------------------------------------------------------------
+Building docker images
+----------------------
+Instead of running docker containers out of an existing docker images build by docker team/partners/community, how can we package our own application with software packages and instructions?
+	
+To build a docker image with our application bits, software packages and instructions in running the application, we need to write Dockerfile in which we need to write image building instructions
+defining what software application, packages and instructions should be bundled in that image and pass it as an input to docker engine, asking him to package/generate an image out of instructions
+
+The image building instructions that we write in the Dockerfile are called "docker directives".
+
+using the docker directives we are going to achieve 2 things
+#1. all the immutable content that seems to common across all the containers of our applications should be packaged and placed as apart of docker image like
+	1.1 bins/libs
+	1.2 software packages
+	1.3 software applications
+so we write docker directive/instructions that will be executed during the time of building the docker image which takes care of including the immutable bits of our application into the image
+
+#2. using the docker directives we write container execution commands that has to be executed at the time of launching the container based on image
+
+Based on the above we can classify docker directives into 2 types
+1. build image instructions
+2. container instructions
+
+Into the docker image we will not package the source code of our application rather, because it is not a repository to distribute the source code. rather it is used for package executable application with dependencies and distribute across
+	
+How to build an docker image?
+To build an docker image for each project we want to package as an image we need to create a directory, in which we need to write a file with name "Dockerfile" without any extension in which we need to write build image instructions and container instructions inside it and pass it to the docker engine for building as an image
+
+What are the build image instructions that are there?
+1. FROM
+2. ARG
+3. RUN
+4. ADD
+5. WORKDIR
+6. COPY
+7. LABEL
+8. ENV
+
+What are the container instructions?
+1. CMD
+2. EXPOSE
+3. ENTRYPOINT
+4. HEALTHCHECK
+5. VOLUME
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

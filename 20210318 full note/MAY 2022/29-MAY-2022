@@ -1,0 +1,154 @@
+Config Secrets
+---------------
+Kubernetes Secrets let you store and manage sensitive information like passwords, ssh keys, encryption keys that are required by our applications. In general we can store these secrets as part of pod spec or within configmap, but storing these secrets in pod spec or configmap makes them insecure.
+Anyone can read the podspec or configmap and can grab access to the systems, instead it is recommended to store such sensitive data in ConfigSecret
+
+By default when we store the information in ConfigSecret it will be encrypted rather it would store the information in Base64 Encoded format. We can read the values in plain-text format using the api
+
+A ConfigSecret can be used in 3 ways
+1. We can pass these secrets as environment variables to the pod
+2. We can mount the secrets as files within the pods
+3. The kubelet process itself might use these secrets for connecting to the docker container registry in pulling the images
+
+While storing the sensitive data within the ConfigSecret we can attach type to them to help us identify what type of secret we are storing in ConfigSecret. even thought it is not mandatory to attach type information, it is recommended so that we can understand while accessing the secrets. By default the secret will be stored with default type "apaque"
+	
+kubernetes has provided built-in secret types, which can be used as a type while defining secret
+1. opaque = arbitary data
+2. kubernetes.io/service-account-token  = The service account token, is a kubernetes secret or system secret
+3. kubernetes.io/dockercfg  = The serialized format of doker config file
+4. kubernetes.io/dockerconfigjson = serialized format of docker config json file
+5. kubernetes.io/basic-auth       = username/password
+6. kubernetes.io/ssh-auth         = ssh keys
+7. kubernetes.io/tls              = ssl keys
+-------------------------------------------------------------------------------------------
+Let us write a ConfigSecret spec in storing an database username and password.
+	
+roadsterdb-configsecrets.yml
+----------------------------
+apiVersion: v1
+kind: Secret
+metadata:
+	name: roadsterdbsecrets
+type: kubernetes.io/basic-auth
+stringData:
+	username: root
+	password: root
+	
+	
+roadster-pod.yml
+-----------------
+apiVersion: v1
+kind: Pod
+metadata:
+	name: roadsterpod
+	labels:
+		app: roadster
+spec:
+	containers:
+		- name: roadster
+			image: techsriman/roadster:2.0
+			ports:
+				- name: http
+				  containerPort: 8082
+					protocol: TCP
+			env:
+				- name: "spring.datasource.username"
+					valueFrom:
+						secretKeyRef:
+							name: roadsterdbsecrets
+							key: username
+
+				- name: "spring.datasource.password"
+					valueFrom:
+						secretKeyRef:
+							name: roadsterdbsecrets
+							key: password
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

@@ -1,0 +1,57 @@
+Helm charts
+------------
+Kubernetes is an container cluster manager, that takes care of scheduling, monitoring and managing the containerized applications on a network cluster. To work with kubernetes in deploying and managing the applications we need to create various different types of kubernetes objects like
+	- pods
+	- replicaset
+	- deploymentset
+	- service
+	- job
+	etc
+
+In addition to the above an application may have other external dependent componets like an database server or a third-party application software required to be available before running the application.
+These dependent components should be containerized and have to create the relevant manifests for deploying them on the kubernetes cluster.
+	
+So to run an application on kubernetes cluster we need to 
+1. identify the dependent components/external application libraries and need to create their objects to make them run on the cluster
+2. there after we need to create our application objects on the cluster.
+	
+running the application on a k8s cluster seems to be quite complex job since one has to know the knowledge of dependent components and each of the resources/k8s objects has to be created manually in a specific order. In addition these objects should be deployed across multiple env in an organization which is an time consuming job and might lead to errors.
+	
+To overcome the above problem, helm charts are introduced.
+Helm is a package manager for kubernetes applications. Helm has been awarded as an official package manager for the kubernetes by Cloud Native Computing Foundation.
+	
+Helm can be treated similar to any other package managers that we typically encounter various different domains. For eg we can consider helm as
+	- maven tool = in java
+	- pip = python
+	- apt - ubuntu operating system 
+	etc
+	
+there are build/package managment tools, that takes care of identifying the dependencies, downloading them from repositories, build the applications using the dependencies and packages them and makes them readily deployable.
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+	

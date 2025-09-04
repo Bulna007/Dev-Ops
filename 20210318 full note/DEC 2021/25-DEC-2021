@@ -1,0 +1,124 @@
+Vagrant is a virtualization workflow automation tool, using which we can create infrastructure that is required for running the software applications.
+
+Terraform is a iac (infrastructure as code)	used for provisioning the cloud resources on the cloud platforms
+
+using any of the above iac tools we can achieve automation interms of provisioning the infrastructure either on virtual machine environment or cloud, ontop of it we need to install the software packages and has to configure them inorder to run the software applications.
+	
+How to install and configure these software packages on the provisioned infrastructure?
+There are plenty of options we have 
+#1. manually
+let the devops engineer after provisioning the infrastructure connect to machines over ssh or other protocols and perform the installations and configurations manually. but it has lot of drawbacks or dis-advantages:
+dis-advantages:-
+	1. manually installing and configuring takes lot of time in setting up the env
+	2. there are bunch of packages to be installed and configured in a sequence order, memorizing all of them and setting up the environments is high difficult
+	3. it is repeatitive process in setting up env, where we cannot achieve accuracy. we cannot guarantee the reproducible environments 
+	4. there are large number of computer clusters on which we need to carry the installations and configurations which takes huge amount of time and highly difficult to manage
+	5. tracking and managing the software packages install on these computers in a large group is highly difficult
+	6. handling upgrades and applying patches on these large array of computers is very complex
+	
+To overcome the above problems we need software configuration management automation
+There are several possibilities of performing these activities through automation
+1. shellscripting
+The devops engineer install of manually installing and configuring the software packages on the infrastructure, he can write these as instructions in shellscript file and execute so that he/she can achieve touchless automation
+
+There are several advantages in performing automation through shellscripting.
+1. greatly reduces the time required for performing installations and configurations of the software package
+2. no need to memorize lot of steps and configurations in carrying the environment setup
+3. we can achieve reproducible environments with high accuracy
+4. software upgradations and patches can be applied easily by modifying existing scripts or writing new scripts to update the existing environments
+
+The shellscripts looks like is the easiest way of achieving automation of installations and configurations, but it has lot of dis-advantages also
+1. the people has to be having good knowledge on programming languages, one has to have a sound programming basics inorder write automation scripts. looks like many of the existing ops engineers dont have the knowledge of programming which makes it tough to use
+2. shellscripting is platform specific and works on linux platform only. more over majority of the shell commands we write in shellscripting or specific to linux distro and will not works on other linux distros thus making it un-favourable if our application has to be deployed on a hybrid model
+3. there is no logging capabilities, we need to write echo statements in printing the information messages or errors also which makes it tough to read and understand. by using logging support, we can write output of executing the shellscript into a file, so that devops engineers can track the execution and analyze the failures
+4. idempotancy 
+idempotancy = is a principle, which means performing an operation N number of times will have same outcome performing 1 time
+when we run the automation scripts, if already the environment is in desired state, the automation script should not spoil or recreate it again and should leave the system in the same state.
+for eg. we wrote shellscript for installing jdk11, upon running on a target environment, if jdk 11 is already installed it should leave the env in the same state rather than reinstalling it again which is called "idemopotancy"
+it is very difficult to achieve idempotancy through shellscript programming, the devops engineer has to write lot of conditional checks to retain the existing env if it is already in desired state.
+5. there is no proper exception handling support in shellscript, if the script execution has been failed, it will terminate the program abnormally.
+for eg.. while installing jdk11 if there was an failure, we should be able to rollback the system to previous state which is not possible as there is no error management
+	
+7:15 am -	9:15 am
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

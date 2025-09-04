@@ -1,0 +1,53 @@
+Terraform state management
+---------------------------
+When we provision an infrastructure using terraform, it should use some mechanism to identify for the resource declarations the instances/services on the cloud provider has been created or not, so that it can avoid recreating the resources or determine what action or operation has to be performed to bring the system to the desired state
+
+Terraform uses terraform state management to identify for a terraform configuration the resources created on the cloud provider
+during the time of provisioning the terraform generates an terraform.tfstate file and stores in the project directory with the information of
+	- which resource declarations are provisioned with what services/instances on the cloud provider by mapping with resource ids
+	
+Each time when we run terraform plan/apply terraform downloads the latest state of the instances of the cloud provider and updates the terraform state file, there after it determines what operations/actions to be applied based on the latest terraform configuration to bring the system to the desired state
+
+Terraform state file is used for many reasons as below:
+1. Terraform can identify the existing resources by looking into state file and determine what operations to be performed based on the latest terraform configuration to bring the system to the desired state
+2. when we try destroying the infrastructure terraform, terraform will lookup the exists resources in the terraform state file to determine in which order the resources has to be destroyed and there after it applies
+
+Terraform Remote state management
+---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

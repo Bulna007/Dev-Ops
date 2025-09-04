@@ -1,0 +1,96 @@
+What is the difference between Software Configuration Management vs Infrastructure automation tools?
+1. mutable vs immutable infrastructure
+2. procedural vs declarative
+
+Terraform
+----------
+Terraform is an iac (infrastructure as code) automation tool that is built by Hashicorp that takes care of provisioning the infrastructure almost on all the popular cloud providers available in the market like
+	- aws
+	- gcp
+	- azure
+	- oci
+	- ibm cloud
+	etc
+	
+How does terraform works?
+-------------------------
+There are various different cloud providers offers different types of resources. To enable touchless provisioning of the resources (through automation), these cloud providers offers api's and sdk's
+
+Terraform to support provisioning infrastructure across any of the cloud providers in the market it has comeup with a concept of provider plugin since the underlying api/sdk differs from cloud provider to provider
+
+For each cloud provider Terraform has created an cloud provider plugin which has relevant logic for interacting/communicating with the corresponding cloud provider apis in provisioning the infrastructure
+
+The developer has to write Terraform configuration file by describing the details of the resources that he/she wanted to provision on the cloud platform. (these resource declarations changes from provider to provider) in addition we need to declare provider plugin to be used while applying these resources on the provider
+Now pass the terraform resource declaration file as an input to Terraform CLI asking him to plan and apply the resource declarations
+	1. Terraform CLI reads the resource declarations we defined in terraform configuration file and validates whether the configuration provided is valid or not and reports an error
+	2. identifies the cloud provider plugin we declared 
+	3. downloads the cloud provider plugin from terraform cloud into workspace directory
+	4. passes the terraform configuration file to the provider plugin asking to apply the resource declarations on the cloud platform by invoking the respective apis
+	
+advantages:-
+	1. Terraform is a hybird iac provisioning tool, that supports working with any cloud platforms in the market
+	For eg.. we dont need to endup in learning/using different iac tools for different cloud providers, once we learnt terraform, it can be used for working with any cloud provider.
+	2. Terraform has abstracted the process of provisioning the resources across the providers by standardizing the provisioning work flow automation
+	
+What are the components of Terraform?
+1. Terraform CLI = reads the terraform configuration file, validates and invokes the respective cloud provider plugin
+2. Terraform Configuration File
+The Hashicorp has provided an language called "HCL" (Hashicorp language) using which the developers has to define resources and plugins in the Terraform file to be provisioned. The terraform files are written with extension ".tf"
+3. Provider Plugin = Each cloud provider writes their own provider plugins by themself to provision the resources of their platform. These plugins are downloaded by Terraform during the execution of the terraform file
+4. Cloud Provider Api = its an programmatic interface through which people can provision infrastructure on the cloud provider
+----------------------------------------------------------------------------------------------------
+		
+Install Terraform CLI
+----------------------
+Terraform CLI is an command-line utility that is distributed as a single binary file that works across all the platforms. we just need to download the CLI and add to the system path
+
+The machine on which we install/setup Terraform CLI is called Terraform Control Machine/Node
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

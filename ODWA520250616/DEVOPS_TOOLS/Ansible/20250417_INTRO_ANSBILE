@@ -1,0 +1,364 @@
+Ansible 
+-------
+Ansible is an software configuration management automation tool that works based on push-based architecture using which we can run code modules on the infrastructure for installing/configuring the software packages on the Fleet servers within the organization. 
+
+Ansible architecture
+--------------------
+There are 5 core components are there in Ansible
+1. Ansible modules
+2. Ansible Control Node Server [Master]
+3. Ansible Managed Nodes
+4. Ansible Playbooks
+5. Inventory File
+
+1. Ansible modules
+Ansible modules are reusable code-blocks/functions that are written in python programming language by the Ansible developers and distributed them aspart of the ansible installation. These ansible modules are pre-coded to perform a task or operation and are written to enforce the principle idempotancy
+
+These modules takes data as input, performs the operation and returns the output of executing the task on the machine. For eg.. an apt module takes software package name as input, installs and return the output indicating the status of the execution like
+    1. installed ok (changed)
+    2. no change
+    3. failed
+
+2. Ansible Control Node Server
+The Ansible control node server is the engine of the Ansible architecture, any machine that is installed with Ansible software can be called as Ansible control node server. The Ansible control node server takes playbook/module and inventoryFile as an input, then pushes/copies these modules onto the Managed Node of the Fleet and executes each module locally on the Fleet node. Captures the output of execution back interms of JSON format and displays the outcome to the Ansible user
+    1. The ControlNode server is stateless, because of this we can use any machine which is installed with Ansible software as an Control node Server
+    2. The Control Node Server communicates with the Fleet or Managed nodes over the network through SSH protocol, so each node must and should be configured with SSH access
+    3. Ansible has provided CLI tool through which devops engineer can communicate with Ansible control node server asking to execute the playbooks or code modules
+    
+3. Ansible Managed nodes
+Ansible Managed node is a server or a computer within the organization on whom we wanted to install/configure the software packages/libraries inorder to host/deploy the software application.
+    1. on each ansible managed node we need to install openssh server and should configure key-based authentication for SSH into the machine.
+    2. Install python on each managed node (most of the Linux distributions comes with Python by default)
+    3. The Linux user across all the managed nodes should be configured with passwordless sudoers access
+
+4. Ansible Playbook
+For achieving desired state of the system, we might need to install/configure bunch of software packages and configurations on the Managed nodes of the Fleet. So that we can deploy/run the software applications
+
+We can install/configure the software packages through ansible by executing the ansible modules on each managed node of the cluster using the Control Node Server. But to achieve the desired state of the system, we might need to execute bunch of ansible modules in a specific sequence order. 
+Each module should be executed by passing the relevant data as input, gather the output of execution and might need to pass it as input to another module asking for performing the operation. This way of executing each module in specific order by taking one module output as input to another module in accomplishing the task is called "orchestration"
+    
+but running each modules in specific order and orchestrating them is very difficult and time consuming job. Instead of we manually running, the devops engineer can orchestrate these modules by declaring them aspart of Ansible playbook.
+    
+A playbook is YAML file in which ansible developer declares the ansbile modules that has to be executed in specific order with their inputs. Now passes this playbook as input to Ansible Control Node Server, so that it parses the playbook and executes each module in specified order on the managed nodes of the fleet to achieve desired state of the system.
+    
+5. Inventory File
+The Control Node server is stateless, it doesnt hold any of the information about the managed nodes within the ansible cluster. The ansible developer has to write an Inventory File declaring or listing all the managed nodes on whom we want to apply playbooks/ansible modules to achieve the desired state.
+    
+Now along with passing playbooks, we need to InventoryFile also as input to the Control Node Server asking him to execute the ansible modules on the managed nodes of the Fleet that are specified in the Inventory File.
+-----------------------------------------------------------------------------------------------------------------------------------
+How to test the ansible cluster setup?
+1. we can ssh into each of the machines from the host using below command
+~/ansible_cluster:/>vagrant ssh ansible_controlnode
+    
+2. how to ssh onto the managed nodes from control node server?
+2.1 ssh into control node server from the host: vagrant ssh ansible_controlnode    
+we can check whether the managed nodes are accessible over the network or not by using ping of each managed node as below
+ping 192.168.10.12, 192.168.10.13
+    
+we can ssh from control node server to managed nodes using
+ssh -i ~/.ssh/ansiblekey vagrant@192.168.10.12
+ssh -i ~/.ssh/ansiblekey vagrant@192.168.10.13
+    
+to verify ansible control node (ansible engine) is able to ssh and execute the ansible modules on the managed node or not we need to do the below things:
+Let us execute a ping module on each managed node to verify the connectivity
+
+#1. 
+ansible control node server by default uses id_rsa as the private keyfile under ~/.ssh/ directory to connect to the managed nodes for executing the modules/playbook. But we have created the ssh key with filename as ansiblekey (private key) | ansiblekey.pub (public key). So we need to tell the ansible control node server to use the ansiblekey as private keyfile to ssh onto the managed nodes by defining it aspart of the inventory file as below
+
+~/ansible_connect
+hosts [inventory]
+------------------
+192.168.10.12 ansible_ssh_private_key_file=~/.ssh/ansiblekey
+192.168.10.13 ansible_ssh_private_key_file=~/.ssh/ansiblekey
+    
+#2. to check whether the control node server is able to ssh and execute the ansible modules are not let us using ansible adhoc command to ping all the managed nodes as below
+
+~/ansible_connect$> ansible all -i hosts -m ping
+
+-i = inventory file passed as input
+-m = module we want to execute
+    
+The ansible controlnode server should be able to ping all the managed nodes and should return pong! response    
+----------------------------------------------------------------------------------------------------------------------------------
+Ansible Configuration
+during the time of installing the ansible on the machine, it creates a directory under /etc with name "ansible", in which it places all the ansible related configurations inside it.
+    
+Within the /etc/ansible directory, there is an central configuration file located inside it called "/etc/ansible/ansible.cfg". It is the central configuration file in which most of the ansible related settings/configurations are being placed 
+
+Note: in the latest version of ansible, it comes with default installation of configurations without the "ansible.cfg" file, but if we want to change or tweak the default configurations of the ansible we can write one ansible.cfg under the /etc/ansible/ directory explicitly.
+    
+Even we can generate the sample configuration file using:
+ansible-config init --disabled > ansible.cfg
+
+This file can be placed in several different locations as
+  1. current directory
+  2. $HOME/ansible.cfg 
+  3. /etc/ansible/ansible.cfg (global)
+
+Let us explore few of the configurations available:
+1. Ansible controlnode server ssh to the managed nodes on port no: 22 by default. if we want to change the default port using which control server connects/ssh to the managed nodes we can configure/change the property in ansible.cfg file as below
+
+remote_port=22 , change it to 2222 so that control node server ssh to the managed nodes with 2222 port.
+  
+2. ansible control node server by default runs an ansible playbook/module on the managed nodes in parallel upto 5 by default. we can modify the parallel node execution by using the property: forks
+forks=5
+    
+3. We can change the default private key file being used for ssh into managed nodes from id_rsa to a different file by using the property private_key_file as below
+
+private_key_file=~/.ssh/ansiblekey
+
+4. To run an ansible module or playbook we need to pass the inventoryFile as an input to the ansible control node server. By default ansible control node server looks for the inventory file under /etc/ansible/hosts if we dont supply one explicitly.
+we can always can pass an explicit inventoryFile using -i option 
+
+we can change the default inventory file by modifying the property in ansible.cfg as below
+inventory=/etc/ansible/myhosts
+
+From the above we can understand, if we want to modify any of the configurations of ansible control server globally, we can use /etc/ansible/ansible.cfg file.
+  
+For our cluster we can specify the default configurations in : /etc/ansible/ansible.cfg
+
+[defaults]
+private_key_file=~/.ssh/ansiblekey
+----------------------------------------------------------------------------------------------------------------------------------
+How do we work with Ansible?
+refer to the pdf for details
+----------------------------------------------------------------------------------------------------------------------------------
+From the above we understood ansible uses imperative programming model in accomplishing the software configuration management automation. which means we dont have to write programming instructions, rather we define what we want to accomplish, rather how to achieve it.
+  
+The ansible developers has to write playbooks declaring or defining the modules to be executed in achieving the final or desired state of the system. These playbooks should be written in YAML language. Let us explore YAML to work with playbooks
+------------------------------------------------------------------------------------------------------------------------------------
+What are data representation standards, why do we need them?
+YAML
+YAML stands for Yet (Ain't) another markup language which means not an mark-up language. It is another text-based data representation standard used for storing and representing the data similar to XML or Json formats.
+                     
+YAML stores or represents the data in structured format attached with semantics to the data. YAML greatly relies on intendation to represent the data.
+                     
+DataTypes in YAML:
+YAML supports built-in primitive datatypes as below
+1. string
+any sequence of set of characters is consider as String. To represent a string we dont need to enclose them in double-quotes
+
+2. number
+any digits are consider as numbers
+
+3. Boolean
+true, false, TRUE, FALSE, yes, no
+
+YAML supports 2 types of data structures
+1. Mappings (Dictionaries) = is an object type data structure that holds or represents key/value pair data
+2. List (Sequences)        = holding collection of values
+
+Let us explore representing the data in YAML format
+1. XML
+<ticket>
+  <pnrno>pa939</pnrno>
+  <source>Hyderabad</source>
+  <destination>Banglore</destination>
+  <journey-dt>2025-05-30</journey-dt>
+  <reservation-class>sleeper</reservation-class>
+  <price>550</price>
+</ticket>
+
+2. Json
+{
+  "pnrno": "pa939",
+  "source": "hyderabad",
+  "destination": "banglore",
+  "journey-dt": "2025-05-30",
+  "reservation-class" : "sleeper",
+  "price": 550
+}
+                     
+3. YAML
+---
+pnrno: pa939
+source: hyderabad
+destination: banglore
+journey-dt: 2025-05-30
+reservation-class: sleeper
+price: 550
+...                     
+                     
+
+examples:
+1. XML
+<groceries>
+  <item>ground nuts</item>
+  <item>cooking oil</item>
+  <item>chilli powder</item>
+</groceries>
+
+2. JSON
+["groundnuts", "cooking oil", "chilli powder"]
+
+3. YAML
+- ground nuts
+- cooking oil
+- chilli powder
+
+#2
+<tour-package>
+  <package-name>Northern India</package-name>
+  <days>12</days>
+  <boarding-station>Hyderabad</boarding-station>
+  <itenary>
+    <day1>
+        <place>1</place>
+        <place>2</place>
+    </day1>
+  </itenary>
+  <price>3</price>
+</tour-package>
+
+YAML:
+package-name: Northern India
+days: 12
+boarding-station: Hyderabad
+itenary:
+  day
+  
+
+#3
+<person>
+  <first-name></first-name>
+  <last-name></last-name>
+  <age></age>
+  <gender></gender>
+  <address>
+    <addressLine1></addressLine1>
+    <addressLine2></addressLine2>
+    <city></city>
+    <state></state>
+    <zip></zip>
+    <country></country>
+  </address>
+</person>
+
+YAML:
+first-name: Paul
+last-name: k
+age: 25
+gender: Male
+address: 
+  addressLine1: 112, devs drive
+  addressLine2: seabolt 
+  city: Hyderabad
+  state: TG
+  zip: 8374
+  country: India
+  
+  
+#4
+XML:
+<parcel>
+  <parcel-no>p38</parcel-no>
+  <source>source1</source>
+  <destination>dest1</destination>
+  <booking-dt>2025-04-30</booking-dt>
+  <weight>394</weight>
+  <amount>494</amount>
+  <sender>
+    <sender-name>person1</sender-name>
+    <contact-no></contact-no>
+  </sender>
+  <receiver>
+    <receiver-name>person2</receiver-name>
+    <contact-no></contact-no>
+  </receiver>
+</parcel>
+                  
+YAML:
+parcel-no: p38
+source: source1
+destination: dest1
+booking-dt: 2025-04-30
+weight: 394
+amount: 494
+sender:
+  sender-name: person1
+  contact-no: 939848494
+receiver:
+  receiver-name: person2
+  contact-no: 938494
+
+#5.
+JSON:
+ticket.json                     
+{
+  "pnrNo": "p9383",
+  "source": "",
+  "destination": "",
+  "journeyDate" : "",
+  "passengers": [
+    {
+      "passengerName": "",
+      "age": 23,
+      "gender": "male",
+      "mobileNo": "",
+      "coach": "",
+      "berth": 3
+    }, 
+    {
+      "passengerName": "",
+      "age": 23,
+      "gender": "male",
+      "mobileNo": "",
+      "coach": "",
+      "berth": 3
+    }
+  ],
+  "price": 3844.3,
+  "status": "CONF"
+}
+
+YAML:
+pnrNo: p938
+source: hyderabad
+destination: banglore
+journeyDate: 2025-04-28
+passengers:
+  - passengerName: p1
+    age: 23
+    gender: male
+    mobileNo: 9393944
+    coach: S3
+    berth: 3
+  - passengerName: p2
+    age: 23
+    gender: male
+    mobileNo: 9393944
+    coach: S3
+    berth: 4
+price: 838
+status: CONF      
+
+#6.
+JSON:                     
+[
+  {
+    "playerName": "sachin",
+    "age": 39,
+    "gender": "Male",
+    "rank": 3,
+    "matchesPlayed": 39
+  },
+  {
+    "playerName": "dhoni",
+    "age": 36,
+    "gender": "Male",
+    "rank": 38,
+    "matchesPlayed": 39
+  }
+]    
+                     
+YAML:
+- playerName: sachin
+  age: 39
+  gender: male
+  rank: 3
+  matchesPlayed: 39
+- playerName: dhoni
+  age: 36
+  gender: male
+  rank: 24
+  matchesPlayed: 30

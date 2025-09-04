@@ -1,0 +1,158 @@
+What are provisioners, why do we need them?
+provisioners are the automated scripts that we wireup to the vagrant asking to execute upon the first boot of the virtual machine inorder to perform tasks like software installations and configurations on the machine that was created.
+  
+Vagrant supports multiple types of provisioners each per software configuration management vendor.
+1. shellscript
+2. file
+3. ansible
+4. chef
+5. puppet
+
+There are 2 ways we can declare provisioners in Vagrantfile
+1. inline
+2. block-level
+
+#1 Inline provisioner with provisioner name
+config.vm.provision "provisioner_nm", type: "type", inline: "script to be executed"
+
+#2 Inline provisioner without provisioner_nm
+config.vm.provision "type", inline: "script"
+  
+#3 Inline provisioiner with multi-line script
+$script = <<-SCRIPT
+// shell script
+SCRIPT
+config.vm.provision "type", inline: $SCRIPT
+
+#4 Inline provisioner with external automatedscript
+config.vm.provision "provisioner_nm", type: "type", path: "filename"
+------------------------------------------------------------------------------------------------
+Block-Level provisioners
+
+#1 
+config.vm.provision "provisioner_nm", type: "type" do | prov |
+  prov.inline = ""
+end  
+  
+#2 
+config.vm.provision "provisioner_nm", type: "type" do | prov | 
+  prov.path = "loc"
+end
+---------------------------------------------------------------------------------------------------
+When does the provisioners are executed by the Vagrant?
+When we boot the virtual machine for the first-time, the provisioners are executed by the vagrant but in subsequent runs by default the provisioners are not executed.
+  
+If we want to execute a provisioner script repeatedly even after initial boot of the vm, we can trigger them in 2 ways
+1. through command-line switch
+2. through vagrant configuration
+
+#1. Through command-line switch
+vagrant up [switch]  
+--provision = if we use --provision switch, then always the provisioners will be executed even in subsequent bootup also
+--no-provision = even first boot also provisioner will not be executed
+
+vagrant up = first boot it will execute, subsequent boots will not
+vagrant up --no-provision first boot also will not execute
+vagrant up --provision = always all the provisioners will execute
+
+#2. Through Vagrant configuration also we can configure the execution behaviour of the provisioners
+in the provisioner block we can declare run attribute to indicate the running behaviour of the provisioner which takes possible 3 values
+1. always = every reload/restart the provisioner to be executed (override the command-prompt)
+2. once = only first boot run it (override command-prompt switch)
+3. never = never execute
+
+Vagrantfile
+
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/hashicorp64"
+  config.vm.provision "provisioner1", type: "shell", inline: "install jdk", run: "always"
+  config.vm.provision "provisioner2", type: "shell", inline: "mysql server install", run: "once"
+end  
+using vagrant configuration we can control provisioner execution behaviour at each provisioner level
+
+config.vm.provision "provisioner1", type: "shell" do | prov |
+  prov.inline: ""
+  prov.run: "always"
+end
+
+#3 There is another way of controlling the provisioner execution behaviour through command line, given the provisioners are provided with name
+for eg..
+  
+config.vm.provision "installtomcat", type: "shell" do | prov |
+  prov.inline = ""
+end  
+config.vm.provision "starttomcat", type: "shell" do | prov |
+  prov.inline : ""  
+end  
+
+vagrant up --provision-with=starttomcat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

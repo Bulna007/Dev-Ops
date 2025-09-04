@@ -1,0 +1,197 @@
+How many forms of for loop is there?
+There are 2 forms of for loop is there in Linux
+1. for loop with fixed set of values to be iterated over
+2. counter based for loop
+
+#2 How to work with couter based for loop.
+In counter based for loop, intialization, condition and incrementation all are kept with the loop statement itself, so that readability will be easy and no chance of perform the mistake like forgot increment the couter etc.
+  
+for((I=0;I<10;I++)) 
+do
+  echo $I
+done
+-------------------------------------------------------------------------------------------------------
+until Loop
+In until loop until the condition is false, iterate the block for statements, if the condition met true break the loop.
+  
+while [ condition = true ]   
+do
+  #statements
+done
+
+until [ condition = false ]
+do  
+  @statements
+done  
+
+wap to print numbers from N to 1
+#!/bin/bash
+read -p "N:" N
+I=$N
+util [ I -lt 1 ]
+do
+  echo $I
+  I=$[I-1]
+done
+
+wap that reads product no, quantity and price and calculate total bill amount.
+enter product code: 100
+quantity: 2
+price: 100
+Do you want to add more products: Y
+enter product code: 100
+quantity: 2
+price: 100
+  Do you want to add more products: Y
+
+enter product code: 100
+quantity: 2
+price: 100
+Do you want to add more products: N
+total bill value: 
+
+
+bill.sh
+#!/bin/bash
+BILL_AMOUNT=0
+MORE_PRODUCTS=Y
+
+until [ $MORE_PRODUCTS = "N" ]
+do
+  read -p "product no:" PRODUCT_NO
+  read -p "quantity:" QUANTITY
+  read -p "price:" PRICE
+  BILL_AMOUNT=$[BILL_AMOUNT + (QUANITTY * PRICE)]
+  read -p "do you want to add another product (Y/N):" MORE_PRODUCTS
+done  
+----------------------------------------------------------------------------------------------------
+ARRAYS
+
+In general a variable holds a value 
+
+we delcare variables and we store values as part of them, so that we can use the variables instead of literals to perform operations
+I=10
+J=20
+  
+SUM=$[I+J]  
+
+I have group of values on using which we want to perform operation, how to store the group of values so that we perform operations using them
+
+MARK1=40
+MARK2=60
+MARK3=50
+--------------
+     =150/300
+---------------
+  
+3 students marks want to add and print their total
+
+S1MARK1=40  
+S1MARK2=60
+S1MARK3=50
+  
+S2MARK1=50  
+S2MARK2=70
+S2MARK3=40
+
+S3MARK1=80 
+S3MARK2=75
+S3MARK3=45
+  
+S1TOTAL=$[S1MARK1 + S1MARK2 + S1MARK3]  
+S2TOTAL=$[S2MARK1 + S2MARK2 + S2MARK3]  
+S3TOTAL=$[S3MARK1 + S3MARK2 + S3MARK3]  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

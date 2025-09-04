@@ -1,0 +1,82 @@
+DevOps = A change in culture and adoption of new tools and process in building and delivery software applications quickly to the world.
+
+Software Application = a set programs written by group of deveopers in meeting the end-user/business requirements of a system. 
+
+Business owner | Organization
+The business the business owner or business organization has to provide requirements for developing the software. These requirements are provied in documents called Business Requirement Documents (BRD)
+
+Developers:-
+So developers/programmers will build the software systems based on the requirement of the business. These people use programming languages in building the software applications.
+ - c
+ - c++
+ - java
+ - .net
+ - python
+ - php
+ - scala
+ - ruby
+They will write the code/instructions in running the program using those languages.
+
+Once developed these applications cannot be delivered to the customers/business owners/enterprise, because the code|program|software they build may not work properly.
+
+Quality Assurance 
+Engineer (Team) = He understands the business requirements clearly that is provided by business owner | organization. and verifies|validates the software system build by the developers and certify 
+
+Operational Engineers = He understands the system software that is build by developers and facilitates necessary infrastructure (computer machines | network cables | physical resources). System software to be installed to run the application.
+Then finally he takes the delivered application and runs on the Final environment so that the software will be available to the public usage
+
+What are the roles of people involved in development and delivery of a software application?
+1. developer
+2. quality assurance engineer
+3. operational engineer
+
+What are the stages of development and delivery of the software
+1. develop
+2. test
+3. deliver
+
+This is called the Software developer and delivery process that takes place in a software manufacturing process.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

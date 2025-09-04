@@ -1,0 +1,87 @@
+Ansible architecture
+--------------------
+There are 5 components of ansible on which it works!
+1. Ansible module
+	predefined code blocks written by ansible developers and distributed to us. we can use these modules and execute them by passing arguments in performing an activity or operation.
+	
+2. Ansible Control Node
+	The machine on which the ansible is installed using which we run the automation
+	
+3. Playbook
+	Playbook is a file in which we declare all the modules of ansible, so that control node archestrate in executing the modules.
+	
+4. Managed Node
+	Machine on which we want to apply automation
+	
+5. Inventory File
+	list of computers of the network which will passed as an input to Ansible Control Node to perform automation
+----------------------------------------------------------------------------------------------
+How to run ansible on the machine?
+Ansible doesnt works on windows operating system, even though in recent versions they added compatibility to run on windows, its hard to install and configure it work with windows, instead we need to setup ansible on linux only
+
+There are 2 ways to setup ansible
+1. through windows subsystem linux (wsl) if we are running windows 10 on our host computer
+2. install ansible control node software on separate virtual machine if we have windows 7 or older version on host computer
+
+#1. through windows systemsystem linux
+if we are running on windows 10 taking the advantage of WSL will results in good performance in running the local cluster
+WSL stands for Windows Subsystem Linux, its a feature introduced by microsoft in running linux bash on windows operating system. There are 2 versions of WSL are available
+	1. WSL 1 = within the windows kernal the microsoft has shipped bash interpreter which executes in portable way the bash commands on windows kernal. even though majority of linux commands works on WSL1 we still see some in-compatible issues.
+	
+	2. WSL 2 = The microsoft has shipped full fledge linux kernal to be executed on windows by enable hyper-v virtualization internally. it means we run a separate linux on windows.
+	
+	when we enable WSL2 we cannot run oracle virtualbox in parallel so we can disable WSL2 and switch bach to WSL1, so that we can install ansible on WSL1 and create managed nodes on oracle virtualbox
+	
+	
+	
+How to enable WSL2 on windows 10?
+1. upgrade Windows 10 to 19041.450 build if you are running older version of Windows 10 then you need to update your windows using Windows Update Tool
+
+2. Enable Windows Subsystem Linux 2 by running the below commands
+wsl --install
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

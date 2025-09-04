@@ -1,0 +1,70 @@
+How many network modes are supported by virtualbox hypervisor?
+7 network modes are supported by virtualbox hypervisor.
+1. Not Attached = Network adapter is not plugged in
+2. NAT = The virtual machine is plugged into the NAT Port of the virtualbox there by allowing only outbound traffic from guest-> host or external network, but not the viceversa. No 2 guests can also communicate with eath other
+3. NAT Network = Similar to NAT, but all the guests on the same nat network can communicate with each other.
+4. Bridge Network = The virtual network adapter will be plugged into the gateway of the physical network adapter bringing all of them into 1 network, forming a bridge.  Now the ip address of the virtual and physical nic will be on the same network address thus forming them all into one network.
+The Network interface cards plugged-in to the same bridge can communicate in all the ways like
+guest=guest
+guest=host
+guest=external network
+host=guest
+external network=guest
+Problems:-
+  1. we need to configure the bridge and restart the vm always
+  2. we will quickly run out of ip addresses if more vms are connected
+  3. security
+
+5. Internal Network
+Virtual machines whose network adapters are configured to work with Internal Network are connected to an isolated virtual network similar to vpc network. VMs connected to the Internal network can communicate with each other, but they cannot communicate with host or external network.
+Similarly the host and external network cannot access the VMs. We use Internal network for modelling real-world networks.
+          
+6. Host-Only Network adapter
+We create a virtual host-only network adapter on the host machine. Now all the vms nic are plugged in through the host-only network adapter. So that all vms on the host-only network adapter can communiate and guest-> host and host-> guest also enabled.
+But no external network.
+  
+
+7. Generic Driver
+This network mode allows you to use a generic network interface for your virtual machine.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

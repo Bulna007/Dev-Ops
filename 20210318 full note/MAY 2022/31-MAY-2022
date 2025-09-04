@@ -1,0 +1,195 @@
+How to scale a replicaset?
+#1 kubectl scale replicaset replicasetname --replicas=2
+#2
+edit the replicaset by opening the runtime instance of it
+kubectl edit replicaset replicasetname
+--------------------------------------------------------------------------------------------
+2. Deployment
+In general deployment is a process of packaging and delivering a software application on the target environment so that it would be available for usage. So in kubernetes world deployment refers to the process of running the containerized application on the kubernetes cluster.
+	
+There are multiple ways of deploying an containerized application on kubernetes cluster.
+	1. pod spec
+	2. repliaSet spec
+	
+There is an another way we can deploy an application on kubernetes cluster which is "deployment".
+
+Instead of writing the pod spec or replicaSet spec in deploying an application we can write deploymentSpec through which we can run an containerized application on the cluster. In the deployment spec we can specify the image and desired number of replicas we wanted to run.
+	
+The deployment controller takes the deployment spec as an input and ensures the desired number of replicas are running in the cluster by creating replicaSet controller
+
+When there is change in the desired state, the Deployment controller changes from actual state to the new state in a controlled way 
+
+How to work with deployment or how does deployment controller/spec works?
+1. create a deployment spec defining the template (image) and desired number of replicas to be running on the cluster.
+	per each deployment with replicas specified, the Deployment controller internally creates an ReplicaSet controller to ensure desired state of the cluster
+with the above deployment spec the application will be rolled-out on to the cluster
+
+2. if there is a new pod image has been released, we can update the deployment spec with the latest pod template, the deployment controller does the below job in performing the rolling update
+A pod template contains several things like
+image
+container ports
+resource requests
+liveness and readiness probes
+volumes 
+etc
+when there is a change in any of the section of the pod template, the deployment controller performs a rolling update as below.
+	1. It creates an new ReplicaSet controller with the latest pod template with replicas as 25% of the original
+	for eg the actual replicas we specified is 4 means, it creates an new replicaSet with replicas as 1, so that with new pod template a new pod will be created on the cluster
+	2. upon bringing up the new pod, the deployment controller goes and modifies the previous replicaSet to 3, terminating one of the pod replicas
+	eventually it updates the new pod replicaSet one by each terminating 1 at a time on old replicaSet
+	in this way the new pod template will be rolledout on to the cluster in controlled way.
+		
+#3 if the new pod template seems to be not stable, then we can rollback to the previous state of the cluster by issuing a rollback request to the deployment controller
+	When we update the pod template, the deployment controller doesnt delete the previsou replicaSet, so that when we issue a rollback, it simply updates the previous replicaSet with desired number of replicas rolling back the pods to the previous state in controlled way
+	
+#4. we can pause the deployment controller to perform all the updates to the pod template at once and can resume it back
+
+speed-deployment.yaml
+---------------------
+apiVersion: apps/v1
+Kind: Deployment
+metadata:
+	name: speeddeployment
+	labels:
+		app: speed
+spec:
+	replicas: 2
+	selector:
+		matchLabels:
+			app: speed
+			version: "1.0"
+	template:
+		metadata:
+			labels:
+				app: speed
+				version: "1.0"
+		spec:
+			containers:
+				- name: speed
+					image: techsriman/speed:1.0
+					ports:
+						- name: speedport
+							containerPort: 8080
+							protocol: TCP
+							
+How to change the pod template within the deployment?
+kubectl set image deployment/deploymentName label=image --record
+kubectl edit deployment deploymentName
+
+kubectl rollout history deployment deploymentName
+kubectl scale deployment deploymentName --replicas=2
+								
+kubectl rollout undo deployment deploymentName --to-revision=1
+								
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

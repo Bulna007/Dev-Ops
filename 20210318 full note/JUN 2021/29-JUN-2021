@@ -1,0 +1,109 @@
+How to process the contents of a text file using Linux commands?
+There are linux commands that helps us in processing the contents of a text file like 
+1. extracting the data from the file
+2. reading specific fields
+3. joining 2 files together
+4. replace a specific data with another etc
+all of these operations are considered processing the text content 
+
+Linux has provided 4 text processing commands
+1. cut
+2. paste
+3. awk
+4. sed
+
+
+#1 cut
+cut is a command that takes text content as an input either  from a File or from STDIN and breaks the data into columns/fields based on the delimeter and prints the data onto the Console STDOUT.
+  
+accounts.txt
+01982939,Martin,savings,1000
+93838393,James,savings,2019
+93837921,Bob,current,2733
+  
+syntax:-
+cut -d "delimeter" -f fieldNo fileName [FILE INPUT]
+cat filename | cut -d "delimeter" -f fieldNo [STDOUT as INPUT]
+-d stands for delimeter = only single character
+-f stands for field fieldNo
+--------------------------------------------------------------------------------------------------------
+#2 paste
+paste is used for merging contents of 2 different files line by lined, based on delimeter supplied.
+
+products.txt
+1,lg 32inch led tv,12000
+2,samsung refrigerator,23000
+3,bose headset,18000
+  
+product_inventory.txt
+1,10
+2,22
+3,5
+  
+cat products.txt = it shows product data
+cat product_inventory.txt = it shows product no and available stock
+
+paste -d "," products.txt product_inventory.txt
+
+1,lg 32inch led tv,12000,1,10
+2,samsung refrigerator,23000,2,22
+3,bose headset,18000,3,5
+---------------------------------------------------------------------------------------------------------
+awk
+awk is used for performing operations on the text content like
+1. scan file line by line
+2. split each line into fields
+3. extract contents based on pattern matching
+4. we can perform operations on the data that matches the content
+5. tranform data
+6. format the data output
+the difference between awk and cut is cut takes single character as a delimeter, where as awk accepts pattern based on which it extracts the data.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

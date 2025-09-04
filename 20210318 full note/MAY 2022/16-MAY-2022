@@ -1,0 +1,183 @@
+What is kubernetes namespace?
+namespaces are logical grouping of objects belongs to an application/project from others 
+(or)
+we can create isolated set of resources from others using namespaces
+
+By default when we install kubernetes cluster, by default a kubernetes administrator will be created and he has access to the entire cluster.
+The administrator can create kubernetes cluster users, groups
+assign users to the groups and grant roles/permissions to the users and groups in administrating the objects/resources of the cluster within a specific namespace.
+	
+by default within a kubernetes cluster there are 4 namespaces created
+1. default
+all the objects we create within the kubernetes cluster will falls into default namespace	
+2. kube-system
+all the kubernetes system objects like api manager, controller manager, schedulers are created under kube-system namespace
+3. kube-public
+all the objects under kube-public can be accessed without authentication
+4. kube-node-lease
+
+
+#1. how to see the kube config file of the cluster?
+kubectl config view
+
+#2. How to see the pod objects that are in specific namespace?
+kubectl get pods -o wide -n namespace
+
+#3. how to create a namespace?
+kubectl create namespace namespacename
+--------------------------------------------------------------------------------------------
+How to manage multiple kubernetes clusters through kubectl?
+Within an organization we might have multiple kubernetes clusters, for eg..
+	
+A cluster for development environment = where developers will deploy their containerized appliations and test it in their development environment
+A cluster for testing = qa deploys the applications delivered by developers for testing
+
+We want to connect to any of these kubernetes cluster from an workstation and manage these environments using kubectl. This can be managed by configuring kube config file
+
+The kubectl by default reads the cluster information from $HOME/.kube/config file in connecting to the kubernetes cluster. In the .kube/config file we can specify multiple kubernetes cluster information
+
+we can change the default file that kubectl reads for connecting to the cluster by setting up an environment variables pointing to a different file as below.
+$HOME/sailor/.kube/sailorclusterconfig
+export KUBECONFIG=$HOME/sailor/.kube/sailorclusterconfig
+
+To manage connecting to the multiple different clusters we can add multiple cluster informations in kube config file as below.
+	
+$HOME/.kube/config
+------------------
+apiVersion: v1
+kind: Config
+preferences: {}
+clusters:
+- cluster:
+	name: development-cluster
+		server: http://ip:port
+		certificate-authority-data: key
+- cluster:
+	name: test-cluster
+		server: http://ip:port
+		certificate-authority-data: key		
+- cluster:
+	name: development
+		server: http://ip:port
+		
+users:
+- name: kubernetes-developer-admin
+	user:
+		client-certificate-data:
+		client-key-data:
+- name: kubernetes-test-admin
+	user:
+		client-certificate-data:
+		client-key-data:
+
+contexts:
+- context: 
+		cluster: development-cluster
+		user: kubernetes-developer-admin
+		namespace: x
+	name: development-context
+- context:
+		cluster: test-cluster
+		user: kubernetes-test-admin
+		namespace: testnamespace
+	name: test-context
+current-context: development-context
+
+
+To switch from one cluster to another cluster we need to change current-context in kube config file.
+	
+There are 2 ways we can change kube config file
+1. we can modify the kubeconfig file manually through text editor
+2. through kubectl commands
+
+1#How to change the namespace of the an kubernetes cluster we want to access
+kubectl config set-context --current --namespace=x
+
+2#How to see the current context we are using?
+kubectl config current-context
+
+3#How to see all the contexts
+kubectl config get-contexts
+
+#4 How to switch the context
+kubectl config use-context contextname
+
+
+How to add a new kubernetes cluster information in kubeconfig file?
+There are 2 ways we can do this
+1. modify the kubeconfig file manually and add the cluster information
+2. we can add the new cluster using --set-cluster command of kubectl
+
+kubectl config --kubeconfig=config set-cluster development --server https://ip:port --insecure-skip-tls-verify
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+vagrant
+vagrant is an virtualization workflow automation tool that can be used by developers, quality assurance engineers and support/operation engineers.
+  
+when we are working on solutions based on client/server architecture we can manage to develop and deliver these applications more easily through vagrant.
+Let us try to explore how does vagarnt helps in developing and delivering client-server architecture based application easily.
+  
+The developer in order to develop the client-server technology applications he need 2 environments.
+  1 server environment = we need to setup web server (optionally a database server) and other tools required for deploying and running the application. So that developer can test his code after completing the code.  
+  2. client environment = Developer inorder to test the application requires client tools like web browser and other testing tools for testing the application 
+  
+How to setup these 2 environments?
+    
+  
+

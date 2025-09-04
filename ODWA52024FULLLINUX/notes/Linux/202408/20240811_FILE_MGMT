@@ -1,0 +1,116 @@
+Linux FileSystem directory structure
+/ (root)
+1. /bin   = linux core commands resides under this directory like mkdir, ls, cat, touch etc
+2. /boot  = boot loader files are placed inside this directory
+3. /dev   = all the physical devices like harddisks, pendrives, disk drives are mounted under this location
+4. /etc   = configuration files of installed software packages are placed under this directory
+5. /home  = per each linux user being created, there is a sub-directory for the user will be created under /home, that acts as an home directory for that user. 
+6. /lib   = library files that are common across different software packages we install on the machine are placed here
+7. /media = media devices like ipod, music players, camera are mounted here
+8. /mnt   = the network drives or network storage devices are mounted in /mnt directory
+9. /opt   = all the optional software packages that are installed on the operating system are placed here
+10. /root = root user home directory
+11. /proc = The information about all the running programs are kept as files within the /proc directory
+12. /sbin = super user commands are placed here
+13. /tmp  = temporary files are kept here
+14. /var  = variable large object files usually the log files of the system are placed here
+15. /usr  = utilities and files shared between the users are placed here
+
+Inorder to see the above filesystem directories, upon login to the operating system, open terminal. Then type the below commands.
+cd /   = navigate or change directory to "/" (root)
+ls -l  = list all files and folders under the current directory in long-listing format
+
+we can see the files and folders under an give directory using tree command. Tree shows all the directories along with their sub directories under the specified directory in a tree like structure visually.
+	
+by default the tree software package is not available aspart of ubuntu operating system, we need to explicitly install it using the below commands.
+	
+sudo apt update -y
+sudo = is used for executing any linux command under root user previlige or permission, so it prompts for root user password.
+	
+sudo apt install -y tree = this will install tree command or software package.	
+
+	
+using the tree command we can see the directories under the "/"	by using the below command
+cd /
+tree -L 1
+-------------------------------------------------------------------------------------------------------------------------
+Learning Linux operating system
+1. File and Folders
+2. Install or upgrade softwares
+3. Users, Grant permissions allowing them to access
+4. Programs and manage them
+5. Networking 
+6. Securing Files and Programs
+7. Manage system resources
+8. utility programs
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

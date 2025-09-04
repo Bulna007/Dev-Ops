@@ -1,0 +1,122 @@
+alternate to configuring Client-Server env on local workstation of the developer, we can setup centralized server environment and workstation of the developers as client environment.
+
+#2 Setup server environment on central server computer, wherein all the developers can use their workstation as a client environment and can deploy and test their applications on central server environment.
+advantages:-
+  1. production like environment
+  2. my code works across all the developers because everyone is using same central environment
+  3. dont need to spend too much amount of time in setting up the server environment on each developers workstation which saves lot of time
+  4. all the developers of any role within the team can work without any complexity in setting up local env
+  5. developers can parallely work on multiple projects as the server env is not setup locally
+  6. troubleshooting and debugging the software installations and configurations required for our project which are specific to the workstation env is gone
+  
+but even this approach also has many dis-advantages:
+  1. the developer has to move the code between server/client machines to deploy and check his changes which will kills lot of developers time and productivity
+  2. only one developer can work at a time, multiple developers cannot work in parallel since there are sharing the same central server env
+  3. quite difficult in debugging the application
+  4. may not be supported by many corporates due to security and traffic restrictions in having central environment.
+
+Looks like both the approaches of setting up client/server environments in building distributed applications has their own dis-advantages, to overcome the above problems we can use virtualization.
+    
+How does virtualization technology rescue us from the above problems?
+We can setup Server environment on the virtual machine and can use workstation as the client environment. Now the developer will works on the code changes in his local workstation and moves or copies the code onto server of virtual machine and test his changes.
+this approach solves all the earlier problems:
+  1. every developer dont have to spend time in setting up the server environment on their machines, rather all of the develpers can use virtual machine as a server environment
+  2. any role developer can quickly work on the application without the need of going through the complex process of setting up the environments
+  3. dont have to troubleshoot the errors we encouter while setting up the software on each of the developers machine, since everyone is using same virtual machine environment
+  4. my code works on any machine
+  5. production like environment
+  6. we can quickly debug the applications as the server is locally available on each of the workstations
+  7. developer can work on multiple parallel applications 
+  
+How to setup virtual machine environment?
+1. we need to install hypervisor software on the workstation of the developer/ops engineer
+2. has to setup an virtual machine with hardware configuration assigned like
+  - cpu
+  - ram
+  - hdd
+  - network adapters 
+3. need to install operating system from an iso image
+4. install and configuration software packages required for running our application
+5. setup the workspace of our application to build/package and deploy the code
+  
+There are lot of problems in setting up the virtual machine environment in developing and delivering the application lets explore what are the challenges:
+1. Manually setting up the virtual machine environment is a labourious process and takes lot of time
+2. any software upgradations or patches on the existing softwares requires a re-setup of the whole environment from scratch and re-distribute the virtual images to the whole team which is time consuming job
+3. since we are doing this as a repeatitive process in setting up images, there is always a high chance where we might perform something wrong during the time of setup and configuration virtual machines which leads to start everything from scratch which is very difficult.
+4. by nature virtual machine images are huge in size, which cannot be distributed to all the developers of the team easily
+5. each developer should know virtualization and how to setup virtual machine using the disk image we provided which is complex job
+
+even though virtualization has solved most/many of the problems, it looks like it has its own complexities are challenges in using it.
+To overcome the above problems we can use vagrant. vagrant is an virtualization workflow automation tool that helps us in automating the entire process of setting up an virtual machine environment on a hypervisor software.
+Vagrant is not an hypervisor provider, rather he talks to the hypervisor provider in provisioning and building an virtual machine on the hypervisor.
+  
+Provisioning: The process of setting up and bringing an virtual machine up and running is called provisioning.
+  
+vagrant works on lot of hypervisor providers:
+1. oracle virtualbox
+2. vmware fusion
+3. vmware workstation
+4. parallels
+5. hyper-v
+
+The default hypervisor provider with which vagrant works is virtual box, being an most popular open source virtualization vendor in the market
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

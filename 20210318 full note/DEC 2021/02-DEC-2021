@@ -1,0 +1,86 @@
+What is maven build lifecycle?
+Lifecycle comprises of standard phases where each phase is associated with set of plugins/goals which will be executed to perform an build activity.
+There are 3 standard maven lifecycles are there
+1. default lifecycle
+2. site lifecycle
+3. clean lifecycle
+
+#1 default lifecycle has 7 phases defined and maven has associated default plugins for each phase to perform build operation automatically	
+	1.1 validate
+	1.2 compile
+	1.3 test
+	1.4 package
+	1.5 verify
+	1.6 install
+	1.7 deploy
+	
+#2 site lifecycle = used for generating java documentation for a project, it has only 1 phase associated with 1 plugin:goal
+2.1 site
+		|-site (plugin)
+			|-site (goal)
+#3 clean lifecycle = used for deleting previously generated target/ directory of a project, since always we dont want to clean, it has been added as separate lifecycle. clean lifecycle has 1 clean phase with 1 clean plugin with a goal clean
+3.1 clean
+		|-clean (plugin)
+			|-clean (goal)
+
+when we want to run a maven build specify mvn phase (of a lifecycle) 
+mvn phase(l1) phase(l2) phase(l3)
+maven takes care of executing all the phases from top to the bottom till we specified by executing each of plugins and their goals in the configured order.
+	
+Due to the Standardized Lifecycle phases, building any maven project would be same which is as simple as running
+mvn clean verify|install|package|compile
+
+without knowing the details of the project anyone can perform building an application "the real power of maven"
+---------------------------------------------------------------------------------------------------
+1. what is maven?
+2. why do we need to use maven?
+3. what are the features of maven?
+		1. standardized directory structure
+		2. dependency management
+			2.1 repositories
+			2.2 dependency declaration
+			2.3 dependency scopes
+4. archetypes	(archetype plugin)			
+5. plugins
+6. build lifecycle
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

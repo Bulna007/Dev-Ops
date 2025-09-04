@@ -1,0 +1,138 @@
+#1 How to customize the vagrant machine based on the provider we are running?
+We want to customize the creation of vagrant machine based on the provider for eg..
+  #1.1
+  if we are running the vagrant machine on Virtualbox provider then
+    - vbox image = ubuntu/focal64
+    - networking = private network
+  #1.2 
+  if we are running the machine on hyperv then
+    - vbox image = hashicorp/64
+    - networking = public network
+To achieve the above customizations vagrant has provided provider blocks as below.
+    
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64" #across all the providers (global)
+    
+  config.vm.provider "virtualbox" do | vb, mconfig |
+    mconfig.vm.box = "ubuntu/bionic64"
+    mconfig.vm.network "private_network"
+  end
+  
+  config.vm.provider "hyperv" do | hpv, mconfig |
+    mconfig.vm.box = "hashicorp/precise64"
+    mconfig.vm.network "public_network"
+  end      
+end    
+vb or hpv = refers/points to the hypervisor provider, we can use these 2 objects when we want to configure hypervisor
+
+mconfig = is the vagrant machine configuration object, that represents the original config object we declared in outer block, using which we can override base configuration we have populated outside.
+
+  
+#2 How to apply provider configurations/settings for a vagrant machine?
+There are few configuration options are settings specific to the hypervisor provider we are working with for eg..
+  virtualbox allows us to customize the below:
+    1. cpu to be allocated to the vm
+    2. gui (headless mode or interactive mode of booting machine)
+    3. ram capacity
+    4. configure name of the virtual machine
+    5. we can apply linked_clone
+    6. modify cpu cap execution etc
+    
+if we have written all these virtualbox settings in vagrantfile directly then the machine configuration works with only virtualbox and with other hypervisor providers machine configuration will fail. So to ensure our configuration is portable across various providers vagrant has provided provider blocks allowing customization as below.
+  
+Vagrantfile
+------------
+Vagrant.configure(2) do | config |
+  config.vm.box = "ubuntu/focal64"
+  
+  config.vm.provider "virtualbox" do | vb |
+    vb.cpus = 4
+    vb.memory = 1024
+    vb.gui = true # boot the machine in interactive mode
+    vb.name = "jcache machine"
+    
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50" ]
+    vb.customize ["modifyvm", :id, "--vram", "512"]
+    vb.linked_clone = true
+  end  
+end  
+---------------------------------------------------------------------------------------------------------
+What are vagrant boxfiles?
+Vagrant boxfiles are prepackaged template files that can be quickly imported in creating an virtual machine on the underlying hypervisor.
+    
+Each time when we create an virtual machine, we need to install the operating system from disk image (iso), configure settings etc, which takes huge amount of time, instead vagrant has packaged operating system and commonly used utilities and configurations and provided to us as vagrant boxfiles, which can be used quickly in creating virtual machine.
+    
+The vagrant boxfiles are provided by different players in the market
+  1. hashicorp team  = these are official vagrant boximages verified by hashicorp and provided to us
+  2. third-party organizations = there are few third-party organizations like ubuntu, redhat etc baked the vagrantbox files and provided to us.
+    - should be carefull while using them by referring licenses of usage.
+    - should choose the machines from trusted providers only
+  3. anyone around the world who are interested in contributing for open source stack can also back their own image and publish to vagrant cloud.
+    - should be very careful while using vagrant images from outsiders
+
+
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

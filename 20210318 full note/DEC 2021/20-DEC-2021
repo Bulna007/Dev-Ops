@@ -1,0 +1,136 @@
+fithealth (100%) (by our own) (usecase = project)
+|-src
+  |-main
+		|-java
+		|-resources
+		|-webapp
+			|-WEB-INF
+				|-web.xml
+		|-config
+			|-install-mysql.sh
+			|-expect-mysql-secure-installation.sh
+		|-sh
+|-Vagrantfile		
+|-pom.xml				
+
+
+Vagrantfile
+-------------
+Vagrant.configure("2") do | config |
+	config.vm.box = "ubuntu/focal64"
+	config.vm.define "dbserver" do | dbserver |
+		dbserver.vm.network "private_network", ip: "192.168.11.10", virtualbox_intnet = "fithealthnetwork"
+		
+		dbserver.vm.provision "copy shellscripts", type: "file", src: "src/main/sh/expect-mysql-secure-installation.sh", destination: "/tmp/"
+		dbserver.vm.provision "mysql installation", type: "shell", path: "src/main/sh/install-mysql.sh"
+	end
+end
+
+when we configure shell provisioner with path: attribute pointing to the project directory shellscript file, the file will be copied onto the guest machine during the execution of the provisioner.
+	
+install-mysql.sh
+#!/bin/bash
+source /tmp/expect-mysql-secure-installation.sh
+IS_MYSQL_INSTALLED=0
+function checkMySqlInstallation() {}
+function checkAndInstallDefConfUtils() {}
+function installMySqlServer() {}
+function checkAndInstallExpect() {}
+
+#main program
+sudo apt update -y
+checkMySqlInstallation
+if [ $IS_MYSQL_INSTALLED -eq 0 ]; then
+	checkAndInstallDefConfUtils
+	installMySqlServer
+	MYSQL_INSTALL_STATUS =$?
+	if [ $MYSQL_INSTALL_STATUS -eq 0 ]; then
+		checkAndInstallExpect
+		
+	else
+		echo "ERROR! failed during installating mysql server, please check the logs"
+	fi
+else 
+	echo "already installl, so skipping"
+fi
+
+	
+	
+expect-mysql-secure-installation.sh (host machine (in-project) src/main/sh/)
+#!/bin/bash
+
+function expectMySqlSecure() {
+	MYSQL_SECURE=$(expect -c '
+		set timeout -1
+		spawn mysql_secure_installation
+		expect "Enter password for user root:"
+		send -- "root\r"
+		expect "Press y|Y for Yes, any other key for No:"
+		send -- "No\r"
+		expect "Reload privilege tables now? (Press y|Y for Yes, any other key for No) :"
+    send -- "Y\r"
+		expect eof
+	')
+	echo "$MYSQL_SECURE"
+}
+----------------------------------------------------------------------------------------------
+How to configure remote access?
+
+/etc/mysql.conf.d/mysqld.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

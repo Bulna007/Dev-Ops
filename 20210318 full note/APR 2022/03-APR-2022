@@ -1,0 +1,180 @@
+1. How to run a docker container as a daemon container?
+docker container run -d image:tag
+
+2. How to run a container with a given name?
+docker container run -d --name containername image:tag
+
+3. How to run a container that gets removed automatically upon completing its execution?
+docker container run -d --rm image:tag
+
+4. How to execute a command on a running container?
+docker container exec -it id/containername command
+
+----------------------------------------------------------------------------------------
+How to run an mysql server docker container?
+1. docker container run -d --name mysql -e MYSQL_ROOT_PASSWORD=root -p3306:3306 mysql:8.0.28
+with the above command we are launching mysql server docker container by exposing the port 3306 for external access. 	
+	
+2. To access the mysql server running inside the container, we need to grab the container bash prompt interactively as below
+docker container exec -it mysql bash
+
+3. Now grab mysql prompt to access the database as below
+mysql -uroot -proot
+
+How to access the mysql server above from outside the container (for eg.. from docker workstation or any other remote computer)?
+since we have already exposed the mysql server port externally with 3306, the mysql server will be accessable with ip:port, we need to find ip address of the docker container to access
+
+docker container inspect mysql
+
+2. install mysql client tool on ubuntu or docker workstation.
+sudo apt update -y
+sudo apt install mysql-client-8.0
+	
+3. login into mysql sql-prompt using client tool
+mysql -hcontainerip -uroot -proot
+------------------------------------------------------------------------------------------
+5. How to start an stopped container?
+docker container start mysql
+
+note: when we stop a container, the container writable layer will not be destroyed, so when we restart the container all the data will be preserved. when we remove/destroy the container then only the container writable layer will be discarded along with container.
+-----------------------------------------------------------------------------------------
+6. How to attach the TTY onto a running container?
+docker container attach id/name
+
+7. How to see the logs of a container?
+docker container logs id/name
+------------------------------------------------------------------------------------------
+
+docker image management commands
+--------------------------------
+1. How to see all the docker images on the docker workstation or local cache?
+docker image ls
+
+2. How to see the details of the image?
+The details of image like Maintainer, Licensing, created date, supported platform, size, command with which container kickstarts etc
+docker image inspect image:tag
+
+3. by default when we launch a docker container by specifying an image, if the image is not found in the local cache or workstation, it will pulled from docker container registry, if we want to pull the image manually we can do that without launching the container using 
+docker image pull image:tag
+
+When the author is publishing an image into docker container registry he will attach an version number of the image which is called "tag". by default for each image there is a default tag called "latest", which is always pointing to the latest version of the image.
+#1 author has produced an mysql server image version mysql:8.0.28, now he will attach one more tag/alias name to the image as mysql:latest -> mysql:8.0.28
+#2 when the new version of the mysql server image has been release as mysql:9.0 then the author will retag the image as latest mysql:latest -> mysql:9
+
+so always if we want to work with latest version of an image use latest tag in pulling/running the containers.
+	
+4. How to retag/add an alias name to an existing image?
+docker image tag image:tag newimage:newtag
+
+5. How to remove an docker image?
+docker image rm image:tag = if there exists an container created on that image, then this produces error
+if there is a alias/tag on the image, then only the alias will be dropped, the image will not be removed utill all aliases are removed
+	
+to remove the container along with image we need to use
+docker image rm -f image:tag = -f stands for force to remove container along with image
+
+6. How to remove all the unused images on the workstation?
+docker image prune
+removes all the images which doesnt have containers created on them
+
+7. How to export an existing docker image on a machine?
+docker image save image:tag -o filename.tar
+the save exports the existing docker image in the docker workstation into a file
+-o stands for output into a filename
+
+8. How to load an docker image from an existing .tar file?
+docker image load -i filename.tar
+-i = stands for input file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

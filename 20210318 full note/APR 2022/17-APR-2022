@@ -1,0 +1,83 @@
+#13. CMD directive
+CMD directive is used for executing an instruction/command during the launch of the container. CMD is an container instruction that is used for making the executable container.
+	
+We need to write one CMD in a Dockerfile to run/execute the application packaged inside the image. In case if we have written multiple CMD directives in the Dockerfile only the last CMD instruction will be executed ignoring all the other instructions.
+	
+There are 3 forms of writing CMD in a Dockerfile
+1. CMD["execute","param"] = execute form (preferrable form)
+2. CMD["param1", "param2"] = used in-conjunction with ENTRYPOINT (deffered)
+3. CMD executable param1 param2 = shell-form
+
+#1. CMD execute form
+CMD execute form, the command or executable instruction we wrote will be executed without the shell/bash, so variable expansions will not work
+for eg..
+CMD ["echo", "$PATH"] = will not work, because there is no bash/shell here to expand the variable
+if you want the variable to be expanded then you need tell CMD to run the command using shell as below
+CMD ["bash", "-c", "echo $HOME"]
+
+#2. CMD shell-form
+CMD Shell-form executes any command we passed using shell interpretor only
+CMD echo "$HOME"
+the above instruction will be executed by the CMD using shell, $HOME will be expanded
+------------------------------------------------------------------------------------------
+#13. ENTRYPOINT
+ENTRYPOINT directive is used for making an docker container executable, it is an container instruction.
+	
+CMD is also used for making an container executable, but when we use CMD directive for building an executable container, the user can override the CMD by passing argument while launching the container
+docker container run image:tag overridecommand
+whereas when we use ENTRYPOINT we cannot override the command we are executing inside an ENTRYPOINT
+
+Few notable things related to CMD without using ENTRYPOINT:
+1. CMD is used for making an container executable, it is the default CMD with which a container will executed
+2. We can always override the default CMD specified in the Dockerfile by passing command explicitly at the time of launching the container
+3. We can have any number of CMD written in the Dockerfile but only the last CMD is executed
+4. in case if we want to execute multiple commands while launching the container, we have 2 options here
+	1. write a shellscript program in which write all the commands you want to execute and run the shellscript in the CMD
+	2. we can write CMD in shellform by concatenating 2 commands using
+	CMD cmd1 && cmd2
+	
+Dockerfile
+-----------
+FROM ubuntu:20.04
+CMD [ls]	
+CMD ["echo", "$PATH"] #only the last will be executed
+
+run.sh
+-------
+ls
+echo "$PATH"
+	
+Dockerfile
+----------
+FROM ubuntu:20.04
+COPY run.sh .
+RUN chmod u+x run.sh
+CMD ["./run.sh"]	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

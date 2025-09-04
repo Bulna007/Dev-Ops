@@ -1,0 +1,118 @@
+How to determine the network address and host address for a given ip address?
+the ip classification has to be used and identify the relevant subnetmask that has to be used for computing network and host address of the ip address.
+0   - 126 - CLASS A = 8   bits network, 24 bits host, subnetmask: 1111111.00000000.00000000.00000000
+128 - 191 - CLASS B = 16  bits network, 16 bits host, subnetmask: 1111111.11111111.00000000.00000000
+192 - 223 - CLASS C = 24  bits network,  8 bits host, subnetmask: 1111111.11111111.11111111.00000000
+224 - 239 - Class D = Multicast addressing
+240 - 255 - Class E = reserved for future usage
+
+Now to identify network address we need to take subnet mask based on ip classfication and do a binary AND to find it.
+192.168.11.23 = Class C ip address so 24 bits are allocated to network and 8 bits are allocated to host so represent ip adresss and subnet mask in binary format and do a BIT AND operation to find network address.
+  
+11000000.10101000.00001011.00010111
+11111111.11111111.11111111.00000000
+--------------------------------------
+11000000.10101000.00001011.00000000    = 192.168.11.0 = network address
+                                         23 is the host address
+------------------------------------------------------------------------------------------------------
+The ip address can be assigned to the computers in 2 ways
+1. static ip
+2. dynamic ip
+
+1. static ip binding: if we have less no of computers to be connected within an network, then the network administrator can manually configure network adapter settings in binding ip, subnet mask and default gateway along with dns configuration. So the computer even after reboot also persist the same ip.
+  
+2. dynamic ip binding: within an organization we have large no of computers to be connected within one network, configuring each of these computers with network adapter configurations is practically impossible, so network administrators takes the help dhcp server.
+  
+Dynamic Host Configuration Protocol (DHCP Server): the network administrator configures ip range, ip reservation, default gateway and dns server configurations. Whenever a new host has been joined on to the network, the DHCP Server propagates network setting to the host by configuring with an ip and other values as well.
+-----------------------------------------------------------------------------------------------------
+CIDR Notation (Classless Inter-domain routing)
+  
+In Class C ip addressing 24 bits are allocated to network and 8 bits are allocated to host. Now we can create 255*255*255 networks and in each network we can have 255-2 (253)  hosts connected.
+For eg. I want to connect 2500 hosts within a network, now which ip class should i choose in allocating ip address.
+we should use Class B, where 16 bits are network address and 16 bits are host address.
+networks: 255*255 = 65k
+hosts: 253 * 253 = 65k
+
+For 2500 hosts to be connected how many bits are required, we need just 12 bits remaining 4 bits are unused.
+  
+Now lets say the required is we want to 2500 hosts in each network and we want to establish 75k networks can you help me how to achieve this in classful ip address?
+  
+If we use Class B ip address, we can allocate only 16 bits for network which will allows us to create 65k networks only and remaining bits are allocated to host 16bits using which we connect another 65k. if we want only 2500 hosts per network, we can allocate 12 bits and remaining 4 bits we can add to network, this is not possible in class-full ipaddress and the bits are wasted.
+  
+To overcome the above limitation the CIDR notation has been introduced and almost everyone is using CIDR notation in allocating the ip address.
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

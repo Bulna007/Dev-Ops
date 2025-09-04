@@ -1,0 +1,17 @@
+- name: nginx play
+  hosts: all
+  tasks:
+    - name: install nginx(ubuntu)
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      become: yes
+      when: ansible_facts['os_family'] == "Debian" and ansible_facts['memtotal_mb'] > 800
+    - name: install nginx(redhat)  
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
+      become: yes
+      when: ansible_facts['os_family'] == "RedHat"

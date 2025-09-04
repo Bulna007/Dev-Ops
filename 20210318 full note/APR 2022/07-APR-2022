@@ -1,0 +1,130 @@
+What is docker build context?
+The directory under which we place the Dockerfile and run the docker build image is called "docker build context". When we trigger an image build using docker cli, the docker cli transfers all the contents including the sub-directories of the Dockerfile directory to docker engine making it available for docker image build process
+
+Within the Dockerfile we can write directives or instructions referring to which files or artifacts should be included in the docker image by using relative path "."
+
+Note: always create an new directory for every project and write Dockerfile inside it to build an image or keep it relative to your project directory. dont create Dockerfile under global directory like "/"
+------------------------------------------------------------------------------------------
+How to write a docker file to build an docker image?
+We need build a docker image by taking another docker image as a base image, so a Dockerfile always starts with FROM directive indicating what is the base image we want to use in building our image
+
+Dockerfile
+-----------
+FROM ubuntu:20.04
+	
+but before writing the FROM directive we can optionally write parser directives as the begining line in the Dockerfile 
+
+There are 2 parser directives supported by docker
+1. SYNTAX
+2. ESCAPE
+
+The parser directives if at all we write should appear at the first-line in the Dockerfile, if we write parser directives anywhere else other than first-line those will be ignored as comments by the docker engine
+
+The parser directives looks like comments in docker file, but those are special instructions which are interpreted by the docker engine 
+syntax
+# DIRECTIVENAME=VALUE
+
+Dockerfile
+-----------
+FROM ubuntu:20.4
+# ESCAPE=` [wrong and will be ignored as comment, because it appears after FROM]
+
+Dockerfile
+-----------
+#comment
+# ESCAPE=` [wrong, it should be the first-line only, even a comment is not allowed before]
+FROM ubuntu:20.04
+	
+Dockerfile
+----------
+
+# ESCAPE=`
+FROM ubuntu:20.04 [wrong, even an empty line is also not permitted]
+
+
+Dockerfile [valid]
+-----------
+# ESCAPE=`
+# SYNTAX=docker/docker-1.0.1
+FROM ubuntu:20.04
+------------------------------------------------------------------------------------------
+1. SYNTAX
+SYNTAX is an parser directive that is used for importing another Dockerfile in which new Syntaxes are defined, so that we can use them aspart of our Dockerfile in building the image.
+SYNTAX help us in importing new directives (frontends), that can be used in writing our Dockerfile in building the image
+
+These parser directives works only with a new docker backed called "build kit" which is more advanced engine in building the docker images
+There are lot of advantages of using new docker backend buildkit
+
+1. detects and skips transfering files from docker build context to the docker engine
+2. we can import external Dockerfiles in adding new directives and features in building images (parser directives are supported)
+3. parallel build independent images
+4. detects and skips unused build stages (layers)
+
+How to enable the buildkit?
+we need to set or export an environment variable to enable buildkit
+export DOCKER_BUILDKIT=1
+	
+#2. ESCAPE
+ESCAPE is used for defining a new symbol as an escape character instead of using "\", which is windows specific/4
+using ESCAPE parser directive we are re-defining the escape character to be used in our Dockerfile	
+
+Dockerfile
+----------
+# ESCAPE=`
+ADD d:`config`db.properties
+
+How to build the docker image?
+#1. be in the Dockerfile directory, then run the below command
+docker image build -t parsedirective:1.0 .
+-t = refers to image name we want to generate for the image it is building
+. = refers to the build context directory pointing to Dockerfile directory location
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

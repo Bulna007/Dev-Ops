@@ -1,0 +1,137 @@
+How to modify the deployment?
+1. kubectl set image deployment/deploymentName container=image:tag
+2. kubect edit deployment deploymentName
+
+
+How to see the revision history of rollout changes?
+kubectl rollout history deployment/deploymentName
+revision    cause
+1           initial
+2           change color
+
+
+How to see the rollout status?
+kubectl rollout status deployment/deploymentName	
+
+How to rollback or undo a rollout?
+kubectl rollout undo deployment/deploymentName
+
+How to go back to the specific revision in the rollout history?
+kubectl rollout undo deployment/deploymentName --to-revision=revisionNo
+
+How to scale the deployment?
+kubectl scale deployment/airtelcare2deployment --replicas=2	
+--------------------------------------------------------------------------------------------
+Service
+
+Service is about networking the pods that are running on the kubernetes cluster. By default the pods are accessible within the node on which there are created, but we might wanted a pod to be exposed	
+	1. To other pods that are running on the cluster
+	2. to be exposed to the external world
+	3. to be load balanced the request across the multiple replicas of the pod	
+these can be achieved through the help of service
+There are 5 types of services are supported by kubernetes cluster
+1. ClusteredIp
+2. NodePort
+3. Loadbalancer
+4. Ingress
+5. Headless Service
+
+1. ClusterIP
+The default service type with which a Service will be created on kubernetes cluster, when we dont specify a type is ClusterIP Service
+If we want our pod applications to be load balanced and exposed to the other pod applications with a static ip and fixed port making them accessible within the cluster then we need to use ClusterIP service
+
+usually we want to expose backend application (microservices) ot the frontend applications that are running as pods on the cluster, it can be achieved through ClusterIP Service
+
+The clusterip service will assigns the ip address to the service within the range of cluster only and the service is not accessible to the outside world
+
+#2. NodePort
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
